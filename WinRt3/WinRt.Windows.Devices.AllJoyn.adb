@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Devices.Enumeration;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Globalization;
 with WinRt.Windows.Networking.Sockets;
 with WinRt.Windows.Security.Credentials;

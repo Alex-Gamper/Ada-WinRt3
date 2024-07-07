@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.ApplicationModel.Background;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Networking.Connectivity;
 limited with WinRt.Windows.Security.Credentials;
 limited with WinRt.Windows.Security.Cryptography.Certificates;

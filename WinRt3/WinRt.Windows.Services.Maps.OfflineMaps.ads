@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.Devices.Geolocation;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Services.Maps.OfflineMaps is

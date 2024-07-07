@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.Devices.Geolocation;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Globalization;
 with Ada.Finalization;
 --------------------------------------------------------------------------------

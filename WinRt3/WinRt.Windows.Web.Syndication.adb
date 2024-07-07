@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Data.Xml.Dom;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Security.Credentials;
 with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;

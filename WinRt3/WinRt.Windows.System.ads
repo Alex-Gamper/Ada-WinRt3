@@ -33,7 +33,6 @@ with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Storage;
 limited with WinRt.Windows.Storage.Search;
 limited with WinRt.Windows.Storage.Streams;
-limited with WinRt.Windows.System.Diagnostics;
 limited with WinRt.Windows.System.RemoteSystems;
 limited with WinRt.Windows.UI.Popups;
 limited with WinRt.Windows.UI.ViewManagement;

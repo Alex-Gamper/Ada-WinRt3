@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-limited with WinRt.Windows.ApplicationModel.Activation;
 limited with WinRt.Windows.ApplicationModel.Calls.Background;
 limited with WinRt.Windows.Devices.Bluetooth;
 limited with WinRt.Windows.Devices.Bluetooth.Advertisement;

@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Networking.Sockets;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;

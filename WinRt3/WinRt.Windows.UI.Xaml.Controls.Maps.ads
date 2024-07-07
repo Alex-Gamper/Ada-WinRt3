@@ -29,10 +29,8 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.Devices.Geolocation;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Foundation.Numerics;
 limited with WinRt.Windows.Services.Maps;
-limited with WinRt.Windows.Services.Maps.LocalSearch;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;
 --------------------------------------------------------------------------------

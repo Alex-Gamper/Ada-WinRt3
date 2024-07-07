@@ -29,8 +29,6 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.ApplicationModel.Appointments;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
-limited with WinRt.Windows.Security.Cryptography.Certificates;
 limited with WinRt.Windows.Storage.Streams;
 limited with WinRt.Windows.System;
 with Ada.Finalization;

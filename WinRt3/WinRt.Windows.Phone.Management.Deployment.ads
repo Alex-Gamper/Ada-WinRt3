@@ -27,9 +27,7 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-limited with WinRt.Windows.ApplicationModel;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Management.Deployment;
 with Ada.Finalization;
 --------------------------------------------------------------------------------

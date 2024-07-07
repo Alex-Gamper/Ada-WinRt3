@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.Data.Xml.Dom;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Security.Credentials;
 limited with WinRt.Windows.Storage.Streams;
 limited with WinRt.Windows.Web.Syndication;

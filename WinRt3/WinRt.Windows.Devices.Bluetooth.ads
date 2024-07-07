@@ -32,9 +32,7 @@ limited with WinRt.Windows.Devices.Bluetooth.Rfcomm;
 limited with WinRt.Windows.Devices.Enumeration;
 limited with WinRt.Windows.Devices.Radios;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Networking;
-limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Devices.Bluetooth is

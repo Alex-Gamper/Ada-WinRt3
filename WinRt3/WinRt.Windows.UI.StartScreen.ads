@@ -29,8 +29,6 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.ApplicationModel.Core;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
-limited with WinRt.Windows.Perception.Spatial;
 limited with WinRt.Windows.System;
 limited with WinRt.Windows.UI.Popups;
 with Ada.Finalization;

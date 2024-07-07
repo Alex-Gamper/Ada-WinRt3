@@ -30,8 +30,6 @@
 limited with WinRt.Windows.Devices.Bluetooth.Advertisement;
 limited with WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile;
 limited with WinRt.Windows.Devices.Bluetooth.Rfcomm;
-with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Networking.Sockets;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;

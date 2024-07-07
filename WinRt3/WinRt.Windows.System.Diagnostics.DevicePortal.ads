@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.ApplicationModel.AppService;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Networking.Sockets;
 limited with WinRt.Windows.Web.Http;
 with Ada.Finalization;

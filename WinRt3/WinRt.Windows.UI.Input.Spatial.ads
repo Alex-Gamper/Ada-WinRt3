@@ -30,7 +30,6 @@
 limited with WinRt.Windows.Devices.Haptics;
 limited with WinRt.Windows.Devices.Power;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Foundation.Numerics;
 limited with WinRt.Windows.Perception;
 limited with WinRt.Windows.Perception.People;

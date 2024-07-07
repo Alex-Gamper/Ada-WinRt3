@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.Devices.Enumeration;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Graphics.DirectX.Direct3D11;
 limited with WinRt.Windows.Graphics.Imaging;
 limited with WinRt.Windows.Media.Devices;

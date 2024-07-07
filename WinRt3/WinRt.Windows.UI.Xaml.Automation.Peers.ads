@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.UI.Xaml.Automation.Provider;
 limited with WinRt.Windows.UI.Xaml.Controls;
 limited with WinRt.Windows.UI.Xaml.Controls.Primitives;

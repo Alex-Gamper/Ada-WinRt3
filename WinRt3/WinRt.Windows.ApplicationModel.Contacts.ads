@@ -27,12 +27,10 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-limited with WinRt.Windows.Data.Text;
 with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Storage.Streams;
 limited with WinRt.Windows.System;
-limited with WinRt.Windows.UI;
 limited with WinRt.Windows.UI.Popups;
 limited with WinRt.Windows.UI.ViewManagement;
 with Ada.Finalization;

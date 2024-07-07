@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Media.MediaProperties;
 limited with WinRt.Windows.Security.Credentials;
 limited with WinRt.Windows.Storage.Streams;

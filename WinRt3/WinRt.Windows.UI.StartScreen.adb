@@ -29,8 +29,6 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.ApplicationModel.Core;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
-with WinRt.Windows.Perception.Spatial;
 with WinRt.Windows.System;
 with WinRt.Windows.UI.Popups;
 with Ada.Unchecked_Conversion;

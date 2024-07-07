@@ -30,7 +30,6 @@
 with WinRt.Windows.ApplicationModel.Appointments;
 with WinRt.Windows.ApplicationModel.Email;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Storage.Streams;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------

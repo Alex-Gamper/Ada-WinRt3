@@ -28,9 +28,7 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Globalization;
-limited with WinRt.Windows.UI.ViewManagement;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.UI.Text.Core is
