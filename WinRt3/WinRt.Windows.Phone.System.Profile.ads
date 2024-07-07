@@ -56,4 +56,4 @@ package WinRt.Windows.Phone.System.Profile is
 
       IID_IRetailModeStatics : aliased WinRt.IID := (3621703721, 64986, 17383, (147, 251, 229, 58, 182, 232, 158, 195 ));
 
-end;
+end WinRt.Windows.Phone.System.Profile;

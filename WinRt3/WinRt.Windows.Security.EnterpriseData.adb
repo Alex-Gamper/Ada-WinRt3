@@ -4204,4 +4204,4 @@ package body WinRt.Windows.Security.EnterpriseData is
       m_RefCount := m_Interface.Release;
    end;
 
-end;
+end WinRt.Windows.Security.EnterpriseData;

@@ -575,4 +575,4 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       this : in out PnpObjectWatcher
    );
 
-end;
+end WinRt.Windows.Devices.Enumeration.Pnp;

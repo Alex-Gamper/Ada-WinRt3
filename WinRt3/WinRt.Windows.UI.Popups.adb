@@ -904,4 +904,4 @@ package body WinRt.Windows.UI.Popups is
       Hr := this.m_IUICommand.all.put_Id (value);
    end;
 
-end;
+end WinRt.Windows.UI.Popups;

@@ -2183,4 +2183,4 @@ package WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Devices.Power.BatteryReport'Class;
 
-end;
+end WinRt.Windows.Gaming.Input;

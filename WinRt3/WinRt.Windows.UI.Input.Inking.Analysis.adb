@@ -1817,4 +1817,4 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
       end return;
    end;
 
-end;
+end WinRt.Windows.UI.Input.Inking.Analysis;

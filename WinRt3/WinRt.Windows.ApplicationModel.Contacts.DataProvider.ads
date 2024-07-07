@@ -769,4 +769,4 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.Foundation.Deferral'Class;
 
-end;
+end WinRt.Windows.ApplicationModel.Contacts.DataProvider;

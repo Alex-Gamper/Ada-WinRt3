@@ -164,4 +164,4 @@ package body WinRt.Windows.UI.Accessibility is
       Hr := this.m_IScreenReaderService.all.remove_ScreenReaderPositionChanged (token);
    end;
 
-end;
+end WinRt.Windows.UI.Accessibility;

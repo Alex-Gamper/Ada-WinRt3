@@ -392,4 +392,4 @@ package body WinRt.Windows.Networking is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Networking;

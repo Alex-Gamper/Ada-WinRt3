@@ -4581,4 +4581,4 @@ package body WinRt.Windows.UI.Xaml.Automation is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for WindowPatternIdentifiers
 
-end;
+end WinRt.Windows.UI.Xaml.Automation;

@@ -410,4 +410,4 @@ package WinRt.Windows.Networking is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Networking;

@@ -1681,4 +1681,4 @@ package body WinRt.Windows.Web.UI.Interop is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Web.UI.Interop;

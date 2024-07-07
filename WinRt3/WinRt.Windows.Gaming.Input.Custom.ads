@@ -747,4 +747,4 @@ package WinRt.Windows.Gaming.Input.Custom is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.Gaming.Input.Custom;

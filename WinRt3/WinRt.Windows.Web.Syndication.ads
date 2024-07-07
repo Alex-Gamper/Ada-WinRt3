@@ -3145,4 +3145,4 @@ package WinRt.Windows.Web.Syndication is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
-end;
+end WinRt.Windows.Web.Syndication;

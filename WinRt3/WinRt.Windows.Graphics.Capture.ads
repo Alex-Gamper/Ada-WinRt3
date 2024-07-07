@@ -538,4 +538,4 @@ package WinRt.Windows.Graphics.Capture is
       this : in out GraphicsCaptureSession
    );
 
-end;
+end WinRt.Windows.Graphics.Capture;

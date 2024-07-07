@@ -1357,4 +1357,4 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.GenericObject;
 
-end;
+end WinRt.Windows.ApplicationModel.Resources.Core;

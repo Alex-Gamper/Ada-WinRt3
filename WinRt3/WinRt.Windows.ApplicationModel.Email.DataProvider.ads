@@ -2693,4 +2693,4 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    )
    return WinRt.Windows.Foundation.Deferral'Class;
 
-end;
+end WinRt.Windows.ApplicationModel.Email.DataProvider;

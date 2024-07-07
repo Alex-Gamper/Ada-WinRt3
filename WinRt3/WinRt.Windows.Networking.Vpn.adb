@@ -5726,4 +5726,4 @@ package body WinRt.Windows.Networking.Vpn is
       Hr := this.m_IVpnTrafficFilterAssignment.all.put_AllowInbound (value);
    end;
 
-end;
+end WinRt.Windows.Networking.Vpn;

@@ -132,4 +132,4 @@ package WinRt.Windows.Graphics.DirectX.Direct3D11 is
 
       IID_IDirect3DSurface : aliased WinRt.IID := (200581446, 5057, 18068, (190, 227, 122, 191, 21, 234, 245, 134 ));
 
-end;
+end WinRt.Windows.Graphics.DirectX.Direct3D11;

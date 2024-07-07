@@ -376,4 +376,4 @@ package body WinRt.Windows.ApplicationModel.Calls.Provider is
 
    end PhoneCallOriginManager;
 
-end;
+end WinRt.Windows.ApplicationModel.Calls.Provider;

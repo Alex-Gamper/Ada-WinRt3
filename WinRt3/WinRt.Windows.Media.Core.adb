@@ -10388,4 +10388,4 @@ package body WinRt.Windows.Media.Core is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Media.Core;

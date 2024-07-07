@@ -2136,4 +2136,4 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr := WindowsDeleteString (HStr_value);
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Wallet;

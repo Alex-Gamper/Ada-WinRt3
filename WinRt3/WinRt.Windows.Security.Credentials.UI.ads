@@ -627,4 +627,4 @@ package WinRt.Windows.Security.Credentials.UI is
 
    end UserConsentVerifier;
 
-end;
+end WinRt.Windows.Security.Credentials.UI;

@@ -904,4 +904,4 @@ package body WinRt.Windows.Services.Cortana is
       Hr := this.m_ICortanaSettings.all.put_IsVoiceActivationEnabled (value);
    end;
 
-end;
+end WinRt.Windows.Services.Cortana;

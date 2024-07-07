@@ -71,4 +71,4 @@ package WinRt.Windows.Graphics.Effects is
 
       IID_IGraphicsEffectSource : aliased WinRt.IID := (764386780, 17209, 20153, (146, 22, 249, 222, 183, 86, 88, 162 ));
 
-end;
+end WinRt.Windows.Graphics.Effects;

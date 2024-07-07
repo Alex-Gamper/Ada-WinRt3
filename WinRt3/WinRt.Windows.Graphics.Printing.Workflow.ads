@@ -1003,4 +1003,4 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Foundation.Deferral'Class;
 
-end;
+end WinRt.Windows.Graphics.Printing.Workflow;

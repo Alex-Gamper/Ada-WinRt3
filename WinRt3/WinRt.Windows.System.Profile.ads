@@ -1016,4 +1016,4 @@ package WinRt.Windows.System.Profile is
 
    end WindowsIntegrityPolicy;
 
-end;
+end WinRt.Windows.System.Profile;

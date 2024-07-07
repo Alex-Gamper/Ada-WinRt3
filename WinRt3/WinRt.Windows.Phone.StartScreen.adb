@@ -524,4 +524,4 @@ package body WinRt.Windows.Phone.StartScreen is
       return m_RetVal;
    end;
 
-end;
+end WinRt.Windows.Phone.StartScreen;

@@ -339,4 +339,4 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind;
 
-end;
+end WinRt.Windows.ApplicationModel.UserDataAccounts.Provider;

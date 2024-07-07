@@ -3141,4 +3141,4 @@ package WinRt.Windows.Graphics.Printing3D is
       value : WinRt.WString
    );
 
-end;
+end WinRt.Windows.Graphics.Printing3D;

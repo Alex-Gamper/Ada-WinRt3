@@ -4221,4 +4221,4 @@ package body WinRt.Windows.UI.Input.Inking is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.UI.Input.Inking;

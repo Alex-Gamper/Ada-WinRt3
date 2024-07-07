@@ -319,4 +319,4 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
       end if;
    end;
 
-end;
+end WinRt.Windows.Security.Cryptography.DataProtection;

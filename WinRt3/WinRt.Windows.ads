@@ -32,4 +32,4 @@ package WinRt.Windows is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows;

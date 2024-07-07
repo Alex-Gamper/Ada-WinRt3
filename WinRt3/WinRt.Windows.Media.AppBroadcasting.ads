@@ -391,4 +391,4 @@ package WinRt.Windows.Media.AppBroadcasting is
       this : in out AppBroadcastingUI
    );
 
-end;
+end WinRt.Windows.Media.AppBroadcasting;

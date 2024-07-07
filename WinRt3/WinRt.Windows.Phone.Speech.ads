@@ -32,4 +32,4 @@ package WinRt.Windows.Phone.Speech is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Phone.Speech;

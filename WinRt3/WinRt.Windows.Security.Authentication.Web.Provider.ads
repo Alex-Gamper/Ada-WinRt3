@@ -1514,4 +1514,4 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
    )
    return WinRt.Windows.Security.Authentication.Web.Core.WebTokenResponse'Class;
 
-end;
+end WinRt.Windows.Security.Authentication.Web.Provider;

@@ -1592,4 +1592,4 @@ package body WinRt.Windows.Storage.AccessCache is
       Hr := WindowsDeleteString (HStr_metadata);
    end;
 
-end;
+end WinRt.Windows.Storage.AccessCache;

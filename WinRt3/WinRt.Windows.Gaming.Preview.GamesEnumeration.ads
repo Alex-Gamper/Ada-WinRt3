@@ -819,4 +819,4 @@ package WinRt.Windows.Gaming.Preview.GamesEnumeration is
       this : in out GameModeUserConfiguration
    );
 
-end;
+end WinRt.Windows.Gaming.Preview.GamesEnumeration;

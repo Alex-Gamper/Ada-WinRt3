@@ -1121,4 +1121,4 @@ package body WinRt.Windows.Media.Casting is
       Hr := this.m_ICastingSource.all.put_PreferredSourceUri (value.m_IUriRuntimeClass.all);
    end;
 
-end;
+end WinRt.Windows.Media.Casting;

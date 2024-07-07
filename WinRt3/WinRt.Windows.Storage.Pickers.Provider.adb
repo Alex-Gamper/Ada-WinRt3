@@ -718,4 +718,4 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       end return;
    end;
 
-end;
+end WinRt.Windows.Storage.Pickers.Provider;

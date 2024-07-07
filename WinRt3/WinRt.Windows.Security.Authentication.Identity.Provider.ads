@@ -974,4 +974,4 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
    )
    return WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorRegistration'Class;
 
-end;
+end WinRt.Windows.Security.Authentication.Identity.Provider;

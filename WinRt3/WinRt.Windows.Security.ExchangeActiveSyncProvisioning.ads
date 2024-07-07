@@ -831,4 +831,4 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
    )
    return WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType;
 
-end;
+end WinRt.Windows.Security.ExchangeActiveSyncProvisioning;

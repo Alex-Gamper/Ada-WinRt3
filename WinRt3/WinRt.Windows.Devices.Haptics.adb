@@ -707,4 +707,4 @@ package body WinRt.Windows.Devices.Haptics is
       end return;
    end;
 
-end;
+end WinRt.Windows.Devices.Haptics;

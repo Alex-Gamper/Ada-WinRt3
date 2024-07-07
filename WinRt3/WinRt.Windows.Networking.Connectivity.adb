@@ -3186,4 +3186,4 @@ package body WinRt.Windows.Networking.Connectivity is
       return m_GenericRetVal;
    end;
 
-end;
+end WinRt.Windows.Networking.Connectivity;

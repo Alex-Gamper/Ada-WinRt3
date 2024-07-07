@@ -32,4 +32,4 @@ package WinRt.Windows.Embedded is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Embedded;

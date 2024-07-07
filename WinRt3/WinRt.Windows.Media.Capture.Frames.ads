@@ -1940,4 +1940,4 @@ package WinRt.Windows.Media.Capture.Frames is
    )
    return WinRt.UInt32;
 
-end;
+end WinRt.Windows.Media.Capture.Frames;

@@ -16578,4 +16578,4 @@ package body WinRt.Windows.UI.Xaml is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for XamlRootChangedEventArgs
 
-end;
+end WinRt.Windows.UI.Xaml;

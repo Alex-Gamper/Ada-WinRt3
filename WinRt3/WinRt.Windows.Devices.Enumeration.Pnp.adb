@@ -769,4 +769,4 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
       Hr := this.m_IPnpObjectWatcher.all.Stop;
    end;
 
-end;
+end WinRt.Windows.Devices.Enumeration.Pnp;

@@ -42,4 +42,4 @@ package WinRt.Windows.Phone is
    end record with Convention => C_Pass_By_Copy;
    type PhoneContract_Ptr is access all PhoneContract;
 
-end;
+end WinRt.Windows.Phone;

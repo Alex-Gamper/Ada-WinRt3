@@ -1810,4 +1810,4 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       value : Windows.Storage.Streams.IBuffer
    );
 
-end;
+end WinRt.Windows.Devices.Bluetooth.Advertisement;

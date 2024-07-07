@@ -248,4 +248,4 @@ package body WinRt.Windows.Security.Authentication.Identity is
       return m_RetVal;
    end;
 
-end;
+end WinRt.Windows.Security.Authentication.Identity;

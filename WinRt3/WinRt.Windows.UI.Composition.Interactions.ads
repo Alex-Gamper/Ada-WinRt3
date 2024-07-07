@@ -2613,4 +2613,4 @@ package WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionSourceConfiguration'Class;
 
-end;
+end WinRt.Windows.UI.Composition.Interactions;

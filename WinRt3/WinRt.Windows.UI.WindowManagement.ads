@@ -1983,4 +1983,4 @@ package WinRt.Windows.UI.WindowManagement is
    )
    return WinRt.Windows.UI.WindowManagement.WindowingEnvironment'Class;
 
-end;
+end WinRt.Windows.UI.WindowManagement;

@@ -263,4 +263,4 @@ package body WinRt.Windows.UI.Composition.Effects is
       Hr := WindowsDeleteString (HStr_name);
    end;
 
-end;
+end WinRt.Windows.UI.Composition.Effects;

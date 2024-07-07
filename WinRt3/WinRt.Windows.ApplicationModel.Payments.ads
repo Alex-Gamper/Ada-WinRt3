@@ -2441,4 +2441,4 @@ package WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.ApplicationModel.Payments;

@@ -1541,4 +1541,4 @@ package body WinRt.Windows.Data.Json is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Data.Json;

@@ -388,4 +388,4 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Calls.Background;

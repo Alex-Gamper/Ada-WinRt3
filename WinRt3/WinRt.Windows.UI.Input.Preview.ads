@@ -58,4 +58,4 @@ package WinRt.Windows.UI.Input.Preview is
 
       IID_IInputActivationListenerPreviewStatics : aliased WinRt.IID := (4032109797, 3558, 23520, (165, 137, 247, 55, 32, 26, 69, 130 ));
 
-end;
+end WinRt.Windows.UI.Input.Preview;

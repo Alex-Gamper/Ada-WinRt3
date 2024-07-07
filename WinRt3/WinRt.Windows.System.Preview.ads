@@ -298,4 +298,4 @@ package WinRt.Windows.System.Preview is
    )
    return WinRt.Windows.System.Preview.TwoPanelHingedDevicePosturePreviewReading'Class;
 
-end;
+end WinRt.Windows.System.Preview;

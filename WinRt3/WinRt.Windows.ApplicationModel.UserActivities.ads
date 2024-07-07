@@ -1250,4 +1250,4 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       value : WinRt.WString
    );
 
-end;
+end WinRt.Windows.ApplicationModel.UserActivities;

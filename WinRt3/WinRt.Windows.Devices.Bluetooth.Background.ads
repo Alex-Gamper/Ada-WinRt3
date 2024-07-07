@@ -645,4 +645,4 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       value : Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
    );
 
-end;
+end WinRt.Windows.Devices.Bluetooth.Background;

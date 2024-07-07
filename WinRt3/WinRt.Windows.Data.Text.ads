@@ -1428,4 +1428,4 @@ package WinRt.Windows.Data.Text is
       handler : Windows.Data.Text.WordSegmentsTokenizingHandler
    );
 
-end;
+end WinRt.Windows.Data.Text;

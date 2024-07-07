@@ -3934,4 +3934,4 @@ package body WinRt.Windows.Security.Cryptography.Core is
       end return;
    end;
 
-end;
+end WinRt.Windows.Security.Cryptography.Core;

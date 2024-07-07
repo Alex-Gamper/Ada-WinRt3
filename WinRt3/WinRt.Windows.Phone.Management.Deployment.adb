@@ -899,4 +899,4 @@ package body WinRt.Windows.Phone.Management.Deployment is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Phone.Management.Deployment;

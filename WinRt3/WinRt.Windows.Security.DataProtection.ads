@@ -381,4 +381,4 @@ package WinRt.Windows.Security.DataProtection is
    )
    return WinRt.Windows.Security.DataProtection.UserDataAvailability;
 
-end;
+end WinRt.Windows.Security.DataProtection;

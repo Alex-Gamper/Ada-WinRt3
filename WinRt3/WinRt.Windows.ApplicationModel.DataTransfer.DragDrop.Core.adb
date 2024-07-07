@@ -615,4 +615,4 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       Hr := this.m_ICoreDropOperationTargetRequestedEventArgs.all.SetTarget (target);
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core;

@@ -7966,4 +7966,4 @@ package body WinRt.Windows.System is
       Hr := this.m_IUserWatcher.all.remove_Stopped (token);
    end;
 
-end;
+end WinRt.Windows.System;

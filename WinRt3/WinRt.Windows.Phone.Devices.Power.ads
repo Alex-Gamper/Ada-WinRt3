@@ -149,4 +149,4 @@ package WinRt.Windows.Phone.Devices.Power is
       token : Windows.Foundation.EventRegistrationToken
    );
 
-end;
+end WinRt.Windows.Phone.Devices.Power;

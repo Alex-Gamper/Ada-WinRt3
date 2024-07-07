@@ -544,4 +544,4 @@ package body WinRt.Windows.Security.DataProtection is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Security.DataProtection;

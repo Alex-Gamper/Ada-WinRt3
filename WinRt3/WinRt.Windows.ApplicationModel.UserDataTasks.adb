@@ -2489,4 +2489,4 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       end return;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.UserDataTasks;

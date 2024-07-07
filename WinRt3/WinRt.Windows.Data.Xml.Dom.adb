@@ -9131,4 +9131,4 @@ package body WinRt.Windows.Data.Xml.Dom is
       end return;
    end;
 
-end;
+end WinRt.Windows.Data.Xml.Dom;

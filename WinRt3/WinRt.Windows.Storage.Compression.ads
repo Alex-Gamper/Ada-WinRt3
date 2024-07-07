@@ -260,4 +260,4 @@ package WinRt.Windows.Storage.Compression is
       this : in out Decompressor
    );
 
-end;
+end WinRt.Windows.Storage.Compression;

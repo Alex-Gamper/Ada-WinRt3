@@ -4616,4 +4616,4 @@ package WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for UserNotificationChangedTrigger
 
-end;
+end WinRt.Windows.ApplicationModel.Background;

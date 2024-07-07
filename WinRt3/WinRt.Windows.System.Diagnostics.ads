@@ -1155,4 +1155,4 @@ package WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64;
 
-end;
+end WinRt.Windows.System.Diagnostics;

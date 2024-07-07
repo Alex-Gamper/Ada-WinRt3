@@ -100,4 +100,4 @@ package body WinRt.Windows.Phone.Devices.Notification is
       Hr := this.m_IVibrationDevice.all.Cancel;
    end;
 
-end;
+end WinRt.Windows.Phone.Devices.Notification;

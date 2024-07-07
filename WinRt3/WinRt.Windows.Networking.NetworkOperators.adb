@@ -10080,4 +10080,4 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr := this.m_IUssdSession.all.Close;
    end;
 
-end;
+end WinRt.Windows.Networking.NetworkOperators;

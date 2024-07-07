@@ -1938,4 +1938,4 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       Hr := this.m_IBluetoothLEManufacturerData.all.put_Data (value);
    end;
 
-end;
+end WinRt.Windows.Devices.Bluetooth.Advertisement;

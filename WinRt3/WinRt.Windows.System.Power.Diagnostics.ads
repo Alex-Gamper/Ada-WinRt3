@@ -97,4 +97,4 @@ package WinRt.Windows.System.Power.Diagnostics is
 
       IID_IForegroundEnergyDiagnosticsStatics : aliased WinRt.IID := (600443159, 52487, 17929, (190, 21, 143, 232, 148, 197, 228, 30 ));
 
-end;
+end WinRt.Windows.System.Power.Diagnostics;

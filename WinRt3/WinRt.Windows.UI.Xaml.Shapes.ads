@@ -1190,4 +1190,4 @@ package WinRt.Windows.UI.Xaml.Shapes is
       value : WinRt.Double
    );
 
-end;
+end WinRt.Windows.UI.Xaml.Shapes;

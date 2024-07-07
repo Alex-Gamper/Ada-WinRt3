@@ -2084,4 +2084,4 @@ package WinRt.Windows.Storage.Streams is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
 
-end;
+end WinRt.Windows.Storage.Streams;

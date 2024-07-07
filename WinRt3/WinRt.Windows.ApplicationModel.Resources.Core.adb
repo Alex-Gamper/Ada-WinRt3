@@ -1958,4 +1958,4 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Resources.Core;

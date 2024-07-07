@@ -906,4 +906,4 @@ package WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidInputReport'Class;
 
-end;
+end WinRt.Windows.Devices.Input.Preview;

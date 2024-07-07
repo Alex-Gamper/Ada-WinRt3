@@ -479,4 +479,4 @@ package body WinRt.Windows.UI.Xaml.Printing is
       Hr := this.m_IPrintDocument.all.InvalidatePreview;
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Printing;

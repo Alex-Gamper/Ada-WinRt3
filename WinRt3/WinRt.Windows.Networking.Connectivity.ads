@@ -2852,4 +2852,4 @@ package WinRt.Windows.Networking.Connectivity is
    )
    return IVectorView_Guid.Kind;
 
-end;
+end WinRt.Windows.Networking.Connectivity;

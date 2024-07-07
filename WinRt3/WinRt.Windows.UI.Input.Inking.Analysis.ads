@@ -1182,4 +1182,4 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisResult'Class;
 
-end;
+end WinRt.Windows.UI.Input.Inking.Analysis;

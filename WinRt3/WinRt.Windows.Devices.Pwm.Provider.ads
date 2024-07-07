@@ -138,4 +138,4 @@ package WinRt.Windows.Devices.Pwm.Provider is
 
       IID_IPwmProvider : aliased WinRt.IID := (2737836584, 21233, 18352, (147, 73, 102, 186, 67, 210, 89, 2 ));
 
-end;
+end WinRt.Windows.Devices.Pwm.Provider;

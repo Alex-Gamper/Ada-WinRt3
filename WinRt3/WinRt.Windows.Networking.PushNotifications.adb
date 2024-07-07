@@ -1070,4 +1070,4 @@ package body WinRt.Windows.Networking.PushNotifications is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Networking.PushNotifications;

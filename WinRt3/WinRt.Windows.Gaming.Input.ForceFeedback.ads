@@ -821,4 +821,4 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       repeatCount : WinRt.UInt32
    );
 
-end;
+end WinRt.Windows.Gaming.Input.ForceFeedback;

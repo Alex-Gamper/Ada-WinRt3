@@ -72,4 +72,4 @@ package WinRt.Windows.Media.Core.Preview is
 
       IID_ISoundLevelBrokerStatics : aliased WinRt.IID := (1784887649, 56301, 17996, (160, 154, 51, 65, 47, 92, 170, 63 ));
 
-end;
+end WinRt.Windows.Media.Core.Preview;

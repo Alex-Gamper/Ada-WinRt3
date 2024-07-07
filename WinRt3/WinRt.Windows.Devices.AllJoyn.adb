@@ -3566,4 +3566,4 @@ package body WinRt.Windows.Devices.AllJoyn is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.AllJoyn;

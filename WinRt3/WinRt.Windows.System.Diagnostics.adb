@@ -1271,4 +1271,4 @@ package body WinRt.Windows.System.Diagnostics is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.System.Diagnostics;

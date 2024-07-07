@@ -8374,4 +8374,4 @@ package WinRt.Windows.UI.Xaml.Media is
       oldElement : Windows.UI.Xaml.UIElement'Class
    );
 
-end;
+end WinRt.Windows.UI.Xaml.Media;

@@ -2372,4 +2372,4 @@ package body WinRt.Windows.Devices.Geolocation is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Geolocation;

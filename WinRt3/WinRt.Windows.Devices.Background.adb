@@ -156,4 +156,4 @@ package body WinRt.Windows.Devices.Background is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Background;

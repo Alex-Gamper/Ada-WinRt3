@@ -99,4 +99,4 @@ package WinRt.Windows.Management.Core is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ApplicationDataManager
 
-end;
+end WinRt.Windows.Management.Core;

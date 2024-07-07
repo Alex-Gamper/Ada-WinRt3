@@ -1543,4 +1543,4 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       Hr := WindowsDeleteString (HStr_value);
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.UserActivities;

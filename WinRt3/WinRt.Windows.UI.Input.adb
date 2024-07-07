@@ -4993,4 +4993,4 @@ package body WinRt.Windows.UI.Input is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.UI.Input;

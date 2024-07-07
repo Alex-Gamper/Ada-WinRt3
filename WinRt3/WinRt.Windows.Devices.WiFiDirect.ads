@@ -1122,4 +1122,4 @@ package WinRt.Windows.Devices.WiFiDirect is
       value : Windows.Security.Credentials.PasswordCredential'Class
    );
 
-end;
+end WinRt.Windows.Devices.WiFiDirect;

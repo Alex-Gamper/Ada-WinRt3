@@ -132,4 +132,4 @@ package WinRt.Windows.Management.Workplace is
 
       IID_IWorkplaceSettingsStatics : aliased WinRt.IID := (3831984125, 11666, 19464, (186, 212, 246, 89, 11, 84, 166, 211 ));
 
-end;
+end WinRt.Windows.Management.Workplace;

@@ -32,4 +32,4 @@ package WinRt.Windows.Networking.ServiceDiscovery is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Networking.ServiceDiscovery;

@@ -637,4 +637,4 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       end return;
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Navigation;

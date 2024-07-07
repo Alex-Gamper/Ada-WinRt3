@@ -1446,4 +1446,4 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       end return;
    end;
 
-end;
+end WinRt.Windows.Security.Authentication.Identity.Provider;

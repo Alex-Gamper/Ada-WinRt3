@@ -1723,4 +1723,4 @@ package body WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       end return;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Appointments.DataProvider;

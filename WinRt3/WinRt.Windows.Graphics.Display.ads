@@ -1818,4 +1818,4 @@ package WinRt.Windows.Graphics.Display is
 
    end DisplayProperties;
 
-end;
+end WinRt.Windows.Graphics.Display;

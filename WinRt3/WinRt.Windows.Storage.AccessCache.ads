@@ -726,4 +726,4 @@ package WinRt.Windows.Storage.AccessCache is
       visibility : Windows.Storage.AccessCache.RecentStorageItemVisibility
    );
 
-end;
+end WinRt.Windows.Storage.AccessCache;

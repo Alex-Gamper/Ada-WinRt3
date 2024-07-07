@@ -376,4 +376,4 @@ package WinRt.Windows.System.Power is
 
       IID_IPowerManagerStatics : aliased WinRt.IID := (328499805, 25294, 17252, (152, 213, 170, 40, 199, 251, 209, 91 ));
 
-end;
+end WinRt.Windows.System.Power;

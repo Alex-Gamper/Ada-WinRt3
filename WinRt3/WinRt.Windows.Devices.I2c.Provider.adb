@@ -128,4 +128,4 @@ package body WinRt.Windows.Devices.I2c.Provider is
       Hr := this.m_IProviderI2cConnectionSettings.all.put_SharingMode (value);
    end;
 
-end;
+end WinRt.Windows.Devices.I2c.Provider;

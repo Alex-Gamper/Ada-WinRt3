@@ -654,4 +654,4 @@ package WinRt.Windows.Devices.Printers.Extensions is
    )
    return WinRt.Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest'Class;
 
-end;
+end WinRt.Windows.Devices.Printers.Extensions;

@@ -5156,4 +5156,4 @@ package body WinRt.Windows.Media.Protection.PlayReady is
 
    end PlayReadyStatics;
 
-end;
+end WinRt.Windows.Media.Protection.PlayReady;

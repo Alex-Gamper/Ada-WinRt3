@@ -577,4 +577,4 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       end return;
    end;
 
-end;
+end WinRt.Windows.Devices.Printers.Extensions;

@@ -1820,4 +1820,4 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.ApplicationModel.ConversationalAgent;

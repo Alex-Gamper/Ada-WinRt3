@@ -2353,4 +2353,4 @@ package body WinRt.Windows.Media.Miracast is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Media.Miracast;

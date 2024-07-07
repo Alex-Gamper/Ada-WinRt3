@@ -164,4 +164,4 @@ package WinRt.Windows.Security.Cryptography.DataProtection is
       dest : Windows.Storage.Streams.IOutputStream
    );
 
-end;
+end WinRt.Windows.Security.Cryptography.DataProtection;

@@ -728,4 +728,4 @@ package body WinRt.Windows.UI.Xaml.Markup is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for XamlReader
 
-end;
+end WinRt.Windows.UI.Xaml.Markup;

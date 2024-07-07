@@ -1093,4 +1093,4 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       value : WinRt.WString
    );
 
-end;
+end WinRt.Windows.ApplicationModel.VoiceCommands;

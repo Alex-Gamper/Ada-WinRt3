@@ -2862,4 +2862,4 @@ package body WinRt.Windows.UI.Input.Spatial is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.UI.Input.Spatial;

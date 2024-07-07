@@ -158,4 +158,4 @@ package WinRt.Windows.Embedded.DeviceLockdown is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Embedded.DeviceLockdown;

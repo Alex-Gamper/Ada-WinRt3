@@ -517,4 +517,4 @@ package body WinRt.Windows.Gaming.UI is
       end return;
    end;
 
-end;
+end WinRt.Windows.Gaming.UI;

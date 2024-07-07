@@ -122,4 +122,4 @@ package WinRt.Windows.Devices.Portable is
 
       IID_IStorageDeviceStatics : aliased WinRt.IID := (1590576366, 6947, 19922, (134, 82, 188, 22, 79, 0, 49, 40 ));
 
-end;
+end WinRt.Windows.Devices.Portable;

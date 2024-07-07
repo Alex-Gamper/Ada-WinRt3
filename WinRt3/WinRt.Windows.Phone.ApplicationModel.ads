@@ -70,4 +70,4 @@ package WinRt.Windows.Phone.ApplicationModel is
 
       IID_IApplicationProfileStatics : aliased WinRt.IID := (3573582516, 32378, 4577, (167, 242, 176, 161, 72, 36, 1, 155 ));
 
-end;
+end WinRt.Windows.Phone.ApplicationModel;

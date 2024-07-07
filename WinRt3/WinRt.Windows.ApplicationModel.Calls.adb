@@ -4786,4 +4786,4 @@ package body WinRt.Windows.ApplicationModel.Calls is
       m_RefCount := m_Interface.Release;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Calls;

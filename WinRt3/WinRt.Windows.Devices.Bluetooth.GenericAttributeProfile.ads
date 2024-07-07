@@ -5631,4 +5631,4 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    )
    return IReference_Byte.Kind;
 
-end;
+end WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile;

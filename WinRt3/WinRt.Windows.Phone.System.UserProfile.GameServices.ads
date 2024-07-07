@@ -32,4 +32,4 @@ package WinRt.Windows.Phone.System.UserProfile.GameServices is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Phone.System.UserProfile.GameServices;

@@ -9267,4 +9267,4 @@ package body WinRt.Windows.ApplicationModel.Email is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for EmailStoreNotificationTriggerDetails
 
-end;
+end WinRt.Windows.ApplicationModel.Email;

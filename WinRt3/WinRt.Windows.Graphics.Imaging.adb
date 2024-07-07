@@ -4321,4 +4321,4 @@ package body WinRt.Windows.Graphics.Imaging is
       m_RefCount := m_Interface.Release;
    end;
 
-end;
+end WinRt.Windows.Graphics.Imaging;

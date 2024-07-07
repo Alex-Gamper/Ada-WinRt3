@@ -130,4 +130,4 @@ package body WinRt.Windows.Phone.Devices.Power is
       Hr := this.m_IBattery.all.remove_RemainingChargePercentChanged (token);
    end;
 
-end;
+end WinRt.Windows.Phone.Devices.Power;

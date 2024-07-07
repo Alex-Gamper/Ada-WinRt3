@@ -1646,4 +1646,4 @@ package body WinRt.Windows.Services.TargetedContent is
       return m_GenericRetVal;
    end;
 
-end;
+end WinRt.Windows.Services.TargetedContent;

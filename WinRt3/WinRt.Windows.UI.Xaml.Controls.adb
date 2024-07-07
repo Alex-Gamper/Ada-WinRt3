@@ -76093,4 +76093,4 @@ package body WinRt.Windows.UI.Xaml.Controls is
       Hr := this.m_IWrapGrid.all.put_MaximumRowsOrColumns (value);
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Controls;

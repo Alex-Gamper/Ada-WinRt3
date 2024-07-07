@@ -2088,4 +2088,4 @@ package body WinRt.Windows.UI.WindowManagement is
       end return;
    end;
 
-end;
+end WinRt.Windows.UI.WindowManagement;

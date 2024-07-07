@@ -997,4 +997,4 @@ package WinRt.Windows.Data.Json is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Data.Json;

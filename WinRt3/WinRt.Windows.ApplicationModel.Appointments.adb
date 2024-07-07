@@ -7747,4 +7747,4 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IFindAppointmentsOptions.all.put_MaxCount (value);
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Appointments;

@@ -331,4 +331,4 @@ package WinRt.Windows.Globalization.Fonts is
    )
    return WinRt.Windows.Globalization.Fonts.LanguageFont'Class;
 
-end;
+end WinRt.Windows.Globalization.Fonts;

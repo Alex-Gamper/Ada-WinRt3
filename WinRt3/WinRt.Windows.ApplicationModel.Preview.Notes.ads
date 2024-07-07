@@ -525,4 +525,4 @@ package WinRt.Windows.ApplicationModel.Preview.Notes is
       value : WinRt.Boolean
    );
 
-end;
+end WinRt.Windows.ApplicationModel.Preview.Notes;

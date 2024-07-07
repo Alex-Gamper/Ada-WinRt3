@@ -1610,4 +1610,4 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       end return;
    end;
 
-end;
+end WinRt.Windows.Devices.WiFiDirect.Services;

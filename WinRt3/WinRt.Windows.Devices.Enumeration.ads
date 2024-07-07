@@ -2623,4 +2623,4 @@ package WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.UInt32;
 
-end;
+end WinRt.Windows.Devices.Enumeration;

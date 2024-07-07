@@ -542,4 +542,4 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       Hr := this.m_INotesWindowManagerPreviewShowNoteOptions.all.put_ShowWithFocus (value);
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Preview.Notes;

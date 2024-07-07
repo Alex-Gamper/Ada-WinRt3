@@ -363,4 +363,4 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageStartDownloadStatus;
 
-end;
+end WinRt.Windows.Services.Maps.OfflineMaps;

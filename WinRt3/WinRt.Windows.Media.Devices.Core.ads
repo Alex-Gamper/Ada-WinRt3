@@ -1600,4 +1600,4 @@ package WinRt.Windows.Media.Devices.Core is
    )
    return IVector_IFrameController.Kind;
 
-end;
+end WinRt.Windows.Media.Devices.Core;

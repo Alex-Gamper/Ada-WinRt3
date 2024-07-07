@@ -365,4 +365,4 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
       return m_RetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Resources.Management;

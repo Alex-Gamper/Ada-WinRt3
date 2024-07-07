@@ -3184,4 +3184,4 @@ package body WinRt.Windows.Services.Maps is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Services.Maps;

@@ -1518,4 +1518,4 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.AI.MachineLearning.Preview;

@@ -1134,4 +1134,4 @@ package WinRt.Windows.Security.Authentication.Web.Core is
    )
    return IMap_HString_HString.Kind;
 
-end;
+end WinRt.Windows.Security.Authentication.Web.Core;

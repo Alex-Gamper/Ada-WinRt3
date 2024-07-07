@@ -9064,4 +9064,4 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.GenericObject;
 
-end;
+end WinRt.Windows.UI.Xaml.Media.Animation;

@@ -1630,4 +1630,4 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       end return;
    end;
 
-end;
+end WinRt.Windows.Gaming.XboxLive.Storage;

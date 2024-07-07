@@ -1805,4 +1805,4 @@ package WinRt.Windows.Globalization.NumberFormatting is
       value : WinRt.UInt32
    );
 
-end;
+end WinRt.Windows.Globalization.NumberFormatting;

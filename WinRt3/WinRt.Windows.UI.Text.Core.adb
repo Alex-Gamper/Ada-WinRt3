@@ -1609,4 +1609,4 @@ package body WinRt.Windows.UI.Text.Core is
       end return;
    end;
 
-end;
+end WinRt.Windows.UI.Text.Core;

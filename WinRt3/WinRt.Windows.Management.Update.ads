@@ -195,4 +195,4 @@ package WinRt.Windows.Management.Update is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class;
 
-end;
+end WinRt.Windows.Management.Update;

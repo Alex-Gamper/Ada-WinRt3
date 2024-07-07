@@ -4381,4 +4381,4 @@ package body WinRt.Windows.ApplicationModel is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel;

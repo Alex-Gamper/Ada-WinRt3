@@ -65354,4 +65354,4 @@ package WinRt.Windows.UI.Xaml.Controls is
       value : WinRt.Int32
    );
 
-end;
+end WinRt.Windows.UI.Xaml.Controls;

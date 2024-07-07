@@ -1411,4 +1411,4 @@ package body WinRt.Windows.Media.Effects is
       Hr := this.m_IVideoTransformSphericalProjection.all.put_ViewOrientation (value);
    end;
 
-end;
+end WinRt.Windows.Media.Effects;

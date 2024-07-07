@@ -1099,4 +1099,4 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       Hr := this.m_ISocialUserInfo.all.put_TargetUri (value.m_IUriRuntimeClass.all);
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.SocialInfo;

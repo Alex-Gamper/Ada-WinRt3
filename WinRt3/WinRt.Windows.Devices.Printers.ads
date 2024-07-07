@@ -199,4 +199,4 @@ package WinRt.Windows.Devices.Printers is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
 
-end;
+end WinRt.Windows.Devices.Printers;

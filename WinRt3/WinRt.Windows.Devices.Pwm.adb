@@ -543,4 +543,4 @@ package body WinRt.Windows.Devices.Pwm is
       m_RefCount := m_Interface.Release;
    end;
 
-end;
+end WinRt.Windows.Devices.Pwm;

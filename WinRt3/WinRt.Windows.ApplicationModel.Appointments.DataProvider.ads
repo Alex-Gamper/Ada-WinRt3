@@ -1313,4 +1313,4 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.Appointments.DataProvider.AppointmentDataProviderConnection'Class;
 
-end;
+end WinRt.Windows.ApplicationModel.Appointments.DataProvider;

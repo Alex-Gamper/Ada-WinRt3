@@ -1054,4 +1054,4 @@ package WinRt.Windows.Devices.Perception.Provider is
       this : in out PerceptionVideoFrameAllocator
    );
 
-end;
+end WinRt.Windows.Devices.Perception.Provider;

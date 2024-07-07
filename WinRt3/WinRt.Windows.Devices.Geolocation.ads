@@ -1978,4 +1978,4 @@ package WinRt.Windows.Devices.Geolocation is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Devices.Geolocation;

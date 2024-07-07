@@ -700,4 +700,4 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
 
    end PlaceInfoHelper;
 
-end;
+end WinRt.Windows.Services.Maps.LocalSearch;

@@ -669,4 +669,4 @@ package body WinRt.Windows.Media.FaceAnalysis is
       Hr := this.m_IFaceTracker.all.put_MaxDetectableFaceSize (value);
    end;
 
-end;
+end WinRt.Windows.Media.FaceAnalysis;

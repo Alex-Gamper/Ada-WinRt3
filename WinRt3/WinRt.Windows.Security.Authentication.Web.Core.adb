@@ -1953,4 +1953,4 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
       return m_GenericRetVal;
    end;
 
-end;
+end WinRt.Windows.Security.Authentication.Web.Core;

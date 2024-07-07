@@ -165,4 +165,4 @@ package body WinRt.Windows.UI.Composition.Diagnostics is
       end return;
    end;
 
-end;
+end WinRt.Windows.UI.Composition.Diagnostics;

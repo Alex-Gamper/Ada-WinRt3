@@ -214,4 +214,4 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
       Hr := this.m_IPlatformTelemetryRegistrationSettings.all.put_UploadQuotaSize (value);
    end;
 
-end;
+end WinRt.Windows.System.Diagnostics.Telemetry;

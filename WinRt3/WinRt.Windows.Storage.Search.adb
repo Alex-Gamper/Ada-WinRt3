@@ -3031,4 +3031,4 @@ package body WinRt.Windows.Storage.Search is
       Hr := this.m_IValueAndLanguage.all.put_Value (value);
    end;
 
-end;
+end WinRt.Windows.Storage.Search;

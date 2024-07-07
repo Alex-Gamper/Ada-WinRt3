@@ -3865,4 +3865,4 @@ package body WinRt.Windows.Devices.Enumeration is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Enumeration;

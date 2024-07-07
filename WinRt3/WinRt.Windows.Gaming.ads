@@ -32,4 +32,4 @@ package WinRt.Windows.Gaming is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Gaming;

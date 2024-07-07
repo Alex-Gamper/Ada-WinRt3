@@ -1033,4 +1033,4 @@ package body WinRt.Windows.Web.UI is
       end return;
    end;
 
-end;
+end WinRt.Windows.Web.UI;

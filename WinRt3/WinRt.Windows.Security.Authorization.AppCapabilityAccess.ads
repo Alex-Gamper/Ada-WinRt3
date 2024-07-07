@@ -273,4 +273,4 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for AppCapabilityAccessChangedEventArgs
 
-end;
+end WinRt.Windows.Security.Authorization.AppCapabilityAccess;

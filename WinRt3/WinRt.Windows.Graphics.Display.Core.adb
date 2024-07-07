@@ -561,4 +561,4 @@ package body WinRt.Windows.Graphics.Display.Core is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Graphics.Display.Core;

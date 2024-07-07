@@ -32,4 +32,4 @@ package WinRt.Windows.Services is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Services;

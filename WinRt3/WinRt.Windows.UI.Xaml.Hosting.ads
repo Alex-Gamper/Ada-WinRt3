@@ -1323,4 +1323,4 @@ package WinRt.Windows.UI.Xaml.Hosting is
       this : in out XamlUIPresenter
    );
 
-end;
+end WinRt.Windows.UI.Xaml.Hosting;

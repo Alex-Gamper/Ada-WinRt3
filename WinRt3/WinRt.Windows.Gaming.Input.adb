@@ -2462,4 +2462,4 @@ package body WinRt.Windows.Gaming.Input is
       end return;
    end;
 
-end;
+end WinRt.Windows.Gaming.Input;

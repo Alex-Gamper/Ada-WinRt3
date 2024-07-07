@@ -3298,4 +3298,4 @@ package WinRt.Windows.UI.Text is
 
    end TextConstants;
 
-end;
+end WinRt.Windows.UI.Text;

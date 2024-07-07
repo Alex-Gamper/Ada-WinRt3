@@ -904,4 +904,4 @@ package WinRt.Windows.Devices.Gpio is
    )
    return WinRt.Windows.Devices.Gpio.GpioPinEdge;
 
-end;
+end WinRt.Windows.Devices.Gpio;

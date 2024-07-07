@@ -234,4 +234,4 @@ package WinRt.Windows.Media.ClosedCaptioning is
 
       IID_IClosedCaptionPropertiesStatics : aliased WinRt.IID := (279584644, 52272, 16705, (181, 3, 82, 114, 40, 158, 12, 32 ));
 
-end;
+end WinRt.Windows.Media.ClosedCaptioning;

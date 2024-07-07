@@ -93,4 +93,4 @@ package body WinRt.Windows.System.Display is
       Hr := this.m_IDisplayRequest.all.RequestRelease;
    end;
 
-end;
+end WinRt.Windows.System.Display;

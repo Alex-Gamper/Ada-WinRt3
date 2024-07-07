@@ -148,4 +148,4 @@ package WinRt.Windows.UI.Input.Core is
    )
    return WinRt.Windows.System.DispatcherQueue'Class;
 
-end;
+end WinRt.Windows.UI.Input.Core;

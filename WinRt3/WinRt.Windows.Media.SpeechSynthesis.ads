@@ -702,4 +702,4 @@ package WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Windows.Media.SpeechSynthesis.VoiceGender;
 
-end;
+end WinRt.Windows.Media.SpeechSynthesis;

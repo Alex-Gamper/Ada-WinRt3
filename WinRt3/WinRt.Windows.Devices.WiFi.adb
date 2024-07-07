@@ -1087,4 +1087,4 @@ package body WinRt.Windows.Devices.WiFi is
       return m_GenericRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.WiFi;

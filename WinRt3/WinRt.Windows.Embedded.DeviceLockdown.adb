@@ -185,4 +185,4 @@ package body WinRt.Windows.Embedded.DeviceLockdown is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Embedded.DeviceLockdown;

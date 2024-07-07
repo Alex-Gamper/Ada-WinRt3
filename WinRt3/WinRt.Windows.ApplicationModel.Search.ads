@@ -1288,4 +1288,4 @@ package WinRt.Windows.ApplicationModel.Search is
       this : in out SearchSuggestionsRequestDeferral
    );
 
-end;
+end WinRt.Windows.ApplicationModel.Search;

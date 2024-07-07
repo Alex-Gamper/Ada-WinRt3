@@ -422,4 +422,4 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
    )
    return WinRt.Int64;
 
-end;
+end WinRt.Windows.System.Diagnostics.TraceReporting;

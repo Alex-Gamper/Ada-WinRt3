@@ -123,4 +123,4 @@ package WinRt.Windows.Phone.PersonalInformation.Provisioning is
 
       IID_IMessagePartnerProvisioningManagerStatics : aliased WinRt.IID := (2317027408, 29637, 17788, (188, 89, 237, 125, 97, 92, 5, 164 ));
 
-end;
+end WinRt.Windows.Phone.PersonalInformation.Provisioning;

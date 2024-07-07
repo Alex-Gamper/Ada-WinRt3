@@ -295,4 +295,4 @@ package WinRt.Windows.Devices.Gpio.Provider is
    )
    return WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinEdge;
 
-end;
+end WinRt.Windows.Devices.Gpio.Provider;

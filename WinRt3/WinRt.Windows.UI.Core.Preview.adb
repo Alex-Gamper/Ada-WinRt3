@@ -214,4 +214,4 @@ package body WinRt.Windows.UI.Core.Preview is
       Hr := this.m_ISystemNavigationManagerPreview.all.remove_CloseRequested (token);
    end;
 
-end;
+end WinRt.Windows.UI.Core.Preview;

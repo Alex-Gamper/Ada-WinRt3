@@ -1928,4 +1928,4 @@ package body WinRt.Windows.Graphics.Display is
       return Hr;
    end;
 
-end;
+end WinRt.Windows.Graphics.Display;

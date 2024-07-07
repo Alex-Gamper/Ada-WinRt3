@@ -1614,4 +1614,4 @@ package WinRt.Windows.UI.Xaml.Data is
       value : Windows.UI.Xaml.Data.RelativeSourceMode
    );
 
-end;
+end WinRt.Windows.UI.Xaml.Data;

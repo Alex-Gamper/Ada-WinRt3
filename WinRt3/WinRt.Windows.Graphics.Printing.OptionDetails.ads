@@ -2718,4 +2718,4 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintCustomToggleOptionDetails'Class;
 
-end;
+end WinRt.Windows.Graphics.Printing.OptionDetails;

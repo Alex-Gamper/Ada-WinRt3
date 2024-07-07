@@ -6174,4 +6174,4 @@ package body WinRt.Windows.Media.Devices is
       Hr := this.m_IZoomSettings.all.put_Value (value);
    end;
 
-end;
+end WinRt.Windows.Media.Devices;

@@ -275,4 +275,4 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.ApplicationModel.Contacts.Provider;

@@ -3853,4 +3853,4 @@ package WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.Devices.Perception;

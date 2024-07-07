@@ -234,4 +234,4 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Contacts.Provider;

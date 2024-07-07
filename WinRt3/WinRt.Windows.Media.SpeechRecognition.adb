@@ -2651,4 +2651,4 @@ package body WinRt.Windows.Media.SpeechRecognition is
       Hr := WindowsDeleteString (HStr_phraseListName);
    end;
 
-end;
+end WinRt.Windows.Media.SpeechRecognition;

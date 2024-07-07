@@ -367,4 +367,4 @@ package WinRt.Windows.ApplicationModel.SocialInfo.Provider is
 
    end SocialInfoProviderManager;
 
-end;
+end WinRt.Windows.ApplicationModel.SocialInfo.Provider;

@@ -1640,4 +1640,4 @@ package WinRt.Windows.Phone.PersonalInformation is
       returnValue : Windows.Foundation.DateTime
    );
 
-end;
+end WinRt.Windows.Phone.PersonalInformation;

@@ -5298,4 +5298,4 @@ package body WinRt.Windows.Devices.Perception is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Perception;

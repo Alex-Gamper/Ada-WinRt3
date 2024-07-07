@@ -879,4 +879,4 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       Hr := this.m_IDnssdServiceWatcher.all.Stop;
    end;
 
-end;
+end WinRt.Windows.Networking.ServiceDiscovery.Dnssd;

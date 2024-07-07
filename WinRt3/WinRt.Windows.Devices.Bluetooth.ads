@@ -2540,4 +2540,4 @@ package WinRt.Windows.Devices.Bluetooth is
 
    end BluetoothUuidHelper;
 
-end;
+end WinRt.Windows.Devices.Bluetooth;

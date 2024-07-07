@@ -3615,4 +3615,4 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       Hr := WindowsDeleteString (HStr_headerName);
    end;
 
-end;
+end WinRt.Windows.Networking.BackgroundTransfer;

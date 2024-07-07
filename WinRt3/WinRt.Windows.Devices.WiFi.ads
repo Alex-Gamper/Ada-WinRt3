@@ -758,4 +758,4 @@ package WinRt.Windows.Devices.WiFi is
    )
    return IVectorView_WiFiWpsKind.Kind;
 
-end;
+end WinRt.Windows.Devices.WiFi;

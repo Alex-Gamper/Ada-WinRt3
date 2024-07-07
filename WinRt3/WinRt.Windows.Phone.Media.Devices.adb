@@ -141,4 +141,4 @@ package body WinRt.Windows.Phone.Media.Devices is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Phone.Media.Devices;

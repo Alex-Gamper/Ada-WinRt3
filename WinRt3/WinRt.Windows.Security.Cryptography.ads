@@ -158,4 +158,4 @@ package WinRt.Windows.Security.Cryptography is
 
       IID_ICryptographicBufferStatics : aliased WinRt.IID := (839613986, 15536, 19679, (134, 99, 29, 40, 145, 0, 101, 235 ));
 
-end;
+end WinRt.Windows.Security.Cryptography;

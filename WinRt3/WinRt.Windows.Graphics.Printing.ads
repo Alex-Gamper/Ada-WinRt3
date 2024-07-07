@@ -2429,4 +2429,4 @@ package WinRt.Windows.Graphics.Printing is
 
    end StandardPrintTaskOptions;
 
-end;
+end WinRt.Windows.Graphics.Printing;

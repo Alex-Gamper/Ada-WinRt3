@@ -1254,4 +1254,4 @@ package WinRt.Windows.Networking.Proximity is
    )
    return WinRt.Windows.Networking.Sockets.StreamSocket'Class;
 
-end;
+end WinRt.Windows.Networking.Proximity;

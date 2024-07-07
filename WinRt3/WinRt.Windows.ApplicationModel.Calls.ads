@@ -3854,4 +3854,4 @@ package WinRt.Windows.ApplicationModel.Calls is
       media : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
    );
 
-end;
+end WinRt.Windows.ApplicationModel.Calls;

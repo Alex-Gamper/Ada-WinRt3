@@ -32,4 +32,4 @@ package WinRt.Windows.UI.Xaml.Core is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.UI.Xaml.Core;

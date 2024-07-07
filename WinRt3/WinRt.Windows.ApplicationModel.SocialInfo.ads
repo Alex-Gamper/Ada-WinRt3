@@ -1063,4 +1063,4 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.Foundation.Uri'Class
    );
 
-end;
+end WinRt.Windows.ApplicationModel.SocialInfo;

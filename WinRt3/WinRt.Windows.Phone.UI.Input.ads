@@ -250,4 +250,4 @@ package WinRt.Windows.Phone.UI.Input is
 
    end HardwareButtons;
 
-end;
+end WinRt.Windows.Phone.UI.Input;

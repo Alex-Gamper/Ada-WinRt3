@@ -2357,4 +2357,4 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       headerName : WinRt.WString
    );
 
-end;
+end WinRt.Windows.Networking.BackgroundTransfer;

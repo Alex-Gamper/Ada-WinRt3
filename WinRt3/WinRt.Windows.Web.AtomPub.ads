@@ -768,4 +768,4 @@ package WinRt.Windows.Web.AtomPub is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
-end;
+end WinRt.Windows.Web.AtomPub;

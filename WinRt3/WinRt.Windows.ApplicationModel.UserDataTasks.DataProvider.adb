@@ -1188,4 +1188,4 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       end return;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider;

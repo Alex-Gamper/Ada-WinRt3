@@ -182,4 +182,4 @@ package WinRt.Windows.ApplicationModel.Preview.Holographic is
       this : in out HolographicKeyboardPlacementOverridePreview
    );
 
-end;
+end WinRt.Windows.ApplicationModel.Preview.Holographic;

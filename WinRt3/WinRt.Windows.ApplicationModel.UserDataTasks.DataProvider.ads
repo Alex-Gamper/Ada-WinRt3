@@ -873,4 +873,4 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.Foundation.Deferral'Class;
 
-end;
+end WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider;

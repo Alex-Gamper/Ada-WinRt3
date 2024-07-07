@@ -1551,4 +1551,4 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       taskInstance : Windows.ApplicationModel.Background.IBackgroundTaskInstance
    );
 
-end;
+end WinRt.Windows.UI.Xaml.Media.Imaging;

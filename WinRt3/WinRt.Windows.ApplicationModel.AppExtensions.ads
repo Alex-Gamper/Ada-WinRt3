@@ -668,4 +668,4 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.ApplicationModel.Package_x'Class;
 
-end;
+end WinRt.Windows.ApplicationModel.AppExtensions;

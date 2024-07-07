@@ -2361,4 +2361,4 @@ package WinRt.Windows.Media.Import is
    )
    return IVectorView_IPhotoImportSidecar.Kind;
 
-end;
+end WinRt.Windows.Media.Import;

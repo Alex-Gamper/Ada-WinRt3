@@ -1591,4 +1591,4 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Graphics.Printing.PrintTicket;

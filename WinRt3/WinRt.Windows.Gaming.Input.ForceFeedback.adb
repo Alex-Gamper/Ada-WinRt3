@@ -1061,4 +1061,4 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       m_RefCount := m_Interface.Release;
    end;
 
-end;
+end WinRt.Windows.Gaming.Input.ForceFeedback;

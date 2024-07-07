@@ -1441,4 +1441,4 @@ package body WinRt.Windows.Networking.Proximity is
       end return;
    end;
 
-end;
+end WinRt.Windows.Networking.Proximity;

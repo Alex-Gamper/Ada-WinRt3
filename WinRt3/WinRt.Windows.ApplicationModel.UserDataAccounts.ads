@@ -822,4 +822,4 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Windows.Foundation.Deferral'Class;
 
-end;
+end WinRt.Windows.ApplicationModel.UserDataAccounts;

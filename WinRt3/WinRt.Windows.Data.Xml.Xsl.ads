@@ -137,4 +137,4 @@ package WinRt.Windows.Data.Xml.Xsl is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
-end;
+end WinRt.Windows.Data.Xml.Xsl;

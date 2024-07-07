@@ -13219,4 +13219,4 @@ package body WinRt.Windows.Media.Capture is
       end return;
    end;
 
-end;
+end WinRt.Windows.Media.Capture;

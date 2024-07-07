@@ -42,4 +42,4 @@ package WinRt.Windows.Gaming.XboxLive is
    end record with Convention => C_Pass_By_Copy;
    type StorageApiContract_Ptr is access all StorageApiContract;
 
-end;
+end WinRt.Windows.Gaming.XboxLive;

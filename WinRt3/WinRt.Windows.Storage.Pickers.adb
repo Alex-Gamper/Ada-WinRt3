@@ -1678,4 +1678,4 @@ package body WinRt.Windows.Storage.Pickers is
       end return;
    end;
 
-end;
+end WinRt.Windows.Storage.Pickers;

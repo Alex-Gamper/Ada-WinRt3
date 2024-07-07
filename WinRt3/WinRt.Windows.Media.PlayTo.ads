@@ -1717,4 +1717,4 @@ package WinRt.Windows.Media.PlayTo is
    )
    return WinRt.Double;
 
-end;
+end WinRt.Windows.Media.PlayTo;

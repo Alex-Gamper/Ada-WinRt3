@@ -1751,4 +1751,4 @@ package body WinRt.Windows.Security.Credentials is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Security.Credentials;

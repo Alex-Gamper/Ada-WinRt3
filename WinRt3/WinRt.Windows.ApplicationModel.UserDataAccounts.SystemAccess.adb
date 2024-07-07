@@ -1770,4 +1770,4 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
 
    end UserDataAccountSystemAccessManager;
 
-end;
+end WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess;

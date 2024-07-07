@@ -341,4 +341,4 @@ package WinRt is
       type T_Ptr is access T;
    function To_Ada_Type (Data : T_Ptr; Index : Integer) return T;
 
-end;
+end WinRt;

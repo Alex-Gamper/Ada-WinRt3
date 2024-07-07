@@ -477,4 +477,4 @@ package WinRt.Windows.Graphics.Display.Core is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.Graphics.Display.Core;

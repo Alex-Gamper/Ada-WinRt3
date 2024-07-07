@@ -1981,4 +1981,4 @@ package WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.VisualElementsRequest'Class;
 
-end;
+end WinRt.Windows.UI.StartScreen;

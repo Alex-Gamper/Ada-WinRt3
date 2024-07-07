@@ -646,4 +646,4 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Globalization.DateTimeFormatting;

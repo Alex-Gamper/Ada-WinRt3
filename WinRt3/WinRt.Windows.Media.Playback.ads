@@ -6632,4 +6632,4 @@ package WinRt.Windows.Media.Playback is
    )
    return WinRt.Windows.Media.Playback.TimedMetadataTrackPresentationMode;
 
-end;
+end WinRt.Windows.Media.Playback;

@@ -1831,4 +1831,4 @@ package body WinRt.Windows.Media.Editing is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Media.Editing;

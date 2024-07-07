@@ -904,4 +904,4 @@ package WinRt.Windows.Media.Protection is
    )
    return WinRt.Windows.Media.Playback.MediaPlaybackItem'Class;
 
-end;
+end WinRt.Windows.Media.Protection;

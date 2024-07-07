@@ -730,4 +730,4 @@ package WinRt.Windows.Devices.SerialCommunication is
       this : in out SerialDevice
    );
 
-end;
+end WinRt.Windows.Devices.SerialCommunication;

@@ -3399,4 +3399,4 @@ package WinRt.Windows.System.RemoteSystems is
    )
    return WinRt.Windows.Security.Credentials.WebAccount'Class;
 
-end;
+end WinRt.Windows.System.RemoteSystems;

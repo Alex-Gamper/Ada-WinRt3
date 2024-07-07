@@ -4925,4 +4925,4 @@ package body WinRt.Windows.Management.Deployment is
       Hr := this.m_IStagePackageOptions.all.put_AllowUnsigned (value);
    end;
 
-end;
+end WinRt.Windows.Management.Deployment;

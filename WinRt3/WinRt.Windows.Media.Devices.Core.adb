@@ -1552,4 +1552,4 @@ package body WinRt.Windows.Media.Devices.Core is
       return m_GenericRetVal;
    end;
 
-end;
+end WinRt.Windows.Media.Devices.Core;

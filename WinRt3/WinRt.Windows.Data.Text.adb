@@ -1840,4 +1840,4 @@ package body WinRt.Windows.Data.Text is
       Hr := WindowsDeleteString (HStr_text);
    end;
 
-end;
+end WinRt.Windows.Data.Text;

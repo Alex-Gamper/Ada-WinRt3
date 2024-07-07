@@ -1050,4 +1050,4 @@ package WinRt.Windows.Devices.Input is
    )
    return WinRt.UInt32;
 
-end;
+end WinRt.Windows.Devices.Input;

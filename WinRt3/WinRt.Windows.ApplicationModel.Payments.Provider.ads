@@ -405,4 +405,4 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentRequestCompletionStatus;
 
-end;
+end WinRt.Windows.ApplicationModel.Payments.Provider;

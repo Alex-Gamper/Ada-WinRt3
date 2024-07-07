@@ -2609,4 +2609,4 @@ package WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
 
-end;
+end WinRt.Windows.Security.Cryptography.Core;

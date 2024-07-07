@@ -423,4 +423,4 @@ package body WinRt.Windows.Media.Ocr is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Media.Ocr;

@@ -633,4 +633,4 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       this : in out DnssdServiceWatcher
    );
 
-end;
+end WinRt.Windows.Networking.ServiceDiscovery.Dnssd;

@@ -319,4 +319,4 @@ package WinRt.Windows.System.Threading is
       this : in out ThreadPoolTimer
    );
 
-end;
+end WinRt.Windows.System.Threading;

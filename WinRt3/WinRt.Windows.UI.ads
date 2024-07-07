@@ -1645,4 +1645,4 @@ package WinRt.Windows.UI is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for UIContext
 
-end;
+end WinRt.Windows.UI;

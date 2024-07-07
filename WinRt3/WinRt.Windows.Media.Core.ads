@@ -8837,4 +8837,4 @@ package WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSourceStatus;
 
-end;
+end WinRt.Windows.Media.Core;

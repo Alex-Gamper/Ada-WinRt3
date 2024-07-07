@@ -56,4 +56,4 @@ package WinRt.Windows.System.RemoteDesktop is
 
       IID_IInteractiveSessionStatics : aliased WinRt.IID := (1619543601, 56634, 17782, (156, 141, 232, 2, 118, 24, 189, 206 ));
 
-end;
+end WinRt.Windows.System.RemoteDesktop;

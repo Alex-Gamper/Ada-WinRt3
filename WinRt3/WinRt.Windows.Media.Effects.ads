@@ -1480,4 +1480,4 @@ package WinRt.Windows.Media.Effects is
       value : Windows.Foundation.Numerics.Quaternion
    );
 
-end;
+end WinRt.Windows.Media.Effects;

@@ -4245,4 +4245,4 @@ package WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.UInt32
    );
 
-end;
+end WinRt.Windows.ApplicationModel.Appointments;

@@ -123,4 +123,4 @@ package body WinRt.Windows.ApplicationModel.Preview.InkWorkspace is
       end if;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Preview.InkWorkspace;

@@ -740,4 +740,4 @@ package body WinRt.Windows.Media.AppRecording is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Media.AppRecording;

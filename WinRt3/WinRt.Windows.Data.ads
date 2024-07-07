@@ -32,4 +32,4 @@ package WinRt.Windows.Data is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Data;

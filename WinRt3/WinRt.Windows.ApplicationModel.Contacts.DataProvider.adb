@@ -1055,4 +1055,4 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       end return;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Contacts.DataProvider;

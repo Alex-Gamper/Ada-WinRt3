@@ -57,4 +57,4 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop is
    );
    type DragDropModifiers_Ptr is access all DragDropModifiers;
 
-end;
+end WinRt.Windows.ApplicationModel.DataTransfer.DragDrop;

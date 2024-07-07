@@ -2072,4 +2072,4 @@ package WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
 
-end;
+end WinRt.Windows.Perception.Spatial;

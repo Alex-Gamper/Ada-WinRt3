@@ -3141,4 +3141,4 @@ package WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.VibrateState;
 
-end;
+end WinRt.Windows.Phone.Notification.Management;

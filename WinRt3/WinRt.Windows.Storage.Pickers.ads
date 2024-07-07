@@ -1129,4 +1129,4 @@ package WinRt.Windows.Storage.Pickers is
    )
    return WinRt.Windows.System.User'Class;
 
-end;
+end WinRt.Windows.Storage.Pickers;

@@ -288,4 +288,4 @@ package body WinRt.Windows.UI.Notifications.Management is
       Hr := this.m_IUserNotificationListener.all.RemoveNotification (notificationId);
    end;
 
-end;
+end WinRt.Windows.UI.Notifications.Management;

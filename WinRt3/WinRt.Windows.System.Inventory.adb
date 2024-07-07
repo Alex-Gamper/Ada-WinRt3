@@ -213,4 +213,4 @@ package body WinRt.Windows.System.Inventory is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.System.Inventory;

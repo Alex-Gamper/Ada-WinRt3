@@ -170,4 +170,4 @@ package WinRt.Windows.UI.Accessibility is
       token : Windows.Foundation.EventRegistrationToken
    );
 
-end;
+end WinRt.Windows.UI.Accessibility;

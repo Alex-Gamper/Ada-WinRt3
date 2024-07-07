@@ -1368,4 +1368,4 @@ package WinRt.Windows.Devices.Scanners is
    )
    return WinRt.GenericObject;
 
-end;
+end WinRt.Windows.Devices.Scanners;

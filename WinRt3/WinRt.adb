@@ -164,4 +164,4 @@ package body WinRt is
       return Peek(Convert(Data) + System.Storage_Elements.Storage_Offset((Index - 1) * (T'Size / 8)));
    end;
 
-end;
+end WinRt;

@@ -392,4 +392,4 @@ package body WinRt.Windows.Devices.Adc is
       end return;
    end;
 
-end;
+end WinRt.Windows.Devices.Adc;

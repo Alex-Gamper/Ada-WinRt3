@@ -53,4 +53,4 @@ package WinRt.Windows.Phone.Speech.Recognition is
    );
    type SpeechRecognitionUIStatus_Ptr is access all SpeechRecognitionUIStatus;
 
-end;
+end WinRt.Windows.Phone.Speech.Recognition;

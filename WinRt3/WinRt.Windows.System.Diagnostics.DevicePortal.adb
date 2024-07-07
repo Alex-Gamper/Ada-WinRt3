@@ -405,4 +405,4 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
       end return;
    end;
 
-end;
+end WinRt.Windows.System.Diagnostics.DevicePortal;

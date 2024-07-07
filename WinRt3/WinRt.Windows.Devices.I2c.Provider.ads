@@ -299,4 +299,4 @@ package WinRt.Windows.Devices.I2c.Provider is
       value : Windows.Devices.I2c.Provider.ProviderI2cSharingMode
    );
 
-end;
+end WinRt.Windows.Devices.I2c.Provider;

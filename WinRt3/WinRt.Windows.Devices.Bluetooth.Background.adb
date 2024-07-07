@@ -616,4 +616,4 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr := this.m_IRfcommOutboundConnectionInformation.all.put_RemoteServiceId (value.m_IRfcommServiceId.all);
    end;
 
-end;
+end WinRt.Windows.Devices.Bluetooth.Background;

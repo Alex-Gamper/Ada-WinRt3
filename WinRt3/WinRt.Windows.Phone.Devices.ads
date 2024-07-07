@@ -32,4 +32,4 @@ package WinRt.Windows.Phone.Devices is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Phone.Devices;

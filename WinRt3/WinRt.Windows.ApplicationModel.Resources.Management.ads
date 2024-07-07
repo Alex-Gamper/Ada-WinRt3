@@ -345,4 +345,4 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
    )
    return WinRt.GenericObject;
 
-end;
+end WinRt.Windows.ApplicationModel.Resources.Management;

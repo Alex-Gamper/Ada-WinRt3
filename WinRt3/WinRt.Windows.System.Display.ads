@@ -100,4 +100,4 @@ package WinRt.Windows.System.Display is
       this : in out DisplayRequest
    );
 
-end;
+end WinRt.Windows.System.Display;

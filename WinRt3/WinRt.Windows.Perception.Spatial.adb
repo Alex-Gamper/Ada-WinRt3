@@ -2504,4 +2504,4 @@ package body WinRt.Windows.Perception.Spatial is
       end return;
    end;
 
-end;
+end WinRt.Windows.Perception.Spatial;

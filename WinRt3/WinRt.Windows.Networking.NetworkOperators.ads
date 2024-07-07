@@ -7869,4 +7869,4 @@ package WinRt.Windows.Networking.NetworkOperators is
       this : in out UssdSession
    );
 
-end;
+end WinRt.Windows.Networking.NetworkOperators;

@@ -17931,4 +17931,4 @@ package body WinRt.Windows.Devices.PointOfService is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.PointOfService;

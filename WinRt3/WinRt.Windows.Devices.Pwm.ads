@@ -389,4 +389,4 @@ package WinRt.Windows.Devices.Pwm is
       this : in out PwmPin
    );
 
-end;
+end WinRt.Windows.Devices.Pwm;

@@ -57,4 +57,4 @@ package WinRt.Windows.Data.Html is
 
       IID_IHtmlUtilities : aliased WinRt.IID := (4273998557, 9113, 20396, (181, 167, 5, 233, 172, 215, 24, 29 ));
 
-end;
+end WinRt.Windows.Data.Html;

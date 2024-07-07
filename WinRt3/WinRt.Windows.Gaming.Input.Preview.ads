@@ -66,4 +66,4 @@ package WinRt.Windows.Gaming.Input.Preview is
 
       IID_IGameControllerProviderInfoStatics : aliased WinRt.IID := (199354053, 55741, 17646, (131, 98, 72, 139, 46, 70, 75, 251 ));
 
-end;
+end WinRt.Windows.Gaming.Input.Preview;

@@ -67,4 +67,4 @@ package WinRt.Windows.Media.Render is
    );
    type AudioRenderCategory_Ptr is access all AudioRenderCategory;
 
-end;
+end WinRt.Windows.Media.Render;

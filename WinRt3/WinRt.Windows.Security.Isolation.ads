@@ -1691,4 +1691,4 @@ package WinRt.Windows.Security.Isolation is
 
    end IsolatedWindowsHostMessenger;
 
-end;
+end WinRt.Windows.Security.Isolation;

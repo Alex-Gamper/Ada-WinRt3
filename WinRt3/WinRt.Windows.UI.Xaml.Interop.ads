@@ -455,4 +455,4 @@ package WinRt.Windows.UI.Xaml.Interop is
    )
    return WinRt.Int32;
 
-end;
+end WinRt.Windows.UI.Xaml.Interop;

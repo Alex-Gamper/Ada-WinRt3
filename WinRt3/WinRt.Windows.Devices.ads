@@ -242,4 +242,4 @@ package WinRt.Windows.Devices is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for LowLevelDevicesController
 
-end;
+end WinRt.Windows.Devices;

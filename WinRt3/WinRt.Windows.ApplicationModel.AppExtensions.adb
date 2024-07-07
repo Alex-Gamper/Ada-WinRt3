@@ -891,4 +891,4 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       end return;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.AppExtensions;

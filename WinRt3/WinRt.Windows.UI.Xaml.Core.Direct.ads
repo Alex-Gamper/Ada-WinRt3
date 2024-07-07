@@ -5004,4 +5004,4 @@ package WinRt.Windows.UI.Xaml.Core.Direct is
       handler : WinRt.IInspectable
    );
 
-end;
+end WinRt.Windows.UI.Xaml.Core.Direct;

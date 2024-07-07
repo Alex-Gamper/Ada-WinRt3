@@ -2030,4 +2030,4 @@ package body WinRt.Windows.System.UserProfile is
       return m_RetVal;
    end;
 
-end;
+end WinRt.Windows.System.UserProfile;

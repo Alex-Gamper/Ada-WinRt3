@@ -9755,4 +9755,4 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class;
 
-end;
+end WinRt.Windows.UI.Xaml.Controls.Maps;

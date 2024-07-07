@@ -124,4 +124,4 @@ package body WinRt.Windows.UI.Input.Inking.Preview is
       m_RefCount := m_Interface.Release;
    end;
 
-end;
+end WinRt.Windows.UI.Input.Inking.Preview;

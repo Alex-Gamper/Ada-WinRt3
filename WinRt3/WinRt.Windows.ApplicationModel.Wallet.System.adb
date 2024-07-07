@@ -429,4 +429,4 @@ package body WinRt.Windows.ApplicationModel.Wallet.System is
 
    end WalletManagerSystem;
 
-end;
+end WinRt.Windows.ApplicationModel.Wallet.System;

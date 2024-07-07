@@ -5098,4 +5098,4 @@ package body WinRt.Windows.UI.Xaml.Input is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Input;

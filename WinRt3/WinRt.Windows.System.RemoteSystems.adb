@@ -3992,4 +3992,4 @@ package body WinRt.Windows.System.RemoteSystems is
       end return;
    end;
 
-end;
+end WinRt.Windows.System.RemoteSystems;

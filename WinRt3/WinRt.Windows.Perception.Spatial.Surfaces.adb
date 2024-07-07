@@ -817,4 +817,4 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
       Hr := this.m_ISpatialSurfaceObserver.all.remove_ObservedSurfacesChanged (token);
    end;
 
-end;
+end WinRt.Windows.Perception.Spatial.Surfaces;

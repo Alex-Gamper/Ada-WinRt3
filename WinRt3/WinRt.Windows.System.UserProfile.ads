@@ -1096,4 +1096,4 @@ package WinRt.Windows.System.UserProfile is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.System.UserProfile;

@@ -889,4 +889,4 @@ package body WinRt.Windows.Media.Protection is
       return Hr;
    end;
 
-end;
+end WinRt.Windows.Media.Protection;

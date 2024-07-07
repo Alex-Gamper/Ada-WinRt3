@@ -5079,4 +5079,4 @@ package body WinRt.Windows.UI.Notifications is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.UI.Notifications;

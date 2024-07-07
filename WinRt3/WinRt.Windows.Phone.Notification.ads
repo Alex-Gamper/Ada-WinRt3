@@ -32,4 +32,4 @@ package WinRt.Windows.Phone.Notification is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Phone.Notification;

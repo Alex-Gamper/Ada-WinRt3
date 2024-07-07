@@ -2396,4 +2396,4 @@ package WinRt.Windows.Services.Maps is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Services.Maps;

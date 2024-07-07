@@ -308,4 +308,4 @@ package WinRt.Windows.Devices.Adc is
    )
    return WinRt.Windows.Devices.Adc.AdcChannel'Class;
 
-end;
+end WinRt.Windows.Devices.Adc;

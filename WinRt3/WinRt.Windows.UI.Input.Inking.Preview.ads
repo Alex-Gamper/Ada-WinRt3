@@ -127,4 +127,4 @@ package WinRt.Windows.UI.Input.Inking.Preview is
       this : in out PalmRejectionDelayZonePreview
    );
 
-end;
+end WinRt.Windows.UI.Input.Inking.Preview;

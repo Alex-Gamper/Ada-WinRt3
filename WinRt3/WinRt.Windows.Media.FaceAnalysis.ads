@@ -398,4 +398,4 @@ package WinRt.Windows.Media.FaceAnalysis is
       value : Windows.Graphics.Imaging.BitmapSize
    );
 
-end;
+end WinRt.Windows.Media.FaceAnalysis;

@@ -479,4 +479,4 @@ package body WinRt.Windows.Security.Authentication.Web is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Security.Authentication.Web;

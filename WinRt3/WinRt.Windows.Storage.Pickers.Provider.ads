@@ -771,4 +771,4 @@ package WinRt.Windows.Storage.Pickers.Provider is
    )
    return WinRt.Windows.Storage.Pickers.Provider.TargetFileRequest'Class;
 
-end;
+end WinRt.Windows.Storage.Pickers.Provider;

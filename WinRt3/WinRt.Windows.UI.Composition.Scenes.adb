@@ -2090,4 +2090,4 @@ package body WinRt.Windows.UI.Composition.Scenes is
       Hr := this.m_ISceneVisual.all.put_Root (value.m_ISceneNode.all);
    end;
 
-end;
+end WinRt.Windows.UI.Composition.Scenes;

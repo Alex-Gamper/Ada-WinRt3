@@ -1279,4 +1279,4 @@ package body WinRt.Windows.Media.DialProtocol is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Media.DialProtocol;

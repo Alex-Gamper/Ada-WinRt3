@@ -3490,4 +3490,4 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       end return;
    end;
 
-end;
+end WinRt.Windows.Devices.PointOfService.Provider;

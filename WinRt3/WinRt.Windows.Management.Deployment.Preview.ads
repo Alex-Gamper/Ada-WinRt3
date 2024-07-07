@@ -136,4 +136,4 @@ package WinRt.Windows.Management.Deployment.Preview is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Management.Deployment.Preview;

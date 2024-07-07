@@ -5918,4 +5918,4 @@ package WinRt.Windows.Media.Audio is
 
    end SpatialAudioFormatSubtype;
 
-end;
+end WinRt.Windows.Media.Audio;

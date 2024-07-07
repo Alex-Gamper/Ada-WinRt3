@@ -32,4 +32,4 @@ package WinRt.Windows.Phone.Media is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Phone.Media;

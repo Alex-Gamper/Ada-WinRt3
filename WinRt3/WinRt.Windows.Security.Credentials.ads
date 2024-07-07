@@ -1159,4 +1159,4 @@ package WinRt.Windows.Security.Credentials is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.Security.Credentials;

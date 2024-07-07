@@ -1416,4 +1416,4 @@ package WinRt.Windows.Services.TargetedContent is
    )
    return IVectorView_ITargetedContentAction.Kind;
 
-end;
+end WinRt.Windows.Services.TargetedContent;

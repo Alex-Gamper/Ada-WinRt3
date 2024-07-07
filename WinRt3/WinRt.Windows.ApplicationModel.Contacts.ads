@@ -7716,4 +7716,4 @@ package WinRt.Windows.ApplicationModel.Contacts is
    )
    return WinRt.Windows.ApplicationModel.Contacts.PinnedContactIdsQueryResult'Class;
 
-end;
+end WinRt.Windows.ApplicationModel.Contacts;

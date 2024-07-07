@@ -3761,4 +3761,4 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr := WindowsDeleteString (HStr_value);
    end;
 
-end;
+end WinRt.Windows.Graphics.Printing3D;

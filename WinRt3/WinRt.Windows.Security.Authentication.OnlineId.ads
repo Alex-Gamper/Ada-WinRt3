@@ -847,4 +847,4 @@ package WinRt.Windows.Security.Authentication.OnlineId is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.Security.Authentication.OnlineId;

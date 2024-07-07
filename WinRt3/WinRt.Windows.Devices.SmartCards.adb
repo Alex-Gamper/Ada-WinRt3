@@ -6371,4 +6371,4 @@ package body WinRt.Windows.Devices.SmartCards is
       end return;
    end;
 
-end;
+end WinRt.Windows.Devices.SmartCards;

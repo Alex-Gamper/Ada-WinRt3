@@ -1816,4 +1816,4 @@ package WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType;
 
-end;
+end WinRt.Windows.Devices.Midi;

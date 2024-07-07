@@ -3901,4 +3901,4 @@ package body WinRt.Windows.Media is
       end if;
    end;
 
-end;
+end WinRt.Windows.Media;

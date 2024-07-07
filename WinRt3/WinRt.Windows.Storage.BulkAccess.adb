@@ -4817,4 +4817,4 @@ package body WinRt.Windows.Storage.BulkAccess is
       end return;
    end;
 
-end;
+end WinRt.Windows.Storage.BulkAccess;

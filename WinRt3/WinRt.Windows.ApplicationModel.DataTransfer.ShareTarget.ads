@@ -364,4 +364,4 @@ package WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    )
    return WinRt.GenericObject;
 
-end;
+end WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget;

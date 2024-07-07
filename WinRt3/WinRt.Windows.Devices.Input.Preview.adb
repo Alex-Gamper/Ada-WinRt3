@@ -912,4 +912,4 @@ package body WinRt.Windows.Devices.Input.Preview is
       end return;
    end;
 
-end;
+end WinRt.Windows.Devices.Input.Preview;

@@ -42,4 +42,4 @@ package WinRt.Windows.Gaming.Preview is
    end record with Convention => C_Pass_By_Copy;
    type GamesEnumerationContract_Ptr is access all GamesEnumerationContract;
 
-end;
+end WinRt.Windows.Gaming.Preview;

@@ -687,4 +687,4 @@ package body WinRt.Windows.UI.Shell is
       return m_RetVal;
    end;
 
-end;
+end WinRt.Windows.UI.Shell;

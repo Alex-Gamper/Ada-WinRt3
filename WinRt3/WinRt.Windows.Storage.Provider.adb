@@ -1639,4 +1639,4 @@ package body WinRt.Windows.Storage.Provider is
 
    end StorageProviderSyncRootManager;
 
-end;
+end WinRt.Windows.Storage.Provider;

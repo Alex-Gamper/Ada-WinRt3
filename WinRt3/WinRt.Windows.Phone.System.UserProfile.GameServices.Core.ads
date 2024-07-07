@@ -260,4 +260,4 @@ package WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
    )
    return WinRt.IInspectable;
 
-end;
+end WinRt.Windows.Phone.System.UserProfile.GameServices.Core;

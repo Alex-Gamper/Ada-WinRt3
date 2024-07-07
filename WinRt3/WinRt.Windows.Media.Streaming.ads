@@ -32,4 +32,4 @@ package WinRt.Windows.Media.Streaming is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Media.Streaming;

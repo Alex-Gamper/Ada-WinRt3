@@ -503,4 +503,4 @@ package WinRt.Windows.Gaming.UI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class;
 
-end;
+end WinRt.Windows.Gaming.UI;

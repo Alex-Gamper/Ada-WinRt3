@@ -4651,4 +4651,4 @@ package body WinRt.Windows.UI.Core is
       m_RefCount := m_Interface.Release;
    end;
 
-end;
+end WinRt.Windows.UI.Core;

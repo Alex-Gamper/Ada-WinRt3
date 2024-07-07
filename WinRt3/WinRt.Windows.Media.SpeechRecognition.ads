@@ -2019,4 +2019,4 @@ package WinRt.Windows.Media.SpeechRecognition is
       phraseList : GenericObject
    );
 
-end;
+end WinRt.Windows.Media.SpeechRecognition;

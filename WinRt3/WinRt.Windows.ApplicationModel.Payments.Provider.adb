@@ -675,4 +675,4 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Payments.Provider;

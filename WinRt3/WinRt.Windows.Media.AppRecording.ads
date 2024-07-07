@@ -619,4 +619,4 @@ package WinRt.Windows.Media.AppRecording is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.Media.AppRecording;

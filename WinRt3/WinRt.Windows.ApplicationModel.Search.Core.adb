@@ -514,4 +514,4 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
       end return;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Search.Core;

@@ -11779,4 +11779,4 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Controls.Primitives;

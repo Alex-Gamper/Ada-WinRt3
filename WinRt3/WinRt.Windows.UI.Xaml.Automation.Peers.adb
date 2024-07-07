@@ -8868,4 +8868,4 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for TreeViewListAutomationPeer
 
-end;
+end WinRt.Windows.UI.Xaml.Automation.Peers;

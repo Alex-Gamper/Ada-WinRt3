@@ -2424,4 +2424,4 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr := this.m_IHolographicViewConfiguration.all.put_IsEnabled (value);
    end;
 
-end;
+end WinRt.Windows.Graphics.Holographic;

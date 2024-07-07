@@ -77,4 +77,4 @@ package body WinRt.Windows.UI.WindowManagement.Preview is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for WindowManagementPreview
 
-end;
+end WinRt.Windows.UI.WindowManagement.Preview;

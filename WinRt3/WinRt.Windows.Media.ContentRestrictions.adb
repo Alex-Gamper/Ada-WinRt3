@@ -586,4 +586,4 @@ package body WinRt.Windows.Media.ContentRestrictions is
       Hr := this.m_IRatedContentRestrictions.all.remove_RestrictionsChanged (token);
    end;
 
-end;
+end WinRt.Windows.Media.ContentRestrictions;

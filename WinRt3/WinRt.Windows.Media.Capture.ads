@@ -11033,4 +11033,4 @@ package WinRt.Windows.Media.Capture is
    )
    return WinRt.Windows.Media.MediaProperties.VideoEncodingProperties'Class;
 
-end;
+end WinRt.Windows.Media.Capture;

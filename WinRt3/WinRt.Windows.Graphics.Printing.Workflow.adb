@@ -1194,4 +1194,4 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       end return;
    end;
 
-end;
+end WinRt.Windows.Graphics.Printing.Workflow;

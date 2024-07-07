@@ -1934,4 +1934,4 @@ package WinRt.Windows.Services.Maps.Guidance is
    )
    return IVectorView_IGuidanceLaneInfo.Kind;
 
-end;
+end WinRt.Windows.Services.Maps.Guidance;

@@ -530,4 +530,4 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
       return m_RetVal;
    end;
 
-end;
+end WinRt.Windows.Phone.System.UserProfile.GameServices.Core;

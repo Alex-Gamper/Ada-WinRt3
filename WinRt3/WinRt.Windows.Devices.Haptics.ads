@@ -483,4 +483,4 @@ package WinRt.Windows.Devices.Haptics is
    )
    return WinRt.Windows.Devices.Haptics.SimpleHapticsController'Class;
 
-end;
+end WinRt.Windows.Devices.Haptics;

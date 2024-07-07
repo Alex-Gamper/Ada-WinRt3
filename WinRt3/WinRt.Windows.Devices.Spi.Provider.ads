@@ -346,4 +346,4 @@ package WinRt.Windows.Devices.Spi.Provider is
       value : Windows.Devices.Spi.Provider.ProviderSpiSharingMode
    );
 
-end;
+end WinRt.Windows.Devices.Spi.Provider;

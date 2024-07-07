@@ -153,4 +153,4 @@ package WinRt.Windows.System.Inventory is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.System.Inventory;

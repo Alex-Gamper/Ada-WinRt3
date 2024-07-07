@@ -12705,4 +12705,4 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       end return;
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Controls.Maps;

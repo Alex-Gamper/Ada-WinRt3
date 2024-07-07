@@ -67,7 +67,7 @@ package body WinRt.Windows.Foundation is
          return Hr;
       end;
 
-   end;
+   end AsyncActionProgressHandler;
 
    --------------------------------------------------------------------------------
    package body AsyncActionWithProgressCompletedHandler is
@@ -85,7 +85,7 @@ package body WinRt.Windows.Foundation is
          return Hr;
       end;
 
-   end;
+   end AsyncActionWithProgressCompletedHandler;
 
    --------------------------------------------------------------------------------
    package body AsyncOperationCompletedHandler is
@@ -103,7 +103,7 @@ package body WinRt.Windows.Foundation is
          return Hr;
       end;
 
-   end;
+   end AsyncOperationCompletedHandler;
 
    --------------------------------------------------------------------------------
    package body AsyncOperationProgressHandler is
@@ -121,7 +121,7 @@ package body WinRt.Windows.Foundation is
          return Hr;
       end;
 
-   end;
+   end AsyncOperationProgressHandler;
 
    --------------------------------------------------------------------------------
    package body AsyncOperationWithProgressCompletedHandler is
@@ -139,7 +139,7 @@ package body WinRt.Windows.Foundation is
          return Hr;
       end;
 
-   end;
+   end AsyncOperationWithProgressCompletedHandler;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Deferral
@@ -244,7 +244,7 @@ package body WinRt.Windows.Foundation is
          return Hr;
       end;
 
-   end;
+   end EventHandler;
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
@@ -1203,7 +1203,7 @@ package body WinRt.Windows.Foundation is
          return Hr;
       end;
 
-   end;
+   end TypedEventHandler;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Uri
@@ -1887,4 +1887,4 @@ package body WinRt.Windows.Foundation is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Foundation;

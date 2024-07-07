@@ -3298,4 +3298,4 @@ package WinRt.Windows.ApplicationModel is
    )
    return WinRt.Windows.Foundation.DateTime;
 
-end;
+end WinRt.Windows.ApplicationModel;

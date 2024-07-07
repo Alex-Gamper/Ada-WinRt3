@@ -2098,4 +2098,4 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.BarcodeSymbologyAttributes'Class;
 
-end;
+end WinRt.Windows.Devices.PointOfService.Provider;

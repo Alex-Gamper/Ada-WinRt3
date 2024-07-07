@@ -490,4 +490,4 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.ApplicationModel.Calls.Background;

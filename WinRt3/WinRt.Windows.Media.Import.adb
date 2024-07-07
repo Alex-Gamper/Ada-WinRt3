@@ -2797,4 +2797,4 @@ package body WinRt.Windows.Media.Import is
       return m_GenericRetVal;
    end;
 
-end;
+end WinRt.Windows.Media.Import;

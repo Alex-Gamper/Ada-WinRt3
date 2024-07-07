@@ -605,4 +605,4 @@ package body WinRt.Windows.Graphics.Capture is
       m_RefCount := m_Interface.Release;
    end;
 
-end;
+end WinRt.Windows.Graphics.Capture;

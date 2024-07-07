@@ -936,4 +936,4 @@ package WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.Foundation.TimeSpan;
 
-end;
+end WinRt.Windows.Devices.Lights;

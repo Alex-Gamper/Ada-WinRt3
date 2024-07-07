@@ -270,4 +270,4 @@ package WinRt.Windows.Media.Capture.Core is
       this : in out VariablePhotoSequenceCapture
    );
 
-end;
+end WinRt.Windows.Media.Capture.Core;

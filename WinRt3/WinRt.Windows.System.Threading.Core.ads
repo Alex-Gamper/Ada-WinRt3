@@ -291,4 +291,4 @@ package WinRt.Windows.System.Threading.Core is
       this : in out SignalNotifier
    );
 
-end;
+end WinRt.Windows.System.Threading.Core;

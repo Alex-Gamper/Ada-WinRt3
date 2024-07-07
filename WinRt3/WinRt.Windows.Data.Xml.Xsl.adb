@@ -120,4 +120,4 @@ package body WinRt.Windows.Data.Xml.Xsl is
       end return;
    end;
 
-end;
+end WinRt.Windows.Data.Xml.Xsl;

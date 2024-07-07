@@ -111,7 +111,7 @@ package WinRt.Windows.Foundation.Collections is
       )
       return WinRt.Hresult;
 
-   end;
+   end MapChangedEventHandler;
 
    IID_VectorChangedEventHandler : aliased WinRt.IID := (201660242, 40895, 19568, (170, 12, 14, 76, 130, 217, 167, 97 ));
    -----------------------------------------------------------------------------
@@ -131,7 +131,7 @@ package WinRt.Windows.Foundation.Collections is
       )
       return WinRt.Hresult;
 
-   end;
+   end VectorChangedEventHandler;
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -157,7 +157,7 @@ package WinRt.Windows.Foundation.Collections is
 
       IID_IIterable : aliased WinRt.IID := (4205151722, 25108, 16919, (175, 218, 127, 70, 222, 88, 105, 179 ));
 
-   end;
+   end IIterable;
 
    -----------------------------------------------------------------------------
    generic
@@ -202,7 +202,7 @@ package WinRt.Windows.Foundation.Collections is
 
       IID_IIterator : aliased WinRt.IID := (1786374243, 17152, 17818, (153, 102, 203, 182, 96, 150, 62, 225 ));
 
-   end;
+   end IIterator;
 
    -----------------------------------------------------------------------------
    generic
@@ -233,7 +233,7 @@ package WinRt.Windows.Foundation.Collections is
 
       IID_IKeyValuePair : aliased WinRt.IID := (45422889, 49604, 19070, (137, 64, 3, 18, 181, 193, 133, 0 ));
 
-   end;
+   end IKeyValuePair;
 
    -----------------------------------------------------------------------------
    generic
@@ -262,7 +262,7 @@ package WinRt.Windows.Foundation.Collections is
 
       IID_IMapChangedEventArgs : aliased WinRt.IID := (2570712287, 1290, 19471, (170, 96, 119, 7, 95, 156, 71, 119 ));
 
-   end;
+   end IMapChangedEventArgs;
 
    -----------------------------------------------------------------------------
    generic
@@ -310,7 +310,7 @@ package WinRt.Windows.Foundation.Collections is
 
       IID_IMapView : aliased WinRt.IID := (3833646656, 41784, 19162, (173, 207, 39, 34, 114, 228, 140, 185 ));
 
-   end;
+   end IMapView;
 
    -----------------------------------------------------------------------------
    generic
@@ -379,7 +379,7 @@ package WinRt.Windows.Foundation.Collections is
 
       IID_IMap : aliased WinRt.IID := (1009329662, 34073, 17857, (170, 121, 25, 123, 103, 24, 193, 193 ));
 
-   end;
+   end IMap;
 
    -----------------------------------------------------------------------------
    generic
@@ -411,7 +411,7 @@ package WinRt.Windows.Foundation.Collections is
 
       IID_IObservableMap : aliased WinRt.IID := (1709124597, 48953, 16821, (174, 188, 90, 157, 134, 94, 71, 43 ));
 
-   end;
+   end IObservableMap;
 
    -----------------------------------------------------------------------------
    generic
@@ -441,7 +441,7 @@ package WinRt.Windows.Foundation.Collections is
 
       IID_IObservableVector : aliased WinRt.IID := (1494739795, 20660, 18957, (179, 9, 101, 134, 43, 63, 29, 188 ));
 
-   end;
+   end IObservableVector;
 
    -----------------------------------------------------------------------------
    -- type IPropertySet is interface and WinRt.IInspectable;
@@ -514,7 +514,7 @@ package WinRt.Windows.Foundation.Collections is
 
       IID_IVectorView : aliased WinRt.IID := (3152149068, 45283, 17795, (186, 239, 31, 27, 46, 72, 62, 86 ));
 
-   end;
+   end IVectorView;
 
    -----------------------------------------------------------------------------
    generic
@@ -620,7 +620,7 @@ package WinRt.Windows.Foundation.Collections is
 
       IID_IVector : aliased WinRt.IID := (2436052969, 4513, 17221, (163, 162, 78, 127, 149, 110, 34, 45 ));
 
-   end;
+   end IVector;
 
    -----------------------------------------------------------------------------
    -- Class method declarations
@@ -848,4 +848,4 @@ package WinRt.Windows.Foundation.Collections is
       this : in out ValueSet
    );
 
-end;
+end WinRt.Windows.Foundation.Collections;

@@ -2336,4 +2336,4 @@ package WinRt.Windows.Graphics.Imaging is
       this : in out SoftwareBitmap
    );
 
-end;
+end WinRt.Windows.Graphics.Imaging;

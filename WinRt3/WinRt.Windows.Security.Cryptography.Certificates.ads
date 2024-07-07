@@ -3676,4 +3676,4 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Security.Cryptography.Certificates;

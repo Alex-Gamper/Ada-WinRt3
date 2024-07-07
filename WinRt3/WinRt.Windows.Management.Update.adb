@@ -242,4 +242,4 @@ package body WinRt.Windows.Management.Update is
       end return;
    end;
 
-end;
+end WinRt.Windows.Management.Update;

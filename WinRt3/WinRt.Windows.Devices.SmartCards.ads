@@ -4124,4 +4124,4 @@ package WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCard'Class;
 
-end;
+end WinRt.Windows.Devices.SmartCards;

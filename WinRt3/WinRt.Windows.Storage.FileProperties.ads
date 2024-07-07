@@ -1664,4 +1664,4 @@ package WinRt.Windows.Storage.FileProperties is
       this : in out VideoProperties
    );
 
-end;
+end WinRt.Windows.Storage.FileProperties;

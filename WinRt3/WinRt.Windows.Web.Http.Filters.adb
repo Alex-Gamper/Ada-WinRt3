@@ -761,4 +761,4 @@ package body WinRt.Windows.Web.Http.Filters is
       end return;
    end;
 
-end;
+end WinRt.Windows.Web.Http.Filters;

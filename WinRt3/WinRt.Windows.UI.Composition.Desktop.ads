@@ -86,4 +86,4 @@ package WinRt.Windows.UI.Composition.Desktop is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.UI.Composition.Desktop;

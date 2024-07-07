@@ -751,4 +751,4 @@ package WinRt.Windows.Web.Http.Filters is
    )
    return WinRt.Windows.Foundation.Deferral'Class;
 
-end;
+end WinRt.Windows.Web.Http.Filters;

@@ -276,4 +276,4 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
       this : in out ExtendedExecutionSession
    );
 
-end;
+end WinRt.Windows.ApplicationModel.ExtendedExecution;

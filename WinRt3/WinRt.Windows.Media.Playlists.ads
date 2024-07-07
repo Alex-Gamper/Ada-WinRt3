@@ -200,4 +200,4 @@ package WinRt.Windows.Media.Playlists is
    )
    return WinRt.Windows.Storage.StorageFile'Class;
 
-end;
+end WinRt.Windows.Media.Playlists;

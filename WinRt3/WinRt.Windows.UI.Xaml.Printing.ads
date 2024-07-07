@@ -485,4 +485,4 @@ package WinRt.Windows.UI.Xaml.Printing is
       this : in out PrintDocument
    );
 
-end;
+end WinRt.Windows.UI.Xaml.Printing;

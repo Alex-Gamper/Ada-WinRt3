@@ -1841,4 +1841,4 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskList'Class;
 
-end;
+end WinRt.Windows.ApplicationModel.UserDataTasks;

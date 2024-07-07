@@ -1391,4 +1391,4 @@ package body WinRt.Windows.ApplicationModel.Core is
       end return;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Core;

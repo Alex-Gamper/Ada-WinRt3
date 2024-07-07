@@ -1830,4 +1830,4 @@ package body WinRt.Windows.Web.AtomPub is
       end return;
    end;
 
-end;
+end WinRt.Windows.Web.AtomPub;

@@ -517,4 +517,4 @@ package WinRt.Windows.Phone.Management.Deployment is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Phone.Management.Deployment;

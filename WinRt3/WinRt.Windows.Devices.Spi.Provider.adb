@@ -202,4 +202,4 @@ package body WinRt.Windows.Devices.Spi.Provider is
       Hr := this.m_IProviderSpiConnectionSettings.all.put_SharingMode (value);
    end;
 
-end;
+end WinRt.Windows.Devices.Spi.Provider;

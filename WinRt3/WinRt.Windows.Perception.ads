@@ -171,4 +171,4 @@ package WinRt.Windows.Perception is
 
    end PerceptionTimestampHelper;
 
-end;
+end WinRt.Windows.Perception;

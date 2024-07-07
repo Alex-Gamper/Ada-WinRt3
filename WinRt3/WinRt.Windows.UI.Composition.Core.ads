@@ -148,4 +148,4 @@ package WinRt.Windows.UI.Composition.Core is
       this : in out CompositorController
    );
 
-end;
+end WinRt.Windows.UI.Composition.Core;

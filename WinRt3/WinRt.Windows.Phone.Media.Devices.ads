@@ -202,4 +202,4 @@ package WinRt.Windows.Phone.Media.Devices is
    )
    return WinRt.Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints;
 
-end;
+end WinRt.Windows.Phone.Media.Devices;

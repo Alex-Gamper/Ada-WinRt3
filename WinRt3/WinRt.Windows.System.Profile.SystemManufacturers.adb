@@ -331,4 +331,4 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
 
    end SystemSupportInfo;
 
-end;
+end WinRt.Windows.System.Profile.SystemManufacturers;

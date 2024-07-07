@@ -512,4 +512,4 @@ package WinRt.Windows.ApplicationModel.LockScreen is
    )
    return WinRt.Windows.Foundation.DateTime;
 
-end;
+end WinRt.Windows.ApplicationModel.LockScreen;

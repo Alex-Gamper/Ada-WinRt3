@@ -3826,4 +3826,4 @@ package WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
 
-end;
+end WinRt.Windows.Foundation.Diagnostics;

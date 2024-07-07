@@ -362,4 +362,4 @@ package body WinRt.Windows.Media.Capture.Core is
       end if;
    end;
 
-end;
+end WinRt.Windows.Media.Capture.Core;

@@ -2232,4 +2232,4 @@ package WinRt.Windows.Media.Streaming.Adaptive is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.Media.Streaming.Adaptive;

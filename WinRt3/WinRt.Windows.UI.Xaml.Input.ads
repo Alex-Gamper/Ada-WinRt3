@@ -4926,4 +4926,4 @@ package WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.Point;
 
-end;
+end WinRt.Windows.UI.Xaml.Input;

@@ -197,4 +197,4 @@ package WinRt.Windows.Security.Authentication.Identity is
    )
    return WinRt.GenericObject;
 
-end;
+end WinRt.Windows.Security.Authentication.Identity;

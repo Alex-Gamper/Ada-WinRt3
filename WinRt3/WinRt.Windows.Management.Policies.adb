@@ -301,4 +301,4 @@ package body WinRt.Windows.Management.Policies is
       Hr := this.m_INamedPolicyData.all.remove_Changed (cookie);
    end;
 
-end;
+end WinRt.Windows.Management.Policies;

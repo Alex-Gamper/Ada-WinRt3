@@ -373,4 +373,4 @@ package body WinRt.Windows.System.Preview is
       end return;
    end;
 
-end;
+end WinRt.Windows.System.Preview;

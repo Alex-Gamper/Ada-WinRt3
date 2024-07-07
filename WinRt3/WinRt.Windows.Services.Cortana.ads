@@ -551,4 +551,4 @@ package WinRt.Windows.Services.Cortana is
       value : WinRt.Boolean
    );
 
-end;
+end WinRt.Windows.Services.Cortana;

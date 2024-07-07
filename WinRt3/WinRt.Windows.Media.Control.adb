@@ -2107,4 +2107,4 @@ package body WinRt.Windows.Media.Control is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for TimelinePropertiesChangedEventArgs
 
-end;
+end WinRt.Windows.Media.Control;

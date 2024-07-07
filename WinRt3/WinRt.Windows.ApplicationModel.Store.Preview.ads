@@ -1100,4 +1100,4 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
 
    end WebAuthenticationCoreManagerHelper;
 
-end;
+end WinRt.Windows.ApplicationModel.Store.Preview;

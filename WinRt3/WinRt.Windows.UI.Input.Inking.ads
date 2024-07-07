@@ -3741,4 +3741,4 @@ package WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.UI.Input.Inking;

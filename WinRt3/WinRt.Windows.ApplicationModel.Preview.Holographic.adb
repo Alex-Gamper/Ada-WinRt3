@@ -161,4 +161,4 @@ package body WinRt.Windows.ApplicationModel.Preview.Holographic is
       Hr := this.m_IHolographicKeyboardPlacementOverridePreview.all.ResetPlacementOverride;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Preview.Holographic;

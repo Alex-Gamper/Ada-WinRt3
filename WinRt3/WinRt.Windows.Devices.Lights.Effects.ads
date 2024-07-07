@@ -1443,4 +1443,4 @@ package WinRt.Windows.Devices.Lights.Effects is
       lampIndexes : WinRt.Int32_Array
    );
 
-end;
+end WinRt.Windows.Devices.Lights.Effects;

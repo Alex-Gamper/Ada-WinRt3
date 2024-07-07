@@ -185,4 +185,4 @@ package body WinRt.Windows.UI.Xaml.Interop is
       return Hr;
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Interop;

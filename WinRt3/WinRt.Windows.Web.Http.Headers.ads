@@ -5707,4 +5707,4 @@ package WinRt.Windows.Web.Http.Headers is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Web.Http.Headers;

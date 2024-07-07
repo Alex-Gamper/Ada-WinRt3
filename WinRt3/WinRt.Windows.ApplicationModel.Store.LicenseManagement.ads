@@ -303,4 +303,4 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    )
    return WinRt.Windows.Foundation.HResult;
 
-end;
+end WinRt.Windows.ApplicationModel.Store.LicenseManagement;

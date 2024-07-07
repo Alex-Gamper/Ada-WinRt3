@@ -2940,4 +2940,4 @@ package WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Int32;
 
-end;
+end WinRt.Windows.Devices.AllJoyn;

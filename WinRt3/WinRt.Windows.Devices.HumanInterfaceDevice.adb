@@ -1923,4 +1923,4 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       end return;
    end;
 
-end;
+end WinRt.Windows.Devices.HumanInterfaceDevice;

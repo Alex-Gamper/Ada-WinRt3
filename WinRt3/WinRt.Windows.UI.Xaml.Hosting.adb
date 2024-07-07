@@ -1431,4 +1431,4 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       Hr := this.m_IXamlUIPresenter.all.Present;
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Hosting;

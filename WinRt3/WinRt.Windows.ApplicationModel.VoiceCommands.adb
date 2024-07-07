@@ -1456,4 +1456,4 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       Hr := WindowsDeleteString (HStr_value);
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.VoiceCommands;

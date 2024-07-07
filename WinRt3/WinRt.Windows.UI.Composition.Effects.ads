@@ -269,4 +269,4 @@ package WinRt.Windows.UI.Composition.Effects is
       name : WinRt.WString
    );
 
-end;
+end WinRt.Windows.UI.Composition.Effects;

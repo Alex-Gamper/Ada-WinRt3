@@ -913,4 +913,4 @@ package body WinRt.Windows.Data.Pdf is
       Hr := this.m_IPdfPageRenderOptions.all.put_BitmapEncoderId (value);
    end;
 
-end;
+end WinRt.Windows.Data.Pdf;

@@ -12201,4 +12201,4 @@ package body WinRt.Windows.Storage is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Storage;

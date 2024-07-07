@@ -1483,4 +1483,4 @@ package WinRt.Windows.ApplicationModel.Store is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.ApplicationModel.Store;

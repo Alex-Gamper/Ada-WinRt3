@@ -163,4 +163,4 @@ package WinRt.Windows.Devices.Background is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Devices.Background;

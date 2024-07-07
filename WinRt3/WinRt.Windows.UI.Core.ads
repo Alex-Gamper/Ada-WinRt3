@@ -4168,4 +4168,4 @@ package WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    );
 
-end;
+end WinRt.Windows.UI.Core;

@@ -4496,4 +4496,4 @@ package WinRt.Windows.ApplicationModel.Chat is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.ApplicationModel.Chat;

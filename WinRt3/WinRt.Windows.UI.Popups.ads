@@ -638,4 +638,4 @@ package WinRt.Windows.UI.Popups is
       value : WinRt.IInspectable
    );
 
-end;
+end WinRt.Windows.UI.Popups;

@@ -1350,4 +1350,4 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       this : in out InputInjector
    );
 
-end;
+end WinRt.Windows.UI.Input.Preview.Injection;

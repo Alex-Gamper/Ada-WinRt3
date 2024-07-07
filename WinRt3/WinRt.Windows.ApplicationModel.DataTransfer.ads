@@ -3215,4 +3215,4 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.ApplicationModel.DataTransfer;

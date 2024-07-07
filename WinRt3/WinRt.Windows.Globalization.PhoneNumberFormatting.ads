@@ -509,4 +509,4 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Globalization.PhoneNumberFormatting;

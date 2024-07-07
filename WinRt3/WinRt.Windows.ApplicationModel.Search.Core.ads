@@ -534,4 +534,4 @@ package WinRt.Windows.ApplicationModel.Search.Core is
    )
    return WinRt.Windows.ApplicationModel.Search.SearchSuggestionsRequest'Class;
 
-end;
+end WinRt.Windows.ApplicationModel.Search.Core;

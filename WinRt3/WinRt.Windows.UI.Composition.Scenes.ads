@@ -1865,4 +1865,4 @@ package WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneNode'Class
    );
 
-end;
+end WinRt.Windows.UI.Composition.Scenes;

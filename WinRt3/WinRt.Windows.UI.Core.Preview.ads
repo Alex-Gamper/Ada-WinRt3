@@ -236,4 +236,4 @@ package WinRt.Windows.UI.Core.Preview is
       token : Windows.Foundation.EventRegistrationToken
    );
 
-end;
+end WinRt.Windows.UI.Core.Preview;

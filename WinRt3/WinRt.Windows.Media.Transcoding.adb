@@ -578,4 +578,4 @@ package body WinRt.Windows.Media.Transcoding is
       end if;
    end;
 
-end;
+end WinRt.Windows.Media.Transcoding;

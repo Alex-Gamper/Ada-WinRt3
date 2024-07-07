@@ -101,4 +101,4 @@ package WinRt.Windows.Phone.System.Power is
 
       IID_IPowerManagerStatics2 : aliased WinRt.IID := (1499608783, 6424, 17745, (164, 102, 197, 26, 174, 55, 59, 248 ));
 
-end;
+end WinRt.Windows.Phone.System.Power;

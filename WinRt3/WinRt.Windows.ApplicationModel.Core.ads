@@ -1158,4 +1158,4 @@ package WinRt.Windows.ApplicationModel.Core is
    )
    return WinRt.Windows.ApplicationModel.Core.UnhandledError'Class;
 
-end;
+end WinRt.Windows.ApplicationModel.Core;

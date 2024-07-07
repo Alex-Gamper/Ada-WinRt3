@@ -391,4 +391,4 @@ package body WinRt.Windows.Devices.Printers is
       return m_RetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Printers;

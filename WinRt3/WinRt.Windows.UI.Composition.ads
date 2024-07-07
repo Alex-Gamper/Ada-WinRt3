@@ -12337,4 +12337,4 @@ package WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject;
 
-end;
+end WinRt.Windows.UI.Composition;

@@ -3683,4 +3683,4 @@ package WinRt.Windows.Devices.Sms is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Devices.Sms;

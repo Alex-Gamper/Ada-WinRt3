@@ -3426,4 +3426,4 @@ package body WinRt.Windows.Phone.PersonalInformation is
       m_RefCount := m_Interface.Release;
    end;
 
-end;
+end WinRt.Windows.Phone.PersonalInformation;

@@ -638,4 +638,4 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Globalization.DateTimeFormatting;

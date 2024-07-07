@@ -440,4 +440,4 @@ package WinRt.Windows.Media.Transcoding is
       this : in out PrepareTranscodeResult
    );
 
-end;
+end WinRt.Windows.Media.Transcoding;

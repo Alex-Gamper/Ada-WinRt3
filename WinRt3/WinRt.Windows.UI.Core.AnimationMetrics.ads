@@ -661,4 +661,4 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
    )
    return WinRt.Windows.Foundation.Point;
 
-end;
+end WinRt.Windows.UI.Core.AnimationMetrics;

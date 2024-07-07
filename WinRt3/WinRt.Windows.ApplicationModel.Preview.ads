@@ -32,4 +32,4 @@ package WinRt.Windows.ApplicationModel.Preview is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.ApplicationModel.Preview;

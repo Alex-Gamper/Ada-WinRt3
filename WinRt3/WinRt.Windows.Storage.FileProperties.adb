@@ -3107,4 +3107,4 @@ package body WinRt.Windows.Storage.FileProperties is
       end if;
    end;
 
-end;
+end WinRt.Windows.Storage.FileProperties;

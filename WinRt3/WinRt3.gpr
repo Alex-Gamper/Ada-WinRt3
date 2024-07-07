@@ -56,7 +56,7 @@ project WinRt3 is
    end case;
 
    package Naming is
-      for Casing use "LowerCase";
+      for Casing use "MixedCase";
       for Dot_Replacement use ".";
       for Spec_Suffix ("Ada") use ".ads";
       for Body_Suffix ("Ada") use ".adb";

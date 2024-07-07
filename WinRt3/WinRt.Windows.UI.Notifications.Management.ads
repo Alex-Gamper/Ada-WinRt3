@@ -219,4 +219,4 @@ package WinRt.Windows.UI.Notifications.Management is
       notificationId : WinRt.UInt32
    );
 
-end;
+end WinRt.Windows.UI.Notifications.Management;

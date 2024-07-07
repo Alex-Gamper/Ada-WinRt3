@@ -562,4 +562,4 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
    )
    return WinRt.Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason;
 
-end;
+end WinRt.Windows.Devices.Geolocation.Geofencing;

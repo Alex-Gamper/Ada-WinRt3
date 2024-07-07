@@ -668,4 +668,4 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
 
-end;
+end WinRt.Windows.Security.Authentication.Identity.Core;

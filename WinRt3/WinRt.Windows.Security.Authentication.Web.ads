@@ -298,4 +298,4 @@ package WinRt.Windows.Security.Authentication.Web is
    )
    return WinRt.UInt32;
 
-end;
+end WinRt.Windows.Security.Authentication.Web;

@@ -66,14 +66,13 @@ procedure WinRt3Test is
             exception when e : others =>
                 Ada.Text_IO.Put_Line(Ada.Exceptions.Exception_Information (e));
         end;
-
+        
     ----------------------------------------------------------------------------
     procedure Test1 is
-        
 
         Period      : Windows.Foundation.TimeSpan := (Duration => 10_000_000);  -- 1 unit = 100 nano seconds; 1 sec == 10_000_000
         Handler     : aliased Windows.System.Threading.TimerElapsedHandler_Delegate (CallBack'access);
-        Timer       : Windows.System.Threading.ThreadPoolTimer := Windows.System.Threading.CreatePeriodicTimer (Handler'access, Period);
+        Timer       : Windows.System.Threading.ThreadPoolTimer := Windows.System.Threading.CreatePeriodicTimer (Handler'unchecked_access, Period);
         Buffer      : String (1..1);
         AUD         : WString := Windows.Globalization.CurrencyIdentifiers.get_AUD;
         AUD_Salary  : Windows.Globalization.CurrencyAmount := Windows.Globalization.Constructor (+"1000000000" , +"AUD");
@@ -154,7 +153,7 @@ begin
     Hr := timeBeginPeriod (1);
     Hr := RoInitialize;
     if Hr = 0 then
---        Test1;
+        Test1;
         Test2;
         Test3;
         Test4;

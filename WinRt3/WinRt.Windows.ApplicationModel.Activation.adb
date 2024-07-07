@@ -6160,4 +6160,4 @@ package body WinRt.Windows.ApplicationModel.Activation is
       end return;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Activation;

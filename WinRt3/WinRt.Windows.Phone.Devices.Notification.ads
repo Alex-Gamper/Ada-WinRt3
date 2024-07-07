@@ -119,4 +119,4 @@ package WinRt.Windows.Phone.Devices.Notification is
       this : in out VibrationDevice
    );
 
-end;
+end WinRt.Windows.Phone.Devices.Notification;

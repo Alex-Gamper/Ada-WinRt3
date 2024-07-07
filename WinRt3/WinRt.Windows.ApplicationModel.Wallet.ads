@@ -1769,4 +1769,4 @@ package WinRt.Windows.ApplicationModel.Wallet is
       value : WinRt.WString
    );
 
-end;
+end WinRt.Windows.ApplicationModel.Wallet;

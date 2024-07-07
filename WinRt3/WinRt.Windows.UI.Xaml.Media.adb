@@ -10504,4 +10504,4 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_RefCount := m_Interface.Release;
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Media;

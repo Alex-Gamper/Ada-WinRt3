@@ -545,4 +545,4 @@ package body WinRt.Windows.Perception.People is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Perception.People;

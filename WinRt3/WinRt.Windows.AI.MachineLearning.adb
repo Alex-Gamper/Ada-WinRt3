@@ -5460,4 +5460,4 @@ package body WinRt.Windows.AI.MachineLearning is
       m_RefCount := m_Interface.Release;
    end;
 
-end;
+end WinRt.Windows.AI.MachineLearning;

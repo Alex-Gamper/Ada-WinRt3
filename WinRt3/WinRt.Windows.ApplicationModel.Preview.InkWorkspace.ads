@@ -119,4 +119,4 @@ package WinRt.Windows.ApplicationModel.Preview.InkWorkspace is
       bitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
    );
 
-end;
+end WinRt.Windows.ApplicationModel.Preview.InkWorkspace;

@@ -808,4 +808,4 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       Hr := this.m_IUISettingsController.all.SetTextScaleFactor (value);
    end;
 
-end;
+end WinRt.Windows.UI.ViewManagement.Core;

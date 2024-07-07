@@ -68,4 +68,4 @@ package WinRt.Windows.ApplicationModel.UserActivities.Core is
 
       IID_ICoreUserActivityManagerStatics : aliased WinRt.IID := (3392854786, 42174, 19789, (191, 168, 103, 149, 244, 38, 78, 251 ));
 
-end;
+end WinRt.Windows.ApplicationModel.UserActivities.Core;

@@ -373,4 +373,4 @@ package WinRt.Windows.Graphics.DirectX is
    );
    type DirectXPrimitiveTopology_Ptr is access all DirectXPrimitiveTopology;
 
-end;
+end WinRt.Windows.Graphics.DirectX;

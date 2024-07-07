@@ -271,4 +271,4 @@ package body WinRt.Windows.Perception.Spatial.Preview is
 
    end SpatialGraphInteropPreview;
 
-end;
+end WinRt.Windows.Perception.Spatial.Preview;

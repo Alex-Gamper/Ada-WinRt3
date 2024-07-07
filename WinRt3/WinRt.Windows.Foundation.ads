@@ -347,7 +347,7 @@ package WinRt.Windows.Foundation is
       )
       return WinRt.Hresult;
 
-   end;
+   end AsyncActionProgressHandler;
 
    IID_AsyncActionWithProgressCompletedHandler : aliased WinRt.IID := (2617417617, 52356, 17661, (172, 38, 10, 108, 78, 85, 82, 129 ));
    -----------------------------------------------------------------------------
@@ -367,7 +367,7 @@ package WinRt.Windows.Foundation is
       )
       return WinRt.Hresult;
 
-   end;
+   end AsyncActionWithProgressCompletedHandler;
 
    IID_AsyncOperationCompletedHandler : aliased WinRt.IID := (4242337836, 58840, 17528, (145, 90, 77, 144, 183, 75, 131, 165 ));
    -----------------------------------------------------------------------------
@@ -387,7 +387,7 @@ package WinRt.Windows.Foundation is
       )
       return WinRt.Hresult;
 
-   end;
+   end AsyncOperationCompletedHandler;
 
    IID_AsyncOperationProgressHandler : aliased WinRt.IID := (1432946946, 2731, 16922, (135, 120, 248, 206, 80, 38, 215, 88 ));
    -----------------------------------------------------------------------------
@@ -408,7 +408,7 @@ package WinRt.Windows.Foundation is
       )
       return WinRt.Hresult;
 
-   end;
+   end AsyncOperationProgressHandler;
 
    IID_AsyncOperationWithProgressCompletedHandler : aliased WinRt.IID := (3898471453, 27303, 18147, (168, 226, 240, 9, 216, 64, 198, 39 ));
    -----------------------------------------------------------------------------
@@ -429,7 +429,7 @@ package WinRt.Windows.Foundation is
       )
       return WinRt.Hresult;
 
-   end;
+   end AsyncOperationWithProgressCompletedHandler;
 
    IID_DeferralCompletedHandler : aliased WinRt.IID := (3979518834, 62408, 20394, (156, 251, 71, 1, 72, 218, 56, 136 ));
    type DeferralCompletedHandler_Delegate (Callback : access procedure ) is new WinRt.IMulticastDelegate_Interface (IID_DeferralCompletedHandler'Access) with null record;
@@ -457,7 +457,7 @@ package WinRt.Windows.Foundation is
       )
       return WinRt.Hresult;
 
-   end;
+   end EventHandler;
 
    IID_TypedEventHandler : aliased WinRt.IID := (2648818996, 27361, 4576, (132, 225, 24, 169, 5, 188, 197, 63 ));
    -----------------------------------------------------------------------------
@@ -478,7 +478,7 @@ package WinRt.Windows.Foundation is
       )
       return WinRt.Hresult;
 
-   end;
+   end TypedEventHandler;
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -556,7 +556,7 @@ package WinRt.Windows.Foundation is
 
       IID_IAsyncActionWithProgress : aliased WinRt.IID := (527282776, 59395, 18593, (149, 70, 235, 115, 83, 57, 136, 132 ));
 
-   end;
+   end IAsyncActionWithProgress;
 
    -----------------------------------------------------------------------------
    -- type IAsyncInfo is interface and WinRt.IInspectable;
@@ -646,7 +646,7 @@ package WinRt.Windows.Foundation is
 
       IID_IAsyncOperationWithProgress : aliased WinRt.IID := (3050321623, 58007, 18831, (186, 96, 2, 137, 231, 110, 35, 221 ));
 
-   end;
+   end IAsyncOperationWithProgress;
 
    -----------------------------------------------------------------------------
    generic
@@ -682,7 +682,7 @@ package WinRt.Windows.Foundation is
 
       IID_IAsyncOperation : aliased WinRt.IID := (2680336571, 58438, 17634, (170, 97, 156, 171, 143, 99, 106, 242 ));
 
-   end;
+   end IAsyncOperation;
 
    -----------------------------------------------------------------------------
    -- type IClosable is interface and WinRt.IInspectable;
@@ -1465,7 +1465,7 @@ package WinRt.Windows.Foundation is
 
       IID_IReferenceArray : aliased WinRt.IID := (1640068871, 11621, 4576, (154, 232, 212, 133, 100, 1, 84, 114 ));
 
-   end;
+   end IReferenceArray;
 
    -----------------------------------------------------------------------------
    generic
@@ -1487,7 +1487,7 @@ package WinRt.Windows.Foundation is
 
       IID_IReference : aliased WinRt.IID := (1640068870, 11621, 4576, (154, 232, 212, 133, 100, 1, 84, 114 ));
 
-   end;
+   end IReference;
 
    -----------------------------------------------------------------------------
    -- type IStringable is interface and WinRt.IInspectable;
@@ -2296,4 +2296,4 @@ package WinRt.Windows.Foundation is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Foundation;

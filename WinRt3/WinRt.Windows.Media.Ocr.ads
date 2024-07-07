@@ -353,4 +353,4 @@ package WinRt.Windows.Media.Ocr is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Media.Ocr;

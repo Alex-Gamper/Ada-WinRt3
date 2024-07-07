@@ -415,4 +415,4 @@ package body WinRt.Windows.Devices.Sensors.Custom is
       end return;
    end;
 
-end;
+end WinRt.Windows.Devices.Sensors.Custom;

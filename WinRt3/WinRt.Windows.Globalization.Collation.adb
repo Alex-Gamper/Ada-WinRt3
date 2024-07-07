@@ -276,4 +276,4 @@ package body WinRt.Windows.Globalization.Collation is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Globalization.Collation;

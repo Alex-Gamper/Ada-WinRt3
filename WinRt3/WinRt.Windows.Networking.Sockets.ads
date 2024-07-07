@@ -4623,4 +4623,4 @@ package WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.Deferral'Class;
 
-end;
+end WinRt.Windows.Networking.Sockets;

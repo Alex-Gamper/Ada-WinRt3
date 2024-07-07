@@ -260,4 +260,4 @@ package WinRt.Windows.Foundation.Metadata is
 
       IID_IApiInformationStatics : aliased WinRt.IID := (2574531070, 63105, 18961, (180, 22, 193, 58, 71, 232, 186, 54 ));
 
-end;
+end WinRt.Windows.Foundation.Metadata;

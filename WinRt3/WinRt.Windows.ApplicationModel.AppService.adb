@@ -1115,4 +1115,4 @@ package body WinRt.Windows.ApplicationModel.AppService is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.AppService;

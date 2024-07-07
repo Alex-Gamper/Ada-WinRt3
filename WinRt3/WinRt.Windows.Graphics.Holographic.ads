@@ -2481,4 +2481,4 @@ package WinRt.Windows.Graphics.Holographic is
       value : WinRt.Boolean
    );
 
-end;
+end WinRt.Windows.Graphics.Holographic;

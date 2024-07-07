@@ -989,4 +989,4 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       Hr := this.m_IPerspectiveTransform3D.all.put_OffsetY (value);
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Media.Media3D;

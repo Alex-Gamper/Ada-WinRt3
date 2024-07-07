@@ -1284,4 +1284,4 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       end if;
    end;
 
-end;
+end WinRt.Windows.Gaming.Preview.GamesEnumeration;

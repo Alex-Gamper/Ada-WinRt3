@@ -1848,4 +1848,4 @@ package body WinRt.Windows.Networking.XboxLive is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Networking.XboxLive;

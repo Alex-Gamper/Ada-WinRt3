@@ -2918,4 +2918,4 @@ package WinRt.Windows.Devices.Display.Core is
    )
    return IMapView_Guid_IInspectable.Kind;
 
-end;
+end WinRt.Windows.Devices.Display.Core;

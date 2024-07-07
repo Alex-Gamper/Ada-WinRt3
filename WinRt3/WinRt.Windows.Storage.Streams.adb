@@ -3978,4 +3978,4 @@ package body WinRt.Windows.Storage.Streams is
       return m_RetVal;
    end;
 
-end;
+end WinRt.Windows.Storage.Streams;

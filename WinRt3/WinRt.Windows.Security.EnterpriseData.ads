@@ -2081,4 +2081,4 @@ package WinRt.Windows.Security.EnterpriseData is
       this : in out ThreadNetworkContext
    );
 
-end;
+end WinRt.Windows.Security.EnterpriseData;

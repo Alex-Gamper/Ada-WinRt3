@@ -67,4 +67,4 @@ package WinRt.Windows.UI.Xaml.Automation.Text is
    );
    type TextUnit_Ptr is access all TextUnit;
 
-end;
+end WinRt.Windows.UI.Xaml.Automation.Text;

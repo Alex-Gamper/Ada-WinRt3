@@ -4386,4 +4386,4 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.DataTransfer;

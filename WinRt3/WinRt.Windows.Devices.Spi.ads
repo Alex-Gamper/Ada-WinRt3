@@ -599,4 +599,4 @@ package WinRt.Windows.Devices.Spi is
       this : in out SpiDevice
    );
 
-end;
+end WinRt.Windows.Devices.Spi;

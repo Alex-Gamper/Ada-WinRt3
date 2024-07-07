@@ -1047,4 +1047,4 @@ package WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.UI.ApplicationSettings.WebAccountProviderCommandInvokedHandler;
 
-end;
+end WinRt.Windows.UI.ApplicationSettings;

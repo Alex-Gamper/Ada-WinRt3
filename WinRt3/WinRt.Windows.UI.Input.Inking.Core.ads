@@ -800,4 +800,4 @@ package WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.UI.Input.Inking.InkPresenter'Class;
 
-end;
+end WinRt.Windows.UI.Input.Inking.Core;

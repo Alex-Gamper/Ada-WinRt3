@@ -2889,4 +2889,4 @@ package body WinRt.Windows.UI.StartScreen is
       end return;
    end;
 
-end;
+end WinRt.Windows.UI.StartScreen;

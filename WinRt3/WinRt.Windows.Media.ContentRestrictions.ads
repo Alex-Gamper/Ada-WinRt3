@@ -468,4 +468,4 @@ package WinRt.Windows.Media.ContentRestrictions is
       token : Windows.Foundation.EventRegistrationToken
    );
 
-end;
+end WinRt.Windows.Media.ContentRestrictions;

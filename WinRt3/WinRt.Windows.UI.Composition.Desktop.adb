@@ -68,4 +68,4 @@ package body WinRt.Windows.UI.Composition.Desktop is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.UI.Composition.Desktop;

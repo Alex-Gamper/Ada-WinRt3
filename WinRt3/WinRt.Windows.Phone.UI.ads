@@ -32,4 +32,4 @@ package WinRt.Windows.Phone.UI is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Phone.UI;

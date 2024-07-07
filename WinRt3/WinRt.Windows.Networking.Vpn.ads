@@ -4543,4 +4543,4 @@ package WinRt.Windows.Networking.Vpn is
       value : WinRt.Boolean
    );
 
-end;
+end WinRt.Windows.Networking.Vpn;

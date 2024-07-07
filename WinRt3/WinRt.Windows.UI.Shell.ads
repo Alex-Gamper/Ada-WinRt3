@@ -406,4 +406,4 @@ package WinRt.Windows.UI.Shell is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.UI.Shell;

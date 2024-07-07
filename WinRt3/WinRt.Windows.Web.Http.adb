@@ -6184,4 +6184,4 @@ package body WinRt.Windows.Web.Http is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Web.Http;

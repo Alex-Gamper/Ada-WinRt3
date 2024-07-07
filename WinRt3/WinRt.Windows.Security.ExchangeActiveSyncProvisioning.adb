@@ -682,4 +682,4 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Security.ExchangeActiveSyncProvisioning;

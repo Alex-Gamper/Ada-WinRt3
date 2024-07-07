@@ -4568,4 +4568,4 @@ package WinRt.Windows.UI.Notifications is
    )
    return WinRt.UInt32;
 
-end;
+end WinRt.Windows.UI.Notifications;

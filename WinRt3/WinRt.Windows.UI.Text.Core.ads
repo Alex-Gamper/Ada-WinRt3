@@ -1860,4 +1860,4 @@ package WinRt.Windows.UI.Text.Core is
    )
    return WinRt.Windows.Foundation.Deferral'Class;
 
-end;
+end WinRt.Windows.UI.Text.Core;

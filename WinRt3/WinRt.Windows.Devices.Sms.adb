@@ -4797,4 +4797,4 @@ package body WinRt.Windows.Devices.Sms is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Sms;

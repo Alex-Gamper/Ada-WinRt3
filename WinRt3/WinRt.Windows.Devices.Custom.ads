@@ -389,4 +389,4 @@ package WinRt.Windows.Devices.Custom is
 
    end KnownDeviceTypes;
 
-end;
+end WinRt.Windows.Devices.Custom;

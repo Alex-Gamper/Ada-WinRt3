@@ -32,4 +32,4 @@ package WinRt.Windows.Security.Authentication is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Security.Authentication;

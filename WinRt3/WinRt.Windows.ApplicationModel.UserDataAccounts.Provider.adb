@@ -312,4 +312,4 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.UserDataAccounts.Provider;

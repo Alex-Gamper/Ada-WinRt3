@@ -2635,4 +2635,4 @@ package body WinRt.Windows.Devices.Display.Core is
       return m_GenericRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Display.Core;

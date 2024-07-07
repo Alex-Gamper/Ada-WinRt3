@@ -744,4 +744,4 @@ package body WinRt.Windows.Devices.Spi is
       m_RefCount := m_Interface.Release;
    end;
 
-end;
+end WinRt.Windows.Devices.Spi;

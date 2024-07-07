@@ -2279,4 +2279,4 @@ package WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.GetEntitlementStatus;
 
-end;
+end WinRt.Windows.ApplicationModel.Store.Preview.InstallControl;

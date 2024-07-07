@@ -3792,4 +3792,4 @@ package WinRt.Windows.AI.MachineLearning is
       this : in out TensorUInt8Bit
    );
 
-end;
+end WinRt.Windows.AI.MachineLearning;

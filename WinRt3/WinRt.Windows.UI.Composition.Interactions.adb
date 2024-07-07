@@ -2373,4 +2373,4 @@ package body WinRt.Windows.UI.Composition.Interactions is
       end return;
    end;
 
-end;
+end WinRt.Windows.UI.Composition.Interactions;

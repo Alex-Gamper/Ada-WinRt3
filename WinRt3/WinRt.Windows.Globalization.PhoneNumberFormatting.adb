@@ -499,4 +499,4 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Globalization.PhoneNumberFormatting;

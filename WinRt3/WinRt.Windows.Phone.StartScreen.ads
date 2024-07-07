@@ -278,4 +278,4 @@ package WinRt.Windows.Phone.StartScreen is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.Phone.StartScreen;

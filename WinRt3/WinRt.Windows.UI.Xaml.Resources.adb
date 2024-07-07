@@ -151,4 +151,4 @@ package body WinRt.Windows.UI.Xaml.Resources is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Resources;

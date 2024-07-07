@@ -1379,4 +1379,4 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
    )
    return WinRt.Windows.Foundation.HResult;
 
-end;
+end WinRt.Windows.Graphics.Printing.PrintTicket;

@@ -2877,4 +2877,4 @@ package WinRt.Windows.UI.Input.Spatial is
    )
    return WinRt.UInt32;
 
-end;
+end WinRt.Windows.UI.Input.Spatial;

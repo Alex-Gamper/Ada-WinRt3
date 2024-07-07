@@ -6129,4 +6129,4 @@ package body WinRt.Windows.Services.Store is
       end return;
    end;
 
-end;
+end WinRt.Windows.Services.Store;

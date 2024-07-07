@@ -32,4 +32,4 @@ package WinRt.Windows.Perception.Automation is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Perception.Automation;

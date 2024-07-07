@@ -3710,4 +3710,4 @@ package WinRt.Windows.Services.Store is
    )
    return WinRt.Windows.Services.Store.StoreImage'Class;
 
-end;
+end WinRt.Windows.Services.Store;

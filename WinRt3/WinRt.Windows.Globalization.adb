@@ -6918,4 +6918,4 @@ package body WinRt.Windows.Globalization is
 
    end NumeralSystemIdentifiers;
 
-end;
+end WinRt.Windows.Globalization;

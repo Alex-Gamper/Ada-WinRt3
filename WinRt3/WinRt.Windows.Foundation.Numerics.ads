@@ -110,4 +110,4 @@ package WinRt.Windows.Foundation.Numerics is
    end record with Convention => C_Pass_By_Copy;
    type Vector4_Ptr is access all Vector4;
 
-end;
+end WinRt.Windows.Foundation.Numerics;

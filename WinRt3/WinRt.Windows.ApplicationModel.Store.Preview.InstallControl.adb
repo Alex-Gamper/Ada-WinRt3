@@ -3955,4 +3955,4 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Store.Preview.InstallControl;

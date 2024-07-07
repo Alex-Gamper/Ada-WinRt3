@@ -650,4 +650,4 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       target : Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget
    );
 
-end;
+end WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core;

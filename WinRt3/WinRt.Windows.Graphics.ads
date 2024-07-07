@@ -80,4 +80,4 @@ package WinRt.Windows.Graphics is
 
       IID_IGeometrySource2D : aliased WinRt.IID := (3405740290, 26380, 16769, (166, 36, 218, 151, 114, 3, 184, 69 ));
 
-end;
+end WinRt.Windows.Graphics;

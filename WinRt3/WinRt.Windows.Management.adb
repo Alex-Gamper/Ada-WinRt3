@@ -557,4 +557,4 @@ package body WinRt.Windows.Management is
 
    end MdmSessionManager;
 
-end;
+end WinRt.Windows.Management;

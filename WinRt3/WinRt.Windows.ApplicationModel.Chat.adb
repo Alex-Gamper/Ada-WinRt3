@@ -6753,4 +6753,4 @@ package body WinRt.Windows.ApplicationModel.Chat is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Chat;

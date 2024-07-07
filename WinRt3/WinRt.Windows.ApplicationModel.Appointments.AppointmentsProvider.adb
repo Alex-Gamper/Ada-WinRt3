@@ -487,4 +487,4 @@ package body WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider is
       Hr := this.m_IReplaceAppointmentOperation.all.DismissUI;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider;

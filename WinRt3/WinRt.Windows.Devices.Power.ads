@@ -271,4 +271,4 @@ package WinRt.Windows.Devices.Power is
    )
    return WinRt.Windows.System.Power.BatteryStatus;
 
-end;
+end WinRt.Windows.Devices.Power;

@@ -4802,4 +4802,4 @@ package body WinRt.Windows.Web.Syndication is
       end return;
    end;
 
-end;
+end WinRt.Windows.Web.Syndication;

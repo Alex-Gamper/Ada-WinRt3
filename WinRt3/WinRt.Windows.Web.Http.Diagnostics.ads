@@ -761,4 +761,4 @@ package WinRt.Windows.Web.Http.Diagnostics is
    )
    return WinRt.UInt64;
 
-end;
+end WinRt.Windows.Web.Http.Diagnostics;

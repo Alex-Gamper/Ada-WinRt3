@@ -2467,4 +2467,4 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Media.Streaming.Adaptive;

@@ -1203,4 +1203,4 @@ package body WinRt.Windows.Devices.WiFiDirect is
       Hr := this.m_IWiFiDirectLegacySettings.all.put_Passphrase (value.m_IPasswordCredential.all);
    end;
 
-end;
+end WinRt.Windows.Devices.WiFiDirect;

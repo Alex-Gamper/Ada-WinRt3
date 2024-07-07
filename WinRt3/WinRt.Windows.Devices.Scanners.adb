@@ -1960,4 +1960,4 @@ package body WinRt.Windows.Devices.Scanners is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Scanners;

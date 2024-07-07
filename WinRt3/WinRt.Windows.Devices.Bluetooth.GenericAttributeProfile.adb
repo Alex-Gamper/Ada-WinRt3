@@ -8682,4 +8682,4 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       return m_GenericRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile;

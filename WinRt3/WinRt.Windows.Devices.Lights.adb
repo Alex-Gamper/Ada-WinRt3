@@ -1128,4 +1128,4 @@ package body WinRt.Windows.Devices.Lights is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Lights;

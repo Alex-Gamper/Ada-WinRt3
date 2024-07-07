@@ -3891,4 +3891,4 @@ package body WinRt.Windows.Foundation.Diagnostics is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Foundation.Diagnostics;

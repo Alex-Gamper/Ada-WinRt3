@@ -118,4 +118,4 @@ package body WinRt.Windows.Management.Deployment.Preview is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Management.Deployment.Preview;

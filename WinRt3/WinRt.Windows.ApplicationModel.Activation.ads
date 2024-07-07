@@ -3840,4 +3840,4 @@ package WinRt.Windows.ApplicationModel.Activation is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class;
 
-end;
+end WinRt.Windows.ApplicationModel.Activation;

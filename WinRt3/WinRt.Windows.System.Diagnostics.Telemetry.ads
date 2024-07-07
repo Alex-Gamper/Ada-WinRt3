@@ -227,4 +227,4 @@ package WinRt.Windows.System.Diagnostics.Telemetry is
       value : WinRt.UInt32
    );
 
-end;
+end WinRt.Windows.System.Diagnostics.Telemetry;

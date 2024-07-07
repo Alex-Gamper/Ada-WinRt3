@@ -478,4 +478,4 @@ package WinRt.Windows.Devices.Display is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.Devices.Display;

@@ -252,4 +252,4 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       this : in out ExtendedExecutionForegroundSession
    );
 
-end;
+end WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground;

@@ -32,4 +32,4 @@ package WinRt.Windows.Phone.Management is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Phone.Management;

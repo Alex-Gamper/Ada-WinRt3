@@ -394,4 +394,4 @@ package body WinRt.Windows.System.Threading is
       return Hr;
    end;
 
-end;
+end WinRt.Windows.System.Threading;

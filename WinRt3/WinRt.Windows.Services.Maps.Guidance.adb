@@ -1739,4 +1739,4 @@ package body WinRt.Windows.Services.Maps.Guidance is
       return m_GenericRetVal;
    end;
 
-end;
+end WinRt.Windows.Services.Maps.Guidance;

@@ -804,4 +804,4 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
       Hr := this.m_IXamlDirect.all.RemoveEventHandler (xamlDirectObject, eventIndex, handler);
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Core.Direct;

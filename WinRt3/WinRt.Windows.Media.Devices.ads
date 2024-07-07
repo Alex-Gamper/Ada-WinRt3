@@ -5680,4 +5680,4 @@ package WinRt.Windows.Media.Devices is
       value : WinRt.Single
    );
 
-end;
+end WinRt.Windows.Media.Devices;

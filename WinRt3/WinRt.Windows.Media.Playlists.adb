@@ -356,4 +356,4 @@ package body WinRt.Windows.Media.Playlists is
       end return;
    end;
 
-end;
+end WinRt.Windows.Media.Playlists;

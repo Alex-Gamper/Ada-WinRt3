@@ -604,4 +604,4 @@ package WinRt.Windows.Perception.People is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3;
 
-end;
+end WinRt.Windows.Perception.People;

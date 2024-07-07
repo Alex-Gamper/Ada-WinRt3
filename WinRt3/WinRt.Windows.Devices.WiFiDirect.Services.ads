@@ -1329,4 +1329,4 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    )
    return WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSessionRequest'Class;
 
-end;
+end WinRt.Windows.Devices.WiFiDirect.Services;

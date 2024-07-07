@@ -2056,4 +2056,4 @@ package WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.DateTime;
 
-end;
+end WinRt.Windows.Media.Miracast;

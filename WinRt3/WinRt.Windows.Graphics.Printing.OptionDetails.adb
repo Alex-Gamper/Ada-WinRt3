@@ -4119,4 +4119,4 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       end return;
    end;
 
-end;
+end WinRt.Windows.Graphics.Printing.OptionDetails;

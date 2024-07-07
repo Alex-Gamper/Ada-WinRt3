@@ -685,4 +685,4 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       radioDiscoverable : WinRt.Boolean
    );
 
-end;
+end WinRt.Windows.Devices.Bluetooth.Rfcomm;

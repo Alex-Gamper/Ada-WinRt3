@@ -5250,4 +5250,4 @@ package WinRt.Windows.Storage is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Storage;

@@ -243,4 +243,4 @@ package WinRt.Windows.ApplicationModel.Resources is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.ApplicationModel.Resources;

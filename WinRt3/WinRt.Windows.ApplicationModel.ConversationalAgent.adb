@@ -2871,4 +2871,4 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.ConversationalAgent;

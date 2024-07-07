@@ -680,4 +680,4 @@ package body WinRt.Windows.Gaming.Input.Custom is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Gaming.Input.Custom;

@@ -891,4 +891,4 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
       value : WinRt.Double
    );
 
-end;
+end WinRt.Windows.UI.Xaml.Media.Media3D;

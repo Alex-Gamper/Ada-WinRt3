@@ -939,4 +939,4 @@ package body WinRt.Windows.Devices.Gpio is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Gpio;

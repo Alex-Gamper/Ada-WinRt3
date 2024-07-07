@@ -1325,4 +1325,4 @@ package WinRt.Windows.Media.Editing is
    )
    return WinRt.Windows.Media.Effects.IVideoCompositorDefinition;
 
-end;
+end WinRt.Windows.Media.Editing;

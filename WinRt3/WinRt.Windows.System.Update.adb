@@ -771,4 +771,4 @@ package body WinRt.Windows.System.Update is
 
    end SystemUpdateManager;
 
-end;
+end WinRt.Windows.System.Update;

@@ -964,4 +964,4 @@ package WinRt.Windows.UI.WebUI.Core is
       value : WinRt.WString
    );
 
-end;
+end WinRt.Windows.UI.WebUI.Core;

@@ -3929,4 +3929,4 @@ package body WinRt.Windows.Phone.Notification.Management is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Phone.Notification.Management;

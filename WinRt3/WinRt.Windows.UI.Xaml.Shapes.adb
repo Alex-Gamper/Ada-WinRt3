@@ -1379,4 +1379,4 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       Hr := this.m_IRectangle.all.put_RadiusY (value);
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Shapes;

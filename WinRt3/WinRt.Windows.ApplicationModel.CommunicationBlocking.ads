@@ -139,4 +139,4 @@ package WinRt.Windows.ApplicationModel.CommunicationBlocking is
 
       IID_ICommunicationBlockingAppManagerStatics2 : aliased WinRt.IID := (346459869, 60808, 17786, (163, 100, 163, 99, 77, 111, 22, 109 ));
 
-end;
+end WinRt.Windows.ApplicationModel.CommunicationBlocking;

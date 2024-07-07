@@ -162,4 +162,4 @@ package WinRt.Windows.UI.Xaml.Resources is
    )
    return WinRt.IInspectable;
 
-end;
+end WinRt.Windows.UI.Xaml.Resources;

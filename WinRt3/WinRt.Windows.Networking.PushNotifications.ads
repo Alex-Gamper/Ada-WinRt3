@@ -652,4 +652,4 @@ package WinRt.Windows.Networking.PushNotifications is
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
-end;
+end WinRt.Windows.Networking.PushNotifications;

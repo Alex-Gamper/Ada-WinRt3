@@ -341,4 +341,4 @@ package body WinRt.Windows.System.Threading.Core is
       Hr := this.m_ISignalNotifier.all.Terminate_x;
    end;
 
-end;
+end WinRt.Windows.System.Threading.Core;

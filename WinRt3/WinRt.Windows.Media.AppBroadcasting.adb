@@ -387,4 +387,4 @@ package body WinRt.Windows.Media.AppBroadcasting is
       Hr := this.m_IAppBroadcastingUI.all.ShowBroadcastUI;
    end;
 
-end;
+end WinRt.Windows.Media.AppBroadcasting;

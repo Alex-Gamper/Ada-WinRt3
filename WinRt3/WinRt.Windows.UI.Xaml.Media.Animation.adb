@@ -11537,4 +11537,4 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Media.Animation;

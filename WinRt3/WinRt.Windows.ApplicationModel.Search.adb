@@ -1321,4 +1321,4 @@ package body WinRt.Windows.ApplicationModel.Search is
       Hr := this.m_ISearchSuggestionsRequestDeferral.all.Complete;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Search;

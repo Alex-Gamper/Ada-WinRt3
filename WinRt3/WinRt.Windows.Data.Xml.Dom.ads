@@ -4461,4 +4461,4 @@ package WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class;
 
-end;
+end WinRt.Windows.Data.Xml.Dom;

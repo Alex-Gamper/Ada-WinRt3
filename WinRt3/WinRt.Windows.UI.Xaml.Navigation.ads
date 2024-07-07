@@ -680,4 +680,4 @@ package WinRt.Windows.UI.Xaml.Navigation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo'Class;
 
-end;
+end WinRt.Windows.UI.Xaml.Navigation;

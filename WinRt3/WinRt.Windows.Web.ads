@@ -195,4 +195,4 @@ package WinRt.Windows.Web is
 
       IID_IWebErrorStatics : aliased WinRt.IID := (4267796326, 48935, 16484, (135, 183, 101, 99, 187, 17, 206, 46 ));
 
-end;
+end WinRt.Windows.Web;

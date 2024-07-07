@@ -1107,4 +1107,4 @@ package WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Web.UI.Interop.WebViewControlProcessCapabilityState;
 
-end;
+end WinRt.Windows.Web.UI.Interop;

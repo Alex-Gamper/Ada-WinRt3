@@ -6579,4 +6579,4 @@ package WinRt.Windows.Devices.Sensors is
    )
    return WinRt.Windows.Devices.Sensors.SimpleOrientation;
 
-end;
+end WinRt.Windows.Devices.Sensors;

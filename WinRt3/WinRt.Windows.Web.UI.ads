@@ -1507,4 +1507,4 @@ package WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class;
 
-end;
+end WinRt.Windows.Web.UI;

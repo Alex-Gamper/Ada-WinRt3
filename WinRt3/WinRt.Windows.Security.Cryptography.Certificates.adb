@@ -4991,4 +4991,4 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.Security.Cryptography.Certificates;

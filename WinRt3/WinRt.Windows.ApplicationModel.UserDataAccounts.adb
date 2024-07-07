@@ -1732,4 +1732,4 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       end return;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.UserDataAccounts;

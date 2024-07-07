@@ -259,4 +259,4 @@ package WinRt.Windows.Devices.Radios is
    )
    return WinRt.Windows.Devices.Radios.RadioKind;
 
-end;
+end WinRt.Windows.Devices.Radios;

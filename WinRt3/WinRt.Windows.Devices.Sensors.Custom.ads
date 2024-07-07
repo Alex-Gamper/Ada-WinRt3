@@ -374,4 +374,4 @@ package WinRt.Windows.Devices.Sensors.Custom is
    )
    return WinRt.Windows.Devices.Sensors.Custom.CustomSensorReading'Class;
 
-end;
+end WinRt.Windows.Devices.Sensors.Custom;

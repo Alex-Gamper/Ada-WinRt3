@@ -70,4 +70,4 @@ package WinRt.Windows.Phone.System is
 
       IID_ISystemProtectionUnlockStatics : aliased WinRt.IID := (110295615, 36625, 19531, (170, 13, 135, 215, 175, 123, 23, 121 ));
 
-end;
+end WinRt.Windows.Phone.System;

@@ -4305,4 +4305,4 @@ package WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class;
 
-end;
+end WinRt.Windows.UI.WebUI;

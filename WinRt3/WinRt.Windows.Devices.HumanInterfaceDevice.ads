@@ -1581,4 +1581,4 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControl'Class;
 
-end;
+end WinRt.Windows.Devices.HumanInterfaceDevice;

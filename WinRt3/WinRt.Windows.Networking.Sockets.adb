@@ -5878,4 +5878,4 @@ package body WinRt.Windows.Networking.Sockets is
       end return;
    end;
 
-end;
+end WinRt.Windows.Networking.Sockets;

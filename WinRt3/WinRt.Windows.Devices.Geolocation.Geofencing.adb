@@ -506,4 +506,4 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Geolocation.Geofencing;

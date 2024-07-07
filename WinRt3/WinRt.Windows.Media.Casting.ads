@@ -839,4 +839,4 @@ package WinRt.Windows.Media.Casting is
       value : Windows.Foundation.Uri'Class
    );
 
-end;
+end WinRt.Windows.Media.Casting;

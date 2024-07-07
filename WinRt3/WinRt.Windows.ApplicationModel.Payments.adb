@@ -2825,4 +2825,4 @@ package body WinRt.Windows.ApplicationModel.Payments is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Payments;

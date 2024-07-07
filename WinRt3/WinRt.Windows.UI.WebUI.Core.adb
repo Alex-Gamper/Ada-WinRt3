@@ -931,4 +931,4 @@ package body WinRt.Windows.UI.WebUI.Core is
       Hr := WindowsDeleteString (HStr_value);
    end;
 
-end;
+end WinRt.Windows.UI.WebUI.Core;

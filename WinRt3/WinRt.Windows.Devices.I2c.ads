@@ -504,4 +504,4 @@ package WinRt.Windows.Devices.I2c is
       this : in out I2cDevice
    );
 
-end;
+end WinRt.Windows.Devices.I2c;

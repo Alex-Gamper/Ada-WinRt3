@@ -353,4 +353,4 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget;

@@ -625,4 +625,4 @@ package body WinRt.Windows.Devices.I2c is
       m_RefCount := m_Interface.Release;
    end;
 
-end;
+end WinRt.Windows.Devices.I2c;

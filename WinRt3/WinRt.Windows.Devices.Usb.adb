@@ -2982,4 +2982,4 @@ package body WinRt.Windows.Devices.Usb is
       Hr := this.m_IUsbSetupPacket.all.put_Length (value);
    end;
 
-end;
+end WinRt.Windows.Devices.Usb;

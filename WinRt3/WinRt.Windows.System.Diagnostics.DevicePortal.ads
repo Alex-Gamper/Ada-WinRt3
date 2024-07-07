@@ -426,4 +426,4 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Windows.Foundation.Deferral'Class;
 
-end;
+end WinRt.Windows.System.Diagnostics.DevicePortal;

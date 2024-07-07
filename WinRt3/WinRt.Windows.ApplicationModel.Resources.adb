@@ -279,4 +279,4 @@ package body WinRt.Windows.ApplicationModel.Resources is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Resources;

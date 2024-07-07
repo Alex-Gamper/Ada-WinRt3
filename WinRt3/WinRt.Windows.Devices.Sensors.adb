@@ -7829,4 +7829,4 @@ package body WinRt.Windows.Devices.Sensors is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Sensors;

@@ -1149,4 +1149,4 @@ package WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Boolean;
 
-end;
+end WinRt.Windows.AI.MachineLearning.Preview;

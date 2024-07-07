@@ -3554,4 +3554,4 @@ package WinRt.Windows.Media is
       destinationBounds : GenericObject
    );
 
-end;
+end WinRt.Windows.Media;

@@ -843,4 +843,4 @@ package WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.ApplicationModel.AppService.StatelessAppServiceResponseStatus;
 
-end;
+end WinRt.Windows.ApplicationModel.AppService;

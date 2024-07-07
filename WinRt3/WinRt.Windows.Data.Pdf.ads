@@ -617,4 +617,4 @@ package WinRt.Windows.Data.Pdf is
       value : WinRt.Guid
    );
 
-end;
+end WinRt.Windows.Data.Pdf;

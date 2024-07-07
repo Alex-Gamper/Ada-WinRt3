@@ -2473,4 +2473,4 @@ package body WinRt.Windows.Media.Capture.Frames is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Media.Capture.Frames;

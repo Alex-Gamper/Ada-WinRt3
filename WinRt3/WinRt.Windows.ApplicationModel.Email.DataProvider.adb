@@ -3723,4 +3723,4 @@ package body WinRt.Windows.ApplicationModel.Email.DataProvider is
       end return;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Email.DataProvider;

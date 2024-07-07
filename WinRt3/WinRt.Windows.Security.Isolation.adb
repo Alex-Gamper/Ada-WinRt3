@@ -2194,4 +2194,4 @@ package body WinRt.Windows.Security.Isolation is
       return Hr;
    end;
 
-end;
+end WinRt.Windows.Security.Isolation;

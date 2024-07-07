@@ -1696,4 +1696,4 @@ package body WinRt.Windows.Media.PlayTo is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Media.PlayTo;

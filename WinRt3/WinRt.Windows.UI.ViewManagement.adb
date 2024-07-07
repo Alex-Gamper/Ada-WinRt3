@@ -4266,4 +4266,4 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr := this.m_IViewModePreferences.all.put_CustomSize (value);
    end;
 
-end;
+end WinRt.Windows.UI.ViewManagement;

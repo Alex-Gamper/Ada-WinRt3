@@ -3032,4 +3032,4 @@ package WinRt.Windows.Management.Deployment is
       value : WinRt.Boolean
    );
 
-end;
+end WinRt.Windows.Management.Deployment;

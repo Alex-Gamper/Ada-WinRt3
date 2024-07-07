@@ -1095,4 +1095,4 @@ package WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageProvider'Class;
 
-end;
+end WinRt.Windows.Storage.BulkAccess;

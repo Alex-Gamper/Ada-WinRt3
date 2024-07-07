@@ -428,4 +428,4 @@ package body WinRt.Windows.Devices.Radios is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Devices.Radios;

@@ -1317,4 +1317,4 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for IRawElementProviderSimple
 
-end;
+end WinRt.Windows.UI.Xaml.Automation.Provider;

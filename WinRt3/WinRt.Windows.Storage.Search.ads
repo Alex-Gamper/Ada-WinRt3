@@ -1822,4 +1822,4 @@ package WinRt.Windows.Storage.Search is
       value : WinRt.IInspectable
    );
 
-end;
+end WinRt.Windows.Storage.Search;

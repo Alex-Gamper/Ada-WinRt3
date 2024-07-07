@@ -1165,4 +1165,4 @@ package body WinRt.Windows.UI.Xaml.Data is
       Hr := this.m_IRelativeSource.all.put_Mode (value);
    end;
 
-end;
+end WinRt.Windows.UI.Xaml.Data;

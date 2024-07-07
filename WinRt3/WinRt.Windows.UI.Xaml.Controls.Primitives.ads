@@ -10625,4 +10625,4 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double;
 
-end;
+end WinRt.Windows.UI.Xaml.Controls.Primitives;

@@ -1470,4 +1470,4 @@ package body WinRt.Windows.Devices.Lights.Effects is
       Hr := this.m_ILampArrayUpdateRequestedEventArgs.all.SetColorsForIndices (WinRt.UInt32(desiredColors'Length), Convert_desiredColors (desiredColors (desiredColors'First)'Address), WinRt.UInt32(lampIndexes'Length), Convert_lampIndexes (lampIndexes (lampIndexes'First)'Address));
    end;
 
-end;
+end WinRt.Windows.Devices.Lights.Effects;

@@ -32,4 +32,4 @@ package WinRt.Windows.AI is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.AI;

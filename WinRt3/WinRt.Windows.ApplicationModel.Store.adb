@@ -3079,4 +3079,4 @@ package body WinRt.Windows.ApplicationModel.Store is
       return AdaRetVal;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Store;

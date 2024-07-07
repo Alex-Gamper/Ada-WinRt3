@@ -916,4 +916,4 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
    )
    return WinRt.Windows.Gaming.XboxLive.Storage.GameSaveProvider'Class;
 
-end;
+end WinRt.Windows.Gaming.XboxLive.Storage;

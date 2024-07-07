@@ -217,4 +217,4 @@ package WinRt.Windows.UI.Composition.Diagnostics is
    )
    return WinRt.Windows.UI.Composition.Diagnostics.CompositionDebugHeatMaps'Class;
 
-end;
+end WinRt.Windows.UI.Composition.Diagnostics;

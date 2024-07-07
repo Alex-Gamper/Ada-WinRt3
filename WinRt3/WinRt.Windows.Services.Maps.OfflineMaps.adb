@@ -523,4 +523,4 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Services.Maps.OfflineMaps;

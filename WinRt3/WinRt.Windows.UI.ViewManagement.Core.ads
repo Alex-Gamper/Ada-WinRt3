@@ -832,4 +832,4 @@ package WinRt.Windows.UI.ViewManagement.Core is
       value : WinRt.Double
    );
 
-end;
+end WinRt.Windows.UI.ViewManagement.Core;

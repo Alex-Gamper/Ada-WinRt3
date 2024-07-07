@@ -204,4 +204,4 @@ package WinRt.Windows.Globalization.Collation is
    )
    return WinRt.GenericObject;
 
-end;
+end WinRt.Windows.Globalization.Collation;

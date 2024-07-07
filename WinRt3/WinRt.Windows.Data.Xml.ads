@@ -32,4 +32,4 @@ package WinRt.Windows.Data.Xml is
 
    pragma PreElaborate;
 
-end;
+end WinRt.Windows.Data.Xml;

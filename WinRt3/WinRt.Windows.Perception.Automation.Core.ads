@@ -66,4 +66,4 @@ package WinRt.Windows.Perception.Automation.Core is
 
       IID_ICorePerceptionAutomationStatics : aliased WinRt.IID := (196101441, 19682, 18723, (154, 118, 129, 135, 236, 197, 145, 18 ));
 
-end;
+end WinRt.Windows.Perception.Automation.Core;

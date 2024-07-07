@@ -1603,4 +1603,4 @@ package WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
-end;
+end WinRt.Windows.Networking.XboxLive;

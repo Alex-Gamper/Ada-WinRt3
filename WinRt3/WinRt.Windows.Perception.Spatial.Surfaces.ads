@@ -650,4 +650,4 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
       token : Windows.Foundation.EventRegistrationToken
    );
 
-end;
+end WinRt.Windows.Perception.Spatial.Surfaces;

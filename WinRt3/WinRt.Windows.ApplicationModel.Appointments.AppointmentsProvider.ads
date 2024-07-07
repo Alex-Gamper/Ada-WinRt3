@@ -461,4 +461,4 @@ package WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider is
       this : in out ReplaceAppointmentOperation
    );
 
-end;
+end WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider;

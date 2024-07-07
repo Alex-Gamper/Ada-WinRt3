@@ -351,4 +351,4 @@ package body WinRt.Windows.Globalization.Fonts is
       end return;
    end;
 
-end;
+end WinRt.Windows.Globalization.Fonts;

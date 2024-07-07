@@ -822,4 +822,4 @@ package WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.WString;
 
-end;
+end WinRt.Windows.Media.DialProtocol;

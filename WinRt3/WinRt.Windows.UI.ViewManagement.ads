@@ -3386,4 +3386,4 @@ package WinRt.Windows.UI.ViewManagement is
       value : Windows.Foundation.Size
    );
 
-end;
+end WinRt.Windows.UI.ViewManagement;

@@ -11538,4 +11538,4 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       end return;
    end;
 
-end;
+end WinRt.Windows.ApplicationModel.Contacts;

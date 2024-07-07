@@ -151,4 +151,4 @@ package WinRt.Windows.Devices.Adc.Provider is
 
       IID_IAdcProvider : aliased WinRt.IID := (680867432, 37721, 19543, (188, 136, 226, 117, 232, 22, 56, 201 ));
 
-end;
+end WinRt.Windows.Devices.Adc.Provider;

@@ -5537,4 +5537,4 @@ package WinRt.Windows.System is
       token : Windows.Foundation.EventRegistrationToken
    );
 
-end;
+end WinRt.Windows.System;

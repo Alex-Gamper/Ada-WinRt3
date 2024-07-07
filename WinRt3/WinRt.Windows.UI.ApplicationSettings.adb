@@ -1181,4 +1181,4 @@ package body WinRt.Windows.UI.ApplicationSettings is
       return Hr;
    end;
 
-end;
+end WinRt.Windows.UI.ApplicationSettings;

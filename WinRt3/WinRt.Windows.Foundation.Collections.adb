@@ -52,7 +52,7 @@ package body WinRt.Windows.Foundation.Collections is
          return Hr;
       end;
 
-   end;
+   end MapChangedEventHandler;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PropertySet
@@ -701,6 +701,6 @@ package body WinRt.Windows.Foundation.Collections is
          return Hr;
       end;
 
-   end;
+   end VectorChangedEventHandler;
 
-end;
+end WinRt.Windows.Foundation.Collections;

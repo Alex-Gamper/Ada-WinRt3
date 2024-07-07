@@ -719,4 +719,4 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       return m_ComRetVal;
    end;
 
-end;
+end WinRt.Windows.Web.Http.Diagnostics;

@@ -317,4 +317,4 @@ package WinRt.Windows.Management.Policies is
       cookie : Windows.Foundation.EventRegistrationToken
    );
 
-end;
+end WinRt.Windows.Management.Policies;

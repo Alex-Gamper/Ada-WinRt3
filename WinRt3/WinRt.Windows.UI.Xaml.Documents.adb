@@ -8047,4 +8047,4 @@ package body WinRt.Windows.UI.Xaml.Documents is
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for Underline
 
-end;
+end WinRt.Windows.UI.Xaml.Documents;
