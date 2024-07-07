@@ -28,7 +28,9 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.ApplicationModel.Activation;
+limited with WinRt.Windows.ApplicationModel.Core;
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Storage;
 limited with WinRt.Windows.Storage.Streams;
 limited with WinRt.Windows.System;

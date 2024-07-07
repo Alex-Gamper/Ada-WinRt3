@@ -29,6 +29,7 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.ApplicationModel;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.System;
 with WinRt.Windows.Web.Http;
 with Ada.Unchecked_Conversion;

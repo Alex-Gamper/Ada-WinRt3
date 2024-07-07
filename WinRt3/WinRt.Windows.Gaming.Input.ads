@@ -27,8 +27,10 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+limited with WinRt.Windows.Devices.Haptics;
 limited with WinRt.Windows.Devices.Power;
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Gaming.Input.ForceFeedback;
 limited with WinRt.Windows.System;
 with Ada.Finalization;

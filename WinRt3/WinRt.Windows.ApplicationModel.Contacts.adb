@@ -27,10 +27,12 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+with WinRt.Windows.Data.Text;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Storage.Streams;
 with WinRt.Windows.System;
+with WinRt.Windows.UI;
 with WinRt.Windows.UI.Popups;
 with WinRt.Windows.UI.ViewManagement;
 with Ada.Unchecked_Conversion;

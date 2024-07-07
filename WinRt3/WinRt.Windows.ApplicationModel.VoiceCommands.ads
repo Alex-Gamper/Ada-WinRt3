@@ -29,6 +29,7 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.ApplicationModel.AppService;
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Globalization;
 limited with WinRt.Windows.Media.SpeechRecognition;
 limited with WinRt.Windows.Storage;

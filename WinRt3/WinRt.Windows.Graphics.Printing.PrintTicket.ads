@@ -29,6 +29,7 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.Data.Xml.Dom;
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Graphics.Printing.PrintTicket is

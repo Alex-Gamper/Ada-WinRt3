@@ -30,6 +30,7 @@
 limited with WinRt.Windows.Data.Xml.Dom;
 limited with WinRt.Windows.Devices.Sms;
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Networking.Connectivity;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;

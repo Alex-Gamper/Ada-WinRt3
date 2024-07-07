@@ -28,6 +28,7 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.UI.Text.Core;
 with Ada.Finalization;
 --------------------------------------------------------------------------------

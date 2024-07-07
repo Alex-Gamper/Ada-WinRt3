@@ -28,6 +28,7 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Foundation.Numerics;
 limited with WinRt.Windows.UI.Xaml.Data;
 limited with WinRt.Windows.UI.Xaml.Input;

@@ -29,6 +29,7 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.ApplicationModel.DataTransfer;
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Storage.Streams;
 limited with WinRt.Windows.UI;
 limited with WinRt.Windows.Web.Http;

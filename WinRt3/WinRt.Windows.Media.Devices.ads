@@ -29,6 +29,7 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.Devices.Enumeration;
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Media.Capture;
 limited with WinRt.Windows.Media.Devices.Core;
 limited with WinRt.Windows.Media.MediaProperties;

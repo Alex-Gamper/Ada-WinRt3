@@ -28,6 +28,7 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Management.Deployment;
 limited with WinRt.Windows.System;
 with Ada.Finalization;

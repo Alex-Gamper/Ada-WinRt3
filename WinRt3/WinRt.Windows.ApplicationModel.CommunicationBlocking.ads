@@ -28,6 +28,7 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 --------------------------------------------------------------------------------
 package WinRt.Windows.ApplicationModel.CommunicationBlocking is
 

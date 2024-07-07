@@ -48,6 +48,7 @@ with WinRt.Windows.Storage.Pickers.Provider;
 with WinRt.Windows.Storage.Provider;
 with WinRt.Windows.Storage.Search;
 with WinRt.Windows.System;
+with WinRt.Windows.UI.Notifications;
 with WinRt.Windows.UI.ViewManagement;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------

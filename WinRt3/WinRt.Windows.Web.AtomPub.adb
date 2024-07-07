@@ -29,6 +29,7 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Data.Xml.Dom;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Security.Credentials;
 with WinRt.Windows.Storage.Streams;
 with WinRt.Windows.Web.Syndication;

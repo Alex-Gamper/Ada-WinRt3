@@ -27,6 +27,7 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+with WinRt.Windows.Foundation;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Devices.Spi.Provider is

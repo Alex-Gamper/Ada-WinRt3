@@ -27,6 +27,7 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+with WinRt.Windows.Foundation;
 limited with WinRt.Windows.Graphics.Imaging;
 with Ada.Finalization;
 --------------------------------------------------------------------------------

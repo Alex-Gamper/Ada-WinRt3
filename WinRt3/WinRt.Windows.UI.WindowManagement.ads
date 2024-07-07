@@ -28,7 +28,9 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.System;
+limited with WinRt.Windows.UI.Composition;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.UI.WindowManagement is

@@ -29,6 +29,7 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Devices.Enumeration;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.UI.Core;
 with WinRt.Windows.UI.Popups;
 with WinRt.Windows.UI.WindowManagement;

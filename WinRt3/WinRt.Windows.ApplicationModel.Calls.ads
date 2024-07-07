@@ -30,6 +30,7 @@
 limited with WinRt.Windows.ApplicationModel.Contacts;
 limited with WinRt.Windows.Devices.Enumeration;
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.System;
 limited with WinRt.Windows.UI;
 with Ada.Finalization;

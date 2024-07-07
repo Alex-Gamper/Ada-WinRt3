@@ -32,6 +32,7 @@ with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Media.Playback;
 with WinRt.Windows.Storage.Streams;
 with WinRt.Windows.UI.Composition;
+with WinRt.Windows.UI.Xaml.Controls.Primitives;
 with WinRt.Windows.UI.Xaml.Media.Media3D;
 with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;

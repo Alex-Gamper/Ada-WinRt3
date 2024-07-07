@@ -32,7 +32,9 @@ with WinRt.Windows.Devices.Bluetooth.Rfcomm;
 with WinRt.Windows.Devices.Enumeration;
 with WinRt.Windows.Devices.Radios;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Networking;
+with WinRt.Windows.Storage.Streams;
 with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------

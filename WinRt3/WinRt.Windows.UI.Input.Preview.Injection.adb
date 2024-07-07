@@ -27,6 +27,7 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Gaming.Input;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------

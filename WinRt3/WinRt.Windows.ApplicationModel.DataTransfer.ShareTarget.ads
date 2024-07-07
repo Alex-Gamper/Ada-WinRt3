@@ -27,6 +27,8 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+limited with WinRt.Windows.ApplicationModel.Contacts;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;
 --------------------------------------------------------------------------------

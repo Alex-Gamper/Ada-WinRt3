@@ -29,6 +29,7 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.ApplicationModel;
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Storage;
 with Ada.Finalization;
 --------------------------------------------------------------------------------

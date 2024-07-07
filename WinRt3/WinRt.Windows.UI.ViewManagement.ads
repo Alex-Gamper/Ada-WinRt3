@@ -29,6 +29,7 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.Devices.Enumeration;
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.UI.Core;
 limited with WinRt.Windows.UI.Popups;
 limited with WinRt.Windows.UI.WindowManagement;

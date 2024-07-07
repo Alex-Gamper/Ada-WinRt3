@@ -29,6 +29,7 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Devices.Geolocation;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.UI.Popups;
 with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;

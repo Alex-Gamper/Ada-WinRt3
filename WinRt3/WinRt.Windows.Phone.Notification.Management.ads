@@ -30,6 +30,7 @@
 limited with WinRt.Windows.ApplicationModel.Appointments;
 limited with WinRt.Windows.ApplicationModel.Email;
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
