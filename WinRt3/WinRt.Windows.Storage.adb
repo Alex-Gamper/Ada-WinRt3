@@ -35,6 +35,7 @@ with WinRt.Windows.Storage.Search;
 with WinRt.Windows.Storage.Streams;
 with WinRt.Windows.System;
 with Ada.Unchecked_Conversion;
+with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Storage is

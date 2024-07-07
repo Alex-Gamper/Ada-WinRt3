@@ -30,7 +30,6 @@
 with WinRt.Windows.ApplicationModel.Activation;
 with WinRt.Windows.Foundation.Numerics;
 with WinRt.Windows.Perception.Spatial;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.ApplicationModel.Preview.Holographic is

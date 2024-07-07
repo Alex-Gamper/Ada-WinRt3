@@ -33,6 +33,7 @@ with WinRt.Windows.Storage.Streams;
 with WinRt.Windows.System;
 with WinRt.Windows.UI;
 with Ada.Unchecked_Conversion;
+with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Devices.Lights is

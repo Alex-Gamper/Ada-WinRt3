@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.UI.Composition;
 with WinRt.Windows.UI.Xaml.Media;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Xaml.Shapes is

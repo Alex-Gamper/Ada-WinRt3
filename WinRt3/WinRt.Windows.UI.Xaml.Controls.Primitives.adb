@@ -35,7 +35,6 @@ with WinRt.Windows.UI.Xaml.Input;
 with WinRt.Windows.UI.Xaml.Interop;
 with WinRt.Windows.UI.Xaml.Media;
 with WinRt.Windows.UI.Xaml.Media.Animation;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Xaml.Controls.Primitives is

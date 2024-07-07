@@ -35,6 +35,7 @@ with WinRt.Windows.Storage.Streams;
 with WinRt.Windows.UI;
 with WinRt.Windows.UI.Popups;
 with Ada.Unchecked_Conversion;
+with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Devices.Enumeration is

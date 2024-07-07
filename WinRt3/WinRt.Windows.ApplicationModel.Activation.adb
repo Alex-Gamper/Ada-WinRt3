@@ -50,7 +50,6 @@ with WinRt.Windows.Storage.Search;
 with WinRt.Windows.System;
 with WinRt.Windows.UI.Notifications;
 with WinRt.Windows.UI.ViewManagement;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.ApplicationModel.Activation is

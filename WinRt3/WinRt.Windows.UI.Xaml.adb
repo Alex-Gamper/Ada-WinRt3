@@ -50,6 +50,7 @@ with WinRt.Windows.UI.Xaml.Media.Animation;
 with WinRt.Windows.UI.Xaml.Media.Imaging;
 with WinRt.Windows.UI.Xaml.Media.Media3D;
 with Ada.Unchecked_Conversion;
+with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Xaml is

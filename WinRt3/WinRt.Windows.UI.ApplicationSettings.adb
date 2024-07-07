@@ -32,7 +32,6 @@ with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Security.Credentials;
 with WinRt.Windows.System;
 with WinRt.Windows.UI.Popups;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.ApplicationSettings is

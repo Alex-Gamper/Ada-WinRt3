@@ -30,7 +30,6 @@
 with WinRt.Windows.ApplicationModel.Core;
 with WinRt.Windows.System;
 with WinRt.Windows.UI.Core;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Input.Core is

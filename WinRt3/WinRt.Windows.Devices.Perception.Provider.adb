@@ -32,7 +32,6 @@ with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Foundation.Numerics;
 with WinRt.Windows.Graphics.Imaging;
 with WinRt.Windows.Media;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Devices.Perception.Provider is

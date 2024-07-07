@@ -32,7 +32,6 @@ with WinRt.Windows.Devices.Gpio.Provider;
 with WinRt.Windows.Devices.I2c.Provider;
 with WinRt.Windows.Devices.Pwm.Provider;
 with WinRt.Windows.Devices.Spi.Provider;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Devices is

@@ -39,7 +39,6 @@ with WinRt.Windows.Media.Render;
 with WinRt.Windows.Media.Transcoding;
 with WinRt.Windows.Storage.Streams;
 with WinRt.Windows.UI;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Media.Effects is

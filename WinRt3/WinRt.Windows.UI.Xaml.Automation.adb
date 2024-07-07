@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.UI.Xaml.Automation.Peers;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Xaml.Automation is

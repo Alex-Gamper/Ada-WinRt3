@@ -34,7 +34,6 @@ with WinRt.Windows.Graphics;
 with WinRt.Windows.Graphics.DirectX;
 with WinRt.Windows.Graphics.DirectX.Direct3D11;
 with WinRt.Windows.Storage.Streams;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Devices.Display.Core is

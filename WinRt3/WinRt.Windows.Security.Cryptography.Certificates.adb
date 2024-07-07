@@ -32,6 +32,7 @@ with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Networking;
 with WinRt.Windows.Storage.Streams;
 with Ada.Unchecked_Conversion;
+with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Security.Cryptography.Certificates is
