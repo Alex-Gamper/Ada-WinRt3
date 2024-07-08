@@ -34,7 +34,6 @@ with WinRt.Windows.Security.Credentials;
 with WinRt.Windows.Security.Cryptography.Certificates;
 with WinRt.Windows.Storage.Streams;
 with Ada.Unchecked_Conversion;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Networking.Vpn is

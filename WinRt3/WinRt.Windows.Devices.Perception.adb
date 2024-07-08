@@ -35,7 +35,6 @@ with WinRt.Windows.Graphics.Imaging;
 with WinRt.Windows.Media;
 with WinRt.Windows.Media.Devices.Core;
 with Ada.Unchecked_Conversion;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Devices.Perception is

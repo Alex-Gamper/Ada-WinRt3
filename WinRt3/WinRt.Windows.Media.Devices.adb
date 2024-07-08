@@ -35,7 +35,6 @@ with WinRt.Windows.Media.Devices.Core;
 with WinRt.Windows.Media.MediaProperties;
 with WinRt.Windows.Storage.Streams;
 with Ada.Unchecked_Conversion;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Media.Devices is

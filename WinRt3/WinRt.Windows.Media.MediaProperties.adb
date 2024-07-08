@@ -33,7 +33,6 @@ with WinRt.Windows.Media.Core;
 with WinRt.Windows.Storage;
 with WinRt.Windows.Storage.Streams;
 with Ada.Unchecked_Conversion;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Media.MediaProperties is

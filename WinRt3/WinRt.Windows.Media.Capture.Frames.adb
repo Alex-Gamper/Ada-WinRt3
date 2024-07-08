@@ -39,7 +39,6 @@ with WinRt.Windows.Perception.Spatial;
 with WinRt.Windows.Storage.Streams;
 with WinRt.Windows.UI.WindowManagement;
 with Ada.Unchecked_Conversion;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Media.Capture.Frames is

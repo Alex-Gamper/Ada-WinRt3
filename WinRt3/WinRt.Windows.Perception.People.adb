@@ -33,7 +33,6 @@ with WinRt.Windows.Perception.Spatial;
 with WinRt.Windows.UI.Input;
 with WinRt.Windows.UI.Input.Spatial;
 with Ada.Unchecked_Conversion;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Perception.People is

@@ -35,7 +35,6 @@ with WinRt.Windows.Storage.Streams;
 with WinRt.Windows.Web.Http.Filters;
 with WinRt.Windows.Web.Http.Headers;
 with Ada.Unchecked_Conversion;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Web.Http is

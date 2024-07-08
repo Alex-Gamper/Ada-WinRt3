@@ -32,7 +32,6 @@ with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Media.Core;
 with WinRt.Windows.Storage;
 with Ada.Unchecked_Conversion;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Media.Protection.PlayReady is

@@ -58,7 +58,6 @@ with WinRt.Windows.UI.Xaml.Navigation;
 with WinRt.Windows.Web;
 with WinRt.Windows.Web.Http;
 with Ada.Unchecked_Conversion;
-with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Xaml.Controls is
