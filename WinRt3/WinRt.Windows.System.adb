@@ -33,7 +33,6 @@ with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Storage;
 with WinRt.Windows.Storage.Search;
 with WinRt.Windows.Storage.Streams;
-with WinRt.Windows.System.Diagnostics;
 with WinRt.Windows.System.RemoteSystems;
 with WinRt.Windows.UI.Popups;
 with WinRt.Windows.UI.ViewManagement;

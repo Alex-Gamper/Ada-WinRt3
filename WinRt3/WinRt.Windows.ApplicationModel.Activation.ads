@@ -48,7 +48,6 @@ limited with WinRt.Windows.Storage.Pickers.Provider;
 limited with WinRt.Windows.Storage.Provider;
 limited with WinRt.Windows.Storage.Search;
 limited with WinRt.Windows.System;
-limited with WinRt.Windows.UI.Notifications;
 limited with WinRt.Windows.UI.ViewManagement;
 with Ada.Finalization;
 --------------------------------------------------------------------------------

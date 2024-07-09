@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.ApplicationModel.Activation;
-with WinRt.Windows.ApplicationModel.Core;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Storage;

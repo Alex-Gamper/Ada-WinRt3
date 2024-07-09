@@ -30,7 +30,6 @@
 limited with WinRt.Windows.Devices.Enumeration;
 with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
-limited with WinRt.Windows.Networking;
 limited with WinRt.Windows.Security.Credentials;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;

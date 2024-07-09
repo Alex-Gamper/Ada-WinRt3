@@ -32,7 +32,6 @@ with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Media.Playback;
 limited with WinRt.Windows.Storage.Streams;
 limited with WinRt.Windows.UI.Composition;
-limited with WinRt.Windows.UI.Xaml.Controls.Primitives;
 limited with WinRt.Windows.UI.Xaml.Media.Media3D;
 with Ada.Finalization;
 --------------------------------------------------------------------------------

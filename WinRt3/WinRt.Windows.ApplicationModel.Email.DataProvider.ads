@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
-limited with WinRt.Windows.Security.Cryptography.Certificates;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.ApplicationModel.Email.DataProvider is
