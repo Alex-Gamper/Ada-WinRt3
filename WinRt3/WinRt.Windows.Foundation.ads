@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-limited with WinRt.Windows.Foundation.Collections;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Foundation is

@@ -28,9 +28,7 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with Ada.Unchecked_Conversion;
-with System;
 with System.Storage_Elements;
-with Ada.Strings.Wide_Unbounded;
 --------------------------------------------------------------------------------
 package body WinRt is
 
