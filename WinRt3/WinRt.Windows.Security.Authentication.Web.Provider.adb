@@ -34,7 +34,6 @@ with WinRt.Windows.Security.Credentials;
 with WinRt.Windows.Security.Cryptography.Core;
 with WinRt.Windows.Storage.Streams;
 with WinRt.Windows.System;
-with WinRt.Windows.Web.Http;
 with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------

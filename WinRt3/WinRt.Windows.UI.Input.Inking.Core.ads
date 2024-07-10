@@ -31,7 +31,6 @@ with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Foundation.Numerics;
 limited with WinRt.Windows.UI.Composition;
-limited with WinRt.Windows.UI.Core;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.UI.Input.Inking.Core is

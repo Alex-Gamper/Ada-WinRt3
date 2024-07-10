@@ -34,7 +34,6 @@ limited with WinRt.Windows.Security.Credentials;
 limited with WinRt.Windows.Security.Cryptography.Core;
 limited with WinRt.Windows.Storage.Streams;
 limited with WinRt.Windows.System;
-limited with WinRt.Windows.Web.Http;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Security.Authentication.Web.Provider is
