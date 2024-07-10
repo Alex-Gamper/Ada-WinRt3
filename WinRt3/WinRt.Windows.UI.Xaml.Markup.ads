@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
-limited with WinRt.Windows.Storage.Streams;
 limited with WinRt.Windows.UI.Xaml.Interop;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
