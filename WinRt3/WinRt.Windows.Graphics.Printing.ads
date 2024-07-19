@@ -902,7 +902,7 @@ package WinRt.Windows.Graphics.Printing is
    IID_IVector_HString : aliased WinRt.IID := (2135665284, 45925, 23316, (178, 1, 17, 165, 198, 167, 202, 189 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
-   package IVector_IPrintPageRange is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing.IPrintPageRange);
+   package IVector_IPrintPageRange is new WinRt.Windows.Foundation.Collections.IVector (IPrintPageRange);
    IID_IVector_IPrintPageRange : aliased WinRt.IID := (1815576955, 52643, 21386, (152, 24, 129, 78, 160, 8, 188, 125 ));
    function QInterface_IVector_IPrintPageRange is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrintPageRange.Kind, IID_IVector_IPrintPageRange'Access);
 

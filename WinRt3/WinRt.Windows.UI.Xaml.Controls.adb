@@ -61,8 +61,8 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Xaml.Controls is
 
-   package IVector_IColumnDefinition is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Controls.IColumnDefinition);
-   package IIterable_IColumnDefinition is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Controls.IColumnDefinition);
+   package IVector_IColumnDefinition is new WinRt.Windows.Foundation.Collections.IVector (IColumnDefinition);
+   package IIterable_IColumnDefinition is new WinRt.Windows.Foundation.Collections.IIterable (IColumnDefinition);
    package IAsyncOperation_ContentDialogResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.UI.Xaml.Controls.ContentDialogResult);
    package AsyncOperationCompletedHandler_ContentDialogResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.UI.Xaml.Controls.ContentDialogResult);
 
@@ -75,12 +75,12 @@ package body WinRt.Windows.UI.Xaml.Controls is
    package IAsyncOperation_Boolean is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Boolean);
    package AsyncOperationCompletedHandler_Boolean is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Boolean);
 
-   package IIterable_IHubSection is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Controls.IHubSection);
+   package IIterable_IHubSection is new WinRt.Windows.Foundation.Collections.IIterable (IHubSection);
    package IIterable_IInspectable is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.IInspectable);
-   package IVector_IRowDefinition is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Controls.IRowDefinition);
-   package IIterable_IRowDefinition is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Controls.IRowDefinition);
-   package IVector_ISwipeItem is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Controls.ISwipeItem);
-   package IIterable_ISwipeItem is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Controls.ISwipeItem);
+   package IVector_IRowDefinition is new WinRt.Windows.Foundation.Collections.IVector (IRowDefinition);
+   package IIterable_IRowDefinition is new WinRt.Windows.Foundation.Collections.IIterable (IRowDefinition);
+   package IVector_ISwipeItem is new WinRt.Windows.Foundation.Collections.IVector (ISwipeItem);
+   package IIterable_ISwipeItem is new WinRt.Windows.Foundation.Collections.IIterable (ISwipeItem);
    package IIterable_IUIElement is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.IUIElement);
    package IAsyncOperation_HString is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.HString);
    package AsyncOperationCompletedHandler_HString is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.HString);

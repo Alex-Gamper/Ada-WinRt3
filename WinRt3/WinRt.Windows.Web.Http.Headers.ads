@@ -494,7 +494,7 @@ package WinRt.Windows.Web.Http.Headers is
    IID_IReference_TimeSpan : aliased WinRt.IID := (455126815, 63119, 22198, (140, 252, 108, 197, 165, 129, 179, 167 ));
    function QInterface_IReference_TimeSpan is new Generic_QueryInterface (GenericObject_Interface, IReference_TimeSpan.Kind, IID_IReference_TimeSpan'Access);
 
-   package IVector_IHttpNameValueHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue);
+   package IVector_IHttpNameValueHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (IHttpNameValueHeaderValue);
    IID_IVector_IHttpNameValueHeaderValue : aliased WinRt.IID := (2318970852, 63433, 24426, (132, 248, 174, 184, 148, 156, 44, 233 ));
    function QInterface_IVector_IHttpNameValueHeaderValue is new Generic_QueryInterface (GenericObject_Interface, IVector_IHttpNameValueHeaderValue.Kind, IID_IVector_IHttpNameValueHeaderValue'Access);
 

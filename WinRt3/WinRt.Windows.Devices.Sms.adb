@@ -34,8 +34,8 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Devices.Sms is
 
-   package IAsyncOperation_ISmsDevice is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Sms.ISmsDevice);
-   package IAsyncOperation_ISmsMessage is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Sms.ISmsMessage);
+   package IAsyncOperation_ISmsDevice is new WinRt.Windows.Foundation.IAsyncOperation (ISmsDevice);
+   package IAsyncOperation_ISmsMessage is new WinRt.Windows.Foundation.IAsyncOperation (ISmsMessage);
    package IAsyncOperation_SmsDevice is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Sms.ISmsDevice);
    package AsyncOperationCompletedHandler_SmsDevice is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.Sms.ISmsDevice);
 

@@ -995,15 +995,15 @@ package WinRt.Windows.Devices.Sensors is
    IID_IMapView_HString_IInspectable : aliased WinRt.IID := (284155799, 57035, 22120, (188, 165, 128, 48, 185, 47, 250, 144 ));
    function QInterface_IMapView_HString_IInspectable is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_IInspectable.Kind, IID_IMapView_HString_IInspectable'Access);
 
-   package IVector_ActivityType is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.Sensors.ActivityType);
+   package IVector_ActivityType is new WinRt.Windows.Foundation.Collections.IVector (ActivityType);
    IID_IVector_ActivityType : aliased WinRt.IID := (2144698860, 58825, 23040, (174, 60, 116, 7, 173, 119, 117, 17 ));
    function QInterface_IVector_ActivityType is new Generic_QueryInterface (GenericObject_Interface, IVector_ActivityType.Kind, IID_IVector_ActivityType'Access);
 
-   package IVectorView_ActivityType is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Sensors.ActivityType);
+   package IVectorView_ActivityType is new WinRt.Windows.Foundation.Collections.IVectorView (ActivityType);
    IID_IVectorView_ActivityType : aliased WinRt.IID := (2144698860, 58825, 23040, (174, 60, 116, 7, 173, 119, 117, 17 ));
    function QInterface_IVectorView_ActivityType is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ActivityType.Kind, IID_IVectorView_ActivityType'Access);
 
-   package IVectorView_IActivitySensorReadingChangeReport is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Sensors.IActivitySensorReadingChangeReport);
+   package IVectorView_IActivitySensorReadingChangeReport is new WinRt.Windows.Foundation.Collections.IVectorView (IActivitySensorReadingChangeReport);
    IID_IVectorView_IActivitySensorReadingChangeReport : aliased WinRt.IID := (555656170, 62231, 20776, (135, 156, 118, 247, 196, 55, 31, 210 ));
    function QInterface_IVectorView_IActivitySensorReadingChangeReport is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IActivitySensorReadingChangeReport.Kind, IID_IVectorView_IActivitySensorReadingChangeReport'Access);
 
@@ -1011,7 +1011,7 @@ package WinRt.Windows.Devices.Sensors is
    IID_IReference_Double : aliased WinRt.IID := (1264524133, 60523, 23129, (187, 37, 86, 94, 188, 248, 79, 248 ));
    function QInterface_IReference_Double is new Generic_QueryInterface (GenericObject_Interface, IReference_Double.Kind, IID_IReference_Double'Access);
 
-   package IMapView_PedometerStepKind_IPedometerReading is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.Windows.Devices.Sensors.PedometerStepKind, WinRt.Windows.Devices.Sensors.IPedometerReading);
+   package IMapView_PedometerStepKind_IPedometerReading is new WinRt.Windows.Foundation.Collections.IMapView (PedometerStepKind, IPedometerReading);
    IID_IMapView_PedometerStepKind_IPedometerReading : aliased WinRt.IID := (1756178821, 9073, 21028, (174, 0, 108, 118, 221, 236, 113, 108 ));
    function QInterface_IMapView_PedometerStepKind_IPedometerReading is new Generic_QueryInterface (GenericObject_Interface, IMapView_PedometerStepKind_IPedometerReading.Kind, IID_IMapView_PedometerStepKind_IPedometerReading'Access);
 

@@ -404,7 +404,7 @@ package WinRt.Windows.Devices.Perception is
    IID_IMapView_HString_IInspectable : aliased WinRt.IID := (1375923766, 29760, 22357, (176, 86, 124, 31, 74, 206, 164, 119 ));
    function QInterface_IMapView_HString_IInspectable is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_IInspectable.Kind, IID_IMapView_HString_IInspectable'Access);
 
-   package IVectorView_IPerceptionVideoProfile is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Perception.IPerceptionVideoProfile);
+   package IVectorView_IPerceptionVideoProfile is new WinRt.Windows.Foundation.Collections.IVectorView (IPerceptionVideoProfile);
    IID_IVectorView_IPerceptionVideoProfile : aliased WinRt.IID := (1375923766, 29760, 22357, (176, 86, 124, 31, 74, 206, 164, 119 ));
    function QInterface_IVectorView_IPerceptionVideoProfile is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPerceptionVideoProfile.Kind, IID_IVectorView_IPerceptionVideoProfile'Access);
 

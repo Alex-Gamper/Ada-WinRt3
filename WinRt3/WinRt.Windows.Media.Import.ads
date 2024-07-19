@@ -363,15 +363,15 @@ package WinRt.Windows.Media.Import is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IPhotoImportItem is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Import.IPhotoImportItem);
+   package IVectorView_IPhotoImportItem is new WinRt.Windows.Foundation.Collections.IVectorView (IPhotoImportItem);
    IID_IVectorView_IPhotoImportItem : aliased WinRt.IID := (4066080497, 4339, 21542, (168, 86, 127, 111, 125, 223, 6, 35 ));
    function QInterface_IVectorView_IPhotoImportItem is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPhotoImportItem.Kind, IID_IVectorView_IPhotoImportItem'Access);
 
-   package IVectorView_IPhotoImportSidecar is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Import.IPhotoImportSidecar);
+   package IVectorView_IPhotoImportSidecar is new WinRt.Windows.Foundation.Collections.IVectorView (IPhotoImportSidecar);
    IID_IVectorView_IPhotoImportSidecar : aliased WinRt.IID := (3783633011, 13586, 21005, (146, 185, 254, 26, 169, 111, 102, 113 ));
    function QInterface_IVectorView_IPhotoImportSidecar is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPhotoImportSidecar.Kind, IID_IVectorView_IPhotoImportSidecar'Access);
 
-   package IVectorView_IPhotoImportVideoSegment is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Import.IPhotoImportVideoSegment);
+   package IVectorView_IPhotoImportVideoSegment is new WinRt.Windows.Foundation.Collections.IVectorView (IPhotoImportVideoSegment);
    IID_IVectorView_IPhotoImportVideoSegment : aliased WinRt.IID := (3783633011, 13586, 21005, (146, 185, 254, 26, 169, 111, 102, 113 ));
    function QInterface_IVectorView_IPhotoImportVideoSegment is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPhotoImportVideoSegment.Kind, IID_IVectorView_IPhotoImportVideoSegment'Access);
 
@@ -387,7 +387,7 @@ package WinRt.Windows.Media.Import is
    IID_IReference_DateTime : aliased WinRt.IID := (2334679802, 55239, 22624, (183, 6, 164, 62, 252, 159, 11, 239 ));
    function QInterface_IReference_DateTime is new Generic_QueryInterface (GenericObject_Interface, IReference_DateTime.Kind, IID_IReference_DateTime'Access);
 
-   package IVectorView_IPhotoImportStorageMedium is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Import.IPhotoImportStorageMedium);
+   package IVectorView_IPhotoImportStorageMedium is new WinRt.Windows.Foundation.Collections.IVectorView (IPhotoImportStorageMedium);
    IID_IVectorView_IPhotoImportStorageMedium : aliased WinRt.IID := (2334679802, 55239, 22624, (183, 6, 164, 62, 252, 159, 11, 239 ));
    function QInterface_IVectorView_IPhotoImportStorageMedium is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPhotoImportStorageMedium.Kind, IID_IVectorView_IPhotoImportStorageMedium'Access);
 

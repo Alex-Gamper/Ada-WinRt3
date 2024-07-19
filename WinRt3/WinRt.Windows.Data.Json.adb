@@ -33,9 +33,9 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Data.Json is
 
-   package IVector_IJsonValue is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Data.Json.IJsonValue);
-   package IIterable_IJsonValue is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Data.Json.IJsonValue);
-   package IMap_HString_IJsonValue is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, WinRt.Windows.Data.Json.IJsonValue);
+   package IVector_IJsonValue is new WinRt.Windows.Foundation.Collections.IVector (IJsonValue);
+   package IIterable_IJsonValue is new WinRt.Windows.Foundation.Collections.IIterable (IJsonValue);
+   package IMap_HString_IJsonValue is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, IJsonValue);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for JsonArray
 

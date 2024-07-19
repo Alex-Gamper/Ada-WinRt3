@@ -585,15 +585,15 @@ package WinRt.Windows.Services.Store is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IMapView_HString_IStoreLicense is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.Windows.Services.Store.IStoreLicense);
+   package IMapView_HString_IStoreLicense is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, IStoreLicense);
    IID_IMapView_HString_IStoreLicense : aliased WinRt.IID := (197492722, 13970, 22534, (143, 50, 218, 9, 3, 245, 26, 207 ));
    function QInterface_IMapView_HString_IStoreLicense is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_IStoreLicense.Kind, IID_IMapView_HString_IStoreLicense'Access);
 
-   package IVectorView_StorePackageUpdateStatus is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Store.StorePackageUpdateStatus);
+   package IVectorView_StorePackageUpdateStatus is new WinRt.Windows.Foundation.Collections.IVectorView (StorePackageUpdateStatus);
    IID_IVectorView_StorePackageUpdateStatus : aliased WinRt.IID := (2547209592, 28705, 22369, (172, 63, 166, 43, 1, 146, 133, 75 ));
    function QInterface_IVectorView_StorePackageUpdateStatus is new Generic_QueryInterface (GenericObject_Interface, IVectorView_StorePackageUpdateStatus.Kind, IID_IVectorView_StorePackageUpdateStatus'Access);
 
-   package IVectorView_IStoreQueueItem is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Store.IStoreQueueItem);
+   package IVectorView_IStoreQueueItem is new WinRt.Windows.Foundation.Collections.IVectorView (IStoreQueueItem);
    IID_IVectorView_IStoreQueueItem : aliased WinRt.IID := (1129685226, 36722, 22922, (167, 169, 154, 191, 134, 169, 157, 181 ));
    function QInterface_IVectorView_IStoreQueueItem is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IStoreQueueItem.Kind, IID_IVectorView_IStoreQueueItem'Access);
 
@@ -601,15 +601,15 @@ package WinRt.Windows.Services.Store is
    IID_IVectorView_HString : aliased WinRt.IID := (1006885154, 40309, 20760, (190, 196, 84, 76, 110, 152, 104, 152 ));
    function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
-   package IVectorView_IStoreImage is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Store.IStoreImage);
+   package IVectorView_IStoreImage is new WinRt.Windows.Foundation.Collections.IVectorView (IStoreImage);
    IID_IVectorView_IStoreImage : aliased WinRt.IID := (1006885154, 40309, 20760, (190, 196, 84, 76, 110, 152, 104, 152 ));
    function QInterface_IVectorView_IStoreImage is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IStoreImage.Kind, IID_IVectorView_IStoreImage'Access);
 
-   package IVectorView_IStoreVideo is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Store.IStoreVideo);
+   package IVectorView_IStoreVideo is new WinRt.Windows.Foundation.Collections.IVectorView (IStoreVideo);
    IID_IVectorView_IStoreVideo : aliased WinRt.IID := (1006885154, 40309, 20760, (190, 196, 84, 76, 110, 152, 104, 152 ));
    function QInterface_IVectorView_IStoreVideo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IStoreVideo.Kind, IID_IVectorView_IStoreVideo'Access);
 
-   package IVectorView_IStoreSku is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Store.IStoreSku);
+   package IVectorView_IStoreSku is new WinRt.Windows.Foundation.Collections.IVectorView (IStoreSku);
    IID_IVectorView_IStoreSku : aliased WinRt.IID := (1006885154, 40309, 20760, (190, 196, 84, 76, 110, 152, 104, 152 ));
    function QInterface_IVectorView_IStoreSku is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IStoreSku.Kind, IID_IVectorView_IStoreSku'Access);
 
@@ -617,11 +617,11 @@ package WinRt.Windows.Services.Store is
    IID_IVector_HString : aliased WinRt.IID := (1111448913, 23021, 24507, (179, 111, 232, 142, 237, 116, 97, 71 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
-   package IMapView_HString_IStoreProduct is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.Windows.Services.Store.IStoreProduct);
+   package IMapView_HString_IStoreProduct is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, IStoreProduct);
    IID_IMapView_HString_IStoreProduct : aliased WinRt.IID := (1595855502, 20905, 23165, (184, 127, 81, 14, 83, 123, 232, 183 ));
    function QInterface_IMapView_HString_IStoreProduct is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_IStoreProduct.Kind, IID_IMapView_HString_IStoreProduct'Access);
 
-   package IVectorView_IStoreAvailability is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Store.IStoreAvailability);
+   package IVectorView_IStoreAvailability is new WinRt.Windows.Foundation.Collections.IVectorView (IStoreAvailability);
    IID_IVectorView_IStoreAvailability : aliased WinRt.IID := (1728516020, 7424, 21846, (140, 200, 60, 121, 216, 164, 169, 119 ));
    function QInterface_IVectorView_IStoreAvailability is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IStoreAvailability.Kind, IID_IVectorView_IStoreAvailability'Access);
 

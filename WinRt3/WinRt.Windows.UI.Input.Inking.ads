@@ -482,15 +482,15 @@ package WinRt.Windows.UI.Input.Inking is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IInkRecognizer is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Input.Inking.IInkRecognizer);
+   package IVectorView_IInkRecognizer is new WinRt.Windows.Foundation.Collections.IVectorView (IInkRecognizer);
    IID_IVectorView_IInkRecognizer : aliased WinRt.IID := (3721397045, 7355, 23769, (151, 14, 31, 235, 159, 52, 159, 15 ));
    function QInterface_IVectorView_IInkRecognizer is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IInkRecognizer.Kind, IID_IVectorView_IInkRecognizer'Access);
 
-   package IVectorView_IInkStroke is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Input.Inking.IInkStroke);
+   package IVectorView_IInkStroke is new WinRt.Windows.Foundation.Collections.IVectorView (IInkStroke);
    IID_IVectorView_IInkStroke : aliased WinRt.IID := (252980122, 61968, 21035, (167, 157, 54, 81, 100, 244, 44, 7 ));
    function QInterface_IVectorView_IInkStroke is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IInkStroke.Kind, IID_IVectorView_IInkStroke'Access);
 
-   package IVectorView_IInkRecognitionResult is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Input.Inking.IInkRecognitionResult);
+   package IVectorView_IInkRecognitionResult is new WinRt.Windows.Foundation.Collections.IVectorView (IInkRecognitionResult);
    IID_IVectorView_IInkRecognitionResult : aliased WinRt.IID := (252980122, 61968, 21035, (167, 157, 54, 81, 100, 244, 44, 7 ));
    function QInterface_IVectorView_IInkRecognitionResult is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IInkRecognitionResult.Kind, IID_IVectorView_IInkRecognitionResult'Access);
 
@@ -498,11 +498,11 @@ package WinRt.Windows.UI.Input.Inking is
    IID_IVectorView_HString : aliased WinRt.IID := (3553255042, 30875, 23572, (162, 229, 21, 79, 30, 66, 188, 242 ));
    function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
-   package IVectorView_IInkStrokeRenderingSegment is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Input.Inking.IInkStrokeRenderingSegment);
+   package IVectorView_IInkStrokeRenderingSegment is new WinRt.Windows.Foundation.Collections.IVectorView (IInkStrokeRenderingSegment);
    IID_IVectorView_IInkStrokeRenderingSegment : aliased WinRt.IID := (1677756426, 3852, 20541, (136, 223, 178, 26, 158, 252, 81, 200 ));
    function QInterface_IVectorView_IInkStrokeRenderingSegment is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IInkStrokeRenderingSegment.Kind, IID_IVectorView_IInkStrokeRenderingSegment'Access);
 
-   package IVectorView_IInkPoint is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Input.Inking.IInkPoint);
+   package IVectorView_IInkPoint is new WinRt.Windows.Foundation.Collections.IVectorView (IInkPoint);
    IID_IVectorView_IInkPoint : aliased WinRt.IID := (282313921, 62480, 23773, (151, 38, 63, 64, 227, 130, 165, 218 ));
    function QInterface_IVectorView_IInkPoint is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IInkPoint.Kind, IID_IVectorView_IInkPoint'Access);
 

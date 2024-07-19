@@ -41,7 +41,7 @@ package body WinRt.Windows.Storage.Search is
    package IAsyncOperation_UInt32 is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.UInt32);
    package AsyncOperationCompletedHandler_UInt32 is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.UInt32);
 
-   package IIterable_SortEntry is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Storage.Search.SortEntry);
+   package IIterable_SortEntry is new WinRt.Windows.Foundation.Collections.IIterable (SortEntry);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ContentIndexer
 

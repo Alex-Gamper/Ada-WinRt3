@@ -696,7 +696,7 @@ package WinRt.Windows.Media.Audio is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IAudioGraphConnection is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Audio.IAudioGraphConnection);
+   package IVectorView_IAudioGraphConnection is new WinRt.Windows.Foundation.Collections.IVectorView (IAudioGraphConnection);
    IID_IVectorView_IAudioGraphConnection : aliased WinRt.IID := (918308941, 13703, 20553, (131, 237, 95, 39, 35, 103, 255, 124 ));
    function QInterface_IVectorView_IAudioGraphConnection is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAudioGraphConnection.Kind, IID_IVectorView_IAudioGraphConnection'Access);
 
@@ -708,7 +708,7 @@ package WinRt.Windows.Media.Audio is
    IID_IReference_Int32 : aliased WinRt.IID := (3883431139, 30630, 24477, (174, 0, 229, 220, 147, 246, 242, 214 ));
    function QInterface_IReference_Int32 is new Generic_QueryInterface (GenericObject_Interface, IReference_Int32.Kind, IID_IReference_Int32'Access);
 
-   package IVectorView_IEqualizerBand is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Audio.IEqualizerBand);
+   package IVectorView_IEqualizerBand is new WinRt.Windows.Foundation.Collections.IVectorView (IEqualizerBand);
    IID_IVectorView_IEqualizerBand : aliased WinRt.IID := (842557920, 64411, 22342, (131, 39, 58, 152, 247, 30, 104, 177 ));
    function QInterface_IVectorView_IEqualizerBand is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IEqualizerBand.Kind, IID_IVectorView_IEqualizerBand'Access);
 

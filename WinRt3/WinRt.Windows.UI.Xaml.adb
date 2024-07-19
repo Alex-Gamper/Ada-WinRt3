@@ -56,16 +56,16 @@ package body WinRt.Windows.UI.Xaml is
    package IAsyncOperation_DataPackageOperation is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation);
    package AsyncOperationCompletedHandler_DataPackageOperation is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation);
 
-   package IObservableVector_IDependencyObject is new WinRt.Windows.Foundation.Collections.IObservableVector (WinRt.Windows.UI.Xaml.IDependencyObject);
-   package IVector_IDependencyObject is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.IDependencyObject);
-   package IVector_ISetterBase is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.ISetterBase);
-   package IIterable_ISetterBase is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.ISetterBase);
-   package IVector_ITriggerAction is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.ITriggerAction);
-   package IIterable_ITriggerAction is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.ITriggerAction);
-   package IVector_ITriggerBase is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.ITriggerBase);
-   package IIterable_ITriggerBase is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.ITriggerBase);
-   package IVector_IUIElement is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.IUIElement);
-   package IIterable_IUIElement is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.IUIElement);
+   package IObservableVector_IDependencyObject is new WinRt.Windows.Foundation.Collections.IObservableVector (IDependencyObject);
+   package IVector_IDependencyObject is new WinRt.Windows.Foundation.Collections.IVector (IDependencyObject);
+   package IVector_ISetterBase is new WinRt.Windows.Foundation.Collections.IVector (ISetterBase);
+   package IIterable_ISetterBase is new WinRt.Windows.Foundation.Collections.IIterable (ISetterBase);
+   package IVector_ITriggerAction is new WinRt.Windows.Foundation.Collections.IVector (ITriggerAction);
+   package IIterable_ITriggerAction is new WinRt.Windows.Foundation.Collections.IIterable (ITriggerAction);
+   package IVector_ITriggerBase is new WinRt.Windows.Foundation.Collections.IVector (ITriggerBase);
+   package IIterable_ITriggerBase is new WinRt.Windows.Foundation.Collections.IIterable (ITriggerBase);
+   package IVector_IUIElement is new WinRt.Windows.Foundation.Collections.IVector (IUIElement);
+   package IIterable_IUIElement is new WinRt.Windows.Foundation.Collections.IIterable (IUIElement);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DependencyObject
 

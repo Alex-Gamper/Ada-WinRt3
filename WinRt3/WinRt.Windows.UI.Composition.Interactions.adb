@@ -34,7 +34,7 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Composition.Interactions is
 
-   package IIterable_ICompositionInteractionSource is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Composition.Interactions.ICompositionInteractionSource);
+   package IIterable_ICompositionInteractionSource is new WinRt.Windows.Foundation.Collections.IIterable (ICompositionInteractionSource);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CompositionConditionalValue
 

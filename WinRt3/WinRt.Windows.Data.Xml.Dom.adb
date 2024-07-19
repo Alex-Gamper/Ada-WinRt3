@@ -38,8 +38,8 @@ package body WinRt.Windows.Data.Xml.Dom is
    package IAsyncOperation_XmlDocument is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Data.Xml.Dom.IXmlDocument);
    package AsyncOperationCompletedHandler_XmlDocument is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Data.Xml.Dom.IXmlDocument);
 
-   package IVectorView_IXmlNode is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Data.Xml.Dom.IXmlNode);
-   package IIterable_IXmlNode is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Data.Xml.Dom.IXmlNode);
+   package IVectorView_IXmlNode is new WinRt.Windows.Foundation.Collections.IVectorView (IXmlNode);
+   package IIterable_IXmlNode is new WinRt.Windows.Foundation.Collections.IIterable (IXmlNode);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DtdEntity
 

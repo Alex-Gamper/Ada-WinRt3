@@ -46,7 +46,7 @@ package body WinRt.Windows.Networking.Vpn is
    package IAsyncOperation_GenericObject is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.GenericObject);
    package AsyncOperationCompletedHandler_GenericObject is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.GenericObject);
 
-   package IIterable_IVpnPacketBuffer is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Networking.Vpn.IVpnPacketBuffer);
+   package IIterable_IVpnPacketBuffer is new WinRt.Windows.Foundation.Collections.IIterable (IVpnPacketBuffer);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for VpnAppId
 

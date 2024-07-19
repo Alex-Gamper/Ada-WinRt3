@@ -115,7 +115,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IUserDataAccountPartnerAccountInfo is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountPartnerAccountInfo);
+   package IVectorView_IUserDataAccountPartnerAccountInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IUserDataAccountPartnerAccountInfo);
    IID_IVectorView_IUserDataAccountPartnerAccountInfo : aliased WinRt.IID := (1325382989, 11248, 20638, (128, 27, 84, 53, 232, 98, 54, 24 ));
    function QInterface_IVectorView_IUserDataAccountPartnerAccountInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUserDataAccountPartnerAccountInfo.Kind, IID_IVectorView_IUserDataAccountPartnerAccountInfo'Access);
 

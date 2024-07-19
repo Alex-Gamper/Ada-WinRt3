@@ -1899,7 +1899,7 @@ package WinRt.Windows.UI.Xaml is
    IID_IReference_Rect : aliased WinRt.IID := (3849668005, 15438, 20821, (177, 167, 219, 189, 205, 248, 98, 212 ));
    function QInterface_IReference_Rect is new Generic_QueryInterface (GenericObject_Interface, IReference_Rect.Kind, IID_IReference_Rect'Access);
 
-   package IVector_IResourceDictionary is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.IResourceDictionary);
+   package IVector_IResourceDictionary is new WinRt.Windows.Foundation.Collections.IVector (IResourceDictionary);
    IID_IVector_IResourceDictionary : aliased WinRt.IID := (316386549, 50139, 21423, (189, 12, 124, 243, 140, 8, 152, 63 ));
    function QInterface_IVector_IResourceDictionary is new Generic_QueryInterface (GenericObject_Interface, IVector_IResourceDictionary.Kind, IID_IVector_IResourceDictionary'Access);
 
@@ -1911,19 +1911,19 @@ package WinRt.Windows.UI.Xaml is
    IID_IReference_Color : aliased WinRt.IID := (3887310889, 53768, 24536, (150, 75, 204, 133, 126, 159, 36, 98 ));
    function QInterface_IReference_Color is new Generic_QueryInterface (GenericObject_Interface, IReference_Color.Kind, IID_IReference_Color'Access);
 
-   package IIterable_IDependencyObject is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.IDependencyObject);
+   package IIterable_IDependencyObject is new WinRt.Windows.Foundation.Collections.IIterable (IDependencyObject);
    IID_IIterable_IDependencyObject : aliased WinRt.IID := (1510672233, 36776, 21693, (182, 127, 8, 63, 12, 38, 135, 232 ));
    function QInterface_IIterable_IDependencyObject is new Generic_QueryInterface (GenericObject_Interface, IIterable_IDependencyObject.Kind, IID_IIterable_IDependencyObject'Access);
 
-   package IVector_IStateTriggerBase is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.IStateTriggerBase);
+   package IVector_IStateTriggerBase is new WinRt.Windows.Foundation.Collections.IVector (IStateTriggerBase);
    IID_IVector_IStateTriggerBase : aliased WinRt.IID := (1623108905, 18415, 22443, (183, 88, 139, 7, 178, 94, 126, 222 ));
    function QInterface_IVector_IStateTriggerBase is new Generic_QueryInterface (GenericObject_Interface, IVector_IStateTriggerBase.Kind, IID_IVector_IStateTriggerBase'Access);
 
-   package IVector_IVisualTransition is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.IVisualTransition);
+   package IVector_IVisualTransition is new WinRt.Windows.Foundation.Collections.IVector (IVisualTransition);
    IID_IVector_IVisualTransition : aliased WinRt.IID := (4182858424, 21341, 24207, (136, 10, 29, 196, 56, 165, 175, 71 ));
    function QInterface_IVector_IVisualTransition is new Generic_QueryInterface (GenericObject_Interface, IVector_IVisualTransition.Kind, IID_IVector_IVisualTransition'Access);
 
-   package IVector_IVisualState is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.IVisualState);
+   package IVector_IVisualState is new WinRt.Windows.Foundation.Collections.IVector (IVisualState);
    IID_IVector_IVisualState : aliased WinRt.IID := (4182858424, 21341, 24207, (136, 10, 29, 196, 56, 165, 175, 71 ));
    function QInterface_IVector_IVisualState is new Generic_QueryInterface (GenericObject_Interface, IVector_IVisualState.Kind, IID_IVector_IVisualState'Access);
 

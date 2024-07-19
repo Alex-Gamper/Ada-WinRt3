@@ -1229,15 +1229,15 @@ package WinRt.Windows.System is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IAppResourceGroupInfo is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.System.IAppResourceGroupInfo);
+   package IVector_IAppResourceGroupInfo is new WinRt.Windows.Foundation.Collections.IVector (IAppResourceGroupInfo);
    IID_IVector_IAppResourceGroupInfo : aliased WinRt.IID := (1719630583, 16509, 21914, (185, 229, 160, 175, 52, 226, 239, 206 ));
    function QInterface_IVector_IAppResourceGroupInfo is new Generic_QueryInterface (GenericObject_Interface, IVector_IAppResourceGroupInfo.Kind, IID_IVector_IAppResourceGroupInfo'Access);
 
-   package IVector_IAppResourceGroupBackgroundTaskReport is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.System.IAppResourceGroupBackgroundTaskReport);
+   package IVector_IAppResourceGroupBackgroundTaskReport is new WinRt.Windows.Foundation.Collections.IVector (IAppResourceGroupBackgroundTaskReport);
    IID_IVector_IAppResourceGroupBackgroundTaskReport : aliased WinRt.IID := (1509965514, 24124, 24049, (181, 220, 245, 226, 244, 5, 69, 53 ));
    function QInterface_IVector_IAppResourceGroupBackgroundTaskReport is new Generic_QueryInterface (GenericObject_Interface, IVector_IAppResourceGroupBackgroundTaskReport.Kind, IID_IVector_IAppResourceGroupBackgroundTaskReport'Access);
 
-   package IVectorView_IAppDiagnosticInfo is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.System.IAppDiagnosticInfo);
+   package IVectorView_IAppDiagnosticInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IAppDiagnosticInfo);
    IID_IVectorView_IAppDiagnosticInfo : aliased WinRt.IID := (2672773095, 39709, 22128, (144, 238, 56, 76, 49, 154, 159, 110 ));
    function QInterface_IVectorView_IAppDiagnosticInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAppDiagnosticInfo.Kind, IID_IVectorView_IAppDiagnosticInfo'Access);
 
@@ -1253,7 +1253,7 @@ package WinRt.Windows.System is
    IID_IVector_HString : aliased WinRt.IID := (3138598755, 56626, 21785, (130, 252, 159, 20, 126, 147, 49, 142 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
-   package IVectorView_UserWatcherUpdateKind is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.System.UserWatcherUpdateKind);
+   package IVectorView_UserWatcherUpdateKind is new WinRt.Windows.Foundation.Collections.IVectorView (UserWatcherUpdateKind);
    IID_IVectorView_UserWatcherUpdateKind : aliased WinRt.IID := (1262298938, 58177, 22585, (144, 104, 128, 164, 189, 79, 10, 191 ));
    function QInterface_IVectorView_UserWatcherUpdateKind is new Generic_QueryInterface (GenericObject_Interface, IVectorView_UserWatcherUpdateKind.Kind, IID_IVectorView_UserWatcherUpdateKind'Access);
 

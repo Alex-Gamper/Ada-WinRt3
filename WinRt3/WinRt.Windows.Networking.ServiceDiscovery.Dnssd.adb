@@ -38,8 +38,8 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    package IAsyncOperation_DnssdRegistrationResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Networking.ServiceDiscovery.Dnssd.IDnssdRegistrationResult);
    package AsyncOperationCompletedHandler_DnssdRegistrationResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Networking.ServiceDiscovery.Dnssd.IDnssdRegistrationResult);
 
-   package IVectorView_IDnssdServiceInstance is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance);
-   package IIterable_IDnssdServiceInstance is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance);
+   package IVectorView_IDnssdServiceInstance is new WinRt.Windows.Foundation.Collections.IVectorView (IDnssdServiceInstance);
+   package IIterable_IDnssdServiceInstance is new WinRt.Windows.Foundation.Collections.IIterable (IDnssdServiceInstance);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DnssdRegistrationResult
 

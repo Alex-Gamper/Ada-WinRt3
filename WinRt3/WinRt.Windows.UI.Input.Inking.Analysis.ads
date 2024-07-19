@@ -250,7 +250,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
    IID_IVectorView_Point : aliased WinRt.IID := (3968031459, 27708, 22487, (142, 177, 194, 230, 161, 10, 168, 114 ));
    function QInterface_IVectorView_Point is new Generic_QueryInterface (GenericObject_Interface, IVectorView_Point.Kind, IID_IVectorView_Point'Access);
 
-   package IVectorView_IInkAnalysisNode is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode);
+   package IVectorView_IInkAnalysisNode is new WinRt.Windows.Foundation.Collections.IVectorView (IInkAnalysisNode);
    IID_IVectorView_IInkAnalysisNode : aliased WinRt.IID := (3968031459, 27708, 22487, (142, 177, 194, 230, 161, 10, 168, 114 ));
    function QInterface_IVectorView_IInkAnalysisNode is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IInkAnalysisNode.Kind, IID_IVectorView_IInkAnalysisNode'Access);
 

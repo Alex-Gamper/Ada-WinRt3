@@ -124,7 +124,7 @@ package WinRt.Windows.Management is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IMdmAlert is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Management.IMdmAlert);
+   package IVectorView_IMdmAlert is new WinRt.Windows.Foundation.Collections.IVectorView (IMdmAlert);
    IID_IVectorView_IMdmAlert : aliased WinRt.IID := (2338063432, 60555, 22457, (162, 98, 70, 63, 109, 220, 156, 118 ));
    function QInterface_IVectorView_IMdmAlert is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMdmAlert.Kind, IID_IVectorView_IMdmAlert'Access);
 

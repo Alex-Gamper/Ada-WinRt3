@@ -56,7 +56,7 @@ package body WinRt.Windows.Graphics.Imaging is
    package IAsyncOperation_BitmapPropertySet is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.GenericObject);
    package AsyncOperationCompletedHandler_BitmapPropertySet is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.GenericObject);
 
-   package IMap_HString_IBitmapTypedValue is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, WinRt.Windows.Graphics.Imaging.IBitmapTypedValue);
+   package IMap_HString_IBitmapTypedValue is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, IBitmapTypedValue);
    package IAsyncOperation_UInt32 is new WinRt.Windows.Foundation.IAsyncOperationWithProgress (WinRt.UInt32, GenericObject);
    package AsyncOperationCompletedHandler_UInt32 is new WinRt.Windows.Foundation.AsyncOperationWithProgressCompletedHandler (WinRt.UInt32, GenericObject);
 

@@ -33,8 +33,8 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Foundation is
 
-   package IVectorView_IWwwFormUrlDecoderEntry is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Foundation.IWwwFormUrlDecoderEntry);
-   package IIterable_IWwwFormUrlDecoderEntry is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Foundation.IWwwFormUrlDecoderEntry);
+   package IVectorView_IWwwFormUrlDecoderEntry is new WinRt.Windows.Foundation.Collections.IVectorView (IWwwFormUrlDecoderEntry);
+   package IIterable_IWwwFormUrlDecoderEntry is new WinRt.Windows.Foundation.Collections.IIterable (IWwwFormUrlDecoderEntry);
    -----------------------------------------------------------------------------
    -- Delegate AsyncActionCompletedHandler
 

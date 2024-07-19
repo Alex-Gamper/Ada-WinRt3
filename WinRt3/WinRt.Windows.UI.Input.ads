@@ -750,7 +750,7 @@ package WinRt.Windows.UI.Input is
    IID_IReference_Single : aliased WinRt.IID := (1879897754, 41666, 22894, (135, 57, 48, 181, 53, 230, 5, 250 ));
    function QInterface_IReference_Single is new Generic_QueryInterface (GenericObject_Interface, IReference_Single.Kind, IID_IReference_Single'Access);
 
-   package IVector_IRadialControllerMenuItem is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Input.IRadialControllerMenuItem);
+   package IVector_IRadialControllerMenuItem is new WinRt.Windows.Foundation.Collections.IVector (IRadialControllerMenuItem);
    IID_IVector_IRadialControllerMenuItem : aliased WinRt.IID := (4222298437, 62400, 22203, (145, 23, 9, 135, 159, 37, 26, 219 ));
    function QInterface_IVector_IRadialControllerMenuItem is new Generic_QueryInterface (GenericObject_Interface, IVector_IRadialControllerMenuItem.Kind, IID_IVector_IRadialControllerMenuItem'Access);
 

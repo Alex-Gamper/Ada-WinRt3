@@ -904,7 +904,7 @@ package WinRt.Windows.ApplicationModel.Email is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IEmailConversation is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Email.IEmailConversation);
+   package IVectorView_IEmailConversation is new WinRt.Windows.Foundation.Collections.IVectorView (IEmailConversation);
    IID_IVectorView_IEmailConversation : aliased WinRt.IID := (832029415, 37638, 22796, (182, 108, 106, 115, 151, 45, 192, 163 ));
    function QInterface_IVectorView_IEmailConversation is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IEmailConversation.Kind, IID_IVectorView_IEmailConversation'Access);
 
@@ -916,15 +916,15 @@ package WinRt.Windows.ApplicationModel.Email is
    IID_IReference_DateTime : aliased WinRt.IID := (907188944, 51127, 21181, (160, 20, 214, 183, 207, 148, 171, 204 ));
    function QInterface_IReference_DateTime is new Generic_QueryInterface (GenericObject_Interface, IReference_DateTime.Kind, IID_IReference_DateTime'Access);
 
-   package IVector_IEmailMailboxAction is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Email.IEmailMailboxAction);
+   package IVector_IEmailMailboxAction is new WinRt.Windows.Foundation.Collections.IVector (IEmailMailboxAction);
    IID_IVector_IEmailMailboxAction : aliased WinRt.IID := (642850678, 23672, 24339, (143, 150, 105, 134, 48, 9, 169, 36 ));
    function QInterface_IVector_IEmailMailboxAction is new Generic_QueryInterface (GenericObject_Interface, IVector_IEmailMailboxAction.Kind, IID_IVector_IEmailMailboxAction'Access);
 
-   package IReference_EmailMailboxSmimeEncryptionAlgorithm is new WinRt.Windows.Foundation.IReference (WinRt.Windows.ApplicationModel.Email.EmailMailboxSmimeEncryptionAlgorithm);
+   package IReference_EmailMailboxSmimeEncryptionAlgorithm is new WinRt.Windows.Foundation.IReference (EmailMailboxSmimeEncryptionAlgorithm);
    IID_IReference_EmailMailboxSmimeEncryptionAlgorithm : aliased WinRt.IID := (4059662342, 7538, 23404, (183, 164, 169, 249, 100, 49, 7, 85 ));
    function QInterface_IReference_EmailMailboxSmimeEncryptionAlgorithm is new Generic_QueryInterface (GenericObject_Interface, IReference_EmailMailboxSmimeEncryptionAlgorithm.Kind, IID_IReference_EmailMailboxSmimeEncryptionAlgorithm'Access);
 
-   package IReference_EmailMailboxSmimeSigningAlgorithm is new WinRt.Windows.Foundation.IReference (WinRt.Windows.ApplicationModel.Email.EmailMailboxSmimeSigningAlgorithm);
+   package IReference_EmailMailboxSmimeSigningAlgorithm is new WinRt.Windows.Foundation.IReference (EmailMailboxSmimeSigningAlgorithm);
    IID_IReference_EmailMailboxSmimeSigningAlgorithm : aliased WinRt.IID := (4059662342, 7538, 23404, (183, 164, 169, 249, 100, 49, 7, 85 ));
    function QInterface_IReference_EmailMailboxSmimeSigningAlgorithm is new Generic_QueryInterface (GenericObject_Interface, IReference_EmailMailboxSmimeSigningAlgorithm.Kind, IID_IReference_EmailMailboxSmimeSigningAlgorithm'Access);
 
@@ -932,15 +932,15 @@ package WinRt.Windows.ApplicationModel.Email is
    IID_IReference_TimeSpan : aliased WinRt.IID := (1609416854, 29139, 21897, (186, 41, 145, 45, 12, 9, 60, 119 ));
    function QInterface_IReference_TimeSpan is new Generic_QueryInterface (GenericObject_Interface, IReference_TimeSpan.Kind, IID_IReference_TimeSpan'Access);
 
-   package IVector_IEmailRecipient is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Email.IEmailRecipient);
+   package IVector_IEmailRecipient is new WinRt.Windows.Foundation.Collections.IVector (IEmailRecipient);
    IID_IVector_IEmailRecipient : aliased WinRt.IID := (3930407276, 62262, 20720, (149, 203, 38, 209, 41, 86, 110, 165 ));
    function QInterface_IVector_IEmailRecipient is new Generic_QueryInterface (GenericObject_Interface, IVector_IEmailRecipient.Kind, IID_IVector_IEmailRecipient'Access);
 
-   package IVector_IEmailAttachment is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Email.IEmailAttachment);
+   package IVector_IEmailAttachment is new WinRt.Windows.Foundation.Collections.IVector (IEmailAttachment);
    IID_IVector_IEmailAttachment : aliased WinRt.IID := (3930407276, 62262, 20720, (149, 203, 38, 209, 41, 86, 110, 165 ));
    function QInterface_IVector_IEmailAttachment is new Generic_QueryInterface (GenericObject_Interface, IVector_IEmailAttachment.Kind, IID_IVector_IEmailAttachment'Access);
 
-   package IVectorView_IEmailMessage is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Email.IEmailMessage);
+   package IVectorView_IEmailMessage is new WinRt.Windows.Foundation.Collections.IVectorView (IEmailMessage);
    IID_IVectorView_IEmailMessage : aliased WinRt.IID := (803333829, 47305, 23399, (141, 230, 172, 253, 140, 24, 220, 120 ));
    function QInterface_IVectorView_IEmailMessage is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IEmailMessage.Kind, IID_IVectorView_IEmailMessage'Access);
 

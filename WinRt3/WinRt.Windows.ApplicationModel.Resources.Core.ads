@@ -223,11 +223,11 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IResourceCandidate is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Resources.Core.IResourceCandidate);
+   package IVectorView_IResourceCandidate is new WinRt.Windows.Foundation.Collections.IVectorView (IResourceCandidate);
    IID_IVectorView_IResourceCandidate : aliased WinRt.IID := (3083029638, 17884, 20661, (150, 220, 216, 55, 19, 52, 193, 79 ));
    function QInterface_IVectorView_IResourceCandidate is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IResourceCandidate.Kind, IID_IVectorView_IResourceCandidate'Access);
 
-   package IVectorView_IResourceQualifier is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Resources.Core.IResourceQualifier);
+   package IVectorView_IResourceQualifier is new WinRt.Windows.Foundation.Collections.IVectorView (IResourceQualifier);
    IID_IVectorView_IResourceQualifier : aliased WinRt.IID := (4058435130, 43713, 21306, (158, 171, 60, 81, 1, 43, 248, 203 ));
    function QInterface_IVectorView_IResourceQualifier is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IResourceQualifier.Kind, IID_IVectorView_IResourceQualifier'Access);
 
@@ -239,15 +239,15 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    IID_IVectorView_HString : aliased WinRt.IID := (410771235, 8028, 21973, (157, 102, 225, 255, 51, 58, 235, 101 ));
    function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
-   package IMapView_HString_IResourceMap is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.Windows.ApplicationModel.Resources.Core.IResourceMap);
+   package IMapView_HString_IResourceMap is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, IResourceMap);
    IID_IMapView_HString_IResourceMap : aliased WinRt.IID := (598084215, 32993, 21645, (145, 226, 45, 32, 92, 49, 129, 237 ));
    function QInterface_IMapView_HString_IResourceMap is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_IResourceMap.Kind, IID_IMapView_HString_IResourceMap'Access);
 
-   package IVectorView_INamedResource is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Resources.Core.INamedResource);
+   package IVectorView_INamedResource is new WinRt.Windows.Foundation.Collections.IVectorView (INamedResource);
    IID_IVectorView_INamedResource : aliased WinRt.IID := (2709325285, 38180, 22600, (173, 129, 227, 169, 146, 81, 214, 185 ));
    function QInterface_IVectorView_INamedResource is new Generic_QueryInterface (GenericObject_Interface, IVectorView_INamedResource.Kind, IID_IVectorView_INamedResource'Access);
 
-   package IVectorView_IResourceMap is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Resources.Core.IResourceMap);
+   package IVectorView_IResourceMap is new WinRt.Windows.Foundation.Collections.IVectorView (IResourceMap);
    IID_IVectorView_IResourceMap : aliased WinRt.IID := (2709325285, 38180, 22600, (173, 129, 227, 169, 146, 81, 214, 185 ));
    function QInterface_IVectorView_IResourceMap is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IResourceMap.Kind, IID_IVectorView_IResourceMap'Access);
 

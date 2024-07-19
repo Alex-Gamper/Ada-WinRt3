@@ -289,7 +289,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    IID_IVectorView_IInspectable : aliased WinRt.IID := (1382846145, 48481, 22096, (170, 38, 140, 10, 118, 206, 187, 87 ));
    function QInterface_IVectorView_IInspectable is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IInspectable.Kind, IID_IVectorView_IInspectable'Access);
 
-   package IMapView_HString_IPrintOptionDetails is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails);
+   package IMapView_HString_IPrintOptionDetails is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, IPrintOptionDetails);
    IID_IMapView_HString_IPrintOptionDetails : aliased WinRt.IID := (691135659, 40018, 21252, (131, 253, 72, 247, 172, 76, 64, 169 ));
    function QInterface_IMapView_HString_IPrintOptionDetails is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_IPrintOptionDetails.Kind, IID_IMapView_HString_IPrintOptionDetails'Access);
 

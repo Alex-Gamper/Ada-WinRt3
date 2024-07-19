@@ -186,7 +186,7 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IMicrosoftAccountMultiFactorSessionInfo is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorSessionInfo);
+   package IVectorView_IMicrosoftAccountMultiFactorSessionInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IMicrosoftAccountMultiFactorSessionInfo);
    IID_IVectorView_IMicrosoftAccountMultiFactorSessionInfo : aliased WinRt.IID := (1320948599, 60580, 21597, (190, 5, 75, 4, 152, 108, 212, 102 ));
    function QInterface_IVectorView_IMicrosoftAccountMultiFactorSessionInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMicrosoftAccountMultiFactorSessionInfo.Kind, IID_IVectorView_IMicrosoftAccountMultiFactorSessionInfo'Access);
 

@@ -166,7 +166,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IPrintTicketOption is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketOption);
+   package IVectorView_IPrintTicketOption is new WinRt.Windows.Foundation.Collections.IVectorView (IPrintTicketOption);
    IID_IVectorView_IPrintTicketOption : aliased WinRt.IID := (4014825833, 28268, 21147, (150, 28, 246, 194, 171, 132, 132, 175 ));
    function QInterface_IVectorView_IPrintTicketOption is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPrintTicketOption.Kind, IID_IVectorView_IPrintTicketOption'Access);
 

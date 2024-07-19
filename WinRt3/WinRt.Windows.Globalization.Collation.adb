@@ -32,8 +32,8 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Globalization.Collation is
 
-   package IVectorView_ICharacterGrouping is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Globalization.Collation.ICharacterGrouping);
-   package IIterable_ICharacterGrouping is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Globalization.Collation.ICharacterGrouping);
+   package IVectorView_ICharacterGrouping is new WinRt.Windows.Foundation.Collections.IVectorView (ICharacterGrouping);
+   package IIterable_ICharacterGrouping is new WinRt.Windows.Foundation.Collections.IIterable (ICharacterGrouping);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CharacterGrouping
 

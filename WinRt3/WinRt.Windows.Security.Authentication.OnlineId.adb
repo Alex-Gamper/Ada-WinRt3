@@ -37,7 +37,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
    package IAsyncOperation_OnlineIdSystemTicketResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemTicketResult);
    package AsyncOperationCompletedHandler_OnlineIdSystemTicketResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemTicketResult);
 
-   package IAsyncOperation_IUserIdentity is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Security.Authentication.OnlineId.IUserIdentity);
+   package IAsyncOperation_IUserIdentity is new WinRt.Windows.Foundation.IAsyncOperation (IUserIdentity);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for OnlineIdAuthenticator
 

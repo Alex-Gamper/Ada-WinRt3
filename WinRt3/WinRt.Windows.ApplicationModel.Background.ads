@@ -1056,7 +1056,7 @@ package WinRt.Windows.ApplicationModel.Background is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IMapView_Guid_IBackgroundTaskRegistration is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.Guid, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration);
+   package IMapView_Guid_IBackgroundTaskRegistration is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.Guid, IBackgroundTaskRegistration);
    IID_IMapView_Guid_IBackgroundTaskRegistration : aliased WinRt.IID := (1227191880, 46117, 21495, (182, 138, 222, 212, 44, 136, 142, 153 ));
    function QInterface_IMapView_Guid_IBackgroundTaskRegistration is new Generic_QueryInterface (GenericObject_Interface, IMapView_Guid_IBackgroundTaskRegistration.Kind, IID_IMapView_Guid_IBackgroundTaskRegistration'Access);
 

@@ -295,23 +295,23 @@ package WinRt.Windows.Networking.XboxLive is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IXboxLiveEndpointPair is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.XboxLive.IXboxLiveEndpointPair);
+   package IVectorView_IXboxLiveEndpointPair is new WinRt.Windows.Foundation.Collections.IVectorView (IXboxLiveEndpointPair);
    IID_IVectorView_IXboxLiveEndpointPair : aliased WinRt.IID := (421951738, 6340, 23731, (154, 138, 194, 87, 20, 132, 203, 148 ));
    function QInterface_IVectorView_IXboxLiveEndpointPair is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IXboxLiveEndpointPair.Kind, IID_IVectorView_IXboxLiveEndpointPair'Access);
 
-   package IVectorView_IXboxLiveQualityOfServiceMetricResult is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMetricResult);
+   package IVectorView_IXboxLiveQualityOfServiceMetricResult is new WinRt.Windows.Foundation.Collections.IVectorView (IXboxLiveQualityOfServiceMetricResult);
    IID_IVectorView_IXboxLiveQualityOfServiceMetricResult : aliased WinRt.IID := (3726061583, 15662, 22147, (149, 159, 171, 95, 26, 239, 6, 231 ));
    function QInterface_IVectorView_IXboxLiveQualityOfServiceMetricResult is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IXboxLiveQualityOfServiceMetricResult.Kind, IID_IVectorView_IXboxLiveQualityOfServiceMetricResult'Access);
 
-   package IVector_XboxLiveQualityOfServiceMetric is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetric);
+   package IVector_XboxLiveQualityOfServiceMetric is new WinRt.Windows.Foundation.Collections.IVector (XboxLiveQualityOfServiceMetric);
    IID_IVector_XboxLiveQualityOfServiceMetric : aliased WinRt.IID := (3726061583, 15662, 22147, (149, 159, 171, 95, 26, 239, 6, 231 ));
    function QInterface_IVector_XboxLiveQualityOfServiceMetric is new Generic_QueryInterface (GenericObject_Interface, IVector_XboxLiveQualityOfServiceMetric.Kind, IID_IVector_XboxLiveQualityOfServiceMetric'Access);
 
-   package IVector_IXboxLiveDeviceAddress is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress);
+   package IVector_IXboxLiveDeviceAddress is new WinRt.Windows.Foundation.Collections.IVector (IXboxLiveDeviceAddress);
    IID_IVector_IXboxLiveDeviceAddress : aliased WinRt.IID := (3726061583, 15662, 22147, (149, 159, 171, 95, 26, 239, 6, 231 ));
    function QInterface_IVector_IXboxLiveDeviceAddress is new Generic_QueryInterface (GenericObject_Interface, IVector_IXboxLiveDeviceAddress.Kind, IID_IVector_IXboxLiveDeviceAddress'Access);
 
-   package IVectorView_IXboxLiveQualityOfServicePrivatePayloadResult is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServicePrivatePayloadResult);
+   package IVectorView_IXboxLiveQualityOfServicePrivatePayloadResult is new WinRt.Windows.Foundation.Collections.IVectorView (IXboxLiveQualityOfServicePrivatePayloadResult);
    IID_IVectorView_IXboxLiveQualityOfServicePrivatePayloadResult : aliased WinRt.IID := (3726061583, 15662, 22147, (149, 159, 171, 95, 26, 239, 6, 231 ));
    function QInterface_IVectorView_IXboxLiveQualityOfServicePrivatePayloadResult is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IXboxLiveQualityOfServicePrivatePayloadResult.Kind, IID_IVectorView_IXboxLiveQualityOfServicePrivatePayloadResult'Access);
 

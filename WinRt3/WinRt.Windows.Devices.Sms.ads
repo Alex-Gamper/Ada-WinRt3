@@ -583,11 +583,11 @@ package WinRt.Windows.Devices.Sms is
    IID_IVector_Int32 : aliased WinRt.IID := (493417840, 20898, 21639, (154, 118, 148, 69, 124, 150, 42, 212 ));
    function QInterface_IVector_Int32 is new Generic_QueryInterface (GenericObject_Interface, IVector_Int32.Kind, IID_IVector_Int32'Access);
 
-   package IVector_SmsBroadcastType is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.Sms.SmsBroadcastType);
+   package IVector_SmsBroadcastType is new WinRt.Windows.Foundation.Collections.IVector (SmsBroadcastType);
    IID_IVector_SmsBroadcastType : aliased WinRt.IID := (493417840, 20898, 21639, (154, 118, 148, 69, 124, 150, 42, 212 ));
    function QInterface_IVector_SmsBroadcastType is new Generic_QueryInterface (GenericObject_Interface, IVector_SmsBroadcastType.Kind, IID_IVector_SmsBroadcastType'Access);
 
-   package IVector_ISmsFilterRule is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.Sms.ISmsFilterRule);
+   package IVector_ISmsFilterRule is new WinRt.Windows.Foundation.Collections.IVector (ISmsFilterRule);
    IID_IVector_ISmsFilterRule : aliased WinRt.IID := (633485352, 21297, 21291, (188, 34, 182, 43, 42, 38, 162, 83 ));
    function QInterface_IVector_ISmsFilterRule is new Generic_QueryInterface (GenericObject_Interface, IVector_ISmsFilterRule.Kind, IID_IVector_ISmsFilterRule'Access);
 
@@ -595,7 +595,7 @@ package WinRt.Windows.Devices.Sms is
    IID_IVectorView_Int32 : aliased WinRt.IID := (406471614, 40837, 23619, (153, 151, 246, 148, 133, 171, 229, 197 ));
    function QInterface_IVectorView_Int32 is new Generic_QueryInterface (GenericObject_Interface, IVectorView_Int32.Kind, IID_IVectorView_Int32'Access);
 
-   package IVectorView_ISmsBinaryMessage is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Sms.ISmsBinaryMessage);
+   package IVectorView_ISmsBinaryMessage is new WinRt.Windows.Foundation.Collections.IVectorView (ISmsBinaryMessage);
    IID_IVectorView_ISmsBinaryMessage : aliased WinRt.IID := (3580103891, 44465, 24331, (132, 12, 102, 132, 0, 197, 193, 94 ));
    function QInterface_IVectorView_ISmsBinaryMessage is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ISmsBinaryMessage.Kind, IID_IVectorView_ISmsBinaryMessage'Access);
 

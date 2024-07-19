@@ -264,7 +264,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IReference_BluetoothLEAdvertisementFlags is new WinRt.Windows.Foundation.IReference (WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementFlags);
+   package IReference_BluetoothLEAdvertisementFlags is new WinRt.Windows.Foundation.IReference (BluetoothLEAdvertisementFlags);
    IID_IReference_BluetoothLEAdvertisementFlags : aliased WinRt.IID := (1365768754, 14016, 21654, (142, 103, 253, 186, 206, 1, 60, 97 ));
    function QInterface_IReference_BluetoothLEAdvertisementFlags is new Generic_QueryInterface (GenericObject_Interface, IReference_BluetoothLEAdvertisementFlags.Kind, IID_IReference_BluetoothLEAdvertisementFlags'Access);
 
@@ -272,23 +272,23 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    IID_IVector_Guid : aliased WinRt.IID := (1365768754, 14016, 21654, (142, 103, 253, 186, 206, 1, 60, 97 ));
    function QInterface_IVector_Guid is new Generic_QueryInterface (GenericObject_Interface, IVector_Guid.Kind, IID_IVector_Guid'Access);
 
-   package IVector_IBluetoothLEManufacturerData is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData);
+   package IVector_IBluetoothLEManufacturerData is new WinRt.Windows.Foundation.Collections.IVector (IBluetoothLEManufacturerData);
    IID_IVector_IBluetoothLEManufacturerData : aliased WinRt.IID := (1365768754, 14016, 21654, (142, 103, 253, 186, 206, 1, 60, 97 ));
    function QInterface_IVector_IBluetoothLEManufacturerData is new Generic_QueryInterface (GenericObject_Interface, IVector_IBluetoothLEManufacturerData.Kind, IID_IVector_IBluetoothLEManufacturerData'Access);
 
-   package IVector_IBluetoothLEAdvertisementDataSection is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementDataSection);
+   package IVector_IBluetoothLEAdvertisementDataSection is new WinRt.Windows.Foundation.Collections.IVector (IBluetoothLEAdvertisementDataSection);
    IID_IVector_IBluetoothLEAdvertisementDataSection : aliased WinRt.IID := (1365768754, 14016, 21654, (142, 103, 253, 186, 206, 1, 60, 97 ));
    function QInterface_IVector_IBluetoothLEAdvertisementDataSection is new Generic_QueryInterface (GenericObject_Interface, IVector_IBluetoothLEAdvertisementDataSection.Kind, IID_IVector_IBluetoothLEAdvertisementDataSection'Access);
 
-   package IVectorView_IBluetoothLEManufacturerData is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData);
+   package IVectorView_IBluetoothLEManufacturerData is new WinRt.Windows.Foundation.Collections.IVectorView (IBluetoothLEManufacturerData);
    IID_IVectorView_IBluetoothLEManufacturerData : aliased WinRt.IID := (1365768754, 14016, 21654, (142, 103, 253, 186, 206, 1, 60, 97 ));
    function QInterface_IVectorView_IBluetoothLEManufacturerData is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IBluetoothLEManufacturerData.Kind, IID_IVectorView_IBluetoothLEManufacturerData'Access);
 
-   package IVectorView_IBluetoothLEAdvertisementDataSection is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementDataSection);
+   package IVectorView_IBluetoothLEAdvertisementDataSection is new WinRt.Windows.Foundation.Collections.IVectorView (IBluetoothLEAdvertisementDataSection);
    IID_IVectorView_IBluetoothLEAdvertisementDataSection : aliased WinRt.IID := (1365768754, 14016, 21654, (142, 103, 253, 186, 206, 1, 60, 97 ));
    function QInterface_IVectorView_IBluetoothLEAdvertisementDataSection is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IBluetoothLEAdvertisementDataSection.Kind, IID_IVectorView_IBluetoothLEAdvertisementDataSection'Access);
 
-   package IVector_IBluetoothLEAdvertisementBytePattern is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementBytePattern);
+   package IVector_IBluetoothLEAdvertisementBytePattern is new WinRt.Windows.Foundation.Collections.IVector (IBluetoothLEAdvertisementBytePattern);
    IID_IVector_IBluetoothLEAdvertisementBytePattern : aliased WinRt.IID := (3761556175, 6283, 23723, (152, 197, 185, 152, 203, 194, 111, 13 ));
    function QInterface_IVector_IBluetoothLEAdvertisementBytePattern is new Generic_QueryInterface (GenericObject_Interface, IVector_IBluetoothLEAdvertisementBytePattern.Kind, IID_IVector_IBluetoothLEAdvertisementBytePattern'Access);
 

@@ -492,7 +492,7 @@ package WinRt.Windows.AI.MachineLearning is
    IID_IMapView_HString_HString : aliased WinRt.IID := (2812988747, 3238, 21577, (176, 46, 7, 144, 89, 59, 59, 28 ));
    function QInterface_IMapView_HString_HString is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_HString.Kind, IID_IMapView_HString_HString'Access);
 
-   package IVectorView_ILearningModelFeatureDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor);
+   package IVectorView_ILearningModelFeatureDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (ILearningModelFeatureDescriptor);
    IID_IVectorView_ILearningModelFeatureDescriptor : aliased WinRt.IID := (2812988747, 3238, 21577, (176, 46, 7, 144, 89, 59, 59, 28 ));
    function QInterface_IVectorView_ILearningModelFeatureDescriptor is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ILearningModelFeatureDescriptor.Kind, IID_IVectorView_ILearningModelFeatureDescriptor'Access);
 

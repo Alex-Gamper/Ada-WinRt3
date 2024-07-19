@@ -1461,11 +1461,11 @@ package WinRt.Windows.Networking.NetworkOperators is
    IID_IReference_Int32 : aliased WinRt.IID := (3606505515, 57358, 20595, (134, 6, 162, 242, 82, 253, 62, 92 ));
    function QInterface_IReference_Int32 is new Generic_QueryInterface (GenericObject_Interface, IReference_Int32.Kind, IID_IReference_Int32'Access);
 
-   package IVectorView_IESimProfile is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.IESimProfile);
+   package IVectorView_IESimProfile is new WinRt.Windows.Foundation.Collections.IVectorView (IESimProfile);
    IID_IVectorView_IESimProfile : aliased WinRt.IID := (3606505515, 57358, 20595, (134, 6, 162, 242, 82, 253, 62, 92 ));
    function QInterface_IVectorView_IESimProfile is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IESimProfile.Kind, IID_IVectorView_IESimProfile'Access);
 
-   package IVectorView_IESimDiscoverEvent is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.IESimDiscoverEvent);
+   package IVectorView_IESimDiscoverEvent is new WinRt.Windows.Foundation.Collections.IVectorView (IESimDiscoverEvent);
    IID_IVectorView_IESimDiscoverEvent : aliased WinRt.IID := (316917181, 900, 22223, (170, 215, 79, 215, 73, 100, 221, 10 ));
    function QInterface_IVectorView_IESimDiscoverEvent is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IESimDiscoverEvent.Kind, IID_IVectorView_IESimDiscoverEvent'Access);
 
@@ -1477,23 +1477,23 @@ package WinRt.Windows.Networking.NetworkOperators is
    IID_IReference_TimeSpan : aliased WinRt.IID := (1469928872, 40017, 21310, (177, 36, 2, 220, 82, 4, 52, 154 ));
    function QInterface_IReference_TimeSpan is new Generic_QueryInterface (GenericObject_Interface, IReference_TimeSpan.Kind, IID_IReference_TimeSpan'Access);
 
-   package IVectorView_IMobileBroadbandCellCdma is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellCdma);
+   package IVectorView_IMobileBroadbandCellCdma is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandCellCdma);
    IID_IVectorView_IMobileBroadbandCellCdma : aliased WinRt.IID := (2556275563, 36217, 23778, (128, 72, 189, 145, 142, 240, 178, 70 ));
    function QInterface_IVectorView_IMobileBroadbandCellCdma is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandCellCdma.Kind, IID_IVectorView_IMobileBroadbandCellCdma'Access);
 
-   package IVectorView_IMobileBroadbandCellGsm is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellGsm);
+   package IVectorView_IMobileBroadbandCellGsm is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandCellGsm);
    IID_IVectorView_IMobileBroadbandCellGsm : aliased WinRt.IID := (2556275563, 36217, 23778, (128, 72, 189, 145, 142, 240, 178, 70 ));
    function QInterface_IVectorView_IMobileBroadbandCellGsm is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandCellGsm.Kind, IID_IVectorView_IMobileBroadbandCellGsm'Access);
 
-   package IVectorView_IMobileBroadbandCellLte is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellLte);
+   package IVectorView_IMobileBroadbandCellLte is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandCellLte);
    IID_IVectorView_IMobileBroadbandCellLte : aliased WinRt.IID := (2556275563, 36217, 23778, (128, 72, 189, 145, 142, 240, 178, 70 ));
    function QInterface_IVectorView_IMobileBroadbandCellLte is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandCellLte.Kind, IID_IVectorView_IMobileBroadbandCellLte'Access);
 
-   package IVectorView_IMobileBroadbandCellTdscdma is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellTdscdma);
+   package IVectorView_IMobileBroadbandCellTdscdma is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandCellTdscdma);
    IID_IVectorView_IMobileBroadbandCellTdscdma : aliased WinRt.IID := (2556275563, 36217, 23778, (128, 72, 189, 145, 142, 240, 178, 70 ));
    function QInterface_IVectorView_IMobileBroadbandCellTdscdma is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandCellTdscdma.Kind, IID_IVectorView_IMobileBroadbandCellTdscdma'Access);
 
-   package IVectorView_IMobileBroadbandCellUmts is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellUmts);
+   package IVectorView_IMobileBroadbandCellUmts is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandCellUmts);
    IID_IVectorView_IMobileBroadbandCellUmts : aliased WinRt.IID := (2556275563, 36217, 23778, (128, 72, 189, 145, 142, 240, 178, 70 ));
    function QInterface_IVectorView_IMobileBroadbandCellUmts is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandCellUmts.Kind, IID_IVectorView_IMobileBroadbandCellUmts'Access);
 
@@ -1505,31 +1505,31 @@ package WinRt.Windows.Networking.NetworkOperators is
    IID_IVectorView_UInt32 : aliased WinRt.IID := (1587831767, 47029, 22951, (178, 25, 26, 13, 106, 126, 58, 230 ));
    function QInterface_IVectorView_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IVectorView_UInt32.Kind, IID_IVectorView_UInt32'Access);
 
-   package IVectorView_IMobileBroadbandDeviceServiceInformation is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceInformation);
+   package IVectorView_IMobileBroadbandDeviceServiceInformation is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandDeviceServiceInformation);
    IID_IVectorView_IMobileBroadbandDeviceServiceInformation : aliased WinRt.IID := (4291708554, 14708, 21173, (163, 37, 241, 171, 55, 76, 83, 208 ));
    function QInterface_IVectorView_IMobileBroadbandDeviceServiceInformation is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandDeviceServiceInformation.Kind, IID_IVectorView_IMobileBroadbandDeviceServiceInformation'Access);
 
-   package IVectorView_IMobileBroadbandUiccApp is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandUiccApp);
+   package IVectorView_IMobileBroadbandUiccApp is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandUiccApp);
    IID_IVectorView_IMobileBroadbandUiccApp : aliased WinRt.IID := (1208616489, 8283, 22918, (160, 14, 103, 235, 113, 155, 52, 200 ));
    function QInterface_IVectorView_IMobileBroadbandUiccApp is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandUiccApp.Kind, IID_IVectorView_IMobileBroadbandUiccApp'Access);
 
-   package IVectorView_IMobileBroadbandNetworkRegistrationStateChange is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetworkRegistrationStateChange);
+   package IVectorView_IMobileBroadbandNetworkRegistrationStateChange is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandNetworkRegistrationStateChange);
    IID_IVectorView_IMobileBroadbandNetworkRegistrationStateChange : aliased WinRt.IID := (3476549621, 45900, 23557, (184, 92, 33, 236, 126, 164, 11, 111 ));
    function QInterface_IVectorView_IMobileBroadbandNetworkRegistrationStateChange is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandNetworkRegistrationStateChange.Kind, IID_IVectorView_IMobileBroadbandNetworkRegistrationStateChange'Access);
 
-   package IVectorView_IMobileBroadbandPinLockStateChange is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPinLockStateChange);
+   package IVectorView_IMobileBroadbandPinLockStateChange is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandPinLockStateChange);
    IID_IVectorView_IMobileBroadbandPinLockStateChange : aliased WinRt.IID := (778599351, 45859, 21787, (131, 83, 163, 184, 109, 84, 207, 3 ));
    function QInterface_IVectorView_IMobileBroadbandPinLockStateChange is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandPinLockStateChange.Kind, IID_IVectorView_IMobileBroadbandPinLockStateChange'Access);
 
-   package IVectorView_MobileBroadbandPinType is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinType);
+   package IVectorView_MobileBroadbandPinType is new WinRt.Windows.Foundation.Collections.IVectorView (MobileBroadbandPinType);
    IID_IVectorView_MobileBroadbandPinType : aliased WinRt.IID := (2817844535, 50305, 21467, (139, 146, 102, 180, 35, 116, 4, 77 ));
    function QInterface_IVectorView_MobileBroadbandPinType is new Generic_QueryInterface (GenericObject_Interface, IVectorView_MobileBroadbandPinType.Kind, IID_IVectorView_MobileBroadbandPinType'Access);
 
-   package IVectorView_IMobileBroadbandRadioStateChange is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandRadioStateChange);
+   package IVectorView_IMobileBroadbandRadioStateChange is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandRadioStateChange);
    IID_IVectorView_IMobileBroadbandRadioStateChange : aliased WinRt.IID := (1493104, 52490, 21648, (166, 238, 194, 87, 201, 61, 25, 201 ));
    function QInterface_IVectorView_IMobileBroadbandRadioStateChange is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandRadioStateChange.Kind, IID_IVectorView_IMobileBroadbandRadioStateChange'Access);
 
-   package IVectorView_IMobileBroadbandAntennaSar is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAntennaSar);
+   package IVectorView_IMobileBroadbandAntennaSar is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandAntennaSar);
    IID_IVectorView_IMobileBroadbandAntennaSar : aliased WinRt.IID := (3839953863, 35718, 22926, (152, 19, 83, 236, 155, 253, 207, 148 ));
    function QInterface_IVectorView_IMobileBroadbandAntennaSar is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandAntennaSar.Kind, IID_IVectorView_IMobileBroadbandAntennaSar'Access);
 
@@ -1537,7 +1537,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    IID_IVectorView_IHostName : aliased WinRt.IID := (4031967846, 48952, 24438, (128, 54, 132, 88, 110, 101, 99, 91 ));
    function QInterface_IVectorView_IHostName is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IHostName.Kind, IID_IVectorView_IHostName'Access);
 
-   package IVectorView_INetworkOperatorTetheringClient is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringClient);
+   package IVectorView_INetworkOperatorTetheringClient is new WinRt.Windows.Foundation.Collections.IVectorView (INetworkOperatorTetheringClient);
    IID_IVectorView_INetworkOperatorTetheringClient : aliased WinRt.IID := (2446603730, 35958, 23607, (174, 44, 126, 70, 69, 127, 162, 21 ));
    function QInterface_IVectorView_INetworkOperatorTetheringClient is new Generic_QueryInterface (GenericObject_Interface, IVectorView_INetworkOperatorTetheringClient.Kind, IID_IVectorView_INetworkOperatorTetheringClient'Access);
 

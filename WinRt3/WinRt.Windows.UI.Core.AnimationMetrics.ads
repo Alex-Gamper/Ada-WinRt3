@@ -245,7 +245,7 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IPropertyAnimation is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation);
+   package IVectorView_IPropertyAnimation is new WinRt.Windows.Foundation.Collections.IVectorView (IPropertyAnimation);
    IID_IVectorView_IPropertyAnimation : aliased WinRt.IID := (3203043828, 56724, 22491, (175, 223, 189, 253, 85, 212, 147, 211 ));
    function QInterface_IVectorView_IPropertyAnimation is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPropertyAnimation.Kind, IID_IVectorView_IPropertyAnimation'Access);
 

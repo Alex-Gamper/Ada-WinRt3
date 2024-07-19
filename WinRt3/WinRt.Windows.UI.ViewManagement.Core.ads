@@ -181,7 +181,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_ICoreInputViewOcclusion is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.ViewManagement.Core.ICoreInputViewOcclusion);
+   package IVectorView_ICoreInputViewOcclusion is new WinRt.Windows.Foundation.Collections.IVectorView (ICoreInputViewOcclusion);
    IID_IVectorView_ICoreInputViewOcclusion : aliased WinRt.IID := (3339079890, 63890, 22612, (179, 239, 138, 163, 117, 202, 58, 176 ));
    function QInterface_IVectorView_ICoreInputViewOcclusion is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ICoreInputViewOcclusion.Kind, IID_IVectorView_ICoreInputViewOcclusion'Access);
 

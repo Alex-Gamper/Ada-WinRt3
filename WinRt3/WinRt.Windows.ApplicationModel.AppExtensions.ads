@@ -121,7 +121,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IAppExtension is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.AppExtensions.IAppExtension);
+   package IVectorView_IAppExtension is new WinRt.Windows.Foundation.Collections.IVectorView (IAppExtension);
    IID_IVectorView_IAppExtension : aliased WinRt.IID := (1521216662, 19847, 24306, (185, 182, 29, 6, 111, 84, 23, 237 ));
    function QInterface_IVectorView_IAppExtension is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAppExtension.Kind, IID_IVectorView_IAppExtension'Access);
 

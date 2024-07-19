@@ -244,7 +244,7 @@ package WinRt.Windows.Media.Devices.Core is
    IID_IReference_UInt32 : aliased WinRt.IID := (3313313094, 6009, 24318, (170, 33, 4, 233, 27, 68, 68, 31 ));
    function QInterface_IReference_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IReference_UInt32.Kind, IID_IReference_UInt32'Access);
 
-   package IVector_IFrameController is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Media.Devices.Core.IFrameController);
+   package IVector_IFrameController is new WinRt.Windows.Foundation.Collections.IVector (IFrameController);
    IID_IVector_IFrameController : aliased WinRt.IID := (735449102, 63523, 23051, (175, 212, 50, 222, 134, 254, 11, 147 ));
    function QInterface_IVector_IFrameController is new Generic_QueryInterface (GenericObject_Interface, IVector_IFrameController.Kind, IID_IVector_IFrameController'Access);
 

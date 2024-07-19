@@ -431,7 +431,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    IID_IVectorView_HString : aliased WinRt.IID := (3485610408, 17788, 22731, (179, 84, 183, 23, 191, 90, 133, 194 ));
    function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
-   package IVectorView_ICertificate is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Security.Cryptography.Certificates.ICertificate);
+   package IVectorView_ICertificate is new WinRt.Windows.Foundation.Collections.IVectorView (ICertificate);
    IID_IVectorView_ICertificate : aliased WinRt.IID := (3877613234, 9895, 21978, (174, 238, 86, 118, 248, 97, 181, 225 ));
    function QInterface_IVectorView_ICertificate is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ICertificate.Kind, IID_IVectorView_ICertificate'Access);
 
@@ -439,15 +439,15 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    IID_IVector_HString : aliased WinRt.IID := (1729156217, 25192, 24405, (144, 20, 194, 142, 109, 75, 238, 88 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
-   package IVector_ICertificateExtension is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Security.Cryptography.Certificates.ICertificateExtension);
+   package IVector_ICertificateExtension is new WinRt.Windows.Foundation.Collections.IVector (ICertificateExtension);
    IID_IVector_ICertificateExtension : aliased WinRt.IID := (4239477626, 58622, 23621, (170, 165, 60, 7, 9, 254, 87, 62 ));
    function QInterface_IVector_ICertificateExtension is new Generic_QueryInterface (GenericObject_Interface, IVector_ICertificateExtension.Kind, IID_IVector_ICertificateExtension'Access);
 
-   package IVector_ICertificate is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Security.Cryptography.Certificates.ICertificate);
+   package IVector_ICertificate is new WinRt.Windows.Foundation.Collections.IVector (ICertificate);
    IID_IVector_ICertificate : aliased WinRt.IID := (436250169, 4604, 22331, (177, 68, 143, 75, 226, 105, 236, 167 ));
    function QInterface_IVector_ICertificate is new Generic_QueryInterface (GenericObject_Interface, IVector_ICertificate.Kind, IID_IVector_ICertificate'Access);
 
-   package IVectorView_ICmsSignerInfo is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Security.Cryptography.Certificates.ICmsSignerInfo);
+   package IVectorView_ICmsSignerInfo is new WinRt.Windows.Foundation.Collections.IVectorView (ICmsSignerInfo);
    IID_IVectorView_ICmsSignerInfo : aliased WinRt.IID := (490609404, 54215, 23191, (186, 42, 251, 5, 158, 137, 72, 2 ));
    function QInterface_IVectorView_ICmsSignerInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ICmsSignerInfo.Kind, IID_IVectorView_ICmsSignerInfo'Access);
 

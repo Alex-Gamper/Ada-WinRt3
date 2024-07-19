@@ -235,11 +235,11 @@ package WinRt.Windows.Devices.WiFi is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IWiFiAvailableNetwork is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.WiFi.IWiFiAvailableNetwork);
+   package IVectorView_IWiFiAvailableNetwork is new WinRt.Windows.Foundation.Collections.IVectorView (IWiFiAvailableNetwork);
    IID_IVectorView_IWiFiAvailableNetwork : aliased WinRt.IID := (2508213552, 17737, 24544, (188, 27, 98, 133, 10, 121, 160, 17 ));
    function QInterface_IVectorView_IWiFiAvailableNetwork is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IWiFiAvailableNetwork.Kind, IID_IVectorView_IWiFiAvailableNetwork'Access);
 
-   package IVectorView_WiFiWpsKind is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.WiFi.WiFiWpsKind);
+   package IVectorView_WiFiWpsKind is new WinRt.Windows.Foundation.Collections.IVectorView (WiFiWpsKind);
    IID_IVectorView_WiFiWpsKind : aliased WinRt.IID := (4141468733, 32438, 22465, (141, 149, 114, 9, 86, 47, 236, 18 ));
    function QInterface_IVectorView_WiFiWpsKind is new Generic_QueryInterface (GenericObject_Interface, IVectorView_WiFiWpsKind.Kind, IID_IVectorView_WiFiWpsKind'Access);
 

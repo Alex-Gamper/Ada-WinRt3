@@ -201,11 +201,11 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IGameSaveBlobInfo is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveBlobInfo);
+   package IVectorView_IGameSaveBlobInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IGameSaveBlobInfo);
    IID_IVectorView_IGameSaveBlobInfo : aliased WinRt.IID := (1053217412, 1212, 23805, (167, 69, 68, 8, 158, 168, 99, 30 ));
    function QInterface_IVectorView_IGameSaveBlobInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGameSaveBlobInfo.Kind, IID_IVectorView_IGameSaveBlobInfo'Access);
 
-   package IVectorView_IGameSaveContainerInfo is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfo);
+   package IVectorView_IGameSaveContainerInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IGameSaveContainerInfo);
    IID_IVectorView_IGameSaveContainerInfo : aliased WinRt.IID := (2070529991, 55518, 21434, (145, 109, 180, 216, 44, 232, 19, 232 ));
    function QInterface_IVectorView_IGameSaveContainerInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGameSaveContainerInfo.Kind, IID_IVectorView_IGameSaveContainerInfo'Access);
 

@@ -596,11 +596,11 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IGattDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDescriptor);
+   package IVectorView_IGattDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (IGattDescriptor);
    IID_IVectorView_IGattDescriptor : aliased WinRt.IID := (2391635097, 51008, 24105, (162, 179, 86, 76, 62, 149, 98, 61 ));
    function QInterface_IVectorView_IGattDescriptor is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGattDescriptor.Kind, IID_IVectorView_IGattDescriptor'Access);
 
-   package IVectorView_IGattPresentationFormat is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattPresentationFormat);
+   package IVectorView_IGattPresentationFormat is new WinRt.Windows.Foundation.Collections.IVectorView (IGattPresentationFormat);
    IID_IVectorView_IGattPresentationFormat : aliased WinRt.IID := (2391635097, 51008, 24105, (162, 179, 86, 76, 62, 149, 98, 61 ));
    function QInterface_IVectorView_IGattPresentationFormat is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGattPresentationFormat.Kind, IID_IVectorView_IGattPresentationFormat'Access);
 
@@ -608,27 +608,27 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    IID_IReference_Byte : aliased WinRt.IID := (3431574270, 12403, 23282, (147, 61, 136, 32, 108, 60, 224, 183 ));
    function QInterface_IReference_Byte is new Generic_QueryInterface (GenericObject_Interface, IReference_Byte.Kind, IID_IReference_Byte'Access);
 
-   package IVectorView_IGattCharacteristic is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic);
+   package IVectorView_IGattCharacteristic is new WinRt.Windows.Foundation.Collections.IVectorView (IGattCharacteristic);
    IID_IVectorView_IGattCharacteristic : aliased WinRt.IID := (3431574270, 12403, 23282, (147, 61, 136, 32, 108, 60, 224, 183 ));
    function QInterface_IVectorView_IGattCharacteristic is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGattCharacteristic.Kind, IID_IVectorView_IGattCharacteristic'Access);
 
-   package IVectorView_IGattDeviceService is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService);
+   package IVectorView_IGattDeviceService is new WinRt.Windows.Foundation.Collections.IVectorView (IGattDeviceService);
    IID_IVectorView_IGattDeviceService : aliased WinRt.IID := (2913795551, 32269, 23579, (158, 148, 19, 208, 154, 5, 255, 188 ));
    function QInterface_IVectorView_IGattDeviceService is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGattDeviceService.Kind, IID_IVectorView_IGattDeviceService'Access);
 
-   package IVectorView_IGattLocalDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptor);
+   package IVectorView_IGattLocalDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (IGattLocalDescriptor);
    IID_IVectorView_IGattLocalDescriptor : aliased WinRt.IID := (717370334, 34830, 20500, (147, 238, 78, 215, 204, 143, 67, 27 ));
    function QInterface_IVectorView_IGattLocalDescriptor is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGattLocalDescriptor.Kind, IID_IVectorView_IGattLocalDescriptor'Access);
 
-   package IVectorView_IGattSubscribedClient is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSubscribedClient);
+   package IVectorView_IGattSubscribedClient is new WinRt.Windows.Foundation.Collections.IVectorView (IGattSubscribedClient);
    IID_IVectorView_IGattSubscribedClient : aliased WinRt.IID := (717370334, 34830, 20500, (147, 238, 78, 215, 204, 143, 67, 27 ));
    function QInterface_IVectorView_IGattSubscribedClient is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGattSubscribedClient.Kind, IID_IVectorView_IGattSubscribedClient'Access);
 
-   package IVector_IGattPresentationFormat is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattPresentationFormat);
+   package IVector_IGattPresentationFormat is new WinRt.Windows.Foundation.Collections.IVector (IGattPresentationFormat);
    IID_IVector_IGattPresentationFormat : aliased WinRt.IID := (4276906814, 7696, 23848, (175, 159, 252, 82, 157, 167, 152, 64 ));
    function QInterface_IVector_IGattPresentationFormat is new Generic_QueryInterface (GenericObject_Interface, IVector_IGattPresentationFormat.Kind, IID_IVector_IGattPresentationFormat'Access);
 
-   package IVectorView_IGattLocalCharacteristic is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristic);
+   package IVectorView_IGattLocalCharacteristic is new WinRt.Windows.Foundation.Collections.IVectorView (IGattLocalCharacteristic);
    IID_IVectorView_IGattLocalCharacteristic : aliased WinRt.IID := (767638386, 9230, 21579, (151, 16, 158, 180, 241, 128, 130, 245 ));
    function QInterface_IVectorView_IGattLocalCharacteristic is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGattLocalCharacteristic.Kind, IID_IVectorView_IGattLocalCharacteristic'Access);
 

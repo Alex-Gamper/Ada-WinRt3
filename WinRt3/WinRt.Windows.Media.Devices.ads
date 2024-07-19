@@ -953,27 +953,27 @@ package WinRt.Windows.Media.Devices is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_AdvancedPhotoMode is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Devices.AdvancedPhotoMode);
+   package IVectorView_AdvancedPhotoMode is new WinRt.Windows.Foundation.Collections.IVectorView (AdvancedPhotoMode);
    IID_IVectorView_AdvancedPhotoMode : aliased WinRt.IID := (3937500726, 2035, 23022, (151, 221, 254, 76, 20, 186, 238, 154 ));
    function QInterface_IVectorView_AdvancedPhotoMode is new Generic_QueryInterface (GenericObject_Interface, IVectorView_AdvancedPhotoMode.Kind, IID_IVectorView_AdvancedPhotoMode'Access);
 
-   package IVectorView_IAudioDeviceModule is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Devices.IAudioDeviceModule);
+   package IVectorView_IAudioDeviceModule is new WinRt.Windows.Foundation.Collections.IVectorView (IAudioDeviceModule);
    IID_IVectorView_IAudioDeviceModule : aliased WinRt.IID := (3700806715, 63568, 24039, (169, 168, 242, 112, 82, 123, 22, 50 ));
    function QInterface_IVectorView_IAudioDeviceModule is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAudioDeviceModule.Kind, IID_IVectorView_IAudioDeviceModule'Access);
 
-   package IVectorView_FocusPreset is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Devices.FocusPreset);
+   package IVectorView_FocusPreset is new WinRt.Windows.Foundation.Collections.IVectorView (FocusPreset);
    IID_IVectorView_FocusPreset : aliased WinRt.IID := (1746007678, 38130, 20644, (141, 254, 65, 163, 78, 24, 247, 173 ));
    function QInterface_IVectorView_FocusPreset is new Generic_QueryInterface (GenericObject_Interface, IVectorView_FocusPreset.Kind, IID_IVectorView_FocusPreset'Access);
 
-   package IVectorView_FocusMode is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Devices.FocusMode);
+   package IVectorView_FocusMode is new WinRt.Windows.Foundation.Collections.IVectorView (FocusMode);
    IID_IVectorView_FocusMode : aliased WinRt.IID := (1725145560, 27672, 24455, (191, 38, 211, 147, 217, 55, 248, 41 ));
    function QInterface_IVectorView_FocusMode is new Generic_QueryInterface (GenericObject_Interface, IVectorView_FocusMode.Kind, IID_IVectorView_FocusMode'Access);
 
-   package IVectorView_ManualFocusDistance is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Devices.ManualFocusDistance);
+   package IVectorView_ManualFocusDistance is new WinRt.Windows.Foundation.Collections.IVectorView (ManualFocusDistance);
    IID_IVectorView_ManualFocusDistance : aliased WinRt.IID := (1725145560, 27672, 24455, (191, 38, 211, 147, 217, 55, 248, 41 ));
    function QInterface_IVectorView_ManualFocusDistance is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ManualFocusDistance.Kind, IID_IVectorView_ManualFocusDistance'Access);
 
-   package IVectorView_AutoFocusRange is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Devices.AutoFocusRange);
+   package IVectorView_AutoFocusRange is new WinRt.Windows.Foundation.Collections.IVectorView (AutoFocusRange);
    IID_IVectorView_AutoFocusRange : aliased WinRt.IID := (1725145560, 27672, 24455, (191, 38, 211, 147, 217, 55, 248, 41 ));
    function QInterface_IVectorView_AutoFocusRange is new Generic_QueryInterface (GenericObject_Interface, IVectorView_AutoFocusRange.Kind, IID_IVectorView_AutoFocusRange'Access);
 
@@ -981,35 +981,35 @@ package WinRt.Windows.Media.Devices is
    IID_IReference_UInt32 : aliased WinRt.IID := (3912316659, 57272, 24227, (177, 124, 60, 150, 242, 13, 120, 184 ));
    function QInterface_IReference_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IReference_UInt32.Kind, IID_IReference_UInt32'Access);
 
-   package IReference_ManualFocusDistance is new WinRt.Windows.Foundation.IReference (WinRt.Windows.Media.Devices.ManualFocusDistance);
+   package IReference_ManualFocusDistance is new WinRt.Windows.Foundation.IReference (ManualFocusDistance);
    IID_IReference_ManualFocusDistance : aliased WinRt.IID := (3912316659, 57272, 24227, (177, 124, 60, 150, 242, 13, 120, 184 ));
    function QInterface_IReference_ManualFocusDistance is new Generic_QueryInterface (GenericObject_Interface, IReference_ManualFocusDistance.Kind, IID_IReference_ManualFocusDistance'Access);
 
-   package IVectorView_HdrVideoMode is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Devices.HdrVideoMode);
+   package IVectorView_HdrVideoMode is new WinRt.Windows.Foundation.Collections.IVectorView (HdrVideoMode);
    IID_IVectorView_HdrVideoMode : aliased WinRt.IID := (3207852454, 42146, 23753, (190, 165, 177, 204, 24, 149, 25, 218 ));
    function QInterface_IVectorView_HdrVideoMode is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HdrVideoMode.Kind, IID_IVectorView_HdrVideoMode'Access);
 
-   package IVectorView_InfraredTorchMode is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Devices.InfraredTorchMode);
+   package IVectorView_InfraredTorchMode is new WinRt.Windows.Foundation.Collections.IVectorView (InfraredTorchMode);
    IID_IVectorView_InfraredTorchMode : aliased WinRt.IID := (2723413134, 57222, 24347, (183, 186, 216, 186, 53, 16, 151, 154 ));
    function QInterface_IVectorView_InfraredTorchMode is new Generic_QueryInterface (GenericObject_Interface, IVectorView_InfraredTorchMode.Kind, IID_IVectorView_InfraredTorchMode'Access);
 
-   package IVectorView_IsoSpeedPreset is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Devices.IsoSpeedPreset);
+   package IVectorView_IsoSpeedPreset is new WinRt.Windows.Foundation.Collections.IVectorView (IsoSpeedPreset);
    IID_IVectorView_IsoSpeedPreset : aliased WinRt.IID := (3393513986, 62342, 20520, (190, 30, 145, 233, 42, 247, 70, 174 ));
    function QInterface_IVectorView_IsoSpeedPreset is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IsoSpeedPreset.Kind, IID_IVectorView_IsoSpeedPreset'Access);
 
-   package IVectorView_OpticalImageStabilizationMode is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Devices.OpticalImageStabilizationMode);
+   package IVectorView_OpticalImageStabilizationMode is new WinRt.Windows.Foundation.Collections.IVectorView (OpticalImageStabilizationMode);
    IID_IVectorView_OpticalImageStabilizationMode : aliased WinRt.IID := (2236388894, 4272, 24288, (131, 240, 20, 74, 121, 8, 150, 196 ));
    function QInterface_IVectorView_OpticalImageStabilizationMode is new Generic_QueryInterface (GenericObject_Interface, IVectorView_OpticalImageStabilizationMode.Kind, IID_IVectorView_OpticalImageStabilizationMode'Access);
 
-   package IVectorView_CaptureSceneMode is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Devices.CaptureSceneMode);
+   package IVectorView_CaptureSceneMode is new WinRt.Windows.Foundation.Collections.IVectorView (CaptureSceneMode);
    IID_IVectorView_CaptureSceneMode : aliased WinRt.IID := (2546123844, 48068, 21927, (167, 162, 102, 8, 79, 138, 45, 110 ));
    function QInterface_IVectorView_CaptureSceneMode is new Generic_QueryInterface (GenericObject_Interface, IVectorView_CaptureSceneMode.Kind, IID_IVectorView_CaptureSceneMode'Access);
 
-   package IVectorView_VideoTemporalDenoisingMode is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Devices.VideoTemporalDenoisingMode);
+   package IVectorView_VideoTemporalDenoisingMode is new WinRt.Windows.Foundation.Collections.IVectorView (VideoTemporalDenoisingMode);
    IID_IVectorView_VideoTemporalDenoisingMode : aliased WinRt.IID := (2360438988, 9704, 22173, (154, 105, 127, 238, 130, 106, 24, 242 ));
    function QInterface_IVectorView_VideoTemporalDenoisingMode is new Generic_QueryInterface (GenericObject_Interface, IVectorView_VideoTemporalDenoisingMode.Kind, IID_IVectorView_VideoTemporalDenoisingMode'Access);
 
-   package IVectorView_ZoomTransitionMode is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Devices.ZoomTransitionMode);
+   package IVectorView_ZoomTransitionMode is new WinRt.Windows.Foundation.Collections.IVectorView (ZoomTransitionMode);
    IID_IVectorView_ZoomTransitionMode : aliased WinRt.IID := (3702340951, 50575, 23412, (188, 148, 39, 189, 125, 200, 43, 183 ));
    function QInterface_IVectorView_ZoomTransitionMode is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ZoomTransitionMode.Kind, IID_IVectorView_ZoomTransitionMode'Access);
 

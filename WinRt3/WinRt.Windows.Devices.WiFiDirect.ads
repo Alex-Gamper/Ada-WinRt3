@@ -252,11 +252,11 @@ package WinRt.Windows.Devices.WiFiDirect is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IWiFiDirectInformationElement is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.WiFiDirect.IWiFiDirectInformationElement);
+   package IVector_IWiFiDirectInformationElement is new WinRt.Windows.Foundation.Collections.IVector (IWiFiDirectInformationElement);
    IID_IVector_IWiFiDirectInformationElement : aliased WinRt.IID := (4102591240, 27138, 23741, (167, 29, 89, 235, 218, 15, 165, 209 ));
    function QInterface_IVector_IWiFiDirectInformationElement is new Generic_QueryInterface (GenericObject_Interface, IVector_IWiFiDirectInformationElement.Kind, IID_IVector_IWiFiDirectInformationElement'Access);
 
-   package IVector_WiFiDirectConfigurationMethod is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.WiFiDirect.WiFiDirectConfigurationMethod);
+   package IVector_WiFiDirectConfigurationMethod is new WinRt.Windows.Foundation.Collections.IVector (WiFiDirectConfigurationMethod);
    IID_IVector_WiFiDirectConfigurationMethod : aliased WinRt.IID := (402262840, 53065, 20875, (168, 185, 121, 29, 149, 250, 91, 186 ));
    function QInterface_IVector_WiFiDirectConfigurationMethod is new Generic_QueryInterface (GenericObject_Interface, IVector_WiFiDirectConfigurationMethod.Kind, IID_IVector_WiFiDirectConfigurationMethod'Access);
 

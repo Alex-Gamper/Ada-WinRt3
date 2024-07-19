@@ -42,12 +42,12 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    package IAsyncOperation_IRandomAccessStream is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Storage.Streams.IRandomAccessStream);
    package AsyncOperationCompletedHandler_IRandomAccessStream is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Storage.Streams.IRandomAccessStream);
 
-   package IIterable_IResourceCandidate is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.ApplicationModel.Resources.Core.IResourceCandidate);
+   package IIterable_IResourceCandidate is new WinRt.Windows.Foundation.Collections.IIterable (IResourceCandidate);
    package IIterable_HString is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.HString);
-   package IMapView_HString_INamedResource is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.Windows.ApplicationModel.Resources.Core.INamedResource);
+   package IMapView_HString_INamedResource is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, INamedResource);
    package IMapView_HString_HString is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.HString);
    package IMap_HString_HString is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, WinRt.HString);
-   package IIterable_IResourceQualifier is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.ApplicationModel.Resources.Core.IResourceQualifier);
+   package IIterable_IResourceQualifier is new WinRt.Windows.Foundation.Collections.IIterable (IResourceQualifier);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for NamedResource
 

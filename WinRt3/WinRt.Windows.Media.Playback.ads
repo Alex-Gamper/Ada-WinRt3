@@ -774,15 +774,15 @@ package WinRt.Windows.Media.Playback is
    IID_IReference_TimeSpan : aliased WinRt.IID := (89614909, 45653, 23535, (187, 191, 15, 60, 72, 174, 171, 4 ));
    function QInterface_IReference_TimeSpan is new Generic_QueryInterface (GenericObject_Interface, IReference_TimeSpan.Kind, IID_IReference_TimeSpan'Access);
 
-   package IVectorView_IMediaBreak is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Playback.IMediaBreak);
+   package IVectorView_IMediaBreak is new WinRt.Windows.Foundation.Collections.IVectorView (IMediaBreak);
    IID_IVectorView_IMediaBreak : aliased WinRt.IID := (1216340670, 182, 20728, (190, 128, 95, 189, 10, 195, 173, 79 ));
    function QInterface_IVectorView_IMediaBreak is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMediaBreak.Kind, IID_IVectorView_IMediaBreak'Access);
 
-   package IObservableVector_IMediaPlaybackItem is new WinRt.Windows.Foundation.Collections.IObservableVector (WinRt.Windows.Media.Playback.IMediaPlaybackItem);
+   package IObservableVector_IMediaPlaybackItem is new WinRt.Windows.Foundation.Collections.IObservableVector (IMediaPlaybackItem);
    IID_IObservableVector_IMediaPlaybackItem : aliased WinRt.IID := (1723442617, 49569, 23685, (155, 182, 57, 245, 63, 227, 214, 187 ));
    function QInterface_IObservableVector_IMediaPlaybackItem is new Generic_QueryInterface (GenericObject_Interface, IObservableVector_IMediaPlaybackItem.Kind, IID_IObservableVector_IMediaPlaybackItem'Access);
 
-   package IVectorView_IMediaPlaybackItem is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Playback.IMediaPlaybackItem);
+   package IVectorView_IMediaPlaybackItem is new WinRt.Windows.Foundation.Collections.IVectorView (IMediaPlaybackItem);
    IID_IVectorView_IMediaPlaybackItem : aliased WinRt.IID := (478915303, 28685, 22309, (134, 39, 6, 227, 196, 193, 59, 30 ));
    function QInterface_IVectorView_IMediaPlaybackItem is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMediaPlaybackItem.Kind, IID_IVectorView_IMediaPlaybackItem'Access);
 

@@ -269,19 +269,19 @@ package WinRt.Windows.ApplicationModel.Wallet is
    IID_IReference_DateTime : aliased WinRt.IID := (3436548192, 41668, 22143, (156, 70, 57, 141, 133, 78, 92, 173 ));
    function QInterface_IReference_DateTime is new Generic_QueryInterface (GenericObject_Interface, IReference_DateTime.Kind, IID_IReference_DateTime'Access);
 
-   package IMap_HString_IWalletTransaction is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, WinRt.Windows.ApplicationModel.Wallet.IWalletTransaction);
+   package IMap_HString_IWalletTransaction is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, IWalletTransaction);
    IID_IMap_HString_IWalletTransaction : aliased WinRt.IID := (3436548192, 41668, 22143, (156, 70, 57, 141, 133, 78, 92, 173 ));
    function QInterface_IMap_HString_IWalletTransaction is new Generic_QueryInterface (GenericObject_Interface, IMap_HString_IWalletTransaction.Kind, IID_IMap_HString_IWalletTransaction'Access);
 
-   package IMap_HString_IWalletRelevantLocation is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, WinRt.Windows.ApplicationModel.Wallet.IWalletRelevantLocation);
+   package IMap_HString_IWalletRelevantLocation is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, IWalletRelevantLocation);
    IID_IMap_HString_IWalletRelevantLocation : aliased WinRt.IID := (3436548192, 41668, 22143, (156, 70, 57, 141, 133, 78, 92, 173 ));
    function QInterface_IMap_HString_IWalletRelevantLocation is new Generic_QueryInterface (GenericObject_Interface, IMap_HString_IWalletRelevantLocation.Kind, IID_IMap_HString_IWalletRelevantLocation'Access);
 
-   package IMap_HString_IWalletItemCustomProperty is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, WinRt.Windows.ApplicationModel.Wallet.IWalletItemCustomProperty);
+   package IMap_HString_IWalletItemCustomProperty is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, IWalletItemCustomProperty);
    IID_IMap_HString_IWalletItemCustomProperty : aliased WinRt.IID := (3436548192, 41668, 22143, (156, 70, 57, 141, 133, 78, 92, 173 ));
    function QInterface_IMap_HString_IWalletItemCustomProperty is new Generic_QueryInterface (GenericObject_Interface, IMap_HString_IWalletItemCustomProperty.Kind, IID_IMap_HString_IWalletItemCustomProperty'Access);
 
-   package IMap_HString_IWalletVerb is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, WinRt.Windows.ApplicationModel.Wallet.IWalletVerb);
+   package IMap_HString_IWalletVerb is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, IWalletVerb);
    IID_IMap_HString_IWalletVerb : aliased WinRt.IID := (3436548192, 41668, 22143, (156, 70, 57, 141, 133, 78, 92, 173 ));
    function QInterface_IMap_HString_IWalletVerb is new Generic_QueryInterface (GenericObject_Interface, IMap_HString_IWalletVerb.Kind, IID_IMap_HString_IWalletVerb'Access);
 

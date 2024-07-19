@@ -156,7 +156,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IHttpDiagnosticSourceLocation is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Web.Http.Diagnostics.IHttpDiagnosticSourceLocation);
+   package IVectorView_IHttpDiagnosticSourceLocation is new WinRt.Windows.Foundation.Collections.IVectorView (IHttpDiagnosticSourceLocation);
    IID_IVectorView_IHttpDiagnosticSourceLocation : aliased WinRt.IID := (2781702586, 33547, 22686, (176, 88, 78, 103, 28, 193, 124, 228 ));
    function QInterface_IVectorView_IHttpDiagnosticSourceLocation is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IHttpDiagnosticSourceLocation.Kind, IID_IVectorView_IHttpDiagnosticSourceLocation'Access);
 

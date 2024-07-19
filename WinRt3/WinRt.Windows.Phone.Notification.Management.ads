@@ -511,7 +511,7 @@ package WinRt.Windows.Phone.Notification.Management is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_ITextResponse is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Phone.Notification.Management.ITextResponse);
+   package IVectorView_ITextResponse is new WinRt.Windows.Foundation.Collections.IVectorView (ITextResponse);
    IID_IVectorView_ITextResponse : aliased WinRt.IID := (3798437933, 43288, 22436, (191, 140, 90, 137, 16, 168, 92, 160 ));
    function QInterface_IVectorView_ITextResponse is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ITextResponse.Kind, IID_IVectorView_ITextResponse'Access);
 

@@ -44,12 +44,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    package IAsyncOperation_INDSendResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Media.Protection.PlayReady.INDSendResult);
    package AsyncOperationCompletedHandler_INDSendResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Media.Protection.PlayReady.INDSendResult);
 
-   package IIterable_IPlayReadyDomain is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomain);
-   package IIterator_IPlayReadyDomain is new WinRt.Windows.Foundation.Collections.IIterator (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomain);
-   package IIterable_IPlayReadyLicense is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense);
-   package IIterator_IPlayReadyLicense is new WinRt.Windows.Foundation.Collections.IIterator (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense);
-   package IIterable_IPlayReadySecureStopServiceRequest is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest);
-   package IIterator_IPlayReadySecureStopServiceRequest is new WinRt.Windows.Foundation.Collections.IIterator (WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest);
+   package IIterable_IPlayReadyDomain is new WinRt.Windows.Foundation.Collections.IIterable (IPlayReadyDomain);
+   package IIterator_IPlayReadyDomain is new WinRt.Windows.Foundation.Collections.IIterator (IPlayReadyDomain);
+   package IIterable_IPlayReadyLicense is new WinRt.Windows.Foundation.Collections.IIterable (IPlayReadyLicense);
+   package IIterator_IPlayReadyLicense is new WinRt.Windows.Foundation.Collections.IIterator (IPlayReadyLicense);
+   package IIterable_IPlayReadySecureStopServiceRequest is new WinRt.Windows.Foundation.Collections.IIterable (IPlayReadySecureStopServiceRequest);
+   package IIterator_IPlayReadySecureStopServiceRequest is new WinRt.Windows.Foundation.Collections.IIterator (IPlayReadySecureStopServiceRequest);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for NDClient
 

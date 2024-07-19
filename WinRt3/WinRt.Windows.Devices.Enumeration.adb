@@ -47,8 +47,8 @@ package body WinRt.Windows.Devices.Enumeration is
    package IAsyncOperation_DeviceInformationCollection is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.GenericObject);
    package AsyncOperationCompletedHandler_DeviceInformationCollection is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.GenericObject);
 
-   package IVectorView_IDeviceInformation is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Enumeration.IDeviceInformation);
-   package IIterable_IDeviceInformation is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Devices.Enumeration.IDeviceInformation);
+   package IVectorView_IDeviceInformation is new WinRt.Windows.Foundation.Collections.IVectorView (IDeviceInformation);
+   package IIterable_IDeviceInformation is new WinRt.Windows.Foundation.Collections.IIterable (IDeviceInformation);
    package IAsyncOperation_DevicePairingResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Enumeration.IDevicePairingResult);
    package AsyncOperationCompletedHandler_DevicePairingResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.Enumeration.IDevicePairingResult);
 

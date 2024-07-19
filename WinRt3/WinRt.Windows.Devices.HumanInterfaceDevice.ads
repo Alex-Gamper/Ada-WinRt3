@@ -193,19 +193,19 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IHidCollection is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.HumanInterfaceDevice.IHidCollection);
+   package IVectorView_IHidCollection is new WinRt.Windows.Foundation.Collections.IVectorView (IHidCollection);
    IID_IVectorView_IHidCollection : aliased WinRt.IID := (3728409627, 26242, 24340, (136, 19, 53, 182, 126, 30, 146, 0 ));
    function QInterface_IVectorView_IHidCollection is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IHidCollection.Kind, IID_IVectorView_IHidCollection'Access);
 
-   package IVectorView_IHidBooleanControlDescription is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription);
+   package IVectorView_IHidBooleanControlDescription is new WinRt.Windows.Foundation.Collections.IVectorView (IHidBooleanControlDescription);
    IID_IVectorView_IHidBooleanControlDescription : aliased WinRt.IID := (3746659849, 48197, 20515, (171, 69, 157, 84, 96, 242, 49, 54 ));
    function QInterface_IVectorView_IHidBooleanControlDescription is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IHidBooleanControlDescription.Kind, IID_IVectorView_IHidBooleanControlDescription'Access);
 
-   package IVectorView_IHidNumericControlDescription is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription);
+   package IVectorView_IHidNumericControlDescription is new WinRt.Windows.Foundation.Collections.IVectorView (IHidNumericControlDescription);
    IID_IVectorView_IHidNumericControlDescription : aliased WinRt.IID := (3746659849, 48197, 20515, (171, 69, 157, 84, 96, 242, 49, 54 ));
    function QInterface_IVectorView_IHidNumericControlDescription is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IHidNumericControlDescription.Kind, IID_IVectorView_IHidNumericControlDescription'Access);
 
-   package IVectorView_IHidBooleanControl is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl);
+   package IVectorView_IHidBooleanControl is new WinRt.Windows.Foundation.Collections.IVectorView (IHidBooleanControl);
    IID_IVectorView_IHidBooleanControl : aliased WinRt.IID := (1119287673, 34071, 21627, (132, 58, 14, 150, 34, 223, 254, 198 ));
    function QInterface_IVectorView_IHidBooleanControl is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IHidBooleanControl.Kind, IID_IVectorView_IHidBooleanControl'Access);
 

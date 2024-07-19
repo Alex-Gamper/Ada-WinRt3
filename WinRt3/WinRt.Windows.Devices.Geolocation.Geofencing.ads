@@ -143,11 +143,11 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IGeofence is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence);
+   package IVector_IGeofence is new WinRt.Windows.Foundation.Collections.IVector (IGeofence);
    IID_IVector_IGeofence : aliased WinRt.IID := (2459875430, 64246, 21159, (128, 223, 49, 57, 71, 46, 203, 183 ));
    function QInterface_IVector_IGeofence is new Generic_QueryInterface (GenericObject_Interface, IVector_IGeofence.Kind, IID_IVector_IGeofence'Access);
 
-   package IVectorView_IGeofenceStateChangeReport is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Geolocation.Geofencing.IGeofenceStateChangeReport);
+   package IVectorView_IGeofenceStateChangeReport is new WinRt.Windows.Foundation.Collections.IVectorView (IGeofenceStateChangeReport);
    IID_IVectorView_IGeofenceStateChangeReport : aliased WinRt.IID := (2459875430, 64246, 21159, (128, 223, 49, 57, 71, 46, 203, 183 ));
    function QInterface_IVectorView_IGeofenceStateChangeReport is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGeofenceStateChangeReport.Kind, IID_IVectorView_IGeofenceStateChangeReport'Access);
 

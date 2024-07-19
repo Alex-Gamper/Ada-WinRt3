@@ -138,7 +138,7 @@ package WinRt.Windows.Media.AppRecording is
    IID_IVectorView_HString : aliased WinRt.IID := (27082504, 49937, 20640, (177, 247, 55, 247, 31, 148, 59, 146 ));
    function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
-   package IVectorView_IAppRecordingSavedScreenshotInfo is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.AppRecording.IAppRecordingSavedScreenshotInfo);
+   package IVectorView_IAppRecordingSavedScreenshotInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IAppRecordingSavedScreenshotInfo);
    IID_IVectorView_IAppRecordingSavedScreenshotInfo : aliased WinRt.IID := (160563841, 52181, 22083, (152, 66, 75, 114, 18, 92, 159, 53 ));
    function QInterface_IVectorView_IAppRecordingSavedScreenshotInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAppRecordingSavedScreenshotInfo.Kind, IID_IVectorView_IAppRecordingSavedScreenshotInfo'Access);
 

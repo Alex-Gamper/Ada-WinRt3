@@ -35,11 +35,11 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Composition.Scenes is
 
-   package IVector_ISceneComponent is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Composition.Scenes.ISceneComponent);
-   package IIterable_ISceneComponent is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Composition.Scenes.ISceneComponent);
-   package IMap_HString_SceneAttributeSemantic is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, WinRt.Windows.UI.Composition.Scenes.SceneAttributeSemantic);
-   package IVector_ISceneNode is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Composition.Scenes.ISceneNode);
-   package IIterable_ISceneNode is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Composition.Scenes.ISceneNode);
+   package IVector_ISceneComponent is new WinRt.Windows.Foundation.Collections.IVector (ISceneComponent);
+   package IIterable_ISceneComponent is new WinRt.Windows.Foundation.Collections.IIterable (ISceneComponent);
+   package IMap_HString_SceneAttributeSemantic is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, SceneAttributeSemantic);
+   package IVector_ISceneNode is new WinRt.Windows.Foundation.Collections.IVector (ISceneNode);
+   package IIterable_ISceneNode is new WinRt.Windows.Foundation.Collections.IIterable (ISceneNode);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for SceneObject
 

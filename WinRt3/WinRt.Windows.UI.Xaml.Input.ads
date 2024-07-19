@@ -965,11 +965,11 @@ package WinRt.Windows.UI.Xaml.Input is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IInputScopeName is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Input.IInputScopeName);
+   package IVector_IInputScopeName is new WinRt.Windows.Foundation.Collections.IVector (IInputScopeName);
    IID_IVector_IInputScopeName : aliased WinRt.IID := (1701247258, 35902, 20796, (181, 0, 174, 188, 247, 200, 83, 15 ));
    function QInterface_IVector_IInputScopeName is new Generic_QueryInterface (GenericObject_Interface, IVector_IInputScopeName.Kind, IID_IVector_IInputScopeName'Access);
 
-   package IVector_IKeyboardAccelerator is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Input.IKeyboardAccelerator);
+   package IVector_IKeyboardAccelerator is new WinRt.Windows.Foundation.Collections.IVector (IKeyboardAccelerator);
    IID_IVector_IKeyboardAccelerator : aliased WinRt.IID := (3165996209, 61283, 24235, (168, 221, 68, 7, 162, 253, 25, 248 ));
    function QInterface_IVector_IKeyboardAccelerator is new Generic_QueryInterface (GenericObject_Interface, IVector_IKeyboardAccelerator.Kind, IID_IVector_IKeyboardAccelerator'Access);
 

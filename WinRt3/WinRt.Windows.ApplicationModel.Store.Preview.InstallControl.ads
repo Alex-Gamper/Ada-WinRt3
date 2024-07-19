@@ -253,7 +253,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IAppInstallItem is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem);
+   package IVectorView_IAppInstallItem is new WinRt.Windows.Foundation.Collections.IVectorView (IAppInstallItem);
    IID_IVectorView_IAppInstallItem : aliased WinRt.IID := (4203270909, 59199, 21957, (171, 36, 233, 139, 76, 34, 240, 217 ));
    function QInterface_IVectorView_IAppInstallItem is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAppInstallItem.Kind, IID_IVectorView_IAppInstallItem'Access);
 

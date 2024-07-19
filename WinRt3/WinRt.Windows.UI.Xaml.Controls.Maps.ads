@@ -955,7 +955,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    IID_IMap_HString_HString : aliased WinRt.IID := (3225661769, 38971, 22137, (163, 74, 102, 195, 93, 179, 217, 30 ));
    function QInterface_IMap_HString_HString is new Generic_QueryInterface (GenericObject_Interface, IMap_HString_HString.Kind, IID_IMap_HString_HString'Access);
 
-   package IVectorView_IMapElement is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement);
+   package IVectorView_IMapElement is new WinRt.Windows.Foundation.Collections.IVectorView (IMapElement);
    IID_IVectorView_IMapElement : aliased WinRt.IID := (2491767794, 61226, 21594, (186, 192, 212, 107, 159, 139, 49, 78 ));
    function QInterface_IVectorView_IMapElement is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMapElement.Kind, IID_IVectorView_IMapElement'Access);
 
@@ -963,19 +963,19 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    IID_IVector_IDependencyObject : aliased WinRt.IID := (1839491468, 34305, 24195, (173, 98, 29, 227, 147, 0, 120, 85 ));
    function QInterface_IVector_IDependencyObject is new Generic_QueryInterface (GenericObject_Interface, IVector_IDependencyObject.Kind, IID_IVector_IDependencyObject'Access);
 
-   package IVector_IMapElement is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement);
+   package IVector_IMapElement is new WinRt.Windows.Foundation.Collections.IVector (IMapElement);
    IID_IVector_IMapElement : aliased WinRt.IID := (1839491468, 34305, 24195, (173, 98, 29, 227, 147, 0, 120, 85 ));
    function QInterface_IVector_IMapElement is new Generic_QueryInterface (GenericObject_Interface, IVector_IMapElement.Kind, IID_IVector_IMapElement'Access);
 
-   package IVector_IMapRouteView is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Controls.Maps.IMapRouteView);
+   package IVector_IMapRouteView is new WinRt.Windows.Foundation.Collections.IVector (IMapRouteView);
    IID_IVector_IMapRouteView : aliased WinRt.IID := (1839491468, 34305, 24195, (173, 98, 29, 227, 147, 0, 120, 85 ));
    function QInterface_IVector_IMapRouteView is new Generic_QueryInterface (GenericObject_Interface, IVector_IMapRouteView.Kind, IID_IVector_IMapRouteView'Access);
 
-   package IVector_IMapTileSource is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource);
+   package IVector_IMapTileSource is new WinRt.Windows.Foundation.Collections.IVector (IMapTileSource);
    IID_IVector_IMapTileSource : aliased WinRt.IID := (1839491468, 34305, 24195, (173, 98, 29, 227, 147, 0, 120, 85 ));
    function QInterface_IVector_IMapTileSource is new Generic_QueryInterface (GenericObject_Interface, IVector_IMapTileSource.Kind, IID_IVector_IMapTileSource'Access);
 
-   package IVector_IMapLayer is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Controls.Maps.IMapLayer);
+   package IVector_IMapLayer is new WinRt.Windows.Foundation.Collections.IVector (IMapLayer);
    IID_IVector_IMapLayer : aliased WinRt.IID := (166809831, 31838, 24169, (169, 226, 203, 225, 210, 130, 190, 181 ));
    function QInterface_IVector_IMapLayer is new Generic_QueryInterface (GenericObject_Interface, IVector_IMapLayer.Kind, IID_IVector_IMapLayer'Access);
 

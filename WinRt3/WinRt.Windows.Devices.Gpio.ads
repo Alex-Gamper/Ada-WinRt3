@@ -210,7 +210,7 @@ package WinRt.Windows.Devices.Gpio is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_GpioChangeRecord is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.Gpio.GpioChangeRecord);
+   package IVector_GpioChangeRecord is new WinRt.Windows.Foundation.Collections.IVector (GpioChangeRecord);
    IID_IVector_GpioChangeRecord : aliased WinRt.IID := (570934633, 38419, 22673, (142, 20, 212, 40, 37, 215, 215, 51 ));
    function QInterface_IVector_GpioChangeRecord is new Generic_QueryInterface (GenericObject_Interface, IVector_GpioChangeRecord.Kind, IID_IVector_GpioChangeRecord'Access);
 

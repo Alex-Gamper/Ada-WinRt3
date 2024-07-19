@@ -35,8 +35,8 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Devices.Lights.Effects is
 
-   package IVectorView_ILampArrayEffect is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect);
-   package IIterable_ILampArrayEffect is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect);
+   package IVectorView_ILampArrayEffect is new WinRt.Windows.Foundation.Collections.IVectorView (ILampArrayEffect);
+   package IIterable_ILampArrayEffect is new WinRt.Windows.Foundation.Collections.IIterable (ILampArrayEffect);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for LampArrayBitmapEffect
 

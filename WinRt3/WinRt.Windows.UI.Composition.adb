@@ -39,18 +39,18 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Composition is
 
-   package IIterable_ICompositionAnimation is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Composition.ICompositionAnimation);
-   package IIterable_ICompositionColorGradientStop is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Composition.ICompositionColorGradientStop);
-   package IVector_ICompositionColorGradientStop is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Composition.ICompositionColorGradientStop);
-   package IIterable_ICompositionProjectedShadowCaster is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Composition.ICompositionProjectedShadowCaster);
-   package IIterable_ICompositionProjectedShadowReceiver is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiver);
-   package IVector_ICompositionShape is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Composition.ICompositionShape);
-   package IIterable_ICompositionShape is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Composition.ICompositionShape);
+   package IIterable_ICompositionAnimation is new WinRt.Windows.Foundation.Collections.IIterable (ICompositionAnimation);
+   package IIterable_ICompositionColorGradientStop is new WinRt.Windows.Foundation.Collections.IIterable (ICompositionColorGradientStop);
+   package IVector_ICompositionColorGradientStop is new WinRt.Windows.Foundation.Collections.IVector (ICompositionColorGradientStop);
+   package IIterable_ICompositionProjectedShadowCaster is new WinRt.Windows.Foundation.Collections.IIterable (ICompositionProjectedShadowCaster);
+   package IIterable_ICompositionProjectedShadowReceiver is new WinRt.Windows.Foundation.Collections.IIterable (ICompositionProjectedShadowReceiver);
+   package IVector_ICompositionShape is new WinRt.Windows.Foundation.Collections.IVector (ICompositionShape);
+   package IIterable_ICompositionShape is new WinRt.Windows.Foundation.Collections.IIterable (ICompositionShape);
    package IVector_Single is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Single);
    package IIterable_Single is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Single);
-   package IMap_HString_ICompositionAnimationBase is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, WinRt.Windows.UI.Composition.ICompositionAnimationBase);
+   package IMap_HString_ICompositionAnimationBase is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, ICompositionAnimationBase);
    package IMap_HString_HString is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, WinRt.HString);
-   package IIterable_IVisual is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Composition.IVisual);
+   package IIterable_IVisual is new WinRt.Windows.Foundation.Collections.IIterable (IVisual);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CompositionObject
 

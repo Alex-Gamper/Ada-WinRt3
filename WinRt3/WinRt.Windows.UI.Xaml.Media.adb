@@ -37,24 +37,24 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Xaml.Media is
 
-   package IVector_IBrush is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Media.IBrush);
-   package IIterable_IBrush is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Media.IBrush);
+   package IVector_IBrush is new WinRt.Windows.Foundation.Collections.IVector (IBrush);
+   package IIterable_IBrush is new WinRt.Windows.Foundation.Collections.IIterable (IBrush);
    package IVector_Double is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Double);
    package IIterable_Double is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Double);
-   package IVector_IGeometry is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Media.IGeometry);
-   package IIterable_IGeometry is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Media.IGeometry);
-   package IVector_IGradientStop is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Media.IGradientStop);
-   package IIterable_IGradientStop is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Media.IGradientStop);
-   package IVector_IPathFigure is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Media.IPathFigure);
-   package IIterable_IPathFigure is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Media.IPathFigure);
-   package IVector_IPathSegment is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Media.IPathSegment);
-   package IIterable_IPathSegment is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Media.IPathSegment);
+   package IVector_IGeometry is new WinRt.Windows.Foundation.Collections.IVector (IGeometry);
+   package IIterable_IGeometry is new WinRt.Windows.Foundation.Collections.IIterable (IGeometry);
+   package IVector_IGradientStop is new WinRt.Windows.Foundation.Collections.IVector (IGradientStop);
+   package IIterable_IGradientStop is new WinRt.Windows.Foundation.Collections.IIterable (IGradientStop);
+   package IVector_IPathFigure is new WinRt.Windows.Foundation.Collections.IVector (IPathFigure);
+   package IIterable_IPathFigure is new WinRt.Windows.Foundation.Collections.IIterable (IPathFigure);
+   package IVector_IPathSegment is new WinRt.Windows.Foundation.Collections.IVector (IPathSegment);
+   package IIterable_IPathSegment is new WinRt.Windows.Foundation.Collections.IIterable (IPathSegment);
    package IVector_Point is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Foundation.Point);
    package IIterable_Point is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Foundation.Point);
-   package IVector_ITimelineMarker is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Media.ITimelineMarker);
-   package IIterable_ITimelineMarker is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Media.ITimelineMarker);
-   package IVector_ITransform is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Media.ITransform);
-   package IIterable_ITransform is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Media.ITransform);
+   package IVector_ITimelineMarker is new WinRt.Windows.Foundation.Collections.IVector (ITimelineMarker);
+   package IIterable_ITimelineMarker is new WinRt.Windows.Foundation.Collections.IIterable (ITimelineMarker);
+   package IVector_ITransform is new WinRt.Windows.Foundation.Collections.IVector (ITransform);
+   package IIterable_ITransform is new WinRt.Windows.Foundation.Collections.IIterable (ITransform);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Brush
 

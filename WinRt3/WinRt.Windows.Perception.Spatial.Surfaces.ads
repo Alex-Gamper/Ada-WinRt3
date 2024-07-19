@@ -113,7 +113,7 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
    IID_IReference_SpatialBoundingOrientedBox : aliased WinRt.IID := (1121620688, 38197, 20782, (158, 31, 104, 65, 187, 187, 116, 30 ));
    function QInterface_IReference_SpatialBoundingOrientedBox is new Generic_QueryInterface (GenericObject_Interface, IReference_SpatialBoundingOrientedBox.Kind, IID_IReference_SpatialBoundingOrientedBox'Access);
 
-   package IMapView_Guid_ISpatialSurfaceInfo is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.Guid, WinRt.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceInfo);
+   package IMapView_Guid_ISpatialSurfaceInfo is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.Guid, ISpatialSurfaceInfo);
    IID_IMapView_Guid_ISpatialSurfaceInfo : aliased WinRt.IID := (1455980789, 29517, 23759, (179, 228, 130, 51, 164, 22, 168, 9 ));
    function QInterface_IMapView_Guid_ISpatialSurfaceInfo is new Generic_QueryInterface (GenericObject_Interface, IMapView_Guid_ISpatialSurfaceInfo.Kind, IID_IMapView_Guid_ISpatialSurfaceInfo'Access);
 

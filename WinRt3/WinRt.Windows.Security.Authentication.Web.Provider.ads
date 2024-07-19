@@ -257,7 +257,7 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IWebProviderTokenResponse is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Security.Authentication.Web.Provider.IWebProviderTokenResponse);
+   package IVector_IWebProviderTokenResponse is new WinRt.Windows.Foundation.Collections.IVector (IWebProviderTokenResponse);
    IID_IVector_IWebProviderTokenResponse : aliased WinRt.IID := (3463113524, 42607, 23273, (134, 93, 23, 121, 134, 111, 39, 223 ));
    function QInterface_IVector_IWebProviderTokenResponse is new Generic_QueryInterface (GenericObject_Interface, IVector_IWebProviderTokenResponse.Kind, IID_IVector_IWebProviderTokenResponse'Access);
 

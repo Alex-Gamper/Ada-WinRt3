@@ -379,15 +379,15 @@ package WinRt.Windows.Services.Maps.Guidance is
    IID_IVectorView_HString : aliased WinRt.IID := (3561360537, 52344, 24284, (155, 97, 4, 226, 167, 153, 14, 30 ));
    function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
-   package IVectorView_IGuidanceManeuver is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Maps.Guidance.IGuidanceManeuver);
+   package IVectorView_IGuidanceManeuver is new WinRt.Windows.Foundation.Collections.IVectorView (IGuidanceManeuver);
    IID_IVectorView_IGuidanceManeuver : aliased WinRt.IID := (2403678355, 64589, 22891, (156, 117, 218, 57, 63, 234, 158, 178 ));
    function QInterface_IVectorView_IGuidanceManeuver is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGuidanceManeuver.Kind, IID_IVectorView_IGuidanceManeuver'Access);
 
-   package IVectorView_IGuidanceRoadSegment is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Maps.Guidance.IGuidanceRoadSegment);
+   package IVectorView_IGuidanceRoadSegment is new WinRt.Windows.Foundation.Collections.IVectorView (IGuidanceRoadSegment);
    IID_IVectorView_IGuidanceRoadSegment : aliased WinRt.IID := (2403678355, 64589, 22891, (156, 117, 218, 57, 63, 234, 158, 178 ));
    function QInterface_IVectorView_IGuidanceRoadSegment is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGuidanceRoadSegment.Kind, IID_IVectorView_IGuidanceRoadSegment'Access);
 
-   package IVectorView_IGuidanceLaneInfo is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Maps.Guidance.IGuidanceLaneInfo);
+   package IVectorView_IGuidanceLaneInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IGuidanceLaneInfo);
    IID_IVectorView_IGuidanceLaneInfo : aliased WinRt.IID := (2721903200, 31715, 23147, (164, 119, 147, 231, 233, 216, 176, 169 ));
    function QInterface_IVectorView_IGuidanceLaneInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGuidanceLaneInfo.Kind, IID_IVectorView_IGuidanceLaneInfo'Access);
 

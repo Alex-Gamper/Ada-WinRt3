@@ -36,32 +36,32 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Web.Http.Headers is
 
-   package IIterable_IHttpNameValueHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue);
-   package IVector_IHttpChallengeHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue);
-   package IIterable_IHttpChallengeHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue);
-   package IVector_IHttpConnectionOptionHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue);
-   package IIterable_IHttpConnectionOptionHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue);
-   package IVector_IHttpContentCodingHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue);
-   package IIterable_IHttpContentCodingHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue);
-   package IVector_IHttpContentCodingWithQualityHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue);
-   package IIterable_IHttpContentCodingWithQualityHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue);
+   package IIterable_IHttpNameValueHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (IHttpNameValueHeaderValue);
+   package IVector_IHttpChallengeHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (IHttpChallengeHeaderValue);
+   package IIterable_IHttpChallengeHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (IHttpChallengeHeaderValue);
+   package IVector_IHttpConnectionOptionHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (IHttpConnectionOptionHeaderValue);
+   package IIterable_IHttpConnectionOptionHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (IHttpConnectionOptionHeaderValue);
+   package IVector_IHttpContentCodingHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (IHttpContentCodingHeaderValue);
+   package IIterable_IHttpContentCodingHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (IHttpContentCodingHeaderValue);
+   package IVector_IHttpContentCodingWithQualityHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (IHttpContentCodingWithQualityHeaderValue);
+   package IIterable_IHttpContentCodingWithQualityHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (IHttpContentCodingWithQualityHeaderValue);
    package IMap_HString_HString is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, WinRt.HString);
-   package IVector_IHttpCookiePairHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue);
-   package IIterable_IHttpCookiePairHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue);
-   package IVector_IHttpExpectationHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue);
-   package IIterable_IHttpExpectationHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue);
+   package IVector_IHttpCookiePairHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (IHttpCookiePairHeaderValue);
+   package IIterable_IHttpCookiePairHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (IHttpCookiePairHeaderValue);
+   package IVector_IHttpExpectationHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (IHttpExpectationHeaderValue);
+   package IIterable_IHttpExpectationHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (IHttpExpectationHeaderValue);
    package IVector_ILanguage is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Globalization.ILanguage);
    package IIterable_ILanguage is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Globalization.ILanguage);
-   package IVector_IHttpLanguageRangeWithQualityHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue);
-   package IIterable_IHttpLanguageRangeWithQualityHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue);
-   package IVector_IHttpMediaTypeWithQualityHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue);
-   package IIterable_IHttpMediaTypeWithQualityHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue);
+   package IVector_IHttpLanguageRangeWithQualityHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (IHttpLanguageRangeWithQualityHeaderValue);
+   package IIterable_IHttpLanguageRangeWithQualityHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (IHttpLanguageRangeWithQualityHeaderValue);
+   package IVector_IHttpMediaTypeWithQualityHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (IHttpMediaTypeWithQualityHeaderValue);
+   package IIterable_IHttpMediaTypeWithQualityHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (IHttpMediaTypeWithQualityHeaderValue);
    package IVector_IHttpMethod is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Http.IHttpMethod);
    package IIterable_IHttpMethod is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.IHttpMethod);
-   package IVector_IHttpProductInfoHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue);
-   package IIterable_IHttpProductInfoHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue);
-   package IVector_IHttpTransferCodingHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue);
-   package IIterable_IHttpTransferCodingHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue);
+   package IVector_IHttpProductInfoHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (IHttpProductInfoHeaderValue);
+   package IIterable_IHttpProductInfoHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (IHttpProductInfoHeaderValue);
+   package IVector_IHttpTransferCodingHeaderValue is new WinRt.Windows.Foundation.Collections.IVector (IHttpTransferCodingHeaderValue);
+   package IIterable_IHttpTransferCodingHeaderValue is new WinRt.Windows.Foundation.Collections.IIterable (IHttpTransferCodingHeaderValue);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for HttpCacheDirectiveHeaderValueCollection
 

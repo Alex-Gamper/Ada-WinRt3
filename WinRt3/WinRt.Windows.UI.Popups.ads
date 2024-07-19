@@ -139,7 +139,7 @@ package WinRt.Windows.UI.Popups is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IUICommand is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Popups.IUICommand);
+   package IVector_IUICommand is new WinRt.Windows.Foundation.Collections.IVector (IUICommand);
    IID_IVector_IUICommand : aliased WinRt.IID := (2201593153, 55763, 20867, (134, 14, 161, 247, 15, 189, 106, 107 ));
    function QInterface_IVector_IUICommand is new Generic_QueryInterface (GenericObject_Interface, IVector_IUICommand.Kind, IID_IVector_IUICommand'Access);
 

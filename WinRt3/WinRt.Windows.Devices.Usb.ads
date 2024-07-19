@@ -370,11 +370,11 @@ package WinRt.Windows.Devices.Usb is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IUsbInterface is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Usb.IUsbInterface);
+   package IVectorView_IUsbInterface is new WinRt.Windows.Foundation.Collections.IVectorView (IUsbInterface);
    IID_IVectorView_IUsbInterface : aliased WinRt.IID := (1930260251, 12084, 24049, (132, 228, 127, 68, 200, 177, 193, 79 ));
    function QInterface_IVectorView_IUsbInterface is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUsbInterface.Kind, IID_IVectorView_IUsbInterface'Access);
 
-   package IVectorView_IUsbDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Usb.IUsbDescriptor);
+   package IVectorView_IUsbDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (IUsbDescriptor);
    IID_IVectorView_IUsbDescriptor : aliased WinRt.IID := (1930260251, 12084, 24049, (132, 228, 127, 68, 200, 177, 193, 79 ));
    function QInterface_IVectorView_IUsbDescriptor is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUsbDescriptor.Kind, IID_IVectorView_IUsbDescriptor'Access);
 
@@ -382,39 +382,39 @@ package WinRt.Windows.Devices.Usb is
    IID_IReference_Byte : aliased WinRt.IID := (1887836237, 40538, 22295, (189, 226, 102, 190, 132, 63, 118, 192 ));
    function QInterface_IReference_Byte is new Generic_QueryInterface (GenericObject_Interface, IReference_Byte.Kind, IID_IReference_Byte'Access);
 
-   package IVectorView_IUsbBulkInPipe is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Usb.IUsbBulkInPipe);
+   package IVectorView_IUsbBulkInPipe is new WinRt.Windows.Foundation.Collections.IVectorView (IUsbBulkInPipe);
    IID_IVectorView_IUsbBulkInPipe : aliased WinRt.IID := (3567745592, 6562, 24219, (179, 138, 49, 99, 11, 1, 22, 166 ));
    function QInterface_IVectorView_IUsbBulkInPipe is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUsbBulkInPipe.Kind, IID_IVectorView_IUsbBulkInPipe'Access);
 
-   package IVectorView_IUsbInterruptInPipe is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Usb.IUsbInterruptInPipe);
+   package IVectorView_IUsbInterruptInPipe is new WinRt.Windows.Foundation.Collections.IVectorView (IUsbInterruptInPipe);
    IID_IVectorView_IUsbInterruptInPipe : aliased WinRt.IID := (3567745592, 6562, 24219, (179, 138, 49, 99, 11, 1, 22, 166 ));
    function QInterface_IVectorView_IUsbInterruptInPipe is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUsbInterruptInPipe.Kind, IID_IVectorView_IUsbInterruptInPipe'Access);
 
-   package IVectorView_IUsbBulkOutPipe is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Usb.IUsbBulkOutPipe);
+   package IVectorView_IUsbBulkOutPipe is new WinRt.Windows.Foundation.Collections.IVectorView (IUsbBulkOutPipe);
    IID_IVectorView_IUsbBulkOutPipe : aliased WinRt.IID := (3567745592, 6562, 24219, (179, 138, 49, 99, 11, 1, 22, 166 ));
    function QInterface_IVectorView_IUsbBulkOutPipe is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUsbBulkOutPipe.Kind, IID_IVectorView_IUsbBulkOutPipe'Access);
 
-   package IVectorView_IUsbInterruptOutPipe is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Usb.IUsbInterruptOutPipe);
+   package IVectorView_IUsbInterruptOutPipe is new WinRt.Windows.Foundation.Collections.IVectorView (IUsbInterruptOutPipe);
    IID_IVectorView_IUsbInterruptOutPipe : aliased WinRt.IID := (3567745592, 6562, 24219, (179, 138, 49, 99, 11, 1, 22, 166 ));
    function QInterface_IVectorView_IUsbInterruptOutPipe is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUsbInterruptOutPipe.Kind, IID_IVectorView_IUsbInterruptOutPipe'Access);
 
-   package IVectorView_IUsbInterfaceSetting is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Usb.IUsbInterfaceSetting);
+   package IVectorView_IUsbInterfaceSetting is new WinRt.Windows.Foundation.Collections.IVectorView (IUsbInterfaceSetting);
    IID_IVectorView_IUsbInterfaceSetting : aliased WinRt.IID := (3567745592, 6562, 24219, (179, 138, 49, 99, 11, 1, 22, 166 ));
    function QInterface_IVectorView_IUsbInterfaceSetting is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUsbInterfaceSetting.Kind, IID_IVectorView_IUsbInterfaceSetting'Access);
 
-   package IVectorView_IUsbBulkInEndpointDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Usb.IUsbBulkInEndpointDescriptor);
+   package IVectorView_IUsbBulkInEndpointDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (IUsbBulkInEndpointDescriptor);
    IID_IVectorView_IUsbBulkInEndpointDescriptor : aliased WinRt.IID := (3078042288, 7220, 22431, (134, 153, 48, 109, 231, 57, 205, 169 ));
    function QInterface_IVectorView_IUsbBulkInEndpointDescriptor is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUsbBulkInEndpointDescriptor.Kind, IID_IVectorView_IUsbBulkInEndpointDescriptor'Access);
 
-   package IVectorView_IUsbInterruptInEndpointDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Usb.IUsbInterruptInEndpointDescriptor);
+   package IVectorView_IUsbInterruptInEndpointDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (IUsbInterruptInEndpointDescriptor);
    IID_IVectorView_IUsbInterruptInEndpointDescriptor : aliased WinRt.IID := (3078042288, 7220, 22431, (134, 153, 48, 109, 231, 57, 205, 169 ));
    function QInterface_IVectorView_IUsbInterruptInEndpointDescriptor is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUsbInterruptInEndpointDescriptor.Kind, IID_IVectorView_IUsbInterruptInEndpointDescriptor'Access);
 
-   package IVectorView_IUsbBulkOutEndpointDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Usb.IUsbBulkOutEndpointDescriptor);
+   package IVectorView_IUsbBulkOutEndpointDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (IUsbBulkOutEndpointDescriptor);
    IID_IVectorView_IUsbBulkOutEndpointDescriptor : aliased WinRt.IID := (3078042288, 7220, 22431, (134, 153, 48, 109, 231, 57, 205, 169 ));
    function QInterface_IVectorView_IUsbBulkOutEndpointDescriptor is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUsbBulkOutEndpointDescriptor.Kind, IID_IVectorView_IUsbBulkOutEndpointDescriptor'Access);
 
-   package IVectorView_IUsbInterruptOutEndpointDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Usb.IUsbInterruptOutEndpointDescriptor);
+   package IVectorView_IUsbInterruptOutEndpointDescriptor is new WinRt.Windows.Foundation.Collections.IVectorView (IUsbInterruptOutEndpointDescriptor);
    IID_IVectorView_IUsbInterruptOutEndpointDescriptor : aliased WinRt.IID := (3078042288, 7220, 22431, (134, 153, 48, 109, 231, 57, 205, 169 ));
    function QInterface_IVectorView_IUsbInterruptOutEndpointDescriptor is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUsbInterruptOutEndpointDescriptor.Kind, IID_IVectorView_IUsbInterruptOutEndpointDescriptor'Access);
 

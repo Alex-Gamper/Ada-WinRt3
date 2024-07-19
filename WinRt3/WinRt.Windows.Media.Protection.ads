@@ -317,11 +317,11 @@ package WinRt.Windows.Media.Protection is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IReference_HdcpProtection is new WinRt.Windows.Foundation.IReference (WinRt.Windows.Media.Protection.HdcpProtection);
+   package IReference_HdcpProtection is new WinRt.Windows.Foundation.IReference (HdcpProtection);
    IID_IReference_HdcpProtection : aliased WinRt.IID := (4131202068, 7530, 22799, (144, 2, 189, 170, 165, 114, 179, 108 ));
    function QInterface_IReference_HdcpProtection is new Generic_QueryInterface (GenericObject_Interface, IReference_HdcpProtection.Kind, IID_IReference_HdcpProtection'Access);
 
-   package IVector_IRevocationAndRenewalItem is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Media.Protection.IRevocationAndRenewalItem);
+   package IVector_IRevocationAndRenewalItem is new WinRt.Windows.Foundation.Collections.IVector (IRevocationAndRenewalItem);
    IID_IVector_IRevocationAndRenewalItem : aliased WinRt.IID := (3819185849, 40179, 23081, (175, 11, 88, 244, 118, 47, 61, 29 ));
    function QInterface_IVector_IRevocationAndRenewalItem is new Generic_QueryInterface (GenericObject_Interface, IVector_IRevocationAndRenewalItem.Kind, IID_IVector_IRevocationAndRenewalItem'Access);
 

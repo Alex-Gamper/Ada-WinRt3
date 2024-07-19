@@ -1650,19 +1650,19 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IAutomationPeer is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer);
+   package IVector_IAutomationPeer is new WinRt.Windows.Foundation.Collections.IVector (IAutomationPeer);
    IID_IVector_IAutomationPeer : aliased WinRt.IID := (3595221739, 55574, 21796, (175, 202, 102, 156, 17, 191, 114, 254 ));
    function QInterface_IVector_IAutomationPeer is new Generic_QueryInterface (GenericObject_Interface, IVector_IAutomationPeer.Kind, IID_IVector_IAutomationPeer'Access);
 
-   package IVectorView_IAutomationPeer is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer);
+   package IVectorView_IAutomationPeer is new WinRt.Windows.Foundation.Collections.IVectorView (IAutomationPeer);
    IID_IVectorView_IAutomationPeer : aliased WinRt.IID := (459568045, 29605, 24326, (135, 249, 180, 77, 75, 68, 210, 126 ));
    function QInterface_IVectorView_IAutomationPeer is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAutomationPeer.Kind, IID_IVectorView_IAutomationPeer'Access);
 
-   package IVector_IAutomationPeerAnnotation is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation);
+   package IVector_IAutomationPeerAnnotation is new WinRt.Windows.Foundation.Collections.IVector (IAutomationPeerAnnotation);
    IID_IVector_IAutomationPeerAnnotation : aliased WinRt.IID := (459568045, 29605, 24326, (135, 249, 180, 77, 75, 68, 210, 126 ));
    function QInterface_IVector_IAutomationPeerAnnotation is new Generic_QueryInterface (GenericObject_Interface, IVector_IAutomationPeerAnnotation.Kind, IID_IVector_IAutomationPeerAnnotation'Access);
 
-   package IIterable_IAutomationPeer is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer);
+   package IIterable_IAutomationPeer is new WinRt.Windows.Foundation.Collections.IIterable (IAutomationPeer);
    IID_IIterable_IAutomationPeer : aliased WinRt.IID := (3581473647, 16794, 21566, (141, 220, 255, 20, 112, 222, 25, 104 ));
    function QInterface_IIterable_IAutomationPeer is new Generic_QueryInterface (GenericObject_Interface, IIterable_IAutomationPeer.Kind, IID_IIterable_IAutomationPeer'Access);
 

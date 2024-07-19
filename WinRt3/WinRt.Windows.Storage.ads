@@ -662,11 +662,11 @@ package WinRt.Windows.Storage is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IMapView_HString_IApplicationDataContainer is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.Windows.Storage.IApplicationDataContainer);
+   package IMapView_HString_IApplicationDataContainer is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, IApplicationDataContainer);
    IID_IMapView_HString_IApplicationDataContainer : aliased WinRt.IID := (3373923076, 11229, 24354, (176, 104, 78, 149, 36, 247, 143, 4 ));
    function QInterface_IMapView_HString_IApplicationDataContainer is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_IApplicationDataContainer.Kind, IID_IMapView_HString_IApplicationDataContainer'Access);
 
-   package IObservableVector_IStorageFolder is new WinRt.Windows.Foundation.Collections.IObservableVector (WinRt.Windows.Storage.IStorageFolder);
+   package IObservableVector_IStorageFolder is new WinRt.Windows.Foundation.Collections.IObservableVector (IStorageFolder);
    IID_IObservableVector_IStorageFolder : aliased WinRt.IID := (451046471, 29429, 21730, (186, 12, 140, 63, 216, 6, 15, 118 ));
    function QInterface_IObservableVector_IStorageFolder is new Generic_QueryInterface (GenericObject_Interface, IObservableVector_IStorageFolder.Kind, IID_IObservableVector_IStorageFolder'Access);
 

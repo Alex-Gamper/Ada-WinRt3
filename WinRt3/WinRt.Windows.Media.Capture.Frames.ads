@@ -384,11 +384,11 @@ package WinRt.Windows.Media.Capture.Frames is
    IID_IReference_TimeSpan : aliased WinRt.IID := (1550290848, 1536, 22087, (183, 28, 208, 232, 143, 30, 170, 62 ));
    function QInterface_IReference_TimeSpan is new Generic_QueryInterface (GenericObject_Interface, IReference_TimeSpan.Kind, IID_IReference_TimeSpan'Access);
 
-   package IVectorView_IMediaFrameFormat is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat);
+   package IVectorView_IMediaFrameFormat is new WinRt.Windows.Foundation.Collections.IVectorView (IMediaFrameFormat);
    IID_IVectorView_IMediaFrameFormat : aliased WinRt.IID := (2744521115, 41683, 23004, (176, 101, 211, 211, 10, 137, 158, 129 ));
    function QInterface_IVectorView_IMediaFrameFormat is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMediaFrameFormat.Kind, IID_IVectorView_IMediaFrameFormat'Access);
 
-   package IVectorView_IMediaFrameSourceInfo is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceInfo);
+   package IVectorView_IMediaFrameSourceInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IMediaFrameSourceInfo);
    IID_IVectorView_IMediaFrameSourceInfo : aliased WinRt.IID := (3240093699, 24725, 23016, (145, 29, 52, 205, 179, 154, 204, 118 ));
    function QInterface_IVectorView_IMediaFrameSourceInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMediaFrameSourceInfo.Kind, IID_IVectorView_IMediaFrameSourceInfo'Access);
 

@@ -246,7 +246,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_WiFiDirectServiceConfigurationMethod is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceConfigurationMethod);
+   package IVectorView_WiFiDirectServiceConfigurationMethod is new WinRt.Windows.Foundation.Collections.IVectorView (WiFiDirectServiceConfigurationMethod);
    IID_IVectorView_WiFiDirectServiceConfigurationMethod : aliased WinRt.IID := (3075584038, 13467, 21440, (143, 79, 152, 206, 179, 242, 35, 108 ));
    function QInterface_IVectorView_WiFiDirectServiceConfigurationMethod is new Generic_QueryInterface (GenericObject_Interface, IVectorView_WiFiDirectServiceConfigurationMethod.Kind, IID_IVectorView_WiFiDirectServiceConfigurationMethod'Access);
 
@@ -254,7 +254,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    IID_IVector_HString : aliased WinRt.IID := (2416315096, 39441, 22253, (185, 191, 248, 109, 101, 9, 116, 213 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
-   package IVector_WiFiDirectServiceConfigurationMethod is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceConfigurationMethod);
+   package IVector_WiFiDirectServiceConfigurationMethod is new WinRt.Windows.Foundation.Collections.IVector (WiFiDirectServiceConfigurationMethod);
    IID_IVector_WiFiDirectServiceConfigurationMethod : aliased WinRt.IID := (2416315096, 39441, 22253, (185, 191, 248, 109, 101, 9, 116, 213 ));
    function QInterface_IVector_WiFiDirectServiceConfigurationMethod is new Generic_QueryInterface (GenericObject_Interface, IVector_WiFiDirectServiceConfigurationMethod.Kind, IID_IVector_WiFiDirectServiceConfigurationMethod'Access);
 

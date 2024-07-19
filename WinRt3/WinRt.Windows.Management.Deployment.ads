@@ -334,11 +334,11 @@ package WinRt.Windows.Management.Deployment is
    IID_IVector_HString : aliased WinRt.IID := (452610822, 63973, 23541, (145, 81, 174, 128, 179, 64, 102, 12 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
-   package IIterable_IPackageUserInformation is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Management.Deployment.IPackageUserInformation);
+   package IIterable_IPackageUserInformation is new WinRt.Windows.Foundation.Collections.IIterable (IPackageUserInformation);
    IID_IIterable_IPackageUserInformation : aliased WinRt.IID := (1041388540, 30476, 23957, (175, 5, 88, 173, 164, 47, 24, 43 ));
    function QInterface_IIterable_IPackageUserInformation is new Generic_QueryInterface (GenericObject_Interface, IIterable_IPackageUserInformation.Kind, IID_IIterable_IPackageUserInformation'Access);
 
-   package IIterable_IPackageVolume is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Management.Deployment.IPackageVolume);
+   package IIterable_IPackageVolume is new WinRt.Windows.Foundation.Collections.IIterable (IPackageVolume);
    IID_IIterable_IPackageVolume : aliased WinRt.IID := (3628842396, 15151, 23081, (191, 34, 41, 66, 173, 204, 102, 197 ));
    function QInterface_IIterable_IPackageVolume is new Generic_QueryInterface (GenericObject_Interface, IIterable_IPackageVolume.Kind, IID_IIterable_IPackageVolume'Access);
 

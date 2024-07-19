@@ -101,7 +101,7 @@ package WinRt.Windows.Devices.Haptics is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_ISimpleHapticsControllerFeedback is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Haptics.ISimpleHapticsControllerFeedback);
+   package IVectorView_ISimpleHapticsControllerFeedback is new WinRt.Windows.Foundation.Collections.IVectorView (ISimpleHapticsControllerFeedback);
    IID_IVectorView_ISimpleHapticsControllerFeedback : aliased WinRt.IID := (2338135694, 16047, 21727, (134, 230, 231, 156, 59, 95, 202, 27 ));
    function QInterface_IVectorView_ISimpleHapticsControllerFeedback is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ISimpleHapticsControllerFeedback.Kind, IID_IVectorView_ISimpleHapticsControllerFeedback'Access);
 

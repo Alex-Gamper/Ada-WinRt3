@@ -193,7 +193,7 @@ package WinRt.Windows.Devices.Perception.Provider is
    IID_IVectorView_HString : aliased WinRt.IID := (2945758814, 42050, 23116, (156, 143, 136, 131, 210, 117, 8, 194 ));
    function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
-   package IVectorView_IPerceptionCorrelation is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Perception.Provider.IPerceptionCorrelation);
+   package IVectorView_IPerceptionCorrelation is new WinRt.Windows.Foundation.Collections.IVectorView (IPerceptionCorrelation);
    IID_IVectorView_IPerceptionCorrelation : aliased WinRt.IID := (1149313631, 62761, 21341, (163, 227, 100, 162, 81, 79, 140, 106 ));
    function QInterface_IVectorView_IPerceptionCorrelation is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPerceptionCorrelation.Kind, IID_IVectorView_IPerceptionCorrelation'Access);
 

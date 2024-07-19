@@ -164,7 +164,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IOnlineIdServiceTicket is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicket);
+   package IVectorView_IOnlineIdServiceTicket is new WinRt.Windows.Foundation.Collections.IVectorView (IOnlineIdServiceTicket);
    IID_IVectorView_IOnlineIdServiceTicket : aliased WinRt.IID := (55910676, 32736, 22754, (165, 41, 218, 136, 245, 156, 63, 108 ));
    function QInterface_IVectorView_IOnlineIdServiceTicket is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IOnlineIdServiceTicket.Kind, IID_IVectorView_IOnlineIdServiceTicket'Access);
 

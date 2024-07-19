@@ -700,7 +700,7 @@ package WinRt.Windows.System.RemoteSystems is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IRemoteSystemApp is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.System.RemoteSystems.IRemoteSystemApp);
+   package IVectorView_IRemoteSystemApp is new WinRt.Windows.Foundation.Collections.IVectorView (IRemoteSystemApp);
    IID_IVectorView_IRemoteSystemApp : aliased WinRt.IID := (1292893602, 38974, 20964, (178, 121, 196, 231, 76, 155, 251, 235 ));
    function QInterface_IVectorView_IRemoteSystemApp is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IRemoteSystemApp.Kind, IID_IVectorView_IRemoteSystemApp'Access);
 

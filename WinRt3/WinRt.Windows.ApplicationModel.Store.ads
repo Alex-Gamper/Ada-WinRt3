@@ -228,11 +228,11 @@ package WinRt.Windows.ApplicationModel.Store is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IMapView_HString_IProductLicense is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.Windows.ApplicationModel.Store.IProductLicense);
+   package IMapView_HString_IProductLicense is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, IProductLicense);
    IID_IMapView_HString_IProductLicense : aliased WinRt.IID := (348922225, 54599, 21311, (141, 115, 115, 6, 206, 197, 147, 235 ));
    function QInterface_IMapView_HString_IProductLicense is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_IProductLicense.Kind, IID_IMapView_HString_IProductLicense'Access);
 
-   package IMapView_HString_IProductListing is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.Windows.ApplicationModel.Store.IProductListing);
+   package IMapView_HString_IProductListing is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, IProductListing);
    IID_IMapView_HString_IProductListing : aliased WinRt.IID := (4125311269, 42831, 21305, (128, 17, 9, 219, 230, 11, 82, 130 ));
    function QInterface_IMapView_HString_IProductListing is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_IProductListing.Kind, IID_IMapView_HString_IProductListing'Access);
 

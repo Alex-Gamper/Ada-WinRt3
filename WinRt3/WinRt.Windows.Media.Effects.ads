@@ -275,7 +275,7 @@ package WinRt.Windows.Media.Effects is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IAudioEffect is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Effects.IAudioEffect);
+   package IVectorView_IAudioEffect is new WinRt.Windows.Foundation.Collections.IVectorView (IAudioEffect);
    IID_IVectorView_IAudioEffect : aliased WinRt.IID := (2045107869, 28969, 23797, (139, 245, 231, 204, 105, 11, 21, 136 ));
    function QInterface_IVectorView_IAudioEffect is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAudioEffect.Kind, IID_IVectorView_IAudioEffect'Access);
 

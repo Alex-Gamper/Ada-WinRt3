@@ -303,7 +303,7 @@ package WinRt.Windows.UI.WindowManagement is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IDisplayRegion is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.WindowManagement.IDisplayRegion);
+   package IVectorView_IDisplayRegion is new WinRt.Windows.Foundation.Collections.IVectorView (IDisplayRegion);
    IID_IVectorView_IDisplayRegion : aliased WinRt.IID := (3730199316, 53820, 23133, (135, 178, 112, 18, 221, 232, 58, 32 ));
    function QInterface_IVectorView_IDisplayRegion is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IDisplayRegion.Kind, IID_IVectorView_IDisplayRegion'Access);
 
@@ -311,7 +311,7 @@ package WinRt.Windows.UI.WindowManagement is
    IID_IReference_Color : aliased WinRt.IID := (293486685, 21410, 24011, (154, 3, 244, 116, 44, 238, 108, 207 ));
    function QInterface_IReference_Color is new Generic_QueryInterface (GenericObject_Interface, IReference_Color.Kind, IID_IReference_Color'Access);
 
-   package IVectorView_IAppWindowTitleBarOcclusion is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.WindowManagement.IAppWindowTitleBarOcclusion);
+   package IVectorView_IAppWindowTitleBarOcclusion is new WinRt.Windows.Foundation.Collections.IVectorView (IAppWindowTitleBarOcclusion);
    IID_IVectorView_IAppWindowTitleBarOcclusion : aliased WinRt.IID := (293486685, 21410, 24011, (154, 3, 244, 116, 44, 238, 108, 207 ));
    function QInterface_IVectorView_IAppWindowTitleBarOcclusion is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAppWindowTitleBarOcclusion.Kind, IID_IVectorView_IAppWindowTitleBarOcclusion'Access);
 

@@ -98,11 +98,11 @@ package WinRt.Windows.Web.AtomPub is
    IID_IVectorView_HString : aliased WinRt.IID := (2169324523, 63922, 20492, (171, 255, 25, 173, 8, 100, 212, 35 ));
    function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
-   package IVectorView_IWorkspace is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Web.AtomPub.IWorkspace);
+   package IVectorView_IWorkspace is new WinRt.Windows.Foundation.Collections.IVectorView (IWorkspace);
    IID_IVectorView_IWorkspace : aliased WinRt.IID := (322799837, 38193, 23526, (144, 155, 24, 32, 225, 244, 170, 220 ));
    function QInterface_IVectorView_IWorkspace is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IWorkspace.Kind, IID_IVectorView_IWorkspace'Access);
 
-   package IVectorView_IResourceCollection is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Web.AtomPub.IResourceCollection);
+   package IVectorView_IResourceCollection is new WinRt.Windows.Foundation.Collections.IVectorView (IResourceCollection);
    IID_IVectorView_IResourceCollection : aliased WinRt.IID := (17830074, 15285, 20632, (173, 14, 117, 29, 159, 194, 4, 122 ));
    function QInterface_IVectorView_IResourceCollection is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IResourceCollection.Kind, IID_IVectorView_IResourceCollection'Access);
 

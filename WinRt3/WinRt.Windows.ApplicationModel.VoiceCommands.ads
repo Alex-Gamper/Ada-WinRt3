@@ -196,7 +196,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IVoiceCommandContentTile is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandContentTile);
+   package IVector_IVoiceCommandContentTile is new WinRt.Windows.Foundation.Collections.IVector (IVoiceCommandContentTile);
    IID_IVector_IVoiceCommandContentTile : aliased WinRt.IID := (1998028289, 59612, 22248, (168, 31, 218, 173, 203, 131, 193, 128 ));
    function QInterface_IVector_IVoiceCommandContentTile is new Generic_QueryInterface (GenericObject_Interface, IVector_IVoiceCommandContentTile.Kind, IID_IVector_IVoiceCommandContentTile'Access);
 

@@ -305,15 +305,15 @@ package WinRt.Windows.Services.TargetedContent is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IMapView_HString_ITargetedContentValue is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.Windows.Services.TargetedContent.ITargetedContentValue);
+   package IMapView_HString_ITargetedContentValue is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, ITargetedContentValue);
    IID_IMapView_HString_ITargetedContentValue : aliased WinRt.IID := (2085964656, 14390, 23126, (137, 207, 220, 210, 242, 99, 79, 175 ));
    function QInterface_IMapView_HString_ITargetedContentValue is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_ITargetedContentValue.Kind, IID_IMapView_HString_ITargetedContentValue'Access);
 
-   package IVectorView_ITargetedContentCollection is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.TargetedContent.ITargetedContentCollection);
+   package IVectorView_ITargetedContentCollection is new WinRt.Windows.Foundation.Collections.IVectorView (ITargetedContentCollection);
    IID_IVectorView_ITargetedContentCollection : aliased WinRt.IID := (2085964656, 14390, 23126, (137, 207, 220, 210, 242, 99, 79, 175 ));
    function QInterface_IVectorView_ITargetedContentCollection is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ITargetedContentCollection.Kind, IID_IVectorView_ITargetedContentCollection'Access);
 
-   package IVectorView_ITargetedContentItem is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.TargetedContent.ITargetedContentItem);
+   package IVectorView_ITargetedContentItem is new WinRt.Windows.Foundation.Collections.IVectorView (ITargetedContentItem);
    IID_IVectorView_ITargetedContentItem : aliased WinRt.IID := (2085964656, 14390, 23126, (137, 207, 220, 210, 242, 99, 79, 175 ));
    function QInterface_IVectorView_ITargetedContentItem is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ITargetedContentItem.Kind, IID_IVectorView_ITargetedContentItem'Access);
 
@@ -341,11 +341,11 @@ package WinRt.Windows.Services.TargetedContent is
    IID_IVectorView_Boolean : aliased WinRt.IID := (1805481000, 42015, 21791, (153, 31, 123, 54, 245, 217, 134, 158 ));
    function QInterface_IVectorView_Boolean is new Generic_QueryInterface (GenericObject_Interface, IVectorView_Boolean.Kind, IID_IVectorView_Boolean'Access);
 
-   package IVectorView_ITargetedContentImage is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.TargetedContent.ITargetedContentImage);
+   package IVectorView_ITargetedContentImage is new WinRt.Windows.Foundation.Collections.IVectorView (ITargetedContentImage);
    IID_IVectorView_ITargetedContentImage : aliased WinRt.IID := (1805481000, 42015, 21791, (153, 31, 123, 54, 245, 217, 134, 158 ));
    function QInterface_IVectorView_ITargetedContentImage is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ITargetedContentImage.Kind, IID_IVectorView_ITargetedContentImage'Access);
 
-   package IVectorView_ITargetedContentAction is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.TargetedContent.ITargetedContentAction);
+   package IVectorView_ITargetedContentAction is new WinRt.Windows.Foundation.Collections.IVectorView (ITargetedContentAction);
    IID_IVectorView_ITargetedContentAction : aliased WinRt.IID := (1805481000, 42015, 21791, (153, 31, 123, 54, 245, 217, 134, 158 ));
    function QInterface_IVectorView_ITargetedContentAction is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ITargetedContentAction.Kind, IID_IVectorView_ITargetedContentAction'Access);
 

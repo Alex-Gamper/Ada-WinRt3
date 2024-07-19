@@ -407,7 +407,7 @@ package WinRt.Windows.Devices.AllJoyn is
    IID_IMapView_HString_IInspectable : aliased WinRt.IID := (1345813066, 23444, 24157, (164, 121, 22, 254, 174, 99, 154, 138 ));
    function QInterface_IMapView_HString_IInspectable is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_IInspectable.Kind, IID_IMapView_HString_IInspectable'Access);
 
-   package IVector_AllJoynAuthenticationMechanism is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.AllJoyn.AllJoynAuthenticationMechanism);
+   package IVector_AllJoynAuthenticationMechanism is new WinRt.Windows.Foundation.Collections.IVector (AllJoynAuthenticationMechanism);
    IID_IVector_AllJoynAuthenticationMechanism : aliased WinRt.IID := (3963311541, 18378, 24422, (176, 18, 170, 46, 47, 81, 49, 206 ));
    function QInterface_IVector_AllJoynAuthenticationMechanism is new Generic_QueryInterface (GenericObject_Interface, IVector_AllJoynAuthenticationMechanism.Kind, IID_IVector_AllJoynAuthenticationMechanism'Access);
 

@@ -439,7 +439,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    IID_IVector_HString : aliased WinRt.IID := (1452827952, 3763, 22589, (174, 241, 201, 99, 247, 92, 96, 19 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
-   package IVectorView_IClipboardHistoryItem is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.DataTransfer.IClipboardHistoryItem);
+   package IVectorView_IClipboardHistoryItem is new WinRt.Windows.Foundation.Collections.IVectorView (IClipboardHistoryItem);
    IID_IVectorView_IClipboardHistoryItem : aliased WinRt.IID := (4130646964, 40666, 23073, (169, 164, 156, 126, 99, 14, 248, 247 ));
    function QInterface_IVectorView_IClipboardHistoryItem is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IClipboardHistoryItem.Kind, IID_IVectorView_IClipboardHistoryItem'Access);
 
@@ -447,7 +447,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    IID_IVectorView_HString : aliased WinRt.IID := (688453513, 39074, 21029, (166, 192, 35, 137, 173, 14, 83, 129 ));
    function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
-   package IVector_IShareProvider is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.DataTransfer.IShareProvider);
+   package IVector_IShareProvider is new WinRt.Windows.Foundation.Collections.IVector (IShareProvider);
    IID_IVector_IShareProvider : aliased WinRt.IID := (2390206872, 13944, 23992, (177, 29, 14, 139, 84, 107, 188, 55 ));
    function QInterface_IVector_IShareProvider is new Generic_QueryInterface (GenericObject_Interface, IVector_IShareProvider.Kind, IID_IVector_IShareProvider'Access);
 

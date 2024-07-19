@@ -258,11 +258,11 @@ package WinRt.Windows.UI.StartScreen is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IJumpListItem is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.StartScreen.IJumpListItem);
+   package IVector_IJumpListItem is new WinRt.Windows.Foundation.Collections.IVector (IJumpListItem);
    IID_IVector_IJumpListItem : aliased WinRt.IID := (4237199330, 23959, 24268, (171, 193, 126, 39, 199, 57, 58, 204 ));
    function QInterface_IVector_IJumpListItem is new Generic_QueryInterface (GenericObject_Interface, IVector_IJumpListItem.Kind, IID_IVector_IJumpListItem'Access);
 
-   package IVectorView_ISecondaryTileVisualElements is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements);
+   package IVectorView_ISecondaryTileVisualElements is new WinRt.Windows.Foundation.Collections.IVectorView (ISecondaryTileVisualElements);
    IID_IVectorView_ISecondaryTileVisualElements : aliased WinRt.IID := (1470322795, 30998, 22715, (151, 95, 132, 126, 94, 104, 10, 85 ));
    function QInterface_IVectorView_ISecondaryTileVisualElements is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ISecondaryTileVisualElements.Kind, IID_IVectorView_ISecondaryTileVisualElements'Access);
 

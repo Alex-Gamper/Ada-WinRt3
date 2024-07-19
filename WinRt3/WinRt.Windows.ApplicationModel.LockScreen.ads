@@ -105,7 +105,7 @@ package WinRt.Windows.ApplicationModel.LockScreen is
    IID_IReference_UInt32 : aliased WinRt.IID := (3401339945, 23826, 21513, (185, 10, 22, 113, 134, 128, 72, 117 ));
    function QInterface_IReference_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IReference_UInt32.Kind, IID_IReference_UInt32'Access);
 
-   package IVectorView_ILockScreenBadge is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.LockScreen.ILockScreenBadge);
+   package IVectorView_ILockScreenBadge is new WinRt.Windows.Foundation.Collections.IVectorView (ILockScreenBadge);
    IID_IVectorView_ILockScreenBadge : aliased WinRt.IID := (730044860, 59662, 20767, (190, 161, 231, 232, 77, 181, 204, 127 ));
    function QInterface_IVectorView_ILockScreenBadge is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ILockScreenBadge.Kind, IID_IVectorView_ILockScreenBadge'Access);
 

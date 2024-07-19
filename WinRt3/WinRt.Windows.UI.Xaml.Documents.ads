@@ -448,7 +448,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_TextRange is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Documents.TextRange);
+   package IVector_TextRange is new WinRt.Windows.Foundation.Collections.IVector (TextRange);
    IID_IVector_TextRange : aliased WinRt.IID := (1176929716, 24951, 21594, (139, 25, 140, 15, 180, 37, 39, 94 ));
    function QInterface_IVector_TextRange is new Generic_QueryInterface (GenericObject_Interface, IVector_TextRange.Kind, IID_IVector_TextRange'Access);
 

@@ -127,11 +127,11 @@ package WinRt.Windows.Services.Maps.LocalSearch is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_ILocalLocationHoursOfOperationItem is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Maps.LocalSearch.ILocalLocationHoursOfOperationItem);
+   package IVectorView_ILocalLocationHoursOfOperationItem is new WinRt.Windows.Foundation.Collections.IVectorView (ILocalLocationHoursOfOperationItem);
    IID_IVectorView_ILocalLocationHoursOfOperationItem : aliased WinRt.IID := (2941853751, 60705, 23879, (183, 179, 53, 59, 209, 42, 11, 137 ));
    function QInterface_IVectorView_ILocalLocationHoursOfOperationItem is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ILocalLocationHoursOfOperationItem.Kind, IID_IVectorView_ILocalLocationHoursOfOperationItem'Access);
 
-   package IVectorView_ILocalLocation is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation);
+   package IVectorView_ILocalLocation is new WinRt.Windows.Foundation.Collections.IVectorView (ILocalLocation);
    IID_IVectorView_ILocalLocation : aliased WinRt.IID := (773721954, 15413, 22268, (156, 77, 176, 202, 236, 161, 56, 49 ));
    function QInterface_IVectorView_ILocalLocation is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ILocalLocation.Kind, IID_IVectorView_ILocalLocation'Access);
 

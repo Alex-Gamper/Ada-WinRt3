@@ -518,7 +518,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    IID_IReference_TimeSpan : aliased WinRt.IID := (2201870047, 26370, 21820, (175, 72, 186, 101, 249, 215, 101, 183 ));
    function QInterface_IReference_TimeSpan is new Generic_QueryInterface (GenericObject_Interface, IReference_TimeSpan.Kind, IID_IReference_TimeSpan'Access);
 
-   package IVector_IAppointmentInvitee is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Appointments.IAppointmentInvitee);
+   package IVector_IAppointmentInvitee is new WinRt.Windows.Foundation.Collections.IVector (IAppointmentInvitee);
    IID_IVector_IAppointmentInvitee : aliased WinRt.IID := (2201870047, 26370, 21820, (175, 72, 186, 101, 249, 215, 101, 183 ));
    function QInterface_IVector_IAppointmentInvitee is new Generic_QueryInterface (GenericObject_Interface, IVector_IAppointmentInvitee.Kind, IID_IVector_IAppointmentInvitee'Access);
 

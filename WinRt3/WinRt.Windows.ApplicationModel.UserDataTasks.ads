@@ -353,7 +353,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    IID_IReference_DateTime : aliased WinRt.IID := (871026150, 38412, 21790, (134, 141, 71, 73, 250, 242, 242, 46 ));
    function QInterface_IReference_DateTime is new Generic_QueryInterface (GenericObject_Interface, IReference_DateTime.Kind, IID_IReference_DateTime'Access);
 
-   package IVectorView_IUserDataTask is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTask);
+   package IVectorView_IUserDataTask is new WinRt.Windows.Foundation.Collections.IVectorView (IUserDataTask);
    IID_IVectorView_IUserDataTask : aliased WinRt.IID := (156371940, 61948, 21091, (162, 200, 211, 86, 49, 136, 170, 214 ));
    function QInterface_IVectorView_IUserDataTask is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUserDataTask.Kind, IID_IVectorView_IUserDataTask'Access);
 
@@ -361,11 +361,11 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    IID_IReference_Int32 : aliased WinRt.IID := (213387027, 56994, 22282, (153, 227, 244, 68, 247, 125, 29, 11 ));
    function QInterface_IReference_Int32 is new Generic_QueryInterface (GenericObject_Interface, IReference_Int32.Kind, IID_IReference_Int32'Access);
 
-   package IReference_UserDataTaskDaysOfWeek is new WinRt.Windows.Foundation.IReference (WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskDaysOfWeek);
+   package IReference_UserDataTaskDaysOfWeek is new WinRt.Windows.Foundation.IReference (UserDataTaskDaysOfWeek);
    IID_IReference_UserDataTaskDaysOfWeek : aliased WinRt.IID := (213387027, 56994, 22282, (153, 227, 244, 68, 247, 125, 29, 11 ));
    function QInterface_IReference_UserDataTaskDaysOfWeek is new Generic_QueryInterface (GenericObject_Interface, IReference_UserDataTaskDaysOfWeek.Kind, IID_IReference_UserDataTaskDaysOfWeek'Access);
 
-   package IReference_UserDataTaskWeekOfMonth is new WinRt.Windows.Foundation.IReference (WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskWeekOfMonth);
+   package IReference_UserDataTaskWeekOfMonth is new WinRt.Windows.Foundation.IReference (UserDataTaskWeekOfMonth);
    IID_IReference_UserDataTaskWeekOfMonth : aliased WinRt.IID := (213387027, 56994, 22282, (153, 227, 244, 68, 247, 125, 29, 11 ));
    function QInterface_IReference_UserDataTaskWeekOfMonth is new Generic_QueryInterface (GenericObject_Interface, IReference_UserDataTaskWeekOfMonth.Kind, IID_IReference_UserDataTaskWeekOfMonth'Access);
 

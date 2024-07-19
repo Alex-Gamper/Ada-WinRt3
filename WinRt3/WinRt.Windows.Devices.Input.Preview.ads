@@ -171,7 +171,7 @@ package WinRt.Windows.Devices.Input.Preview is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IGazePointPreview is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.Input.Preview.IGazePointPreview);
+   package IVector_IGazePointPreview is new WinRt.Windows.Foundation.Collections.IVector (IGazePointPreview);
    IID_IVector_IGazePointPreview : aliased WinRt.IID := (1705495257, 28611, 21507, (158, 112, 153, 98, 132, 150, 1, 119 ));
    function QInterface_IVector_IGazePointPreview is new Generic_QueryInterface (GenericObject_Interface, IVector_IGazePointPreview.Kind, IID_IVector_IGazePointPreview'Access);
 

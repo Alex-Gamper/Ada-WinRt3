@@ -234,7 +234,7 @@ package WinRt.Windows.Security.Credentials is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IPasswordCredential is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Security.Credentials.IPasswordCredential);
+   package IVectorView_IPasswordCredential is new WinRt.Windows.Foundation.Collections.IVectorView (IPasswordCredential);
    IID_IVectorView_IPasswordCredential : aliased WinRt.IID := (225576644, 36748, 23730, (183, 41, 105, 145, 105, 3, 163, 228 ));
    function QInterface_IVectorView_IPasswordCredential is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPasswordCredential.Kind, IID_IVectorView_IPasswordCredential'Access);
 

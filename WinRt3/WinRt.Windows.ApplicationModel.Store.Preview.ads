@@ -258,7 +258,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IStorePreviewSkuInfo is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Store.Preview.IStorePreviewSkuInfo);
+   package IVectorView_IStorePreviewSkuInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IStorePreviewSkuInfo);
    IID_IVectorView_IStorePreviewSkuInfo : aliased WinRt.IID := (4110701082, 3038, 24242, (167, 32, 88, 63, 64, 67, 15, 208 ));
    function QInterface_IVectorView_IStorePreviewSkuInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IStorePreviewSkuInfo.Kind, IID_IVectorView_IStorePreviewSkuInfo'Access);
 

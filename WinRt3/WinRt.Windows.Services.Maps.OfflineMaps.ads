@@ -127,7 +127,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IOfflineMapPackage is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Maps.OfflineMaps.IOfflineMapPackage);
+   package IVectorView_IOfflineMapPackage is new WinRt.Windows.Foundation.Collections.IVectorView (IOfflineMapPackage);
    IID_IVectorView_IOfflineMapPackage : aliased WinRt.IID := (3761224259, 57019, 21389, (136, 136, 235, 97, 194, 91, 15, 182 ));
    function QInterface_IVectorView_IOfflineMapPackage is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IOfflineMapPackage.Kind, IID_IVectorView_IOfflineMapPackage'Access);
 

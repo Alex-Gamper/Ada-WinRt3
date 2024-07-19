@@ -338,15 +338,15 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IDownloadOperation is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation);
+   package IVectorView_IDownloadOperation is new WinRt.Windows.Foundation.Collections.IVectorView (IDownloadOperation);
    IID_IVectorView_IDownloadOperation : aliased WinRt.IID := (3268809140, 33222, 23416, (141, 26, 255, 121, 213, 199, 226, 28 ));
    function QInterface_IVectorView_IDownloadOperation is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IDownloadOperation.Kind, IID_IVectorView_IDownloadOperation'Access);
 
-   package IVectorView_IUploadOperation is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation);
+   package IVectorView_IUploadOperation is new WinRt.Windows.Foundation.Collections.IVectorView (IUploadOperation);
    IID_IVectorView_IUploadOperation : aliased WinRt.IID := (3268809140, 33222, 23416, (141, 26, 255, 121, 213, 199, 226, 28 ));
    function QInterface_IVectorView_IUploadOperation is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUploadOperation.Kind, IID_IVectorView_IUploadOperation'Access);
 
-   package IVector_BackgroundTransferFileRange is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferFileRange);
+   package IVector_BackgroundTransferFileRange is new WinRt.Windows.Foundation.Collections.IVector (BackgroundTransferFileRange);
    IID_IVector_BackgroundTransferFileRange : aliased WinRt.IID := (2199444037, 6137, 23937, (176, 55, 120, 13, 134, 7, 165, 51 ));
    function QInterface_IVector_BackgroundTransferFileRange is new Generic_QueryInterface (GenericObject_Interface, IVector_BackgroundTransferFileRange.Kind, IID_IVector_BackgroundTransferFileRange'Access);
 

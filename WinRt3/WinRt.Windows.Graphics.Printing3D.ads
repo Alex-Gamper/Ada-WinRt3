@@ -520,19 +520,19 @@ package WinRt.Windows.Graphics.Printing3D is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IPrinting3DTextureResource is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource);
+   package IVector_IPrinting3DTextureResource is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DTextureResource);
    IID_IVector_IPrinting3DTextureResource : aliased WinRt.IID := (942396374, 52753, 22618, (139, 34, 246, 77, 181, 157, 194, 88 ));
    function QInterface_IVector_IPrinting3DTextureResource is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DTextureResource.Kind, IID_IVector_IPrinting3DTextureResource'Access);
 
-   package IVector_IPrinting3DBaseMaterial is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DBaseMaterial);
+   package IVector_IPrinting3DBaseMaterial is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DBaseMaterial);
    IID_IVector_IPrinting3DBaseMaterial : aliased WinRt.IID := (89342292, 35608, 21231, (178, 0, 166, 143, 218, 5, 72, 243 ));
    function QInterface_IVector_IPrinting3DBaseMaterial is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DBaseMaterial.Kind, IID_IVector_IPrinting3DBaseMaterial'Access);
 
-   package IVector_IPrinting3DColorMaterial is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterial);
+   package IVector_IPrinting3DColorMaterial is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DColorMaterial);
    IID_IVector_IPrinting3DColorMaterial : aliased WinRt.IID := (4172499476, 51689, 22180, (178, 207, 207, 93, 142, 228, 211, 120 ));
    function QInterface_IVector_IPrinting3DColorMaterial is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DColorMaterial.Kind, IID_IVector_IPrinting3DColorMaterial'Access);
 
-   package IVector_IPrinting3DComponentWithMatrix is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DComponentWithMatrix);
+   package IVector_IPrinting3DComponentWithMatrix is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DComponentWithMatrix);
    IID_IVector_IPrinting3DComponentWithMatrix : aliased WinRt.IID := (1142769810, 1847, 24465, (186, 228, 17, 215, 184, 92, 126, 129 ));
    function QInterface_IVector_IPrinting3DComponentWithMatrix is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DComponentWithMatrix.Kind, IID_IVector_IPrinting3DComponentWithMatrix'Access);
 
@@ -540,7 +540,7 @@ package WinRt.Windows.Graphics.Printing3D is
    IID_IVector_Double : aliased WinRt.IID := (1440832609, 58243, 23215, (171, 59, 9, 176, 119, 33, 205, 78 ));
    function QInterface_IVector_Double is new Generic_QueryInterface (GenericObject_Interface, IVector_Double.Kind, IID_IVector_Double'Access);
 
-   package IVector_IPrinting3DCompositeMaterial is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DCompositeMaterial);
+   package IVector_IPrinting3DCompositeMaterial is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DCompositeMaterial);
    IID_IVector_IPrinting3DCompositeMaterial : aliased WinRt.IID := (957813126, 55979, 21652, (131, 68, 170, 52, 187, 88, 93, 108 ));
    function QInterface_IVector_IPrinting3DCompositeMaterial is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DCompositeMaterial.Kind, IID_IVector_IPrinting3DCompositeMaterial'Access);
 
@@ -548,23 +548,23 @@ package WinRt.Windows.Graphics.Printing3D is
    IID_IVector_UInt32 : aliased WinRt.IID := (957813126, 55979, 21652, (131, 68, 170, 52, 187, 88, 93, 108 ));
    function QInterface_IVector_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IVector_UInt32.Kind, IID_IVector_UInt32'Access);
 
-   package IVector_IPrinting3DBaseMaterialGroup is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup);
+   package IVector_IPrinting3DBaseMaterialGroup is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DBaseMaterialGroup);
    IID_IVector_IPrinting3DBaseMaterialGroup : aliased WinRt.IID := (1558489375, 9358, 23161, (138, 131, 154, 44, 60, 21, 151, 239 ));
    function QInterface_IVector_IPrinting3DBaseMaterialGroup is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DBaseMaterialGroup.Kind, IID_IVector_IPrinting3DBaseMaterialGroup'Access);
 
-   package IVector_IPrinting3DColorMaterialGroup is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterialGroup);
+   package IVector_IPrinting3DColorMaterialGroup is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DColorMaterialGroup);
    IID_IVector_IPrinting3DColorMaterialGroup : aliased WinRt.IID := (1558489375, 9358, 23161, (138, 131, 154, 44, 60, 21, 151, 239 ));
    function QInterface_IVector_IPrinting3DColorMaterialGroup is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DColorMaterialGroup.Kind, IID_IVector_IPrinting3DColorMaterialGroup'Access);
 
-   package IVector_IPrinting3DTexture2CoordMaterialGroup is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterialGroup);
+   package IVector_IPrinting3DTexture2CoordMaterialGroup is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DTexture2CoordMaterialGroup);
    IID_IVector_IPrinting3DTexture2CoordMaterialGroup : aliased WinRt.IID := (1558489375, 9358, 23161, (138, 131, 154, 44, 60, 21, 151, 239 ));
    function QInterface_IVector_IPrinting3DTexture2CoordMaterialGroup is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DTexture2CoordMaterialGroup.Kind, IID_IVector_IPrinting3DTexture2CoordMaterialGroup'Access);
 
-   package IVector_IPrinting3DCompositeMaterialGroup is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DCompositeMaterialGroup);
+   package IVector_IPrinting3DCompositeMaterialGroup is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DCompositeMaterialGroup);
    IID_IVector_IPrinting3DCompositeMaterialGroup : aliased WinRt.IID := (1558489375, 9358, 23161, (138, 131, 154, 44, 60, 21, 151, 239 ));
    function QInterface_IVector_IPrinting3DCompositeMaterialGroup is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DCompositeMaterialGroup.Kind, IID_IVector_IPrinting3DCompositeMaterialGroup'Access);
 
-   package IVector_IPrinting3DMultiplePropertyMaterialGroup is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterialGroup);
+   package IVector_IPrinting3DMultiplePropertyMaterialGroup is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DMultiplePropertyMaterialGroup);
    IID_IVector_IPrinting3DMultiplePropertyMaterialGroup : aliased WinRt.IID := (1558489375, 9358, 23161, (138, 131, 154, 44, 60, 21, 151, 239 ));
    function QInterface_IVector_IPrinting3DMultiplePropertyMaterialGroup is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DMultiplePropertyMaterialGroup.Kind, IID_IVector_IPrinting3DMultiplePropertyMaterialGroup'Access);
 
@@ -572,15 +572,15 @@ package WinRt.Windows.Graphics.Printing3D is
    IID_IVectorView_UInt32 : aliased WinRt.IID := (3486997342, 31033, 23922, (178, 181, 190, 231, 20, 162, 161, 82 ));
    function QInterface_IVectorView_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IVectorView_UInt32.Kind, IID_IVectorView_UInt32'Access);
 
-   package IVector_IPrinting3DModelTexture is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DModelTexture);
+   package IVector_IPrinting3DModelTexture is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DModelTexture);
    IID_IVector_IPrinting3DModelTexture : aliased WinRt.IID := (20988296, 54369, 21076, (132, 91, 6, 249, 167, 254, 143, 111 ));
    function QInterface_IVector_IPrinting3DModelTexture is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DModelTexture.Kind, IID_IVector_IPrinting3DModelTexture'Access);
 
-   package IVector_IPrinting3DMesh is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DMesh);
+   package IVector_IPrinting3DMesh is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DMesh);
    IID_IVector_IPrinting3DMesh : aliased WinRt.IID := (20988296, 54369, 21076, (132, 91, 6, 249, 167, 254, 143, 111 ));
    function QInterface_IVector_IPrinting3DMesh is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DMesh.Kind, IID_IVector_IPrinting3DMesh'Access);
 
-   package IVector_IPrinting3DComponent is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DComponent);
+   package IVector_IPrinting3DComponent is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DComponent);
    IID_IVector_IPrinting3DComponent : aliased WinRt.IID := (20988296, 54369, 21076, (132, 91, 6, 249, 167, 254, 143, 111 ));
    function QInterface_IVector_IPrinting3DComponent is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DComponent.Kind, IID_IVector_IPrinting3DComponent'Access);
 
@@ -592,11 +592,11 @@ package WinRt.Windows.Graphics.Printing3D is
    IID_IMap_HString_HString : aliased WinRt.IID := (20988296, 54369, 21076, (132, 91, 6, 249, 167, 254, 143, 111 ));
    function QInterface_IMap_HString_HString is new Generic_QueryInterface (GenericObject_Interface, IMap_HString_HString.Kind, IID_IMap_HString_HString'Access);
 
-   package IVector_IPrinting3DMultiplePropertyMaterial is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterial);
+   package IVector_IPrinting3DMultiplePropertyMaterial is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DMultiplePropertyMaterial);
    IID_IVector_IPrinting3DMultiplePropertyMaterial : aliased WinRt.IID := (1156769331, 38343, 21013, (178, 100, 229, 140, 173, 147, 48, 183 ));
    function QInterface_IVector_IPrinting3DMultiplePropertyMaterial is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DMultiplePropertyMaterial.Kind, IID_IVector_IPrinting3DMultiplePropertyMaterial'Access);
 
-   package IVector_IPrinting3DTexture2CoordMaterial is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterial);
+   package IVector_IPrinting3DTexture2CoordMaterial is new WinRt.Windows.Foundation.Collections.IVector (IPrinting3DTexture2CoordMaterial);
    IID_IVector_IPrinting3DTexture2CoordMaterial : aliased WinRt.IID := (2077508547, 22117, 23722, (148, 208, 175, 52, 139, 15, 123, 196 ));
    function QInterface_IVector_IPrinting3DTexture2CoordMaterial is new Generic_QueryInterface (GenericObject_Interface, IVector_IPrinting3DTexture2CoordMaterial.Kind, IID_IVector_IPrinting3DTexture2CoordMaterial'Access);
 

@@ -291,19 +291,19 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    IID_IVectorView_HString : aliased WinRt.IID := (76725479, 63300, 21831, (133, 100, 105, 63, 160, 89, 174, 124 ));
    function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
-   package IVectorView_ActivationSignalDetectionTrainingDataFormat is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionTrainingDataFormat);
+   package IVectorView_ActivationSignalDetectionTrainingDataFormat is new WinRt.Windows.Foundation.Collections.IVectorView (ActivationSignalDetectionTrainingDataFormat);
    IID_IVectorView_ActivationSignalDetectionTrainingDataFormat : aliased WinRt.IID := (76725479, 63300, 21831, (133, 100, 105, 63, 160, 89, 174, 124 ));
    function QInterface_IVectorView_ActivationSignalDetectionTrainingDataFormat is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ActivationSignalDetectionTrainingDataFormat.Kind, IID_IVectorView_ActivationSignalDetectionTrainingDataFormat'Access);
 
-   package IVectorView_ActivationSignalDetectorPowerState is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorPowerState);
+   package IVectorView_ActivationSignalDetectorPowerState is new WinRt.Windows.Foundation.Collections.IVectorView (ActivationSignalDetectorPowerState);
    IID_IVectorView_ActivationSignalDetectorPowerState : aliased WinRt.IID := (76725479, 63300, 21831, (133, 100, 105, 63, 160, 89, 174, 124 ));
    function QInterface_IVectorView_ActivationSignalDetectorPowerState is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ActivationSignalDetectorPowerState.Kind, IID_IVectorView_ActivationSignalDetectorPowerState'Access);
 
-   package IVectorView_IActivationSignalDetectionConfiguration is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration);
+   package IVectorView_IActivationSignalDetectionConfiguration is new WinRt.Windows.Foundation.Collections.IVectorView (IActivationSignalDetectionConfiguration);
    IID_IVectorView_IActivationSignalDetectionConfiguration : aliased WinRt.IID := (76725479, 63300, 21831, (133, 100, 105, 63, 160, 89, 174, 124 ));
    function QInterface_IVectorView_IActivationSignalDetectionConfiguration is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IActivationSignalDetectionConfiguration.Kind, IID_IVectorView_IActivationSignalDetectionConfiguration'Access);
 
-   package IVectorView_IActivationSignalDetector is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector);
+   package IVectorView_IActivationSignalDetector is new WinRt.Windows.Foundation.Collections.IVectorView (IActivationSignalDetector);
    IID_IVectorView_IActivationSignalDetector : aliased WinRt.IID := (1681211013, 24137, 20704, (176, 241, 102, 10, 57, 59, 19, 15 ));
    function QInterface_IVectorView_IActivationSignalDetector is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IActivationSignalDetector.Kind, IID_IVectorView_IActivationSignalDetector'Access);
 

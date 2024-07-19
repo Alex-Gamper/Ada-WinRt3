@@ -37,12 +37,12 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Xaml.Documents is
 
-   package IVector_IBlock is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Documents.IBlock);
-   package IIterable_IBlock is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Documents.IBlock);
-   package IVector_IContentLinkProvider is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Documents.IContentLinkProvider);
-   package IIterable_IContentLinkProvider is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Documents.IContentLinkProvider);
-   package IVector_IInline is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Documents.IInline);
-   package IIterable_IInline is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Documents.IInline);
+   package IVector_IBlock is new WinRt.Windows.Foundation.Collections.IVector (IBlock);
+   package IIterable_IBlock is new WinRt.Windows.Foundation.Collections.IIterable (IBlock);
+   package IVector_IContentLinkProvider is new WinRt.Windows.Foundation.Collections.IVector (IContentLinkProvider);
+   package IIterable_IContentLinkProvider is new WinRt.Windows.Foundation.Collections.IIterable (IContentLinkProvider);
+   package IVector_IInline is new WinRt.Windows.Foundation.Collections.IVector (IInline);
+   package IIterable_IInline is new WinRt.Windows.Foundation.Collections.IIterable (IInline);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for TextElement
 

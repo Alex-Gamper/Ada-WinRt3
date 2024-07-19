@@ -544,15 +544,15 @@ package WinRt.Windows.Devices.Display.Core is
    IID_IMapView_Guid_IInspectable : aliased WinRt.IID := (1923045445, 44476, 20572, (171, 13, 33, 208, 141, 138, 240, 95 ));
    function QInterface_IMapView_Guid_IInspectable is new Generic_QueryInterface (GenericObject_Interface, IMapView_Guid_IInspectable.Kind, IID_IMapView_Guid_IInspectable'Access);
 
-   package IVectorView_IDisplayTarget is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Display.Core.IDisplayTarget);
+   package IVectorView_IDisplayTarget is new WinRt.Windows.Foundation.Collections.IVectorView (IDisplayTarget);
    IID_IVectorView_IDisplayTarget : aliased WinRt.IID := (3464179409, 40213, 21755, (170, 182, 25, 111, 99, 212, 137, 139 ));
    function QInterface_IVectorView_IDisplayTarget is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IDisplayTarget.Kind, IID_IVectorView_IDisplayTarget'Access);
 
-   package IVectorView_IDisplayAdapter is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Display.Core.IDisplayAdapter);
+   package IVectorView_IDisplayAdapter is new WinRt.Windows.Foundation.Collections.IVectorView (IDisplayAdapter);
    IID_IVectorView_IDisplayAdapter : aliased WinRt.IID := (3464179409, 40213, 21755, (170, 182, 25, 111, 99, 212, 137, 139 ));
    function QInterface_IVectorView_IDisplayAdapter is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IDisplayAdapter.Kind, IID_IVectorView_IDisplayAdapter'Access);
 
-   package IReference_DisplayPresentationRate is new WinRt.Windows.Foundation.IReference (WinRt.Windows.Devices.Display.Core.DisplayPresentationRate);
+   package IReference_DisplayPresentationRate is new WinRt.Windows.Foundation.IReference (DisplayPresentationRate);
    IID_IReference_DisplayPresentationRate : aliased WinRt.IID := (2721984659, 63989, 22268, (137, 176, 109, 5, 126, 130, 112, 210 ));
    function QInterface_IReference_DisplayPresentationRate is new Generic_QueryInterface (GenericObject_Interface, IReference_DisplayPresentationRate.Kind, IID_IReference_DisplayPresentationRate'Access);
 
@@ -560,7 +560,7 @@ package WinRt.Windows.Devices.Display.Core is
    IID_IReference_Boolean : aliased WinRt.IID := (2721984659, 63989, 22268, (137, 176, 109, 5, 126, 130, 112, 210 ));
    function QInterface_IReference_Boolean is new Generic_QueryInterface (GenericObject_Interface, IReference_Boolean.Kind, IID_IReference_Boolean'Access);
 
-   package IVectorView_IDisplayModeInfo is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Display.Core.IDisplayModeInfo);
+   package IVectorView_IDisplayModeInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IDisplayModeInfo);
    IID_IVectorView_IDisplayModeInfo : aliased WinRt.IID := (2721984659, 63989, 22268, (137, 176, 109, 5, 126, 130, 112, 210 ));
    function QInterface_IVectorView_IDisplayModeInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IDisplayModeInfo.Kind, IID_IVectorView_IDisplayModeInfo'Access);
 
@@ -568,11 +568,11 @@ package WinRt.Windows.Devices.Display.Core is
    IID_IMap_Guid_IInspectable : aliased WinRt.IID := (2721984659, 63989, 22268, (137, 176, 109, 5, 126, 130, 112, 210 ));
    function QInterface_IMap_Guid_IInspectable is new Generic_QueryInterface (GenericObject_Interface, IMap_Guid_IInspectable.Kind, IID_IMap_Guid_IInspectable'Access);
 
-   package IVectorView_IDisplayView is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Display.Core.IDisplayView);
+   package IVectorView_IDisplayView is new WinRt.Windows.Foundation.Collections.IVectorView (IDisplayView);
    IID_IVectorView_IDisplayView : aliased WinRt.IID := (1480702146, 11866, 23249, (167, 173, 24, 226, 135, 121, 34, 46 ));
    function QInterface_IVectorView_IDisplayView is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IDisplayView.Kind, IID_IVectorView_IDisplayView'Access);
 
-   package IVectorView_IDisplayPath is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Display.Core.IDisplayPath);
+   package IVectorView_IDisplayPath is new WinRt.Windows.Foundation.Collections.IVectorView (IDisplayPath);
    IID_IVectorView_IDisplayPath : aliased WinRt.IID := (2986962706, 51511, 22416, (175, 161, 153, 123, 152, 196, 9, 249 ));
    function QInterface_IVectorView_IDisplayPath is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IDisplayPath.Kind, IID_IVectorView_IDisplayPath'Access);
 

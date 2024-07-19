@@ -245,7 +245,7 @@ package WinRt.Windows.AI.MachineLearning.Preview is
    IID_IMapView_HString_HString : aliased WinRt.IID := (3062997467, 7028, 20790, (187, 74, 8, 253, 27, 218, 238, 141 ));
    function QInterface_IMapView_HString_HString is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_HString.Kind, IID_IMapView_HString_HString'Access);
 
-   package IIterable_ILearningModelVariableDescriptorPreview is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview);
+   package IIterable_ILearningModelVariableDescriptorPreview is new WinRt.Windows.Foundation.Collections.IIterable (ILearningModelVariableDescriptorPreview);
    IID_IIterable_ILearningModelVariableDescriptorPreview : aliased WinRt.IID := (3062997467, 7028, 20790, (187, 74, 8, 253, 27, 218, 238, 141 ));
    function QInterface_IIterable_ILearningModelVariableDescriptorPreview is new Generic_QueryInterface (GenericObject_Interface, IIterable_ILearningModelVariableDescriptorPreview.Kind, IID_IIterable_ILearningModelVariableDescriptorPreview'Access);
 

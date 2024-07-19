@@ -397,7 +397,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    IID_IVector_HString : aliased WinRt.IID := (97767065, 7236, 22561, (157, 7, 96, 65, 7, 18, 22, 46 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
-   package IVectorView_ISpeechRecognitionResult is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionResult);
+   package IVectorView_ISpeechRecognitionResult is new WinRt.Windows.Foundation.Collections.IVectorView (ISpeechRecognitionResult);
    IID_IVectorView_ISpeechRecognitionResult : aliased WinRt.IID := (3446198252, 40495, 21595, (182, 253, 151, 149, 235, 190, 139, 202 ));
    function QInterface_IVectorView_ISpeechRecognitionResult is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ISpeechRecognitionResult.Kind, IID_IVectorView_ISpeechRecognitionResult'Access);
 
@@ -405,7 +405,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    IID_IVectorView_HString : aliased WinRt.IID := (3446198252, 40495, 21595, (182, 253, 151, 149, 235, 190, 139, 202 ));
    function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
-   package IVector_ISpeechRecognitionConstraint is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint);
+   package IVector_ISpeechRecognitionConstraint is new WinRt.Windows.Foundation.Collections.IVector (ISpeechRecognitionConstraint);
    IID_IVector_ISpeechRecognitionConstraint : aliased WinRt.IID := (1999975617, 27887, 21047, (151, 10, 233, 148, 195, 247, 233, 195 ));
    function QInterface_IVector_ISpeechRecognitionConstraint is new Generic_QueryInterface (GenericObject_Interface, IVector_ISpeechRecognitionConstraint.Kind, IID_IVector_ISpeechRecognitionConstraint'Access);
 

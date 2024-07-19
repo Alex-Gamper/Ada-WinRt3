@@ -519,7 +519,7 @@ package WinRt.Windows.ApplicationModel is
    IID_IReference_DateTime : aliased WinRt.IID := (427744076, 1891, 21939, (175, 100, 205, 236, 214, 145, 74, 118 ));
    function QInterface_IReference_DateTime is new Generic_QueryInterface (GenericObject_Interface, IReference_DateTime.Kind, IID_IReference_DateTime'Access);
 
-   package IVectorView_IPackage is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.IPackage);
+   package IVectorView_IPackage is new WinRt.Windows.Foundation.Collections.IVectorView (IPackage);
    IID_IVectorView_IPackage : aliased WinRt.IID := (2459893342, 26304, 23845, (150, 122, 200, 221, 165, 127, 66, 241 ));
    function QInterface_IVectorView_IPackage is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPackage.Kind, IID_IVectorView_IPackage'Access);
 

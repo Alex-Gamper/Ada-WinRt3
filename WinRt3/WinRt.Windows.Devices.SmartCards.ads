@@ -795,35 +795,35 @@ package WinRt.Windows.Devices.SmartCards is
    IID_IReference_UInt32 : aliased WinRt.IID := (3531710735, 47545, 23814, (148, 67, 127, 12, 138, 233, 197, 42 ));
    function QInterface_IReference_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IReference_UInt32.Kind, IID_IReference_UInt32'Access);
 
-   package IVectorView_SmartCardCryptogramMaterialType is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialType);
+   package IVectorView_SmartCardCryptogramMaterialType is new WinRt.Windows.Foundation.Collections.IVectorView (SmartCardCryptogramMaterialType);
    IID_IVectorView_SmartCardCryptogramMaterialType : aliased WinRt.IID := (4225147606, 55227, 21824, (186, 11, 9, 121, 56, 15, 147, 30 ));
    function QInterface_IVectorView_SmartCardCryptogramMaterialType is new Generic_QueryInterface (GenericObject_Interface, IVectorView_SmartCardCryptogramMaterialType.Kind, IID_IVectorView_SmartCardCryptogramMaterialType'Access);
 
-   package IVectorView_SmartCardCryptogramAlgorithm is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm);
+   package IVectorView_SmartCardCryptogramAlgorithm is new WinRt.Windows.Foundation.Collections.IVectorView (SmartCardCryptogramAlgorithm);
    IID_IVectorView_SmartCardCryptogramAlgorithm : aliased WinRt.IID := (4225147606, 55227, 21824, (186, 11, 9, 121, 56, 15, 147, 30 ));
    function QInterface_IVectorView_SmartCardCryptogramAlgorithm is new Generic_QueryInterface (GenericObject_Interface, IVectorView_SmartCardCryptogramAlgorithm.Kind, IID_IVectorView_SmartCardCryptogramAlgorithm'Access);
 
-   package IVectorView_SmartCardCryptogramMaterialPackageFormat is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat);
+   package IVectorView_SmartCardCryptogramMaterialPackageFormat is new WinRt.Windows.Foundation.Collections.IVectorView (SmartCardCryptogramMaterialPackageFormat);
    IID_IVectorView_SmartCardCryptogramMaterialPackageFormat : aliased WinRt.IID := (4225147606, 55227, 21824, (186, 11, 9, 121, 56, 15, 147, 30 ));
    function QInterface_IVectorView_SmartCardCryptogramMaterialPackageFormat is new Generic_QueryInterface (GenericObject_Interface, IVectorView_SmartCardCryptogramMaterialPackageFormat.Kind, IID_IVectorView_SmartCardCryptogramMaterialPackageFormat'Access);
 
-   package IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat);
+   package IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat is new WinRt.Windows.Foundation.Collections.IVectorView (SmartCardCryptogramMaterialPackageConfirmationResponseFormat);
    IID_IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat : aliased WinRt.IID := (4225147606, 55227, 21824, (186, 11, 9, 121, 56, 15, 147, 30 ));
    function QInterface_IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat is new Generic_QueryInterface (GenericObject_Interface, IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat.Kind, IID_IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat'Access);
 
-   package IVectorView_SmartCardCryptogramStorageKeyCapabilities is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities);
+   package IVectorView_SmartCardCryptogramStorageKeyCapabilities is new WinRt.Windows.Foundation.Collections.IVectorView (SmartCardCryptogramStorageKeyCapabilities);
    IID_IVectorView_SmartCardCryptogramStorageKeyCapabilities : aliased WinRt.IID := (4225147606, 55227, 21824, (186, 11, 9, 121, 56, 15, 147, 30 ));
    function QInterface_IVectorView_SmartCardCryptogramStorageKeyCapabilities is new Generic_QueryInterface (GenericObject_Interface, IVectorView_SmartCardCryptogramStorageKeyCapabilities.Kind, IID_IVectorView_SmartCardCryptogramStorageKeyCapabilities'Access);
 
-   package IVectorView_ISmartCardCryptogramMaterialCharacteristics is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramMaterialCharacteristics);
+   package IVectorView_ISmartCardCryptogramMaterialCharacteristics is new WinRt.Windows.Foundation.Collections.IVectorView (ISmartCardCryptogramMaterialCharacteristics);
    IID_IVectorView_ISmartCardCryptogramMaterialCharacteristics : aliased WinRt.IID := (310115163, 55270, 20907, (177, 10, 252, 235, 166, 53, 44, 129 ));
    function QInterface_IVectorView_ISmartCardCryptogramMaterialCharacteristics is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ISmartCardCryptogramMaterialCharacteristics.Kind, IID_IVectorView_ISmartCardCryptogramMaterialCharacteristics'Access);
 
-   package IVectorView_ISmartCardCryptogramMaterialPackageCharacteristics is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramMaterialPackageCharacteristics);
+   package IVectorView_ISmartCardCryptogramMaterialPackageCharacteristics is new WinRt.Windows.Foundation.Collections.IVectorView (ISmartCardCryptogramMaterialPackageCharacteristics);
    IID_IVectorView_ISmartCardCryptogramMaterialPackageCharacteristics : aliased WinRt.IID := (1912878546, 48706, 23362, (146, 153, 48, 141, 161, 91, 83, 255 ));
    function QInterface_IVectorView_ISmartCardCryptogramMaterialPackageCharacteristics is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ISmartCardCryptogramMaterialPackageCharacteristics.Kind, IID_IVectorView_ISmartCardCryptogramMaterialPackageCharacteristics'Access);
 
-   package IVectorView_ISmartCardCryptogramStorageKeyCharacteristics is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyCharacteristics);
+   package IVectorView_ISmartCardCryptogramStorageKeyCharacteristics is new WinRt.Windows.Foundation.Collections.IVectorView (ISmartCardCryptogramStorageKeyCharacteristics);
    IID_IVectorView_ISmartCardCryptogramStorageKeyCharacteristics : aliased WinRt.IID := (1647019326, 45065, 24427, (170, 149, 85, 45, 160, 118, 68, 90 ));
    function QInterface_IVectorView_ISmartCardCryptogramStorageKeyCharacteristics is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ISmartCardCryptogramStorageKeyCharacteristics.Kind, IID_IVectorView_ISmartCardCryptogramStorageKeyCharacteristics'Access);
 

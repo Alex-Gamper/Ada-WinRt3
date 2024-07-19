@@ -953,27 +953,27 @@ package WinRt.Windows.ApplicationModel.Contacts is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IContactField is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Contacts.IContactField);
+   package IVector_IContactField is new WinRt.Windows.Foundation.Collections.IVector (IContactField);
    IID_IVector_IContactField : aliased WinRt.IID := (1450927608, 10961, 22924, (136, 85, 34, 196, 232, 167, 98, 236 ));
    function QInterface_IVector_IContactField is new Generic_QueryInterface (GenericObject_Interface, IVector_IContactField.Kind, IID_IVector_IContactField'Access);
 
-   package IVector_IContactPhone is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Contacts.IContactPhone);
+   package IVector_IContactPhone is new WinRt.Windows.Foundation.Collections.IVector (IContactPhone);
    IID_IVector_IContactPhone : aliased WinRt.IID := (1807831461, 47613, 21335, (132, 2, 160, 156, 111, 237, 128, 239 ));
    function QInterface_IVector_IContactPhone is new Generic_QueryInterface (GenericObject_Interface, IVector_IContactPhone.Kind, IID_IVector_IContactPhone'Access);
 
-   package IVector_IContactEmail is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Contacts.IContactEmail);
+   package IVector_IContactEmail is new WinRt.Windows.Foundation.Collections.IVector (IContactEmail);
    IID_IVector_IContactEmail : aliased WinRt.IID := (1807831461, 47613, 21335, (132, 2, 160, 156, 111, 237, 128, 239 ));
    function QInterface_IVector_IContactEmail is new Generic_QueryInterface (GenericObject_Interface, IVector_IContactEmail.Kind, IID_IVector_IContactEmail'Access);
 
-   package IVector_IContactAddress is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Contacts.IContactAddress);
+   package IVector_IContactAddress is new WinRt.Windows.Foundation.Collections.IVector (IContactAddress);
    IID_IVector_IContactAddress : aliased WinRt.IID := (1807831461, 47613, 21335, (132, 2, 160, 156, 111, 237, 128, 239 ));
    function QInterface_IVector_IContactAddress is new Generic_QueryInterface (GenericObject_Interface, IVector_IContactAddress.Kind, IID_IVector_IContactAddress'Access);
 
-   package IVector_IContactConnectedServiceAccount is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Contacts.IContactConnectedServiceAccount);
+   package IVector_IContactConnectedServiceAccount is new WinRt.Windows.Foundation.Collections.IVector (IContactConnectedServiceAccount);
    IID_IVector_IContactConnectedServiceAccount : aliased WinRt.IID := (1807831461, 47613, 21335, (132, 2, 160, 156, 111, 237, 128, 239 ));
    function QInterface_IVector_IContactConnectedServiceAccount is new Generic_QueryInterface (GenericObject_Interface, IVector_IContactConnectedServiceAccount.Kind, IID_IVector_IContactConnectedServiceAccount'Access);
 
-   package IVector_IContactDate is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Contacts.IContactDate);
+   package IVector_IContactDate is new WinRt.Windows.Foundation.Collections.IVector (IContactDate);
    IID_IVector_IContactDate : aliased WinRt.IID := (1807831461, 47613, 21335, (132, 2, 160, 156, 111, 237, 128, 239 ));
    function QInterface_IVector_IContactDate is new Generic_QueryInterface (GenericObject_Interface, IVector_IContactDate.Kind, IID_IVector_IContactDate'Access);
 
@@ -981,19 +981,19 @@ package WinRt.Windows.ApplicationModel.Contacts is
    IID_IVector_HString : aliased WinRt.IID := (1807831461, 47613, 21335, (132, 2, 160, 156, 111, 237, 128, 239 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
-   package IVector_IContactJobInfo is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Contacts.IContactJobInfo);
+   package IVector_IContactJobInfo is new WinRt.Windows.Foundation.Collections.IVector (IContactJobInfo);
    IID_IVector_IContactJobInfo : aliased WinRt.IID := (1807831461, 47613, 21335, (132, 2, 160, 156, 111, 237, 128, 239 ));
    function QInterface_IVector_IContactJobInfo is new Generic_QueryInterface (GenericObject_Interface, IVector_IContactJobInfo.Kind, IID_IVector_IContactJobInfo'Access);
 
-   package IVector_IContactSignificantOther is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Contacts.IContactSignificantOther);
+   package IVector_IContactSignificantOther is new WinRt.Windows.Foundation.Collections.IVector (IContactSignificantOther);
    IID_IVector_IContactSignificantOther : aliased WinRt.IID := (1807831461, 47613, 21335, (132, 2, 160, 156, 111, 237, 128, 239 ));
    function QInterface_IVector_IContactSignificantOther is new Generic_QueryInterface (GenericObject_Interface, IVector_IContactSignificantOther.Kind, IID_IVector_IContactSignificantOther'Access);
 
-   package IVector_IContactWebsite is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Contacts.IContactWebsite);
+   package IVector_IContactWebsite is new WinRt.Windows.Foundation.Collections.IVector (IContactWebsite);
    IID_IVector_IContactWebsite : aliased WinRt.IID := (1807831461, 47613, 21335, (132, 2, 160, 156, 111, 237, 128, 239 ));
    function QInterface_IVector_IContactWebsite is new Generic_QueryInterface (GenericObject_Interface, IVector_IContactWebsite.Kind, IID_IVector_IContactWebsite'Access);
 
-   package IVectorView_IContact is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Contacts.IContact);
+   package IVectorView_IContact is new WinRt.Windows.Foundation.Collections.IVectorView (IContact);
    IID_IVectorView_IContact : aliased WinRt.IID := (2216551877, 40715, 21965, (156, 4, 224, 76, 142, 125, 40, 40 ));
    function QInterface_IVectorView_IContact is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IContact.Kind, IID_IVectorView_IContact'Access);
 
@@ -1005,23 +1005,23 @@ package WinRt.Windows.ApplicationModel.Contacts is
    IID_IReference_Int32 : aliased WinRt.IID := (488472308, 43582, 23340, (146, 26, 97, 43, 138, 133, 205, 169 ));
    function QInterface_IReference_Int32 is new Generic_QueryInterface (GenericObject_Interface, IReference_Int32.Kind, IID_IReference_Int32'Access);
 
-   package IVectorView_IContactField is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Contacts.IContactField);
+   package IVectorView_IContactField is new WinRt.Windows.Foundation.Collections.IVectorView (IContactField);
    IID_IVectorView_IContactField : aliased WinRt.IID := (1480516418, 30250, 23540, (166, 182, 101, 156, 23, 20, 38, 130 ));
    function QInterface_IVectorView_IContactField is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IContactField.Kind, IID_IVectorView_IContactField'Access);
 
-   package IVectorView_IContactLocationField is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Contacts.IContactLocationField);
+   package IVectorView_IContactLocationField is new WinRt.Windows.Foundation.Collections.IVectorView (IContactLocationField);
    IID_IVectorView_IContactLocationField : aliased WinRt.IID := (1480516418, 30250, 23540, (166, 182, 101, 156, 23, 20, 38, 130 ));
    function QInterface_IVectorView_IContactLocationField is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IContactLocationField.Kind, IID_IVectorView_IContactLocationField'Access);
 
-   package IVectorView_IContactInstantMessageField is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Contacts.IContactInstantMessageField);
+   package IVectorView_IContactInstantMessageField is new WinRt.Windows.Foundation.Collections.IVectorView (IContactInstantMessageField);
    IID_IVectorView_IContactInstantMessageField : aliased WinRt.IID := (1480516418, 30250, 23540, (166, 182, 101, 156, 23, 20, 38, 130 ));
    function QInterface_IVectorView_IContactInstantMessageField is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IContactInstantMessageField.Kind, IID_IVectorView_IContactInstantMessageField'Access);
 
-   package IVector_ContactFieldType is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Contacts.ContactFieldType);
+   package IVector_ContactFieldType is new WinRt.Windows.Foundation.Collections.IVector (ContactFieldType);
    IID_IVector_ContactFieldType : aliased WinRt.IID := (1673795576, 13376, 23528, (181, 7, 195, 210, 67, 220, 226, 23 ));
    function QInterface_IVector_ContactFieldType is new Generic_QueryInterface (GenericObject_Interface, IVector_ContactFieldType.Kind, IID_IVector_ContactFieldType'Access);
 
-   package IVectorView_IContactMatchReason is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Contacts.IContactMatchReason);
+   package IVectorView_IContactMatchReason is new WinRt.Windows.Foundation.Collections.IVectorView (IContactMatchReason);
    IID_IVectorView_IContactMatchReason : aliased WinRt.IID := (2000677120, 33879, 22968, (155, 171, 112, 8, 239, 48, 27, 30 ));
    function QInterface_IVectorView_IContactMatchReason is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IContactMatchReason.Kind, IID_IVectorView_IContactMatchReason'Access);
 

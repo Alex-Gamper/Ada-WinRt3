@@ -315,7 +315,7 @@ package WinRt.Windows.Graphics.Display is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_NitRange is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Graphics.Display.NitRange);
+   package IVectorView_NitRange is new WinRt.Windows.Foundation.Collections.IVectorView (NitRange);
    IID_IVectorView_NitRange : aliased WinRt.IID := (2764596721, 52117, 22370, (156, 147, 21, 54, 71, 176, 231, 60 ));
    function QInterface_IVectorView_NitRange is new Generic_QueryInterface (GenericObject_Interface, IVectorView_NitRange.Kind, IID_IVectorView_NitRange'Access);
 

@@ -1253,11 +1253,11 @@ package WinRt.Windows.Media.Core is
    IID_IReference_TimeSpan : aliased WinRt.IID := (1417381515, 29444, 23095, (190, 145, 204, 9, 2, 42, 68, 189 ));
    function QInterface_IReference_TimeSpan is new Generic_QueryInterface (GenericObject_Interface, IReference_TimeSpan.Kind, IID_IReference_TimeSpan'Access);
 
-   package IObservableVector_ITimedTextSource is new WinRt.Windows.Foundation.Collections.IObservableVector (WinRt.Windows.Media.Core.ITimedTextSource);
+   package IObservableVector_ITimedTextSource is new WinRt.Windows.Foundation.Collections.IObservableVector (ITimedTextSource);
    IID_IObservableVector_ITimedTextSource : aliased WinRt.IID := (2870663096, 29419, 22631, (181, 86, 7, 9, 34, 72, 172, 254 ));
    function QInterface_IObservableVector_ITimedTextSource is new Generic_QueryInterface (GenericObject_Interface, IObservableVector_ITimedTextSource.Kind, IID_IObservableVector_ITimedTextSource'Access);
 
-   package IObservableVector_ITimedMetadataTrack is new WinRt.Windows.Foundation.Collections.IObservableVector (WinRt.Windows.Media.Core.ITimedMetadataTrack);
+   package IObservableVector_ITimedMetadataTrack is new WinRt.Windows.Foundation.Collections.IObservableVector (ITimedMetadataTrack);
    IID_IObservableVector_ITimedMetadataTrack : aliased WinRt.IID := (2870663096, 29419, 22631, (181, 86, 7, 9, 34, 72, 172, 254 ));
    function QInterface_IObservableVector_ITimedMetadataTrack is new Generic_QueryInterface (GenericObject_Interface, IObservableVector_ITimedMetadataTrack.Kind, IID_IObservableVector_ITimedMetadataTrack'Access);
 
@@ -1265,15 +1265,15 @@ package WinRt.Windows.Media.Core is
    IID_IReference_Double : aliased WinRt.IID := (4150103373, 39058, 22120, (178, 33, 88, 72, 25, 220, 72, 255 ));
    function QInterface_IReference_Double is new Generic_QueryInterface (GenericObject_Interface, IReference_Double.Kind, IID_IReference_Double'Access);
 
-   package IVectorView_MseTimeRange is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Core.MseTimeRange);
+   package IVectorView_MseTimeRange is new WinRt.Windows.Foundation.Collections.IVectorView (MseTimeRange);
    IID_IVectorView_MseTimeRange : aliased WinRt.IID := (4273250124, 30537, 23262, (153, 103, 51, 58, 250, 48, 143, 68 ));
    function QInterface_IVectorView_MseTimeRange is new Generic_QueryInterface (GenericObject_Interface, IVectorView_MseTimeRange.Kind, IID_IVectorView_MseTimeRange'Access);
 
-   package IVectorView_IMseSourceBuffer is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Core.IMseSourceBuffer);
+   package IVectorView_IMseSourceBuffer is new WinRt.Windows.Foundation.Collections.IVectorView (IMseSourceBuffer);
    IID_IVectorView_IMseSourceBuffer : aliased WinRt.IID := (1715198806, 63629, 24086, (147, 183, 112, 150, 130, 59, 119, 6 ));
    function QInterface_IVectorView_IMseSourceBuffer is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMseSourceBuffer.Kind, IID_IVectorView_IMseSourceBuffer'Access);
 
-   package IReference_MseTimeRange is new WinRt.Windows.Foundation.IReference (WinRt.Windows.Media.Core.MseTimeRange);
+   package IReference_MseTimeRange is new WinRt.Windows.Foundation.IReference (MseTimeRange);
    IID_IReference_MseTimeRange : aliased WinRt.IID := (3766003943, 54341, 20772, (177, 245, 77, 222, 57, 247, 178, 57 ));
    function QInterface_IReference_MseTimeRange is new Generic_QueryInterface (GenericObject_Interface, IReference_MseTimeRange.Kind, IID_IReference_MseTimeRange'Access);
 
@@ -1281,19 +1281,19 @@ package WinRt.Windows.Media.Core is
    IID_IReference_Int32 : aliased WinRt.IID := (2950593342, 36343, 21489, (158, 102, 150, 116, 32, 14, 48, 57 ));
    function QInterface_IReference_Int32 is new Generic_QueryInterface (GenericObject_Interface, IReference_Int32.Kind, IID_IReference_Int32'Access);
 
-   package IVectorView_IMediaCue is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Core.IMediaCue);
+   package IVectorView_IMediaCue is new WinRt.Windows.Foundation.Collections.IVectorView (IMediaCue);
    IID_IVectorView_IMediaCue : aliased WinRt.IID := (1294063630, 42227, 20729, (171, 1, 8, 216, 65, 70, 204, 174 ));
    function QInterface_IVectorView_IMediaCue is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMediaCue.Kind, IID_IVectorView_IMediaCue'Access);
 
-   package IVector_ITimedTextLine is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Media.Core.ITimedTextLine);
+   package IVector_ITimedTextLine is new WinRt.Windows.Foundation.Collections.IVector (ITimedTextLine);
    IID_IVector_ITimedTextLine : aliased WinRt.IID := (1212927321, 42433, 23409, (185, 234, 185, 180, 122, 64, 252, 251 ));
    function QInterface_IVector_ITimedTextLine is new Generic_QueryInterface (GenericObject_Interface, IVector_ITimedTextLine.Kind, IID_IVector_ITimedTextLine'Access);
 
-   package IVector_ITimedTextSubformat is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Media.Core.ITimedTextSubformat);
+   package IVector_ITimedTextSubformat is new WinRt.Windows.Foundation.Collections.IVector (ITimedTextSubformat);
    IID_IVector_ITimedTextSubformat : aliased WinRt.IID := (267691511, 32323, 21789, (132, 119, 79, 208, 22, 148, 11, 72 ));
    function QInterface_IVector_ITimedTextSubformat is new Generic_QueryInterface (GenericObject_Interface, IVector_ITimedTextSubformat.Kind, IID_IVector_ITimedTextSubformat'Access);
 
-   package IVectorView_ITimedMetadataTrack is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Core.ITimedMetadataTrack);
+   package IVectorView_ITimedMetadataTrack is new WinRt.Windows.Foundation.Collections.IVectorView (ITimedMetadataTrack);
    IID_IVectorView_ITimedMetadataTrack : aliased WinRt.IID := (1296055985, 49605, 22012, (189, 236, 52, 164, 198, 41, 18, 120 ));
    function QInterface_IVectorView_ITimedMetadataTrack is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ITimedMetadataTrack.Kind, IID_IVectorView_ITimedMetadataTrack'Access);
 

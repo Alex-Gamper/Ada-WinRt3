@@ -393,11 +393,11 @@ package WinRt.Windows.Devices.Geolocation is
    IID_IReference_UInt32 : aliased WinRt.IID := (276988995, 12220, 22310, (177, 214, 12, 42, 130, 80, 73, 159 ));
    function QInterface_IReference_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IReference_UInt32.Kind, IID_IReference_UInt32'Access);
 
-   package IVectorView_BasicGeoposition is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Geolocation.BasicGeoposition);
+   package IVectorView_BasicGeoposition is new WinRt.Windows.Foundation.Collections.IVectorView (BasicGeoposition);
    IID_IVectorView_BasicGeoposition : aliased WinRt.IID := (2963404938, 63493, 24455, (141, 110, 130, 208, 93, 185, 64, 243 ));
    function QInterface_IVectorView_BasicGeoposition is new Generic_QueryInterface (GenericObject_Interface, IVectorView_BasicGeoposition.Kind, IID_IVectorView_BasicGeoposition'Access);
 
-   package IVectorView_IGeovisit is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Geolocation.IGeovisit);
+   package IVectorView_IGeovisit is new WinRt.Windows.Foundation.Collections.IVectorView (IGeovisit);
    IID_IVectorView_IGeovisit : aliased WinRt.IID := (1410249578, 31077, 21692, (138, 133, 72, 61, 155, 114, 111, 137 ));
    function QInterface_IVectorView_IGeovisit is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGeovisit.Kind, IID_IVectorView_IGeovisit'Access);
 

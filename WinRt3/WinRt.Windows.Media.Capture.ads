@@ -1572,7 +1572,7 @@ package WinRt.Windows.Media.Capture is
    IID_IReference_Rect : aliased WinRt.IID := (3878654251, 63289, 21618, (178, 50, 10, 202, 78, 115, 252, 79 ));
    function QInterface_IReference_Rect is new Generic_QueryInterface (GenericObject_Interface, IReference_Rect.Kind, IID_IReference_Rect'Access);
 
-   package IVectorView_IAppBroadcastPlugIn is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Capture.IAppBroadcastPlugIn);
+   package IVectorView_IAppBroadcastPlugIn is new WinRt.Windows.Foundation.Collections.IVectorView (IAppBroadcastPlugIn);
    IID_IVectorView_IAppBroadcastPlugIn : aliased WinRt.IID := (3859486518, 51793, 21906, (188, 189, 44, 179, 205, 192, 210, 134 ));
    function QInterface_IVectorView_IAppBroadcastPlugIn is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAppBroadcastPlugIn.Kind, IID_IVectorView_IAppBroadcastPlugIn'Access);
 
@@ -1596,7 +1596,7 @@ package WinRt.Windows.Media.Capture is
    IID_IReference_Double : aliased WinRt.IID := (2483507325, 57952, 20494, (131, 132, 60, 211, 140, 186, 101, 163 ));
    function QInterface_IReference_Double is new Generic_QueryInterface (GenericObject_Interface, IReference_Double.Kind, IID_IReference_Double'Access);
 
-   package IReference_WhiteBalanceGain is new WinRt.Windows.Foundation.IReference (WinRt.Windows.Media.Capture.WhiteBalanceGain);
+   package IReference_WhiteBalanceGain is new WinRt.Windows.Foundation.IReference (WhiteBalanceGain);
    IID_IReference_WhiteBalanceGain : aliased WinRt.IID := (2483507325, 57952, 20494, (131, 132, 60, 211, 140, 186, 101, 163 ));
    function QInterface_IReference_WhiteBalanceGain is new Generic_QueryInterface (GenericObject_Interface, IReference_WhiteBalanceGain.Kind, IID_IReference_WhiteBalanceGain'Access);
 
@@ -1604,11 +1604,11 @@ package WinRt.Windows.Media.Capture is
    IID_IReference_Int32 : aliased WinRt.IID := (3612920626, 46710, 24113, (165, 205, 25, 72, 101, 142, 14, 13 ));
    function QInterface_IReference_Int32 is new Generic_QueryInterface (GenericObject_Interface, IReference_Int32.Kind, IID_IReference_Int32'Access);
 
-   package IVectorView_IMediaCaptureVideoProfileMediaDescription is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription);
+   package IVectorView_IMediaCaptureVideoProfileMediaDescription is new WinRt.Windows.Foundation.Collections.IVectorView (IMediaCaptureVideoProfileMediaDescription);
    IID_IVectorView_IMediaCaptureVideoProfileMediaDescription : aliased WinRt.IID := (143464023, 8623, 21895, (184, 140, 14, 33, 106, 203, 254, 254 ));
    function QInterface_IVectorView_IMediaCaptureVideoProfileMediaDescription is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMediaCaptureVideoProfileMediaDescription.Kind, IID_IVectorView_IMediaCaptureVideoProfileMediaDescription'Access);
 
-   package IVectorView_IMediaCaptureVideoProfile is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Capture.IMediaCaptureVideoProfile);
+   package IVectorView_IMediaCaptureVideoProfile is new WinRt.Windows.Foundation.Collections.IVectorView (IMediaCaptureVideoProfile);
    IID_IVectorView_IMediaCaptureVideoProfile : aliased WinRt.IID := (143464023, 8623, 21895, (184, 140, 14, 33, 106, 203, 254, 254 ));
    function QInterface_IVectorView_IMediaCaptureVideoProfile is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMediaCaptureVideoProfile.Kind, IID_IVectorView_IMediaCaptureVideoProfile'Access);
 

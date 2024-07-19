@@ -111,7 +111,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IRfcommDeviceService is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceService);
+   package IVectorView_IRfcommDeviceService is new WinRt.Windows.Foundation.Collections.IVectorView (IRfcommDeviceService);
    IID_IVectorView_IRfcommDeviceService : aliased WinRt.IID := (412070391, 30072, 23929, (185, 106, 211, 216, 95, 32, 51, 224 ));
    function QInterface_IVectorView_IRfcommDeviceService is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IRfcommDeviceService.Kind, IID_IVectorView_IRfcommDeviceService'Access);
 

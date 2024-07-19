@@ -39,8 +39,8 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    package IAsyncOperation_PnpObjectCollection is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.GenericObject);
    package AsyncOperationCompletedHandler_PnpObjectCollection is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.GenericObject);
 
-   package IVectorView_IPnpObject is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Enumeration.Pnp.IPnpObject);
-   package IIterable_IPnpObject is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Devices.Enumeration.Pnp.IPnpObject);
+   package IVectorView_IPnpObject is new WinRt.Windows.Foundation.Collections.IVectorView (IPnpObject);
+   package IIterable_IPnpObject is new WinRt.Windows.Foundation.Collections.IIterable (IPnpObject);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PnpObject
 

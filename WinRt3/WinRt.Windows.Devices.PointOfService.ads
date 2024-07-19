@@ -1386,11 +1386,11 @@ package WinRt.Windows.Devices.PointOfService is
    IID_IMapView_HString_HString : aliased WinRt.IID := (4257065833, 51135, 23827, (178, 229, 165, 213, 72, 163, 142, 234 ));
    function QInterface_IMapView_HString_HString is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_HString.Kind, IID_IMapView_HString_HString'Access);
 
-   package IVectorView_SizeUInt32 is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.PointOfService.SizeUInt32);
+   package IVectorView_SizeUInt32 is new WinRt.Windows.Foundation.Collections.IVectorView (SizeUInt32);
    IID_IVectorView_SizeUInt32 : aliased WinRt.IID := (3179068659, 971, 21307, (154, 9, 0, 53, 227, 205, 0, 92 ));
    function QInterface_IVectorView_SizeUInt32 is new Generic_QueryInterface (GenericObject_Interface, IVectorView_SizeUInt32.Kind, IID_IVectorView_SizeUInt32'Access);
 
-   package IVectorView_PosPrinterRotation is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.PointOfService.PosPrinterRotation);
+   package IVectorView_PosPrinterRotation is new WinRt.Windows.Foundation.Collections.IVectorView (PosPrinterRotation);
    IID_IVectorView_PosPrinterRotation : aliased WinRt.IID := (4084254071, 33874, 20976, (156, 106, 136, 94, 50, 33, 22, 93 ));
    function QInterface_IVectorView_PosPrinterRotation is new Generic_QueryInterface (GenericObject_Interface, IVectorView_PosPrinterRotation.Kind, IID_IVectorView_PosPrinterRotation'Access);
 

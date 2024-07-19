@@ -366,19 +366,19 @@ package WinRt.Windows.ApplicationModel.Payments is
    IID_IVectorView_HString : aliased WinRt.IID := (1246264323, 20384, 21313, (144, 23, 131, 84, 197, 227, 169, 171 ));
    function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
-   package IVectorView_IPaymentItem is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Payments.IPaymentItem);
+   package IVectorView_IPaymentItem is new WinRt.Windows.Foundation.Collections.IVectorView (IPaymentItem);
    IID_IVectorView_IPaymentItem : aliased WinRt.IID := (1154603241, 16473, 20650, (143, 146, 140, 78, 189, 37, 142, 51 ));
    function QInterface_IVectorView_IPaymentItem is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPaymentItem.Kind, IID_IVectorView_IPaymentItem'Access);
 
-   package IVectorView_IPaymentShippingOption is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Payments.IPaymentShippingOption);
+   package IVectorView_IPaymentShippingOption is new WinRt.Windows.Foundation.Collections.IVectorView (IPaymentShippingOption);
    IID_IVectorView_IPaymentShippingOption : aliased WinRt.IID := (1154603241, 16473, 20650, (143, 146, 140, 78, 189, 37, 142, 51 ));
    function QInterface_IVectorView_IPaymentShippingOption is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPaymentShippingOption.Kind, IID_IVectorView_IPaymentShippingOption'Access);
 
-   package IVectorView_IPaymentDetailsModifier is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Payments.IPaymentDetailsModifier);
+   package IVectorView_IPaymentDetailsModifier is new WinRt.Windows.Foundation.Collections.IVectorView (IPaymentDetailsModifier);
    IID_IVectorView_IPaymentDetailsModifier : aliased WinRt.IID := (1154603241, 16473, 20650, (143, 146, 140, 78, 189, 37, 142, 51 ));
    function QInterface_IVectorView_IPaymentDetailsModifier is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPaymentDetailsModifier.Kind, IID_IVectorView_IPaymentDetailsModifier'Access);
 
-   package IVectorView_IPaymentMethodData is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Payments.IPaymentMethodData);
+   package IVectorView_IPaymentMethodData is new WinRt.Windows.Foundation.Collections.IVectorView (IPaymentMethodData);
    IID_IVectorView_IPaymentMethodData : aliased WinRt.IID := (888631813, 20450, 22804, (191, 20, 87, 30, 235, 203, 220, 41 ));
    function QInterface_IVectorView_IPaymentMethodData is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPaymentMethodData.Kind, IID_IVectorView_IPaymentMethodData'Access);
 

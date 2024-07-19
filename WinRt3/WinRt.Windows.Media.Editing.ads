@@ -165,23 +165,23 @@ package WinRt.Windows.Media.Editing is
    IID_IMap_HString_HString : aliased WinRt.IID := (619760756, 35696, 21765, (169, 76, 45, 134, 62, 165, 240, 25 ));
    function QInterface_IMap_HString_HString is new Generic_QueryInterface (GenericObject_Interface, IMap_HString_HString.Kind, IID_IMap_HString_HString'Access);
 
-   package IVectorView_IEmbeddedAudioTrack is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Editing.IEmbeddedAudioTrack);
+   package IVectorView_IEmbeddedAudioTrack is new WinRt.Windows.Foundation.Collections.IVectorView (IEmbeddedAudioTrack);
    IID_IVectorView_IEmbeddedAudioTrack : aliased WinRt.IID := (3969108048, 31069, 21786, (151, 83, 147, 211, 70, 111, 33, 235 ));
    function QInterface_IVectorView_IEmbeddedAudioTrack is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IEmbeddedAudioTrack.Kind, IID_IVectorView_IEmbeddedAudioTrack'Access);
 
-   package IVector_IMediaClip is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Media.Editing.IMediaClip);
+   package IVector_IMediaClip is new WinRt.Windows.Foundation.Collections.IVector (IMediaClip);
    IID_IVector_IMediaClip : aliased WinRt.IID := (1018166910, 9111, 22478, (159, 226, 110, 38, 40, 179, 202, 118 ));
    function QInterface_IVector_IMediaClip is new Generic_QueryInterface (GenericObject_Interface, IVector_IMediaClip.Kind, IID_IVector_IMediaClip'Access);
 
-   package IVector_IBackgroundAudioTrack is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Media.Editing.IBackgroundAudioTrack);
+   package IVector_IBackgroundAudioTrack is new WinRt.Windows.Foundation.Collections.IVector (IBackgroundAudioTrack);
    IID_IVector_IBackgroundAudioTrack : aliased WinRt.IID := (1018166910, 9111, 22478, (159, 226, 110, 38, 40, 179, 202, 118 ));
    function QInterface_IVector_IBackgroundAudioTrack is new Generic_QueryInterface (GenericObject_Interface, IVector_IBackgroundAudioTrack.Kind, IID_IVector_IBackgroundAudioTrack'Access);
 
-   package IVector_IMediaOverlayLayer is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Media.Editing.IMediaOverlayLayer);
+   package IVector_IMediaOverlayLayer is new WinRt.Windows.Foundation.Collections.IVector (IMediaOverlayLayer);
    IID_IVector_IMediaOverlayLayer : aliased WinRt.IID := (50312610, 10888, 21389, (138, 188, 64, 217, 17, 79, 192, 20 ));
    function QInterface_IVector_IMediaOverlayLayer is new Generic_QueryInterface (GenericObject_Interface, IVector_IMediaOverlayLayer.Kind, IID_IVector_IMediaOverlayLayer'Access);
 
-   package IVector_IMediaOverlay is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Media.Editing.IMediaOverlay);
+   package IVector_IMediaOverlay is new WinRt.Windows.Foundation.Collections.IVector (IMediaOverlay);
    IID_IVector_IMediaOverlay : aliased WinRt.IID := (4243951794, 18991, 20619, (130, 226, 23, 158, 106, 250, 134, 43 ));
    function QInterface_IVector_IMediaOverlay is new Generic_QueryInterface (GenericObject_Interface, IVector_IMediaOverlay.Kind, IID_IVector_IMediaOverlay'Access);
 

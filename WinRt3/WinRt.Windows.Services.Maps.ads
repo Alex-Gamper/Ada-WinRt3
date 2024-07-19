@@ -541,11 +541,11 @@ package WinRt.Windows.Services.Maps is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IMapLocation is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Maps.IMapLocation);
+   package IVectorView_IMapLocation is new WinRt.Windows.Foundation.Collections.IVectorView (IMapLocation);
    IID_IVectorView_IMapLocation : aliased WinRt.IID := (2386512612, 23896, 23412, (157, 63, 96, 151, 136, 148, 114, 212 ));
    function QInterface_IVectorView_IMapLocation is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMapLocation.Kind, IID_IVectorView_IMapLocation'Access);
 
-   package IVectorView_IMapRouteLeg is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Maps.IMapRouteLeg);
+   package IVectorView_IMapRouteLeg is new WinRt.Windows.Foundation.Collections.IVectorView (IMapRouteLeg);
    IID_IVectorView_IMapRouteLeg : aliased WinRt.IID := (1826059587, 28620, 24355, (176, 61, 209, 185, 225, 101, 88, 105 ));
    function QInterface_IVectorView_IMapRouteLeg is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMapRouteLeg.Kind, IID_IVectorView_IMapRouteLeg'Access);
 
@@ -557,15 +557,15 @@ package WinRt.Windows.Services.Maps is
    IID_IReference_DateTime : aliased WinRt.IID := (2926492396, 35052, 21739, (185, 153, 51, 220, 58, 141, 14, 235 ));
    function QInterface_IReference_DateTime is new Generic_QueryInterface (GenericObject_Interface, IReference_DateTime.Kind, IID_IReference_DateTime'Access);
 
-   package IVectorView_IMapRoute is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Maps.IMapRoute);
+   package IVectorView_IMapRoute is new WinRt.Windows.Foundation.Collections.IVectorView (IMapRoute);
    IID_IVectorView_IMapRoute : aliased WinRt.IID := (1811484410, 37195, 20711, (137, 237, 245, 242, 87, 159, 82, 223 ));
    function QInterface_IVectorView_IMapRoute is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMapRoute.Kind, IID_IVectorView_IMapRoute'Access);
 
-   package IVectorView_IMapRouteManeuver is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Maps.IMapRouteManeuver);
+   package IVectorView_IMapRouteManeuver is new WinRt.Windows.Foundation.Collections.IVectorView (IMapRouteManeuver);
    IID_IVectorView_IMapRouteManeuver : aliased WinRt.IID := (3779490813, 43862, 24469, (172, 113, 167, 62, 187, 123, 18, 60 ));
    function QInterface_IVectorView_IMapRouteManeuver is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMapRouteManeuver.Kind, IID_IVectorView_IMapRouteManeuver'Access);
 
-   package IVectorView_IManeuverWarning is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Services.Maps.IManeuverWarning);
+   package IVectorView_IManeuverWarning is new WinRt.Windows.Foundation.Collections.IVectorView (IManeuverWarning);
    IID_IVectorView_IManeuverWarning : aliased WinRt.IID := (4117699054, 14460, 23042, (145, 206, 224, 67, 154, 228, 239, 198 ));
    function QInterface_IVectorView_IManeuverWarning is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IManeuverWarning.Kind, IID_IVectorView_IManeuverWarning'Access);
 

@@ -113,7 +113,7 @@ package WinRt.Windows.ApplicationModel.Search.Core is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IObservableVector_ISearchSuggestion is new WinRt.Windows.Foundation.Collections.IObservableVector (WinRt.Windows.ApplicationModel.Search.Core.ISearchSuggestion);
+   package IObservableVector_ISearchSuggestion is new WinRt.Windows.Foundation.Collections.IObservableVector (ISearchSuggestion);
    IID_IObservableVector_ISearchSuggestion : aliased WinRt.IID := (3993277493, 14285, 23983, (132, 22, 140, 144, 5, 44, 68, 67 ));
    function QInterface_IObservableVector_ISearchSuggestion is new Generic_QueryInterface (GenericObject_Interface, IObservableVector_ISearchSuggestion.Kind, IID_IObservableVector_ISearchSuggestion'Access);
 

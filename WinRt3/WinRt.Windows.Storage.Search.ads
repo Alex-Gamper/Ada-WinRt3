@@ -299,7 +299,7 @@ package WinRt.Windows.Storage.Search is
    IID_IVector_HString : aliased WinRt.IID := (4217882705, 31256, 22548, (151, 219, 51, 116, 96, 158, 52, 168 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
-   package IVector_SortEntry is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Storage.Search.SortEntry);
+   package IVector_SortEntry is new WinRt.Windows.Foundation.Collections.IVector (SortEntry);
    IID_IVector_SortEntry : aliased WinRt.IID := (4217882705, 31256, 22548, (151, 219, 51, 116, 96, 158, 52, 168 ));
    function QInterface_IVector_SortEntry is new Generic_QueryInterface (GenericObject_Interface, IVector_SortEntry.Kind, IID_IVector_SortEntry'Access);
 

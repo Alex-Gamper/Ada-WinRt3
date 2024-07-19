@@ -6108,7 +6108,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    IID_IVector_IUIElement : aliased WinRt.IID := (3912948581, 61236, 21497, (150, 51, 202, 162, 169, 141, 147, 72 ));
    function QInterface_IVector_IUIElement is new Generic_QueryInterface (GenericObject_Interface, IVector_IUIElement.Kind, IID_IVector_IUIElement'Access);
 
-   package IObservableVector_IGroupStyle is new WinRt.Windows.Foundation.Collections.IObservableVector (WinRt.Windows.UI.Xaml.Controls.IGroupStyle);
+   package IObservableVector_IGroupStyle is new WinRt.Windows.Foundation.Collections.IObservableVector (IGroupStyle);
    IID_IObservableVector_IGroupStyle : aliased WinRt.IID := (3106936382, 30424, 24301, (129, 92, 230, 165, 10, 122, 204, 122 ));
    function QInterface_IObservableVector_IGroupStyle is new Generic_QueryInterface (GenericObject_Interface, IObservableVector_IGroupStyle.Kind, IID_IObservableVector_IGroupStyle'Access);
 
@@ -6128,7 +6128,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    IID_IReference_Color : aliased WinRt.IID := (955462002, 40369, 24209, (169, 169, 30, 234, 52, 112, 37, 129 ));
    function QInterface_IReference_Color is new Generic_QueryInterface (GenericObject_Interface, IReference_Color.Kind, IID_IReference_Color'Access);
 
-   package IObservableVector_ICommandBarElement is new WinRt.Windows.Foundation.Collections.IObservableVector (WinRt.Windows.UI.Xaml.Controls.ICommandBarElement);
+   package IObservableVector_ICommandBarElement is new WinRt.Windows.Foundation.Collections.IObservableVector (ICommandBarElement);
    IID_IObservableVector_ICommandBarElement : aliased WinRt.IID := (3853838064, 36475, 23301, (167, 245, 61, 225, 209, 16, 189, 71 ));
    function QInterface_IObservableVector_ICommandBarElement is new Generic_QueryInterface (GenericObject_Interface, IObservableVector_ICommandBarElement.Kind, IID_IObservableVector_ICommandBarElement'Access);
 
@@ -6140,7 +6140,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    IID_IVector_IInspectable : aliased WinRt.IID := (3660450288, 64379, 23059, (178, 144, 94, 100, 177, 55, 33, 212 ));
    function QInterface_IVector_IInspectable is new Generic_QueryInterface (GenericObject_Interface, IVector_IInspectable.Kind, IID_IVector_IInspectable'Access);
 
-   package IVector_IHubSection is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Controls.IHubSection);
+   package IVector_IHubSection is new WinRt.Windows.Foundation.Collections.IVector (IHubSection);
    IID_IVector_IHubSection : aliased WinRt.IID := (54185841, 40059, 21740, (150, 218, 141, 29, 116, 233, 87, 144 ));
    function QInterface_IVector_IHubSection is new Generic_QueryInterface (GenericObject_Interface, IVector_IHubSection.Kind, IID_IVector_IHubSection'Access);
 
@@ -6156,11 +6156,11 @@ package WinRt.Windows.UI.Xaml.Controls is
    IID_IReference_Int32 : aliased WinRt.IID := (2333417125, 50457, 21661, (154, 131, 57, 100, 205, 230, 151, 207 ));
    function QInterface_IReference_Int32 is new Generic_QueryInterface (GenericObject_Interface, IReference_Int32.Kind, IID_IReference_Int32'Access);
 
-   package IVector_IMenuBarItem is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Controls.IMenuBarItem);
+   package IVector_IMenuBarItem is new WinRt.Windows.Foundation.Collections.IVector (IMenuBarItem);
    IID_IVector_IMenuBarItem : aliased WinRt.IID := (3857521444, 5758, 21624, (190, 29, 71, 121, 150, 58, 226, 107 ));
    function QInterface_IVector_IMenuBarItem is new Generic_QueryInterface (GenericObject_Interface, IVector_IMenuBarItem.Kind, IID_IVector_IMenuBarItem'Access);
 
-   package IVector_IMenuFlyoutItemBase is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Controls.IMenuFlyoutItemBase);
+   package IVector_IMenuFlyoutItemBase is new WinRt.Windows.Foundation.Collections.IVector (IMenuFlyoutItemBase);
    IID_IVector_IMenuFlyoutItemBase : aliased WinRt.IID := (1066637052, 19107, 24258, (161, 148, 95, 156, 20, 32, 179, 88 ));
    function QInterface_IVector_IMenuFlyoutItemBase is new Generic_QueryInterface (GenericObject_Interface, IVector_IMenuFlyoutItemBase.Kind, IID_IVector_IMenuFlyoutItemBase'Access);
 
@@ -6176,7 +6176,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    IID_IReference_Rect : aliased WinRt.IID := (151514, 19540, 21955, (135, 159, 129, 94, 99, 218, 252, 106 ));
    function QInterface_IReference_Rect is new Generic_QueryInterface (GenericObject_Interface, IReference_Rect.Kind, IID_IReference_Rect'Access);
 
-   package IVector_ITreeViewNode is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Controls.ITreeViewNode);
+   package IVector_ITreeViewNode is new WinRt.Windows.Foundation.Collections.IVector (ITreeViewNode);
    IID_IVector_ITreeViewNode : aliased WinRt.IID := (1456298579, 64941, 20502, (180, 71, 207, 33, 19, 215, 2, 55 ));
    function QInterface_IVector_ITreeViewNode is new Generic_QueryInterface (GenericObject_Interface, IVector_ITreeViewNode.Kind, IID_IVector_ITreeViewNode'Access);
 
@@ -6184,7 +6184,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    IID_IVector_IUriRuntimeClass : aliased WinRt.IID := (498966710, 64916, 20813, (165, 69, 184, 128, 86, 235, 250, 86 ));
    function QInterface_IVector_IUriRuntimeClass is new Generic_QueryInterface (GenericObject_Interface, IVector_IUriRuntimeClass.Kind, IID_IVector_IUriRuntimeClass'Access);
 
-   package IVector_IWebViewDeferredPermissionRequest is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Controls.IWebViewDeferredPermissionRequest);
+   package IVector_IWebViewDeferredPermissionRequest is new WinRt.Windows.Foundation.Collections.IVector (IWebViewDeferredPermissionRequest);
    IID_IVector_IWebViewDeferredPermissionRequest : aliased WinRt.IID := (518047785, 29813, 22329, (151, 111, 229, 69, 147, 110, 108, 224 ));
    function QInterface_IVector_IWebViewDeferredPermissionRequest is new Generic_QueryInterface (GenericObject_Interface, IVector_IWebViewDeferredPermissionRequest.Kind, IID_IVector_IWebViewDeferredPermissionRequest'Access);
 

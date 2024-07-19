@@ -372,27 +372,27 @@ package WinRt.Windows.Graphics.Holographic is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IHolographicQuadLayer is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Holographic.IHolographicQuadLayer);
+   package IVector_IHolographicQuadLayer is new WinRt.Windows.Foundation.Collections.IVector (IHolographicQuadLayer);
    IID_IVector_IHolographicQuadLayer : aliased WinRt.IID := (1687179504, 56089, 23169, (171, 171, 244, 25, 203, 111, 48, 70 ));
    function QInterface_IVector_IHolographicQuadLayer is new Generic_QueryInterface (GenericObject_Interface, IVector_IHolographicQuadLayer.Kind, IID_IVector_IHolographicQuadLayer'Access);
 
-   package IReference_HolographicStereoTransform is new WinRt.Windows.Foundation.IReference (WinRt.Windows.Graphics.Holographic.HolographicStereoTransform);
+   package IReference_HolographicStereoTransform is new WinRt.Windows.Foundation.IReference (HolographicStereoTransform);
    IID_IReference_HolographicStereoTransform : aliased WinRt.IID := (2648589496, 35344, 23354, (151, 10, 106, 92, 39, 104, 126, 40 ));
    function QInterface_IReference_HolographicStereoTransform is new Generic_QueryInterface (GenericObject_Interface, IReference_HolographicStereoTransform.Kind, IID_IReference_HolographicStereoTransform'Access);
 
-   package IVectorView_IHolographicCamera is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Graphics.Holographic.IHolographicCamera);
+   package IVectorView_IHolographicCamera is new WinRt.Windows.Foundation.Collections.IVectorView (IHolographicCamera);
    IID_IVectorView_IHolographicCamera : aliased WinRt.IID := (2698544896, 42936, 22500, (176, 186, 41, 92, 92, 115, 193, 108 ));
    function QInterface_IVectorView_IHolographicCamera is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IHolographicCamera.Kind, IID_IVectorView_IHolographicCamera'Access);
 
-   package IVectorView_IHolographicCameraPose is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Graphics.Holographic.IHolographicCameraPose);
+   package IVectorView_IHolographicCameraPose is new WinRt.Windows.Foundation.Collections.IVectorView (IHolographicCameraPose);
    IID_IVectorView_IHolographicCameraPose : aliased WinRt.IID := (3549672074, 19652, 21914, (175, 47, 20, 245, 241, 47, 115, 108 ));
    function QInterface_IVectorView_IHolographicCameraPose is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IHolographicCameraPose.Kind, IID_IVectorView_IHolographicCameraPose'Access);
 
-   package IVectorView_IHolographicFramePresentationReport is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Graphics.Holographic.IHolographicFramePresentationReport);
+   package IVectorView_IHolographicFramePresentationReport is new WinRt.Windows.Foundation.Collections.IVectorView (IHolographicFramePresentationReport);
    IID_IVectorView_IHolographicFramePresentationReport : aliased WinRt.IID := (911567273, 38780, 23656, (161, 211, 206, 163, 56, 206, 156, 36 ));
    function QInterface_IVectorView_IHolographicFramePresentationReport is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IHolographicFramePresentationReport.Kind, IID_IVectorView_IHolographicFramePresentationReport'Access);
 
-   package IVector_IHolographicFrameScanoutReport is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Graphics.Holographic.IHolographicFrameScanoutReport);
+   package IVector_IHolographicFrameScanoutReport is new WinRt.Windows.Foundation.Collections.IVector (IHolographicFrameScanoutReport);
    IID_IVector_IHolographicFrameScanoutReport : aliased WinRt.IID := (195747971, 40257, 20716, (154, 113, 54, 115, 84, 149, 1, 73 ));
    function QInterface_IVector_IHolographicFrameScanoutReport is new Generic_QueryInterface (GenericObject_Interface, IVector_IHolographicFrameScanoutReport.Kind, IID_IVector_IHolographicFrameScanoutReport'Access);
 

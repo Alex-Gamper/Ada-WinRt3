@@ -474,7 +474,7 @@ package WinRt.Windows.UI.Input.Spatial is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_ISpatialInteractionSourceState is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState);
+   package IVectorView_ISpatialInteractionSourceState is new WinRt.Windows.Foundation.Collections.IVectorView (ISpatialInteractionSourceState);
    IID_IVectorView_ISpatialInteractionSourceState : aliased WinRt.IID := (2106381171, 43228, 23922, (140, 47, 147, 13, 149, 167, 242, 205 ));
    function QInterface_IVectorView_ISpatialInteractionSourceState is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ISpatialInteractionSourceState.Kind, IID_IVectorView_ISpatialInteractionSourceState'Access);
 

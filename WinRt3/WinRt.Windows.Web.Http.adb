@@ -65,9 +65,9 @@ package body WinRt.Windows.Web.Http is
    package IAsyncOperation_HttpGetStringResult is new WinRt.Windows.Foundation.IAsyncOperationWithProgress (WinRt.Windows.Web.Http.IHttpGetStringResult, GenericObject);
    package AsyncOperationCompletedHandler_HttpGetStringResult is new WinRt.Windows.Foundation.AsyncOperationWithProgressCompletedHandler (WinRt.Windows.Web.Http.IHttpGetStringResult, GenericObject);
 
-   package IVectorView_IHttpCookie is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Web.Http.IHttpCookie);
-   package IIterable_IHttpCookie is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.IHttpCookie);
-   package IIterable_IHttpContent is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Web.Http.IHttpContent);
+   package IVectorView_IHttpCookie is new WinRt.Windows.Foundation.Collections.IVectorView (IHttpCookie);
+   package IIterable_IHttpCookie is new WinRt.Windows.Foundation.Collections.IIterable (IHttpCookie);
+   package IIterable_IHttpContent is new WinRt.Windows.Foundation.Collections.IIterable (IHttpContent);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for HttpBufferContent
 

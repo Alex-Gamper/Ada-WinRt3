@@ -36,18 +36,18 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Xaml.Media.Animation is
 
-   package IVector_IColorKeyFrame is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Media.Animation.IColorKeyFrame);
-   package IIterable_IColorKeyFrame is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Media.Animation.IColorKeyFrame);
-   package IVector_IDoubleKeyFrame is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame);
-   package IIterable_IDoubleKeyFrame is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame);
-   package IVector_IObjectKeyFrame is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Media.Animation.IObjectKeyFrame);
-   package IIterable_IObjectKeyFrame is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Media.Animation.IObjectKeyFrame);
-   package IVector_IPointKeyFrame is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Media.Animation.IPointKeyFrame);
-   package IIterable_IPointKeyFrame is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Media.Animation.IPointKeyFrame);
-   package IVector_ITimeline is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Media.Animation.ITimeline);
-   package IIterable_ITimeline is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Media.Animation.ITimeline);
-   package IVector_ITransition is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Xaml.Media.Animation.ITransition);
-   package IIterable_ITransition is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.UI.Xaml.Media.Animation.ITransition);
+   package IVector_IColorKeyFrame is new WinRt.Windows.Foundation.Collections.IVector (IColorKeyFrame);
+   package IIterable_IColorKeyFrame is new WinRt.Windows.Foundation.Collections.IIterable (IColorKeyFrame);
+   package IVector_IDoubleKeyFrame is new WinRt.Windows.Foundation.Collections.IVector (IDoubleKeyFrame);
+   package IIterable_IDoubleKeyFrame is new WinRt.Windows.Foundation.Collections.IIterable (IDoubleKeyFrame);
+   package IVector_IObjectKeyFrame is new WinRt.Windows.Foundation.Collections.IVector (IObjectKeyFrame);
+   package IIterable_IObjectKeyFrame is new WinRt.Windows.Foundation.Collections.IIterable (IObjectKeyFrame);
+   package IVector_IPointKeyFrame is new WinRt.Windows.Foundation.Collections.IVector (IPointKeyFrame);
+   package IIterable_IPointKeyFrame is new WinRt.Windows.Foundation.Collections.IIterable (IPointKeyFrame);
+   package IVector_ITimeline is new WinRt.Windows.Foundation.Collections.IVector (ITimeline);
+   package IIterable_ITimeline is new WinRt.Windows.Foundation.Collections.IIterable (ITimeline);
+   package IVector_ITransition is new WinRt.Windows.Foundation.Collections.IVector (ITransition);
+   package IIterable_ITransition is new WinRt.Windows.Foundation.Collections.IIterable (ITransition);
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Transition
 

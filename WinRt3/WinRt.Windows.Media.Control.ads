@@ -183,7 +183,7 @@ package WinRt.Windows.Media.Control is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IGlobalSystemMediaTransportControlsSession is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSession);
+   package IVectorView_IGlobalSystemMediaTransportControlsSession is new WinRt.Windows.Foundation.Collections.IVectorView (IGlobalSystemMediaTransportControlsSession);
    IID_IVectorView_IGlobalSystemMediaTransportControlsSession : aliased WinRt.IID := (2066734799, 15068, 23208, (147, 106, 113, 237, 169, 165, 167, 235 ));
    function QInterface_IVectorView_IGlobalSystemMediaTransportControlsSession is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IGlobalSystemMediaTransportControlsSession.Kind, IID_IVectorView_IGlobalSystemMediaTransportControlsSession'Access);
 

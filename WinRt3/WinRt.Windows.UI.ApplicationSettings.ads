@@ -288,15 +288,15 @@ package WinRt.Windows.UI.ApplicationSettings is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IWebAccountProviderCommand is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.ApplicationSettings.IWebAccountProviderCommand);
+   package IVector_IWebAccountProviderCommand is new WinRt.Windows.Foundation.Collections.IVector (IWebAccountProviderCommand);
    IID_IVector_IWebAccountProviderCommand : aliased WinRt.IID := (3007761030, 34098, 24076, (153, 71, 208, 10, 224, 242, 2, 184 ));
    function QInterface_IVector_IWebAccountProviderCommand is new Generic_QueryInterface (GenericObject_Interface, IVector_IWebAccountProviderCommand.Kind, IID_IVector_IWebAccountProviderCommand'Access);
 
-   package IVector_IWebAccountCommand is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.ApplicationSettings.IWebAccountCommand);
+   package IVector_IWebAccountCommand is new WinRt.Windows.Foundation.Collections.IVector (IWebAccountCommand);
    IID_IVector_IWebAccountCommand : aliased WinRt.IID := (3007761030, 34098, 24076, (153, 71, 208, 10, 224, 242, 2, 184 ));
    function QInterface_IVector_IWebAccountCommand is new Generic_QueryInterface (GenericObject_Interface, IVector_IWebAccountCommand.Kind, IID_IVector_IWebAccountCommand'Access);
 
-   package IVector_ICredentialCommand is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.ApplicationSettings.ICredentialCommand);
+   package IVector_ICredentialCommand is new WinRt.Windows.Foundation.Collections.IVector (ICredentialCommand);
    IID_IVector_ICredentialCommand : aliased WinRt.IID := (3007761030, 34098, 24076, (153, 71, 208, 10, 224, 242, 2, 184 ));
    function QInterface_IVector_ICredentialCommand is new Generic_QueryInterface (GenericObject_Interface, IVector_ICredentialCommand.Kind, IID_IVector_ICredentialCommand'Access);
 

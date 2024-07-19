@@ -88,7 +88,7 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IMapView_HString_ILicenseSatisfactionInfo is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.Windows.ApplicationModel.Store.LicenseManagement.ILicenseSatisfactionInfo);
+   package IMapView_HString_ILicenseSatisfactionInfo is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, ILicenseSatisfactionInfo);
    IID_IMapView_HString_ILicenseSatisfactionInfo : aliased WinRt.IID := (1994740624, 47316, 22775, (150, 153, 222, 183, 197, 42, 201, 85 ));
    function QInterface_IMapView_HString_ILicenseSatisfactionInfo is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_ILicenseSatisfactionInfo.Kind, IID_IMapView_HString_ILicenseSatisfactionInfo'Access);
 

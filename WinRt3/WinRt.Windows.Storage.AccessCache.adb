@@ -34,8 +34,8 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Storage.AccessCache is
 
-   package IVectorView_AccessListEntry is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Storage.AccessCache.AccessListEntry);
-   package IIterable_AccessListEntry is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Storage.AccessCache.AccessListEntry);
+   package IVectorView_AccessListEntry is new WinRt.Windows.Foundation.Collections.IVectorView (AccessListEntry);
+   package IIterable_AccessListEntry is new WinRt.Windows.Foundation.Collections.IIterable (AccessListEntry);
    package IAsyncOperation_IStorageItem is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Storage.IStorageItem);
    package AsyncOperationCompletedHandler_IStorageItem is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Storage.IStorageItem);
 

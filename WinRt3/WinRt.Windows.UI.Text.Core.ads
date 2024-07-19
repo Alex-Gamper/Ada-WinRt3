@@ -420,7 +420,7 @@ package WinRt.Windows.UI.Text.Core is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_ICoreTextCompositionSegment is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Text.Core.ICoreTextCompositionSegment);
+   package IVectorView_ICoreTextCompositionSegment is new WinRt.Windows.Foundation.Collections.IVectorView (ICoreTextCompositionSegment);
    IID_IVectorView_ICoreTextCompositionSegment : aliased WinRt.IID := (71536962, 19369, 24041, (132, 210, 69, 48, 77, 122, 191, 8 ));
    function QInterface_IVectorView_ICoreTextCompositionSegment is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ICoreTextCompositionSegment.Kind, IID_IVectorView_ICoreTextCompositionSegment'Access);
 

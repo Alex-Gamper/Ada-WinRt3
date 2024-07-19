@@ -265,27 +265,27 @@ package WinRt.Windows.Web.Syndication is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_ISyndicationAttribute is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Syndication.ISyndicationAttribute);
+   package IVector_ISyndicationAttribute is new WinRt.Windows.Foundation.Collections.IVector (ISyndicationAttribute);
    IID_IVector_ISyndicationAttribute : aliased WinRt.IID := (215831750, 28572, 22221, (132, 167, 225, 232, 171, 40, 49, 151 ));
    function QInterface_IVector_ISyndicationAttribute is new Generic_QueryInterface (GenericObject_Interface, IVector_ISyndicationAttribute.Kind, IID_IVector_ISyndicationAttribute'Access);
 
-   package IVector_ISyndicationNode is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Syndication.ISyndicationNode);
+   package IVector_ISyndicationNode is new WinRt.Windows.Foundation.Collections.IVector (ISyndicationNode);
    IID_IVector_ISyndicationNode : aliased WinRt.IID := (215831750, 28572, 22221, (132, 167, 225, 232, 171, 40, 49, 151 ));
    function QInterface_IVector_ISyndicationNode is new Generic_QueryInterface (GenericObject_Interface, IVector_ISyndicationNode.Kind, IID_IVector_ISyndicationNode'Access);
 
-   package IVector_ISyndicationPerson is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Syndication.ISyndicationPerson);
+   package IVector_ISyndicationPerson is new WinRt.Windows.Foundation.Collections.IVector (ISyndicationPerson);
    IID_IVector_ISyndicationPerson : aliased WinRt.IID := (3730257323, 40161, 22745, (181, 253, 185, 244, 133, 44, 38, 182 ));
    function QInterface_IVector_ISyndicationPerson is new Generic_QueryInterface (GenericObject_Interface, IVector_ISyndicationPerson.Kind, IID_IVector_ISyndicationPerson'Access);
 
-   package IVector_ISyndicationCategory is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Syndication.ISyndicationCategory);
+   package IVector_ISyndicationCategory is new WinRt.Windows.Foundation.Collections.IVector (ISyndicationCategory);
    IID_IVector_ISyndicationCategory : aliased WinRt.IID := (3730257323, 40161, 22745, (181, 253, 185, 244, 133, 44, 38, 182 ));
    function QInterface_IVector_ISyndicationCategory is new Generic_QueryInterface (GenericObject_Interface, IVector_ISyndicationCategory.Kind, IID_IVector_ISyndicationCategory'Access);
 
-   package IVector_ISyndicationItem is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Syndication.ISyndicationItem);
+   package IVector_ISyndicationItem is new WinRt.Windows.Foundation.Collections.IVector (ISyndicationItem);
    IID_IVector_ISyndicationItem : aliased WinRt.IID := (3730257323, 40161, 22745, (181, 253, 185, 244, 133, 44, 38, 182 ));
    function QInterface_IVector_ISyndicationItem is new Generic_QueryInterface (GenericObject_Interface, IVector_ISyndicationItem.Kind, IID_IVector_ISyndicationItem'Access);
 
-   package IVector_ISyndicationLink is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Web.Syndication.ISyndicationLink);
+   package IVector_ISyndicationLink is new WinRt.Windows.Foundation.Collections.IVector (ISyndicationLink);
    IID_IVector_ISyndicationLink : aliased WinRt.IID := (3730257323, 40161, 22745, (181, 253, 185, 244, 133, 44, 38, 182 ));
    function QInterface_IVector_ISyndicationLink is new Generic_QueryInterface (GenericObject_Interface, IVector_ISyndicationLink.Kind, IID_IVector_ISyndicationLink'Access);
 

@@ -177,7 +177,7 @@ package WinRt.Windows.Media.Casting is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_ICastingSource is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Media.Casting.ICastingSource);
+   package IVector_ICastingSource is new WinRt.Windows.Foundation.Collections.IVector (ICastingSource);
    IID_IVector_ICastingSource : aliased WinRt.IID := (457209855, 15542, 21444, (137, 175, 133, 103, 184, 151, 238, 147 ));
    function QInterface_IVector_ICastingSource is new Generic_QueryInterface (GenericObject_Interface, IVector_ICastingSource.Kind, IID_IVector_ICastingSource'Access);
 

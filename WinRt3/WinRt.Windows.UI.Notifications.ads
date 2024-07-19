@@ -791,11 +791,11 @@ package WinRt.Windows.UI.Notifications is
    IID_IReference_DateTime : aliased WinRt.IID := (3983344308, 28462, 23009, (173, 68, 163, 142, 242, 218, 201, 136 ));
    function QInterface_IReference_DateTime is new Generic_QueryInterface (GenericObject_Interface, IReference_DateTime.Kind, IID_IReference_DateTime'Access);
 
-   package IVectorView_IAdaptiveNotificationText is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Notifications.IAdaptiveNotificationText);
+   package IVectorView_IAdaptiveNotificationText is new WinRt.Windows.Foundation.Collections.IVectorView (IAdaptiveNotificationText);
    IID_IVectorView_IAdaptiveNotificationText : aliased WinRt.IID := (1330787303, 48102, 23918, (143, 1, 248, 122, 113, 224, 95, 82 ));
    function QInterface_IVectorView_IAdaptiveNotificationText is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAdaptiveNotificationText.Kind, IID_IVectorView_IAdaptiveNotificationText'Access);
 
-   package IVector_INotificationBinding is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.UI.Notifications.INotificationBinding);
+   package IVector_INotificationBinding is new WinRt.Windows.Foundation.Collections.IVector (INotificationBinding);
    IID_IVector_INotificationBinding : aliased WinRt.IID := (3206458322, 9143, 23097, (176, 15, 7, 82, 195, 25, 50, 45 ));
    function QInterface_IVector_INotificationBinding is new Generic_QueryInterface (GenericObject_Interface, IVector_INotificationBinding.Kind, IID_IVector_INotificationBinding'Access);
 
@@ -803,15 +803,15 @@ package WinRt.Windows.UI.Notifications is
    IID_IReference_TimeSpan : aliased WinRt.IID := (274286042, 536, 23138, (185, 25, 169, 18, 8, 214, 80, 242 ));
    function QInterface_IReference_TimeSpan is new Generic_QueryInterface (GenericObject_Interface, IReference_TimeSpan.Kind, IID_IReference_TimeSpan'Access);
 
-   package IVectorView_IScheduledTileNotification is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Notifications.IScheduledTileNotification);
+   package IVectorView_IScheduledTileNotification is new WinRt.Windows.Foundation.Collections.IVectorView (IScheduledTileNotification);
    IID_IVectorView_IScheduledTileNotification : aliased WinRt.IID := (787224345, 38063, 20561, (177, 161, 171, 40, 243, 197, 217, 195 ));
    function QInterface_IVectorView_IScheduledTileNotification is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IScheduledTileNotification.Kind, IID_IVectorView_IScheduledTileNotification'Access);
 
-   package IVectorView_IToastNotification is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Notifications.IToastNotification);
+   package IVectorView_IToastNotification is new WinRt.Windows.Foundation.Collections.IVectorView (IToastNotification);
    IID_IVectorView_IToastNotification : aliased WinRt.IID := (2813447239, 54225, 22676, (150, 132, 127, 39, 82, 99, 191, 152 ));
    function QInterface_IVectorView_IToastNotification is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IToastNotification.Kind, IID_IVectorView_IToastNotification'Access);
 
-   package IVectorView_IScheduledToastNotification is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.UI.Notifications.IScheduledToastNotification);
+   package IVectorView_IScheduledToastNotification is new WinRt.Windows.Foundation.Collections.IVectorView (IScheduledToastNotification);
    IID_IVectorView_IScheduledToastNotification : aliased WinRt.IID := (200727816, 19699, 22027, (130, 64, 162, 104, 64, 69, 185, 82 ));
    function QInterface_IVectorView_IScheduledToastNotification is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IScheduledToastNotification.Kind, IID_IVectorView_IScheduledToastNotification'Access);
 

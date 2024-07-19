@@ -363,11 +363,11 @@ package WinRt.Windows.Media.Miracast is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IMiracastTransmitter is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Miracast.IMiracastTransmitter);
+   package IVectorView_IMiracastTransmitter is new WinRt.Windows.Foundation.Collections.IVectorView (IMiracastTransmitter);
    IID_IVectorView_IMiracastTransmitter : aliased WinRt.IID := (2318094833, 21821, 21015, (169, 101, 181, 253, 61, 236, 59, 147 ));
    function QInterface_IVectorView_IMiracastTransmitter is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMiracastTransmitter.Kind, IID_IVectorView_IMiracastTransmitter'Access);
 
-   package IVectorView_IMiracastReceiverConnection is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Miracast.IMiracastReceiverConnection);
+   package IVectorView_IMiracastReceiverConnection is new WinRt.Windows.Foundation.Collections.IVectorView (IMiracastReceiverConnection);
    IID_IVectorView_IMiracastReceiverConnection : aliased WinRt.IID := (498158373, 31454, 20637, (174, 170, 189, 8, 210, 207, 86, 152 ));
    function QInterface_IVectorView_IMiracastReceiverConnection is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMiracastReceiverConnection.Kind, IID_IVectorView_IMiracastReceiverConnection'Access);
 

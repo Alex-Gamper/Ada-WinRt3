@@ -522,11 +522,11 @@ package WinRt.Windows.Devices.Enumeration is
    IID_IVector_HString : aliased WinRt.IID := (2548211948, 11830, 23533, (172, 29, 85, 73, 13, 35, 0, 130 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
-   package IVector_DeviceClass is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Devices.Enumeration.DeviceClass);
+   package IVector_DeviceClass is new WinRt.Windows.Foundation.Collections.IVector (DeviceClass);
    IID_IVector_DeviceClass : aliased WinRt.IID := (3722124575, 60963, 21411, (191, 144, 190, 114, 176, 246, 238, 237 ));
    function QInterface_IVector_DeviceClass is new Generic_QueryInterface (GenericObject_Interface, IVector_DeviceClass.Kind, IID_IVector_DeviceClass'Access);
 
-   package IVectorView_IDeviceWatcherEvent is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Enumeration.IDeviceWatcherEvent);
+   package IVectorView_IDeviceWatcherEvent is new WinRt.Windows.Foundation.Collections.IVectorView (IDeviceWatcherEvent);
    IID_IVectorView_IDeviceWatcherEvent : aliased WinRt.IID := (6928275, 36075, 20751, (131, 168, 85, 214, 28, 118, 234, 198 ));
    function QInterface_IVectorView_IDeviceWatcherEvent is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IDeviceWatcherEvent.Kind, IID_IVectorView_IDeviceWatcherEvent'Access);
 

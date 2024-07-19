@@ -394,7 +394,7 @@ package WinRt.Windows.Perception.Spatial is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IMapView_HString_ISpatialAnchor is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.Windows.Perception.Spatial.ISpatialAnchor);
+   package IMapView_HString_ISpatialAnchor is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, ISpatialAnchor);
    IID_IMapView_HString_ISpatialAnchor : aliased WinRt.IID := (1171323067, 51850, 21525, (130, 19, 210, 76, 227, 93, 170, 75 ));
    function QInterface_IMapView_HString_ISpatialAnchor is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_ISpatialAnchor.Kind, IID_IMapView_HString_ISpatialAnchor'Access);
 

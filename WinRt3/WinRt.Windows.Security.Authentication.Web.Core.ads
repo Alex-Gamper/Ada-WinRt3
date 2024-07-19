@@ -199,7 +199,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
    IID_IMap_HString_HString : aliased WinRt.IID := (4226059333, 56727, 24112, (145, 253, 12, 247, 210, 117, 185, 198 ));
    function QInterface_IMap_HString_HString is new Generic_QueryInterface (GenericObject_Interface, IMap_HString_HString.Kind, IID_IMap_HString_HString'Access);
 
-   package IVectorView_IWebTokenResponse is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Security.Authentication.Web.Core.IWebTokenResponse);
+   package IVectorView_IWebTokenResponse is new WinRt.Windows.Foundation.Collections.IVectorView (IWebTokenResponse);
    IID_IVectorView_IWebTokenResponse : aliased WinRt.IID := (306172746, 1626, 20525, (149, 40, 178, 108, 190, 72, 185, 208 ));
    function QInterface_IVectorView_IWebTokenResponse is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IWebTokenResponse.Kind, IID_IVectorView_IWebTokenResponse'Access);
 

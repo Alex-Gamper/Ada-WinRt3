@@ -346,7 +346,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
    IID_IReference_UInt64 : aliased WinRt.IID := (4234921183, 12762, 20868, (160, 178, 241, 235, 121, 140, 222, 202 ));
    function QInterface_IReference_UInt64 is new Generic_QueryInterface (GenericObject_Interface, IReference_UInt64.Kind, IID_IReference_UInt64'Access);
 
-   package IReference_AdaptiveMediaSourceResourceType is new WinRt.Windows.Foundation.IReference (WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType);
+   package IReference_AdaptiveMediaSourceResourceType is new WinRt.Windows.Foundation.IReference (AdaptiveMediaSourceResourceType);
    IID_IReference_AdaptiveMediaSourceResourceType : aliased WinRt.IID := (4234921183, 12762, 20868, (160, 178, 241, 235, 121, 140, 222, 202 ));
    function QInterface_IReference_AdaptiveMediaSourceResourceType is new Generic_QueryInterface (GenericObject_Interface, IReference_AdaptiveMediaSourceResourceType.Kind, IID_IReference_AdaptiveMediaSourceResourceType'Access);
 

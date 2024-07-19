@@ -199,7 +199,7 @@ package WinRt.Windows.UI.WebUI.Core is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IObservableVector_IWebUICommandBarElement is new WinRt.Windows.Foundation.Collections.IObservableVector (WinRt.Windows.UI.WebUI.Core.IWebUICommandBarElement);
+   package IObservableVector_IWebUICommandBarElement is new WinRt.Windows.Foundation.Collections.IObservableVector (IWebUICommandBarElement);
    IID_IObservableVector_IWebUICommandBarElement : aliased WinRt.IID := (1173020108, 38244, 22240, (135, 168, 168, 96, 5, 156, 26, 13 ));
    function QInterface_IObservableVector_IWebUICommandBarElement is new Generic_QueryInterface (GenericObject_Interface, IObservableVector_IWebUICommandBarElement.Kind, IID_IObservableVector_IWebUICommandBarElement'Access);
 

@@ -672,15 +672,15 @@ package WinRt.Windows.ApplicationModel.Chat is
    IID_IVector_HString : aliased WinRt.IID := (3883716775, 44485, 22961, (173, 18, 39, 76, 251, 100, 155, 226 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
-   package IVector_IChatMessageAttachment is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Chat.IChatMessageAttachment);
+   package IVector_IChatMessageAttachment is new WinRt.Windows.Foundation.Collections.IVector (IChatMessageAttachment);
    IID_IVector_IChatMessageAttachment : aliased WinRt.IID := (1534020369, 33691, 22262, (160, 235, 238, 168, 121, 47, 102, 36 ));
    function QInterface_IVector_IChatMessageAttachment is new Generic_QueryInterface (GenericObject_Interface, IVector_IChatMessageAttachment.Kind, IID_IVector_IChatMessageAttachment'Access);
 
-   package IMapView_HString_ChatMessageStatus is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.Windows.ApplicationModel.Chat.ChatMessageStatus);
+   package IMapView_HString_ChatMessageStatus is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, ChatMessageStatus);
    IID_IMapView_HString_ChatMessageStatus : aliased WinRt.IID := (1534020369, 33691, 22262, (160, 235, 238, 168, 121, 47, 102, 36 ));
    function QInterface_IMapView_HString_ChatMessageStatus is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_ChatMessageStatus.Kind, IID_IMapView_HString_ChatMessageStatus'Access);
 
-   package IVector_IChatRecipientDeliveryInfo is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Chat.IChatRecipientDeliveryInfo);
+   package IVector_IChatRecipientDeliveryInfo is new WinRt.Windows.Foundation.Collections.IVector (IChatRecipientDeliveryInfo);
    IID_IVector_IChatRecipientDeliveryInfo : aliased WinRt.IID := (4135735176, 43017, 24574, (159, 232, 157, 139, 36, 89, 24, 226 ));
    function QInterface_IVector_IChatRecipientDeliveryInfo is new Generic_QueryInterface (GenericObject_Interface, IVector_IChatRecipientDeliveryInfo.Kind, IID_IVector_IChatRecipientDeliveryInfo'Access);
 
@@ -696,7 +696,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    IID_IReference_DateTime : aliased WinRt.IID := (179161512, 1165, 23942, (162, 137, 37, 125, 98, 5, 141, 183 ));
    function QInterface_IReference_DateTime is new Generic_QueryInterface (GenericObject_Interface, IReference_DateTime.Kind, IID_IReference_DateTime'Access);
 
-   package IVectorView_IRcsEndUserMessageAction is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Chat.IRcsEndUserMessageAction);
+   package IVectorView_IRcsEndUserMessageAction is new WinRt.Windows.Foundation.Collections.IVectorView (IRcsEndUserMessageAction);
    IID_IVectorView_IRcsEndUserMessageAction : aliased WinRt.IID := (3081394989, 52838, 20987, (180, 28, 246, 114, 211, 108, 113, 15 ));
    function QInterface_IVectorView_IRcsEndUserMessageAction is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IRcsEndUserMessageAction.Kind, IID_IVectorView_IRcsEndUserMessageAction'Access);
 

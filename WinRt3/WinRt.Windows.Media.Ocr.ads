@@ -92,11 +92,11 @@ package WinRt.Windows.Media.Ocr is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IOcrWord is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Ocr.IOcrWord);
+   package IVectorView_IOcrWord is new WinRt.Windows.Foundation.Collections.IVectorView (IOcrWord);
    IID_IVectorView_IOcrWord : aliased WinRt.IID := (2553682480, 7745, 22888, (185, 212, 25, 37, 58, 252, 188, 131 ));
    function QInterface_IVectorView_IOcrWord is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IOcrWord.Kind, IID_IVectorView_IOcrWord'Access);
 
-   package IVectorView_IOcrLine is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Ocr.IOcrLine);
+   package IVectorView_IOcrLine is new WinRt.Windows.Foundation.Collections.IVectorView (IOcrLine);
    IID_IVectorView_IOcrLine : aliased WinRt.IID := (1396734671, 64622, 24380, (153, 76, 197, 254, 143, 160, 29, 129 ));
    function QInterface_IVectorView_IOcrLine is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IOcrLine.Kind, IID_IVectorView_IOcrLine'Access);
 

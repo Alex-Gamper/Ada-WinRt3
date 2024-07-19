@@ -375,11 +375,11 @@ package WinRt.Windows.Storage.Provider is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_IStorageProviderItemPropertyDefinition is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Storage.Provider.IStorageProviderItemPropertyDefinition);
+   package IVector_IStorageProviderItemPropertyDefinition is new WinRt.Windows.Foundation.Collections.IVector (IStorageProviderItemPropertyDefinition);
    IID_IVector_IStorageProviderItemPropertyDefinition : aliased WinRt.IID := (2897682587, 63953, 22771, (137, 24, 238, 138, 168, 129, 219, 52 ));
    function QInterface_IVector_IStorageProviderItemPropertyDefinition is new Generic_QueryInterface (GenericObject_Interface, IVector_IStorageProviderItemPropertyDefinition.Kind, IID_IVector_IStorageProviderItemPropertyDefinition'Access);
 
-   package IVector_IStorageProviderFileTypeInfo is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Storage.Provider.IStorageProviderFileTypeInfo);
+   package IVector_IStorageProviderFileTypeInfo is new WinRt.Windows.Foundation.Collections.IVector (IStorageProviderFileTypeInfo);
    IID_IVector_IStorageProviderFileTypeInfo : aliased WinRt.IID := (3839964094, 11104, 21592, (186, 95, 237, 229, 179, 33, 112, 245 ));
    function QInterface_IVector_IStorageProviderFileTypeInfo is new Generic_QueryInterface (GenericObject_Interface, IVector_IStorageProviderFileTypeInfo.Kind, IID_IVector_IStorageProviderFileTypeInfo'Access);
 

@@ -331,19 +331,19 @@ package WinRt.Windows.Data.Text is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_ISelectableWordSegment is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Data.Text.ISelectableWordSegment);
+   package IVectorView_ISelectableWordSegment is new WinRt.Windows.Foundation.Collections.IVectorView (ISelectableWordSegment);
    IID_IVectorView_ISelectableWordSegment : aliased WinRt.IID := (814508886, 14639, 21166, (151, 45, 118, 178, 11, 214, 149, 165 ));
    function QInterface_IVectorView_ISelectableWordSegment is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ISelectableWordSegment.Kind, IID_IVectorView_ISelectableWordSegment'Access);
 
-   package IVectorView_TextSegment is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Data.Text.TextSegment);
+   package IVectorView_TextSegment is new WinRt.Windows.Foundation.Collections.IVectorView (TextSegment);
    IID_IVectorView_TextSegment : aliased WinRt.IID := (4260989200, 17484, 20810, (166, 191, 175, 125, 91, 99, 58, 71 ));
    function QInterface_IVectorView_TextSegment is new Generic_QueryInterface (GenericObject_Interface, IVectorView_TextSegment.Kind, IID_IVectorView_TextSegment'Access);
 
-   package IVectorView_IAlternateWordForm is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Data.Text.IAlternateWordForm);
+   package IVectorView_IAlternateWordForm is new WinRt.Windows.Foundation.Collections.IVectorView (IAlternateWordForm);
    IID_IVectorView_IAlternateWordForm : aliased WinRt.IID := (2320298673, 48094, 21397, (165, 79, 120, 68, 202, 159, 144, 36 ));
    function QInterface_IVectorView_IAlternateWordForm is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAlternateWordForm.Kind, IID_IVectorView_IAlternateWordForm'Access);
 
-   package IVectorView_IWordSegment is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Data.Text.IWordSegment);
+   package IVectorView_IWordSegment is new WinRt.Windows.Foundation.Collections.IVectorView (IWordSegment);
    IID_IVectorView_IWordSegment : aliased WinRt.IID := (2204304531, 10851, 22692, (132, 51, 34, 66, 87, 207, 197, 238 ));
    function QInterface_IVectorView_IWordSegment is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IWordSegment.Kind, IID_IVectorView_IWordSegment'Access);
 

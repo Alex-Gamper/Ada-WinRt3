@@ -166,7 +166,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVector_ISocialItemThumbnail is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail);
+   package IVector_ISocialItemThumbnail is new WinRt.Windows.Foundation.Collections.IVector (ISocialItemThumbnail);
    IID_IVector_ISocialItemThumbnail : aliased WinRt.IID := (285083847, 25774, 20505, (165, 229, 242, 76, 3, 19, 132, 86 ));
    function QInterface_IVector_ISocialItemThumbnail is new Generic_QueryInterface (GenericObject_Interface, IVector_ISocialItemThumbnail.Kind, IID_IVector_ISocialItemThumbnail'Access);
 

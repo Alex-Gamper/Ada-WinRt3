@@ -48,7 +48,7 @@ package body WinRt.Windows.Media.Playback is
    package IIterable_IMediaTrack is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Media.Core.IMediaTrack);
    package IVectorView_ITimedMetadataTrack is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Media.Core.ITimedMetadataTrack);
    package IIterable_ITimedMetadataTrack is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Media.Core.ITimedMetadataTrack);
-   package IIterable_IPlaybackMediaMarker is new WinRt.Windows.Foundation.Collections.IIterable (WinRt.Windows.Media.Playback.IPlaybackMediaMarker);
+   package IIterable_IPlaybackMediaMarker is new WinRt.Windows.Foundation.Collections.IIterable (IPlaybackMediaMarker);
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package body BackgroundMediaPlayer is

@@ -243,7 +243,7 @@ package WinRt.Windows.Devices.Input is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_PointerDeviceUsage is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Devices.Input.PointerDeviceUsage);
+   package IVectorView_PointerDeviceUsage is new WinRt.Windows.Foundation.Collections.IVectorView (PointerDeviceUsage);
    IID_IVectorView_PointerDeviceUsage : aliased WinRt.IID := (1926031283, 14746, 21095, (132, 86, 114, 72, 223, 214, 245, 126 ));
    function QInterface_IVectorView_PointerDeviceUsage is new Generic_QueryInterface (GenericObject_Interface, IVectorView_PointerDeviceUsage.Kind, IID_IVectorView_PointerDeviceUsage'Access);
 

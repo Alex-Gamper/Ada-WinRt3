@@ -644,7 +644,7 @@ package WinRt.Windows.Networking.Vpn is
    IID_IVector_HString : aliased WinRt.IID := (2561770898, 11993, 22254, (153, 128, 48, 52, 140, 169, 240, 156 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
-   package IVector_IVpnDomainNameInfo is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Networking.Vpn.IVpnDomainNameInfo);
+   package IVector_IVpnDomainNameInfo is new WinRt.Windows.Foundation.Collections.IVector (IVpnDomainNameInfo);
    IID_IVector_IVpnDomainNameInfo : aliased WinRt.IID := (2291301205, 16309, 22108, (169, 106, 76, 8, 144, 140, 97, 238 ));
    function QInterface_IVector_IVpnDomainNameInfo is new Generic_QueryInterface (GenericObject_Interface, IVector_IVpnDomainNameInfo.Kind, IID_IVector_IVpnDomainNameInfo'Access);
 
@@ -656,19 +656,19 @@ package WinRt.Windows.Networking.Vpn is
    IID_IVector_IUriRuntimeClass : aliased WinRt.IID := (3131744801, 10476, 23033, (133, 79, 194, 191, 132, 210, 8, 79 ));
    function QInterface_IVector_IUriRuntimeClass is new Generic_QueryInterface (GenericObject_Interface, IVector_IUriRuntimeClass.Kind, IID_IVector_IUriRuntimeClass'Access);
 
-   package IVector_IVpnNamespaceInfo is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Networking.Vpn.IVpnNamespaceInfo);
+   package IVector_IVpnNamespaceInfo is new WinRt.Windows.Foundation.Collections.IVector (IVpnNamespaceInfo);
    IID_IVector_IVpnNamespaceInfo : aliased WinRt.IID := (3908141722, 15411, 21179, (143, 233, 176, 251, 9, 138, 26, 193 ));
    function QInterface_IVector_IVpnNamespaceInfo is new Generic_QueryInterface (GenericObject_Interface, IVector_IVpnNamespaceInfo.Kind, IID_IVector_IVpnNamespaceInfo'Access);
 
-   package IVector_IVpnAppId is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Networking.Vpn.IVpnAppId);
+   package IVector_IVpnAppId is new WinRt.Windows.Foundation.Collections.IVector (IVpnAppId);
    IID_IVector_IVpnAppId : aliased WinRt.IID := (4063229470, 41491, 21591, (175, 230, 244, 232, 123, 164, 40, 29 ));
    function QInterface_IVector_IVpnAppId is new Generic_QueryInterface (GenericObject_Interface, IVector_IVpnAppId.Kind, IID_IVector_IVpnAppId'Access);
 
-   package IVector_IVpnRoute is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Networking.Vpn.IVpnRoute);
+   package IVector_IVpnRoute is new WinRt.Windows.Foundation.Collections.IVector (IVpnRoute);
    IID_IVector_IVpnRoute : aliased WinRt.IID := (4063229470, 41491, 21591, (175, 230, 244, 232, 123, 164, 40, 29 ));
    function QInterface_IVector_IVpnRoute is new Generic_QueryInterface (GenericObject_Interface, IVector_IVpnRoute.Kind, IID_IVector_IVpnRoute'Access);
 
-   package IVector_IVpnTrafficFilter is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Networking.Vpn.IVpnTrafficFilter);
+   package IVector_IVpnTrafficFilter is new WinRt.Windows.Foundation.Collections.IVector (IVpnTrafficFilter);
    IID_IVector_IVpnTrafficFilter : aliased WinRt.IID := (4063229470, 41491, 21591, (175, 230, 244, 232, 123, 164, 40, 29 ));
    function QInterface_IVector_IVpnTrafficFilter is new Generic_QueryInterface (GenericObject_Interface, IVector_IVpnTrafficFilter.Kind, IID_IVector_IVpnTrafficFilter'Access);
 

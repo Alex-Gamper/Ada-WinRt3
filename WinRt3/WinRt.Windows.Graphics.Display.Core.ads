@@ -139,7 +139,7 @@ package WinRt.Windows.Graphics.Display.Core is
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
-   package IVectorView_IHdmiDisplayMode is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Graphics.Display.Core.IHdmiDisplayMode);
+   package IVectorView_IHdmiDisplayMode is new WinRt.Windows.Foundation.Collections.IVectorView (IHdmiDisplayMode);
    IID_IVectorView_IHdmiDisplayMode : aliased WinRt.IID := (3094977450, 37932, 22507, (188, 62, 107, 26, 168, 47, 195, 177 ));
    function QInterface_IVectorView_IHdmiDisplayMode is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IHdmiDisplayMode.Kind, IID_IVectorView_IHdmiDisplayMode'Access);
 

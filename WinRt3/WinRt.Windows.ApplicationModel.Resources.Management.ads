@@ -112,7 +112,7 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
    IID_IMapView_HString_HString : aliased WinRt.IID := (1148180560, 46431, 21800, (159, 36, 147, 228, 11, 48, 62, 186 ));
    function QInterface_IMapView_HString_HString is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_HString.Kind, IID_IMapView_HString_HString'Access);
 
-   package IVectorView_IIndexedResourceQualifier is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.ApplicationModel.Resources.Management.IIndexedResourceQualifier);
+   package IVectorView_IIndexedResourceQualifier is new WinRt.Windows.Foundation.Collections.IVectorView (IIndexedResourceQualifier);
    IID_IVectorView_IIndexedResourceQualifier : aliased WinRt.IID := (1148180560, 46431, 21800, (159, 36, 147, 228, 11, 48, 62, 186 ));
    function QInterface_IVectorView_IIndexedResourceQualifier is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IIndexedResourceQualifier.Kind, IID_IVectorView_IIndexedResourceQualifier'Access);
 
