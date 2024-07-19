@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.UI.Core;
 with WinRt.Windows.UI.Text;
 with WinRt.Windows.UI.Xaml.Input;

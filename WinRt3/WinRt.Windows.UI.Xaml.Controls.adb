@@ -31,7 +31,6 @@ with WinRt.Windows.ApplicationModel.Contacts;
 with WinRt.Windows.ApplicationModel.DataTransfer;
 with WinRt.Windows.ApplicationModel.Search;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Globalization;
 with WinRt.Windows.Media.Capture;
 with WinRt.Windows.Media.Casting;

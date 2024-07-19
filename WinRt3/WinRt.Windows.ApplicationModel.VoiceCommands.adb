@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.ApplicationModel.AppService;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Globalization;
 with WinRt.Windows.Media.SpeechRecognition;
 with WinRt.Windows.Storage;

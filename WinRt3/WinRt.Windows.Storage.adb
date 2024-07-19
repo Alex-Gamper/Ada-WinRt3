@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Storage.FileProperties;
 with WinRt.Windows.Storage.Provider;
 with WinRt.Windows.Storage.Search;

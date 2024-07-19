@@ -33,7 +33,6 @@ with WinRt.Windows.ApplicationModel.Core;
 with WinRt.Windows.ApplicationModel.DataTransfer;
 with WinRt.Windows.ApplicationModel.DataTransfer.DragDrop;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Foundation.Numerics;
 with WinRt.Windows.Graphics.Imaging;
 with WinRt.Windows.UI.Composition;

@@ -43,7 +43,6 @@ with WinRt.Windows.ApplicationModel.Wallet;
 with WinRt.Windows.Devices.Enumeration;
 with WinRt.Windows.Devices.Printers.Extensions;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Graphics.Printing;
 with WinRt.Windows.Media.SpeechRecognition;
 with WinRt.Windows.Security.Authentication.Web;

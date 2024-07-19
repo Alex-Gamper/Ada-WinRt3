@@ -30,7 +30,6 @@
 with WinRt.Windows.Devices.Haptics;
 with WinRt.Windows.Devices.Power;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Foundation.Numerics;
 with WinRt.Windows.Perception;
 with WinRt.Windows.Perception.People;

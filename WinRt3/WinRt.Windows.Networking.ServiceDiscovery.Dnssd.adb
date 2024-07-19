@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Networking.Connectivity;
 with WinRt.Windows.Networking.Sockets;
 with Ada.Unchecked_Conversion;

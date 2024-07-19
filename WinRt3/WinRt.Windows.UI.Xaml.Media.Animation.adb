@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.UI.Composition;
 with WinRt.Windows.UI.Xaml.Controls;
 with WinRt.Windows.UI.Xaml.Controls.Primitives;

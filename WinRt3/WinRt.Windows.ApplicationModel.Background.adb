@@ -37,7 +37,6 @@ with WinRt.Windows.Devices.Sensors;
 with WinRt.Windows.Devices.SmartCards;
 with WinRt.Windows.Devices.Sms;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Networking;
 with WinRt.Windows.Networking.Sockets;
 with WinRt.Windows.Storage;
