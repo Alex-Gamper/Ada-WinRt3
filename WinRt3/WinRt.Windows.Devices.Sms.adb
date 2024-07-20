@@ -57,8 +57,7 @@ package body WinRt.Windows.Devices.Sms is
 
    procedure Finalize (this : in out DeleteSmsMessageOperation) is
       temp : WinRt.UInt32 := 0;
-      use type WinRt.Windows.Foundation.IAsyncAction;
-      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.IAsyncAction, WinRt.Windows.Foundation.IAsyncAction_Ptr);
+      procedure Free is new Ada.Unchecked_Deallocation (IAsyncAction, IAsyncAction_Ptr);
    begin
       if this.m_IAsyncAction /= null then
          if this.m_IAsyncAction.all /= null then
@@ -226,8 +225,7 @@ package body WinRt.Windows.Devices.Sms is
 
    procedure Finalize (this : in out DeleteSmsMessagesOperation) is
       temp : WinRt.UInt32 := 0;
-      use type WinRt.Windows.Foundation.IAsyncAction;
-      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.IAsyncAction, WinRt.Windows.Foundation.IAsyncAction_Ptr);
+      procedure Free is new Ada.Unchecked_Deallocation (IAsyncAction, IAsyncAction_Ptr);
    begin
       if this.m_IAsyncAction /= null then
          if this.m_IAsyncAction.all /= null then
@@ -876,8 +874,7 @@ package body WinRt.Windows.Devices.Sms is
 
    procedure Finalize (this : in out SendSmsMessageOperation) is
       temp : WinRt.UInt32 := 0;
-      use type WinRt.Windows.Foundation.IAsyncAction;
-      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.IAsyncAction, WinRt.Windows.Foundation.IAsyncAction_Ptr);
+      procedure Free is new Ada.Unchecked_Deallocation (IAsyncAction, IAsyncAction_Ptr);
    begin
       if this.m_IAsyncAction /= null then
          if this.m_IAsyncAction.all /= null then

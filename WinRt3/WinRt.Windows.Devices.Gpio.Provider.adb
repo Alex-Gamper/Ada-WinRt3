@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Devices.Gpio.Provider is

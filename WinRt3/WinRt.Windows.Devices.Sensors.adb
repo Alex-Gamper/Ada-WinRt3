@@ -8275,8 +8275,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    procedure Finalize (this : in out ProximitySensorDisplayOnOffController) is
       temp : WinRt.UInt32 := 0;
-      use type WinRt.Windows.Foundation.IClosable;
-      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IClosable_Ptr);
+      procedure Free is new Ada.Unchecked_Deallocation (IClosable, IClosable_Ptr);
    begin
       if this.m_IClosable /= null then
          if this.m_IClosable.all /= null then

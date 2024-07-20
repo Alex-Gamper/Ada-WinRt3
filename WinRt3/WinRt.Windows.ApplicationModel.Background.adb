@@ -41,7 +41,6 @@ with WinRt.Windows.Networking;
 with WinRt.Windows.Networking.Sockets;
 with WinRt.Windows.Storage;
 with WinRt.Windows.Storage.Provider;
-with WinRt.Windows.System;
 with WinRt.Windows.UI.Notifications;
 with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;

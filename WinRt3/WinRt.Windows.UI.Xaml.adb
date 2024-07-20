@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with WinRt.Windows.ApplicationModel;
 with WinRt.Windows.ApplicationModel.Activation;
 with WinRt.Windows.ApplicationModel.Core;
 with WinRt.Windows.ApplicationModel.DataTransfer;

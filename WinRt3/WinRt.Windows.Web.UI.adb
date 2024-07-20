@@ -27,10 +27,7 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with WinRt.Windows.ApplicationModel.DataTransfer;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Storage.Streams;
-with WinRt.Windows.UI;
 with WinRt.Windows.Web.Http;
 with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
