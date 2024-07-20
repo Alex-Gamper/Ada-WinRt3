@@ -12274,7 +12274,7 @@ package WinRt.Windows.UI.Xaml is
    (
       this : in out DependencyObjectCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.DependencyObject'Class;
 
    function IndexOf
    (
@@ -12339,7 +12339,7 @@ package WinRt.Windows.UI.Xaml is
    (
       this : in out DependencyObjectCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.DependencyObject'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DependencyProperty
@@ -13556,7 +13556,7 @@ package WinRt.Windows.UI.Xaml is
    (
       this : in out SetterBaseCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.SetterBase'Class;
 
    function IndexOf
    (
@@ -13621,7 +13621,7 @@ package WinRt.Windows.UI.Xaml is
    (
       this : in out SetterBaseCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.SetterBase'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for SizeChangedEventArgs
@@ -13875,7 +13875,7 @@ package WinRt.Windows.UI.Xaml is
    (
       this : in out TriggerActionCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.TriggerAction'Class;
 
    function IndexOf
    (
@@ -13940,7 +13940,7 @@ package WinRt.Windows.UI.Xaml is
    (
       this : in out TriggerActionCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.TriggerAction'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for TriggerCollection
@@ -13969,7 +13969,7 @@ package WinRt.Windows.UI.Xaml is
    (
       this : in out TriggerCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.TriggerBase'Class;
 
    function IndexOf
    (
@@ -14034,7 +14034,7 @@ package WinRt.Windows.UI.Xaml is
    (
       this : in out TriggerCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.TriggerBase'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for UIElementWeakCollection
@@ -14073,7 +14073,7 @@ package WinRt.Windows.UI.Xaml is
    (
       this : in out UIElementWeakCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.UIElement'Class;
 
    function IndexOf
    (
@@ -14138,7 +14138,7 @@ package WinRt.Windows.UI.Xaml is
    (
       this : in out UIElementWeakCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.UIElement'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for UnhandledExceptionEventArgs

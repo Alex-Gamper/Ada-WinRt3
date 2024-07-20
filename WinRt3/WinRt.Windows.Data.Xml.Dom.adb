@@ -9167,12 +9167,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    (
       this : in out XmlNamedNodeMap
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IXmlNode.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       m_GenericIID     : aliased WinRt.IID := (4044648444, 35986, 22248, (147, 241, 113, 31, 134, 114, 38, 51 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlNamedNodeMap_Interface, IIterable_IXmlNode.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -9343,12 +9343,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    (
       this : in out XmlNodeList
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IXmlNode.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       m_GenericIID     : aliased WinRt.IID := (4044648444, 35986, 22248, (147, 241, 113, 31, 134, 114, 38, 51 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlNodeList_Interface, IIterable_IXmlNode.Kind, m_GenericIID'Unchecked_Access);
    begin

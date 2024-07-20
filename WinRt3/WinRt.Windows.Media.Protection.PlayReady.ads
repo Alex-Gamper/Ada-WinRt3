@@ -2744,7 +2744,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    (
       this : in out PlayReadyDomainIterable
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomain;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PlayReadyDomainIterator
@@ -3325,7 +3325,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    (
       this : in out PlayReadyLicenseIterable
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PlayReadyLicenseIterator
@@ -3606,7 +3606,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    (
       this : in out PlayReadySecureStopIterable
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PlayReadySecureStopIterator

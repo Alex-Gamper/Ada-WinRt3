@@ -456,7 +456,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
    (
       this : in out PnpObjectCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Devices.Enumeration.Pnp.PnpObject'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PnpObjectUpdate

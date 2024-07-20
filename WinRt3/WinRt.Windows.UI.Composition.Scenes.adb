@@ -286,22 +286,25 @@ package body WinRt.Windows.UI.Composition.Scenes is
    (
       this : in out SceneComponentCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.Scenes.SceneComponent'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneComponent.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneComponent;
       m_GenericIID     : aliased WinRt.IID := (3668774705, 50256, 20576, (151, 50, 240, 44, 136, 94, 155, 63 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneComponent do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ISceneComponent := new Windows.UI.Composition.Scenes.ISceneComponent;
+         Retval.m_ISceneComponent.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -499,22 +502,25 @@ package body WinRt.Windows.UI.Composition.Scenes is
    (
       this : in out SceneComponentCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.Scenes.SceneComponent'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ISceneComponent.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneComponent;
       m_GenericIID     : aliased WinRt.IID := (2622572763, 1445, 20570, (187, 20, 160, 229, 223, 187, 44, 212 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneComponent do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ISceneComponent := new Windows.UI.Composition.Scenes.ISceneComponent;
+         Retval.m_ISceneComponent.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -2025,22 +2031,25 @@ package body WinRt.Windows.UI.Composition.Scenes is
    (
       this : in out SceneNodeCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.Scenes.SceneNode'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneNode.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneNode;
       m_GenericIID     : aliased WinRt.IID := (1931843232, 27958, 23129, (138, 11, 143, 241, 97, 66, 184, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneNode do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ISceneNode := new Windows.UI.Composition.Scenes.ISceneNode;
+         Retval.m_ISceneNode.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -2238,22 +2247,25 @@ package body WinRt.Windows.UI.Composition.Scenes is
    (
       this : in out SceneNodeCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.Scenes.SceneNode'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ISceneNode.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneNode;
       m_GenericIID     : aliased WinRt.IID := (3678875876, 62308, 22379, (135, 142, 89, 167, 196, 89, 167, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneNode do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ISceneNode := new Windows.UI.Composition.Scenes.ISceneNode;
+         Retval.m_ISceneNode.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------

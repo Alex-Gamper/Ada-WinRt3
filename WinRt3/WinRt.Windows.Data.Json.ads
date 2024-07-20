@@ -131,6 +131,10 @@ package WinRt.Windows.Data.Json is
    type JsonValueType_Ptr is access all JsonValueType;
 
    -----------------------------------------------------------------------------
+   -- Generic package declarations
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -597,7 +601,7 @@ package WinRt.Windows.Data.Json is
    (
       this : in out JsonArray
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Data.Json.IJsonValue;
 
    function IndexOf
    (
@@ -662,7 +666,7 @@ package WinRt.Windows.Data.Json is
    (
       this : in out JsonArray
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Data.Json.IJsonValue;
 
    function ToString
    (

@@ -1921,12 +1921,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    (
       this : in out PlayReadyDomainIterable
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomain is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPlayReadyDomain.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyDomain;
       m_GenericIID     : aliased WinRt.IID := (2229899142, 19438, 24385, (147, 161, 37, 88, 135, 18, 45, 159 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPlayReadyDomain.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -3932,12 +3932,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    (
       this : in out PlayReadyLicenseIterable
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPlayReadyLicense.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyLicense;
       m_GenericIID     : aliased WinRt.IID := (2670261943, 46570, 20595, (186, 61, 140, 178, 240, 114, 145, 161 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPlayReadyLicense.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -4931,12 +4931,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    (
       this : in out PlayReadySecureStopIterable
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPlayReadySecureStopServiceRequest.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest;
       m_GenericIID     : aliased WinRt.IID := (2374681209, 45181, 21256, (156, 120, 28, 92, 153, 108, 160, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPlayReadySecureStopServiceRequest.Kind, m_GenericIID'Unchecked_Access);
    begin

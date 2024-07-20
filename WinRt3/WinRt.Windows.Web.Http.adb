@@ -2450,22 +2450,25 @@ package body WinRt.Windows.Web.Http is
    (
       this : in out HttpCookieCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.HttpCookie'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpCookie.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.IHttpCookie;
       m_GenericIID     : aliased WinRt.IID := (247069238, 35038, 22797, (142, 160, 182, 19, 208, 171, 1, 95 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IHttpCookie.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.HttpCookie do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpCookie := new Windows.Web.Http.IHttpCookie;
+         Retval.m_IHttpCookie.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -4247,12 +4250,12 @@ package body WinRt.Windows.Web.Http is
    (
       this : in out HttpMultipartContent
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.IHttpContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpContent.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.IHttpContent;
       m_GenericIID     : aliased WinRt.IID := (4043445631, 46210, 22326, (157, 18, 198, 131, 188, 73, 73, 66 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, IIterable_IHttpContent.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -4803,12 +4806,12 @@ package body WinRt.Windows.Web.Http is
    (
       this : in out HttpMultipartFormDataContent
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.IHttpContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpContent.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.IHttpContent;
       m_GenericIID     : aliased WinRt.IID := (4043445631, 46210, 22326, (157, 18, 198, 131, 188, 73, 73, 66 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, IIterable_IHttpContent.Kind, m_GenericIID'Unchecked_Access);
    begin

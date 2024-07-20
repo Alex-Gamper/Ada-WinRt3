@@ -603,22 +603,25 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    (
       this : in out ResourceCandidateVectorView
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IResourceCandidate.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceCandidate;
       m_GenericIID     : aliased WinRt.IID := (3634140312, 34921, 22520, (168, 131, 156, 45, 254, 236, 182, 198 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IResourceCandidate.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IResourceCandidate := new Windows.ApplicationModel.Resources.Core.IResourceCandidate;
+         Retval.m_IResourceCandidate.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -1100,12 +1103,13 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    (
       this : in out ResourceContextLanguagesVectorView
    )
-   return WinRt.GenericObject is
+   return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased HString;
+      AdaRetval        : WString;
       m_GenericIID     : aliased WinRt.IID := (3808217025, 15356, 23051, (178, 176, 114, 231, 105, 209, 203, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1115,7 +1119,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
-      return m_ComRetVal;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -2268,22 +2274,25 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    (
       this : in out ResourceQualifierVectorView
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceQualifier'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IResourceQualifier.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceQualifier;
       m_GenericIID     : aliased WinRt.IID := (787376354, 26748, 24442, (161, 78, 88, 140, 77, 48, 137, 225 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IResourceQualifier.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceQualifier do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IResourceQualifier := new Windows.ApplicationModel.Resources.Core.IResourceQualifier;
+         Retval.m_IResourceQualifier.all := m_ComRetVal;
+      end return;
    end;
 
 end WinRt.Windows.ApplicationModel.Resources.Core;

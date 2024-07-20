@@ -131,6 +131,10 @@ package WinRt.Windows.Storage.AccessCache is
    type AccessListEntry_Array is array (Natural range <>) of aliased AccessListEntry;
 
    -----------------------------------------------------------------------------
+   -- Generic package declarations
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -412,7 +416,7 @@ package WinRt.Windows.Storage.AccessCache is
    (
       this : in out AccessListEntryView
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Storage.AccessCache.AccessListEntry;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ItemRemovedEventArgs

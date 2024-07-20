@@ -115,12 +115,13 @@ package body WinRt.Windows.Storage.Pickers is
    (
       this : in out FileExtensionVector
    )
-   return WinRt.GenericObject is
+   return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased HString;
+      AdaRetval        : WString;
       m_GenericIID     : aliased WinRt.IID := (2562305217, 19286, 21294, (172, 115, 3, 213, 41, 28, 202, 144 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -130,7 +131,9 @@ package body WinRt.Windows.Storage.Pickers is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
-      return m_ComRetVal;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
    end;
 
    function IndexOf
@@ -336,12 +339,13 @@ package body WinRt.Windows.Storage.Pickers is
    (
       this : in out FileExtensionVector
    )
-   return WinRt.GenericObject is
+   return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased HString;
+      AdaRetval        : WString;
       m_GenericIID     : aliased WinRt.IID := (3808217025, 15356, 23051, (178, 176, 114, 231, 105, 209, 203, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -351,7 +355,9 @@ package body WinRt.Windows.Storage.Pickers is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
-      return m_ComRetVal;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -1075,22 +1081,25 @@ package body WinRt.Windows.Storage.Pickers is
    (
       this : in out FilePickerSelectedFilesArray
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IStorageFile.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
       m_GenericIID     : aliased WinRt.IID := (2596274948, 33770, 22152, (135, 182, 174, 56, 170, 182, 93, 11 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IStorageFile.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Storage.StorageFile do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------

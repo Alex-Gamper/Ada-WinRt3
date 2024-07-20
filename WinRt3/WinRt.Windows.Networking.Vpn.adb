@@ -5431,22 +5431,25 @@ package body WinRt.Windows.Networking.Vpn is
    (
       this : in out VpnPacketBufferList
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Networking.Vpn.VpnPacketBuffer'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IVpnPacketBuffer.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Networking.Vpn.IVpnPacketBuffer;
       m_GenericIID     : aliased WinRt.IID := (4204089198, 12503, 20704, (157, 67, 218, 219, 108, 83, 225, 150 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnPacketBufferList_Interface, IIterable_IVpnPacketBuffer.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IVpnPacketBufferList.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Networking.Vpn.VpnPacketBuffer do
+         m_Interface := QInterface (this.m_IVpnPacketBufferList.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IVpnPacketBuffer := new Windows.Networking.Vpn.IVpnPacketBuffer;
+         Retval.m_IVpnPacketBuffer.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------

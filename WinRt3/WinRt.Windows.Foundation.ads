@@ -480,6 +480,10 @@ package WinRt.Windows.Foundation is
    end TypedEventHandler;
 
    -----------------------------------------------------------------------------
+   -- Generic package declarations
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -529,7 +533,7 @@ package WinRt.Windows.Foundation is
       function get_Progress
       (
          this : access Kind_Interface;
-         RetVal : access GenericObject
+         RetVal : access TProgress
       )
       return WinRt.Hresult is abstract;
 
@@ -543,7 +547,7 @@ package WinRt.Windows.Foundation is
       function get_Completed
       (
          this : access Kind_Interface;
-         RetVal : access GenericObject
+         RetVal : access TProgress
       )
       return WinRt.Hresult is abstract;
 
@@ -668,7 +672,7 @@ package WinRt.Windows.Foundation is
       function get_Completed
       (
          this : access Kind_Interface;
-         RetVal : access GenericObject
+         RetVal : access TResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2272,7 +2276,7 @@ package WinRt.Windows.Foundation is
    (
       this : in out WwwFormUrlDecoder
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Foundation.IWwwFormUrlDecoderEntry;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for WwwFormUrlDecoderEntry

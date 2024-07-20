@@ -794,12 +794,12 @@ package body WinRt.Windows.Storage.Streams is
    (
       this : in out DataReaderLoadOperation
    )
-   return WinRt.GenericObject is
+   return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_UInt32.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased UInt32;
       m_GenericIID     : aliased WinRt.IID := (4016060511, 48760, 22603, (170, 239, 120, 41, 173, 162, 176, 222 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_UInt32.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1539,12 +1539,12 @@ package body WinRt.Windows.Storage.Streams is
    (
       this : in out DataWriterStoreOperation
    )
-   return WinRt.GenericObject is
+   return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_UInt32.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased UInt32;
       m_GenericIID     : aliased WinRt.IID := (4016060511, 48760, 22603, (170, 239, 120, 41, 173, 162, 176, 222 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_UInt32.Kind, m_GenericIID'Unchecked_Access);
    begin

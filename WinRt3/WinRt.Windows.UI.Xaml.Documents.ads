@@ -3997,7 +3997,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out BlockCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Documents.Block'Class;
 
    function IndexOf
    (
@@ -4062,7 +4062,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out BlockCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Documents.Block'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Inline
@@ -4499,7 +4499,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out ContentLinkProviderCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Documents.ContentLinkProvider'Class;
 
    function IndexOf
    (
@@ -4564,7 +4564,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out ContentLinkProviderCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Documents.ContentLinkProvider'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Glyphs
@@ -5036,7 +5036,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out InlineCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Documents.Inline'Class;
 
    function IndexOf
    (
@@ -5101,7 +5101,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out InlineCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Documents.Inline'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for InlineUIContainer

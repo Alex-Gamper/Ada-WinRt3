@@ -4132,7 +4132,7 @@ package WinRt.Windows.Networking.Vpn is
    (
       this : in out VpnPacketBufferList
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Networking.Vpn.VpnPacketBuffer'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for VpnPickedCredential

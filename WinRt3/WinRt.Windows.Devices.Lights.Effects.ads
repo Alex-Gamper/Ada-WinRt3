@@ -182,6 +182,10 @@ package WinRt.Windows.Devices.Lights.Effects is
    type LampArrayRepetitionMode_Ptr is access all LampArrayRepetitionMode;
 
    -----------------------------------------------------------------------------
+   -- Generic package declarations
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -1320,7 +1324,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    (
       this : in out LampArrayEffectPlaylist
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for LampArraySolidEffect

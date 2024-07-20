@@ -567,7 +567,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    (
       this : in out DnssdServiceInstanceCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DnssdServiceWatcher

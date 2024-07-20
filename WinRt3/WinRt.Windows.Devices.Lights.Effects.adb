@@ -1463,12 +1463,12 @@ package body WinRt.Windows.Devices.Lights.Effects is
    (
       this : in out LampArrayEffectPlaylist
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ILampArrayEffect.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Devices.Lights.Effects.ILampArrayEffect;
       m_GenericIID     : aliased WinRt.IID := (1058049335, 26233, 21904, (174, 210, 3, 51, 98, 251, 244, 19 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayEffectPlaylist_Interface, IIterable_ILampArrayEffect.Kind, m_GenericIID'Unchecked_Access);
    begin

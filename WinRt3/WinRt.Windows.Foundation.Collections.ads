@@ -134,6 +134,10 @@ package WinRt.Windows.Foundation.Collections is
    end VectorChangedEventHandler;
 
    -----------------------------------------------------------------------------
+   -- Generic package declarations
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -151,7 +155,7 @@ package WinRt.Windows.Foundation.Collections is
       function First
       (
          this : access Kind_Interface;
-         RetVal : access GenericObject
+         RetVal : access T
       )
       return WinRt.Hresult is abstract;
 
@@ -545,7 +549,7 @@ package WinRt.Windows.Foundation.Collections is
       function GetView
       (
          this : access Kind_Interface;
-         RetVal : access GenericObject
+         RetVal : access T
       )
       return WinRt.Hresult is abstract;
 

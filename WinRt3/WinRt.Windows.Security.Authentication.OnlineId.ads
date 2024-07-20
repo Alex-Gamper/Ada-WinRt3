@@ -754,7 +754,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
    (
       this : in out UserAuthenticationOperation
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Security.Authentication.OnlineId.UserIdentity'Class;
 
    function GetResults
    (

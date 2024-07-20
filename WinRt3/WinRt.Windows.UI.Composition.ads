@@ -7876,7 +7876,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimationGroup
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.CompositionAnimation'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CompositionBrush
@@ -8112,7 +8112,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionColorGradientStopCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class;
 
    -- Generic Interface Windows.Foundation.Collections.IVector`1<Windows.UI.Composition.CompositionColorGradientStop>
    function GetAt
@@ -8132,7 +8132,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionColorGradientStopCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class;
 
    function IndexOf
    (
@@ -9298,7 +9298,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionProjectedShadowCasterCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CompositionProjectedShadowReceiver
@@ -9358,7 +9358,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionProjectedShadowReceiverUnorderedCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.CompositionProjectedShadowReceiver'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CompositionPropertySet
@@ -9715,7 +9715,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionShapeCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.CompositionShape'Class;
 
    function IndexOf
    (
@@ -9780,7 +9780,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionShapeCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.CompositionShape'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CompositionSpriteShape
@@ -9956,7 +9956,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionStrokeDashArray
    )
-   return WinRt.GenericObject;
+   return WinRt.Single;
 
    function IndexOf
    (
@@ -10021,7 +10021,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionStrokeDashArray
    )
-   return WinRt.GenericObject;
+   return WinRt.Single;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CompositionSurfaceBrush
@@ -12296,7 +12296,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out VisualCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.Visual'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for VisualUnorderedCollection
@@ -12335,6 +12335,6 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out VisualUnorderedCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.Visual'Class;
 
 end WinRt.Windows.UI.Composition;

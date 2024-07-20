@@ -2111,7 +2111,7 @@ package WinRt.Windows.Devices.Sms is
    (
       this : in out GetSmsDeviceOperation
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Devices.Sms.SmsDevice'Class;
 
    function GetResults
    (
@@ -2167,7 +2167,7 @@ package WinRt.Windows.Devices.Sms is
    (
       this : in out GetSmsMessageOperation
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Devices.Sms.ISmsMessage;
 
    function GetResults
    (

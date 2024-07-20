@@ -1407,22 +1407,25 @@ package body WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackAudioTrackList
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Media.Core.AudioTrack'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IMediaTrack.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Media.Core.IMediaTrack;
       m_GenericIID     : aliased WinRt.IID := (3015594152, 38998, 22102, (171, 109, 205, 88, 249, 222, 10, 79 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IMediaTrack.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Media.Core.AudioTrack do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IMediaTrack := new Windows.Media.Core.IMediaTrack;
+         Retval.m_IMediaTrack.all := m_ComRetVal;
+      end return;
    end;
 
    function add_SelectedIndexChanged
@@ -5698,22 +5701,25 @@ package body WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackTimedMetadataTrackList
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Media.Core.TimedMetadataTrack'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ITimedMetadataTrack.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Media.Core.ITimedMetadataTrack;
       m_GenericIID     : aliased WinRt.IID := (352994388, 955, 24017, (129, 83, 106, 96, 14, 133, 31, 113 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ITimedMetadataTrack.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Media.Core.TimedMetadataTrack do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITimedMetadataTrack := new Windows.Media.Core.ITimedMetadataTrack;
+         Retval.m_ITimedMetadataTrack.all := m_ComRetVal;
+      end return;
    end;
 
    function add_PresentationModeChanged
@@ -5918,22 +5924,25 @@ package body WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackVideoTrackList
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Media.Core.VideoTrack'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IMediaTrack.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Media.Core.IMediaTrack;
       m_GenericIID     : aliased WinRt.IID := (2218865730, 41699, 24079, (147, 109, 188, 64, 176, 251, 45, 205 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IMediaTrack.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Media.Core.VideoTrack do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IMediaTrack := new Windows.Media.Core.IMediaTrack;
+         Retval.m_IMediaTrack.all := m_ComRetVal;
+      end return;
    end;
 
    function add_SelectedIndexChanged
@@ -8338,22 +8347,25 @@ package body WinRt.Windows.Media.Playback is
    (
       this : in out PlaybackMediaMarkerSequence
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Media.Playback.PlaybackMediaMarker'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPlaybackMediaMarker.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Media.Playback.IPlaybackMediaMarker;
       m_GenericIID     : aliased WinRt.IID := (3740061673, 27649, 22383, (149, 242, 147, 81, 90, 228, 14, 191 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IPlaybackMediaMarkerSequence_Interface, IIterable_IPlaybackMediaMarker.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IPlaybackMediaMarkerSequence.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Media.Playback.PlaybackMediaMarker do
+         m_Interface := QInterface (this.m_IPlaybackMediaMarkerSequence.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPlaybackMediaMarker := new Windows.Media.Playback.IPlaybackMediaMarker;
+         Retval.m_IPlaybackMediaMarker.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------

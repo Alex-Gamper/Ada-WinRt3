@@ -291,22 +291,25 @@ package body WinRt.Windows.Globalization.Collation is
    (
       this : in out CharacterGroupings
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Globalization.Collation.CharacterGrouping'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICharacterGrouping.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Globalization.Collation.ICharacterGrouping;
       m_GenericIID     : aliased WinRt.IID := (2195958768, 1763, 22025, (186, 57, 197, 30, 178, 245, 250, 230 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.Collation.ICharacterGroupings_Interface, IIterable_ICharacterGrouping.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_ICharacterGroupings.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Globalization.Collation.CharacterGrouping do
+         m_Interface := QInterface (this.m_ICharacterGroupings.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICharacterGrouping := new Windows.Globalization.Collation.ICharacterGrouping;
+         Retval.m_ICharacterGrouping.all := m_ComRetVal;
+      end return;
    end;
 
 end WinRt.Windows.Globalization.Collation;

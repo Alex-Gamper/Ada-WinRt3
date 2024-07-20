@@ -1543,12 +1543,12 @@ package body WinRt.Windows.Storage.Search is
    (
       this : in out SortEntryVector
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Storage.Search.SortEntry is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_SortEntry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Storage.Search.SortEntry;
       m_GenericIID     : aliased WinRt.IID := (3639230491, 18355, 21076, (132, 244, 238, 161, 12, 76, 240, 104 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_SortEntry.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1756,12 +1756,12 @@ package body WinRt.Windows.Storage.Search is
    (
       this : in out SortEntryVector
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Storage.Search.SortEntry is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_SortEntry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Storage.Search.SortEntry;
       m_GenericIID     : aliased WinRt.IID := (900724473, 61301, 21120, (187, 132, 162, 191, 131, 23, 207, 53 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_SortEntry.Kind, m_GenericIID'Unchecked_Access);
    begin

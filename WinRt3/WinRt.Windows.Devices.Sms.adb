@@ -426,22 +426,25 @@ package body WinRt.Windows.Devices.Sms is
    (
       this : in out GetSmsDeviceOperation
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Devices.Sms.SmsDevice'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_ISmsDevice.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsDevice;
       m_GenericIID     : aliased WinRt.IID := (2876313057, 64699, 23510, (159, 47, 40, 95, 169, 251, 68, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_ISmsDevice.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.get_Completed (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Devices.Sms.SmsDevice do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.get_Completed (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ISmsDevice := new Windows.Devices.Sms.ISmsDevice;
+         Retval.m_ISmsDevice.all := m_ComRetVal;
+      end return;
    end;
 
    function GetResults
@@ -609,12 +612,12 @@ package body WinRt.Windows.Devices.Sms is
    (
       this : in out GetSmsMessageOperation
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Devices.Sms.ISmsMessage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_ISmsMessage.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsMessage;
       m_GenericIID     : aliased WinRt.IID := (2885268569, 18627, 24236, (151, 73, 76, 109, 180, 213, 7, 230 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_ISmsMessage.Kind, m_GenericIID'Unchecked_Access);
    begin

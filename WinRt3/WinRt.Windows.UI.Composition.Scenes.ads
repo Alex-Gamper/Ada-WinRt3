@@ -308,6 +308,10 @@ package WinRt.Windows.UI.Composition.Scenes is
    type SceneWrappingMode_Ptr is access all SceneWrappingMode;
 
    -----------------------------------------------------------------------------
+   -- Generic package declarations
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -1097,7 +1101,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    (
       this : in out SceneComponentCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.Scenes.SceneComponent'Class;
 
    function IndexOf
    (
@@ -1162,7 +1166,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    (
       this : in out SceneComponentCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.Scenes.SceneComponent'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for SceneMaterial
@@ -1702,7 +1706,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    (
       this : in out SceneNodeCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.Scenes.SceneNode'Class;
 
    function IndexOf
    (
@@ -1767,7 +1771,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    (
       this : in out SceneNodeCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.Scenes.SceneNode'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for SceneSurfaceMaterialInput

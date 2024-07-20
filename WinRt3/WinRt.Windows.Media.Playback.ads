@@ -4244,7 +4244,7 @@ package WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackAudioTrackList
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Media.Core.AudioTrack'Class;
 
    function add_SelectedIndexChanged
    (
@@ -5728,7 +5728,7 @@ package WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackTimedMetadataTrackList
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Media.Core.TimedMetadataTrack'Class;
 
    function add_PresentationModeChanged
    (
@@ -5801,7 +5801,7 @@ package WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackVideoTrackList
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Media.Core.VideoTrack'Class;
 
    function add_SelectedIndexChanged
    (
@@ -6603,7 +6603,7 @@ package WinRt.Windows.Media.Playback is
    (
       this : in out PlaybackMediaMarkerSequence
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Media.Playback.PlaybackMediaMarker'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for TimedMetadataPresentationModeChangedEventArgs

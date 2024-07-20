@@ -161,12 +161,12 @@ package body WinRt.Windows.Storage.AccessCache is
    (
       this : in out AccessListEntryView
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Storage.AccessCache.AccessListEntry is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_AccessListEntry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Storage.AccessCache.AccessListEntry;
       m_GenericIID     : aliased WinRt.IID := (1234551472, 29547, 22669, (174, 66, 111, 105, 176, 37, 179, 136 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_AccessListEntry.Kind, m_GenericIID'Unchecked_Access);
    begin

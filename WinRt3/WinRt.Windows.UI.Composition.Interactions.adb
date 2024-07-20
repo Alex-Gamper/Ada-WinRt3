@@ -247,12 +247,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    (
       this : in out CompositionInteractionSourceCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.Interactions.ICompositionInteractionSource is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionInteractionSource.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.Interactions.ICompositionInteractionSource;
       m_GenericIID     : aliased WinRt.IID := (398790177, 52080, 23083, (183, 151, 168, 220, 1, 169, 145, 19 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.ICompositionInteractionSourceCollection_Interface, IIterable_ICompositionInteractionSource.Kind, m_GenericIID'Unchecked_Access);
    begin

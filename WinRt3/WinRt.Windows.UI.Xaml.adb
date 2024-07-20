@@ -12229,22 +12229,25 @@ package body WinRt.Windows.UI.Xaml is
    (
       this : in out DependencyObjectCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDependencyObject.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
       m_GenericIID     : aliased WinRt.IID := (1998292350, 43868, 23992, (160, 33, 57, 124, 146, 205, 196, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDependencyObject.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
+         Retval.m_IDependencyObject.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -12442,22 +12445,25 @@ package body WinRt.Windows.UI.Xaml is
    (
       this : in out DependencyObjectCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IDependencyObject.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
       m_GenericIID     : aliased WinRt.IID := (4134300627, 21940, 23483, (184, 42, 109, 156, 227, 131, 9, 26 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IDependencyObject.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
+         Retval.m_IDependencyObject.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -16307,22 +16313,25 @@ package body WinRt.Windows.UI.Xaml is
    (
       this : in out SetterBaseCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.SetterBase'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISetterBase.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.ISetterBase;
       m_GenericIID     : aliased WinRt.IID := (3176507389, 29953, 21785, (159, 251, 208, 7, 66, 64, 219, 97 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.ISetterBaseCollection_Interface, IVector_ISetterBase.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_ISetterBaseCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.SetterBase do
+         m_Interface := QInterface (this.m_ISetterBaseCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ISetterBase := new Windows.UI.Xaml.ISetterBase;
+         Retval.m_ISetterBase.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -16520,22 +16529,25 @@ package body WinRt.Windows.UI.Xaml is
    (
       this : in out SetterBaseCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.SetterBase'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ISetterBase.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.ISetterBase;
       m_GenericIID     : aliased WinRt.IID := (2868801739, 37032, 22297, (189, 62, 240, 176, 102, 237, 22, 38 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.ISetterBaseCollection_Interface, IIterable_ISetterBase.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_ISetterBaseCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.SetterBase do
+         m_Interface := QInterface (this.m_ISetterBaseCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ISetterBase := new Windows.UI.Xaml.ISetterBase;
+         Retval.m_ISetterBase.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -17331,22 +17343,25 @@ package body WinRt.Windows.UI.Xaml is
    (
       this : in out TriggerActionCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.TriggerAction'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITriggerAction.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.ITriggerAction;
       m_GenericIID     : aliased WinRt.IID := (2760438621, 40956, 21072, (172, 25, 148, 22, 119, 123, 23, 90 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITriggerAction.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.TriggerAction do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITriggerAction := new Windows.UI.Xaml.ITriggerAction;
+         Retval.m_ITriggerAction.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -17544,22 +17559,25 @@ package body WinRt.Windows.UI.Xaml is
    (
       this : in out TriggerActionCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.TriggerAction'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ITriggerAction.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.ITriggerAction;
       m_GenericIID     : aliased WinRt.IID := (2849195385, 35434, 22719, (133, 253, 15, 55, 50, 78, 35, 151 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ITriggerAction.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.TriggerAction do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITriggerAction := new Windows.UI.Xaml.ITriggerAction;
+         Retval.m_ITriggerAction.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -17631,22 +17649,25 @@ package body WinRt.Windows.UI.Xaml is
    (
       this : in out TriggerCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.TriggerBase'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITriggerBase.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.ITriggerBase;
       m_GenericIID     : aliased WinRt.IID := (2437514811, 46987, 24502, (160, 161, 158, 191, 107, 188, 52, 7 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITriggerBase.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.TriggerBase do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITriggerBase := new Windows.UI.Xaml.ITriggerBase;
+         Retval.m_ITriggerBase.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -17844,22 +17865,25 @@ package body WinRt.Windows.UI.Xaml is
    (
       this : in out TriggerCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.TriggerBase'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ITriggerBase.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.ITriggerBase;
       m_GenericIID     : aliased WinRt.IID := (3600250447, 19989, 22664, (162, 165, 123, 76, 240, 235, 7, 165 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ITriggerBase.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.TriggerBase do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITriggerBase := new Windows.UI.Xaml.ITriggerBase;
+         Retval.m_ITriggerBase.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -17966,22 +17990,25 @@ package body WinRt.Windows.UI.Xaml is
    (
       this : in out UIElementWeakCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.UIElement'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IUIElement.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
       m_GenericIID     : aliased WinRt.IID := (3032605612, 34664, 23453, (166, 97, 246, 51, 48, 184, 80, 123 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.IUIElementWeakCollection_Interface, IVector_IUIElement.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IUIElementWeakCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.UIElement do
+         m_Interface := QInterface (this.m_IUIElementWeakCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
+         Retval.m_IUIElement.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -18179,22 +18206,25 @@ package body WinRt.Windows.UI.Xaml is
    (
       this : in out UIElementWeakCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.UIElement'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IUIElement.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
       m_GenericIID     : aliased WinRt.IID := (1122134753, 54103, 22504, (187, 72, 247, 92, 159, 246, 157, 145 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.IUIElementWeakCollection_Interface, IIterable_IUIElement.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IUIElementWeakCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.UIElement do
+         m_Interface := QInterface (this.m_IUIElementWeakCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
+         Retval.m_IUIElement.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------

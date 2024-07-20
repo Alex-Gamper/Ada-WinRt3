@@ -2526,22 +2526,25 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimationGroup
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.CompositionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionAnimation.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionAnimation;
       m_GenericIID     : aliased WinRt.IID := (213227842, 50931, 22623, (154, 146, 180, 126, 141, 211, 142, 191 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionAnimationGroup_Interface, IIterable_ICompositionAnimation.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_ICompositionAnimationGroup.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Composition.CompositionAnimation do
+         m_Interface := QInterface (this.m_ICompositionAnimationGroup.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICompositionAnimation := new Windows.UI.Composition.ICompositionAnimation;
+         Retval.m_ICompositionAnimation.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -3209,22 +3212,25 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionColorGradientStopCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionColorGradientStop.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorGradientStop;
       m_GenericIID     : aliased WinRt.IID := (254606017, 52668, 23630, (167, 210, 163, 145, 79, 182, 52, 38 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IIterable_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Composition.CompositionColorGradientStop do
+         m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICompositionColorGradientStop := new Windows.UI.Composition.ICompositionColorGradientStop;
+         Retval.m_ICompositionColorGradientStop.all := m_ComRetVal;
+      end return;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IVector`1<Windows.UI.Composition.CompositionColorGradientStop>
@@ -3280,22 +3286,25 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionColorGradientStopCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorGradientStop;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Composition.CompositionColorGradientStop do
+         m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICompositionColorGradientStop := new Windows.UI.Composition.ICompositionColorGradientStop;
+         Retval.m_ICompositionColorGradientStop.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -6475,22 +6484,25 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionProjectedShadowCasterCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionProjectedShadowCaster.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadowCaster;
       m_GenericIID     : aliased WinRt.IID := (3090160386, 17051, 23921, (171, 12, 141, 17, 65, 177, 42, 195 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionProjectedShadowCasterCollection_Interface, IIterable_ICompositionProjectedShadowCaster.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_ICompositionProjectedShadowCasterCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster do
+         m_Interface := QInterface (this.m_ICompositionProjectedShadowCasterCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICompositionProjectedShadowCaster := new Windows.UI.Composition.ICompositionProjectedShadowCaster;
+         Retval.m_ICompositionProjectedShadowCaster.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -6640,22 +6652,25 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionProjectedShadowReceiverUnorderedCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.CompositionProjectedShadowReceiver'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionProjectedShadowReceiver.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadowReceiver;
       m_GenericIID     : aliased WinRt.IID := (3799472680, 60488, 23736, (179, 82, 118, 247, 249, 129, 215, 164 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiverUnorderedCollection_Interface, IIterable_ICompositionProjectedShadowReceiver.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_ICompositionProjectedShadowReceiverUnorderedCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Composition.CompositionProjectedShadowReceiver do
+         m_Interface := QInterface (this.m_ICompositionProjectedShadowReceiverUnorderedCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICompositionProjectedShadowReceiver := new Windows.UI.Composition.ICompositionProjectedShadowReceiver;
+         Retval.m_ICompositionProjectedShadowReceiver.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -7592,22 +7607,25 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionShapeCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.CompositionShape'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionShape;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Composition.CompositionShape do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICompositionShape := new Windows.UI.Composition.ICompositionShape;
+         Retval.m_ICompositionShape.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -7805,22 +7823,25 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionShapeCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.CompositionShape'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionShape.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionShape;
       m_GenericIID     : aliased WinRt.IID := (288730613, 56082, 21992, (174, 15, 189, 141, 145, 75, 211, 153 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Composition.CompositionShape do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICompositionShape := new Windows.UI.Composition.ICompositionShape;
+         Retval.m_ICompositionShape.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -8293,12 +8314,12 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionStrokeDashArray
    )
-   return WinRt.GenericObject is
+   return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Single;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -8506,12 +8527,12 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionStrokeDashArray
    )
-   return WinRt.GenericObject is
+   return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_Single.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Single;
       m_GenericIID     : aliased WinRt.IID := (2954620497, 1594, 24538, (189, 114, 215, 102, 55, 187, 140, 184 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -15302,22 +15323,25 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out VisualCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.Visual'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IVisual.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
       m_GenericIID     : aliased WinRt.IID := (1324187086, 58540, 22673, (155, 82, 121, 157, 112, 223, 71, 254 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisualCollection_Interface, IIterable_IVisual.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IVisualCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Composition.Visual do
+         m_Interface := QInterface (this.m_IVisualCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IVisual := new Windows.UI.Composition.IVisual;
+         Retval.m_IVisual.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -15409,22 +15433,25 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out VisualUnorderedCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Composition.Visual'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IVisual.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
       m_GenericIID     : aliased WinRt.IID := (1324187086, 58540, 22673, (155, 82, 121, 157, 112, 223, 71, 254 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisualUnorderedCollection_Interface, IIterable_IVisual.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IVisualUnorderedCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Composition.Visual do
+         m_Interface := QInterface (this.m_IVisualUnorderedCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IVisual := new Windows.UI.Composition.IVisual;
+         Retval.m_IVisual.all := m_ComRetVal;
+      end return;
    end;
 
 end WinRt.Windows.UI.Composition;

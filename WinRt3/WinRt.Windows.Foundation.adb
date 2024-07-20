@@ -2115,12 +2115,12 @@ package body WinRt.Windows.Foundation is
    (
       this : in out WwwFormUrlDecoder
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Foundation.IWwwFormUrlDecoderEntry is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IWwwFormUrlDecoderEntry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Foundation.IWwwFormUrlDecoderEntry;
       m_GenericIID     : aliased WinRt.IID := (2271995963, 29208, 23547, (161, 105, 131, 21, 46, 247, 225, 70 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass_Interface, IIterable_IWwwFormUrlDecoderEntry.Kind, m_GenericIID'Unchecked_Access);
    begin

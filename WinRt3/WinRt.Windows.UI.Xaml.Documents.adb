@@ -1894,22 +1894,25 @@ package body WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out BlockCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Documents.Block'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBlock.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Documents.IBlock;
       m_GenericIID     : aliased WinRt.IID := (1055361588, 5646, 20735, (181, 170, 9, 242, 99, 166, 105, 248 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBlock.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Documents.Block do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBlock := new Windows.UI.Xaml.Documents.IBlock;
+         Retval.m_IBlock.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -2107,22 +2110,25 @@ package body WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out BlockCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Documents.Block'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IBlock.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Documents.IBlock;
       m_GenericIID     : aliased WinRt.IID := (4144118682, 59089, 24109, (143, 65, 178, 140, 51, 50, 62, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IBlock.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Documents.Block do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBlock := new Windows.UI.Xaml.Documents.IBlock;
+         Retval.m_IBlock.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -3548,22 +3554,25 @@ package body WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out ContentLinkProviderCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Documents.ContentLinkProvider'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IContentLinkProvider.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Documents.IContentLinkProvider;
       m_GenericIID     : aliased WinRt.IID := (3869176246, 11953, 24220, (188, 65, 185, 77, 57, 98, 129, 228 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IVector_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Documents.ContentLinkProvider do
+         m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IContentLinkProvider := new Windows.UI.Xaml.Documents.IContentLinkProvider;
+         Retval.m_IContentLinkProvider.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -3761,22 +3770,25 @@ package body WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out ContentLinkProviderCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Documents.ContentLinkProvider'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IContentLinkProvider.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Documents.IContentLinkProvider;
       m_GenericIID     : aliased WinRt.IID := (423264699, 55388, 23763, (161, 48, 161, 208, 142, 170, 244, 190 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IIterable_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Documents.ContentLinkProvider do
+         m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IContentLinkProvider := new Windows.UI.Xaml.Documents.IContentLinkProvider;
+         Retval.m_IContentLinkProvider.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -5574,22 +5586,25 @@ package body WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out InlineCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Documents.Inline'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IInline.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Documents.IInline;
       m_GenericIID     : aliased WinRt.IID := (2464977490, 36579, 21974, (132, 180, 48, 182, 53, 7, 119, 120 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IInline.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Documents.Inline do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IInline := new Windows.UI.Xaml.Documents.IInline;
+         Retval.m_IInline.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -5787,22 +5802,25 @@ package body WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out InlineCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Documents.Inline'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IInline.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Documents.IInline;
       m_GenericIID     : aliased WinRt.IID := (3788683536, 6338, 22790, (143, 138, 214, 42, 99, 249, 63, 24 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IInline.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Documents.Inline do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IInline := new Windows.UI.Xaml.Documents.IInline;
+         Retval.m_IInline.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------

@@ -5593,7 +5593,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out ColorKeyFrameCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class;
 
    function IndexOf
    (
@@ -5658,7 +5658,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out ColorKeyFrameCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for NavigationTransitionInfo
@@ -6396,7 +6396,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out DoubleKeyFrameCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class;
 
    function IndexOf
    (
@@ -6461,7 +6461,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out DoubleKeyFrameCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DragItemThemeAnimation
@@ -7353,7 +7353,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out ObjectKeyFrameCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class;
 
    function IndexOf
    (
@@ -7418,7 +7418,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out ObjectKeyFrameCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PaneThemeTransition
@@ -7614,7 +7614,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out PointKeyFrameCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class;
 
    function IndexOf
    (
@@ -7679,7 +7679,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out PointKeyFrameCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PointerDownThemeAnimation
@@ -8898,7 +8898,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out TimelineCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class;
 
    function IndexOf
    (
@@ -8963,7 +8963,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out TimelineCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for TransitionCollection
@@ -8997,7 +8997,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out TransitionCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Animation.Transition'Class;
 
    function IndexOf
    (
@@ -9062,6 +9062,6 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out TransitionCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Animation.Transition'Class;
 
 end WinRt.Windows.UI.Xaml.Media.Animation;

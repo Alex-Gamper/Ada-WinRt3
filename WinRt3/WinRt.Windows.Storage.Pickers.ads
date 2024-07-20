@@ -650,7 +650,7 @@ package WinRt.Windows.Storage.Pickers is
    (
       this : in out FileExtensionVector
    )
-   return WinRt.GenericObject;
+   return WinRt.WString;
 
    function IndexOf
    (
@@ -715,7 +715,7 @@ package WinRt.Windows.Storage.Pickers is
    (
       this : in out FileExtensionVector
    )
-   return WinRt.GenericObject;
+   return WinRt.WString;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for FileOpenPicker
@@ -891,7 +891,7 @@ package WinRt.Windows.Storage.Pickers is
    (
       this : in out FilePickerSelectedFilesArray
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Storage.StorageFile'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for FileSavePicker

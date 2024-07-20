@@ -43763,7 +43763,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    (
       this : in out ColumnDefinitionCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Controls.ColumnDefinition'Class;
 
    function IndexOf
    (
@@ -43828,7 +43828,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    (
       this : in out ColumnDefinitionCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Controls.ColumnDefinition'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ComboBox
@@ -48363,7 +48363,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    (
       this : in out HubSectionCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Controls.HubSection'Class;
 
    function IndexOf
    (
@@ -48428,7 +48428,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    (
       this : in out HubSectionCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Controls.HubSection'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for HubSectionHeaderClickEventArgs
@@ -49688,7 +49688,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    (
       this : in out ItemCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.IInspectable;
 
    function IndexOf
    (
@@ -49753,7 +49753,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    (
       this : in out ItemCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.IInspectable;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ItemContainerGenerator
@@ -57670,7 +57670,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    (
       this : in out RowDefinitionCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Controls.RowDefinition'Class;
 
    function IndexOf
    (
@@ -57735,7 +57735,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    (
       this : in out RowDefinitionCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Controls.RowDefinition'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ScrollContentPresenter
@@ -60538,7 +60538,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    (
       this : in out SwipeItems
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Controls.SwipeItem'Class;
 
    function IndexOf
    (
@@ -60603,7 +60603,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    (
       this : in out SwipeItems
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Controls.SwipeItem'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for SymbolIcon
@@ -63896,7 +63896,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    (
       this : in out UIElementCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.UIElement'Class;
 
    function IndexOf
    (
@@ -63961,7 +63961,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    (
       this : in out UIElementCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.UIElement'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for VariableSizedWrapGrid

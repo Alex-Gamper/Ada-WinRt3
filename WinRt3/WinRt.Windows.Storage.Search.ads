@@ -1427,7 +1427,7 @@ package WinRt.Windows.Storage.Search is
    (
       this : in out SortEntryVector
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Storage.Search.SortEntry;
 
    function IndexOf
    (
@@ -1492,7 +1492,7 @@ package WinRt.Windows.Storage.Search is
    (
       this : in out SortEntryVector
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Storage.Search.SortEntry;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StorageFileQueryResult

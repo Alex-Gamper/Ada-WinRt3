@@ -1880,22 +1880,25 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out ColorKeyFrameCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IColorKeyFrame.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IColorKeyFrame;
       m_GenericIID     : aliased WinRt.IID := (2463256504, 44884, 20864, (152, 136, 87, 86, 86, 106, 19, 255 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrame do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IColorKeyFrame := new Windows.UI.Xaml.Media.Animation.IColorKeyFrame;
+         Retval.m_IColorKeyFrame.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -2093,22 +2096,25 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out ColorKeyFrameCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IColorKeyFrame.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IColorKeyFrame;
       m_GenericIID     : aliased WinRt.IID := (408542472, 22573, 20956, (130, 161, 70, 97, 17, 202, 249, 68 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrame do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IColorKeyFrame := new Windows.UI.Xaml.Media.Animation.IColorKeyFrame;
+         Retval.m_IColorKeyFrame.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -4532,22 +4538,25 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out DoubleKeyFrameCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDoubleKeyFrame.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame;
       m_GenericIID     : aliased WinRt.IID := (3620462114, 34495, 22319, (132, 115, 7, 157, 21, 7, 108, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrame do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDoubleKeyFrame := new Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame;
+         Retval.m_IDoubleKeyFrame.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -4745,22 +4754,25 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out DoubleKeyFrameCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IDoubleKeyFrame.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame;
       m_GenericIID     : aliased WinRt.IID := (1595307738, 41989, 23418, (186, 241, 150, 141, 228, 57, 31, 183 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrame do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDoubleKeyFrame := new Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame;
+         Retval.m_IDoubleKeyFrame.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -7702,22 +7714,25 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out ObjectKeyFrameCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IObjectKeyFrame.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IObjectKeyFrame;
       m_GenericIID     : aliased WinRt.IID := (1601387839, 29350, 21251, (151, 39, 43, 3, 234, 231, 221, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrame do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IObjectKeyFrame := new Windows.UI.Xaml.Media.Animation.IObjectKeyFrame;
+         Retval.m_IObjectKeyFrame.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -7915,22 +7930,25 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out ObjectKeyFrameCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IObjectKeyFrame.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IObjectKeyFrame;
       m_GenericIID     : aliased WinRt.IID := (2424613089, 36685, 24035, (177, 198, 229, 240, 87, 36, 202, 237 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrame do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IObjectKeyFrame := new Windows.UI.Xaml.Media.Animation.IObjectKeyFrame;
+         Retval.m_IObjectKeyFrame.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -8580,22 +8598,25 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out PointKeyFrameCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPointKeyFrame.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IPointKeyFrame;
       m_GenericIID     : aliased WinRt.IID := (2977834718, 40151, 21590, (190, 224, 73, 136, 42, 135, 249, 69 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrame do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPointKeyFrame := new Windows.UI.Xaml.Media.Animation.IPointKeyFrame;
+         Retval.m_IPointKeyFrame.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -8793,22 +8814,25 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out PointKeyFrameCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPointKeyFrame.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IPointKeyFrame;
       m_GenericIID     : aliased WinRt.IID := (3101576649, 35945, 22003, (175, 88, 4, 15, 19, 25, 100, 156 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrame do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPointKeyFrame := new Windows.UI.Xaml.Media.Animation.IPointKeyFrame;
+         Retval.m_IPointKeyFrame.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -13038,22 +13062,25 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out TimelineCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimeline.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.ITimeline;
       m_GenericIID     : aliased WinRt.IID := (537249785, 51159, 21019, (168, 28, 44, 157, 173, 119, 169, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimeline.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.Timeline do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITimeline := new Windows.UI.Xaml.Media.Animation.ITimeline;
+         Retval.m_ITimeline.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -13251,22 +13278,25 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out TimelineCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ITimeline.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.ITimeline;
       m_GenericIID     : aliased WinRt.IID := (2703401798, 59093, 23636, (133, 125, 3, 142, 96, 245, 217, 193 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ITimeline.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.Timeline do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITimeline := new Windows.UI.Xaml.Media.Animation.ITimeline;
+         Retval.m_ITimeline.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -13357,22 +13387,25 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out TransitionCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Animation.Transition'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransition.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.ITransition;
       m_GenericIID     : aliased WinRt.IID := (3885520671, 32318, 24090, (170, 85, 203, 201, 59, 131, 248, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransition.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.Transition do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITransition := new Windows.UI.Xaml.Media.Animation.ITransition;
+         Retval.m_ITransition.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -13570,22 +13603,25 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out TransitionCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Animation.Transition'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ITransition.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.ITransition;
       m_GenericIID     : aliased WinRt.IID := (4273279896, 20443, 20754, (138, 155, 106, 135, 134, 202, 1, 206 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ITransition.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.Transition do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITransition := new Windows.UI.Xaml.Media.Animation.ITransition;
+         Retval.m_ITransition.all := m_ComRetVal;
+      end return;
    end;
 
 end WinRt.Windows.UI.Xaml.Media.Animation;

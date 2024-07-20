@@ -5177,7 +5177,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out BrushCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
 
    function IndexOf
    (
@@ -5242,7 +5242,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out BrushCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for GeneralTransform
@@ -5553,7 +5553,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out DoubleCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Double;
 
    function IndexOf
    (
@@ -5618,7 +5618,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out DoubleCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Double;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Geometry
@@ -5788,7 +5788,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GeometryCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Geometry'Class;
 
    function IndexOf
    (
@@ -5853,7 +5853,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GeometryCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Geometry'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for GeometryGroup
@@ -6063,7 +6063,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GradientStopCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.GradientStop'Class;
 
    function IndexOf
    (
@@ -6128,7 +6128,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GradientStopCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.GradientStop'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ImageBrush
@@ -6700,7 +6700,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathFigureCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.PathFigure'Class;
 
    function IndexOf
    (
@@ -6765,7 +6765,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathFigureCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.PathFigure'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PathGeometry
@@ -6846,7 +6846,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathSegmentCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.PathSegment'Class;
 
    function IndexOf
    (
@@ -6911,7 +6911,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathSegmentCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.PathSegment'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PlaneProjection
@@ -7151,7 +7151,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PointCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Foundation.Point;
 
    function IndexOf
    (
@@ -7216,7 +7216,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PointCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Foundation.Point;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PolyBezierSegment
@@ -7942,7 +7942,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TimelineMarkerCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class;
 
    function IndexOf
    (
@@ -8007,7 +8007,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TimelineMarkerCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for TimelineMarkerRoutedEventArgs
@@ -8067,7 +8067,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TransformCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Transform'Class;
 
    function IndexOf
    (
@@ -8132,7 +8132,7 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TransformCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Xaml.Media.Transform'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for TransformGroup

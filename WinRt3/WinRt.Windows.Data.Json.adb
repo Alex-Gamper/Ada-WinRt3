@@ -445,12 +445,12 @@ package body WinRt.Windows.Data.Json is
    (
       this : in out JsonArray
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Data.Json.IJsonValue is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IJsonValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Data.Json.IJsonValue;
       m_GenericIID     : aliased WinRt.IID := (3561382588, 56547, 22952, (146, 114, 75, 33, 15, 51, 144, 139 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IVector_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -658,12 +658,12 @@ package body WinRt.Windows.Data.Json is
    (
       this : in out JsonArray
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Data.Json.IJsonValue is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IJsonValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Data.Json.IJsonValue;
       m_GenericIID     : aliased WinRt.IID := (3406074550, 16659, 21967, (178, 197, 153, 235, 66, 139, 164, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IIterable_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin

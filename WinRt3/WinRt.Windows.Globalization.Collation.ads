@@ -67,6 +67,10 @@ package WinRt.Windows.Globalization.Collation is
    type CharacterGroupings_Ptr is access all CharacterGroupings;
 
    -----------------------------------------------------------------------------
+   -- Generic package declarations
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -202,6 +206,6 @@ package WinRt.Windows.Globalization.Collation is
    (
       this : in out CharacterGroupings
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Globalization.Collation.CharacterGrouping'Class;
 
 end WinRt.Windows.Globalization.Collation;

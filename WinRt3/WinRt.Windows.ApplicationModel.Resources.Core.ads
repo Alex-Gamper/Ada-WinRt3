@@ -835,7 +835,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    (
       this : in out ResourceCandidateVectorView
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ResourceContext
@@ -977,7 +977,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    (
       this : in out ResourceContextLanguagesVectorView
    )
-   return WinRt.GenericObject;
+   return WinRt.WString;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ResourceManager
@@ -1355,6 +1355,6 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    (
       this : in out ResourceQualifierVectorView
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceQualifier'Class;
 
 end WinRt.Windows.ApplicationModel.Resources.Core;

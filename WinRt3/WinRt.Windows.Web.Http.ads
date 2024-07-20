@@ -1890,7 +1890,7 @@ package WinRt.Windows.Web.Http is
    (
       this : in out HttpCookieCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.HttpCookie'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for HttpCookieManager
@@ -2293,7 +2293,7 @@ package WinRt.Windows.Web.Http is
    (
       this : in out HttpMultipartContent
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.IHttpContent;
 
    function ToString
    (
@@ -2396,7 +2396,7 @@ package WinRt.Windows.Web.Http is
    (
       this : in out HttpMultipartFormDataContent
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.IHttpContent;
 
    function ToString
    (

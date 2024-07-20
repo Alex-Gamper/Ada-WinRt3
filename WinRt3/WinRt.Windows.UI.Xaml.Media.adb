@@ -1884,22 +1884,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out BrushCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBrush.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
       m_GenericIID     : aliased WinRt.IID := (2832041188, 16095, 20850, (143, 119, 16, 233, 16, 229, 220, 93 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBrush.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -2097,22 +2100,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out BrushCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IBrush.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
       m_GenericIID     : aliased WinRt.IID := (2961085141, 1715, 24018, (141, 73, 52, 159, 251, 216, 70, 52 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IBrush.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -3131,12 +3137,12 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out DoubleCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Double.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Double;
       m_GenericIID     : aliased WinRt.IID := (4099068476, 48901, 24382, (136, 231, 209, 122, 103, 22, 185, 17 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Double.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -3344,12 +3350,12 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out DoubleCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_Double.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Double;
       m_GenericIID     : aliased WinRt.IID := (3342374478, 40036, 23502, (181, 206, 97, 233, 162, 130, 236, 74 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_Double.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -3914,22 +3920,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GeometryCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Geometry'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IGeometry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGeometry;
       m_GenericIID     : aliased WinRt.IID := (2227612730, 33287, 21913, (149, 131, 96, 106, 194, 19, 157, 221 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IGeometry.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Geometry do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IGeometry := new Windows.UI.Xaml.Media.IGeometry;
+         Retval.m_IGeometry.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -4127,22 +4136,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GeometryCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Geometry'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IGeometry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGeometry;
       m_GenericIID     : aliased WinRt.IID := (892600377, 3580, 21172, (135, 72, 13, 154, 117, 93, 184, 168 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IGeometry.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Geometry do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IGeometry := new Windows.UI.Xaml.Media.IGeometry;
+         Retval.m_IGeometry.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -4831,22 +4843,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GradientStopCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.GradientStop'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IGradientStop.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGradientStop;
       m_GenericIID     : aliased WinRt.IID := (859975076, 9459, 23378, (158, 141, 17, 221, 113, 240, 139, 177 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.GradientStop do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IGradientStop := new Windows.UI.Xaml.Media.IGradientStop;
+         Retval.m_IGradientStop.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -5044,22 +5059,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GradientStopCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.GradientStop'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IGradientStop.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGradientStop;
       m_GenericIID     : aliased WinRt.IID := (2433072019, 44070, 23470, (140, 30, 223, 142, 207, 0, 222, 230 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.GradientStop do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IGradientStop := new Windows.UI.Xaml.Media.IGradientStop;
+         Retval.m_IGradientStop.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -6852,22 +6870,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathFigureCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.PathFigure'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPathFigure.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IPathFigure;
       m_GenericIID     : aliased WinRt.IID := (3727283205, 9949, 24178, (139, 203, 73, 81, 153, 212, 229, 181 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPathFigure.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.PathFigure do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPathFigure := new Windows.UI.Xaml.Media.IPathFigure;
+         Retval.m_IPathFigure.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -7065,22 +7086,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathFigureCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.PathFigure'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPathFigure.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IPathFigure;
       m_GenericIID     : aliased WinRt.IID := (3441280033, 55013, 23359, (168, 199, 153, 56, 242, 139, 41, 149 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPathFigure.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.PathFigure do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPathFigure := new Windows.UI.Xaml.Media.IPathFigure;
+         Retval.m_IPathFigure.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -7331,22 +7355,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathSegmentCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.PathSegment'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPathSegment.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IPathSegment;
       m_GenericIID     : aliased WinRt.IID := (301847814, 45597, 22093, (182, 168, 255, 153, 16, 87, 184, 243 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPathSegment.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.PathSegment do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPathSegment := new Windows.UI.Xaml.Media.IPathSegment;
+         Retval.m_IPathSegment.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -7544,22 +7571,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathSegmentCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.PathSegment'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPathSegment.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IPathSegment;
       m_GenericIID     : aliased WinRt.IID := (937610017, 47561, 20486, (190, 215, 76, 50, 137, 129, 181, 81 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPathSegment.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.PathSegment do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPathSegment := new Windows.UI.Xaml.Media.IPathSegment;
+         Retval.m_IPathSegment.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -8405,12 +8435,12 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PointCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Point.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Foundation.Point;
       m_GenericIID     : aliased WinRt.IID := (3235189673, 60490, 23133, (182, 213, 183, 7, 222, 253, 185, 247 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Point.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -8618,12 +8648,12 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PointCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_Point.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Foundation.Point;
       m_GenericIID     : aliased WinRt.IID := (3247581197, 14857, 21539, (157, 197, 103, 184, 62, 189, 228, 29 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_Point.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -11022,22 +11052,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TimelineMarkerCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimelineMarker.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITimelineMarker;
       m_GenericIID     : aliased WinRt.IID := (3000556980, 53944, 22832, (148, 45, 38, 17, 135, 86, 189, 70 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimelineMarker.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.TimelineMarker do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITimelineMarker := new Windows.UI.Xaml.Media.ITimelineMarker;
+         Retval.m_ITimelineMarker.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -11235,22 +11268,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TimelineMarkerCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ITimelineMarker.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITimelineMarker;
       m_GenericIID     : aliased WinRt.IID := (2490129141, 19465, 22404, (156, 242, 80, 105, 71, 55, 142, 142 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ITimelineMarker.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.TimelineMarker do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITimelineMarker := new Windows.UI.Xaml.Media.ITimelineMarker;
+         Retval.m_ITimelineMarker.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -11434,22 +11470,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TransformCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Transform'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransform.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITransform;
       m_GenericIID     : aliased WinRt.IID := (1658305473, 29173, 22033, (169, 132, 229, 113, 194, 222, 123, 170 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransform.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Transform do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITransform := new Windows.UI.Xaml.Media.ITransform;
+         Retval.m_ITransform.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -11647,22 +11686,25 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TransformCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.UI.Xaml.Media.Transform'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ITransform.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITransform;
       m_GenericIID     : aliased WinRt.IID := (4220300476, 54252, 20920, (151, 120, 153, 237, 232, 70, 54, 17 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ITransform.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Transform do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITransform := new Windows.UI.Xaml.Media.ITransform;
+         Retval.m_ITransform.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------

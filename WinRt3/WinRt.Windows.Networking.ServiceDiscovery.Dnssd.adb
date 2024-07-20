@@ -815,22 +815,25 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    (
       this : in out DnssdServiceInstanceCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IDnssdServiceInstance.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance;
       m_GenericIID     : aliased WinRt.IID := (501457893, 14462, 21288, (184, 100, 63, 14, 52, 117, 211, 67 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IDnssdServiceInstance.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDnssdServiceInstance := new Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance;
+         Retval.m_IDnssdServiceInstance.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------

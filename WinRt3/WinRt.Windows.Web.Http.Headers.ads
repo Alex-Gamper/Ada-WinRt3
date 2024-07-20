@@ -2587,7 +2587,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCacheDirectiveHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class;
 
    function IndexOf
    (
@@ -2652,7 +2652,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCacheDirectiveHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class;
 
    function ToString
    (
@@ -2765,7 +2765,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpChallengeHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class;
 
    function IndexOf
    (
@@ -2830,7 +2830,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpChallengeHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class;
 
    function ToString
    (
@@ -2924,7 +2924,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpConnectionOptionHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class;
 
    function IndexOf
    (
@@ -2989,7 +2989,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpConnectionOptionHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class;
 
    function ToString
    (
@@ -3083,7 +3083,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class;
 
    function IndexOf
    (
@@ -3148,7 +3148,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class;
 
    function ToString
    (
@@ -3255,7 +3255,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class;
 
    function IndexOf
    (
@@ -3320,7 +3320,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class;
 
    function ToString
    (
@@ -3813,7 +3813,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCookiePairHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class;
 
    function IndexOf
    (
@@ -3878,7 +3878,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCookiePairHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class;
 
    function ToString
    (
@@ -4105,7 +4105,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpExpectationHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class;
 
    function IndexOf
    (
@@ -4170,7 +4170,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpExpectationHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class;
 
    function ToString
    (
@@ -4218,7 +4218,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Globalization.Language'Class;
 
    function IndexOf
    (
@@ -4283,7 +4283,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Globalization.Language'Class;
 
    function ToString
    (
@@ -4390,7 +4390,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class;
 
    function IndexOf
    (
@@ -4455,7 +4455,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class;
 
    function ToString
    (
@@ -4662,7 +4662,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class;
 
    function IndexOf
    (
@@ -4727,7 +4727,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class;
 
    function ToString
    (
@@ -4775,7 +4775,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMethodHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.HttpMethod'Class;
 
    function IndexOf
    (
@@ -4840,7 +4840,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMethodHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.HttpMethod'Class;
 
    function ToString
    (
@@ -5071,7 +5071,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpProductInfoHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class;
 
    function IndexOf
    (
@@ -5136,7 +5136,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpProductInfoHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class;
 
    function ToString
    (
@@ -5634,7 +5634,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpTransferCodingHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class;
 
    function IndexOf
    (
@@ -5699,7 +5699,7 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpTransferCodingHeaderValueCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class;
 
    function ToString
    (

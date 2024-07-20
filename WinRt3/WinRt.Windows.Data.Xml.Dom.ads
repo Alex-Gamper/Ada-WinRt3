@@ -264,6 +264,10 @@ package WinRt.Windows.Data.Xml.Dom is
    type NodeType_Ptr is access all NodeType;
 
    -----------------------------------------------------------------------------
+   -- Generic package declarations
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -3919,7 +3923,7 @@ package WinRt.Windows.Data.Xml.Dom is
    (
       this : in out XmlNamedNodeMap
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Data.Xml.Dom.IXmlNode;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for XmlNodeList
@@ -3978,7 +3982,7 @@ package WinRt.Windows.Data.Xml.Dom is
    (
       this : in out XmlNodeList
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Data.Xml.Dom.IXmlNode;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for XmlProcessingInstruction

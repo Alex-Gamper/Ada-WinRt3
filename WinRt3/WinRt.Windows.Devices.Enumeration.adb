@@ -1591,22 +1591,25 @@ package body WinRt.Windows.Devices.Enumeration is
    (
       this : in out DeviceInformationCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IDeviceInformation.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
       m_GenericIID     : aliased WinRt.IID := (3718220381, 60568, 24395, (163, 234, 156, 139, 90, 213, 60, 75 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IDeviceInformation.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
+         Retval.m_IDeviceInformation.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------

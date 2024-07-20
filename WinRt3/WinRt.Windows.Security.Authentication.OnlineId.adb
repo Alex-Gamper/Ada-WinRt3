@@ -962,22 +962,25 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
    (
       this : in out UserAuthenticationOperation
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Security.Authentication.OnlineId.UserIdentity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_IUserIdentity.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Security.Authentication.OnlineId.IUserIdentity;
       m_GenericIID     : aliased WinRt.IID := (3100386785, 16543, 22516, (187, 228, 59, 149, 183, 75, 134, 200 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_IUserIdentity.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.get_Completed (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Security.Authentication.OnlineId.UserIdentity do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.get_Completed (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUserIdentity := new Windows.Security.Authentication.OnlineId.IUserIdentity;
+         Retval.m_IUserIdentity.all := m_ComRetVal;
+      end return;
    end;
 
    function GetResults

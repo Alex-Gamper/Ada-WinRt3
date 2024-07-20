@@ -238,6 +238,10 @@ package WinRt.Windows.Storage.Streams is
    type UnicodeEncoding_Ptr is access all UnicodeEncoding;
 
    -----------------------------------------------------------------------------
+   -- Generic package declarations
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -1289,7 +1293,7 @@ package WinRt.Windows.Storage.Streams is
    (
       this : in out DataReaderLoadOperation
    )
-   return WinRt.GenericObject;
+   return WinRt.UInt32;
 
    function GetResults
    (
@@ -1536,7 +1540,7 @@ package WinRt.Windows.Storage.Streams is
    (
       this : in out DataWriterStoreOperation
    )
-   return WinRt.GenericObject;
+   return WinRt.UInt32;
 
    function GetResults
    (

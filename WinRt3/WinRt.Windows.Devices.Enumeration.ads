@@ -1875,7 +1875,7 @@ package WinRt.Windows.Devices.Enumeration is
    (
       this : in out DeviceInformationCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DeviceInformationCustomPairing

@@ -58,8 +58,7 @@ package body WinRt.Windows.Web.UI.Interop is
 
    procedure Finalize (this : in out WebViewControl) is
       temp : WinRt.UInt32 := 0;
-      use type WinRt.Windows.Web.UI.IWebViewControl;
-      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IWebViewControl_Ptr);
+      procedure Free is new Ada.Unchecked_Deallocation (IWebViewControl, IWebViewControl_Ptr);
    begin
       if this.m_IWebViewControl /= null then
          if this.m_IWebViewControl.all /= null then

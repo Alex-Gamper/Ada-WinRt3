@@ -545,22 +545,25 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    (
       this : in out PnpObjectCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Devices.Enumeration.Pnp.PnpObject'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPnpObject.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Devices.Enumeration.Pnp.IPnpObject;
       m_GenericIID     : aliased WinRt.IID := (817168530, 14062, 21503, (148, 80, 2, 144, 4, 67, 108, 96 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPnpObject.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_GenericObject.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Devices.Enumeration.Pnp.PnpObject do
+         m_Interface := QInterface (this.m_GenericObject.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPnpObject := new Windows.Devices.Enumeration.Pnp.IPnpObject;
+         Retval.m_IPnpObject.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------

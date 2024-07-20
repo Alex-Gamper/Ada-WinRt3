@@ -1689,7 +1689,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    (
       this : in out CompositionInteractionSourceCollection
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.UI.Composition.Interactions.ICompositionInteractionSource;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for InteractionSourceConfiguration

@@ -315,22 +315,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCacheDirectiveHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpNameValueHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (754450644, 13776, 21596, (171, 130, 246, 121, 59, 231, 76, 186 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection_Interface, IVector_IHttpNameValueHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpCacheDirectiveHeaderValueCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue do
+         m_Interface := QInterface (this.m_IHttpCacheDirectiveHeaderValueCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpNameValueHeaderValue := new Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+         Retval.m_IHttpNameValueHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -528,22 +531,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCacheDirectiveHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpNameValueHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (1480106278, 46615, 21527, (179, 46, 222, 210, 210, 125, 64, 163 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection_Interface, IIterable_IHttpNameValueHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpCacheDirectiveHeaderValueCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue do
+         m_Interface := QInterface (this.m_IHttpCacheDirectiveHeaderValueCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpNameValueHeaderValue := new Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+         Retval.m_IHttpNameValueHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function ToString
@@ -907,22 +913,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpChallengeHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpChallengeHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (926415966, 2855, 21155, (158, 64, 203, 185, 132, 78, 106, 183 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection_Interface, IVector_IHttpChallengeHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpChallengeHeaderValueCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue do
+         m_Interface := QInterface (this.m_IHttpChallengeHeaderValueCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpChallengeHeaderValue := new Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+         Retval.m_IHttpChallengeHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -1120,22 +1129,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpChallengeHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpChallengeHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (394559064, 61647, 21223, (129, 192, 157, 6, 160, 129, 86, 159 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection_Interface, IIterable_IHttpChallengeHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpChallengeHeaderValueCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue do
+         m_Interface := QInterface (this.m_IHttpChallengeHeaderValueCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpChallengeHeaderValue := new Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+         Retval.m_IHttpChallengeHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function ToString
@@ -1430,22 +1442,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpConnectionOptionHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpConnectionOptionHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3272792717, 51247, 20937, (183, 5, 90, 38, 213, 47, 190, 230 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection_Interface, IVector_IHttpConnectionOptionHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpConnectionOptionHeaderValueCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue do
+         m_Interface := QInterface (this.m_IHttpConnectionOptionHeaderValueCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpConnectionOptionHeaderValue := new Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
+         Retval.m_IHttpConnectionOptionHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -1643,22 +1658,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpConnectionOptionHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpConnectionOptionHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (452743471, 57250, 21800, (138, 239, 110, 106, 55, 120, 155, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection_Interface, IIterable_IHttpConnectionOptionHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpConnectionOptionHeaderValueCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue do
+         m_Interface := QInterface (this.m_IHttpConnectionOptionHeaderValueCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpConnectionOptionHeaderValue := new Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
+         Retval.m_IHttpConnectionOptionHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function ToString
@@ -1953,22 +1971,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpContentCodingHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3108918175, 17590, 21702, (154, 212, 226, 132, 75, 62, 11, 225 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValueCollection_Interface, IVector_IHttpContentCodingHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpContentCodingHeaderValueCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue do
+         m_Interface := QInterface (this.m_IHttpContentCodingHeaderValueCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpContentCodingHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
+         Retval.m_IHttpContentCodingHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -2166,22 +2187,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpContentCodingHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (243884226, 30437, 22209, (159, 230, 140, 217, 1, 138, 103, 134 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValueCollection_Interface, IIterable_IHttpContentCodingHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpContentCodingHeaderValueCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue do
+         m_Interface := QInterface (this.m_IHttpContentCodingHeaderValueCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpContentCodingHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
+         Retval.m_IHttpContentCodingHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function ToString
@@ -2523,22 +2547,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpContentCodingWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (871982397, 3821, 21352, (165, 30, 152, 56, 81, 145, 248, 111 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValueCollection_Interface, IVector_IHttpContentCodingWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpContentCodingWithQualityHeaderValueCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue do
+         m_Interface := QInterface (this.m_IHttpContentCodingWithQualityHeaderValueCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpContentCodingWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+         Retval.m_IHttpContentCodingWithQualityHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -2736,22 +2763,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpContentCodingWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (2439930481, 52982, 21432, (185, 63, 220, 141, 202, 85, 158, 80 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValueCollection_Interface, IIterable_IHttpContentCodingWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpContentCodingWithQualityHeaderValueCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue do
+         m_Interface := QInterface (this.m_IHttpContentCodingWithQualityHeaderValueCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpContentCodingWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+         Retval.m_IHttpContentCodingWithQualityHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function ToString
@@ -4324,22 +4354,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCookiePairHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpCookiePairHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3155782350, 35414, 24528, (152, 120, 200, 7, 237, 216, 100, 90 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValueCollection_Interface, IVector_IHttpCookiePairHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpCookiePairHeaderValueCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue do
+         m_Interface := QInterface (this.m_IHttpCookiePairHeaderValueCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpCookiePairHeaderValue := new Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+         Retval.m_IHttpCookiePairHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -4537,22 +4570,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCookiePairHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpCookiePairHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (376910404, 20497, 21060, (187, 0, 20, 219, 76, 247, 16, 5 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValueCollection_Interface, IIterable_IHttpCookiePairHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpCookiePairHeaderValueCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue do
+         m_Interface := QInterface (this.m_IHttpCookiePairHeaderValueCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpCookiePairHeaderValue := new Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+         Retval.m_IHttpCookiePairHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function ToString
@@ -5303,22 +5339,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpExpectationHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpExpectationHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (417413358, 65223, 21117, (134, 147, 222, 235, 202, 79, 61, 205 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValueCollection_Interface, IVector_IHttpExpectationHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpExpectationHeaderValueCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue do
+         m_Interface := QInterface (this.m_IHttpExpectationHeaderValueCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpExpectationHeaderValue := new Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+         Retval.m_IHttpExpectationHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -5516,22 +5555,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpExpectationHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpExpectationHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (171514923, 5059, 22968, (134, 98, 19, 175, 251, 157, 23, 84 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValueCollection_Interface, IIterable_IHttpExpectationHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpExpectationHeaderValueCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue do
+         m_Interface := QInterface (this.m_IHttpExpectationHeaderValueCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpExpectationHeaderValue := new Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+         Retval.m_IHttpExpectationHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function ToString
@@ -5671,22 +5713,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Globalization.Language'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ILanguage.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Globalization.ILanguage;
       m_GenericIID     : aliased WinRt.IID := (3706868314, 17088, 20509, (159, 203, 71, 31, 174, 6, 3, 150 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpLanguageHeaderValueCollection_Interface, IVector_ILanguage.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpLanguageHeaderValueCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Globalization.Language do
+         m_Interface := QInterface (this.m_IHttpLanguageHeaderValueCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ILanguage := new Windows.Globalization.ILanguage;
+         Retval.m_ILanguage.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -5884,22 +5929,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Globalization.Language'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ILanguage.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Globalization.ILanguage;
       m_GenericIID     : aliased WinRt.IID := (1212193296, 25014, 23985, (166, 157, 138, 188, 70, 172, 96, 138 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpLanguageHeaderValueCollection_Interface, IIterable_ILanguage.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpLanguageHeaderValueCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Globalization.Language do
+         m_Interface := QInterface (this.m_IHttpLanguageHeaderValueCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ILanguage := new Windows.Globalization.ILanguage;
+         Retval.m_ILanguage.all := m_ComRetVal;
+      end return;
    end;
 
    function ToString
@@ -6241,22 +6289,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpLanguageRangeWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3068095906, 36242, 21104, (149, 132, 214, 169, 169, 49, 88, 109 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValueCollection_Interface, IVector_IHttpLanguageRangeWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpLanguageRangeWithQualityHeaderValueCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue do
+         m_Interface := QInterface (this.m_IHttpLanguageRangeWithQualityHeaderValueCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+         Retval.m_IHttpLanguageRangeWithQualityHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -6454,22 +6505,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpLanguageRangeWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (207243789, 56247, 23231, (165, 253, 195, 185, 141, 156, 20, 135 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValueCollection_Interface, IIterable_IHttpLanguageRangeWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpLanguageRangeWithQualityHeaderValueCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue do
+         m_Interface := QInterface (this.m_IHttpLanguageRangeWithQualityHeaderValueCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+         Retval.m_IHttpLanguageRangeWithQualityHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function ToString
@@ -7129,22 +7183,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpMediaTypeWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3246733559, 49750, 22118, (136, 104, 34, 37, 175, 53, 116, 182 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValueCollection_Interface, IVector_IHttpMediaTypeWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpMediaTypeWithQualityHeaderValueCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue do
+         m_Interface := QInterface (this.m_IHttpMediaTypeWithQualityHeaderValueCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpMediaTypeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+         Retval.m_IHttpMediaTypeWithQualityHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -7342,22 +7399,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpMediaTypeWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (4291289054, 22712, 20969, (179, 59, 101, 165, 214, 164, 226, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValueCollection_Interface, IIterable_IHttpMediaTypeWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpMediaTypeWithQualityHeaderValueCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue do
+         m_Interface := QInterface (this.m_IHttpMediaTypeWithQualityHeaderValueCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpMediaTypeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+         Retval.m_IHttpMediaTypeWithQualityHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function ToString
@@ -7497,22 +7557,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMethodHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.HttpMethod'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpMethod.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.IHttpMethod;
       m_GenericIID     : aliased WinRt.IID := (579498914, 42249, 23160, (189, 127, 219, 148, 186, 11, 239, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpMethodHeaderValueCollection_Interface, IVector_IHttpMethod.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpMethodHeaderValueCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.HttpMethod do
+         m_Interface := QInterface (this.m_IHttpMethodHeaderValueCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
+         Retval.m_IHttpMethod.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -7710,22 +7773,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMethodHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.HttpMethod'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpMethod.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.IHttpMethod;
       m_GenericIID     : aliased WinRt.IID := (3230186266, 56417, 22497, (185, 103, 120, 218, 179, 84, 29, 165 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpMethodHeaderValueCollection_Interface, IIterable_IHttpMethod.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpMethodHeaderValueCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.HttpMethod do
+         m_Interface := QInterface (this.m_IHttpMethodHeaderValueCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
+         Retval.m_IHttpMethod.all := m_ComRetVal;
+      end return;
    end;
 
    function ToString
@@ -8494,22 +8560,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpProductInfoHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpProductInfoHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (1765351520, 27663, 24038, (140, 237, 241, 79, 193, 184, 51, 118 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValueCollection_Interface, IVector_IHttpProductInfoHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpProductInfoHeaderValueCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue do
+         m_Interface := QInterface (this.m_IHttpProductInfoHeaderValueCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpProductInfoHeaderValue := new Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+         Retval.m_IHttpProductInfoHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -8707,22 +8776,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpProductInfoHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpProductInfoHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3214397337, 58900, 22373, (186, 215, 22, 26, 227, 169, 58, 233 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValueCollection_Interface, IIterable_IHttpProductInfoHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpProductInfoHeaderValueCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue do
+         m_Interface := QInterface (this.m_IHttpProductInfoHeaderValueCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpProductInfoHeaderValue := new Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+         Retval.m_IHttpProductInfoHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function ToString
@@ -10308,22 +10380,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpTransferCodingHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpTransferCodingHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (954672482, 57724, 23912, (170, 209, 142, 138, 134, 11, 137, 105 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection_Interface, IVector_IHttpTransferCodingHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpTransferCodingHeaderValueCollection.all);
-      Hr := m_Interface.GetView (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue do
+         m_Interface := QInterface (this.m_IHttpTransferCodingHeaderValueCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpTransferCodingHeaderValue := new Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
+         Retval.m_IHttpTransferCodingHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function IndexOf
@@ -10521,22 +10596,25 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpTransferCodingHeaderValueCollection
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpTransferCodingHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (1463820360, 14527, 20565, (172, 182, 92, 77, 167, 101, 227, 136 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection_Interface, IIterable_IHttpTransferCodingHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
-      m_Interface := QInterface (this.m_IHttpTransferCodingHeaderValueCollection.all);
-      Hr := m_Interface.First (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
+      return RetVal : WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue do
+         m_Interface := QInterface (this.m_IHttpTransferCodingHeaderValueCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHttpTransferCodingHeaderValue := new Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
+         Retval.m_IHttpTransferCodingHeaderValue.all := m_ComRetVal;
+      end return;
    end;
 
    function ToString
