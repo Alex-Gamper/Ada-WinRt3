@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Security.Cryptography.Certificates;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;
