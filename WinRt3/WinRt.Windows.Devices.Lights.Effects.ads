@@ -182,10 +182,6 @@ package WinRt.Windows.Devices.Lights.Effects is
    type LampArrayRepetitionMode_Ptr is access all LampArrayRepetitionMode;
 
    -----------------------------------------------------------------------------
-   -- Generic package declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 

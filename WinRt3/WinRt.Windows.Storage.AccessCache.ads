@@ -131,10 +131,6 @@ package WinRt.Windows.Storage.AccessCache is
    type AccessListEntry_Array is array (Natural range <>) of aliased AccessListEntry;
 
    -----------------------------------------------------------------------------
-   -- Generic package declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
