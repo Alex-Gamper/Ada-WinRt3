@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Numerics;
 with WinRt.Windows.Storage.Streams;
 with WinRt.Windows.System;
 with WinRt.Windows.UI;

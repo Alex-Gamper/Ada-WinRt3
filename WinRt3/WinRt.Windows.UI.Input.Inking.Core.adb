@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Numerics;
 with WinRt.Windows.UI.Composition;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------

@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with WinRt.Windows.Foundation.Numerics;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Perception.Spatial.Preview is

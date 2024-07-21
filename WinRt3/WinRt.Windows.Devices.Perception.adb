@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Devices.Enumeration;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Numerics;
 with WinRt.Windows.Graphics.Imaging;
 with WinRt.Windows.Media;
 with WinRt.Windows.Media.Devices.Core;
