@@ -265,7 +265,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access IDragProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -647,7 +647,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ISelectionProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -667,7 +667,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ISpreadsheetItemProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -773,7 +773,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITableItemProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -781,7 +781,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITableItemProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -801,7 +801,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITableProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -809,7 +809,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITableProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1068,7 +1068,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITextRangeProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
