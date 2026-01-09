@@ -3773,6 +3773,30 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor
    (
+      characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class
+   )
+   return GattCharacteristicNotificationTrigger is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.GattCharacteristicNotificationTrigger");
+      m_Factory    : access IGattCharacteristicNotificationTriggerFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger;
+   begin
+      return RetVal : GattCharacteristicNotificationTrigger do
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicNotificationTriggerFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.Create (characteristic.m_IGattCharacteristic.all, m_ComRetVal'Access);
+            Retval.m_IGattCharacteristicNotificationTrigger := new Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger;
+            Retval.m_IGattCharacteristicNotificationTrigger.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
       characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class;
       eventTriggeringMode : Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode
    )
@@ -3788,30 +3812,6 @@ package body WinRt.Windows.ApplicationModel.Background is
          Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicNotificationTriggerFactory2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (characteristic.m_IGattCharacteristic.all, eventTriggeringMode, m_ComRetVal'Access);
-            Retval.m_IGattCharacteristicNotificationTrigger := new Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger;
-            Retval.m_IGattCharacteristicNotificationTrigger.all := m_ComRetVal;
-            temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor
-   (
-      characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class
-   )
-   return GattCharacteristicNotificationTrigger is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.GattCharacteristicNotificationTrigger");
-      m_Factory    : access IGattCharacteristicNotificationTriggerFactory_Interface'Class := null;
-      temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger;
-   begin
-      return RetVal : GattCharacteristicNotificationTrigger do
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicNotificationTriggerFactory'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.Create (characteristic.m_IGattCharacteristic.all, m_ComRetVal'Access);
             Retval.m_IGattCharacteristicNotificationTrigger := new Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger;
             Retval.m_IGattCharacteristicNotificationTrigger.all := m_ComRetVal;
             temp := m_Factory.Release;
@@ -5012,6 +5012,22 @@ package body WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PushNotificationTrigger
 
+   function Constructor return PushNotificationTrigger is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PushNotificationTrigger");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
+   begin
+      return RetVal : PushNotificationTrigger do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
+            Retval.m_IBackgroundTrigger.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       applicationId : WinRt.WString
@@ -5035,22 +5051,6 @@ package body WinRt.Windows.ApplicationModel.Background is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_applicationId);
-      end return;
-   end;
-
-   function Constructor return PushNotificationTrigger is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PushNotificationTrigger");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
-   begin
-      return RetVal : PushNotificationTrigger do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
-            Retval.m_IBackgroundTrigger.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5984,22 +5984,6 @@ package body WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ToastNotificationActionTrigger
 
-   function Constructor return ToastNotificationActionTrigger is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationActionTrigger");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
-   begin
-      return RetVal : ToastNotificationActionTrigger do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
-            Retval.m_IBackgroundTrigger.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       applicationId : WinRt.WString
@@ -6023,6 +6007,22 @@ package body WinRt.Windows.ApplicationModel.Background is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_applicationId);
+      end return;
+   end;
+
+   function Constructor return ToastNotificationActionTrigger is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationActionTrigger");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
+   begin
+      return RetVal : ToastNotificationActionTrigger do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
+            Retval.m_IBackgroundTrigger.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

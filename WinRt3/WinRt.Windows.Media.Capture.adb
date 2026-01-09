@@ -4940,30 +4940,6 @@ package body WinRt.Windows.Media.Capture is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AppCapture
 
-   function GetForCurrentView
-   return WinRt.Windows.Media.Capture.AppCapture is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Capture.AppCapture");
-      m_Factory        : access WinRt.Windows.Media.Capture.IAppCaptureStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppCapture;
-   begin
-      return RetVal : WinRt.Windows.Media.Capture.AppCapture do
-         Hr := RoGetActivationFactory (m_hString, IID_IAppCaptureStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IAppCapture := new Windows.Media.Capture.IAppCapture;
-            Retval.m_IAppCapture.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    procedure SetAllowedAsync
    (
       allowed : WinRt.Boolean
@@ -5011,6 +4987,30 @@ package body WinRt.Windows.Media.Capture is
          end if;
       end if;
       tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function GetForCurrentView
+   return WinRt.Windows.Media.Capture.AppCapture is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Capture.AppCapture");
+      m_Factory        : access WinRt.Windows.Media.Capture.IAppCaptureStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Capture.IAppCapture;
+   begin
+      return RetVal : WinRt.Windows.Media.Capture.AppCapture do
+         Hr := RoGetActivationFactory (m_hString, IID_IAppCaptureStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IAppCapture := new Windows.Media.Capture.IAppCapture;
+            Retval.m_IAppCapture.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
    end;
 
    -----------------------------------------------------------------------------

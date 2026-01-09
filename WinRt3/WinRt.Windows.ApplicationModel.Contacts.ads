@@ -6739,6 +6739,15 @@ package WinRt.Windows.ApplicationModel.Contacts is
    -- Static RuntimeClass
    package ContactManager is
 
+      function GetForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.ApplicationModel.Contacts.ContactManagerForUser;
+
+      function RequestStoreAsync
+      return WinRt.Windows.ApplicationModel.Contacts.ContactStore;
+
       function ConvertContactToVCardAsync
       (
          contact_p : Windows.ApplicationModel.Contacts.Contact'Class
@@ -6815,20 +6824,6 @@ package WinRt.Windows.ApplicationModel.Contacts is
          value : Windows.ApplicationModel.Contacts.ContactNameOrder
       );
 
-      function RequestStoreAsync
-      return WinRt.Windows.ApplicationModel.Contacts.ContactStore;
-
-      function IsShowFullContactCardSupportedAsync
-      return WinRt.Boolean;
-
-      function get_IncludeMiddleNameInSystemDisplayAndSort
-      return WinRt.Boolean;
-
-      procedure put_IncludeMiddleNameInSystemDisplayAndSort
-      (
-         value : WinRt.Boolean
-      );
-
       procedure ShowContactCard
       (
          contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
@@ -6850,11 +6845,16 @@ package WinRt.Windows.ApplicationModel.Contacts is
       )
       return WinRt.Windows.ApplicationModel.Contacts.ContactCardDelayedDataLoader;
 
-      function GetForUser
+      function IsShowFullContactCardSupportedAsync
+      return WinRt.Boolean;
+
+      function get_IncludeMiddleNameInSystemDisplayAndSort
+      return WinRt.Boolean;
+
+      procedure put_IncludeMiddleNameInSystemDisplayAndSort
       (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.ApplicationModel.Contacts.ContactManagerForUser;
+         value : WinRt.Boolean
+      );
 
    end ContactManager;
 
@@ -7206,6 +7206,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ContactQueryOptions
 
+   function Constructor return ContactQueryOptions;
+
    function Constructor
    (
       text : WinRt.WString
@@ -7218,8 +7220,6 @@ package WinRt.Windows.ApplicationModel.Contacts is
       fields : Windows.ApplicationModel.Contacts.ContactQuerySearchFields
    )
    return ContactQueryOptions;
-
-   function Constructor return ContactQueryOptions;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ContactQueryOptions

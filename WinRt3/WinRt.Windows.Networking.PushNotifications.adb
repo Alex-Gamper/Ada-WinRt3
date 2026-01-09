@@ -150,6 +150,30 @@ package body WinRt.Windows.Networking.PushNotifications is
    -- Static RuntimeClass
    package body PushNotificationChannelManager is
 
+      function GetDefault
+      return WinRt.Windows.Networking.PushNotifications.PushNotificationChannelManagerForUser is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.PushNotifications.PushNotificationChannelManager");
+         m_Factory        : access WinRt.Windows.Networking.PushNotifications.IPushNotificationChannelManagerStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser;
+      begin
+         return RetVal : WinRt.Windows.Networking.PushNotifications.PushNotificationChannelManagerForUser do
+            Hr := RoGetActivationFactory (m_hString, IID_IPushNotificationChannelManagerStatics3'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IPushNotificationChannelManagerForUser := new Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser;
+               Retval.m_IPushNotificationChannelManagerForUser.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
       function GetForUser
       (
          user : Windows.System.User'Class
@@ -166,30 +190,6 @@ package body WinRt.Windows.Networking.PushNotifications is
             Hr := RoGetActivationFactory (m_hString, IID_IPushNotificationChannelManagerStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IPushNotificationChannelManagerForUser := new Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser;
-               Retval.m_IPushNotificationChannelManagerForUser.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function GetDefault
-      return WinRt.Windows.Networking.PushNotifications.PushNotificationChannelManagerForUser is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.PushNotifications.PushNotificationChannelManager");
-         m_Factory        : access WinRt.Windows.Networking.PushNotifications.IPushNotificationChannelManagerStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser;
-      begin
-         return RetVal : WinRt.Windows.Networking.PushNotifications.PushNotificationChannelManagerForUser do
-            Hr := RoGetActivationFactory (m_hString, IID_IPushNotificationChannelManagerStatics3'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.GetDefault (m_ComRetVal'Access);
                temp := m_Factory.Release;
                if Hr /= S_OK then
                   raise Program_Error;

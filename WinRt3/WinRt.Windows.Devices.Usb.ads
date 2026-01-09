@@ -2435,13 +2435,13 @@ package WinRt.Windows.Devices.Usb is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for UsbSetupPacket
 
-   function Constructor return UsbSetupPacket;
-
    function Constructor
    (
       eightByteBuffer : Windows.Storage.Streams.IBuffer
    )
    return UsbSetupPacket;
+
+   function Constructor return UsbSetupPacket;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for UsbSetupPacket

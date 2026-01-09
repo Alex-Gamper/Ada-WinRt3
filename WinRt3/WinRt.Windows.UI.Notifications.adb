@@ -318,6 +318,33 @@ package body WinRt.Windows.UI.Notifications is
    -- Static RuntimeClass
    package body BadgeUpdateManager is
 
+      function GetForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.UI.Notifications.BadgeUpdateManagerForUser is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.BadgeUpdateManager");
+         m_Factory        : access WinRt.Windows.UI.Notifications.IBadgeUpdateManagerStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.UI.Notifications.IBadgeUpdateManagerForUser;
+      begin
+         return RetVal : WinRt.Windows.UI.Notifications.BadgeUpdateManagerForUser do
+            Hr := RoGetActivationFactory (m_hString, IID_IBadgeUpdateManagerStatics2'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IBadgeUpdateManagerForUser := new Windows.UI.Notifications.IBadgeUpdateManagerForUser;
+               Retval.m_IBadgeUpdateManagerForUser.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
       function CreateBadgeUpdaterForApplication
       return WinRt.Windows.UI.Notifications.BadgeUpdater is
          Hr               : WinRt.HResult := S_OK;
@@ -422,33 +449,6 @@ package body WinRt.Windows.UI.Notifications is
                end if;
                Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
                Retval.m_IXmlDocument.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function GetForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.UI.Notifications.BadgeUpdateManagerForUser is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.BadgeUpdateManager");
-         m_Factory        : access WinRt.Windows.UI.Notifications.IBadgeUpdateManagerStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.IBadgeUpdateManagerForUser;
-      begin
-         return RetVal : WinRt.Windows.UI.Notifications.BadgeUpdateManagerForUser do
-            Hr := RoGetActivationFactory (m_hString, IID_IBadgeUpdateManagerStatics2'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IBadgeUpdateManagerForUser := new Windows.UI.Notifications.IBadgeUpdateManagerForUser;
-               Retval.m_IBadgeUpdateManagerForUser.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
          end return;
@@ -5118,52 +5118,28 @@ package body WinRt.Windows.UI.Notifications is
    -- Static RuntimeClass
    package body ToastNotificationManager is
 
-      function GetForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser is
+      function get_History
+      return WinRt.Windows.UI.Notifications.ToastNotificationHistory is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ToastNotificationManager");
-         m_Factory        : access WinRt.Windows.UI.Notifications.IToastNotificationManagerStatics4_Interface'Class := null;
+         m_Factory        : access WinRt.Windows.UI.Notifications.IToastNotificationManagerStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotificationManagerForUser;
+         m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotificationHistory;
       begin
-         return RetVal : WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser do
-            Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationManagerStatics4'Access , m_Factory'Address);
+         return RetVal : WinRt.Windows.UI.Notifications.ToastNotificationHistory do
+            Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationManagerStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
-               Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
+               Hr := m_Factory.get_History (m_ComRetVal'Access);
                temp := m_Factory.Release;
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IToastNotificationManagerForUser := new Windows.UI.Notifications.IToastNotificationManagerForUser;
-               Retval.m_IToastNotificationManagerForUser.all := m_ComRetVal;
+               Retval.m_IToastNotificationHistory := new Windows.UI.Notifications.IToastNotificationHistory;
+               Retval.m_IToastNotificationHistory.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
          end return;
-      end;
-
-      procedure ConfigureNotificationMirroring
-      (
-         value : Windows.UI.Notifications.NotificationMirroring
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ToastNotificationManager");
-         m_Factory        : access WinRt.Windows.UI.Notifications.IToastNotificationManagerStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationManagerStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.ConfigureNotificationMirroring (value);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end;
 
       function CreateToastNotifier
@@ -5246,30 +5222,6 @@ package body WinRt.Windows.UI.Notifications is
          end return;
       end;
 
-      function get_History
-      return WinRt.Windows.UI.Notifications.ToastNotificationHistory is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ToastNotificationManager");
-         m_Factory        : access WinRt.Windows.UI.Notifications.IToastNotificationManagerStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotificationHistory;
-      begin
-         return RetVal : WinRt.Windows.UI.Notifications.ToastNotificationHistory do
-            Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationManagerStatics2'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.get_History (m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IToastNotificationHistory := new Windows.UI.Notifications.IToastNotificationHistory;
-               Retval.m_IToastNotificationHistory.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
       function GetDefault
       return WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser is
          Hr               : WinRt.HResult := S_OK;
@@ -5292,6 +5244,54 @@ package body WinRt.Windows.UI.Notifications is
             end if;
             tmp := WindowsDeleteString (m_hString);
          end return;
+      end;
+
+      function GetForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ToastNotificationManager");
+         m_Factory        : access WinRt.Windows.UI.Notifications.IToastNotificationManagerStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotificationManagerForUser;
+      begin
+         return RetVal : WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser do
+            Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationManagerStatics4'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IToastNotificationManagerForUser := new Windows.UI.Notifications.IToastNotificationManagerForUser;
+               Retval.m_IToastNotificationManagerForUser.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      procedure ConfigureNotificationMirroring
+      (
+         value : Windows.UI.Notifications.NotificationMirroring
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ToastNotificationManager");
+         m_Factory        : access WinRt.Windows.UI.Notifications.IToastNotificationManagerStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationManagerStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.ConfigureNotificationMirroring (value);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end ToastNotificationManager;
@@ -5597,6 +5597,68 @@ package body WinRt.Windows.UI.Notifications is
          Retval.m_IToastCollectionManager.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_appId);
       end return;
+   end;
+
+   function get_NotificationMode
+   (
+      this : in out ToastNotificationManagerForUser
+   )
+   return WinRt.Windows.UI.Notifications.ToastNotificationMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Notifications.ToastNotificationMode;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser_Interface, WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser3, WinRt.Windows.UI.Notifications.IID_IToastNotificationManagerForUser3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IToastNotificationManagerForUser.all);
+      Hr := m_Interface.get_NotificationMode (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function add_NotificationModeChanged
+   (
+      this : in out ToastNotificationManagerForUser;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser_Interface, WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser3, WinRt.Windows.UI.Notifications.IID_IToastNotificationManagerForUser3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IToastNotificationManagerForUser.all);
+      Hr := m_Interface.add_NotificationModeChanged (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_NotificationModeChanged
+   (
+      this : in out ToastNotificationManagerForUser;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser_Interface, WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser3, WinRt.Windows.UI.Notifications.IID_IToastNotificationManagerForUser3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IToastNotificationManagerForUser.all);
+      Hr := m_Interface.remove_NotificationModeChanged (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------

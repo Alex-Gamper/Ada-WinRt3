@@ -157,15 +157,15 @@ package WinRt.Windows.Perception is
    -- Static RuntimeClass
    package PerceptionTimestampHelper is
 
-      function FromSystemRelativeTargetTime
-      (
-         targetTime : Windows.Foundation.TimeSpan
-      )
-      return WinRt.Windows.Perception.PerceptionTimestamp;
-
       function FromHistoricalTargetTime
       (
          targetTime : Windows.Foundation.DateTime
+      )
+      return WinRt.Windows.Perception.PerceptionTimestamp;
+
+      function FromSystemRelativeTargetTime
+      (
+         targetTime : Windows.Foundation.TimeSpan
       )
       return WinRt.Windows.Perception.PerceptionTimestamp;
 

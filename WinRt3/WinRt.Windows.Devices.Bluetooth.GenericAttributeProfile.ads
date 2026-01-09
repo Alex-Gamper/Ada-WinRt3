@@ -3700,69 +3700,6 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    -- Static RuntimeClass
    package GattCharacteristicUuids is
 
-      function get_BatteryLevel
-      return WinRt.Guid;
-
-      function get_BloodPressureFeature
-      return WinRt.Guid;
-
-      function get_BloodPressureMeasurement
-      return WinRt.Guid;
-
-      function get_BodySensorLocation
-      return WinRt.Guid;
-
-      function get_CscFeature
-      return WinRt.Guid;
-
-      function get_CscMeasurement
-      return WinRt.Guid;
-
-      function get_GlucoseFeature
-      return WinRt.Guid;
-
-      function get_GlucoseMeasurement
-      return WinRt.Guid;
-
-      function get_GlucoseMeasurementContext
-      return WinRt.Guid;
-
-      function get_HeartRateControlPoint
-      return WinRt.Guid;
-
-      function get_HeartRateMeasurement
-      return WinRt.Guid;
-
-      function get_IntermediateCuffPressure
-      return WinRt.Guid;
-
-      function get_IntermediateTemperature
-      return WinRt.Guid;
-
-      function get_MeasurementInterval
-      return WinRt.Guid;
-
-      function get_RecordAccessControlPoint
-      return WinRt.Guid;
-
-      function get_RscFeature
-      return WinRt.Guid;
-
-      function get_RscMeasurement
-      return WinRt.Guid;
-
-      function get_SCControlPoint
-      return WinRt.Guid;
-
-      function get_SensorLocation
-      return WinRt.Guid;
-
-      function get_TemperatureMeasurement
-      return WinRt.Guid;
-
-      function get_TemperatureType
-      return WinRt.Guid;
-
       function get_AlertCategoryId
       return WinRt.Guid;
 
@@ -3941,6 +3878,69 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       return WinRt.Guid;
 
       function get_UnreadAlertStatus
+      return WinRt.Guid;
+
+      function get_BatteryLevel
+      return WinRt.Guid;
+
+      function get_BloodPressureFeature
+      return WinRt.Guid;
+
+      function get_BloodPressureMeasurement
+      return WinRt.Guid;
+
+      function get_BodySensorLocation
+      return WinRt.Guid;
+
+      function get_CscFeature
+      return WinRt.Guid;
+
+      function get_CscMeasurement
+      return WinRt.Guid;
+
+      function get_GlucoseFeature
+      return WinRt.Guid;
+
+      function get_GlucoseMeasurement
+      return WinRt.Guid;
+
+      function get_GlucoseMeasurementContext
+      return WinRt.Guid;
+
+      function get_HeartRateControlPoint
+      return WinRt.Guid;
+
+      function get_HeartRateMeasurement
+      return WinRt.Guid;
+
+      function get_IntermediateCuffPressure
+      return WinRt.Guid;
+
+      function get_IntermediateTemperature
+      return WinRt.Guid;
+
+      function get_MeasurementInterval
+      return WinRt.Guid;
+
+      function get_RecordAccessControlPoint
+      return WinRt.Guid;
+
+      function get_RscFeature
+      return WinRt.Guid;
+
+      function get_RscMeasurement
+      return WinRt.Guid;
+
+      function get_SCControlPoint
+      return WinRt.Guid;
+
+      function get_SensorLocation
+      return WinRt.Guid;
+
+      function get_TemperatureMeasurement
+      return WinRt.Guid;
+
+      function get_TemperatureType
       return WinRt.Guid;
 
    end GattCharacteristicUuids;
@@ -4136,6 +4136,30 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    function FromIdAsync
    (
+      deviceId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService;
+
+   function GetDeviceSelectorFromUuid
+   (
+      serviceUuid : WinRt.Guid
+   )
+   return WinRt.WString;
+
+   function GetDeviceSelectorFromShortId
+   (
+      serviceShortId : WinRt.UInt16
+   )
+   return WinRt.WString;
+
+   function ConvertShortIdToUuid_GattDeviceService
+   (
+      shortId : WinRt.UInt16
+   )
+   return WinRt.Guid;
+
+   function FromIdAsync
+   (
       deviceId : WinRt.WString;
       sharingMode : Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode
    )
@@ -4168,30 +4192,6 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.WString;
-
-   function FromIdAsync
-   (
-      deviceId : WinRt.WString
-   )
-   return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService;
-
-   function GetDeviceSelectorFromUuid
-   (
-      serviceUuid : WinRt.Guid
-   )
-   return WinRt.WString;
-
-   function GetDeviceSelectorFromShortId
-   (
-      serviceShortId : WinRt.UInt16
-   )
-   return WinRt.WString;
-
-   function ConvertShortIdToUuid_GattDeviceService
-   (
-      shortId : WinRt.UInt16
-   )
-   return WinRt.Guid;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for GattDeviceService

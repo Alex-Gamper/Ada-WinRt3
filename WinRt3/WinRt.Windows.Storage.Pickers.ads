@@ -730,14 +730,14 @@ package WinRt.Windows.Storage.Pickers is
    -----------------------------------------------------------------------------
    -- Static Interfaces for FileOpenPicker
 
-   function ResumePickSingleFileAsync
-   return WinRt.Windows.Storage.StorageFile;
-
    function CreateForUser
    (
       user : Windows.System.User'Class
    )
    return WinRt.Windows.Storage.Pickers.FileOpenPicker;
+
+   function ResumePickSingleFileAsync
+   return WinRt.Windows.Storage.StorageFile;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for FileOpenPicker

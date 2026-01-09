@@ -2246,15 +2246,6 @@ package WinRt.Windows.Graphics.Holographic is
    -----------------------------------------------------------------------------
    -- Static Interfaces for HolographicSpace
 
-   function CreateForCoreWindow
-   (
-      window : Windows.UI.Core.CoreWindow'Class
-   )
-   return WinRt.Windows.Graphics.Holographic.HolographicSpace;
-
-   function get_IsConfigured
-   return WinRt.Boolean;
-
    function get_IsSupported
    return WinRt.Boolean;
 
@@ -2271,6 +2262,15 @@ package WinRt.Windows.Graphics.Holographic is
    (
       token : Windows.Foundation.EventRegistrationToken
    );
+
+   function get_IsConfigured
+   return WinRt.Boolean;
+
+   function CreateForCoreWindow
+   (
+      window : Windows.UI.Core.CoreWindow'Class
+   )
+   return WinRt.Windows.Graphics.Holographic.HolographicSpace;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for HolographicSpace

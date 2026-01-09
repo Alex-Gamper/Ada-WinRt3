@@ -869,24 +869,6 @@ package WinRt.Windows.System.UserProfile is
    -- Static RuntimeClass
    package GlobalizationPreferences is
 
-      function get_Calendars
-      return IVectorView_HString.Kind;
-
-      function get_Clocks
-      return IVectorView_HString.Kind;
-
-      function get_Currencies
-      return IVectorView_HString.Kind;
-
-      function get_Languages
-      return IVectorView_HString.Kind;
-
-      function get_HomeGeographicRegion
-      return WinRt.WString;
-
-      function get_WeekStartsOn
-      return WinRt.Windows.Globalization.DayOfWeek;
-
       function GetForUser
       (
          user : Windows.System.User'Class
@@ -904,6 +886,24 @@ package WinRt.Windows.System.UserProfile is
          languageTags : GenericObject
       )
       return WinRt.Boolean;
+
+      function get_Calendars
+      return IVectorView_HString.Kind;
+
+      function get_Clocks
+      return IVectorView_HString.Kind;
+
+      function get_Currencies
+      return IVectorView_HString.Kind;
+
+      function get_Languages
+      return IVectorView_HString.Kind;
+
+      function get_HomeGeographicRegion
+      return WinRt.WString;
+
+      function get_WeekStartsOn
+      return WinRt.Windows.Globalization.DayOfWeek;
 
    end GlobalizationPreferences;
 

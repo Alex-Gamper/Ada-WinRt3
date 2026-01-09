@@ -2402,6 +2402,13 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    -- Static RuntimeClass
    package CertificateEnrollmentManager is
 
+      procedure ImportPfxDataAsync
+      (
+         pfxData : WinRt.WString;
+         password : WinRt.WString;
+         pfxImportParameters_p : Windows.Security.Cryptography.Certificates.PfxImportParameters'Class
+      );
+
       function CreateRequestAsync
       (
          request : Windows.Security.Cryptography.Certificates.CertificateRequestProperties'Class
@@ -2422,13 +2429,6 @@ package WinRt.Windows.Security.Cryptography.Certificates is
          keyProtectionLevel : Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
          installOption : Windows.Security.Cryptography.Certificates.InstallOptions;
          friendlyName : WinRt.WString
-      );
-
-      procedure ImportPfxDataAsync
-      (
-         pfxData : WinRt.WString;
-         password : WinRt.WString;
-         pfxImportParameters_p : Windows.Security.Cryptography.Certificates.PfxImportParameters'Class
       );
 
       function get_UserCertificateEnrollmentManager
@@ -2984,12 +2984,6 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    -- Static RuntimeClass
    package CertificateStores is
 
-      function GetUserStoreByName
-      (
-         storeName : WinRt.WString
-      )
-      return WinRt.Windows.Security.Cryptography.Certificates.UserCertificateStore;
-
       function FindAllAsync
       return WinRt.GenericObject;
 
@@ -3010,6 +3004,12 @@ package WinRt.Windows.Security.Cryptography.Certificates is
          storeName : WinRt.WString
       )
       return WinRt.Windows.Security.Cryptography.Certificates.CertificateStore;
+
+      function GetUserStoreByName
+      (
+         storeName : WinRt.WString
+      )
+      return WinRt.Windows.Security.Cryptography.Certificates.UserCertificateStore;
 
    end CertificateStores;
 
@@ -3313,12 +3313,6 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    -- Static RuntimeClass
    package KeyAlgorithmNames is
 
-      function get_Ecdsa
-      return WinRt.WString;
-
-      function get_Ecdh
-      return WinRt.WString;
-
       function get_Rsa
       return WinRt.WString;
 
@@ -3343,11 +3337,24 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_Ecdsa521
       return WinRt.WString;
 
+      function get_Ecdsa
+      return WinRt.WString;
+
+      function get_Ecdh
+      return WinRt.WString;
+
    end KeyAlgorithmNames;
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package KeyAttestationHelper is
+
+      function DecryptTpmAttestationCredentialAsync
+      (
+         credential : WinRt.WString;
+         containerName : WinRt.WString
+      )
+      return WinRt.WString;
 
       function DecryptTpmAttestationCredentialAsync
       (
@@ -3358,13 +3365,6 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function GetTpmAttestationCredentialId
       (
          credential : WinRt.WString
-      )
-      return WinRt.WString;
-
-      function DecryptTpmAttestationCredentialAsync
-      (
-         credential : WinRt.WString;
-         containerName : WinRt.WString
       )
       return WinRt.WString;
 

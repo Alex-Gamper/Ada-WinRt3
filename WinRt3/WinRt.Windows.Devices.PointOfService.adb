@@ -1254,6 +1254,27 @@ package body WinRt.Windows.Devices.PointOfService is
    -- Static RuntimeClass
    package body BarcodeSymbologies is
 
+      function get_Gs1DWCode
+      return WinRt.UInt32 is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.UInt32;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Gs1DWCode (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
       function get_Unknown
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
@@ -3232,27 +3253,6 @@ package body WinRt.Windows.Devices.PointOfService is
          AdaRetval := To_Ada (m_ComRetVal);
          tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
-      end;
-
-      function get_Gs1DWCode
-      return WinRt.UInt32 is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
-         m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.UInt32;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_Gs1DWCode (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
       end;
 
    end BarcodeSymbologies;
@@ -16654,6 +16654,33 @@ package body WinRt.Windows.Devices.PointOfService is
    -----------------------------------------------------------------------------
    -- Static Interfaces for PosPrinter
 
+   function GetDeviceSelector_PosPrinter
+   (
+      connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinter");
+      m_Factory        : access WinRt.Windows.Devices.PointOfService.IPosPrinterStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IPosPrinterStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelector (connectionTypes, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
    function GetDefaultAsync_PosPrinter
    return WinRt.Windows.Devices.PointOfService.PosPrinter is
       Hr               : WinRt.HResult := S_OK;
@@ -16812,33 +16839,6 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := RoGetActivationFactory (m_hString, IID_IPosPrinterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function GetDeviceSelector_PosPrinter
-   (
-      connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinter");
-      m_Factory        : access WinRt.Windows.Devices.PointOfService.IPosPrinterStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IPosPrinterStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelector (connectionTypes, m_ComRetVal'Access);
          temp := m_Factory.Release;
          if Hr /= S_OK then
             raise Program_Error;

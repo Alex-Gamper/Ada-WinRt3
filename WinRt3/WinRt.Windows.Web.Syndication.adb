@@ -61,22 +61,6 @@ package body WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SyndicationAttribute
 
-   function Constructor return SyndicationAttribute is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationAttribute");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationAttribute;
-   begin
-      return RetVal : SyndicationAttribute do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ISyndicationAttribute := new Windows.Web.Syndication.ISyndicationAttribute;
-            Retval.m_ISyndicationAttribute.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       attributeName : WinRt.WString;
@@ -106,6 +90,22 @@ package body WinRt.Windows.Web.Syndication is
          tmp := WindowsDeleteString (HStr_attributeName);
          tmp := WindowsDeleteString (HStr_attributeNamespace);
          tmp := WindowsDeleteString (HStr_attributeValue);
+      end return;
+   end;
+
+   function Constructor return SyndicationAttribute is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationAttribute");
+      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationAttribute;
+   begin
+      return RetVal : SyndicationAttribute do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ISyndicationAttribute := new Windows.Web.Syndication.ISyndicationAttribute;
+            Retval.m_ISyndicationAttribute.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1072,22 +1072,6 @@ package body WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SyndicationContent
 
-   function Constructor return SyndicationContent is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationContent");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationContent;
-   begin
-      return RetVal : SyndicationContent do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ISyndicationContent := new Windows.Web.Syndication.ISyndicationContent;
-            Retval.m_ISyndicationContent.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       text : WinRt.WString;
@@ -1134,6 +1118,22 @@ package body WinRt.Windows.Web.Syndication is
             Retval.m_ISyndicationContent := new Windows.Web.Syndication.ISyndicationContent;
             Retval.m_ISyndicationContent.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return SyndicationContent is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationContent");
+      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationContent;
+   begin
+      return RetVal : SyndicationContent do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ISyndicationContent := new Windows.Web.Syndication.ISyndicationContent;
+            Retval.m_ISyndicationContent.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
@@ -3859,22 +3859,6 @@ package body WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SyndicationLink
 
-   function Constructor return SyndicationLink is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationLink");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationLink;
-   begin
-      return RetVal : SyndicationLink do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ISyndicationLink := new Windows.Web.Syndication.ISyndicationLink;
-            Retval.m_ISyndicationLink.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       uri : Windows.Foundation.Uri'Class
@@ -3930,6 +3914,22 @@ package body WinRt.Windows.Web.Syndication is
          tmp := WindowsDeleteString (HStr_relationship);
          tmp := WindowsDeleteString (HStr_title);
          tmp := WindowsDeleteString (HStr_mediaType);
+      end return;
+   end;
+
+   function Constructor return SyndicationLink is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationLink");
+      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationLink;
+   begin
+      return RetVal : SyndicationLink do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ISyndicationLink := new Windows.Web.Syndication.ISyndicationLink;
+            Retval.m_ISyndicationLink.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4470,22 +4470,6 @@ package body WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SyndicationNode
 
-   function Constructor return SyndicationNode is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationNode");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationNode;
-   begin
-      return RetVal : SyndicationNode do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ISyndicationNode := new Windows.Web.Syndication.ISyndicationNode;
-            Retval.m_ISyndicationNode.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       nodeName : WinRt.WString;
@@ -4515,6 +4499,22 @@ package body WinRt.Windows.Web.Syndication is
          tmp := WindowsDeleteString (HStr_nodeName);
          tmp := WindowsDeleteString (HStr_nodeNamespace);
          tmp := WindowsDeleteString (HStr_nodeValue);
+      end return;
+   end;
+
+   function Constructor return SyndicationNode is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationNode");
+      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationNode;
+   begin
+      return RetVal : SyndicationNode do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ISyndicationNode := new Windows.Web.Syndication.ISyndicationNode;
+            Retval.m_ISyndicationNode.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

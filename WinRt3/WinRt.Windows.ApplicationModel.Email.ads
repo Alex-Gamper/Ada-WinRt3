@@ -3956,15 +3956,15 @@ package WinRt.Windows.ApplicationModel.Email is
    function Constructor
    (
       fileName : WinRt.WString;
-      data : Windows.Storage.Streams.IRandomAccessStreamReference;
-      mimeType : WinRt.WString
+      data : Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return EmailAttachment;
 
    function Constructor
    (
       fileName : WinRt.WString;
-      data : Windows.Storage.Streams.IRandomAccessStreamReference
+      data : Windows.Storage.Streams.IRandomAccessStreamReference;
+      mimeType : WinRt.WString
    )
    return EmailAttachment;
 
@@ -4554,6 +4554,8 @@ package WinRt.Windows.ApplicationModel.Email is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for EmailIrmTemplate
 
+   function Constructor return EmailIrmTemplate;
+
    function Constructor
    (
       id : WinRt.WString;
@@ -4561,8 +4563,6 @@ package WinRt.Windows.ApplicationModel.Email is
       description : WinRt.WString
    )
    return EmailIrmTemplate;
-
-   function Constructor return EmailIrmTemplate;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for EmailIrmTemplate
@@ -6294,8 +6294,6 @@ package WinRt.Windows.ApplicationModel.Email is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for EmailQueryOptions
 
-   function Constructor return EmailQueryOptions;
-
    function Constructor
    (
       text : WinRt.WString
@@ -6308,6 +6306,8 @@ package WinRt.Windows.ApplicationModel.Email is
       fields : Windows.ApplicationModel.Email.EmailQuerySearchFields
    )
    return EmailQueryOptions;
+
+   function Constructor return EmailQueryOptions;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for EmailQueryOptions
@@ -6414,8 +6414,6 @@ package WinRt.Windows.ApplicationModel.Email is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for EmailRecipient
 
-   function Constructor return EmailRecipient;
-
    function Constructor
    (
       address_x : WinRt.WString
@@ -6428,6 +6426,8 @@ package WinRt.Windows.ApplicationModel.Email is
       name : WinRt.WString
    )
    return EmailRecipient;
+
+   function Constructor return EmailRecipient;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for EmailRecipient

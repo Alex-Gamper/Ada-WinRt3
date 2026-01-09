@@ -377,6 +377,30 @@ package body WinRt.Windows.Storage is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ApplicationData
 
+   function get_Current
+   return WinRt.Windows.Storage.ApplicationData is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.ApplicationData");
+      m_Factory        : access WinRt.Windows.Storage.IApplicationDataStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.IApplicationData;
+   begin
+      return RetVal : WinRt.Windows.Storage.ApplicationData do
+         Hr := RoGetActivationFactory (m_hString, IID_IApplicationDataStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Current (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IApplicationData := new Windows.Storage.IApplicationData;
+            Retval.m_IApplicationData.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function GetForUserAsync
    (
       user : Windows.System.User'Class
@@ -445,30 +469,6 @@ package body WinRt.Windows.Storage is
                   end if;
                end if;
             end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_Current
-   return WinRt.Windows.Storage.ApplicationData is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.ApplicationData");
-      m_Factory        : access WinRt.Windows.Storage.IApplicationDataStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IApplicationData;
-   begin
-      return RetVal : WinRt.Windows.Storage.ApplicationData do
-         Hr := RoGetActivationFactory (m_hString, IID_IApplicationDataStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_Current (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IApplicationData := new Windows.Storage.IApplicationData;
-            Retval.m_IApplicationData.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
@@ -3135,6 +3135,200 @@ package body WinRt.Windows.Storage is
    -- Static RuntimeClass
    package body KnownFolders is
 
+      function get_SavedPictures
+      return WinRt.Windows.Storage.StorageFolder is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
+         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersSavedPicturesStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      begin
+         return RetVal : WinRt.Windows.Storage.StorageFolder do
+            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersSavedPicturesStatics'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.get_SavedPictures (m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function get_Objects3D
+      return WinRt.Windows.Storage.StorageFolder is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
+         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      begin
+         return RetVal : WinRt.Windows.Storage.StorageFolder do
+            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics2'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.get_Objects3D (m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function get_AppCaptures
+      return WinRt.Windows.Storage.StorageFolder is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
+         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      begin
+         return RetVal : WinRt.Windows.Storage.StorageFolder do
+            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics2'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.get_AppCaptures (m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function get_RecordedCalls
+      return WinRt.Windows.Storage.StorageFolder is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
+         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      begin
+         return RetVal : WinRt.Windows.Storage.StorageFolder do
+            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics2'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.get_RecordedCalls (m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function get_Playlists
+      return WinRt.Windows.Storage.StorageFolder is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
+         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersPlaylistsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      begin
+         return RetVal : WinRt.Windows.Storage.StorageFolder do
+            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersPlaylistsStatics'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.get_Playlists (m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function GetFolderForUserAsync
+      (
+         user : Windows.System.User'Class;
+         folderId : Windows.Storage.KnownFolderId
+      )
+      return WinRt.Windows.Storage.StorageFolder is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
+         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_StorageFolder.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_StorageFolder.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Storage.IStorageFolder;
+         m_IID            : aliased WinRt.IID := (1810491351, 59450, 23740, (128, 44, 23, 104, 150, 11, 82, 195 )); -- Windows.Storage.StorageFolder;
+         m_HandlerIID     : aliased WinRt.IID := (3255894638, 40547, 21586, (186, 84, 58, 7, 214, 169, 104, 116 ));
+         m_Handler        : AsyncOperationCompletedHandler_StorageFolder.Kind := new AsyncOperationCompletedHandler_StorageFolder.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_StorageFolder.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_StorageFolder.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFolder.Kind_Delegate, AsyncOperationCompletedHandler_StorageFolder.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Storage.StorageFolder do
+            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics3'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.GetFolderForUserAsync (user.m_IUser.all, folderId, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                        Retval.m_IStorageFolder.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
       function get_MusicLibrary
       return WinRt.Windows.Storage.StorageFolder is
          Hr               : WinRt.HResult := S_OK;
@@ -3292,224 +3486,6 @@ package body WinRt.Windows.Storage is
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.get_MediaServerDevices (m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
-               Retval.m_IStorageFolder.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function get_SavedPictures
-      return WinRt.Windows.Storage.StorageFolder is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
-         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersSavedPicturesStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
-      begin
-         return RetVal : WinRt.Windows.Storage.StorageFolder do
-            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersSavedPicturesStatics'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.get_SavedPictures (m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
-               Retval.m_IStorageFolder.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function get_Playlists
-      return WinRt.Windows.Storage.StorageFolder is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
-         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersPlaylistsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
-      begin
-         return RetVal : WinRt.Windows.Storage.StorageFolder do
-            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersPlaylistsStatics'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.get_Playlists (m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
-               Retval.m_IStorageFolder.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function get_Objects3D
-      return WinRt.Windows.Storage.StorageFolder is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
-         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
-      begin
-         return RetVal : WinRt.Windows.Storage.StorageFolder do
-            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics2'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.get_Objects3D (m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
-               Retval.m_IStorageFolder.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function get_AppCaptures
-      return WinRt.Windows.Storage.StorageFolder is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
-         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
-      begin
-         return RetVal : WinRt.Windows.Storage.StorageFolder do
-            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics2'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.get_AppCaptures (m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
-               Retval.m_IStorageFolder.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function get_RecordedCalls
-      return WinRt.Windows.Storage.StorageFolder is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
-         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
-      begin
-         return RetVal : WinRt.Windows.Storage.StorageFolder do
-            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics2'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.get_RecordedCalls (m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
-               Retval.m_IStorageFolder.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function GetFolderForUserAsync
-      (
-         user : Windows.System.User'Class;
-         folderId : Windows.Storage.KnownFolderId
-      )
-      return WinRt.Windows.Storage.StorageFolder is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
-         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_StorageFolder.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_StorageFolder.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Windows.Storage.IStorageFolder;
-         m_IID            : aliased WinRt.IID := (1810491351, 59450, 23740, (128, 44, 23, 104, 150, 11, 82, 195 )); -- Windows.Storage.StorageFolder;
-         m_HandlerIID     : aliased WinRt.IID := (3255894638, 40547, 21586, (186, 84, 58, 7, 214, 169, 104, 116 ));
-         m_Handler        : AsyncOperationCompletedHandler_StorageFolder.Kind := new AsyncOperationCompletedHandler_StorageFolder.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_StorageFolder.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_StorageFolder.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFolder.Kind_Delegate, AsyncOperationCompletedHandler_StorageFolder.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         return RetVal : WinRt.Windows.Storage.StorageFolder do
-            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics3'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.GetFolderForUserAsync (user.m_IUser.all, folderId, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr = S_OK then
-                  m_AsyncOperation := QI (m_ComRetVal);
-                  temp := m_ComRetVal.Release;
-                  if m_AsyncOperation /= null then
-                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                     while m_Captured = m_Compare loop
-                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                        m_Captured := m_Completed;
-                     end loop;
-                     if m_AsyncStatus = Completed_e then
-                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
-                        Retval.m_IStorageFolder.all := m_RetVal;
-                     end if;
-                     temp := m_AsyncOperation.Release;
-                     temp := m_Handler.Release;
-                     if temp = 0 then
-                        Free (m_Handler);
-                     end if;
-                  end if;
-               end if;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function get_CameraRoll
-      return WinRt.Windows.Storage.StorageFolder is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
-         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersCameraRollStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
-      begin
-         return RetVal : WinRt.Windows.Storage.StorageFolder do
-            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersCameraRollStatics'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.get_CameraRoll (m_ComRetVal'Access);
                temp := m_Factory.Release;
                if Hr /= S_OK then
                   raise Program_Error;
@@ -3730,6 +3706,30 @@ package body WinRt.Windows.Storage is
                      end if;
                   end if;
                end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function get_CameraRoll
+      return WinRt.Windows.Storage.StorageFolder is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
+         m_Factory        : access WinRt.Windows.Storage.IKnownFoldersCameraRollStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      begin
+         return RetVal : WinRt.Windows.Storage.StorageFolder do
+            Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersCameraRollStatics'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.get_CameraRoll (m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
          end return;
@@ -4781,6 +4781,82 @@ package body WinRt.Windows.Storage is
    -----------------------------------------------------------------------------
    -- Static Interfaces for StorageFile
 
+   function GetFileFromPathForUserAsync
+   (
+      user : Windows.System.User'Class;
+      path : WinRt.WString
+   )
+   return WinRt.Windows.Storage.StorageFile is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.StorageFile");
+      m_Factory        : access WinRt.Windows.Storage.IStorageFileStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_path : constant WinRt.HString := To_HString (path);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_StorageFile.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_StorageFile.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Storage.IStorageFile;
+      m_IID            : aliased WinRt.IID := (1582495950, 44269, 23106, (149, 180, 246, 116, 221, 132, 136, 94 )); -- Windows.Storage.StorageFile;
+      m_HandlerIID     : aliased WinRt.IID := (3844196500, 11302, 22854, (158, 97, 43, 94, 24, 141, 1, 237 ));
+      m_Handler        : AsyncOperationCompletedHandler_StorageFile.Kind := new AsyncOperationCompletedHandler_StorageFile.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_StorageFile.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_StorageFile.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Storage.StorageFile do
+         Hr := RoGetActivationFactory (m_hString, IID_IStorageFileStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetFileFromPathForUserAsync (user.m_IUser.all, HStr_path, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                     Retval.m_IStorageFile.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_path);
+      end return;
+   end;
+
    function GetFileFromPathAsync
    (
       path : WinRt.WString
@@ -5230,82 +5306,6 @@ package body WinRt.Windows.Storage is
             end if;
          end if;
          tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetFileFromPathForUserAsync
-   (
-      user : Windows.System.User'Class;
-      path : WinRt.WString
-   )
-   return WinRt.Windows.Storage.StorageFile is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.StorageFile");
-      m_Factory        : access WinRt.Windows.Storage.IStorageFileStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      HStr_path : constant WinRt.HString := To_HString (path);
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_StorageFile.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_StorageFile.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.Windows.Storage.IStorageFile;
-      m_IID            : aliased WinRt.IID := (1582495950, 44269, 23106, (149, 180, 246, 116, 221, 132, 136, 94 )); -- Windows.Storage.StorageFile;
-      m_HandlerIID     : aliased WinRt.IID := (3844196500, 11302, 22854, (158, 97, 43, 94, 24, 141, 1, 237 ));
-      m_Handler        : AsyncOperationCompletedHandler_StorageFile.Kind := new AsyncOperationCompletedHandler_StorageFile.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_StorageFile.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_StorageFile.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      return RetVal : WinRt.Windows.Storage.StorageFile do
-         Hr := RoGetActivationFactory (m_hString, IID_IStorageFileStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetFileFromPathForUserAsync (user.m_IUser.all, HStr_path, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
-                     Retval.m_IStorageFile.all := m_RetVal;
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_path);
       end return;
    end;
 
@@ -9883,6 +9883,79 @@ package body WinRt.Windows.Storage is
    -----------------------------------------------------------------------------
    -- Static Interfaces for StorageLibrary
 
+   function GetLibraryAsync
+   (
+      libraryId : Windows.Storage.KnownLibraryId
+   )
+   return WinRt.Windows.Storage.StorageLibrary is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.StorageLibrary");
+      m_Factory        : access WinRt.Windows.Storage.IStorageLibraryStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_StorageLibrary.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_StorageLibrary.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Storage.IStorageLibrary;
+      m_IID            : aliased WinRt.IID := (789973529, 39361, 21177, (141, 202, 20, 228, 171, 121, 242, 135 )); -- Windows.Storage.StorageLibrary;
+      m_HandlerIID     : aliased WinRt.IID := (919953603, 29471, 23664, (185, 7, 48, 188, 153, 188, 48, 15 ));
+      m_Handler        : AsyncOperationCompletedHandler_StorageLibrary.Kind := new AsyncOperationCompletedHandler_StorageLibrary.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_StorageLibrary.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_StorageLibrary.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageLibrary.Kind_Delegate, AsyncOperationCompletedHandler_StorageLibrary.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Storage.StorageLibrary do
+         Hr := RoGetActivationFactory (m_hString, IID_IStorageLibraryStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetLibraryAsync (libraryId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_IStorageLibrary := new Windows.Storage.IStorageLibrary;
+                     Retval.m_IStorageLibrary.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function GetLibraryForUserAsync
    (
       user : Windows.System.User'Class;
@@ -9930,79 +10003,6 @@ package body WinRt.Windows.Storage is
          Hr := RoGetActivationFactory (m_hString, IID_IStorageLibraryStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetLibraryForUserAsync (user.m_IUser.all, libraryId, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageLibrary := new Windows.Storage.IStorageLibrary;
-                     Retval.m_IStorageLibrary.all := m_RetVal;
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetLibraryAsync
-   (
-      libraryId : Windows.Storage.KnownLibraryId
-   )
-   return WinRt.Windows.Storage.StorageLibrary is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.StorageLibrary");
-      m_Factory        : access WinRt.Windows.Storage.IStorageLibraryStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_StorageLibrary.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_StorageLibrary.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.Windows.Storage.IStorageLibrary;
-      m_IID            : aliased WinRt.IID := (789973529, 39361, 21177, (141, 202, 20, 228, 171, 121, 242, 135 )); -- Windows.Storage.StorageLibrary;
-      m_HandlerIID     : aliased WinRt.IID := (919953603, 29471, 23664, (185, 7, 48, 188, 153, 188, 48, 15 ));
-      m_Handler        : AsyncOperationCompletedHandler_StorageLibrary.Kind := new AsyncOperationCompletedHandler_StorageLibrary.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_StorageLibrary.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_StorageLibrary.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageLibrary.Kind_Delegate, AsyncOperationCompletedHandler_StorageLibrary.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      return RetVal : WinRt.Windows.Storage.StorageLibrary do
-         Hr := RoGetActivationFactory (m_hString, IID_IStorageLibraryStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetLibraryAsync (libraryId, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);

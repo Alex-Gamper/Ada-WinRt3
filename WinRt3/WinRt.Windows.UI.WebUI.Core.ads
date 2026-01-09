@@ -941,13 +941,13 @@ package WinRt.Windows.UI.WebUI.Core is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for WebUICommandBarSymbolIcon
 
-   function Constructor return WebUICommandBarSymbolIcon;
-
    function Constructor
    (
       symbol : WinRt.WString
    )
    return WebUICommandBarSymbolIcon;
+
+   function Constructor return WebUICommandBarSymbolIcon;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for WebUICommandBarSymbolIcon

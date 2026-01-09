@@ -1374,12 +1374,6 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    -- Static RuntimeClass
    package UserDataAccountSystemAccessManager is
 
-      function AddAndShowDeviceAccountsAsync
-      (
-         accounts : GenericObject
-      )
-      return WinRt.GenericObject;
-
       procedure SuppressLocalAccountWithAccountAsync
       (
          userDataAccountId : WinRt.WString
@@ -1401,6 +1395,12 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
          accountId : WinRt.WString
       )
       return WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountConfiguration;
+
+      function AddAndShowDeviceAccountsAsync
+      (
+         accounts : GenericObject
+      )
+      return WinRt.GenericObject;
 
    end UserDataAccountSystemAccessManager;
 

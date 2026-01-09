@@ -906,6 +906,33 @@ package body WinRt.Windows.Gaming.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Gamepad
 
+   function FromGameController
+   (
+      gameController : Windows.Gaming.Input.IGameController
+   )
+   return WinRt.Windows.Gaming.Input.Gamepad is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
+      m_Factory        : access WinRt.Windows.Gaming.Input.IGamepadStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Gaming.Input.IGamepad;
+   begin
+      return RetVal : WinRt.Windows.Gaming.Input.Gamepad do
+         Hr := RoGetActivationFactory (m_hString, IID_IGamepadStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IGamepad := new Windows.Gaming.Input.IGamepad;
+            Retval.m_IGamepad.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function add_GamepadAdded
    (
       value : GenericObject
@@ -1015,33 +1042,6 @@ package body WinRt.Windows.Gaming.Input is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
-   end;
-
-   function FromGameController
-   (
-      gameController : Windows.Gaming.Input.IGameController
-   )
-   return WinRt.Windows.Gaming.Input.Gamepad is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
-      m_Factory        : access WinRt.Windows.Gaming.Input.IGamepadStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.IGamepad;
-   begin
-      return RetVal : WinRt.Windows.Gaming.Input.Gamepad do
-         Hr := RoGetActivationFactory (m_hString, IID_IGamepadStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IGamepad := new Windows.Gaming.Input.IGamepad;
-            Retval.m_IGamepad.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
    end;
 
    -----------------------------------------------------------------------------

@@ -666,33 +666,6 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ResourceContext
 
-   function CreateMatchingContext
-   (
-      result : GenericObject
-   )
-   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
-      m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceContext;
-   begin
-      return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext do
-         Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateMatchingContext (result, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IResourceContext := new Windows.ApplicationModel.Resources.Core.IResourceContext;
-            Retval.m_IResourceContext.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    procedure SetGlobalQualifierValue
    (
       key : WinRt.WString;
@@ -718,33 +691,6 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       tmp := WindowsDeleteString (m_hString);
       tmp := WindowsDeleteString (HStr_key);
       tmp := WindowsDeleteString (HStr_value);
-   end;
-
-   function GetForUIContext
-   (
-      context : Windows.UI.UIContext'Class
-   )
-   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
-      m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics4_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceContext;
-   begin
-      return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext do
-         Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetForUIContext (context.m_IUIContext.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IResourceContext := new Windows.ApplicationModel.Resources.Core.IResourceContext;
-            Retval.m_IResourceContext.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
    end;
 
    function GetForCurrentView
@@ -849,6 +795,60 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
          Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForViewIndependentUse (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IResourceContext := new Windows.ApplicationModel.Resources.Core.IResourceContext;
+            Retval.m_IResourceContext.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetForUIContext
+   (
+      context : Windows.UI.UIContext'Class
+   )
+   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
+      m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceContext;
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext do
+         Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForUIContext (context.m_IUIContext.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IResourceContext := new Windows.ApplicationModel.Resources.Core.IResourceContext;
+            Retval.m_IResourceContext.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateMatchingContext
+   (
+      result : GenericObject
+   )
+   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
+      m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceContext;
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext do
+         Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateMatchingContext (result, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

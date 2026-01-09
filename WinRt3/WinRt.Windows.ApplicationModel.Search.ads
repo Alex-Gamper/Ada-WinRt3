@@ -817,10 +817,10 @@ package WinRt.Windows.ApplicationModel.Search is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SearchPane
 
-   procedure HideThisApplication;
-
    function GetForCurrentView
    return WinRt.Windows.ApplicationModel.Search.SearchPane;
+
+   procedure HideThisApplication;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SearchPane

@@ -35,17 +35,17 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Security.Authentication.Web.Core is
 
-   package IAsyncOperation_FindAllAccountsResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Security.Authentication.Web.Core.IFindAllAccountsResult);
-   package AsyncOperationCompletedHandler_FindAllAccountsResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Security.Authentication.Web.Core.IFindAllAccountsResult);
-
-   package IAsyncOperation_WebAccountProvider is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Security.Credentials.IWebAccountProvider);
-   package AsyncOperationCompletedHandler_WebAccountProvider is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Security.Credentials.IWebAccountProvider);
-
    package IAsyncOperation_WebTokenRequestResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequestResult);
    package AsyncOperationCompletedHandler_WebTokenRequestResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequestResult);
 
    package IAsyncOperation_WebAccount is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Security.Credentials.IWebAccount);
    package AsyncOperationCompletedHandler_WebAccount is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Security.Credentials.IWebAccount);
+
+   package IAsyncOperation_WebAccountProvider is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Security.Credentials.IWebAccountProvider);
+   package AsyncOperationCompletedHandler_WebAccountProvider is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Security.Credentials.IWebAccountProvider);
+
+   package IAsyncOperation_FindAllAccountsResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Security.Authentication.Web.Core.IFindAllAccountsResult);
+   package AsyncOperationCompletedHandler_FindAllAccountsResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Security.Authentication.Web.Core.IFindAllAccountsResult);
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for FindAllAccountsResult
@@ -333,387 +333,6 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package body WebAuthenticationCoreManager is
-
-      function FindAllAccountsAsync
-      (
-         provider : Windows.Security.Credentials.WebAccountProvider'Class
-      )
-      return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager");
-         m_Factory        : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationCoreManagerStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_FindAllAccountsResult.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_FindAllAccountsResult.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Windows.Security.Authentication.Web.Core.IFindAllAccountsResult;
-         m_IID            : aliased WinRt.IID := (2600449394, 22723, 23660, (147, 151, 43, 119, 4, 170, 53, 195 )); -- Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
-         m_HandlerIID     : aliased WinRt.IID := (1575598686, 2782, 21316, (159, 228, 152, 127, 29, 56, 126, 247 ));
-         m_Handler        : AsyncOperationCompletedHandler_FindAllAccountsResult.Kind := new AsyncOperationCompletedHandler_FindAllAccountsResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_FindAllAccountsResult.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_FindAllAccountsResult.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_FindAllAccountsResult.Kind_Delegate, AsyncOperationCompletedHandler_FindAllAccountsResult.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         return RetVal : WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult do
-            Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationCoreManagerStatics4'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.FindAllAccountsAsync (provider.m_IWebAccountProvider.all, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr = S_OK then
-                  m_AsyncOperation := QI (m_ComRetVal);
-                  temp := m_ComRetVal.Release;
-                  if m_AsyncOperation /= null then
-                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                     while m_Captured = m_Compare loop
-                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                        m_Captured := m_Completed;
-                     end loop;
-                     if m_AsyncStatus = Completed_e then
-                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IFindAllAccountsResult := new Windows.Security.Authentication.Web.Core.IFindAllAccountsResult;
-                        Retval.m_IFindAllAccountsResult.all := m_RetVal;
-                     end if;
-                     temp := m_AsyncOperation.Release;
-                     temp := m_Handler.Release;
-                     if temp = 0 then
-                        Free (m_Handler);
-                     end if;
-                  end if;
-               end if;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function FindAllAccountsAsync
-      (
-         provider : Windows.Security.Credentials.WebAccountProvider'Class;
-         clientId : WinRt.WString
-      )
-      return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager");
-         m_Factory        : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationCoreManagerStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_clientId : constant WinRt.HString := To_HString (clientId);
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_FindAllAccountsResult.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_FindAllAccountsResult.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Windows.Security.Authentication.Web.Core.IFindAllAccountsResult;
-         m_IID            : aliased WinRt.IID := (2600449394, 22723, 23660, (147, 151, 43, 119, 4, 170, 53, 195 )); -- Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
-         m_HandlerIID     : aliased WinRt.IID := (1575598686, 2782, 21316, (159, 228, 152, 127, 29, 56, 126, 247 ));
-         m_Handler        : AsyncOperationCompletedHandler_FindAllAccountsResult.Kind := new AsyncOperationCompletedHandler_FindAllAccountsResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_FindAllAccountsResult.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_FindAllAccountsResult.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_FindAllAccountsResult.Kind_Delegate, AsyncOperationCompletedHandler_FindAllAccountsResult.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         return RetVal : WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult do
-            Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationCoreManagerStatics4'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.FindAllAccountsAsync (provider.m_IWebAccountProvider.all, HStr_clientId, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr = S_OK then
-                  m_AsyncOperation := QI (m_ComRetVal);
-                  temp := m_ComRetVal.Release;
-                  if m_AsyncOperation /= null then
-                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                     while m_Captured = m_Compare loop
-                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                        m_Captured := m_Completed;
-                     end loop;
-                     if m_AsyncStatus = Completed_e then
-                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IFindAllAccountsResult := new Windows.Security.Authentication.Web.Core.IFindAllAccountsResult;
-                        Retval.m_IFindAllAccountsResult.all := m_RetVal;
-                     end if;
-                     temp := m_AsyncOperation.Release;
-                     temp := m_Handler.Release;
-                     if temp = 0 then
-                        Free (m_Handler);
-                     end if;
-                  end if;
-               end if;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-            tmp := WindowsDeleteString (HStr_clientId);
-         end return;
-      end;
-
-      function FindSystemAccountProviderAsync
-      (
-         webAccountProviderId : WinRt.WString
-      )
-      return WinRt.Windows.Security.Credentials.WebAccountProvider is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager");
-         m_Factory        : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationCoreManagerStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_webAccountProviderId : constant WinRt.HString := To_HString (webAccountProviderId);
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_WebAccountProvider.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_WebAccountProvider.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Windows.Security.Credentials.IWebAccountProvider;
-         m_IID            : aliased WinRt.IID := (2294702089, 4855, 22754, (141, 190, 110, 252, 98, 12, 133, 186 )); -- Windows.Security.Credentials.WebAccountProvider;
-         m_HandlerIID     : aliased WinRt.IID := (2490851883, 4928, 21876, (129, 252, 80, 19, 88, 31, 87, 201 ));
-         m_Handler        : AsyncOperationCompletedHandler_WebAccountProvider.Kind := new AsyncOperationCompletedHandler_WebAccountProvider.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_WebAccountProvider.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_WebAccountProvider.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WebAccountProvider.Kind_Delegate, AsyncOperationCompletedHandler_WebAccountProvider.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         return RetVal : WinRt.Windows.Security.Credentials.WebAccountProvider do
-            Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationCoreManagerStatics4'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.FindSystemAccountProviderAsync (HStr_webAccountProviderId, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr = S_OK then
-                  m_AsyncOperation := QI (m_ComRetVal);
-                  temp := m_ComRetVal.Release;
-                  if m_AsyncOperation /= null then
-                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                     while m_Captured = m_Compare loop
-                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                        m_Captured := m_Completed;
-                     end loop;
-                     if m_AsyncStatus = Completed_e then
-                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IWebAccountProvider := new Windows.Security.Credentials.IWebAccountProvider;
-                        Retval.m_IWebAccountProvider.all := m_RetVal;
-                     end if;
-                     temp := m_AsyncOperation.Release;
-                     temp := m_Handler.Release;
-                     if temp = 0 then
-                        Free (m_Handler);
-                     end if;
-                  end if;
-               end if;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-            tmp := WindowsDeleteString (HStr_webAccountProviderId);
-         end return;
-      end;
-
-      function FindSystemAccountProviderAsync
-      (
-         webAccountProviderId : WinRt.WString;
-         authority : WinRt.WString
-      )
-      return WinRt.Windows.Security.Credentials.WebAccountProvider is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager");
-         m_Factory        : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationCoreManagerStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_webAccountProviderId : constant WinRt.HString := To_HString (webAccountProviderId);
-         HStr_authority : constant WinRt.HString := To_HString (authority);
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_WebAccountProvider.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_WebAccountProvider.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Windows.Security.Credentials.IWebAccountProvider;
-         m_IID            : aliased WinRt.IID := (2294702089, 4855, 22754, (141, 190, 110, 252, 98, 12, 133, 186 )); -- Windows.Security.Credentials.WebAccountProvider;
-         m_HandlerIID     : aliased WinRt.IID := (2490851883, 4928, 21876, (129, 252, 80, 19, 88, 31, 87, 201 ));
-         m_Handler        : AsyncOperationCompletedHandler_WebAccountProvider.Kind := new AsyncOperationCompletedHandler_WebAccountProvider.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_WebAccountProvider.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_WebAccountProvider.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WebAccountProvider.Kind_Delegate, AsyncOperationCompletedHandler_WebAccountProvider.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         return RetVal : WinRt.Windows.Security.Credentials.WebAccountProvider do
-            Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationCoreManagerStatics4'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.FindSystemAccountProviderAsync (HStr_webAccountProviderId, HStr_authority, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr = S_OK then
-                  m_AsyncOperation := QI (m_ComRetVal);
-                  temp := m_ComRetVal.Release;
-                  if m_AsyncOperation /= null then
-                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                     while m_Captured = m_Compare loop
-                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                        m_Captured := m_Completed;
-                     end loop;
-                     if m_AsyncStatus = Completed_e then
-                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IWebAccountProvider := new Windows.Security.Credentials.IWebAccountProvider;
-                        Retval.m_IWebAccountProvider.all := m_RetVal;
-                     end if;
-                     temp := m_AsyncOperation.Release;
-                     temp := m_Handler.Release;
-                     if temp = 0 then
-                        Free (m_Handler);
-                     end if;
-                  end if;
-               end if;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-            tmp := WindowsDeleteString (HStr_webAccountProviderId);
-            tmp := WindowsDeleteString (HStr_authority);
-         end return;
-      end;
-
-      function FindSystemAccountProviderAsync
-      (
-         webAccountProviderId : WinRt.WString;
-         authority : WinRt.WString;
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.Security.Credentials.WebAccountProvider is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager");
-         m_Factory        : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationCoreManagerStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_webAccountProviderId : constant WinRt.HString := To_HString (webAccountProviderId);
-         HStr_authority : constant WinRt.HString := To_HString (authority);
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_WebAccountProvider.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_WebAccountProvider.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Windows.Security.Credentials.IWebAccountProvider;
-         m_IID            : aliased WinRt.IID := (2294702089, 4855, 22754, (141, 190, 110, 252, 98, 12, 133, 186 )); -- Windows.Security.Credentials.WebAccountProvider;
-         m_HandlerIID     : aliased WinRt.IID := (2490851883, 4928, 21876, (129, 252, 80, 19, 88, 31, 87, 201 ));
-         m_Handler        : AsyncOperationCompletedHandler_WebAccountProvider.Kind := new AsyncOperationCompletedHandler_WebAccountProvider.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_WebAccountProvider.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_WebAccountProvider.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WebAccountProvider.Kind_Delegate, AsyncOperationCompletedHandler_WebAccountProvider.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         return RetVal : WinRt.Windows.Security.Credentials.WebAccountProvider do
-            Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationCoreManagerStatics4'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.FindSystemAccountProviderAsync (HStr_webAccountProviderId, HStr_authority, user.m_IUser.all, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr = S_OK then
-                  m_AsyncOperation := QI (m_ComRetVal);
-                  temp := m_ComRetVal.Release;
-                  if m_AsyncOperation /= null then
-                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                     while m_Captured = m_Compare loop
-                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                        m_Captured := m_Completed;
-                     end loop;
-                     if m_AsyncStatus = Completed_e then
-                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IWebAccountProvider := new Windows.Security.Credentials.IWebAccountProvider;
-                        Retval.m_IWebAccountProvider.all := m_RetVal;
-                     end if;
-                     temp := m_AsyncOperation.Release;
-                     temp := m_Handler.Release;
-                     if temp = 0 then
-                        Free (m_Handler);
-                     end if;
-                  end if;
-               end if;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-            tmp := WindowsDeleteString (HStr_webAccountProviderId);
-            tmp := WindowsDeleteString (HStr_authority);
-         end return;
-      end;
 
       function GetTokenSilentlyAsync
       (
@@ -1209,6 +828,387 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
             Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationCoreManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.FindAccountProviderAsync (HStr_webAccountProviderId, HStr_authority, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IWebAccountProvider := new Windows.Security.Credentials.IWebAccountProvider;
+                        Retval.m_IWebAccountProvider.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_webAccountProviderId);
+            tmp := WindowsDeleteString (HStr_authority);
+         end return;
+      end;
+
+      function FindAllAccountsAsync
+      (
+         provider : Windows.Security.Credentials.WebAccountProvider'Class
+      )
+      return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager");
+         m_Factory        : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationCoreManagerStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_FindAllAccountsResult.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_FindAllAccountsResult.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Security.Authentication.Web.Core.IFindAllAccountsResult;
+         m_IID            : aliased WinRt.IID := (2600449394, 22723, 23660, (147, 151, 43, 119, 4, 170, 53, 195 )); -- Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
+         m_HandlerIID     : aliased WinRt.IID := (1575598686, 2782, 21316, (159, 228, 152, 127, 29, 56, 126, 247 ));
+         m_Handler        : AsyncOperationCompletedHandler_FindAllAccountsResult.Kind := new AsyncOperationCompletedHandler_FindAllAccountsResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_FindAllAccountsResult.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_FindAllAccountsResult.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_FindAllAccountsResult.Kind_Delegate, AsyncOperationCompletedHandler_FindAllAccountsResult.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult do
+            Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationCoreManagerStatics4'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.FindAllAccountsAsync (provider.m_IWebAccountProvider.all, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IFindAllAccountsResult := new Windows.Security.Authentication.Web.Core.IFindAllAccountsResult;
+                        Retval.m_IFindAllAccountsResult.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function FindAllAccountsAsync
+      (
+         provider : Windows.Security.Credentials.WebAccountProvider'Class;
+         clientId : WinRt.WString
+      )
+      return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager");
+         m_Factory        : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationCoreManagerStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_clientId : constant WinRt.HString := To_HString (clientId);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_FindAllAccountsResult.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_FindAllAccountsResult.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Security.Authentication.Web.Core.IFindAllAccountsResult;
+         m_IID            : aliased WinRt.IID := (2600449394, 22723, 23660, (147, 151, 43, 119, 4, 170, 53, 195 )); -- Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
+         m_HandlerIID     : aliased WinRt.IID := (1575598686, 2782, 21316, (159, 228, 152, 127, 29, 56, 126, 247 ));
+         m_Handler        : AsyncOperationCompletedHandler_FindAllAccountsResult.Kind := new AsyncOperationCompletedHandler_FindAllAccountsResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_FindAllAccountsResult.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_FindAllAccountsResult.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_FindAllAccountsResult.Kind_Delegate, AsyncOperationCompletedHandler_FindAllAccountsResult.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult do
+            Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationCoreManagerStatics4'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.FindAllAccountsAsync (provider.m_IWebAccountProvider.all, HStr_clientId, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IFindAllAccountsResult := new Windows.Security.Authentication.Web.Core.IFindAllAccountsResult;
+                        Retval.m_IFindAllAccountsResult.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_clientId);
+         end return;
+      end;
+
+      function FindSystemAccountProviderAsync
+      (
+         webAccountProviderId : WinRt.WString
+      )
+      return WinRt.Windows.Security.Credentials.WebAccountProvider is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager");
+         m_Factory        : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationCoreManagerStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_webAccountProviderId : constant WinRt.HString := To_HString (webAccountProviderId);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_WebAccountProvider.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_WebAccountProvider.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Security.Credentials.IWebAccountProvider;
+         m_IID            : aliased WinRt.IID := (2294702089, 4855, 22754, (141, 190, 110, 252, 98, 12, 133, 186 )); -- Windows.Security.Credentials.WebAccountProvider;
+         m_HandlerIID     : aliased WinRt.IID := (2490851883, 4928, 21876, (129, 252, 80, 19, 88, 31, 87, 201 ));
+         m_Handler        : AsyncOperationCompletedHandler_WebAccountProvider.Kind := new AsyncOperationCompletedHandler_WebAccountProvider.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_WebAccountProvider.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_WebAccountProvider.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WebAccountProvider.Kind_Delegate, AsyncOperationCompletedHandler_WebAccountProvider.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Security.Credentials.WebAccountProvider do
+            Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationCoreManagerStatics4'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.FindSystemAccountProviderAsync (HStr_webAccountProviderId, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IWebAccountProvider := new Windows.Security.Credentials.IWebAccountProvider;
+                        Retval.m_IWebAccountProvider.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_webAccountProviderId);
+         end return;
+      end;
+
+      function FindSystemAccountProviderAsync
+      (
+         webAccountProviderId : WinRt.WString;
+         authority : WinRt.WString
+      )
+      return WinRt.Windows.Security.Credentials.WebAccountProvider is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager");
+         m_Factory        : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationCoreManagerStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_webAccountProviderId : constant WinRt.HString := To_HString (webAccountProviderId);
+         HStr_authority : constant WinRt.HString := To_HString (authority);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_WebAccountProvider.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_WebAccountProvider.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Security.Credentials.IWebAccountProvider;
+         m_IID            : aliased WinRt.IID := (2294702089, 4855, 22754, (141, 190, 110, 252, 98, 12, 133, 186 )); -- Windows.Security.Credentials.WebAccountProvider;
+         m_HandlerIID     : aliased WinRt.IID := (2490851883, 4928, 21876, (129, 252, 80, 19, 88, 31, 87, 201 ));
+         m_Handler        : AsyncOperationCompletedHandler_WebAccountProvider.Kind := new AsyncOperationCompletedHandler_WebAccountProvider.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_WebAccountProvider.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_WebAccountProvider.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WebAccountProvider.Kind_Delegate, AsyncOperationCompletedHandler_WebAccountProvider.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Security.Credentials.WebAccountProvider do
+            Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationCoreManagerStatics4'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.FindSystemAccountProviderAsync (HStr_webAccountProviderId, HStr_authority, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IWebAccountProvider := new Windows.Security.Credentials.IWebAccountProvider;
+                        Retval.m_IWebAccountProvider.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_webAccountProviderId);
+            tmp := WindowsDeleteString (HStr_authority);
+         end return;
+      end;
+
+      function FindSystemAccountProviderAsync
+      (
+         webAccountProviderId : WinRt.WString;
+         authority : WinRt.WString;
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.Security.Credentials.WebAccountProvider is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager");
+         m_Factory        : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationCoreManagerStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_webAccountProviderId : constant WinRt.HString := To_HString (webAccountProviderId);
+         HStr_authority : constant WinRt.HString := To_HString (authority);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_WebAccountProvider.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_WebAccountProvider.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Security.Credentials.IWebAccountProvider;
+         m_IID            : aliased WinRt.IID := (2294702089, 4855, 22754, (141, 190, 110, 252, 98, 12, 133, 186 )); -- Windows.Security.Credentials.WebAccountProvider;
+         m_HandlerIID     : aliased WinRt.IID := (2490851883, 4928, 21876, (129, 252, 80, 19, 88, 31, 87, 201 ));
+         m_Handler        : AsyncOperationCompletedHandler_WebAccountProvider.Kind := new AsyncOperationCompletedHandler_WebAccountProvider.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_WebAccountProvider.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_WebAccountProvider.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WebAccountProvider.Kind_Delegate, AsyncOperationCompletedHandler_WebAccountProvider.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Security.Credentials.WebAccountProvider do
+            Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationCoreManagerStatics4'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.FindSystemAccountProviderAsync (HStr_webAccountProviderId, HStr_authority, user.m_IUser.all, m_ComRetVal'Access);
                temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);

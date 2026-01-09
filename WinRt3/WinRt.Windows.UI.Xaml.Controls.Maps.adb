@@ -747,6 +747,30 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MapElement
 
+   function get_MapTabIndexProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElementStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapElementStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_MapTabIndexProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function get_MapStyleSheetEntryProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
@@ -832,30 +856,6 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
          Hr := RoGetActivationFactory (m_hString, IID_IMapElementStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsEnabledProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_MapTabIndexProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElementStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapElementStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_MapTabIndexProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -1901,366 +1901,6 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MapControl
 
-   function get_CanTiltDownProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics8_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics8'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_CanTiltDownProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_CanTiltUpProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics8_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics8'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_CanTiltUpProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_CanZoomInProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics8_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics8'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_CanZoomInProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_CanZoomOutProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics8_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics8'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_CanZoomOutProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_BusinessLandmarksVisibleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_BusinessLandmarksVisibleProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_TransitFeaturesVisibleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_TransitFeaturesVisibleProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_PanInteractionModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_PanInteractionModeProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_RotateInteractionModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_RotateInteractionModeProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_TiltInteractionModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_TiltInteractionModeProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_ZoomInteractionModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_ZoomInteractionModeProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_Is3DSupportedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_Is3DSupportedProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_IsStreetsideSupportedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_IsStreetsideSupportedProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_SceneProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_SceneProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_BusinessLandmarksEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics4_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_BusinessLandmarksEnabledProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_TransitFeaturesEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics4_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_TransitFeaturesEnabledProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function get_CenterProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
@@ -2836,30 +2476,6 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       tmp := WindowsDeleteString (m_hString);
    end;
 
-   function get_RegionProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics7_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics7'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_RegionProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function get_MapProjectionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
@@ -2932,6 +2548,270 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       end return;
    end;
 
+   function get_BusinessLandmarksEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_BusinessLandmarksEnabledProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_TransitFeaturesEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_TransitFeaturesEnabledProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_BusinessLandmarksVisibleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_BusinessLandmarksVisibleProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_TransitFeaturesVisibleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_TransitFeaturesVisibleProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_PanInteractionModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_PanInteractionModeProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_RotateInteractionModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_RotateInteractionModeProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_TiltInteractionModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_TiltInteractionModeProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_ZoomInteractionModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_ZoomInteractionModeProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_Is3DSupportedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Is3DSupportedProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_IsStreetsideSupportedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_IsStreetsideSupportedProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SceneProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SceneProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function get_LayersProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
@@ -2945,6 +2825,126 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics6'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LayersProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_RegionProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics7_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics7'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_RegionProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CanTiltDownProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics8_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics8'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CanTiltDownProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CanTiltUpProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics8_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics8'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CanTiltUpProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CanZoomInProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics8_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics8'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CanZoomInProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CanZoomOutProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics8_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics8'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CanZoomOutProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -9040,6 +9040,30 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MapIcon
 
+   function get_CollisionBehaviorDesiredProperty_MapIcon
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapIcon");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapIconStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IMapIconStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CollisionBehaviorDesiredProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function get_LocationProperty_MapIcon
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
@@ -9101,30 +9125,6 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
          Hr := RoGetActivationFactory (m_hString, IID_IMapIconStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NormalizedAnchorPointProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_CollisionBehaviorDesiredProperty_MapIcon
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapIcon");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapIconStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IMapIconStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_CollisionBehaviorDesiredProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

@@ -2328,49 +2328,6 @@ package body WinRt.Windows.Security.Isolation is
    -- Static RuntimeClass
    package body IsolatedWindowsHostMessenger is
 
-      procedure RegisterHostMessageReceiver
-      (
-         receiverId : WinRt.Guid;
-         hostMessageReceivedCallback : Windows.Security.Isolation.HostMessageReceivedCallback
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
-         m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsHostMessengerStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsHostMessengerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.RegisterHostMessageReceiver (receiverId, hostMessageReceivedCallback);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      procedure UnregisterHostMessageReceiver
-      (
-         receiverId : WinRt.Guid
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
-         m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsHostMessengerStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsHostMessengerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.UnregisterHostMessageReceiver (receiverId);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
       procedure PostMessageToReceiver
       (
          receiverId : WinRt.Guid;
@@ -2417,6 +2374,49 @@ package body WinRt.Windows.Security.Isolation is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_filePath);
          return m_ComRetVal;
+      end;
+
+      procedure RegisterHostMessageReceiver
+      (
+         receiverId : WinRt.Guid;
+         hostMessageReceivedCallback : Windows.Security.Isolation.HostMessageReceivedCallback
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
+         m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsHostMessengerStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsHostMessengerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.RegisterHostMessageReceiver (receiverId, hostMessageReceivedCallback);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+      procedure UnregisterHostMessageReceiver
+      (
+         receiverId : WinRt.Guid
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
+         m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsHostMessengerStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsHostMessengerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.UnregisterHostMessageReceiver (receiverId);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end IsolatedWindowsHostMessenger;

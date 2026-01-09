@@ -81,6 +81,9 @@ package WinRt.Windows.Networking.Connectivity is
    type IConnectionProfile5_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionProfile5 is access all IConnectionProfile5_Interface'Class;
 
+   type IConnectionProfile6_Interface is interface and WinRt.IInspectable_Interface;
+   type IConnectionProfile6 is access all IConnectionProfile6_Interface'Class;
+
    type IConnectionProfileFilter_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionProfileFilter is access all IConnectionProfileFilter_Interface'Class;
    type IConnectionProfileFilter_Ptr is access all IConnectionProfileFilter;
@@ -368,6 +371,18 @@ package WinRt.Windows.Networking.Connectivity is
       Total_e => 3
    );
    type DataUsageGranularity_Ptr is access all DataUsageGranularity;
+
+   type DomainAuthenticationKind is (
+      None_e,
+      Ldap_e,
+      Tls_e
+   );
+   for DomainAuthenticationKind use (
+      None_e => 0,
+      Ldap_e => 1,
+      Tls_e => 2
+   );
+   type DomainAuthenticationKind_Ptr is access all DomainAuthenticationKind;
 
    type DomainConnectivityLevel is (
       None_e,
@@ -1040,6 +1055,19 @@ package WinRt.Windows.Networking.Connectivity is
       return WinRt.Hresult is abstract;
 
       IID_IConnectionProfile5 : aliased WinRt.IID := (2234916551, 40051, 19424, (143, 20, 87, 142, 236, 113, 238, 14 ));
+
+   -----------------------------------------------------------------------------
+   -- type IConnectionProfile6 is interface and WinRt.IInspectable;
+
+      function IsDomainAuthenticatedBy
+      (
+         this : access IConnectionProfile6_Interface;
+         kind : Windows.Networking.Connectivity.DomainAuthenticationKind;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IConnectionProfile6 : aliased WinRt.IID := (3693600738, 31343, 23822, (149, 137, 47, 226, 229, 182, 249, 170 ));
 
    -----------------------------------------------------------------------------
    -- type IConnectionProfileFilter is interface and WinRt.IInspectable;
@@ -2139,6 +2167,13 @@ package WinRt.Windows.Networking.Connectivity is
       this : in out ConnectionProfile
    )
    return WinRt.Windows.Networking.Connectivity.ConnectionProfileDeleteStatus;
+
+   function IsDomainAuthenticatedBy
+   (
+      this : in out ConnectionProfile;
+      kind : Windows.Networking.Connectivity.DomainAuthenticationKind
+   )
+   return WinRt.Boolean;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ConnectionProfileFilter

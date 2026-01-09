@@ -1296,13 +1296,13 @@ package WinRt.Windows.Media.Editing is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for MediaOverlayLayer
 
-   function Constructor return MediaOverlayLayer;
-
    function Constructor
    (
       compositorDefinition : Windows.Media.Effects.IVideoCompositorDefinition
    )
    return MediaOverlayLayer;
+
+   function Constructor return MediaOverlayLayer;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for MediaOverlayLayer

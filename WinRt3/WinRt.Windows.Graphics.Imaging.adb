@@ -286,6 +286,48 @@ package body WinRt.Windows.Graphics.Imaging is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BitmapDecoder
 
+   function get_HeifDecoderId
+   return WinRt.Guid is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Guid;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_HeifDecoderId (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function get_WebpDecoderId
+   return WinRt.Guid is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Guid;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_WebpDecoderId (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
    function get_BmpDecoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
@@ -599,48 +641,6 @@ package body WinRt.Windows.Graphics.Imaging is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
-   end;
-
-   function get_HeifDecoderId
-   return WinRt.Guid is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
-      m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Guid;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.get_HeifDecoderId (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   function get_WebpDecoderId
-   return WinRt.Guid is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
-      m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Guid;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.get_WebpDecoderId (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -1483,6 +1483,27 @@ package body WinRt.Windows.Graphics.Imaging is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BitmapEncoder
 
+   function get_HeifEncoderId
+   return WinRt.Guid is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
+      m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Guid;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_HeifEncoderId (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
    function get_BmpEncoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
@@ -1924,27 +1945,6 @@ package body WinRt.Windows.Graphics.Imaging is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
-   end;
-
-   function get_HeifEncoderId
-   return WinRt.Guid is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
-      m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Guid;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.get_HeifEncoderId (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

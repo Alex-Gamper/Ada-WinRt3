@@ -3229,13 +3229,13 @@ package WinRt.Windows.Services.Store is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for StorePurchaseProperties
 
-   function Constructor return StorePurchaseProperties;
-
    function Constructor
    (
       name : WinRt.WString
    )
    return StorePurchaseProperties;
+
+   function Constructor return StorePurchaseProperties;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for StorePurchaseProperties

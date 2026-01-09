@@ -288,6 +288,9 @@ package WinRt.Windows.ApplicationModel.Calls.Provider is
    -- Static RuntimeClass
    package PhoneCallOriginManager is
 
+      function get_IsSupported
+      return WinRt.Boolean;
+
       function get_IsCurrentAppActiveCallOriginApp
       return WinRt.Boolean;
 
@@ -298,9 +301,6 @@ package WinRt.Windows.ApplicationModel.Calls.Provider is
          requestId : WinRt.Guid;
          callOrigin : Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin'Class
       );
-
-      function get_IsSupported
-      return WinRt.Boolean;
 
       function RequestSetAsActiveCallOriginAppAsync
       return WinRt.Boolean;

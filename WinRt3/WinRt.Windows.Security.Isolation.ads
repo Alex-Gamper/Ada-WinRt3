@@ -1666,17 +1666,6 @@ package WinRt.Windows.Security.Isolation is
    -- Static RuntimeClass
    package IsolatedWindowsHostMessenger is
 
-      procedure RegisterHostMessageReceiver
-      (
-         receiverId : WinRt.Guid;
-         hostMessageReceivedCallback : Windows.Security.Isolation.HostMessageReceivedCallback
-      );
-
-      procedure UnregisterHostMessageReceiver
-      (
-         receiverId : WinRt.Guid
-      );
-
       procedure PostMessageToReceiver
       (
          receiverId : WinRt.Guid;
@@ -1688,6 +1677,17 @@ package WinRt.Windows.Security.Isolation is
          filePath : WinRt.WString
       )
       return WinRt.Guid;
+
+      procedure RegisterHostMessageReceiver
+      (
+         receiverId : WinRt.Guid;
+         hostMessageReceivedCallback : Windows.Security.Isolation.HostMessageReceivedCallback
+      );
+
+      procedure UnregisterHostMessageReceiver
+      (
+         receiverId : WinRt.Guid
+      );
 
    end IsolatedWindowsHostMessenger;
 

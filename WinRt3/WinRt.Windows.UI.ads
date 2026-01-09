@@ -1168,6 +1168,12 @@ package WinRt.Windows.UI is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ColorHelper
 
+   function ToDisplayName
+   (
+      color : Windows.UI.Color
+   )
+   return WinRt.WString;
+
    function FromArgb
    (
       a : WinRt.Byte;
@@ -1176,12 +1182,6 @@ package WinRt.Windows.UI is
       b : WinRt.Byte
    )
    return WinRt.Windows.UI.Color;
-
-   function ToDisplayName
-   (
-      color : Windows.UI.Color
-   )
-   return WinRt.WString;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ColorHelper

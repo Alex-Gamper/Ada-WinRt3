@@ -317,14 +317,14 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
 
    function Constructor
    (
-      projectRoot : Windows.Foundation.Uri'Class
+      projectRoot : Windows.Foundation.Uri'Class;
+      extensionDllPath : Windows.Foundation.Uri'Class
    )
    return ResourceIndexer;
 
    function Constructor
    (
-      projectRoot : Windows.Foundation.Uri'Class;
-      extensionDllPath : Windows.Foundation.Uri'Class
+      projectRoot : Windows.Foundation.Uri'Class
    )
    return ResourceIndexer;
 

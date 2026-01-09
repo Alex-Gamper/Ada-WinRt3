@@ -29,6 +29,8 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.ApplicationModel.Core;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
+with WinRt.Windows.Graphics.Imaging;
+with WinRt.Windows.Storage.Streams;
 with WinRt.Windows.UI.StartScreen;
 with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
@@ -38,6 +40,8 @@ package body WinRt.Windows.UI.Shell is
    package IAsyncOperation_Boolean is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Boolean);
    package AsyncOperationCompletedHandler_Boolean is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Boolean);
 
+   package IVector_IWindowTab is new WinRt.Windows.Foundation.Collections.IVector (IWindowTab);
+   package IIterable_IWindowTab is new WinRt.Windows.Foundation.Collections.IIterable (IWindowTab);
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package body AdaptiveCardBuilder is
@@ -714,6 +718,1371 @@ package body WinRt.Windows.UI.Shell is
       end if;
       tmp := WindowsDeleteString (HStr_tileId);
       return m_RetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTab
+
+   procedure Initialize (this : in out WindowTab) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowTab) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowTab, IWindowTab_Ptr);
+   begin
+      if this.m_IWindowTab /= null then
+         if this.m_IWindowTab.all /= null then
+            temp := this.m_IWindowTab.all.Release;
+            Free (this.m_IWindowTab);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowTab
+
+   function Constructor return WindowTab is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTab");
+      m_ComRetVal  : aliased Windows.UI.Shell.IWindowTab;
+   begin
+      return RetVal : WindowTab do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+            Retval.m_IWindowTab.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTab
+
+   function get_Tag
+   (
+      this : in out WindowTab
+   )
+   return WinRt.IInspectable is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.IInspectable;
+   begin
+      Hr := this.m_IWindowTab.all.get_Tag (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Tag
+   (
+      this : in out WindowTab;
+      value : WinRt.IInspectable
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowTab.all.put_Tag (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Title
+   (
+      this : in out WindowTab
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowTab.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Title
+   (
+      this : in out WindowTab;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IWindowTab.all.put_Title (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_Icon
+   (
+      this : in out WindowTab
+   )
+   return WinRt.Windows.UI.Shell.WindowTabIcon'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabIcon;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTabIcon do
+         Hr := this.m_IWindowTab.all.get_Icon (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowTabIcon := new Windows.UI.Shell.IWindowTabIcon;
+         Retval.m_IWindowTabIcon.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_Icon
+   (
+      this : in out WindowTab;
+      value : Windows.UI.Shell.WindowTabIcon'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowTab.all.put_Icon (value.m_IWindowTabIcon.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_TreatAsSecondaryTileId
+   (
+      this : in out WindowTab
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowTab.all.get_TreatAsSecondaryTileId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_TreatAsSecondaryTileId
+   (
+      this : in out WindowTab;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IWindowTab.all.put_TreatAsSecondaryTileId (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_Group
+   (
+      this : in out WindowTab
+   )
+   return WinRt.Windows.UI.Shell.WindowTabGroup'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabGroup;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTabGroup do
+         Hr := this.m_IWindowTab.all.get_Group (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowTabGroup := new Windows.UI.Shell.IWindowTabGroup;
+         Retval.m_IWindowTabGroup.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_Group
+   (
+      this : in out WindowTab;
+      value : Windows.UI.Shell.WindowTabGroup'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowTab.all.put_Group (value.m_IWindowTabGroup.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure ReportThumbnailAvailable
+   (
+      this : in out WindowTab
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowTab.all.ReportThumbnailAvailable;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabCloseRequestedEventArgs
+
+   procedure Initialize (this : in out WindowTabCloseRequestedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowTabCloseRequestedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowTabCloseRequestedEventArgs, IWindowTabCloseRequestedEventArgs_Ptr);
+   begin
+      if this.m_IWindowTabCloseRequestedEventArgs /= null then
+         if this.m_IWindowTabCloseRequestedEventArgs.all /= null then
+            temp := this.m_IWindowTabCloseRequestedEventArgs.all.Release;
+            Free (this.m_IWindowTabCloseRequestedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabCloseRequestedEventArgs
+
+   function get_Tab
+   (
+      this : in out WindowTabCloseRequestedEventArgs
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTab do
+         Hr := this.m_IWindowTabCloseRequestedEventArgs.all.get_Tab (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabCollection
+
+   procedure Initialize (this : in out WindowTabCollection) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowTabCollection) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowTabCollection, IWindowTabCollection_Ptr);
+   begin
+      if this.m_IWindowTabCollection /= null then
+         if this.m_IWindowTabCollection.all /= null then
+            temp := this.m_IWindowTabCollection.all.Release;
+            Free (this.m_IWindowTabCollection);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabCollection
+
+   procedure MoveTab
+   (
+      this : in out WindowTabCollection;
+      tab : Windows.UI.Shell.WindowTab'Class;
+      index : WinRt.UInt32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowTabCollection.all.MoveTab (tab.m_IWindowTab.all, index);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -- Generic Interface Windows.Foundation.Collections.IVector`1<Windows.UI.Shell.WindowTab>
+   function GetAt
+   (
+      this : in out WindowTabCollection;
+      index : WinRt.UInt32
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : IVector_IWindowTab.Kind := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+      m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTab do
+         m_Interface := QInterface (this.m_IWindowTabCollection.all);
+         Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_Size
+   (
+      this : in out WindowTabCollection
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : IVector_IWindowTab.Kind := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+      m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IWindowTabCollection.all);
+      Hr := m_Interface.get_Size (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetView
+   (
+      this : in out WindowTabCollection
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : IVector_IWindowTab.Kind := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+      m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTab do
+         m_Interface := QInterface (this.m_IWindowTabCollection.all);
+         Hr := m_Interface.GetView (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab.all := m_ComRetVal;
+      end return;
+   end;
+
+   function IndexOf
+   (
+      this : in out WindowTabCollection;
+      value : Windows.UI.Shell.WindowTab'Class;
+      index : WinRt.UInt32_Ptr
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : IVector_IWindowTab.Kind := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IWindowTabCollection.all);
+      Hr := m_Interface.IndexOf (value.m_IWindowTab.all, index, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure SetAt
+   (
+      this : in out WindowTabCollection;
+      index : WinRt.UInt32;
+      value : Windows.UI.Shell.WindowTab'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : IVector_IWindowTab.Kind := null;
+      temp             : WinRt.UInt32 := 0;
+      m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IWindowTabCollection.all);
+      Hr := m_Interface.SetAt (index, value.m_IWindowTab.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure InsertAt
+   (
+      this : in out WindowTabCollection;
+      index : WinRt.UInt32;
+      value : Windows.UI.Shell.WindowTab'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : IVector_IWindowTab.Kind := null;
+      temp             : WinRt.UInt32 := 0;
+      m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IWindowTabCollection.all);
+      Hr := m_Interface.InsertAt (index, value.m_IWindowTab.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure RemoveAt
+   (
+      this : in out WindowTabCollection;
+      index : WinRt.UInt32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : IVector_IWindowTab.Kind := null;
+      temp             : WinRt.UInt32 := 0;
+      m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IWindowTabCollection.all);
+      Hr := m_Interface.RemoveAt (index);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure Append
+   (
+      this : in out WindowTabCollection;
+      value : Windows.UI.Shell.WindowTab'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : IVector_IWindowTab.Kind := null;
+      temp             : WinRt.UInt32 := 0;
+      m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IWindowTabCollection.all);
+      Hr := m_Interface.Append (value.m_IWindowTab.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure RemoveAtEnd
+   (
+      this : in out WindowTabCollection
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : IVector_IWindowTab.Kind := null;
+      temp             : WinRt.UInt32 := 0;
+      m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IWindowTabCollection.all);
+      Hr := m_Interface.RemoveAtEnd;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure Clear
+   (
+      this : in out WindowTabCollection
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : IVector_IWindowTab.Kind := null;
+      temp             : WinRt.UInt32 := 0;
+      m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IWindowTabCollection.all);
+      Hr := m_Interface.Clear;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function GetMany
+   (
+      this : in out WindowTabCollection;
+      startIndex : WinRt.UInt32;
+      items : Windows.UI.Shell.IWindowTab_Array
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : IVector_IWindowTab.Kind := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+      m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
+      function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
+   begin
+      m_Interface := QInterface (this.m_IWindowTabCollection.all);
+      Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure ReplaceAll
+   (
+      this : in out WindowTabCollection;
+      items : Windows.UI.Shell.IWindowTab_Array
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : IVector_IWindowTab.Kind := null;
+      temp             : WinRt.UInt32 := 0;
+      m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
+      function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
+   begin
+      m_Interface := QInterface (this.m_IWindowTabCollection.all);
+      Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Shell.WindowTab>
+   function First
+   (
+      this : in out WindowTabCollection
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : IIterable_IWindowTab.Kind := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+      m_GenericIID     : aliased WinRt.IID := (3478809970, 52304, 20918, (179, 77, 253, 215, 229, 157, 51, 235 ));
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IIterable_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTab do
+         m_Interface := QInterface (this.m_IWindowTabCollection.all);
+         Hr := m_Interface.First (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabGroup
+
+   procedure Initialize (this : in out WindowTabGroup) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowTabGroup) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowTabGroup, IWindowTabGroup_Ptr);
+   begin
+      if this.m_IWindowTabGroup /= null then
+         if this.m_IWindowTabGroup.all /= null then
+            temp := this.m_IWindowTabGroup.all.Release;
+            Free (this.m_IWindowTabGroup);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowTabGroup
+
+   function Constructor return WindowTabGroup is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTabGroup");
+      m_ComRetVal  : aliased Windows.UI.Shell.IWindowTabGroup;
+   begin
+      return RetVal : WindowTabGroup do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IWindowTabGroup := new Windows.UI.Shell.IWindowTabGroup;
+            Retval.m_IWindowTabGroup.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabGroup
+
+   function get_Title
+   (
+      this : in out WindowTabGroup
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowTabGroup.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Title
+   (
+      this : in out WindowTabGroup;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IWindowTabGroup.all.put_Title (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_Icon
+   (
+      this : in out WindowTabGroup
+   )
+   return WinRt.Windows.UI.Shell.WindowTabIcon'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabIcon;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTabIcon do
+         Hr := this.m_IWindowTabGroup.all.get_Icon (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowTabIcon := new Windows.UI.Shell.IWindowTabIcon;
+         Retval.m_IWindowTabIcon.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_Icon
+   (
+      this : in out WindowTabGroup;
+      value : Windows.UI.Shell.WindowTabIcon'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowTabGroup.all.put_Icon (value.m_IWindowTabIcon.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabIcon
+
+   procedure Initialize (this : in out WindowTabIcon) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowTabIcon) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowTabIcon, IWindowTabIcon_Ptr);
+   begin
+      if this.m_IWindowTabIcon /= null then
+         if this.m_IWindowTabIcon.all /= null then
+            temp := this.m_IWindowTabIcon.all.Release;
+            Free (this.m_IWindowTabIcon);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for WindowTabIcon
+
+   function CreateFromFontGlyph
+   (
+      glyph : WinRt.WString;
+      fontFamily : WinRt.WString
+   )
+   return WinRt.Windows.UI.Shell.WindowTabIcon is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTabIcon");
+      m_Factory        : access WinRt.Windows.UI.Shell.IWindowTabIconStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabIcon;
+      HStr_glyph : constant WinRt.HString := To_HString (glyph);
+      HStr_fontFamily : constant WinRt.HString := To_HString (fontFamily);
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTabIcon do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowTabIconStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromFontGlyph (HStr_glyph, HStr_fontFamily, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IWindowTabIcon := new Windows.UI.Shell.IWindowTabIcon;
+            Retval.m_IWindowTabIcon.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_glyph);
+         tmp := WindowsDeleteString (HStr_fontFamily);
+      end return;
+   end;
+
+   function CreateFromFontGlyph
+   (
+      glyph : WinRt.WString;
+      fontFamily : WinRt.WString;
+      fontUri : Windows.Foundation.Uri'Class
+   )
+   return WinRt.Windows.UI.Shell.WindowTabIcon is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTabIcon");
+      m_Factory        : access WinRt.Windows.UI.Shell.IWindowTabIconStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabIcon;
+      HStr_glyph : constant WinRt.HString := To_HString (glyph);
+      HStr_fontFamily : constant WinRt.HString := To_HString (fontFamily);
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTabIcon do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowTabIconStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromFontGlyph (HStr_glyph, HStr_fontFamily, fontUri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IWindowTabIcon := new Windows.UI.Shell.IWindowTabIcon;
+            Retval.m_IWindowTabIcon.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_glyph);
+         tmp := WindowsDeleteString (HStr_fontFamily);
+      end return;
+   end;
+
+   function CreateFromImage
+   (
+      image : Windows.Storage.Streams.IRandomAccessStreamReference
+   )
+   return WinRt.Windows.UI.Shell.WindowTabIcon is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTabIcon");
+      m_Factory        : access WinRt.Windows.UI.Shell.IWindowTabIconStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabIcon;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTabIcon do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowTabIconStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromImage (image, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IWindowTabIcon := new Windows.UI.Shell.IWindowTabIcon;
+            Retval.m_IWindowTabIcon.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabIcon
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabManager
+
+   procedure Initialize (this : in out WindowTabManager) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowTabManager) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowTabManager, IWindowTabManager_Ptr);
+   begin
+      if this.m_IWindowTabManager /= null then
+         if this.m_IWindowTabManager.all /= null then
+            temp := this.m_IWindowTabManager.all.Release;
+            Free (this.m_IWindowTabManager);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for WindowTabManager
+
+   function GetForWindow
+   (
+      windowId : WinRt.UInt64
+   )
+   return WinRt.Windows.UI.Shell.WindowTabManager is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTabManager");
+      m_Factory        : access WinRt.Windows.UI.Shell.IWindowTabManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabManager;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTabManager do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowTabManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForWindow (windowId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IWindowTabManager := new Windows.UI.Shell.IWindowTabManager;
+            Retval.m_IWindowTabManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function IsSupported
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTabManager");
+      m_Factory        : access WinRt.Windows.UI.Shell.IWindowTabManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IWindowTabManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.IsSupported (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function IsTabTearOutSupported
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTabManager");
+      m_Factory        : access WinRt.Windows.UI.Shell.IWindowTabManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IWindowTabManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.IsTabTearOutSupported (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabManager
+
+   function get_Tabs
+   (
+      this : in out WindowTabManager
+   )
+   return WinRt.Windows.UI.Shell.WindowTabCollection'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabCollection;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTabCollection do
+         Hr := this.m_IWindowTabManager.all.get_Tabs (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowTabCollection := new Windows.UI.Shell.IWindowTabCollection;
+         Retval.m_IWindowTabCollection.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure SetActiveTab
+   (
+      this : in out WindowTabManager;
+      tab : Windows.UI.Shell.WindowTab'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowTabManager.all.SetActiveTab (tab.m_IWindowTab.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_TabSwitchRequested
+   (
+      this : in out WindowTabManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IWindowTabManager.all.add_TabSwitchRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_TabSwitchRequested
+   (
+      this : in out WindowTabManager;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowTabManager.all.remove_TabSwitchRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_TabCloseRequested
+   (
+      this : in out WindowTabManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IWindowTabManager.all.add_TabCloseRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_TabCloseRequested
+   (
+      this : in out WindowTabManager;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowTabManager.all.remove_TabCloseRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_TabTearOutRequested
+   (
+      this : in out WindowTabManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IWindowTabManager.all.add_TabTearOutRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_TabTearOutRequested
+   (
+      this : in out WindowTabManager;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowTabManager.all.remove_TabTearOutRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_TabThumbnailRequested
+   (
+      this : in out WindowTabManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IWindowTabManager.all.add_TabThumbnailRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_TabThumbnailRequested
+   (
+      this : in out WindowTabManager;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowTabManager.all.remove_TabThumbnailRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabSwitchRequestedEventArgs
+
+   procedure Initialize (this : in out WindowTabSwitchRequestedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowTabSwitchRequestedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowTabSwitchRequestedEventArgs, IWindowTabSwitchRequestedEventArgs_Ptr);
+   begin
+      if this.m_IWindowTabSwitchRequestedEventArgs /= null then
+         if this.m_IWindowTabSwitchRequestedEventArgs.all /= null then
+            temp := this.m_IWindowTabSwitchRequestedEventArgs.all.Release;
+            Free (this.m_IWindowTabSwitchRequestedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabSwitchRequestedEventArgs
+
+   function get_Tab
+   (
+      this : in out WindowTabSwitchRequestedEventArgs
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTab do
+         Hr := this.m_IWindowTabSwitchRequestedEventArgs.all.get_Tab (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabTearOutRequestedEventArgs
+
+   procedure Initialize (this : in out WindowTabTearOutRequestedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowTabTearOutRequestedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowTabTearOutRequestedEventArgs, IWindowTabTearOutRequestedEventArgs_Ptr);
+   begin
+      if this.m_IWindowTabTearOutRequestedEventArgs /= null then
+         if this.m_IWindowTabTearOutRequestedEventArgs.all /= null then
+            temp := this.m_IWindowTabTearOutRequestedEventArgs.all.Release;
+            Free (this.m_IWindowTabTearOutRequestedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabTearOutRequestedEventArgs
+
+   function get_Tab
+   (
+      this : in out WindowTabTearOutRequestedEventArgs
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTab do
+         Hr := this.m_IWindowTabTearOutRequestedEventArgs.all.get_Tab (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_WindowId
+   (
+      this : in out WindowTabTearOutRequestedEventArgs
+   )
+   return WinRt.UInt64 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt64;
+   begin
+      Hr := this.m_IWindowTabTearOutRequestedEventArgs.all.get_WindowId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_WindowId
+   (
+      this : in out WindowTabTearOutRequestedEventArgs;
+      value : WinRt.UInt64
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowTabTearOutRequestedEventArgs.all.put_WindowId (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function GetDeferral
+   (
+      this : in out WindowTabTearOutRequestedEventArgs
+   )
+   return WinRt.Windows.Foundation.Deferral'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Deferral do
+         Hr := this.m_IWindowTabTearOutRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabThumbnailRequestedEventArgs
+
+   procedure Initialize (this : in out WindowTabThumbnailRequestedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowTabThumbnailRequestedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowTabThumbnailRequestedEventArgs, IWindowTabThumbnailRequestedEventArgs_Ptr);
+   begin
+      if this.m_IWindowTabThumbnailRequestedEventArgs /= null then
+         if this.m_IWindowTabThumbnailRequestedEventArgs.all /= null then
+            temp := this.m_IWindowTabThumbnailRequestedEventArgs.all.Release;
+            Free (this.m_IWindowTabThumbnailRequestedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabThumbnailRequestedEventArgs
+
+   function get_Tab
+   (
+      this : in out WindowTabThumbnailRequestedEventArgs
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.WindowTab do
+         Hr := this.m_IWindowTabThumbnailRequestedEventArgs.all.get_Tab (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_RequestedSize
+   (
+      this : in out WindowTabThumbnailRequestedEventArgs
+   )
+   return WinRt.Windows.Graphics.Imaging.BitmapSize is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapSize;
+   begin
+      Hr := this.m_IWindowTabThumbnailRequestedEventArgs.all.get_RequestedSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Image
+   (
+      this : in out WindowTabThumbnailRequestedEventArgs
+   )
+   return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+   begin
+      Hr := this.m_IWindowTabThumbnailRequestedEventArgs.all.get_Image (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Image
+   (
+      this : in out WindowTabThumbnailRequestedEventArgs;
+      value : Windows.Storage.Streams.IRandomAccessStreamReference
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowTabThumbnailRequestedEventArgs.all.put_Image (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function GetDeferral
+   (
+      this : in out WindowTabThumbnailRequestedEventArgs
+   )
+   return WinRt.Windows.Foundation.Deferral'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Deferral do
+         Hr := this.m_IWindowTabThumbnailRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_IsCompositedOnWindow
+   (
+      this : in out WindowTabThumbnailRequestedEventArgs
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowTabThumbnailRequestedEventArgs.all.get_IsCompositedOnWindow (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
 end WinRt.Windows.UI.Shell;

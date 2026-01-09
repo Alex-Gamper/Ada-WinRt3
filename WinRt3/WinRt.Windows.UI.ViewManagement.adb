@@ -303,89 +303,6 @@ package body WinRt.Windows.UI.ViewManagement is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ApplicationView
 
-   function get_Value
-   return WinRt.Windows.UI.ViewManagement.ApplicationViewState is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
-      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.ApplicationViewState;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.get_Value (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   function TryUnsnap
-   return WinRt.Boolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
-      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Boolean;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.TryUnsnap (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   procedure ClearAllPersistedState is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
-      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics4_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics4'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.ClearAllPersistedState;
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
-   procedure ClearPersistedState
-   (
-      key : WinRt.WString
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
-      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics4_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      HStr_key : constant WinRt.HString := To_HString (key);
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics4'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.ClearPersistedState (HStr_key);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      tmp := WindowsDeleteString (HStr_key);
-   end;
-
    function TryUnsnapToFullscreen
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -398,30 +315,6 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewFullscreenStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryUnsnapToFullscreen (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   function GetApplicationViewIdForWindow
-   (
-      window : Windows.UI.Core.ICoreWindow
-   )
-   return WinRt.Int32 is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
-      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewInteropStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Int32;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewInteropStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetApplicationViewIdForWindow (window, m_ComRetVal'Access);
          temp := m_Factory.Release;
          if Hr /= S_OK then
             raise Program_Error;
@@ -579,6 +472,113 @@ package body WinRt.Windows.UI.ViewManagement is
          end if;
       end if;
       tmp := WindowsDeleteString (m_hString);
+   end;
+
+   procedure ClearAllPersistedState is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics4'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.ClearAllPersistedState;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   procedure ClearPersistedState
+   (
+      key : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics4'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.ClearPersistedState (HStr_key);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_key);
+   end;
+
+   function GetApplicationViewIdForWindow
+   (
+      window : Windows.UI.Core.ICoreWindow
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewInteropStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewInteropStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetApplicationViewIdForWindow (window, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function get_Value
+   return WinRt.Windows.UI.ViewManagement.ApplicationViewState is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.ViewManagement.ApplicationViewState;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_Value (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function TryUnsnap
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.TryUnsnap (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -1613,24 +1613,6 @@ package body WinRt.Windows.UI.ViewManagement is
    -- Static RuntimeClass
    package body ApplicationViewSwitcher is
 
-      procedure DisableSystemViewActivationPolicy is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
-         m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.DisableSystemViewActivationPolicy;
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
       function TryShowAsViewModeAsync
       (
          viewId : WinRt.Int32;
@@ -1772,6 +1754,24 @@ package body WinRt.Windows.UI.ViewManagement is
          end if;
          tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
+      end;
+
+      procedure DisableSystemViewActivationPolicy is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.DisableSystemViewActivationPolicy;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure DisableShowingMainViewOnActivation is
@@ -2797,30 +2797,6 @@ package body WinRt.Windows.UI.ViewManagement is
    -----------------------------------------------------------------------------
    -- Static Interfaces for InputPane
 
-   function GetForCurrentView
-   return WinRt.Windows.UI.ViewManagement.InputPane is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.InputPane");
-      m_Factory        : access WinRt.Windows.UI.ViewManagement.IInputPaneStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IInputPane;
-   begin
-      return RetVal : WinRt.Windows.UI.ViewManagement.InputPane do
-         Hr := RoGetActivationFactory (m_hString, IID_IInputPaneStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IInputPane := new Windows.UI.ViewManagement.IInputPane;
-            Retval.m_IInputPane.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function GetForUIContext
    (
       context : Windows.UI.UIContext'Class
@@ -2837,6 +2813,30 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IInputPaneStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForUIContext (context.m_IUIContext.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IInputPane := new Windows.UI.ViewManagement.IInputPane;
+            Retval.m_IInputPane.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetForCurrentView
+   return WinRt.Windows.UI.ViewManagement.InputPane is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.InputPane");
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.IInputPaneStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.ViewManagement.IInputPane;
+   begin
+      return RetVal : WinRt.Windows.UI.ViewManagement.InputPane do
+         Hr := RoGetActivationFactory (m_hString, IID_IInputPaneStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

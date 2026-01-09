@@ -3507,36 +3507,6 @@ package WinRt.Windows.UI.Xaml.Documents is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TextElement
 
-   function get_IsTextScaleFactorEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextDecorationsProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsAccessKeyScopeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AccessKeyScopeOwnerProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_KeyTipPlacementModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_KeyTipHorizontalOffsetProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_KeyTipVerticalOffsetProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AllowFocusOnInteractionProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AccessKeyProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ExitDisplayModeOnAccessKeyInvokedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_FontSizeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -3559,6 +3529,36 @@ package WinRt.Windows.UI.Xaml.Documents is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_LanguageProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsTextScaleFactorEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AllowFocusOnInteractionProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AccessKeyProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ExitDisplayModeOnAccessKeyInvokedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TextDecorationsProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsAccessKeyScopeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AccessKeyScopeOwnerProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_KeyTipPlacementModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_KeyTipHorizontalOffsetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_KeyTipVerticalOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -3892,9 +3892,6 @@ package WinRt.Windows.UI.Xaml.Documents is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Block
 
-   function get_HorizontalTextAlignmentProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_TextAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -3905,6 +3902,9 @@ package WinRt.Windows.UI.Xaml.Documents is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_MarginProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HorizontalTextAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -4580,12 +4580,6 @@ package WinRt.Windows.UI.Xaml.Documents is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Glyphs
 
-   function get_IsColorFontEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ColorFontPaletteIndexProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_UnicodeStringProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -4608,6 +4602,12 @@ package WinRt.Windows.UI.Xaml.Documents is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_FillProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsColorFontEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ColorFontPaletteIndexProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -4747,6 +4747,9 @@ package WinRt.Windows.UI.Xaml.Documents is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Hyperlink
 
+   function get_NavigateUriProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_FocusStateProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -4762,6 +4765,9 @@ package WinRt.Windows.UI.Xaml.Documents is
    function get_XYFocusRightNavigationStrategyProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_UnderlineStyleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_XYFocusLeftProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -4775,12 +4781,6 @@ package WinRt.Windows.UI.Xaml.Documents is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_ElementSoundModeProperty_Hyperlink
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_NavigateUriProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_UnderlineStyleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsTabStopProperty_Hyperlink

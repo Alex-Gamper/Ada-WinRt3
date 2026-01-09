@@ -632,7 +632,10 @@ package WinRt.Windows.ApplicationModel.Activation is
       GameUIProvider_e,
       StartupTask_e,
       CommandLineLaunch_e,
-      BarcodeScannerProvider_e
+      BarcodeScannerProvider_e,
+      PrintSupportJobUI_e,
+      PrintSupportSettingsUI_e,
+      VpnForeground_e
    );
    for ActivationKind use (
       Launch_e => 0,
@@ -674,7 +677,10 @@ package WinRt.Windows.ApplicationModel.Activation is
       GameUIProvider_e => 1019,
       StartupTask_e => 1020,
       CommandLineLaunch_e => 1021,
-      BarcodeScannerProvider_e => 1022
+      BarcodeScannerProvider_e => 1022,
+      PrintSupportJobUI_e => 1023,
+      PrintSupportSettingsUI_e => 1024,
+      VpnForeground_e => 1025
    );
    type ActivationKind_Ptr is access all ActivationKind;
 

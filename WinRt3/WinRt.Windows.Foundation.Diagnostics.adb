@@ -1174,32 +1174,6 @@ package body WinRt.Windows.Foundation.Diagnostics is
 
    function Constructor
    (
-      name : WinRt.WString
-   )
-   return LoggingChannel is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
-      m_Factory    : access ILoggingChannelFactory_Interface'Class := null;
-      temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannel;
-      HStr_name : constant WinRt.HString := To_HString (name);
-   begin
-      return RetVal : LoggingChannel do
-         Hr := RoGetActivationFactory (m_hString, IID_ILoggingChannelFactory'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.Create (HStr_name, m_ComRetVal'Access);
-            Retval.m_ILoggingChannel := new Windows.Foundation.Diagnostics.ILoggingChannel;
-            Retval.m_ILoggingChannel.all := m_ComRetVal;
-            temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_name);
-      end return;
-   end;
-
-   function Constructor
-   (
       name : WinRt.WString;
       options : Windows.Foundation.Diagnostics.LoggingChannelOptions'Class
    )
@@ -1244,6 +1218,32 @@ package body WinRt.Windows.Foundation.Diagnostics is
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingChannelFactory2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithOptionsAndId (HStr_name, options.m_ILoggingChannelOptions.all, id, m_ComRetVal'Access);
+            Retval.m_ILoggingChannel := new Windows.Foundation.Diagnostics.ILoggingChannel;
+            Retval.m_ILoggingChannel.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_name);
+      end return;
+   end;
+
+   function Constructor
+   (
+      name : WinRt.WString
+   )
+   return LoggingChannel is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
+      m_Factory    : access ILoggingChannelFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannel;
+      HStr_name : constant WinRt.HString := To_HString (name);
+   begin
+      return RetVal : LoggingChannel do
+         Hr := RoGetActivationFactory (m_hString, IID_ILoggingChannelFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.Create (HStr_name, m_ComRetVal'Access);
             Retval.m_ILoggingChannel := new Windows.Foundation.Diagnostics.ILoggingChannel;
             Retval.m_ILoggingChannel.all := m_ComRetVal;
             temp := m_Factory.Release;
@@ -1747,22 +1747,6 @@ package body WinRt.Windows.Foundation.Diagnostics is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for LoggingChannelOptions
 
-   function Constructor return LoggingChannelOptions is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannelOptions");
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannelOptions;
-   begin
-      return RetVal : LoggingChannelOptions do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ILoggingChannelOptions := new Windows.Foundation.Diagnostics.ILoggingChannelOptions;
-            Retval.m_ILoggingChannelOptions.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       group : WinRt.Guid
@@ -1782,6 +1766,22 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Retval.m_ILoggingChannelOptions := new Windows.Foundation.Diagnostics.ILoggingChannelOptions;
             Retval.m_ILoggingChannelOptions.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return LoggingChannelOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannelOptions");
+      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannelOptions;
+   begin
+      return RetVal : LoggingChannelOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ILoggingChannelOptions := new Windows.Foundation.Diagnostics.ILoggingChannelOptions;
+            Retval.m_ILoggingChannelOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

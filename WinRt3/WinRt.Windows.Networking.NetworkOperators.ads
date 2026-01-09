@@ -7538,6 +7538,24 @@ package WinRt.Windows.Networking.NetworkOperators is
    -----------------------------------------------------------------------------
    -- Static Interfaces for NetworkOperatorTetheringManager
 
+   function IsNoConnectionsTimeoutEnabled
+   return WinRt.Boolean;
+
+   procedure EnableNoConnectionsTimeout;
+
+   procedure EnableNoConnectionsTimeoutAsync;
+
+   procedure DisableNoConnectionsTimeout;
+
+   procedure DisableNoConnectionsTimeoutAsync;
+
+   function CreateFromConnectionProfile
+   (
+      profile : Windows.Networking.Connectivity.ConnectionProfile'Class;
+      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
+   )
+   return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager;
+
    function GetTetheringCapabilityFromConnectionProfile
    (
       profile : Windows.Networking.Connectivity.ConnectionProfile'Class
@@ -7549,24 +7567,6 @@ package WinRt.Windows.Networking.NetworkOperators is
       profile : Windows.Networking.Connectivity.ConnectionProfile'Class
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager;
-
-   function CreateFromConnectionProfile
-   (
-      profile : Windows.Networking.Connectivity.ConnectionProfile'Class;
-      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
-   )
-   return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager;
-
-   function IsNoConnectionsTimeoutEnabled
-   return WinRt.Boolean;
-
-   procedure EnableNoConnectionsTimeout;
-
-   procedure EnableNoConnectionsTimeoutAsync;
-
-   procedure DisableNoConnectionsTimeout;
-
-   procedure DisableNoConnectionsTimeoutAsync;
 
    function GetTetheringCapability
    (

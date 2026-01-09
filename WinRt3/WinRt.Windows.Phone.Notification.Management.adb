@@ -39,6 +39,98 @@ package body WinRt.Windows.Phone.Notification.Management is
    -- Static RuntimeClass
    package body AccessoryManager is
 
+      procedure SnoozeAlarmByInstanceId
+      (
+         instanceId : WinRt.WString
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.SnoozeAlarmByInstanceId (HStr_instanceId);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_instanceId);
+      end;
+
+      procedure DismissAlarmByInstanceId
+      (
+         instanceId : WinRt.WString
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.DismissAlarmByInstanceId (HStr_instanceId);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_instanceId);
+      end;
+
+      procedure SnoozeReminderByInstanceId
+      (
+         instanceId : WinRt.WString
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.SnoozeReminderByInstanceId (HStr_instanceId);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_instanceId);
+      end;
+
+      procedure DismissReminderByInstanceId
+      (
+         instanceId : WinRt.WString
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.DismissReminderByInstanceId (HStr_instanceId);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_instanceId);
+      end;
+
       procedure RingDevice is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -1336,98 +1428,6 @@ package body WinRt.Windows.Phone.Notification.Management is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_appId);
          return m_ComRetVal;
-      end;
-
-      procedure SnoozeAlarmByInstanceId
-      (
-         instanceId : WinRt.WString
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
-         m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.SnoozeAlarmByInstanceId (HStr_instanceId);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_instanceId);
-      end;
-
-      procedure DismissAlarmByInstanceId
-      (
-         instanceId : WinRt.WString
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
-         m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.DismissAlarmByInstanceId (HStr_instanceId);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_instanceId);
-      end;
-
-      procedure SnoozeReminderByInstanceId
-      (
-         instanceId : WinRt.WString
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
-         m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.SnoozeReminderByInstanceId (HStr_instanceId);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_instanceId);
-      end;
-
-      procedure DismissReminderByInstanceId
-      (
-         instanceId : WinRt.WString
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
-         m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.DismissReminderByInstanceId (HStr_instanceId);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_instanceId);
       end;
 
    end AccessoryManager;

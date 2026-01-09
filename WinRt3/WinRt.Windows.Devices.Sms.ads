@@ -2628,6 +2628,12 @@ package WinRt.Windows.Devices.Sms is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SmsDevice
 
+   function FromNetworkAccountIdAsync
+   (
+      networkAccountId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Sms.SmsDevice;
+
    function GetDeviceSelector
    return WinRt.WString;
 
@@ -2638,12 +2644,6 @@ package WinRt.Windows.Devices.Sms is
    return WinRt.Windows.Devices.Sms.SmsDevice;
 
    function GetDefaultAsync
-   return WinRt.Windows.Devices.Sms.SmsDevice;
-
-   function FromNetworkAccountIdAsync
-   (
-      networkAccountId : WinRt.WString
-   )
    return WinRt.Windows.Devices.Sms.SmsDevice;
 
    -----------------------------------------------------------------------------

@@ -5281,6 +5281,22 @@ package body WinRt.Windows.Web.Http is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for HttpResponseMessage
 
+   function Constructor return HttpResponseMessage is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpResponseMessage");
+      m_ComRetVal  : aliased Windows.Web.Http.IHttpResponseMessage;
+   begin
+      return RetVal : HttpResponseMessage do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
+            Retval.m_IHttpResponseMessage.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       statusCode : Windows.Web.Http.HttpStatusCode
@@ -5300,22 +5316,6 @@ package body WinRt.Windows.Web.Http is
             Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
             Retval.m_IHttpResponseMessage.all := m_ComRetVal;
             temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor return HttpResponseMessage is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpResponseMessage");
-      m_ComRetVal  : aliased Windows.Web.Http.IHttpResponseMessage;
-   begin
-      return RetVal : HttpResponseMessage do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
-            Retval.m_IHttpResponseMessage.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

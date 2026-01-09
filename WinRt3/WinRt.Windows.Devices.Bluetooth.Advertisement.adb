@@ -2228,22 +2228,6 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BluetoothLEManufacturerData
 
-   function Constructor return BluetoothLEManufacturerData is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEManufacturerData");
-      m_ComRetVal  : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData;
-   begin
-      return RetVal : BluetoothLEManufacturerData do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IBluetoothLEManufacturerData := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData;
-            Retval.m_IBluetoothLEManufacturerData.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       companyId : WinRt.UInt16;
@@ -2264,6 +2248,22 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
             Retval.m_IBluetoothLEManufacturerData := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData;
             Retval.m_IBluetoothLEManufacturerData.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return BluetoothLEManufacturerData is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEManufacturerData");
+      m_ComRetVal  : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData;
+   begin
+      return RetVal : BluetoothLEManufacturerData do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBluetoothLEManufacturerData := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData;
+            Retval.m_IBluetoothLEManufacturerData.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

@@ -4910,66 +4910,6 @@ package body WinRt.Windows.UI.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RadialControllerMenuItem
 
-   function CreateFromIcon
-   (
-      displayText : WinRt.WString;
-      icon : Windows.Storage.Streams.RandomAccessStreamReference'Class
-   )
-   return WinRt.Windows.UI.Input.RadialControllerMenuItem is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.RadialControllerMenuItem");
-      m_Factory        : access WinRt.Windows.UI.Input.IRadialControllerMenuItemStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerMenuItem;
-      HStr_displayText : constant WinRt.HString := To_HString (displayText);
-   begin
-      return RetVal : WinRt.Windows.UI.Input.RadialControllerMenuItem do
-         Hr := RoGetActivationFactory (m_hString, IID_IRadialControllerMenuItemStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromIcon (HStr_displayText, icon.m_IRandomAccessStreamReference.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IRadialControllerMenuItem := new Windows.UI.Input.IRadialControllerMenuItem;
-            Retval.m_IRadialControllerMenuItem.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_displayText);
-      end return;
-   end;
-
-   function CreateFromKnownIcon
-   (
-      displayText : WinRt.WString;
-      value : Windows.UI.Input.RadialControllerMenuKnownIcon
-   )
-   return WinRt.Windows.UI.Input.RadialControllerMenuItem is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.RadialControllerMenuItem");
-      m_Factory        : access WinRt.Windows.UI.Input.IRadialControllerMenuItemStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerMenuItem;
-      HStr_displayText : constant WinRt.HString := To_HString (displayText);
-   begin
-      return RetVal : WinRt.Windows.UI.Input.RadialControllerMenuItem do
-         Hr := RoGetActivationFactory (m_hString, IID_IRadialControllerMenuItemStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromKnownIcon (HStr_displayText, value, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IRadialControllerMenuItem := new Windows.UI.Input.IRadialControllerMenuItem;
-            Retval.m_IRadialControllerMenuItem.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_displayText);
-      end return;
-   end;
-
    function CreateFromFontGlyph
    (
       displayText : WinRt.WString;
@@ -5038,6 +4978,66 @@ package body WinRt.Windows.UI.Input is
          tmp := WindowsDeleteString (HStr_displayText);
          tmp := WindowsDeleteString (HStr_glyph);
          tmp := WindowsDeleteString (HStr_fontFamily);
+      end return;
+   end;
+
+   function CreateFromIcon
+   (
+      displayText : WinRt.WString;
+      icon : Windows.Storage.Streams.RandomAccessStreamReference'Class
+   )
+   return WinRt.Windows.UI.Input.RadialControllerMenuItem is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.RadialControllerMenuItem");
+      m_Factory        : access WinRt.Windows.UI.Input.IRadialControllerMenuItemStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerMenuItem;
+      HStr_displayText : constant WinRt.HString := To_HString (displayText);
+   begin
+      return RetVal : WinRt.Windows.UI.Input.RadialControllerMenuItem do
+         Hr := RoGetActivationFactory (m_hString, IID_IRadialControllerMenuItemStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromIcon (HStr_displayText, icon.m_IRandomAccessStreamReference.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IRadialControllerMenuItem := new Windows.UI.Input.IRadialControllerMenuItem;
+            Retval.m_IRadialControllerMenuItem.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_displayText);
+      end return;
+   end;
+
+   function CreateFromKnownIcon
+   (
+      displayText : WinRt.WString;
+      value : Windows.UI.Input.RadialControllerMenuKnownIcon
+   )
+   return WinRt.Windows.UI.Input.RadialControllerMenuItem is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.RadialControllerMenuItem");
+      m_Factory        : access WinRt.Windows.UI.Input.IRadialControllerMenuItemStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerMenuItem;
+      HStr_displayText : constant WinRt.HString := To_HString (displayText);
+   begin
+      return RetVal : WinRt.Windows.UI.Input.RadialControllerMenuItem do
+         Hr := RoGetActivationFactory (m_hString, IID_IRadialControllerMenuItemStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromKnownIcon (HStr_displayText, value, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IRadialControllerMenuItem := new Windows.UI.Input.IRadialControllerMenuItem;
+            Retval.m_IRadialControllerMenuItem.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_displayText);
       end return;
    end;
 

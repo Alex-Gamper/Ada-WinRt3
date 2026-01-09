@@ -2176,7 +2176,19 @@ package WinRt.Windows.Media.MediaProperties is
    -- Static RuntimeClass
    package MediaEncodingSubtypes is
 
-      function get_Heif
+      function get_Pgs
+      return WinRt.WString;
+
+      function get_Srt
+      return WinRt.WString;
+
+      function get_Ssa
+      return WinRt.WString;
+
+      function get_VobSub
+      return WinRt.WString;
+
+      function get_P010
       return WinRt.WString;
 
       function get_Aac
@@ -2299,13 +2311,13 @@ package WinRt.Windows.Media.MediaProperties is
       function get_Yv12
       return WinRt.WString;
 
-      function get_P010
-      return WinRt.WString;
-
       function get_Alac
       return WinRt.WString;
 
       function get_Flac
+      return WinRt.WString;
+
+      function get_Heif
       return WinRt.WString;
 
       function get_Vp9
@@ -2318,18 +2330,6 @@ package WinRt.Windows.Media.MediaProperties is
       return WinRt.WString;
 
       function get_D16
-      return WinRt.WString;
-
-      function get_Pgs
-      return WinRt.WString;
-
-      function get_Srt
-      return WinRt.WString;
-
-      function get_Ssa
-      return WinRt.WString;
-
-      function get_VobSub
       return WinRt.WString;
 
    end MediaEncodingSubtypes;

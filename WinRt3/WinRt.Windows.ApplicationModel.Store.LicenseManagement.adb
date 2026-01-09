@@ -41,6 +41,55 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    -- Static RuntimeClass
    package body LicenseManager is
 
+      procedure RefreshLicensesAsync
+      (
+         refreshOption : Windows.ApplicationModel.Store.LicenseManagement.LicenseRefreshOption
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.LicenseManagement.LicenseManager");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.LicenseManagement.ILicenseManagerStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
+
+         procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         begin
+            if asyncStatus = Completed_e then
+               Hr := asyncInfo.GetResults;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+         m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
+         procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ILicenseManagerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.RefreshLicensesAsync (refreshOption, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_Captured := m_Completed;
+               Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
+                  Free (m_CompletedHandler);
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
       procedure AddLicenseAsync
       (
          license : Windows.Storage.Streams.IBuffer
@@ -162,55 +211,6 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
             end if;
             tmp := WindowsDeleteString (m_hString);
          end return;
-      end;
-
-      procedure RefreshLicensesAsync
-      (
-         refreshOption : Windows.ApplicationModel.Store.LicenseManagement.LicenseRefreshOption
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.LicenseManagement.LicenseManager");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.LicenseManagement.ILicenseManagerStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
-
-         procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         begin
-            if asyncStatus = Completed_e then
-               Hr := asyncInfo.GetResults;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-         m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
-         procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
-
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ILicenseManagerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.RefreshLicensesAsync (refreshOption, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_Captured := m_Completed;
-               Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
-               while m_Captured = m_Compare loop
-                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                  m_Captured := m_Completed;
-               end loop;
-               temp := m_ComRetVal.Release;
-               temp := m_CompletedHandler.Release;
-               if temp = 0 then
-                  Free (m_CompletedHandler);
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end;
 
    end LicenseManager;

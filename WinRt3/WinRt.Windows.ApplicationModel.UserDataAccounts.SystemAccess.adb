@@ -34,14 +34,14 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
 
-   package IAsyncOperation_GenericObject is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.GenericObject);
-   package AsyncOperationCompletedHandler_GenericObject is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.GenericObject);
-
    package IAsyncOperation_HString is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.HString);
    package AsyncOperationCompletedHandler_HString is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.HString);
 
    package IAsyncOperation_DeviceAccountConfiguration is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration);
    package AsyncOperationCompletedHandler_DeviceAccountConfiguration is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration);
+
+   package IAsyncOperation_GenericObject is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.GenericObject);
+   package AsyncOperationCompletedHandler_GenericObject is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.GenericObject);
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DeviceAccountConfiguration
@@ -1800,76 +1800,6 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    -- Static RuntimeClass
    package body UserDataAccountSystemAccessManager is
 
-      function AddAndShowDeviceAccountsAsync
-      (
-         accounts : GenericObject
-      )
-      return WinRt.GenericObject is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.SystemAccess.UserDataAccountSystemAccessManager");
-         m_Factory        : access WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IUserDataAccountSystemAccessManagerStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_GenericObject.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_GenericObject.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.GenericObject;
-         m_IID            : aliased WinRt.IID := (798143785, 4507, 22362, (164, 25, 57, 4, 180, 228, 26, 242 )); -- GenericObject;
-         m_HandlerIID     : aliased WinRt.IID := (2088278462, 24366, 23539, (173, 229, 173, 152, 183, 114, 199, 205 ));
-         m_Handler        : AsyncOperationCompletedHandler_GenericObject.Kind := new AsyncOperationCompletedHandler_GenericObject.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_GenericObject.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_GenericObject.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IUserDataAccountSystemAccessManagerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.AddAndShowDeviceAccountsAsync (accounts, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_RetVal;
-      end;
-
       procedure SuppressLocalAccountWithAccountAsync
       (
          userDataAccountId : WinRt.WString
@@ -2118,6 +2048,76 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
             tmp := WindowsDeleteString (m_hString);
             tmp := WindowsDeleteString (HStr_accountId);
          end return;
+      end;
+
+      function AddAndShowDeviceAccountsAsync
+      (
+         accounts : GenericObject
+      )
+      return WinRt.GenericObject is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.SystemAccess.UserDataAccountSystemAccessManager");
+         m_Factory        : access WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IUserDataAccountSystemAccessManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_GenericObject.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_GenericObject.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.GenericObject;
+         m_IID            : aliased WinRt.IID := (798143785, 4507, 22362, (164, 25, 57, 4, 180, 228, 26, 242 )); -- GenericObject;
+         m_HandlerIID     : aliased WinRt.IID := (2088278462, 24366, 23539, (173, 229, 173, 152, 183, 114, 199, 205 ));
+         m_Handler        : AsyncOperationCompletedHandler_GenericObject.Kind := new AsyncOperationCompletedHandler_GenericObject.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_GenericObject.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_GenericObject.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IUserDataAccountSystemAccessManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.AddAndShowDeviceAccountsAsync (accounts, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_RetVal;
       end;
 
    end UserDataAccountSystemAccessManager;

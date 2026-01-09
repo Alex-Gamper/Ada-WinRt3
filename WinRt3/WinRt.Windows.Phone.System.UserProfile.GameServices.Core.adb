@@ -47,6 +47,48 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
    -- Static RuntimeClass
    package body GameService is
 
+      procedure NotifyPartnerTokenExpired
+      (
+         audienceUri : Windows.Foundation.Uri'Class
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
+         m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGameService2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.NotifyPartnerTokenExpired (audienceUri.m_IUriRuntimeClass.all);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+      function GetAuthenticationStatus
+      return WinRt.UInt32 is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
+         m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.UInt32;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGameService2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetAuthenticationStatus (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
       function get_ServiceUri
       return WinRt.Windows.Foundation.Uri is
          Hr               : WinRt.HResult := S_OK;
@@ -419,48 +461,6 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
             end if;
          end if;
          tmp := WindowsDeleteString (m_hString);
-      end;
-
-      procedure NotifyPartnerTokenExpired
-      (
-         audienceUri : Windows.Foundation.Uri'Class
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
-         m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGameService2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.NotifyPartnerTokenExpired (audienceUri.m_IUriRuntimeClass.all);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      function GetAuthenticationStatus
-      return WinRt.UInt32 is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
-         m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.UInt32;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGameService2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetAuthenticationStatus (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
       end;
 
    end GameService;

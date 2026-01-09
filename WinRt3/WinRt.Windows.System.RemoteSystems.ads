@@ -2446,6 +2446,12 @@ package WinRt.Windows.System.RemoteSystems is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RemoteSystemConnectionRequest
 
+   function CreateForApp
+   (
+      remoteSystemApp_p : Windows.System.RemoteSystems.RemoteSystemApp'Class
+   )
+   return WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest;
+
    function CreateFromConnectionToken
    (
       connectionToken : WinRt.WString
@@ -2456,12 +2462,6 @@ package WinRt.Windows.System.RemoteSystems is
    (
       user : Windows.System.User'Class;
       connectionToken : WinRt.WString
-   )
-   return WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest;
-
-   function CreateForApp
-   (
-      remoteSystemApp_p : Windows.System.RemoteSystems.RemoteSystemApp'Class
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest;
 

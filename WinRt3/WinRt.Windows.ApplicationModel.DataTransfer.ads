@@ -1928,6 +1928,29 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    -- Static RuntimeClass
    package Clipboard is
 
+      function GetContent
+      return WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView;
+
+      procedure SetContent
+      (
+         content : Windows.ApplicationModel.DataTransfer.DataPackage'Class
+      );
+
+      procedure Flush;
+
+      procedure Clear;
+
+      function add_ContentChanged
+      (
+         handler : GenericObject
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken;
+
+      procedure remove_ContentChanged
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
+
       function GetHistoryItemsAsync
       return WinRt.Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResult;
 
@@ -1988,29 +2011,6 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_HistoryEnabledChanged
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      );
-
-      function GetContent
-      return WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView;
-
-      procedure SetContent
-      (
-         content : Windows.ApplicationModel.DataTransfer.DataPackage'Class
-      );
-
-      procedure Flush;
-
-      procedure Clear;
-
-      function add_ContentChanged
-      (
-         handler : GenericObject
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken;
-
-      procedure remove_ContentChanged
       (
          token : Windows.Foundation.EventRegistrationToken
       );
@@ -2872,6 +2872,11 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DataTransferManager
 
+   procedure ShowShareUI
+   (
+      options : Windows.ApplicationModel.DataTransfer.ShareUIOptions'Class
+   );
+
    function IsSupported
    return WinRt.Boolean;
 
@@ -2879,11 +2884,6 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    function GetForCurrentView
    return WinRt.Windows.ApplicationModel.DataTransfer.DataTransferManager;
-
-   procedure ShowShareUI
-   (
-      options : Windows.ApplicationModel.DataTransfer.ShareUIOptions'Class
-   );
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for DataTransferManager
@@ -3171,12 +3171,6 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    -- Static RuntimeClass
    package StandardDataFormats is
 
-      function get_WebLink
-      return WinRt.WString;
-
-      function get_ApplicationLink
-      return WinRt.WString;
-
       function get_Text
       return WinRt.WString;
 
@@ -3193,6 +3187,12 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       return WinRt.WString;
 
       function get_StorageItems
+      return WinRt.WString;
+
+      function get_WebLink
+      return WinRt.WString;
+
+      function get_ApplicationLink
       return WinRt.WString;
 
       function get_UserActivityJsonArray

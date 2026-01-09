@@ -6084,6 +6084,9 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MapElement
 
+   function get_MapTabIndexProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_MapStyleSheetEntryProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -6094,9 +6097,6 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_MapTabIndexProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_ZIndexProperty
@@ -6425,51 +6425,6 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MapControl
 
-   function get_CanTiltDownProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CanTiltUpProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CanZoomInProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CanZoomOutProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_BusinessLandmarksVisibleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TransitFeaturesVisibleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PanInteractionModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RotateInteractionModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TiltInteractionModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ZoomInteractionModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_Is3DSupportedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsStreetsideSupportedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SceneProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_BusinessLandmarksEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TransitFeaturesEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_CenterProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -6554,9 +6509,6 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Foundation.Point
    );
 
-   function get_RegionProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_MapProjectionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -6566,7 +6518,55 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    function get_ViewPaddingProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_BusinessLandmarksEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TransitFeaturesEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_BusinessLandmarksVisibleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TransitFeaturesVisibleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PanInteractionModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RotateInteractionModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TiltInteractionModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ZoomInteractionModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_Is3DSupportedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsStreetsideSupportedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SceneProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_LayersProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RegionProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CanTiltDownProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CanTiltUpProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CanZoomInProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CanZoomOutProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -8326,6 +8326,9 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MapIcon
 
+   function get_CollisionBehaviorDesiredProperty_MapIcon
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_LocationProperty_MapIcon
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -8333,9 +8336,6 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_NormalizedAnchorPointProperty_MapIcon
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CollisionBehaviorDesiredProperty_MapIcon
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------

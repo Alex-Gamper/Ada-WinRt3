@@ -470,13 +470,13 @@ package WinRt.Windows.Networking.PushNotifications is
    -- Static RuntimeClass
    package PushNotificationChannelManager is
 
+      function GetDefault
+      return WinRt.Windows.Networking.PushNotifications.PushNotificationChannelManagerForUser;
+
       function GetForUser
       (
          user : Windows.System.User'Class
       )
-      return WinRt.Windows.Networking.PushNotifications.PushNotificationChannelManagerForUser;
-
-      function GetDefault
       return WinRt.Windows.Networking.PushNotifications.PushNotificationChannelManagerForUser;
 
       function add_ChannelsRevoked

@@ -761,9 +761,6 @@ package WinRt.Windows.Devices.Gpio is
    -----------------------------------------------------------------------------
    -- Static Interfaces for GpioController
 
-   function GetDefault
-   return WinRt.Windows.Devices.Gpio.GpioController;
-
    function GetControllersAsync
    (
       provider : Windows.Devices.Gpio.Provider.IGpioProvider
@@ -771,6 +768,9 @@ package WinRt.Windows.Devices.Gpio is
    return WinRt.GenericObject;
 
    function GetDefaultAsync
+   return WinRt.Windows.Devices.Gpio.GpioController;
+
+   function GetDefault
    return WinRt.Windows.Devices.Gpio.GpioController;
 
    -----------------------------------------------------------------------------

@@ -7099,6 +7099,9 @@ package WinRt.Windows.Devices.PointOfService is
    -- Static RuntimeClass
    package BarcodeSymbologies is
 
+      function get_Gs1DWCode
+      return WinRt.UInt32;
+
       function get_Unknown
       return WinRt.UInt32;
 
@@ -7383,9 +7386,6 @@ package WinRt.Windows.Devices.PointOfService is
          scanDataType : WinRt.UInt32
       )
       return WinRt.WString;
-
-      function get_Gs1DWCode
-      return WinRt.UInt32;
 
    end BarcodeSymbologies;
 
@@ -10727,6 +10727,12 @@ package WinRt.Windows.Devices.PointOfService is
    -----------------------------------------------------------------------------
    -- Static Interfaces for PosPrinter
 
+   function GetDeviceSelector_PosPrinter
+   (
+      connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes
+   )
+   return WinRt.WString;
+
    function GetDefaultAsync_PosPrinter
    return WinRt.Windows.Devices.PointOfService.PosPrinter;
 
@@ -10737,12 +10743,6 @@ package WinRt.Windows.Devices.PointOfService is
    return WinRt.Windows.Devices.PointOfService.PosPrinter;
 
    function GetDeviceSelector_PosPrinter
-   return WinRt.WString;
-
-   function GetDeviceSelector_PosPrinter
-   (
-      connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes
-   )
    return WinRt.WString;
 
    -----------------------------------------------------------------------------

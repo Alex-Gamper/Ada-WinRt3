@@ -71,14 +71,14 @@ package body WinRt.Windows.Devices.SmartCards is
    package IAsyncOperation_SmartCardCryptogramGenerator is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGenerator);
    package AsyncOperationCompletedHandler_SmartCardCryptogramGenerator is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGenerator);
 
-   package IAsyncOperation_SmartCardEmulator is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.SmartCards.ISmartCardEmulator);
-   package AsyncOperationCompletedHandler_SmartCardEmulator is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.SmartCards.ISmartCardEmulator);
-
    package IAsyncOperation_GenericObject is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.GenericObject);
    package AsyncOperationCompletedHandler_GenericObject is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.GenericObject);
 
    package IAsyncOperation_SmartCardAppletIdGroupRegistration is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroupRegistration);
    package AsyncOperationCompletedHandler_SmartCardAppletIdGroupRegistration is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroupRegistration);
+
+   package IAsyncOperation_SmartCardEmulator is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.SmartCards.ISmartCardEmulator);
+   package AsyncOperationCompletedHandler_SmartCardEmulator is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.SmartCards.ISmartCardEmulator);
 
    package IAsyncOperation_Guid is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Guid);
    package AsyncOperationCompletedHandler_Guid is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Guid);
@@ -494,22 +494,6 @@ package body WinRt.Windows.Devices.SmartCards is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SmartCardAppletIdGroup
 
-   function Constructor return SmartCardAppletIdGroup is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
-      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
-   begin
-      return RetVal : SmartCardAppletIdGroup do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ISmartCardAppletIdGroup := new Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
-            Retval.m_ISmartCardAppletIdGroup.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       displayName : WinRt.WString;
@@ -536,6 +520,22 @@ package body WinRt.Windows.Devices.SmartCards is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_displayName);
+      end return;
+   end;
+
+   function Constructor return SmartCardAppletIdGroup is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
+      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
+   begin
+      return RetVal : SmartCardAppletIdGroup do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ISmartCardAppletIdGroup := new Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
+            Retval.m_ISmartCardAppletIdGroup.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1840,27 +1840,6 @@ package body WinRt.Windows.Devices.SmartCards is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SmartCardCryptogramGenerator
 
-   function IsSupported
-   return WinRt.Boolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGenerator");
-      m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGeneratorStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Boolean;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_ISmartCardCryptogramGeneratorStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
    function GetSmartCardCryptogramGeneratorAsync
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGenerator is
       Hr               : WinRt.HResult := S_OK;
@@ -1929,6 +1908,27 @@ package body WinRt.Windows.Devices.SmartCards is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
+   end;
+
+   function IsSupported
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGenerator");
+      m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGeneratorStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_ISmartCardCryptogramGeneratorStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.IsSupported (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -4139,76 +4139,6 @@ package body WinRt.Windows.Devices.SmartCards is
       return m_ComRetVal;
    end;
 
-   function GetDefaultAsync
-   return WinRt.Windows.Devices.SmartCards.SmartCardEmulator is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
-      m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_SmartCardEmulator.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_SmartCardEmulator.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.Windows.Devices.SmartCards.ISmartCardEmulator;
-      m_IID            : aliased WinRt.IID := (500734192, 51237, 23539, (149, 100, 71, 8, 147, 47, 149, 95 )); -- Windows.Devices.SmartCards.SmartCardEmulator;
-      m_HandlerIID     : aliased WinRt.IID := (1233314822, 1324, 22402, (165, 125, 84, 249, 244, 79, 132, 18 ));
-      m_Handler        : AsyncOperationCompletedHandler_SmartCardEmulator.Kind := new AsyncOperationCompletedHandler_SmartCardEmulator.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_SmartCardEmulator.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_SmartCardEmulator.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardEmulator.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardEmulator.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardEmulator do
-         Hr := RoGetActivationFactory (m_hString, IID_ISmartCardEmulatorStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmartCardEmulator := new Windows.Devices.SmartCards.ISmartCardEmulator;
-                     Retval.m_ISmartCardEmulator.all := m_RetVal;
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function GetAppletIdGroupRegistrationsAsync
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -4417,6 +4347,76 @@ package body WinRt.Windows.Devices.SmartCards is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
+   end;
+
+   function GetDefaultAsync
+   return WinRt.Windows.Devices.SmartCards.SmartCardEmulator is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
+      m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_SmartCardEmulator.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_SmartCardEmulator.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.SmartCards.ISmartCardEmulator;
+      m_IID            : aliased WinRt.IID := (500734192, 51237, 23539, (149, 100, 71, 8, 147, 47, 149, 95 )); -- Windows.Devices.SmartCards.SmartCardEmulator;
+      m_HandlerIID     : aliased WinRt.IID := (1233314822, 1324, 22402, (165, 125, 84, 249, 244, 79, 132, 18 ));
+      m_Handler        : AsyncOperationCompletedHandler_SmartCardEmulator.Kind := new AsyncOperationCompletedHandler_SmartCardEmulator.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_SmartCardEmulator.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_SmartCardEmulator.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardEmulator.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardEmulator.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardEmulator do
+         Hr := RoGetActivationFactory (m_hString, IID_ISmartCardEmulatorStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_ISmartCardEmulator := new Windows.Devices.SmartCards.ISmartCardEmulator;
+                     Retval.m_ISmartCardEmulator.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
    end;
 
    -----------------------------------------------------------------------------

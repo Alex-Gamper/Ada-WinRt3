@@ -37,6 +37,13 @@ package WinRt.Windows.Storage.Provider is
    pragma PreElaborate;
 
    -----------------------------------------------------------------------------
+   -- Forward Delegates declarations
+   -----------------------------------------------------------------------------
+
+   type StorageProviderKnownFolderSyncRequestedHandler_Delegate;
+   type StorageProviderKnownFolderSyncRequestedHandler is access all StorageProviderKnownFolderSyncRequestedHandler_Delegate;
+
+   -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
@@ -94,8 +101,44 @@ package WinRt.Windows.Storage.Provider is
    type IStorageProviderItemPropertySource_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderItemPropertySource is access all IStorageProviderItemPropertySource_Interface'Class;
 
+   type IStorageProviderKnownFolderEntry_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderKnownFolderEntry is access all IStorageProviderKnownFolderEntry_Interface'Class;
+   type IStorageProviderKnownFolderEntry_Ptr is access all IStorageProviderKnownFolderEntry;
+
+   type IStorageProviderKnownFolderSyncInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderKnownFolderSyncInfo is access all IStorageProviderKnownFolderSyncInfo_Interface'Class;
+   type IStorageProviderKnownFolderSyncInfo_Ptr is access all IStorageProviderKnownFolderSyncInfo;
+
+   type IStorageProviderKnownFolderSyncInfoSource_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderKnownFolderSyncInfoSource is access all IStorageProviderKnownFolderSyncInfoSource_Interface'Class;
+
+   type IStorageProviderKnownFolderSyncInfoSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderKnownFolderSyncInfoSourceFactory is access all IStorageProviderKnownFolderSyncInfoSourceFactory_Interface'Class;
+
+   type IStorageProviderKnownFolderSyncRequestArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderKnownFolderSyncRequestArgs is access all IStorageProviderKnownFolderSyncRequestArgs_Interface'Class;
+   type IStorageProviderKnownFolderSyncRequestArgs_Ptr is access all IStorageProviderKnownFolderSyncRequestArgs;
+
+   type IStorageProviderMoreInfoUI_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderMoreInfoUI is access all IStorageProviderMoreInfoUI_Interface'Class;
+   type IStorageProviderMoreInfoUI_Ptr is access all IStorageProviderMoreInfoUI;
+
    type IStorageProviderPropertyCapabilities_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderPropertyCapabilities is access all IStorageProviderPropertyCapabilities_Interface'Class;
+
+   type IStorageProviderQuotaUI_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderQuotaUI is access all IStorageProviderQuotaUI_Interface'Class;
+   type IStorageProviderQuotaUI_Ptr is access all IStorageProviderQuotaUI;
+
+   type IStorageProviderStatusUI_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderStatusUI is access all IStorageProviderStatusUI_Interface'Class;
+   type IStorageProviderStatusUI_Ptr is access all IStorageProviderStatusUI;
+
+   type IStorageProviderStatusUISource_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderStatusUISource is access all IStorageProviderStatusUISource_Interface'Class;
+
+   type IStorageProviderStatusUISourceFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderStatusUISourceFactory is access all IStorageProviderStatusUISourceFactory_Interface'Class;
 
    type IStorageProviderSyncRootInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderSyncRootInfo is access all IStorageProviderSyncRootInfo_Interface'Class;
@@ -112,6 +155,9 @@ package WinRt.Windows.Storage.Provider is
 
    type IStorageProviderSyncRootManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderSyncRootManagerStatics2 is access all IStorageProviderSyncRootManagerStatics2_Interface'Class;
+
+   type IStorageProviderUICommand_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderUICommand is access all IStorageProviderUICommand_Interface'Class;
 
    type IStorageProviderUriSource_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderUriSource is access all IStorageProviderUriSource_Interface'Class;
@@ -173,6 +219,42 @@ package WinRt.Windows.Storage.Provider is
          m_IStorageProviderItemPropertyDefinition : access Windows.Storage.Provider.IStorageProviderItemPropertyDefinition;
       end record;
    type StorageProviderItemPropertyDefinition_Ptr is access all StorageProviderItemPropertyDefinition;
+
+   type StorageProviderKnownFolderEntry is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IStorageProviderKnownFolderEntry : access Windows.Storage.Provider.IStorageProviderKnownFolderEntry;
+      end record;
+   type StorageProviderKnownFolderEntry_Ptr is access all StorageProviderKnownFolderEntry;
+
+   type StorageProviderKnownFolderSyncInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IStorageProviderKnownFolderSyncInfo : access Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfo;
+      end record;
+   type StorageProviderKnownFolderSyncInfo_Ptr is access all StorageProviderKnownFolderSyncInfo;
+
+   type StorageProviderKnownFolderSyncRequestArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IStorageProviderKnownFolderSyncRequestArgs : access Windows.Storage.Provider.IStorageProviderKnownFolderSyncRequestArgs;
+      end record;
+   type StorageProviderKnownFolderSyncRequestArgs_Ptr is access all StorageProviderKnownFolderSyncRequestArgs;
+
+   type StorageProviderMoreInfoUI is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IStorageProviderMoreInfoUI : access Windows.Storage.Provider.IStorageProviderMoreInfoUI;
+      end record;
+   type StorageProviderMoreInfoUI_Ptr is access all StorageProviderMoreInfoUI;
+
+   type StorageProviderQuotaUI is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IStorageProviderQuotaUI : access Windows.Storage.Provider.IStorageProviderQuotaUI;
+      end record;
+   type StorageProviderQuotaUI_Ptr is access all StorageProviderQuotaUI;
+
+   type StorageProviderStatusUI is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IStorageProviderStatusUI : access Windows.Storage.Provider.IStorageProviderStatusUI;
+      end record;
+   type StorageProviderStatusUI_Ptr is access all StorageProviderStatusUI;
 
    type StorageProviderSyncRootInfo is new Ada.Finalization.Limited_Controlled with
       record
@@ -264,13 +346,15 @@ package WinRt.Windows.Storage.Provider is
       None_e,
       ValidationRequired_e,
       StreamingAllowed_e,
-      AutoDehydrationAllowed_e
+      AutoDehydrationAllowed_e,
+      AllowFullRestartHydration_e
    );
    for StorageProviderHydrationPolicyModifier use (
       None_e => 0,
       ValidationRequired_e => 1,
       StreamingAllowed_e => 2,
-      AutoDehydrationAllowed_e => 4
+      AutoDehydrationAllowed_e => 4,
+      AllowFullRestartHydration_e => 8
    );
    type StorageProviderHydrationPolicyModifier_Ptr is access all StorageProviderHydrationPolicyModifier;
 
@@ -304,6 +388,18 @@ package WinRt.Windows.Storage.Provider is
    );
    type StorageProviderInSyncPolicy_Ptr is access all StorageProviderInSyncPolicy;
 
+   type StorageProviderKnownFolderSyncStatus is (
+      Available_e,
+      Enrolling_e,
+      Enrolled_e
+   );
+   for StorageProviderKnownFolderSyncStatus use (
+      Available_e => 0,
+      Enrolling_e => 1,
+      Enrolled_e => 2
+   );
+   type StorageProviderKnownFolderSyncStatus_Ptr is access all StorageProviderKnownFolderSyncStatus;
+
    type StorageProviderPopulationPolicy is (
       Full_e,
       AlwaysFull_e
@@ -323,6 +419,36 @@ package WinRt.Windows.Storage.Provider is
       Personal_e => 1
    );
    type StorageProviderProtectionMode_Ptr is access all StorageProviderProtectionMode;
+
+   type StorageProviderState is (
+      InSync_e,
+      Syncing_e,
+      Paused_e,
+      Error_e,
+      Warning_e,
+      Offline_e
+   );
+   for StorageProviderState use (
+      InSync_e => 0,
+      Syncing_e => 1,
+      Paused_e => 2,
+      Error_e => 3,
+      Warning_e => 4,
+      Offline_e => 5
+   );
+   type StorageProviderState_Ptr is access all StorageProviderState;
+
+   type StorageProviderUICommandState is (
+      Enabled_e,
+      Disabled_e,
+      Hidden_e
+   );
+   for StorageProviderUICommandState use (
+      Enabled_e => 0,
+      Disabled_e => 1,
+      Hidden_e => 2
+   );
+   type StorageProviderUICommandState_Ptr is access all StorageProviderUICommandState;
 
    type StorageProviderUriSourceStatus is (
       Success_e,
@@ -372,8 +498,33 @@ package WinRt.Windows.Storage.Provider is
    type CloudFilesContract_Ptr is access all CloudFilesContract;
 
    -----------------------------------------------------------------------------
+   -- Delegate declarations
+   -----------------------------------------------------------------------------
+
+   IID_StorageProviderKnownFolderSyncRequestedHandler : aliased WinRt.IID := (3301684469, 5085, 23694, (139, 150, 51, 111, 195, 12, 98, 155 ));
+   type StorageProviderKnownFolderSyncRequestedHandler_Delegate (Callback : access procedure  (args : Windows.Storage.Provider.IStorageProviderKnownFolderSyncRequestArgs)) is new WinRt.IMulticastDelegate_Interface (IID_StorageProviderKnownFolderSyncRequestedHandler'Access) with null record;
+      function Invoke
+      (
+         this : access StorageProviderKnownFolderSyncRequestedHandler_Delegate;
+         args : Windows.Storage.Provider.IStorageProviderKnownFolderSyncRequestArgs
+      )
+      return WinRt.Hresult;
+
+   -----------------------------------------------------------------------------
    -- Generic package declarations
    -----------------------------------------------------------------------------
+
+   package IVector_IStorageProviderKnownFolderEntry is new WinRt.Windows.Foundation.Collections.IVector (IStorageProviderKnownFolderEntry);
+   IID_IVector_IStorageProviderKnownFolderEntry : aliased WinRt.IID := (1165981881, 49110, 21292, (154, 66, 45, 87, 210, 248, 53, 204 ));
+   function QInterface_IVector_IStorageProviderKnownFolderEntry is new Generic_QueryInterface (GenericObject_Interface, IVector_IStorageProviderKnownFolderEntry.Kind, IID_IVector_IStorageProviderKnownFolderEntry'Access);
+
+   package IVectorView_Guid is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Guid);
+   IID_IVectorView_Guid : aliased WinRt.IID := (3443177807, 60063, 20924, (182, 88, 76, 213, 161, 0, 25, 118 ));
+   function QInterface_IVectorView_Guid is new Generic_QueryInterface (GenericObject_Interface, IVectorView_Guid.Kind, IID_IVectorView_Guid'Access);
+
+   package IVector_IStorageProviderUICommand is new WinRt.Windows.Foundation.Collections.IVector (IStorageProviderUICommand);
+   IID_IVector_IStorageProviderUICommand : aliased WinRt.IID := (594988064, 58832, 22016, (163, 176, 74, 239, 84, 52, 64, 98 ));
+   function QInterface_IVector_IStorageProviderUICommand is new Generic_QueryInterface (GenericObject_Interface, IVector_IStorageProviderUICommand.Kind, IID_IVector_IStorageProviderUICommand'Access);
 
    package IVector_IStorageProviderItemPropertyDefinition is new WinRt.Windows.Foundation.Collections.IVector (IStorageProviderItemPropertyDefinition);
    IID_IVector_IStorageProviderItemPropertyDefinition : aliased WinRt.IID := (2897682587, 63953, 22771, (137, 24, 238, 138, 168, 129, 219, 52 ));
@@ -795,6 +946,170 @@ package WinRt.Windows.Storage.Provider is
       IID_IStorageProviderItemPropertySource : aliased WinRt.IID := (2406456382, 63026, 19099, (141, 153, 210, 215, 161, 29, 245, 106 ));
 
    -----------------------------------------------------------------------------
+   -- type IStorageProviderKnownFolderEntry is interface and WinRt.IInspectable;
+
+      function get_KnownFolderId
+      (
+         this : access IStorageProviderKnownFolderEntry_Interface;
+         RetVal : access WinRt.Guid
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_KnownFolderId
+      (
+         this : access IStorageProviderKnownFolderEntry_Interface;
+         value : WinRt.Guid
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Status
+      (
+         this : access IStorageProviderKnownFolderEntry_Interface;
+         RetVal : access Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Status
+      (
+         this : access IStorageProviderKnownFolderEntry_Interface;
+         value : Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderKnownFolderEntry : aliased WinRt.IID := (4026170800, 7492, 22891, (132, 100, 146, 136, 0, 197, 226, 216 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderKnownFolderSyncInfo is interface and WinRt.IInspectable;
+
+      function get_ProviderDisplayName
+      (
+         this : access IStorageProviderKnownFolderSyncInfo_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ProviderDisplayName
+      (
+         this : access IStorageProviderKnownFolderSyncInfo_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_KnownFolderEntries
+      (
+         this : access IStorageProviderKnownFolderSyncInfo_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SyncRequested
+      (
+         this : access IStorageProviderKnownFolderSyncInfo_Interface;
+         RetVal : access Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SyncRequested
+      (
+         this : access IStorageProviderKnownFolderSyncInfo_Interface;
+         value : Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderKnownFolderSyncInfo : aliased WinRt.IID := (2561677262, 65473, 23313, (174, 119, 204, 23, 175, 236, 16, 73 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderKnownFolderSyncInfoSource is interface and WinRt.IInspectable;
+
+      function GetKnownFolderSyncInfo
+      (
+         this : access IStorageProviderKnownFolderSyncInfoSource_Interface;
+         RetVal : access Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_KnownFolderSyncInfoChanged
+      (
+         this : access IStorageProviderKnownFolderSyncInfoSource_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_KnownFolderSyncInfoChanged
+      (
+         this : access IStorageProviderKnownFolderSyncInfoSource_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderKnownFolderSyncInfoSource : aliased WinRt.IID := (1362465602, 63424, 21456, (187, 182, 28, 220, 9, 142, 189, 169 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderKnownFolderSyncInfoSourceFactory is interface and WinRt.IInspectable;
+
+      function GetKnownFolderSyncInfoSource
+      (
+         this : access IStorageProviderKnownFolderSyncInfoSourceFactory_Interface;
+         RetVal : access Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfoSource
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderKnownFolderSyncInfoSourceFactory : aliased WinRt.IID := (2867725223, 42998, 20670, (169, 176, 142, 130, 208, 200, 16, 130 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderKnownFolderSyncRequestArgs is interface and WinRt.IInspectable;
+
+      function get_KnownFolders
+      (
+         this : access IStorageProviderKnownFolderSyncRequestArgs_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Source
+      (
+         this : access IStorageProviderKnownFolderSyncRequestArgs_Interface;
+         RetVal : access Windows.Storage.IStorageFolder
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderKnownFolderSyncRequestArgs : aliased WinRt.IID := (3987133801, 46312, 21551, (171, 141, 243, 97, 63, 37, 10, 74 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderMoreInfoUI is interface and WinRt.IInspectable;
+
+      function get_Message
+      (
+         this : access IStorageProviderMoreInfoUI_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Message
+      (
+         this : access IStorageProviderMoreInfoUI_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Command
+      (
+         this : access IStorageProviderMoreInfoUI_Interface;
+         RetVal : access Windows.Storage.Provider.IStorageProviderUICommand
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Command
+      (
+         this : access IStorageProviderMoreInfoUI_Interface;
+         value : Windows.Storage.Provider.IStorageProviderUICommand
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderMoreInfoUI : aliased WinRt.IID := (4013483409, 42955, 24189, (155, 94, 34, 116, 152, 66, 105, 124 ));
+
+   -----------------------------------------------------------------------------
    -- type IStorageProviderPropertyCapabilities is interface and WinRt.IInspectable;
 
       function IsPropertySupported
@@ -806,6 +1121,224 @@ package WinRt.Windows.Storage.Provider is
       return WinRt.Hresult is abstract;
 
       IID_IStorageProviderPropertyCapabilities : aliased WinRt.IID := (1703751438, 25527, 17767, (172, 249, 81, 171, 227, 1, 221, 165 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderQuotaUI is interface and WinRt.IInspectable;
+
+      function get_QuotaTotalInBytes
+      (
+         this : access IStorageProviderQuotaUI_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_QuotaTotalInBytes
+      (
+         this : access IStorageProviderQuotaUI_Interface;
+         value : WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_QuotaUsedInBytes
+      (
+         this : access IStorageProviderQuotaUI_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_QuotaUsedInBytes
+      (
+         this : access IStorageProviderQuotaUI_Interface;
+         value : WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_QuotaUsedLabel
+      (
+         this : access IStorageProviderQuotaUI_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_QuotaUsedLabel
+      (
+         this : access IStorageProviderQuotaUI_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_QuotaUsedColor
+      (
+         this : access IStorageProviderQuotaUI_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_QuotaUsedColor
+      (
+         this : access IStorageProviderQuotaUI_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderQuotaUI : aliased WinRt.IID := (3127023043, 12590, 21583, (159, 213, 31, 129, 178, 31, 54, 73 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderStatusUI is interface and WinRt.IInspectable;
+
+      function get_ProviderState
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         RetVal : access Windows.Storage.Provider.StorageProviderState
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ProviderState
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         value : Windows.Storage.Provider.StorageProviderState
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProviderStateLabel
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ProviderStateLabel
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProviderStateIcon
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         RetVal : access Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ProviderStateIcon
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         value : Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SyncStatusCommand
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         RetVal : access Windows.Storage.Provider.IStorageProviderUICommand
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SyncStatusCommand
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         value : Windows.Storage.Provider.IStorageProviderUICommand
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_QuotaUI
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         RetVal : access Windows.Storage.Provider.IStorageProviderQuotaUI
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_QuotaUI
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         value : Windows.Storage.Provider.IStorageProviderQuotaUI
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MoreInfoUI
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         RetVal : access Windows.Storage.Provider.IStorageProviderMoreInfoUI
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_MoreInfoUI
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         value : Windows.Storage.Provider.IStorageProviderMoreInfoUI
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProviderPrimaryCommand
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         RetVal : access Windows.Storage.Provider.IStorageProviderUICommand
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ProviderPrimaryCommand
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         value : Windows.Storage.Provider.IStorageProviderUICommand
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProviderSecondaryCommands
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ProviderSecondaryCommands
+      (
+         this : access IStorageProviderStatusUI_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderStatusUI : aliased WinRt.IID := (3602294616, 6541, 23424, (151, 127, 95, 247, 61, 163, 49, 24 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderStatusUISource is interface and WinRt.IInspectable;
+
+      function GetStatusUI
+      (
+         this : access IStorageProviderStatusUISource_Interface;
+         RetVal : access Windows.Storage.Provider.IStorageProviderStatusUI
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_StatusUIChanged
+      (
+         this : access IStorageProviderStatusUISource_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_StatusUIChanged
+      (
+         this : access IStorageProviderStatusUISource_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderStatusUISource : aliased WinRt.IID := (2735129161, 15718, 24176, (144, 7, 228, 61, 249, 96, 81, 255 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderStatusUISourceFactory is interface and WinRt.IInspectable;
+
+      function GetStatusUISource
+      (
+         this : access IStorageProviderStatusUISourceFactory_Interface;
+         syncRootId : WinRt.HString;
+         RetVal : access Windows.Storage.Provider.IStorageProviderStatusUISource
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderStatusUISourceFactory : aliased WinRt.IID := (316959604, 20058, 22737, (166, 47, 3, 118, 232, 238, 125, 216 ));
 
    -----------------------------------------------------------------------------
    -- type IStorageProviderSyncRootInfo is interface and WinRt.IInspectable;
@@ -1113,6 +1646,45 @@ package WinRt.Windows.Storage.Provider is
       return WinRt.Hresult is abstract;
 
       IID_IStorageProviderSyncRootManagerStatics2 : aliased WinRt.IID := (4021735406, 4980, 21582, (157, 241, 85, 152, 210, 233, 207, 221 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderUICommand is interface and WinRt.IInspectable;
+
+      function get_Label
+      (
+         this : access IStorageProviderUICommand_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Description
+      (
+         this : access IStorageProviderUICommand_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Icon
+      (
+         this : access IStorageProviderUICommand_Interface;
+         RetVal : access Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_State
+      (
+         this : access IStorageProviderUICommand_Interface;
+         RetVal : access Windows.Storage.Provider.StorageProviderUICommandState
+      )
+      return WinRt.Hresult is abstract;
+
+      function Invoke
+      (
+         this : access IStorageProviderUICommand_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderUICommand : aliased WinRt.IID := (205391712, 55366, 22159, (148, 132, 16, 92, 197, 123, 80, 43 ));
 
    -----------------------------------------------------------------------------
    -- type IStorageProviderUriSource is interface and WinRt.IInspectable;
@@ -1531,6 +2103,319 @@ package WinRt.Windows.Storage.Provider is
    );
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderKnownFolderEntry
+
+   overriding procedure Initialize (this : in out StorageProviderKnownFolderEntry);
+   overriding procedure Finalize (this : in out StorageProviderKnownFolderEntry);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageProviderKnownFolderEntry
+
+   function Constructor return StorageProviderKnownFolderEntry;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderKnownFolderEntry
+
+   function get_KnownFolderId
+   (
+      this : in out StorageProviderKnownFolderEntry
+   )
+   return WinRt.Guid;
+
+   procedure put_KnownFolderId
+   (
+      this : in out StorageProviderKnownFolderEntry;
+      value : WinRt.Guid
+   );
+
+   function get_Status
+   (
+      this : in out StorageProviderKnownFolderEntry
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus;
+
+   procedure put_Status
+   (
+      this : in out StorageProviderKnownFolderEntry;
+      value : Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderKnownFolderSyncInfo
+
+   overriding procedure Initialize (this : in out StorageProviderKnownFolderSyncInfo);
+   overriding procedure Finalize (this : in out StorageProviderKnownFolderSyncInfo);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageProviderKnownFolderSyncInfo
+
+   function Constructor return StorageProviderKnownFolderSyncInfo;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderKnownFolderSyncInfo
+
+   function get_ProviderDisplayName
+   (
+      this : in out StorageProviderKnownFolderSyncInfo
+   )
+   return WinRt.WString;
+
+   procedure put_ProviderDisplayName
+   (
+      this : in out StorageProviderKnownFolderSyncInfo;
+      value : WinRt.WString
+   );
+
+   function get_KnownFolderEntries
+   (
+      this : in out StorageProviderKnownFolderSyncInfo
+   )
+   return IVector_IStorageProviderKnownFolderEntry.Kind;
+
+   function get_SyncRequested
+   (
+      this : in out StorageProviderKnownFolderSyncInfo
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler;
+
+   procedure put_SyncRequested
+   (
+      this : in out StorageProviderKnownFolderSyncInfo;
+      value : Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderKnownFolderSyncRequestArgs
+
+   overriding procedure Initialize (this : in out StorageProviderKnownFolderSyncRequestArgs);
+   overriding procedure Finalize (this : in out StorageProviderKnownFolderSyncRequestArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderKnownFolderSyncRequestArgs
+
+   function get_KnownFolders
+   (
+      this : in out StorageProviderKnownFolderSyncRequestArgs
+   )
+   return IVectorView_Guid.Kind;
+
+   function get_Source
+   (
+      this : in out StorageProviderKnownFolderSyncRequestArgs
+   )
+   return WinRt.Windows.Storage.StorageFolder'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderMoreInfoUI
+
+   overriding procedure Initialize (this : in out StorageProviderMoreInfoUI);
+   overriding procedure Finalize (this : in out StorageProviderMoreInfoUI);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageProviderMoreInfoUI
+
+   function Constructor return StorageProviderMoreInfoUI;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderMoreInfoUI
+
+   function get_Message
+   (
+      this : in out StorageProviderMoreInfoUI
+   )
+   return WinRt.WString;
+
+   procedure put_Message
+   (
+      this : in out StorageProviderMoreInfoUI;
+      value : WinRt.WString
+   );
+
+   function get_Command
+   (
+      this : in out StorageProviderMoreInfoUI
+   )
+   return WinRt.Windows.Storage.Provider.IStorageProviderUICommand;
+
+   procedure put_Command
+   (
+      this : in out StorageProviderMoreInfoUI;
+      value : Windows.Storage.Provider.IStorageProviderUICommand
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderQuotaUI
+
+   overriding procedure Initialize (this : in out StorageProviderQuotaUI);
+   overriding procedure Finalize (this : in out StorageProviderQuotaUI);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageProviderQuotaUI
+
+   function Constructor return StorageProviderQuotaUI;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderQuotaUI
+
+   function get_QuotaTotalInBytes
+   (
+      this : in out StorageProviderQuotaUI
+   )
+   return WinRt.UInt64;
+
+   procedure put_QuotaTotalInBytes
+   (
+      this : in out StorageProviderQuotaUI;
+      value : WinRt.UInt64
+   );
+
+   function get_QuotaUsedInBytes
+   (
+      this : in out StorageProviderQuotaUI
+   )
+   return WinRt.UInt64;
+
+   procedure put_QuotaUsedInBytes
+   (
+      this : in out StorageProviderQuotaUI;
+      value : WinRt.UInt64
+   );
+
+   function get_QuotaUsedLabel
+   (
+      this : in out StorageProviderQuotaUI
+   )
+   return WinRt.WString;
+
+   procedure put_QuotaUsedLabel
+   (
+      this : in out StorageProviderQuotaUI;
+      value : WinRt.WString
+   );
+
+   function get_QuotaUsedColor
+   (
+      this : in out StorageProviderQuotaUI
+   )
+   return WinRt.GenericObject;
+
+   procedure put_QuotaUsedColor
+   (
+      this : in out StorageProviderQuotaUI;
+      value : GenericObject
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderStatusUI
+
+   overriding procedure Initialize (this : in out StorageProviderStatusUI);
+   overriding procedure Finalize (this : in out StorageProviderStatusUI);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageProviderStatusUI
+
+   function Constructor return StorageProviderStatusUI;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderStatusUI
+
+   function get_ProviderState
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderState;
+
+   procedure put_ProviderState
+   (
+      this : in out StorageProviderStatusUI;
+      value : Windows.Storage.Provider.StorageProviderState
+   );
+
+   function get_ProviderStateLabel
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.WString;
+
+   procedure put_ProviderStateLabel
+   (
+      this : in out StorageProviderStatusUI;
+      value : WinRt.WString
+   );
+
+   function get_ProviderStateIcon
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.Windows.Foundation.Uri'Class;
+
+   procedure put_ProviderStateIcon
+   (
+      this : in out StorageProviderStatusUI;
+      value : Windows.Foundation.Uri'Class
+   );
+
+   function get_SyncStatusCommand
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.Windows.Storage.Provider.IStorageProviderUICommand;
+
+   procedure put_SyncStatusCommand
+   (
+      this : in out StorageProviderStatusUI;
+      value : Windows.Storage.Provider.IStorageProviderUICommand
+   );
+
+   function get_QuotaUI
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderQuotaUI'Class;
+
+   procedure put_QuotaUI
+   (
+      this : in out StorageProviderStatusUI;
+      value : Windows.Storage.Provider.StorageProviderQuotaUI'Class
+   );
+
+   function get_MoreInfoUI
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderMoreInfoUI'Class;
+
+   procedure put_MoreInfoUI
+   (
+      this : in out StorageProviderStatusUI;
+      value : Windows.Storage.Provider.StorageProviderMoreInfoUI'Class
+   );
+
+   function get_ProviderPrimaryCommand
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.Windows.Storage.Provider.IStorageProviderUICommand;
+
+   procedure put_ProviderPrimaryCommand
+   (
+      this : in out StorageProviderStatusUI;
+      value : Windows.Storage.Provider.IStorageProviderUICommand
+   );
+
+   function get_ProviderSecondaryCommands
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return IVector_IStorageProviderUICommand.Kind;
+
+   procedure put_ProviderSecondaryCommands
+   (
+      this : in out StorageProviderStatusUI;
+      value : GenericObject
+   );
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StorageProviderSyncRootInfo
 
    overriding procedure Initialize (this : in out StorageProviderSyncRootInfo);
@@ -1752,6 +2637,9 @@ package WinRt.Windows.Storage.Provider is
    -- Static RuntimeClass
    package StorageProviderSyncRootManager is
 
+      function IsSupported
+      return WinRt.Boolean;
+
       procedure Register
       (
          syncRootInformation : Windows.Storage.Provider.StorageProviderSyncRootInfo'Class
@@ -1776,9 +2664,6 @@ package WinRt.Windows.Storage.Provider is
 
       function GetCurrentSyncRoots
       return WinRt.GenericObject;
-
-      function IsSupported
-      return WinRt.Boolean;
 
    end StorageProviderSyncRootManager;
 

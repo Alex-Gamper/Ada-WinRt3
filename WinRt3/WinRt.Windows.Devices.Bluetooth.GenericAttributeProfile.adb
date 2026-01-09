@@ -1258,447 +1258,6 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    -- Static RuntimeClass
    package body GattCharacteristicUuids is
 
-      function get_BatteryLevel
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_BatteryLevel (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_BloodPressureFeature
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_BloodPressureFeature (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_BloodPressureMeasurement
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_BloodPressureMeasurement (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_BodySensorLocation
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_BodySensorLocation (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_CscFeature
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_CscFeature (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_CscMeasurement
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_CscMeasurement (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_GlucoseFeature
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_GlucoseFeature (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_GlucoseMeasurement
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_GlucoseMeasurement (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_GlucoseMeasurementContext
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_GlucoseMeasurementContext (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_HeartRateControlPoint
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_HeartRateControlPoint (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_HeartRateMeasurement
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_HeartRateMeasurement (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_IntermediateCuffPressure
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_IntermediateCuffPressure (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_IntermediateTemperature
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_IntermediateTemperature (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_MeasurementInterval
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_MeasurementInterval (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_RecordAccessControlPoint
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_RecordAccessControlPoint (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_RscFeature
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_RscFeature (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_RscMeasurement
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_RscMeasurement (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_SCControlPoint
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_SCControlPoint (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_SensorLocation
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_SensorLocation (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_TemperatureMeasurement
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_TemperatureMeasurement (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_TemperatureType
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
-         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_TemperatureType (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
       function get_AlertCategoryId
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
@@ -2959,6 +2518,447 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
          return m_ComRetVal;
       end;
 
+      function get_BatteryLevel
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_BatteryLevel (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_BloodPressureFeature
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_BloodPressureFeature (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_BloodPressureMeasurement
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_BloodPressureMeasurement (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_BodySensorLocation
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_BodySensorLocation (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_CscFeature
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CscFeature (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_CscMeasurement
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CscMeasurement (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_GlucoseFeature
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_GlucoseFeature (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_GlucoseMeasurement
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_GlucoseMeasurement (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_GlucoseMeasurementContext
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_GlucoseMeasurementContext (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_HeartRateControlPoint
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_HeartRateControlPoint (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_HeartRateMeasurement
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_HeartRateMeasurement (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_IntermediateCuffPressure
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_IntermediateCuffPressure (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_IntermediateTemperature
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_IntermediateTemperature (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_MeasurementInterval
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_MeasurementInterval (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_RecordAccessControlPoint
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_RecordAccessControlPoint (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_RscFeature
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_RscFeature (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_RscMeasurement
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_RscMeasurement (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_SCControlPoint
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SCControlPoint (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_SensorLocation
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SensorLocation (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_TemperatureMeasurement
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_TemperatureMeasurement (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_TemperatureType
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicUuids");
+         m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicUuidsStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGattCharacteristicUuidsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_TemperatureType (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
    end GattCharacteristicUuids;
 
    -----------------------------------------------------------------------------
@@ -3763,6 +3763,159 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    function FromIdAsync
    (
+      deviceId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServiceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_GattDeviceService.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_GattDeviceService.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService;
+      m_IID            : aliased WinRt.IID := (3857252978, 16527, 20565, (155, 211, 136, 64, 137, 130, 211, 1 )); -- Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService;
+      m_HandlerIID     : aliased WinRt.IID := (767358538, 9771, 22280, (173, 177, 195, 184, 117, 11, 214, 128 ));
+      m_Handler        : AsyncOperationCompletedHandler_GattDeviceService.Kind := new AsyncOperationCompletedHandler_GattDeviceService.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_GattDeviceService.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_GattDeviceService.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GattDeviceService.Kind_Delegate, AsyncOperationCompletedHandler_GattDeviceService.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService do
+         Hr := RoGetActivationFactory (m_hString, IID_IGattDeviceServiceStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_IGattDeviceService := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService;
+                     Retval.m_IGattDeviceService.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
+      end return;
+   end;
+
+   function GetDeviceSelectorFromUuid
+   (
+      serviceUuid : WinRt.Guid
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServiceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IGattDeviceServiceStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelectorFromUuid (serviceUuid, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetDeviceSelectorFromShortId
+   (
+      serviceShortId : WinRt.UInt16
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServiceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IGattDeviceServiceStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelectorFromShortId (serviceShortId, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function ConvertShortIdToUuid_GattDeviceService
+   (
+      shortId : WinRt.UInt16
+   )
+   return WinRt.Guid is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServiceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Guid;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IGattDeviceServiceStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.ConvertShortIdToUuid (shortId, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function FromIdAsync
+   (
       deviceId : WinRt.WString;
       sharingMode : Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode
    )
@@ -3947,159 +4100,6 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       AdaRetval := To_Ada (m_ComRetVal);
       tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
-   end;
-
-   function FromIdAsync
-   (
-      deviceId : WinRt.WString
-   )
-   return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServiceStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_GattDeviceService.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_GattDeviceService.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService;
-      m_IID            : aliased WinRt.IID := (3857252978, 16527, 20565, (155, 211, 136, 64, 137, 130, 211, 1 )); -- Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService;
-      m_HandlerIID     : aliased WinRt.IID := (767358538, 9771, 22280, (173, 177, 195, 184, 117, 11, 214, 128 ));
-      m_Handler        : AsyncOperationCompletedHandler_GattDeviceService.Kind := new AsyncOperationCompletedHandler_GattDeviceService.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_GattDeviceService.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_GattDeviceService.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GattDeviceService.Kind_Delegate, AsyncOperationCompletedHandler_GattDeviceService.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService do
-         Hr := RoGetActivationFactory (m_hString, IID_IGattDeviceServiceStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IGattDeviceService := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService;
-                     Retval.m_IGattDeviceService.all := m_RetVal;
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_deviceId);
-      end return;
-   end;
-
-   function GetDeviceSelectorFromUuid
-   (
-      serviceUuid : WinRt.Guid
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServiceStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IGattDeviceServiceStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelectorFromUuid (serviceUuid, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function GetDeviceSelectorFromShortId
-   (
-      serviceShortId : WinRt.UInt16
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServiceStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IGattDeviceServiceStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelectorFromShortId (serviceShortId, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function ConvertShortIdToUuid_GattDeviceService
-   (
-      shortId : WinRt.UInt16
-   )
-   return WinRt.Guid is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServiceStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Guid;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IGattDeviceServiceStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.ConvertShortIdToUuid (shortId, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

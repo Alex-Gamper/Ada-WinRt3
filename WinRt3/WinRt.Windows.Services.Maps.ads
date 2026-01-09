@@ -1773,13 +1773,6 @@ package WinRt.Windows.Services.Maps is
 
       function FindLocationsAtAsync
       (
-         queryPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         accuracy : Windows.Services.Maps.MapLocationDesiredAccuracy
-      )
-      return WinRt.Windows.Services.Maps.MapLocationFinderResult;
-
-      function FindLocationsAtAsync
-      (
          queryPoint : Windows.Devices.Geolocation.Geopoint'Class
       )
       return WinRt.Windows.Services.Maps.MapLocationFinderResult;
@@ -1796,6 +1789,13 @@ package WinRt.Windows.Services.Maps is
          searchText : WinRt.WString;
          referencePoint : Windows.Devices.Geolocation.Geopoint'Class;
          maxCount : WinRt.UInt32
+      )
+      return WinRt.Windows.Services.Maps.MapLocationFinderResult;
+
+      function FindLocationsAtAsync
+      (
+         queryPoint : Windows.Devices.Geolocation.Geopoint'Class;
+         accuracy : Windows.Services.Maps.MapLocationDesiredAccuracy
       )
       return WinRt.Windows.Services.Maps.MapLocationFinderResult;
 
@@ -1985,6 +1985,27 @@ package WinRt.Windows.Services.Maps is
    -- Static RuntimeClass
    package MapRouteFinder is
 
+      function GetDrivingRouteFromEnhancedWaypointsAsync
+      (
+         waypoints : GenericObject
+      )
+      return WinRt.Windows.Services.Maps.MapRouteFinderResult;
+
+      function GetDrivingRouteFromEnhancedWaypointsAsync
+      (
+         waypoints : GenericObject;
+         options : Windows.Services.Maps.MapRouteDrivingOptions'Class
+      )
+      return WinRt.Windows.Services.Maps.MapRouteFinderResult;
+
+      function GetDrivingRouteAsync
+      (
+         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
+         endPoint : Windows.Devices.Geolocation.Geopoint'Class;
+         options : Windows.Services.Maps.MapRouteDrivingOptions'Class
+      )
+      return WinRt.Windows.Services.Maps.MapRouteFinderResult;
+
       function GetDrivingRouteAsync
       (
          startPoint : Windows.Devices.Geolocation.Geopoint'Class;
@@ -2059,27 +2080,6 @@ package WinRt.Windows.Services.Maps is
       function GetWalkingRouteFromWaypointsAsync
       (
          wayPoints : GenericObject
-      )
-      return WinRt.Windows.Services.Maps.MapRouteFinderResult;
-
-      function GetDrivingRouteFromEnhancedWaypointsAsync
-      (
-         waypoints : GenericObject
-      )
-      return WinRt.Windows.Services.Maps.MapRouteFinderResult;
-
-      function GetDrivingRouteFromEnhancedWaypointsAsync
-      (
-         waypoints : GenericObject;
-         options : Windows.Services.Maps.MapRouteDrivingOptions'Class
-      )
-      return WinRt.Windows.Services.Maps.MapRouteFinderResult;
-
-      function GetDrivingRouteAsync
-      (
-         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         endPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         options : Windows.Services.Maps.MapRouteDrivingOptions'Class
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult;
 
@@ -2244,9 +2244,6 @@ package WinRt.Windows.Services.Maps is
       function get_ServiceToken
       return WinRt.WString;
 
-      function get_DataAttributions
-      return WinRt.WString;
-
       procedure put_DataUsagePreference
       (
          value : Windows.Services.Maps.MapServiceDataUsagePreference
@@ -2254,6 +2251,9 @@ package WinRt.Windows.Services.Maps is
 
       function get_DataUsagePreference
       return WinRt.Windows.Services.Maps.MapServiceDataUsagePreference;
+
+      function get_DataAttributions
+      return WinRt.WString;
 
       function get_WorldViewRegionCode
       return WinRt.WString;
@@ -2268,6 +2268,19 @@ package WinRt.Windows.Services.Maps is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for PlaceInfo
+
+   function CreateFromAddress
+   (
+      displayAddress : WinRt.WString
+   )
+   return WinRt.Windows.Services.Maps.PlaceInfo;
+
+   function CreateFromAddress
+   (
+      displayAddress : WinRt.WString;
+      displayName : WinRt.WString
+   )
+   return WinRt.Windows.Services.Maps.PlaceInfo;
 
    function Create
    (
@@ -2304,19 +2317,6 @@ package WinRt.Windows.Services.Maps is
 
    function get_IsShowSupported
    return WinRt.Boolean;
-
-   function CreateFromAddress
-   (
-      displayAddress : WinRt.WString
-   )
-   return WinRt.Windows.Services.Maps.PlaceInfo;
-
-   function CreateFromAddress
-   (
-      displayAddress : WinRt.WString;
-      displayName : WinRt.WString
-   )
-   return WinRt.Windows.Services.Maps.PlaceInfo;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for PlaceInfo

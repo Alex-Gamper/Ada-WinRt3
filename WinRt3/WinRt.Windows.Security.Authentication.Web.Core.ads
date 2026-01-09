@@ -820,40 +820,6 @@ package WinRt.Windows.Security.Authentication.Web.Core is
    -- Static RuntimeClass
    package WebAuthenticationCoreManager is
 
-      function FindAllAccountsAsync
-      (
-         provider : Windows.Security.Credentials.WebAccountProvider'Class
-      )
-      return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
-
-      function FindAllAccountsAsync
-      (
-         provider : Windows.Security.Credentials.WebAccountProvider'Class;
-         clientId : WinRt.WString
-      )
-      return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
-
-      function FindSystemAccountProviderAsync
-      (
-         webAccountProviderId : WinRt.WString
-      )
-      return WinRt.Windows.Security.Credentials.WebAccountProvider;
-
-      function FindSystemAccountProviderAsync
-      (
-         webAccountProviderId : WinRt.WString;
-         authority : WinRt.WString
-      )
-      return WinRt.Windows.Security.Credentials.WebAccountProvider;
-
-      function FindSystemAccountProviderAsync
-      (
-         webAccountProviderId : WinRt.WString;
-         authority : WinRt.WString;
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.Security.Credentials.WebAccountProvider;
-
       function GetTokenSilentlyAsync
       (
          request : Windows.Security.Authentication.Web.Core.WebTokenRequest'Class
@@ -897,6 +863,40 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       (
          webAccountProviderId : WinRt.WString;
          authority : WinRt.WString
+      )
+      return WinRt.Windows.Security.Credentials.WebAccountProvider;
+
+      function FindAllAccountsAsync
+      (
+         provider : Windows.Security.Credentials.WebAccountProvider'Class
+      )
+      return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
+
+      function FindAllAccountsAsync
+      (
+         provider : Windows.Security.Credentials.WebAccountProvider'Class;
+         clientId : WinRt.WString
+      )
+      return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
+
+      function FindSystemAccountProviderAsync
+      (
+         webAccountProviderId : WinRt.WString
+      )
+      return WinRt.Windows.Security.Credentials.WebAccountProvider;
+
+      function FindSystemAccountProviderAsync
+      (
+         webAccountProviderId : WinRt.WString;
+         authority : WinRt.WString
+      )
+      return WinRt.Windows.Security.Credentials.WebAccountProvider;
+
+      function FindSystemAccountProviderAsync
+      (
+         webAccountProviderId : WinRt.WString;
+         authority : WinRt.WString;
+         user : Windows.System.User'Class
       )
       return WinRt.Windows.Security.Credentials.WebAccountProvider;
 

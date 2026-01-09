@@ -3017,17 +3017,6 @@ package WinRt.Windows.Globalization is
 
    function Constructor
    (
-      languages : GenericObject;
-      calendar_p : WinRt.WString;
-      clock : WinRt.WString;
-      timeZoneId : WinRt.WString
-   )
-   return Calendar;
-
-   function Constructor return Calendar;
-
-   function Constructor
-   (
       languages : GenericObject
    )
    return Calendar;
@@ -3037,6 +3026,17 @@ package WinRt.Windows.Globalization is
       languages : GenericObject;
       calendar_p : WinRt.WString;
       clock : WinRt.WString
+   )
+   return Calendar;
+
+   function Constructor return Calendar;
+
+   function Constructor
+   (
+      languages : GenericObject;
+      calendar_p : WinRt.WString;
+      clock : WinRt.WString;
+      timeZoneId : WinRt.WString
    )
    return Calendar;
 
@@ -3673,6 +3673,21 @@ package WinRt.Windows.Globalization is
    -- Static RuntimeClass
    package CalendarIdentifiers is
 
+      function get_ChineseLunar
+      return WinRt.WString;
+
+      function get_JapaneseLunar
+      return WinRt.WString;
+
+      function get_KoreanLunar
+      return WinRt.WString;
+
+      function get_TaiwanLunar
+      return WinRt.WString;
+
+      function get_VietnameseLunar
+      return WinRt.WString;
+
       function get_Gregorian
       return WinRt.WString;
 
@@ -3698,21 +3713,6 @@ package WinRt.Windows.Globalization is
       return WinRt.WString;
 
       function get_UmAlQura
-      return WinRt.WString;
-
-      function get_ChineseLunar
-      return WinRt.WString;
-
-      function get_JapaneseLunar
-      return WinRt.WString;
-
-      function get_KoreanLunar
-      return WinRt.WString;
-
-      function get_TaiwanLunar
-      return WinRt.WString;
-
-      function get_VietnameseLunar
       return WinRt.WString;
 
       function get_Persian
@@ -3766,6 +3766,9 @@ package WinRt.Windows.Globalization is
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package CurrencyIdentifiers is
+
+      function get_BYN
+      return WinRt.WString;
 
       function get_AED
       return WinRt.WString;
@@ -4238,9 +4241,6 @@ package WinRt.Windows.Globalization is
       function get_ZWL
       return WinRt.WString;
 
-      function get_BYN
-      return WinRt.WString;
-
       function get_MRU
       return WinRt.WString;
 
@@ -4264,13 +4264,13 @@ package WinRt.Windows.Globalization is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for GeographicRegion
 
-   function Constructor return GeographicRegion;
-
    function Constructor
    (
       geographicRegionCode : WinRt.WString
    )
    return GeographicRegion;
+
+   function Constructor return GeographicRegion;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for GeographicRegion
@@ -4390,6 +4390,12 @@ package WinRt.Windows.Globalization is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Language
 
+   function GetMuiCompatibleLanguageListFromLanguageTags
+   (
+      languageTags : GenericObject
+   )
+   return WinRt.GenericObject;
+
    function IsWellFormed
    (
       languageTag : WinRt.WString
@@ -4404,12 +4410,6 @@ package WinRt.Windows.Globalization is
       languageTag : WinRt.WString
    )
    return WinRt.Boolean;
-
-   function GetMuiCompatibleLanguageListFromLanguageTags
-   (
-      languageTags : GenericObject
-   )
-   return WinRt.GenericObject;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for Language

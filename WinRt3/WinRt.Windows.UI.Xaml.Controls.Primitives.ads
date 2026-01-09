@@ -6651,6 +6651,24 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_ShouldConstrainToRootBoundsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_TargetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ShowModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_InputDevicePrefersPrimaryCommandsProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AreOpenCloseAnimationsEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsOpenProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_OverlayInputPassThroughElementProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_PlacementProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -6673,24 +6691,6 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    (
       flyoutOwner : Windows.UI.Xaml.FrameworkElement'Class
    );
-
-   function get_TargetProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ShowModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_InputDevicePrefersPrimaryCommandsProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AreOpenCloseAnimationsEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsOpenProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_OverlayInputPassThroughElementProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for FlyoutBase
@@ -8802,6 +8802,12 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
    -- Static Interfaces for LayoutInformation
 
+   function GetAvailableSize
+   (
+      element : Windows.UI.Xaml.UIElement'Class
+   )
+   return WinRt.Windows.Foundation.Size;
+
    function GetLayoutExceptionElement
    (
       dispatcher : WinRt.IInspectable
@@ -8813,12 +8819,6 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       element : Windows.UI.Xaml.FrameworkElement'Class
    )
    return WinRt.Windows.Foundation.Rect;
-
-   function GetAvailableSize
-   (
-      element : Windows.UI.Xaml.UIElement'Class
-   )
-   return WinRt.Windows.Foundation.Size;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for LayoutInformation
@@ -8908,6 +8908,18 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_ContentMarginProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_RevealBackgroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RevealBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RevealBorderThicknessProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RevealBackgroundShowsAboveContentProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_SelectedPressedBackgroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -8924,18 +8936,6 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_PointerOverForegroundProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RevealBackgroundProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RevealBorderBrushProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RevealBorderThicknessProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RevealBackgroundShowsAboveContentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -9953,12 +9953,6 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Popup
 
-   function get_LightDismissOverlayModeProperty_Popup
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ShouldConstrainToRootBoundsProperty_Popup
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_ChildProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -9975,6 +9969,12 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsLightDismissEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LightDismissOverlayModeProperty_Popup
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ShouldConstrainToRootBoundsProperty_Popup
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------

@@ -267,30 +267,6 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
 
    function Constructor
    (
-      projectRoot : Windows.Foundation.Uri'Class
-   )
-   return ResourceIndexer is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.ResourceIndexer");
-      m_Factory    : access IResourceIndexerFactory_Interface'Class := null;
-      temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Resources.Management.IResourceIndexer;
-   begin
-      return RetVal : ResourceIndexer do
-         Hr := RoGetActivationFactory (m_hString, IID_IResourceIndexerFactory'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateResourceIndexer (projectRoot.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            Retval.m_IResourceIndexer := new Windows.ApplicationModel.Resources.Management.IResourceIndexer;
-            Retval.m_IResourceIndexer.all := m_ComRetVal;
-            temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor
-   (
       projectRoot : Windows.Foundation.Uri'Class;
       extensionDllPath : Windows.Foundation.Uri'Class
    )
@@ -306,6 +282,30 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
          Hr := RoGetActivationFactory (m_hString, IID_IResourceIndexerFactory2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateResourceIndexerWithExtension (projectRoot.m_IUriRuntimeClass.all, extensionDllPath.m_IUriRuntimeClass.all, m_ComRetVal'Access);
+            Retval.m_IResourceIndexer := new Windows.ApplicationModel.Resources.Management.IResourceIndexer;
+            Retval.m_IResourceIndexer.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
+      projectRoot : Windows.Foundation.Uri'Class
+   )
+   return ResourceIndexer is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.ResourceIndexer");
+      m_Factory    : access IResourceIndexerFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.ApplicationModel.Resources.Management.IResourceIndexer;
+   begin
+      return RetVal : ResourceIndexer do
+         Hr := RoGetActivationFactory (m_hString, IID_IResourceIndexerFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateResourceIndexer (projectRoot.m_IUriRuntimeClass.all, m_ComRetVal'Access);
             Retval.m_IResourceIndexer := new Windows.ApplicationModel.Resources.Management.IResourceIndexer;
             Retval.m_IResourceIndexer.all := m_ComRetVal;
             temp := m_Factory.Release;

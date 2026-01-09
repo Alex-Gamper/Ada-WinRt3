@@ -949,103 +949,6 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
    -- Static RuntimeClass
    package WebAccountManager is
 
-      function FindAllProviderWebAccountsForUserAsync
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.GenericObject;
-
-      function AddWebAccountForUserAsync
-      (
-         user : Windows.System.User'Class;
-         webAccountId : WinRt.WString;
-         webAccountUserName : WinRt.WString;
-         props : GenericObject
-      )
-      return WinRt.Windows.Security.Credentials.WebAccount;
-
-      function AddWebAccountForUserAsync
-      (
-         user : Windows.System.User'Class;
-         webAccountId : WinRt.WString;
-         webAccountUserName : WinRt.WString;
-         props : GenericObject;
-         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope
-      )
-      return WinRt.Windows.Security.Credentials.WebAccount;
-
-      function AddWebAccountForUserAsync
-      (
-         user : Windows.System.User'Class;
-         webAccountId : WinRt.WString;
-         webAccountUserName : WinRt.WString;
-         props : GenericObject;
-         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope;
-         perUserWebAccountId : WinRt.WString
-      )
-      return WinRt.Windows.Security.Credentials.WebAccount;
-
-      procedure PullCookiesAsync
-      (
-         uriString : WinRt.WString;
-         callerPFN : WinRt.WString
-      );
-
-      function AddWebAccountAsync
-      (
-         webAccountId : WinRt.WString;
-         webAccountUserName : WinRt.WString;
-         props : GenericObject;
-         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope;
-         perUserWebAccountId : WinRt.WString
-      )
-      return WinRt.Windows.Security.Credentials.WebAccount;
-
-      procedure SetPerAppToPerUserAccountAsync
-      (
-         perAppAccount : Windows.Security.Credentials.WebAccount'Class;
-         perUserWebAccountId : WinRt.WString
-      );
-
-      function GetPerUserFromPerAppAccountAsync
-      (
-         perAppAccount : Windows.Security.Credentials.WebAccount'Class
-      )
-      return WinRt.Windows.Security.Credentials.WebAccount;
-
-      procedure ClearPerUserFromPerAppAccountAsync
-      (
-         perAppAccount : Windows.Security.Credentials.WebAccount'Class
-      );
-
-      procedure InvalidateAppCacheForAllAccountsAsync;
-
-      procedure InvalidateAppCacheForAccountAsync
-      (
-         webAccount : Windows.Security.Credentials.WebAccount'Class
-      );
-
-      function AddWebAccountAsync
-      (
-         webAccountId : WinRt.WString;
-         webAccountUserName : WinRt.WString;
-         props : GenericObject;
-         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope
-      )
-      return WinRt.Windows.Security.Credentials.WebAccount;
-
-      procedure SetScopeAsync
-      (
-         webAccount : Windows.Security.Credentials.WebAccount'Class;
-         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope
-      );
-
-      function GetScope
-      (
-         webAccount : Windows.Security.Credentials.WebAccount'Class
-      )
-      return WinRt.Windows.Security.Authentication.Web.Provider.WebAccountScope;
-
       procedure UpdateWebAccountPropertiesAsync
       (
          webAccount : Windows.Security.Credentials.WebAccount'Class;
@@ -1103,6 +1006,103 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
       (
          webAccount : Windows.Security.Credentials.WebAccount'Class
       );
+
+      function AddWebAccountAsync
+      (
+         webAccountId : WinRt.WString;
+         webAccountUserName : WinRt.WString;
+         props : GenericObject;
+         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope;
+         perUserWebAccountId : WinRt.WString
+      )
+      return WinRt.Windows.Security.Credentials.WebAccount;
+
+      procedure SetPerAppToPerUserAccountAsync
+      (
+         perAppAccount : Windows.Security.Credentials.WebAccount'Class;
+         perUserWebAccountId : WinRt.WString
+      );
+
+      function GetPerUserFromPerAppAccountAsync
+      (
+         perAppAccount : Windows.Security.Credentials.WebAccount'Class
+      )
+      return WinRt.Windows.Security.Credentials.WebAccount;
+
+      procedure ClearPerUserFromPerAppAccountAsync
+      (
+         perAppAccount : Windows.Security.Credentials.WebAccount'Class
+      );
+
+      procedure PullCookiesAsync
+      (
+         uriString : WinRt.WString;
+         callerPFN : WinRt.WString
+      );
+
+      function FindAllProviderWebAccountsForUserAsync
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.GenericObject;
+
+      function AddWebAccountForUserAsync
+      (
+         user : Windows.System.User'Class;
+         webAccountId : WinRt.WString;
+         webAccountUserName : WinRt.WString;
+         props : GenericObject
+      )
+      return WinRt.Windows.Security.Credentials.WebAccount;
+
+      function AddWebAccountForUserAsync
+      (
+         user : Windows.System.User'Class;
+         webAccountId : WinRt.WString;
+         webAccountUserName : WinRt.WString;
+         props : GenericObject;
+         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope
+      )
+      return WinRt.Windows.Security.Credentials.WebAccount;
+
+      function AddWebAccountForUserAsync
+      (
+         user : Windows.System.User'Class;
+         webAccountId : WinRt.WString;
+         webAccountUserName : WinRt.WString;
+         props : GenericObject;
+         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope;
+         perUserWebAccountId : WinRt.WString
+      )
+      return WinRt.Windows.Security.Credentials.WebAccount;
+
+      procedure InvalidateAppCacheForAllAccountsAsync;
+
+      procedure InvalidateAppCacheForAccountAsync
+      (
+         webAccount : Windows.Security.Credentials.WebAccount'Class
+      );
+
+      function AddWebAccountAsync
+      (
+         webAccountId : WinRt.WString;
+         webAccountUserName : WinRt.WString;
+         props : GenericObject;
+         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope
+      )
+      return WinRt.Windows.Security.Credentials.WebAccount;
+
+      procedure SetScopeAsync
+      (
+         webAccount : Windows.Security.Credentials.WebAccount'Class;
+         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope
+      );
+
+      function GetScope
+      (
+         webAccount : Windows.Security.Credentials.WebAccount'Class
+      )
+      return WinRt.Windows.Security.Authentication.Web.Provider.WebAccountScope;
 
    end WebAccountManager;
 

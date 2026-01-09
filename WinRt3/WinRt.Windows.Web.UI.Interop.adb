@@ -1702,6 +1702,22 @@ package body WinRt.Windows.Web.UI.Interop is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for WebViewControlProcess
 
+   function Constructor return WebViewControlProcess is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.UI.Interop.WebViewControlProcess");
+      m_ComRetVal  : aliased Windows.Web.UI.Interop.IWebViewControlProcess;
+   begin
+      return RetVal : WebViewControlProcess do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IWebViewControlProcess := new Windows.Web.UI.Interop.IWebViewControlProcess;
+            Retval.m_IWebViewControlProcess.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       processOptions : Windows.Web.UI.Interop.WebViewControlProcessOptions'Class
@@ -1721,22 +1737,6 @@ package body WinRt.Windows.Web.UI.Interop is
             Retval.m_IWebViewControlProcess := new Windows.Web.UI.Interop.IWebViewControlProcess;
             Retval.m_IWebViewControlProcess.all := m_ComRetVal;
             temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor return WebViewControlProcess is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.UI.Interop.WebViewControlProcess");
-      m_ComRetVal  : aliased Windows.Web.UI.Interop.IWebViewControlProcess;
-   begin
-      return RetVal : WebViewControlProcess do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IWebViewControlProcess := new Windows.Web.UI.Interop.IWebViewControlProcess;
-            Retval.m_IWebViewControlProcess.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

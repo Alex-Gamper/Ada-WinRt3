@@ -27,11 +27,13 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+with WinRt.Windows.ApplicationModel.Activation;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
 with WinRt.Windows.Networking.Sockets;
 with WinRt.Windows.Security.Credentials;
 with WinRt.Windows.Security.Cryptography.Certificates;
 with WinRt.Windows.Storage.Streams;
+with WinRt.Windows.System;
 with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
@@ -1082,6 +1084,108 @@ package body WinRt.Windows.Networking.Vpn is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   procedure AppendVpnReceivePacketBuffer
+   (
+      this : in out VpnChannel;
+      decapsulatedPacketBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.Vpn.IVpnChannel5 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnChannel_Interface, WinRt.Windows.Networking.Vpn.IVpnChannel5, WinRt.Windows.Networking.Vpn.IID_IVpnChannel5'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVpnChannel.all);
+      Hr := m_Interface.AppendVpnReceivePacketBuffer (decapsulatedPacketBuffer.m_IVpnPacketBuffer.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure AppendVpnSendPacketBuffer
+   (
+      this : in out VpnChannel;
+      encapsulatedPacketBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.Vpn.IVpnChannel5 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnChannel_Interface, WinRt.Windows.Networking.Vpn.IVpnChannel5, WinRt.Windows.Networking.Vpn.IID_IVpnChannel5'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVpnChannel.all);
+      Hr := m_Interface.AppendVpnSendPacketBuffer (encapsulatedPacketBuffer.m_IVpnPacketBuffer.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure FlushVpnReceivePacketBuffers
+   (
+      this : in out VpnChannel
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.Vpn.IVpnChannel5 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnChannel_Interface, WinRt.Windows.Networking.Vpn.IVpnChannel5, WinRt.Windows.Networking.Vpn.IID_IVpnChannel5'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVpnChannel.all);
+      Hr := m_Interface.FlushVpnReceivePacketBuffers;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure FlushVpnSendPacketBuffers
+   (
+      this : in out VpnChannel
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.Vpn.IVpnChannel5 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnChannel_Interface, WinRt.Windows.Networking.Vpn.IVpnChannel5, WinRt.Windows.Networking.Vpn.IID_IVpnChannel5'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVpnChannel.all);
+      Hr := m_Interface.FlushVpnSendPacketBuffers;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function ActivateForeground
+   (
+      this : in out VpnChannel;
+      packageRelativeAppId : WinRt.WString;
+      sharedContext : Windows.Foundation.Collections.ValueSet'Class
+   )
+   return WinRt.Windows.Foundation.Collections.ValueSet'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.Vpn.IVpnChannel6 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      HStr_packageRelativeAppId : constant WinRt.HString := To_HString (packageRelativeAppId);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnChannel_Interface, WinRt.Windows.Networking.Vpn.IVpnChannel6, WinRt.Windows.Networking.Vpn.IID_IVpnChannel6'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
+         m_Interface := QInterface (this.m_IVpnChannel.all);
+         Hr := m_Interface.ActivateForeground (HStr_packageRelativeAppId, sharedContext.m_IPropertySet.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_packageRelativeAppId);
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -3597,6 +3701,217 @@ package body WinRt.Windows.Networking.Vpn is
       m_GenericRetVal := QInterface_IVector_IUriRuntimeClass (m_ComRetVal);
       temp := m_ComRetVal.Release;
       return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for VpnForegroundActivatedEventArgs
+
+   procedure Initialize (this : in out VpnForegroundActivatedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out VpnForegroundActivatedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IVpnForegroundActivatedEventArgs, IVpnForegroundActivatedEventArgs_Ptr);
+   begin
+      if this.m_IVpnForegroundActivatedEventArgs /= null then
+         if this.m_IVpnForegroundActivatedEventArgs.all /= null then
+            temp := this.m_IVpnForegroundActivatedEventArgs.all.Release;
+            Free (this.m_IVpnForegroundActivatedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for VpnForegroundActivatedEventArgs
+
+   function get_ProfileName
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IVpnForegroundActivatedEventArgs.all.get_ProfileName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_SharedContext
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.Windows.Foundation.Collections.ValueSet'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
+         Hr := this.m_IVpnForegroundActivatedEventArgs.all.get_SharedContext (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_ActivationOperation
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.Windows.Networking.Vpn.VpnForegroundActivationOperation'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.Vpn.IVpnForegroundActivationOperation;
+   begin
+      return RetVal : WinRt.Windows.Networking.Vpn.VpnForegroundActivationOperation do
+         Hr := this.m_IVpnForegroundActivatedEventArgs.all.get_ActivationOperation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IVpnForegroundActivationOperation := new Windows.Networking.Vpn.IVpnForegroundActivationOperation;
+         Retval.m_IVpnForegroundActivationOperation.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_Kind
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnForegroundActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVpnForegroundActivatedEventArgs.all);
+      Hr := m_Interface.get_Kind (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_PreviousExecutionState
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnForegroundActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVpnForegroundActivatedEventArgs.all);
+      Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_SplashScreen
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnForegroundActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
+         m_Interface := QInterface (this.m_IVpnForegroundActivatedEventArgs.all);
+         Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_User
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.Windows.System.User'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.System.IUser;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnForegroundActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.System.User do
+         m_Interface := QInterface (this.m_IVpnForegroundActivatedEventArgs.all);
+         Hr := m_Interface.get_User (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for VpnForegroundActivationOperation
+
+   procedure Initialize (this : in out VpnForegroundActivationOperation) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out VpnForegroundActivationOperation) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IVpnForegroundActivationOperation, IVpnForegroundActivationOperation_Ptr);
+   begin
+      if this.m_IVpnForegroundActivationOperation /= null then
+         if this.m_IVpnForegroundActivationOperation.all /= null then
+            temp := this.m_IVpnForegroundActivationOperation.all.Release;
+            Free (this.m_IVpnForegroundActivationOperation);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for VpnForegroundActivationOperation
+
+   procedure Complete
+   (
+      this : in out VpnForegroundActivationOperation;
+      result : Windows.Foundation.Collections.ValueSet'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IVpnForegroundActivationOperation.all.Complete (result.m_IPropertySet.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------

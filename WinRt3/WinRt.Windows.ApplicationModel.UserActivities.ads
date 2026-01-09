@@ -980,6 +980,12 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    -----------------------------------------------------------------------------
    -- Static Interfaces for UserActivityChannel
 
+   function GetForUser
+   (
+      user : Windows.System.User'Class
+   )
+   return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel;
+
    function GetDefault
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel;
 
@@ -988,12 +994,6 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    function TryGetForWebAccount
    (
       account : Windows.Security.Credentials.WebAccount'Class
-   )
-   return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel;
-
-   function GetForUser
-   (
-      user : Windows.System.User'Class
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel;
 

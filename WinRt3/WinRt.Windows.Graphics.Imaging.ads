@@ -1385,6 +1385,12 @@ package WinRt.Windows.Graphics.Imaging is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BitmapDecoder
 
+   function get_HeifDecoderId
+   return WinRt.Guid;
+
+   function get_WebpDecoderId
+   return WinRt.Guid;
+
    function get_BmpDecoderId
    return WinRt.Guid;
 
@@ -1421,12 +1427,6 @@ package WinRt.Windows.Graphics.Imaging is
       stream : Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Graphics.Imaging.BitmapDecoder;
-
-   function get_HeifDecoderId
-   return WinRt.Guid;
-
-   function get_WebpDecoderId
-   return WinRt.Guid;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BitmapDecoder
@@ -1573,6 +1573,9 @@ package WinRt.Windows.Graphics.Imaging is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BitmapEncoder
 
+   function get_HeifEncoderId
+   return WinRt.Guid;
+
    function get_BmpEncoderId
    return WinRt.Guid;
 
@@ -1621,9 +1624,6 @@ package WinRt.Windows.Graphics.Imaging is
       bitmapDecoder_p : Windows.Graphics.Imaging.BitmapDecoder'Class
    )
    return WinRt.Windows.Graphics.Imaging.BitmapEncoder;
-
-   function get_HeifEncoderId
-   return WinRt.Guid;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BitmapEncoder

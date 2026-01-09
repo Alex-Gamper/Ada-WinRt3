@@ -1712,8 +1712,6 @@ package WinRt.Windows.ApplicationModel.Payments is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PaymentDetails
 
-   function Constructor return PaymentDetails;
-
    function Constructor
    (
       total : Windows.ApplicationModel.Payments.PaymentItem'Class
@@ -1726,6 +1724,8 @@ package WinRt.Windows.ApplicationModel.Payments is
       displayItems : GenericObject
    )
    return PaymentDetails;
+
+   function Constructor return PaymentDetails;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for PaymentDetails

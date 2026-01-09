@@ -1008,13 +1008,13 @@ package WinRt.Windows.Web.UI.Interop is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for WebViewControlProcess
 
+   function Constructor return WebViewControlProcess;
+
    function Constructor
    (
       processOptions : Windows.Web.UI.Interop.WebViewControlProcessOptions'Class
    )
    return WebViewControlProcess;
-
-   function Constructor return WebViewControlProcess;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for WebViewControlProcess

@@ -960,6 +960,64 @@ package WinRt.Windows.ApplicationModel.Store is
    -- Static RuntimeClass
    package CurrentApp is
 
+      function LoadListingInformationByProductIdsAsync
+      (
+         productIds : GenericObject
+      )
+      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
+
+      function LoadListingInformationByKeywordsAsync
+      (
+         keywords : GenericObject
+      )
+      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
+
+      procedure ReportProductFulfillment
+      (
+         productId : WinRt.WString
+      );
+
+      function GetCustomerPurchaseIdAsync
+      (
+         serviceTicket : WinRt.WString;
+         publisherUserId : WinRt.WString
+      )
+      return WinRt.WString;
+
+      function GetCustomerCollectionsIdAsync
+      (
+         serviceTicket : WinRt.WString;
+         publisherUserId : WinRt.WString
+      )
+      return WinRt.WString;
+
+      function ReportConsumableFulfillmentAsync
+      (
+         productId : WinRt.WString;
+         transactionId : WinRt.Guid
+      )
+      return WinRt.Windows.ApplicationModel.Store.FulfillmentResult;
+
+      function RequestProductPurchaseAsync
+      (
+         productId : WinRt.WString
+      )
+      return WinRt.Windows.ApplicationModel.Store.PurchaseResults;
+
+      function RequestProductPurchaseAsync
+      (
+         productId : WinRt.WString;
+         offerId : WinRt.WString;
+         displayProperties : Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties'Class
+      )
+      return WinRt.Windows.ApplicationModel.Store.PurchaseResults;
+
+      function GetUnfulfilledConsumablesAsync
+      return WinRt.GenericObject;
+
+      function GetAppPurchaseCampaignIdAsync
+      return WinRt.WString;
+
       function get_LicenseInformation
       return WinRt.Windows.ApplicationModel.Store.LicenseInformation;
 
@@ -994,81 +1052,11 @@ package WinRt.Windows.ApplicationModel.Store is
       )
       return WinRt.WString;
 
-      function ReportConsumableFulfillmentAsync
-      (
-         productId : WinRt.WString;
-         transactionId : WinRt.Guid
-      )
-      return WinRt.Windows.ApplicationModel.Store.FulfillmentResult;
-
-      function RequestProductPurchaseAsync
-      (
-         productId : WinRt.WString
-      )
-      return WinRt.Windows.ApplicationModel.Store.PurchaseResults;
-
-      function RequestProductPurchaseAsync
-      (
-         productId : WinRt.WString;
-         offerId : WinRt.WString;
-         displayProperties : Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties'Class
-      )
-      return WinRt.Windows.ApplicationModel.Store.PurchaseResults;
-
-      function GetUnfulfilledConsumablesAsync
-      return WinRt.GenericObject;
-
-      function GetCustomerPurchaseIdAsync
-      (
-         serviceTicket : WinRt.WString;
-         publisherUserId : WinRt.WString
-      )
-      return WinRt.WString;
-
-      function GetCustomerCollectionsIdAsync
-      (
-         serviceTicket : WinRt.WString;
-         publisherUserId : WinRt.WString
-      )
-      return WinRt.WString;
-
-      function LoadListingInformationByProductIdsAsync
-      (
-         productIds : GenericObject
-      )
-      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
-
-      function LoadListingInformationByKeywordsAsync
-      (
-         keywords : GenericObject
-      )
-      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
-
-      procedure ReportProductFulfillment
-      (
-         productId : WinRt.WString
-      );
-
-      function GetAppPurchaseCampaignIdAsync
-      return WinRt.WString;
-
    end CurrentApp;
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package CurrentAppSimulator is
-
-      function LoadListingInformationByProductIdsAsync_CurrentAppSimulator
-      (
-         productIds : GenericObject
-      )
-      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
-
-      function LoadListingInformationByKeywordsAsync_CurrentAppSimulator
-      (
-         keywords : GenericObject
-      )
-      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
 
       function get_LicenseInformation_CurrentAppSimulator
       return WinRt.Windows.ApplicationModel.Store.LicenseInformation;
@@ -1135,6 +1123,18 @@ package WinRt.Windows.ApplicationModel.Store is
 
       function GetUnfulfilledConsumablesAsync_CurrentAppSimulator
       return WinRt.GenericObject;
+
+      function LoadListingInformationByProductIdsAsync_CurrentAppSimulator
+      (
+         productIds : GenericObject
+      )
+      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
+
+      function LoadListingInformationByKeywordsAsync_CurrentAppSimulator
+      (
+         keywords : GenericObject
+      )
+      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
 
    end CurrentAppSimulator;
 

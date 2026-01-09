@@ -625,27 +625,6 @@ package body WinRt.Windows.ApplicationModel is
    -- Static RuntimeClass
    package body DesignMode is
 
-      function get_DesignModeEnabled
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DesignMode");
-         m_Factory        : access WinRt.Windows.ApplicationModel.IDesignModeStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IDesignModeStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_DesignModeEnabled (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
       function get_DesignMode2Enabled
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -658,6 +637,27 @@ package body WinRt.Windows.ApplicationModel is
          Hr := RoGetActivationFactory (m_hString, IID_IDesignModeStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DesignMode2Enabled (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_DesignModeEnabled
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DesignMode");
+         m_Factory        : access WinRt.Windows.ApplicationModel.IDesignModeStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IDesignModeStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_DesignModeEnabled (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

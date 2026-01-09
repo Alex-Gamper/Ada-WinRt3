@@ -5630,6 +5630,51 @@ package body WinRt.Windows.Media.Protection.PlayReady is
          return m_ComRetVal;
       end;
 
+      function get_InputTrustAuthorityToCreate
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_InputTrustAuthorityToCreate (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_ProtectionSystemId
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_ProtectionSystemId (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
       function get_DomainJoinServiceRequestType
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
@@ -5810,51 +5855,6 @@ package body WinRt.Windows.Media.Protection.PlayReady is
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PlayReadyCertificateSecurityLevel (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function get_InputTrustAuthorityToCreate
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
-         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_InputTrustAuthorityToCreate (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_ProtectionSystemId
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
-         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_ProtectionSystemId (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

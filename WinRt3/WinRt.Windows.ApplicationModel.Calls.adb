@@ -1260,22 +1260,6 @@ package body WinRt.Windows.ApplicationModel.Calls is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PhoneCallHistoryEntryAddress
 
-   function Constructor return PhoneCallHistoryEntryAddress is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.PhoneCallHistoryEntryAddress");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress;
-   begin
-      return RetVal : PhoneCallHistoryEntryAddress do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IPhoneCallHistoryEntryAddress := new Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress;
-            Retval.m_IPhoneCallHistoryEntryAddress.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       rawAddress : WinRt.WString;
@@ -1300,6 +1284,22 @@ package body WinRt.Windows.ApplicationModel.Calls is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_rawAddress);
+      end return;
+   end;
+
+   function Constructor return PhoneCallHistoryEntryAddress is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.PhoneCallHistoryEntryAddress");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress;
+   begin
+      return RetVal : PhoneCallHistoryEntryAddress do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IPhoneCallHistoryEntryAddress := new Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress;
+            Retval.m_IPhoneCallHistoryEntryAddress.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1633,33 +1633,6 @@ package body WinRt.Windows.ApplicationModel.Calls is
    -- Static RuntimeClass
    package body PhoneCallHistoryManager is
 
-      function GetForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryManagerForUser is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.PhoneCallHistoryManager");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryManagerStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.ApplicationModel.Calls.IPhoneCallHistoryManagerForUser;
-      begin
-         return RetVal : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryManagerForUser do
-            Hr := RoGetActivationFactory (m_hString, IID_IPhoneCallHistoryManagerStatics2'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IPhoneCallHistoryManagerForUser := new Windows.ApplicationModel.Calls.IPhoneCallHistoryManagerForUser;
-               Retval.m_IPhoneCallHistoryManagerForUser.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
       function RequestStoreAsync
       (
          accessType : Windows.ApplicationModel.Calls.PhoneCallHistoryStoreAccessType
@@ -1728,6 +1701,33 @@ package body WinRt.Windows.ApplicationModel.Calls is
                      end if;
                   end if;
                end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function GetForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryManagerForUser is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.PhoneCallHistoryManager");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryManagerStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.ApplicationModel.Calls.IPhoneCallHistoryManagerForUser;
+      begin
+         return RetVal : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryManagerForUser do
+            Hr := RoGetActivationFactory (m_hString, IID_IPhoneCallHistoryManagerStatics2'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IPhoneCallHistoryManagerForUser := new Windows.ApplicationModel.Calls.IPhoneCallHistoryManagerForUser;
+               Retval.m_IPhoneCallHistoryManagerForUser.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
          end return;

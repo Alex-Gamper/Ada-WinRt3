@@ -1199,6 +1199,922 @@ package body WinRt.Windows.Storage.Provider is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderKnownFolderEntry
+
+   procedure Initialize (this : in out StorageProviderKnownFolderEntry) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out StorageProviderKnownFolderEntry) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IStorageProviderKnownFolderEntry, IStorageProviderKnownFolderEntry_Ptr);
+   begin
+      if this.m_IStorageProviderKnownFolderEntry /= null then
+         if this.m_IStorageProviderKnownFolderEntry.all /= null then
+            temp := this.m_IStorageProviderKnownFolderEntry.all.Release;
+            Free (this.m_IStorageProviderKnownFolderEntry);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageProviderKnownFolderEntry
+
+   function Constructor return StorageProviderKnownFolderEntry is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderKnownFolderEntry");
+      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderKnownFolderEntry;
+   begin
+      return RetVal : StorageProviderKnownFolderEntry do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IStorageProviderKnownFolderEntry := new Windows.Storage.Provider.IStorageProviderKnownFolderEntry;
+            Retval.m_IStorageProviderKnownFolderEntry.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderKnownFolderEntry
+
+   function get_KnownFolderId
+   (
+      this : in out StorageProviderKnownFolderEntry
+   )
+   return WinRt.Guid is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Guid;
+   begin
+      Hr := this.m_IStorageProviderKnownFolderEntry.all.get_KnownFolderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_KnownFolderId
+   (
+      this : in out StorageProviderKnownFolderEntry;
+      value : WinRt.Guid
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderKnownFolderEntry.all.put_KnownFolderId (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Status
+   (
+      this : in out StorageProviderKnownFolderEntry
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus;
+   begin
+      Hr := this.m_IStorageProviderKnownFolderEntry.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Status
+   (
+      this : in out StorageProviderKnownFolderEntry;
+      value : Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderKnownFolderEntry.all.put_Status (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderKnownFolderSyncInfo
+
+   procedure Initialize (this : in out StorageProviderKnownFolderSyncInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out StorageProviderKnownFolderSyncInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IStorageProviderKnownFolderSyncInfo, IStorageProviderKnownFolderSyncInfo_Ptr);
+   begin
+      if this.m_IStorageProviderKnownFolderSyncInfo /= null then
+         if this.m_IStorageProviderKnownFolderSyncInfo.all /= null then
+            temp := this.m_IStorageProviderKnownFolderSyncInfo.all.Release;
+            Free (this.m_IStorageProviderKnownFolderSyncInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageProviderKnownFolderSyncInfo
+
+   function Constructor return StorageProviderKnownFolderSyncInfo is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderKnownFolderSyncInfo");
+      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfo;
+   begin
+      return RetVal : StorageProviderKnownFolderSyncInfo do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IStorageProviderKnownFolderSyncInfo := new Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfo;
+            Retval.m_IStorageProviderKnownFolderSyncInfo.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderKnownFolderSyncInfo
+
+   function get_ProviderDisplayName
+   (
+      this : in out StorageProviderKnownFolderSyncInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IStorageProviderKnownFolderSyncInfo.all.get_ProviderDisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ProviderDisplayName
+   (
+      this : in out StorageProviderKnownFolderSyncInfo;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IStorageProviderKnownFolderSyncInfo.all.put_ProviderDisplayName (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_KnownFolderEntries
+   (
+      this : in out StorageProviderKnownFolderSyncInfo
+   )
+   return IVector_IStorageProviderKnownFolderEntry.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_IStorageProviderKnownFolderEntry.Kind;
+   begin
+      Hr := this.m_IStorageProviderKnownFolderSyncInfo.all.get_KnownFolderEntries (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_IStorageProviderKnownFolderEntry (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_SyncRequested
+   (
+      this : in out StorageProviderKnownFolderSyncInfo
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler;
+   begin
+      Hr := this.m_IStorageProviderKnownFolderSyncInfo.all.get_SyncRequested (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_SyncRequested
+   (
+      this : in out StorageProviderKnownFolderSyncInfo;
+      value : Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderKnownFolderSyncInfo.all.put_SyncRequested (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderKnownFolderSyncRequestArgs
+
+   procedure Initialize (this : in out StorageProviderKnownFolderSyncRequestArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out StorageProviderKnownFolderSyncRequestArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IStorageProviderKnownFolderSyncRequestArgs, IStorageProviderKnownFolderSyncRequestArgs_Ptr);
+   begin
+      if this.m_IStorageProviderKnownFolderSyncRequestArgs /= null then
+         if this.m_IStorageProviderKnownFolderSyncRequestArgs.all /= null then
+            temp := this.m_IStorageProviderKnownFolderSyncRequestArgs.all.Release;
+            Free (this.m_IStorageProviderKnownFolderSyncRequestArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderKnownFolderSyncRequestArgs
+
+   function get_KnownFolders
+   (
+      this : in out StorageProviderKnownFolderSyncRequestArgs
+   )
+   return IVectorView_Guid.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_Guid.Kind;
+   begin
+      Hr := this.m_IStorageProviderKnownFolderSyncRequestArgs.all.get_KnownFolders (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_Guid (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_Source
+   (
+      this : in out StorageProviderKnownFolderSyncRequestArgs
+   )
+   return WinRt.Windows.Storage.StorageFolder'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+   begin
+      return RetVal : WinRt.Windows.Storage.StorageFolder do
+         Hr := this.m_IStorageProviderKnownFolderSyncRequestArgs.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Delegate StorageProviderKnownFolderSyncRequestedHandler
+
+   function Invoke
+   (
+      this : access StorageProviderKnownFolderSyncRequestedHandler_Delegate;
+      args : Windows.Storage.Provider.IStorageProviderKnownFolderSyncRequestArgs
+   )
+   return WinRt.Hresult is
+      Hr : constant WinRt.HResult := S_OK;
+   begin
+      this.Callback (args);
+      return Hr;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderMoreInfoUI
+
+   procedure Initialize (this : in out StorageProviderMoreInfoUI) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out StorageProviderMoreInfoUI) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IStorageProviderMoreInfoUI, IStorageProviderMoreInfoUI_Ptr);
+   begin
+      if this.m_IStorageProviderMoreInfoUI /= null then
+         if this.m_IStorageProviderMoreInfoUI.all /= null then
+            temp := this.m_IStorageProviderMoreInfoUI.all.Release;
+            Free (this.m_IStorageProviderMoreInfoUI);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageProviderMoreInfoUI
+
+   function Constructor return StorageProviderMoreInfoUI is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderMoreInfoUI");
+      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderMoreInfoUI;
+   begin
+      return RetVal : StorageProviderMoreInfoUI do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IStorageProviderMoreInfoUI := new Windows.Storage.Provider.IStorageProviderMoreInfoUI;
+            Retval.m_IStorageProviderMoreInfoUI.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderMoreInfoUI
+
+   function get_Message
+   (
+      this : in out StorageProviderMoreInfoUI
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IStorageProviderMoreInfoUI.all.get_Message (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Message
+   (
+      this : in out StorageProviderMoreInfoUI;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IStorageProviderMoreInfoUI.all.put_Message (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_Command
+   (
+      this : in out StorageProviderMoreInfoUI
+   )
+   return WinRt.Windows.Storage.Provider.IStorageProviderUICommand is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.Provider.IStorageProviderUICommand;
+   begin
+      Hr := this.m_IStorageProviderMoreInfoUI.all.get_Command (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Command
+   (
+      this : in out StorageProviderMoreInfoUI;
+      value : Windows.Storage.Provider.IStorageProviderUICommand
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderMoreInfoUI.all.put_Command (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderQuotaUI
+
+   procedure Initialize (this : in out StorageProviderQuotaUI) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out StorageProviderQuotaUI) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IStorageProviderQuotaUI, IStorageProviderQuotaUI_Ptr);
+   begin
+      if this.m_IStorageProviderQuotaUI /= null then
+         if this.m_IStorageProviderQuotaUI.all /= null then
+            temp := this.m_IStorageProviderQuotaUI.all.Release;
+            Free (this.m_IStorageProviderQuotaUI);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageProviderQuotaUI
+
+   function Constructor return StorageProviderQuotaUI is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderQuotaUI");
+      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderQuotaUI;
+   begin
+      return RetVal : StorageProviderQuotaUI do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IStorageProviderQuotaUI := new Windows.Storage.Provider.IStorageProviderQuotaUI;
+            Retval.m_IStorageProviderQuotaUI.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderQuotaUI
+
+   function get_QuotaTotalInBytes
+   (
+      this : in out StorageProviderQuotaUI
+   )
+   return WinRt.UInt64 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt64;
+   begin
+      Hr := this.m_IStorageProviderQuotaUI.all.get_QuotaTotalInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_QuotaTotalInBytes
+   (
+      this : in out StorageProviderQuotaUI;
+      value : WinRt.UInt64
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderQuotaUI.all.put_QuotaTotalInBytes (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_QuotaUsedInBytes
+   (
+      this : in out StorageProviderQuotaUI
+   )
+   return WinRt.UInt64 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt64;
+   begin
+      Hr := this.m_IStorageProviderQuotaUI.all.get_QuotaUsedInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_QuotaUsedInBytes
+   (
+      this : in out StorageProviderQuotaUI;
+      value : WinRt.UInt64
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderQuotaUI.all.put_QuotaUsedInBytes (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_QuotaUsedLabel
+   (
+      this : in out StorageProviderQuotaUI
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IStorageProviderQuotaUI.all.get_QuotaUsedLabel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_QuotaUsedLabel
+   (
+      this : in out StorageProviderQuotaUI;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IStorageProviderQuotaUI.all.put_QuotaUsedLabel (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_QuotaUsedColor
+   (
+      this : in out StorageProviderQuotaUI
+   )
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+   begin
+      Hr := this.m_IStorageProviderQuotaUI.all.get_QuotaUsedColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_QuotaUsedColor
+   (
+      this : in out StorageProviderQuotaUI;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderQuotaUI.all.put_QuotaUsedColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderStatusUI
+
+   procedure Initialize (this : in out StorageProviderStatusUI) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out StorageProviderStatusUI) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IStorageProviderStatusUI, IStorageProviderStatusUI_Ptr);
+   begin
+      if this.m_IStorageProviderStatusUI /= null then
+         if this.m_IStorageProviderStatusUI.all /= null then
+            temp := this.m_IStorageProviderStatusUI.all.Release;
+            Free (this.m_IStorageProviderStatusUI);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageProviderStatusUI
+
+   function Constructor return StorageProviderStatusUI is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderStatusUI");
+      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderStatusUI;
+   begin
+      return RetVal : StorageProviderStatusUI do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IStorageProviderStatusUI := new Windows.Storage.Provider.IStorageProviderStatusUI;
+            Retval.m_IStorageProviderStatusUI.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderStatusUI
+
+   function get_ProviderState
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderState is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderState;
+   begin
+      Hr := this.m_IStorageProviderStatusUI.all.get_ProviderState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_ProviderState
+   (
+      this : in out StorageProviderStatusUI;
+      value : Windows.Storage.Provider.StorageProviderState
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderStatusUI.all.put_ProviderState (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ProviderStateLabel
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IStorageProviderStatusUI.all.get_ProviderStateLabel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ProviderStateLabel
+   (
+      this : in out StorageProviderStatusUI;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IStorageProviderStatusUI.all.put_ProviderStateLabel (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_ProviderStateIcon
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IStorageProviderStatusUI.all.get_ProviderStateIcon (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_ProviderStateIcon
+   (
+      this : in out StorageProviderStatusUI;
+      value : Windows.Foundation.Uri'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderStatusUI.all.put_ProviderStateIcon (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SyncStatusCommand
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.Windows.Storage.Provider.IStorageProviderUICommand is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.Provider.IStorageProviderUICommand;
+   begin
+      Hr := this.m_IStorageProviderStatusUI.all.get_SyncStatusCommand (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_SyncStatusCommand
+   (
+      this : in out StorageProviderStatusUI;
+      value : Windows.Storage.Provider.IStorageProviderUICommand
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderStatusUI.all.put_SyncStatusCommand (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_QuotaUI
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderQuotaUI'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.Provider.IStorageProviderQuotaUI;
+   begin
+      return RetVal : WinRt.Windows.Storage.Provider.StorageProviderQuotaUI do
+         Hr := this.m_IStorageProviderStatusUI.all.get_QuotaUI (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IStorageProviderQuotaUI := new Windows.Storage.Provider.IStorageProviderQuotaUI;
+         Retval.m_IStorageProviderQuotaUI.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_QuotaUI
+   (
+      this : in out StorageProviderStatusUI;
+      value : Windows.Storage.Provider.StorageProviderQuotaUI'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderStatusUI.all.put_QuotaUI (value.m_IStorageProviderQuotaUI.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_MoreInfoUI
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderMoreInfoUI'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.Provider.IStorageProviderMoreInfoUI;
+   begin
+      return RetVal : WinRt.Windows.Storage.Provider.StorageProviderMoreInfoUI do
+         Hr := this.m_IStorageProviderStatusUI.all.get_MoreInfoUI (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IStorageProviderMoreInfoUI := new Windows.Storage.Provider.IStorageProviderMoreInfoUI;
+         Retval.m_IStorageProviderMoreInfoUI.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_MoreInfoUI
+   (
+      this : in out StorageProviderStatusUI;
+      value : Windows.Storage.Provider.StorageProviderMoreInfoUI'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderStatusUI.all.put_MoreInfoUI (value.m_IStorageProviderMoreInfoUI.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ProviderPrimaryCommand
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return WinRt.Windows.Storage.Provider.IStorageProviderUICommand is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.Provider.IStorageProviderUICommand;
+   begin
+      Hr := this.m_IStorageProviderStatusUI.all.get_ProviderPrimaryCommand (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_ProviderPrimaryCommand
+   (
+      this : in out StorageProviderStatusUI;
+      value : Windows.Storage.Provider.IStorageProviderUICommand
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderStatusUI.all.put_ProviderPrimaryCommand (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ProviderSecondaryCommands
+   (
+      this : in out StorageProviderStatusUI
+   )
+   return IVector_IStorageProviderUICommand.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_IStorageProviderUICommand.Kind;
+   begin
+      Hr := this.m_IStorageProviderStatusUI.all.get_ProviderSecondaryCommands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_IStorageProviderUICommand (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_ProviderSecondaryCommands
+   (
+      this : in out StorageProviderStatusUI;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IStorageProviderStatusUI.all.put_ProviderSecondaryCommands (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StorageProviderSyncRootInfo
 
    procedure Initialize (this : in out StorageProviderSyncRootInfo) is
@@ -1831,6 +2747,27 @@ package body WinRt.Windows.Storage.Provider is
    -- Static RuntimeClass
    package body StorageProviderSyncRootManager is
 
+      function IsSupported
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderSyncRootManager");
+         m_Factory        : access WinRt.Windows.Storage.Provider.IStorageProviderSyncRootManagerStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStorageProviderSyncRootManagerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.IsSupported (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
       procedure Register
       (
          syncRootInformation : Windows.Storage.Provider.StorageProviderSyncRootInfo'Class
@@ -1943,27 +2880,6 @@ package body WinRt.Windows.Storage.Provider is
          Hr := RoGetActivationFactory (m_hString, IID_IStorageProviderSyncRootManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetCurrentSyncRoots (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function IsSupported
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderSyncRootManager");
-         m_Factory        : access WinRt.Windows.Storage.Provider.IStorageProviderSyncRootManagerStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStorageProviderSyncRootManagerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.IsSupported (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

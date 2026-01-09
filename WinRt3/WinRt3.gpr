@@ -100,7 +100,7 @@ project WinRt3 is
       Common_Switches := ("");
       case BUILD_CONFIGURATION is
          when "Debug|x64" =>
-            for Default_Switches ("Ada") use Common_Switches & ("-gnat2012", "-O0" , "-g" , "-gnatwa" , "-gnatVa" , "-gnatw_A"); 
+            for Default_Switches ("Ada") use Common_Switches & ("-gnat2012", "-O0" , "-g" ); 
          when "Release|x64" =>
             for Default_Switches ("Ada") use Common_Switches & ("-gnat2012", "-O2" ); 
          when "Debug|Win32" =>

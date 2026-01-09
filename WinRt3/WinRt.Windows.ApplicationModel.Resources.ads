@@ -196,11 +196,23 @@ package WinRt.Windows.ApplicationModel.Resources is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ResourceLoader
 
-   function GetStringForReference
+   function GetForCurrentView
+   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
+
+   function GetForCurrentView
    (
-      uri : Windows.Foundation.Uri'Class
+      name : WinRt.WString
    )
-   return WinRt.WString;
+   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
+
+   function GetForViewIndependentUse
+   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
+
+   function GetForViewIndependentUse
+   (
+      name : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
 
    function GetForUIContext
    (
@@ -208,23 +220,11 @@ package WinRt.Windows.ApplicationModel.Resources is
    )
    return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
 
-   function GetForCurrentView
-   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
-
-   function GetForCurrentView
+   function GetStringForReference
    (
-      name : WinRt.WString
+      uri : Windows.Foundation.Uri'Class
    )
-   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
-
-   function GetForViewIndependentUse
-   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
-
-   function GetForViewIndependentUse
-   (
-      name : WinRt.WString
-   )
-   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
+   return WinRt.WString;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ResourceLoader

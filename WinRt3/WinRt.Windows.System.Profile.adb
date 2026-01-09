@@ -925,6 +925,33 @@ package body WinRt.Windows.System.Profile is
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
+   package body PlatformAutomaticAppSignInManager is
+
+      function get_Policy
+      return WinRt.Windows.System.Profile.PlatformAutomaticAppSignInPolicy is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.PlatformAutomaticAppSignInManager");
+         m_Factory        : access WinRt.Windows.System.Profile.IPlatformAutomaticAppSignInManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.System.Profile.PlatformAutomaticAppSignInPolicy;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IPlatformAutomaticAppSignInManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Policy (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+   end PlatformAutomaticAppSignInManager;
+
+   -----------------------------------------------------------------------------
+   -- Static RuntimeClass
    package body PlatformDiagnosticsAndUsageDataSettings is
 
       function get_CollectionLevel

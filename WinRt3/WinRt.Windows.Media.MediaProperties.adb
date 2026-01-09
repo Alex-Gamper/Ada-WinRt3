@@ -2031,19 +2031,115 @@ package body WinRt.Windows.Media.MediaProperties is
    -- Static RuntimeClass
    package body MediaEncodingSubtypes is
 
-      function get_Heif
+      function get_Pgs
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
          m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingSubtypes");
-         m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics5_Interface'Class := null;
+         m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics6_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
-         Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics5'Access , m_Factory'Address);
+         Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics6'Access , m_Factory'Address);
          if Hr = S_OK then
-            Hr := m_Factory.get_Heif (m_ComRetVal'Access);
+            Hr := m_Factory.get_Pgs (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_Srt
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingSubtypes");
+         m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics6_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics6'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Srt (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_Ssa
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingSubtypes");
+         m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics6_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics6'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Ssa (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_VobSub
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingSubtypes");
+         m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics6_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics6'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_VobSub (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_P010
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingSubtypes");
+         m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_P010 (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -3015,30 +3111,6 @@ package body WinRt.Windows.Media.MediaProperties is
          return AdaRetVal;
       end;
 
-      function get_P010
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingSubtypes");
-         m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_P010 (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
       function get_Alac
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -3076,6 +3148,30 @@ package body WinRt.Windows.Media.MediaProperties is
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Flac (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_Heif
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingSubtypes");
+         m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics5_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics5'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Heif (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -3172,102 +3268,6 @@ package body WinRt.Windows.Media.MediaProperties is
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_D16 (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_Pgs
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingSubtypes");
-         m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics6_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics6'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_Pgs (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_Srt
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingSubtypes");
-         m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics6_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics6'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_Srt (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_Ssa
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingSubtypes");
-         m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics6_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics6'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_Ssa (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_VobSub
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingSubtypes");
-         m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics6_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingSubtypesStatics6'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_VobSub (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

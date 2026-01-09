@@ -406,6 +406,54 @@ package body WinRt.Windows.UI.Composition.Interactions is
    -----------------------------------------------------------------------------
    -- Static Interfaces for InteractionTracker
 
+   procedure SetBindingMode
+   (
+      boundTracker1 : Windows.UI.Composition.Interactions.InteractionTracker'Class;
+      boundTracker2 : Windows.UI.Composition.Interactions.InteractionTracker'Class;
+      axisMode : Windows.UI.Composition.Interactions.InteractionBindingAxisModes
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTracker");
+      m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.SetBindingMode (boundTracker1.m_IInteractionTracker.all, boundTracker2.m_IInteractionTracker.all, axisMode);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function GetBindingMode
+   (
+      boundTracker1 : Windows.UI.Composition.Interactions.InteractionTracker'Class;
+      boundTracker2 : Windows.UI.Composition.Interactions.InteractionTracker'Class
+   )
+   return WinRt.Windows.UI.Composition.Interactions.InteractionBindingAxisModes is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTracker");
+      m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.Interactions.InteractionBindingAxisModes;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetBindingMode (boundTracker1.m_IInteractionTracker.all, boundTracker2.m_IInteractionTracker.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
    function Create
    (
       compositor : Windows.UI.Composition.Compositor'Class
@@ -459,54 +507,6 @@ package body WinRt.Windows.UI.Composition.Interactions is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
-   end;
-
-   procedure SetBindingMode
-   (
-      boundTracker1 : Windows.UI.Composition.Interactions.InteractionTracker'Class;
-      boundTracker2 : Windows.UI.Composition.Interactions.InteractionTracker'Class;
-      axisMode : Windows.UI.Composition.Interactions.InteractionBindingAxisModes
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTracker");
-      m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.SetBindingMode (boundTracker1.m_IInteractionTracker.all, boundTracker2.m_IInteractionTracker.all, axisMode);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
-   function GetBindingMode
-   (
-      boundTracker1 : Windows.UI.Composition.Interactions.InteractionTracker'Class;
-      boundTracker2 : Windows.UI.Composition.Interactions.InteractionTracker'Class
-   )
-   return WinRt.Windows.UI.Composition.Interactions.InteractionBindingAxisModes is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTracker");
-      m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.Interactions.InteractionBindingAxisModes;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetBindingMode (boundTracker1.m_IInteractionTracker.all, boundTracker2.m_IInteractionTracker.all, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -2277,33 +2277,6 @@ package body WinRt.Windows.UI.Composition.Interactions is
    -----------------------------------------------------------------------------
    -- Static Interfaces for VisualInteractionSource
 
-   function CreateFromIVisualElement
-   (
-      source : Windows.UI.Composition.IVisualElement
-   )
-   return WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.VisualInteractionSource");
-      m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSourceStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.Interactions.IVisualInteractionSource;
-   begin
-      return RetVal : WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource do
-         Hr := RoGetActivationFactory (m_hString, IID_IVisualInteractionSourceStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromIVisualElement (source, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IVisualInteractionSource := new Windows.UI.Composition.Interactions.IVisualInteractionSource;
-            Retval.m_IVisualInteractionSource.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Create
    (
       source : Windows.UI.Composition.Visual'Class
@@ -2320,6 +2293,33 @@ package body WinRt.Windows.UI.Composition.Interactions is
          Hr := RoGetActivationFactory (m_hString, IID_IVisualInteractionSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (source.m_IVisual.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IVisualInteractionSource := new Windows.UI.Composition.Interactions.IVisualInteractionSource;
+            Retval.m_IVisualInteractionSource.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateFromIVisualElement
+   (
+      source : Windows.UI.Composition.IVisualElement
+   )
+   return WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.VisualInteractionSource");
+      m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSourceStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.Interactions.IVisualInteractionSource;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource do
+         Hr := RoGetActivationFactory (m_hString, IID_IVisualInteractionSourceStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromIVisualElement (source, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

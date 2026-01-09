@@ -509,13 +509,6 @@ package WinRt.Windows.Gaming.Input.Custom is
    -- Static RuntimeClass
    package GameControllerFactoryManager is
 
-      function TryGetFactoryControllerFromGameController
-      (
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
-         gameController : Windows.Gaming.Input.IGameController
-      )
-      return WinRt.Windows.Gaming.Input.IGameController;
-
       procedure RegisterCustomFactoryForGipInterface
       (
          factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
@@ -535,6 +528,13 @@ package WinRt.Windows.Gaming.Input.Custom is
          xusbType : Windows.Gaming.Input.Custom.XusbDeviceType;
          xusbSubtype : Windows.Gaming.Input.Custom.XusbDeviceSubtype
       );
+
+      function TryGetFactoryControllerFromGameController
+      (
+         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         gameController : Windows.Gaming.Input.IGameController
+      )
+      return WinRt.Windows.Gaming.Input.IGameController;
 
    end GameControllerFactoryManager;
 

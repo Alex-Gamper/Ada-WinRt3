@@ -4864,20 +4864,6 @@ package WinRt.Windows.UI.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RadialControllerMenuItem
 
-   function CreateFromIcon
-   (
-      displayText : WinRt.WString;
-      icon : Windows.Storage.Streams.RandomAccessStreamReference'Class
-   )
-   return WinRt.Windows.UI.Input.RadialControllerMenuItem;
-
-   function CreateFromKnownIcon
-   (
-      displayText : WinRt.WString;
-      value : Windows.UI.Input.RadialControllerMenuKnownIcon
-   )
-   return WinRt.Windows.UI.Input.RadialControllerMenuItem;
-
    function CreateFromFontGlyph
    (
       displayText : WinRt.WString;
@@ -4892,6 +4878,20 @@ package WinRt.Windows.UI.Input is
       glyph : WinRt.WString;
       fontFamily : WinRt.WString;
       fontUri : Windows.Foundation.Uri'Class
+   )
+   return WinRt.Windows.UI.Input.RadialControllerMenuItem;
+
+   function CreateFromIcon
+   (
+      displayText : WinRt.WString;
+      icon : Windows.Storage.Streams.RandomAccessStreamReference'Class
+   )
+   return WinRt.Windows.UI.Input.RadialControllerMenuItem;
+
+   function CreateFromKnownIcon
+   (
+      displayText : WinRt.WString;
+      value : Windows.UI.Input.RadialControllerMenuKnownIcon
    )
    return WinRt.Windows.UI.Input.RadialControllerMenuItem;
 

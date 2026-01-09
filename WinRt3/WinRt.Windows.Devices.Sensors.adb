@@ -102,33 +102,6 @@ package body WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Accelerometer
 
-   function GetDefault
-   (
-      readingType : Windows.Devices.Sensors.AccelerometerReadingType
-   )
-   return WinRt.Windows.Devices.Sensors.Accelerometer is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Accelerometer");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IAccelerometerStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IAccelerometer;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.Accelerometer do
-         Hr := RoGetActivationFactory (m_hString, IID_IAccelerometerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (readingType, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IAccelerometer := new Windows.Devices.Sensors.IAccelerometer;
-            Retval.m_IAccelerometer.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function FromIdAsync
    (
       deviceId : WinRt.WString
@@ -229,6 +202,33 @@ package body WinRt.Windows.Devices.Sensors is
       AdaRetval := To_Ada (m_ComRetVal);
       tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
+   end;
+
+   function GetDefault
+   (
+      readingType : Windows.Devices.Sensors.AccelerometerReadingType
+   )
+   return WinRt.Windows.Devices.Sensors.Accelerometer is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Accelerometer");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IAccelerometerStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IAccelerometer;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.Accelerometer do
+         Hr := RoGetActivationFactory (m_hString, IID_IAccelerometerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (readingType, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IAccelerometer := new Windows.Devices.Sensors.IAccelerometer;
+            Retval.m_IAccelerometer.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
    end;
 
    function GetDefault
@@ -3243,6 +3243,30 @@ package body WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Gyrometer
 
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.Gyrometer is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Gyrometer");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IGyrometerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IGyrometer;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.Gyrometer do
+         Hr := RoGetActivationFactory (m_hString, IID_IGyrometerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IGyrometer := new Windows.Devices.Sensors.IGyrometer;
+            Retval.m_IGyrometer.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function GetDeviceSelector_Gyrometer
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -3339,30 +3363,6 @@ package body WinRt.Windows.Devices.Sensors is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_deviceId);
-      end return;
-   end;
-
-   function GetDefault
-   return WinRt.Windows.Devices.Sensors.Gyrometer is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Gyrometer");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IGyrometerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IGyrometer;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.Gyrometer do
-         Hr := RoGetActivationFactory (m_hString, IID_IGyrometerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IGyrometer := new Windows.Devices.Sensors.IGyrometer;
-            Retval.m_IGyrometer.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4506,57 +4506,6 @@ package body WinRt.Windows.Devices.Sensors is
    -- Static Interfaces for Inclinometer
 
    function GetDefault
-   (
-      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
-   )
-   return WinRt.Windows.Devices.Sensors.Inclinometer is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Inclinometer");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IInclinometerStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IInclinometer;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.Inclinometer do
-         Hr := RoGetActivationFactory (m_hString, IID_IInclinometerStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (sensorReadingtype, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IInclinometer := new Windows.Devices.Sensors.IInclinometer;
-            Retval.m_IInclinometer.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetDefaultForRelativeReadings
-   return WinRt.Windows.Devices.Sensors.Inclinometer is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Inclinometer");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IInclinometerStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IInclinometer;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.Inclinometer do
-         Hr := RoGetActivationFactory (m_hString, IID_IInclinometerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefaultForRelativeReadings (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IInclinometer := new Windows.Devices.Sensors.IInclinometer;
-            Retval.m_IInclinometer.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetDefault
    return WinRt.Windows.Devices.Sensors.Inclinometer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4679,6 +4628,57 @@ package body WinRt.Windows.Devices.Sensors is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_deviceId);
+      end return;
+   end;
+
+   function GetDefault
+   (
+      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
+   )
+   return WinRt.Windows.Devices.Sensors.Inclinometer is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Inclinometer");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IInclinometerStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IInclinometer;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.Inclinometer do
+         Hr := RoGetActivationFactory (m_hString, IID_IInclinometerStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (sensorReadingtype, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IInclinometer := new Windows.Devices.Sensors.IInclinometer;
+            Retval.m_IInclinometer.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetDefaultForRelativeReadings
+   return WinRt.Windows.Devices.Sensors.Inclinometer is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Inclinometer");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IInclinometerStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IInclinometer;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.Inclinometer do
+         Hr := RoGetActivationFactory (m_hString, IID_IInclinometerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefaultForRelativeReadings (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IInclinometer := new Windows.Devices.Sensors.IInclinometer;
+            Retval.m_IInclinometer.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5302,6 +5302,30 @@ package body WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for LightSensor
 
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.LightSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.LightSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.ILightSensorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.ILightSensor;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.LightSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_ILightSensorStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ILightSensor := new Windows.Devices.Sensors.ILightSensor;
+            Retval.m_ILightSensor.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function GetDeviceSelector_LightSensor
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -5398,30 +5422,6 @@ package body WinRt.Windows.Devices.Sensors is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_deviceId);
-      end return;
-   end;
-
-   function GetDefault
-   return WinRt.Windows.Devices.Sensors.LightSensor is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.LightSensor");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.ILightSensorStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ILightSensor;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.LightSensor do
-         Hr := RoGetActivationFactory (m_hString, IID_ILightSensorStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ILightSensor := new Windows.Devices.Sensors.ILightSensor;
-            Retval.m_ILightSensor.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6615,85 +6615,6 @@ package body WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for OrientationSensor
 
-   function GetDefault
-   (
-      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
-   )
-   return WinRt.Windows.Devices.Sensors.OrientationSensor is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
-         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (sensorReadingtype, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
-            Retval.m_IOrientationSensor.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetDefault
-   (
-      sensorReadingType : Windows.Devices.Sensors.SensorReadingType;
-      optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal
-   )
-   return WinRt.Windows.Devices.Sensors.OrientationSensor is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
-         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (sensorReadingType, optimizationGoal, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
-            Retval.m_IOrientationSensor.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetDefaultForRelativeReadings
-   return WinRt.Windows.Devices.Sensors.OrientationSensor is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
-         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefaultForRelativeReadings (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
-            Retval.m_IOrientationSensor.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function GetDeviceSelector_OrientationSensor
    (
       readingType : Windows.Devices.Sensors.SensorReadingType
@@ -6837,6 +6758,85 @@ package body WinRt.Windows.Devices.Sensors is
          Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
+            Retval.m_IOrientationSensor.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetDefaultForRelativeReadings
+   return WinRt.Windows.Devices.Sensors.OrientationSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefaultForRelativeReadings (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
+            Retval.m_IOrientationSensor.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetDefault
+   (
+      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
+   )
+   return WinRt.Windows.Devices.Sensors.OrientationSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (sensorReadingtype, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
+            Retval.m_IOrientationSensor.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetDefault
+   (
+      sensorReadingType : Windows.Devices.Sensors.SensorReadingType;
+      optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal
+   )
+   return WinRt.Windows.Devices.Sensors.OrientationSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (sensorReadingType, optimizationGoal, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -8002,6 +8002,30 @@ package body WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ProximitySensor
 
+   function GetReadingsFromTriggerDetails_ProximitySensor
+   (
+      triggerDetails : Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
+   )
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.ProximitySensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IProximitySensorStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProximitySensorStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetReadingsFromTriggerDetails (triggerDetails.m_ISensorDataThresholdTriggerDetails.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
    function GetDeviceSelector_ProximitySensor
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -8053,30 +8077,6 @@ package body WinRt.Windows.Devices.Sensors is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_sensorId);
       end return;
-   end;
-
-   function GetReadingsFromTriggerDetails_ProximitySensor
-   (
-      triggerDetails : Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
-   )
-   return WinRt.GenericObject is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.ProximitySensor");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IProximitySensorStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProximitySensorStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetReadingsFromTriggerDetails (triggerDetails.m_ISensorDataThresholdTriggerDetails.all, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -8772,6 +8772,30 @@ package body WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SimpleOrientationSensor
 
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.SimpleOrientationSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.SimpleOrientationSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.ISimpleOrientationSensorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.ISimpleOrientationSensor;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.SimpleOrientationSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_ISimpleOrientationSensorStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ISimpleOrientationSensor := new Windows.Devices.Sensors.ISimpleOrientationSensor;
+            Retval.m_ISimpleOrientationSensor.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function GetDeviceSelector_SimpleOrientationSensor
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -8868,30 +8892,6 @@ package body WinRt.Windows.Devices.Sensors is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_deviceId);
-      end return;
-   end;
-
-   function GetDefault
-   return WinRt.Windows.Devices.Sensors.SimpleOrientationSensor is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.SimpleOrientationSensor");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.ISimpleOrientationSensorStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ISimpleOrientationSensor;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.SimpleOrientationSensor do
-         Hr := RoGetActivationFactory (m_hString, IID_ISimpleOrientationSensorStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ISimpleOrientationSensor := new Windows.Devices.Sensors.ISimpleOrientationSensor;
-            Retval.m_ISimpleOrientationSensor.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

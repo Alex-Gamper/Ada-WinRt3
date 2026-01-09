@@ -8186,13 +8186,13 @@ package WinRt.Windows.Media.Capture is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AppCapture
 
-   function GetForCurrentView
-   return WinRt.Windows.Media.Capture.AppCapture;
-
    procedure SetAllowedAsync
    (
       allowed : WinRt.Boolean
    );
+
+   function GetForCurrentView
+   return WinRt.Windows.Media.Capture.AppCapture;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for AppCapture

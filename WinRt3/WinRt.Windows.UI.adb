@@ -54,33 +54,6 @@ package body WinRt.Windows.UI is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ColorHelper
 
-   function FromArgb
-   (
-      a : WinRt.Byte;
-      r : WinRt.Byte;
-      g : WinRt.Byte;
-      b : WinRt.Byte
-   )
-   return WinRt.Windows.UI.Color is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ColorHelper");
-      m_Factory        : access WinRt.Windows.UI.IColorHelperStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IColorHelperStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.FromArgb (a, r, g, b, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
    function ToDisplayName
    (
       color : Windows.UI.Color
@@ -106,6 +79,33 @@ package body WinRt.Windows.UI is
       AdaRetval := To_Ada (m_ComRetVal);
       tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
+   end;
+
+   function FromArgb
+   (
+      a : WinRt.Byte;
+      r : WinRt.Byte;
+      g : WinRt.Byte;
+      b : WinRt.Byte
+   )
+   return WinRt.Windows.UI.Color is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ColorHelper");
+      m_Factory        : access WinRt.Windows.UI.IColorHelperStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Color;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IColorHelperStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.FromArgb (a, r, g, b, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

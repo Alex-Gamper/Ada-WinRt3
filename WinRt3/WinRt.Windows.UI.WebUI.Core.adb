@@ -1029,22 +1029,6 @@ package body WinRt.Windows.UI.WebUI.Core is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for WebUICommandBarSymbolIcon
 
-   function Constructor return WebUICommandBarSymbolIcon is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon");
-      m_ComRetVal  : aliased Windows.UI.WebUI.Core.IWebUICommandBarSymbolIcon;
-   begin
-      return RetVal : WebUICommandBarSymbolIcon do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IWebUICommandBarSymbolIcon := new Windows.UI.WebUI.Core.IWebUICommandBarSymbolIcon;
-            Retval.m_IWebUICommandBarSymbolIcon.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       symbol : WinRt.WString
@@ -1068,6 +1052,22 @@ package body WinRt.Windows.UI.WebUI.Core is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_symbol);
+      end return;
+   end;
+
+   function Constructor return WebUICommandBarSymbolIcon is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon");
+      m_ComRetVal  : aliased Windows.UI.WebUI.Core.IWebUICommandBarSymbolIcon;
+   begin
+      return RetVal : WebUICommandBarSymbolIcon do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IWebUICommandBarSymbolIcon := new Windows.UI.WebUI.Core.IWebUICommandBarSymbolIcon;
+            Retval.m_IWebUICommandBarSymbolIcon.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

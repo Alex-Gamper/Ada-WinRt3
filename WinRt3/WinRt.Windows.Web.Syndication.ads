@@ -1453,8 +1453,6 @@ package WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SyndicationAttribute
 
-   function Constructor return SyndicationAttribute;
-
    function Constructor
    (
       attributeName : WinRt.WString;
@@ -1462,6 +1460,8 @@ package WinRt.Windows.Web.Syndication is
       attributeValue : WinRt.WString
    )
    return SyndicationAttribute;
+
+   function Constructor return SyndicationAttribute;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SyndicationAttribute
@@ -1748,8 +1748,6 @@ package WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SyndicationContent
 
-   function Constructor return SyndicationContent;
-
    function Constructor
    (
       text : WinRt.WString;
@@ -1762,6 +1760,8 @@ package WinRt.Windows.Web.Syndication is
       sourceUri : Windows.Foundation.Uri'Class
    )
    return SyndicationContent;
+
+   function Constructor return SyndicationContent;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SyndicationContent
@@ -2587,8 +2587,6 @@ package WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SyndicationLink
 
-   function Constructor return SyndicationLink;
-
    function Constructor
    (
       uri : Windows.Foundation.Uri'Class
@@ -2604,6 +2602,8 @@ package WinRt.Windows.Web.Syndication is
       length : WinRt.UInt32
    )
    return SyndicationLink;
+
+   function Constructor return SyndicationLink;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SyndicationLink
@@ -2768,8 +2768,6 @@ package WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SyndicationNode
 
-   function Constructor return SyndicationNode;
-
    function Constructor
    (
       nodeName : WinRt.WString;
@@ -2777,6 +2775,8 @@ package WinRt.Windows.Web.Syndication is
       nodeValue : WinRt.WString
    )
    return SyndicationNode;
+
+   function Constructor return SyndicationNode;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SyndicationNode

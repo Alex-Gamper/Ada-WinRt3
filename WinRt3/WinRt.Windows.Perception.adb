@@ -114,33 +114,6 @@ package body WinRt.Windows.Perception is
    -- Static RuntimeClass
    package body PerceptionTimestampHelper is
 
-      function FromSystemRelativeTargetTime
-      (
-         targetTime : Windows.Foundation.TimeSpan
-      )
-      return WinRt.Windows.Perception.PerceptionTimestamp is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.PerceptionTimestampHelper");
-         m_Factory        : access WinRt.Windows.Perception.IPerceptionTimestampHelperStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Perception.IPerceptionTimestamp;
-      begin
-         return RetVal : WinRt.Windows.Perception.PerceptionTimestamp do
-            Hr := RoGetActivationFactory (m_hString, IID_IPerceptionTimestampHelperStatics2'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.FromSystemRelativeTargetTime (targetTime, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IPerceptionTimestamp := new Windows.Perception.IPerceptionTimestamp;
-               Retval.m_IPerceptionTimestamp.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
       function FromHistoricalTargetTime
       (
          targetTime : Windows.Foundation.DateTime
@@ -157,6 +130,33 @@ package body WinRt.Windows.Perception is
             Hr := RoGetActivationFactory (m_hString, IID_IPerceptionTimestampHelperStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.FromHistoricalTargetTime (targetTime, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IPerceptionTimestamp := new Windows.Perception.IPerceptionTimestamp;
+               Retval.m_IPerceptionTimestamp.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function FromSystemRelativeTargetTime
+      (
+         targetTime : Windows.Foundation.TimeSpan
+      )
+      return WinRt.Windows.Perception.PerceptionTimestamp is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.PerceptionTimestampHelper");
+         m_Factory        : access WinRt.Windows.Perception.IPerceptionTimestampHelperStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Perception.IPerceptionTimestamp;
+      begin
+         return RetVal : WinRt.Windows.Perception.PerceptionTimestamp do
+            Hr := RoGetActivationFactory (m_hString, IID_IPerceptionTimestampHelperStatics2'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.FromSystemRelativeTargetTime (targetTime, m_ComRetVal'Access);
                temp := m_Factory.Release;
                if Hr /= S_OK then
                   raise Program_Error;

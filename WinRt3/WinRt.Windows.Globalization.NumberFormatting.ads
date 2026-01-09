@@ -1275,13 +1275,13 @@ package WinRt.Windows.Globalization.NumberFormatting is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for NumeralSystemTranslator
 
+   function Constructor return NumeralSystemTranslator;
+
    function Constructor
    (
       languages : GenericObject
    )
    return NumeralSystemTranslator;
-
-   function Constructor return NumeralSystemTranslator;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for NumeralSystemTranslator
@@ -1326,14 +1326,14 @@ package WinRt.Windows.Globalization.NumberFormatting is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PercentFormatter
 
+   function Constructor return PercentFormatter;
+
    function Constructor
    (
       languages : GenericObject;
       geographicRegion : WinRt.WString
    )
    return PercentFormatter;
-
-   function Constructor return PercentFormatter;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for PercentFormatter
@@ -1530,14 +1530,14 @@ package WinRt.Windows.Globalization.NumberFormatting is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PermilleFormatter
 
+   function Constructor return PermilleFormatter;
+
    function Constructor
    (
       languages : GenericObject;
       geographicRegion : WinRt.WString
    )
    return PermilleFormatter;
-
-   function Constructor return PermilleFormatter;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for PermilleFormatter

@@ -3860,14 +3860,14 @@ package WinRt.Windows.ApplicationModel.Background is
 
    function Constructor
    (
-      characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class;
-      eventTriggeringMode : Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode
+      characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class
    )
    return GattCharacteristicNotificationTrigger;
 
    function Constructor
    (
-      characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class
+      characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class;
+      eventTriggeringMode : Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode
    )
    return GattCharacteristicNotificationTrigger;
 
@@ -4234,13 +4234,13 @@ package WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PushNotificationTrigger
 
+   function Constructor return PushNotificationTrigger;
+
    function Constructor
    (
       applicationId : WinRt.WString
    )
    return PushNotificationTrigger;
-
-   function Constructor return PushNotificationTrigger;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for PushNotificationTrigger
@@ -4566,13 +4566,13 @@ package WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ToastNotificationActionTrigger
 
-   function Constructor return ToastNotificationActionTrigger;
-
    function Constructor
    (
       applicationId : WinRt.WString
    )
    return ToastNotificationActionTrigger;
+
+   function Constructor return ToastNotificationActionTrigger;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ToastNotificationActionTrigger

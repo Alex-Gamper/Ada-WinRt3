@@ -2543,13 +2543,13 @@ package WinRt.Windows.Web.Http is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for HttpResponseMessage
 
+   function Constructor return HttpResponseMessage;
+
    function Constructor
    (
       statusCode : Windows.Web.Http.HttpStatusCode
    )
    return HttpResponseMessage;
-
-   function Constructor return HttpResponseMessage;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for HttpResponseMessage

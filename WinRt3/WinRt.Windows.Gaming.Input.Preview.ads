@@ -27,7 +27,10 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Gaming.Input.Custom;
+limited with WinRt.Windows.System;
+with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Gaming.Input.Preview is
 
@@ -39,6 +42,186 @@ package WinRt.Windows.Gaming.Input.Preview is
 
    type IGameControllerProviderInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGameControllerProviderInfoStatics is access all IGameControllerProviderInfoStatics_Interface'Class;
+
+   type ILegacyGipGameControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
+   type ILegacyGipGameControllerProvider is access all ILegacyGipGameControllerProvider_Interface'Class;
+   type ILegacyGipGameControllerProvider_Ptr is access all ILegacyGipGameControllerProvider;
+
+   type ILegacyGipGameControllerProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type ILegacyGipGameControllerProviderStatics is access all ILegacyGipGameControllerProviderStatics_Interface'Class;
+
+   -----------------------------------------------------------------------------
+   -- Class declarations
+   -----------------------------------------------------------------------------
+
+   type LegacyGipGameControllerProvider is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ILegacyGipGameControllerProvider : access Windows.Gaming.Input.Preview.ILegacyGipGameControllerProvider;
+      end record;
+   type LegacyGipGameControllerProvider_Ptr is access all LegacyGipGameControllerProvider;
+
+   -----------------------------------------------------------------------------
+   -- Enum declarations
+   -----------------------------------------------------------------------------
+
+   type DeviceCommand is (
+      Reset_e
+   );
+   for DeviceCommand use (
+      Reset_e => 0
+   );
+   type DeviceCommand_Ptr is access all DeviceCommand;
+
+   type GameControllerBatteryChargingState is (
+      Unknown_e,
+      Inactive_e,
+      Active_e,
+      Error_e
+   );
+   for GameControllerBatteryChargingState use (
+      Unknown_e => 0,
+      Inactive_e => 1,
+      Active_e => 2,
+      Error_e => 3
+   );
+   type GameControllerBatteryChargingState_Ptr is access all GameControllerBatteryChargingState;
+
+   type GameControllerBatteryKind is (
+      Unknown_e,
+      None_e,
+      Standard_e,
+      Rechargeable_e
+   );
+   for GameControllerBatteryKind use (
+      Unknown_e => 0,
+      None_e => 1,
+      Standard_e => 2,
+      Rechargeable_e => 3
+   );
+   type GameControllerBatteryKind_Ptr is access all GameControllerBatteryKind;
+
+   type GameControllerBatteryLevel is (
+      Unknown_e,
+      Critical_e,
+      Low_e,
+      Medium_e,
+      Full_e
+   );
+   for GameControllerBatteryLevel use (
+      Unknown_e => 0,
+      Critical_e => 1,
+      Low_e => 2,
+      Medium_e => 3,
+      Full_e => 4
+   );
+   type GameControllerBatteryLevel_Ptr is access all GameControllerBatteryLevel;
+
+   type GameControllerFirmwareCorruptReason is (
+      Unknown_e,
+      NotCorrupt_e,
+      TwoUpCorrupt_e,
+      AppCorrupt_e,
+      RadioCorrupt_e,
+      EepromCorrupt_e,
+      SafeToUpdate_e
+   );
+   for GameControllerFirmwareCorruptReason use (
+      Unknown_e => 0,
+      NotCorrupt_e => 1,
+      TwoUpCorrupt_e => 2,
+      AppCorrupt_e => 3,
+      RadioCorrupt_e => 4,
+      EepromCorrupt_e => 5,
+      SafeToUpdate_e => 6
+   );
+   type GameControllerFirmwareCorruptReason_Ptr is access all GameControllerFirmwareCorruptReason;
+
+   type HeadsetLevel is (
+      Off_e,
+      Low_e,
+      Medium_e,
+      High_e
+   );
+   for HeadsetLevel use (
+      Off_e => 0,
+      Low_e => 1,
+      Medium_e => 2,
+      High_e => 3
+   );
+   type HeadsetLevel_Ptr is access all HeadsetLevel;
+
+   type HeadsetOperation is (
+      Geq_e,
+      BassBoostGain_e,
+      SmartMute_e,
+      SideTone_e,
+      MuteLedBrightness_e,
+      SwapMixAndVolumeDials_e
+   );
+   for HeadsetOperation use (
+      Geq_e => 0,
+      BassBoostGain_e => 1,
+      SmartMute_e => 2,
+      SideTone_e => 3,
+      MuteLedBrightness_e => 4,
+      SwapMixAndVolumeDials_e => 5
+   );
+   type HeadsetOperation_Ptr is access all HeadsetOperation;
+
+   type RemappingButtonCategory is (
+      ButtonSettings_e,
+      AnalogSettings_e,
+      VibrationSettings_e,
+      ShareShortPress_e,
+      ShareShortPressMetaData_e,
+      ShareShortPressMetaDataDisplay_e,
+      ShareLongPress_e,
+      ShareLongPressMetaData_e,
+      ShareLongPressMetaDataDisplay_e,
+      ShareDoublePress_e,
+      ShareDoublePressMetaData_e,
+      ShareDoublePressMetaDataDisplay_e
+   );
+   for RemappingButtonCategory use (
+      ButtonSettings_e => 0,
+      AnalogSettings_e => 1,
+      VibrationSettings_e => 2,
+      ShareShortPress_e => 3,
+      ShareShortPressMetaData_e => 4,
+      ShareShortPressMetaDataDisplay_e => 5,
+      ShareLongPress_e => 6,
+      ShareLongPressMetaData_e => 7,
+      ShareLongPressMetaDataDisplay_e => 8,
+      ShareDoublePress_e => 9,
+      ShareDoublePressMetaData_e => 10,
+      ShareDoublePressMetaDataDisplay_e => 11
+   );
+   type RemappingButtonCategory_Ptr is access all RemappingButtonCategory;
+
+   -----------------------------------------------------------------------------
+   -- Record declarations
+   -----------------------------------------------------------------------------
+
+   type HeadsetGeqGains is record
+      band1Gain : WinRt.Int32;
+      band2Gain : WinRt.Int32;
+      band3Gain : WinRt.Int32;
+      band4Gain : WinRt.Int32;
+      band5Gain : WinRt.Int32;
+   end record with Convention => C_Pass_By_Copy;
+   type HeadsetGeqGains_Ptr is access all HeadsetGeqGains;
+
+   -----------------------------------------------------------------------------
+   -- Generic package declarations
+   -----------------------------------------------------------------------------
+
+   package IVectorView_HString is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.HString);
+   IID_IVectorView_HString : aliased WinRt.IID := (4115727254, 56632, 23947, (170, 1, 147, 210, 193, 162, 208, 159 ));
+   function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
+
+   package IMapView_RemappingButtonCategory_IInspectable is new WinRt.Windows.Foundation.Collections.IMapView (RemappingButtonCategory, WinRt.IInspectable);
+   IID_IMapView_RemappingButtonCategory_IInspectable : aliased WinRt.IID := (4115727254, 56632, 23947, (170, 1, 147, 210, 193, 162, 208, 159 ));
+   function QInterface_IMapView_RemappingButtonCategory_IInspectable is new Generic_QueryInterface (GenericObject_Interface, IMapView_RemappingButtonCategory_IInspectable.Kind, IID_IMapView_RemappingButtonCategory_IInspectable'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -64,5 +247,364 @@ package WinRt.Windows.Gaming.Input.Preview is
       return WinRt.Hresult is abstract;
 
       IID_IGameControllerProviderInfoStatics : aliased WinRt.IID := (199354053, 55741, 17646, (131, 98, 72, 139, 46, 70, 75, 251 ));
+
+   -----------------------------------------------------------------------------
+   -- type ILegacyGipGameControllerProvider is interface and WinRt.IInspectable;
+
+      function get_BatteryChargingState
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         RetVal : access Windows.Gaming.Input.Preview.GameControllerBatteryChargingState
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_BatteryKind
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         RetVal : access Windows.Gaming.Input.Preview.GameControllerBatteryKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_BatteryLevel
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         RetVal : access Windows.Gaming.Input.Preview.GameControllerBatteryLevel
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetDeviceFirmwareCorruptionState
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         RetVal : access Windows.Gaming.Input.Preview.GameControllerFirmwareCorruptReason
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsFirmwareCorrupted
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsInterfaceSupported
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         interfaceId : WinRt.Guid;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsSyntheticDevice
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PreferredTypes
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function ExecuteCommand
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         command : Windows.Gaming.Input.Preview.DeviceCommand
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetHomeLedIntensity
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         intensity : WinRt.Byte
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetExtendedDeviceInfo
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         RetValSize : access WinRt.UInt32;
+         RetVal : access WinRt.Byte_Ptr
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetHeadsetOperation
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         operation : Windows.Gaming.Input.Preview.HeadsetOperation;
+         bufferSize : WinRt.UInt32;
+         buffer : WinRt.Byte_Ptr
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetHeadsetOperation
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         operation : Windows.Gaming.Input.Preview.HeadsetOperation;
+         RetValSize : access WinRt.UInt32;
+         RetVal : access WinRt.Byte_Ptr
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AppCompatVersion
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetStandardControllerButtonRemapping
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         user : Windows.System.IUser;
+         previous : WinRt.Boolean;
+         remapping : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetStandardControllerButtonRemapping
+      (
+         this : access ILegacyGipGameControllerProvider_Interface;
+         user : Windows.System.IUser;
+         previous : WinRt.Boolean;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ILegacyGipGameControllerProvider : aliased WinRt.IID := (765717842, 65497, 17378, (130, 92, 29, 39, 144, 224, 77, 20 ));
+
+   -----------------------------------------------------------------------------
+   -- type ILegacyGipGameControllerProviderStatics is interface and WinRt.IInspectable;
+
+      function FromGameController
+      (
+         this : access ILegacyGipGameControllerProviderStatics_Interface;
+         controller : Windows.Gaming.Input.IGameController;
+         RetVal : access Windows.Gaming.Input.Preview.ILegacyGipGameControllerProvider
+      )
+      return WinRt.Hresult is abstract;
+
+      function FromGameControllerProvider
+      (
+         this : access ILegacyGipGameControllerProviderStatics_Interface;
+         provider : Windows.Gaming.Input.Custom.IGameControllerProvider;
+         RetVal : access Windows.Gaming.Input.Preview.ILegacyGipGameControllerProvider
+      )
+      return WinRt.Hresult is abstract;
+
+      function PairPilotToCopilot
+      (
+         this : access ILegacyGipGameControllerProviderStatics_Interface;
+         user : Windows.System.IUser;
+         pilotControllerProviderId : WinRt.HString;
+         copilotControllerProviderId : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function ClearPairing
+      (
+         this : access ILegacyGipGameControllerProviderStatics_Interface;
+         user : Windows.System.IUser;
+         controllerProviderId : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsPilot
+      (
+         this : access ILegacyGipGameControllerProviderStatics_Interface;
+         user : Windows.System.IUser;
+         controllerProviderId : WinRt.HString;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsCopilot
+      (
+         this : access ILegacyGipGameControllerProviderStatics_Interface;
+         user : Windows.System.IUser;
+         controllerProviderId : WinRt.HString;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ILegacyGipGameControllerProviderStatics : aliased WinRt.IID := (3557677591, 45556, 18842, (135, 76, 112, 149, 170, 193, 82, 145 ));
+
+   -----------------------------------------------------------------------------
+   -- Class method declarations
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package GameControllerProviderInfo is
+
+      function GetParentProviderId
+      (
+         provider : Windows.Gaming.Input.Custom.IGameControllerProvider
+      )
+      return WinRt.WString;
+
+      function GetProviderId
+      (
+         provider : Windows.Gaming.Input.Custom.IGameControllerProvider
+      )
+      return WinRt.WString;
+
+   end GameControllerProviderInfo;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for LegacyGipGameControllerProvider
+
+   overriding procedure Initialize (this : in out LegacyGipGameControllerProvider);
+   overriding procedure Finalize (this : in out LegacyGipGameControllerProvider);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for LegacyGipGameControllerProvider
+
+   function FromGameController
+   (
+      controller : Windows.Gaming.Input.IGameController
+   )
+   return WinRt.Windows.Gaming.Input.Preview.LegacyGipGameControllerProvider;
+
+   function FromGameControllerProvider
+   (
+      provider : Windows.Gaming.Input.Custom.IGameControllerProvider
+   )
+   return WinRt.Windows.Gaming.Input.Preview.LegacyGipGameControllerProvider;
+
+   procedure PairPilotToCopilot
+   (
+      user : Windows.System.User'Class;
+      pilotControllerProviderId : WinRt.WString;
+      copilotControllerProviderId : WinRt.WString
+   );
+
+   procedure ClearPairing
+   (
+      user : Windows.System.User'Class;
+      controllerProviderId : WinRt.WString
+   );
+
+   function IsPilot
+   (
+      user : Windows.System.User'Class;
+      controllerProviderId : WinRt.WString
+   )
+   return WinRt.WString;
+
+   function IsCopilot
+   (
+      user : Windows.System.User'Class;
+      controllerProviderId : WinRt.WString
+   )
+   return WinRt.WString;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for LegacyGipGameControllerProvider
+
+   function get_BatteryChargingState
+   (
+      this : in out LegacyGipGameControllerProvider
+   )
+   return WinRt.Windows.Gaming.Input.Preview.GameControllerBatteryChargingState;
+
+   function get_BatteryKind
+   (
+      this : in out LegacyGipGameControllerProvider
+   )
+   return WinRt.Windows.Gaming.Input.Preview.GameControllerBatteryKind;
+
+   function get_BatteryLevel
+   (
+      this : in out LegacyGipGameControllerProvider
+   )
+   return WinRt.Windows.Gaming.Input.Preview.GameControllerBatteryLevel;
+
+   function GetDeviceFirmwareCorruptionState
+   (
+      this : in out LegacyGipGameControllerProvider
+   )
+   return WinRt.Windows.Gaming.Input.Preview.GameControllerFirmwareCorruptReason;
+
+   function get_IsFirmwareCorrupted
+   (
+      this : in out LegacyGipGameControllerProvider
+   )
+   return WinRt.Boolean;
+
+   function IsInterfaceSupported
+   (
+      this : in out LegacyGipGameControllerProvider;
+      interfaceId : WinRt.Guid
+   )
+   return WinRt.Boolean;
+
+   function get_IsSyntheticDevice
+   (
+      this : in out LegacyGipGameControllerProvider
+   )
+   return WinRt.Boolean;
+
+   function get_PreferredTypes
+   (
+      this : in out LegacyGipGameControllerProvider
+   )
+   return IVectorView_HString.Kind;
+
+   procedure ExecuteCommand
+   (
+      this : in out LegacyGipGameControllerProvider;
+      command : Windows.Gaming.Input.Preview.DeviceCommand
+   );
+
+   procedure SetHomeLedIntensity
+   (
+      this : in out LegacyGipGameControllerProvider;
+      intensity : WinRt.Byte
+   );
+
+   function GetExtendedDeviceInfo
+   (
+      this : in out LegacyGipGameControllerProvider
+   )
+   return WinRt.Byte_Array;
+
+   procedure SetHeadsetOperation
+   (
+      this : in out LegacyGipGameControllerProvider;
+      operation : Windows.Gaming.Input.Preview.HeadsetOperation;
+      buffer : WinRt.Byte_Array
+   );
+
+   function GetHeadsetOperation
+   (
+      this : in out LegacyGipGameControllerProvider;
+      operation : Windows.Gaming.Input.Preview.HeadsetOperation
+   )
+   return WinRt.Byte_Array;
+
+   function get_AppCompatVersion
+   (
+      this : in out LegacyGipGameControllerProvider
+   )
+   return WinRt.UInt32;
+
+   procedure SetStandardControllerButtonRemapping
+   (
+      this : in out LegacyGipGameControllerProvider;
+      user : Windows.System.User'Class;
+      previous : WinRt.Boolean;
+      remapping : GenericObject
+   );
+
+   function GetStandardControllerButtonRemapping
+   (
+      this : in out LegacyGipGameControllerProvider;
+      user : Windows.System.User'Class;
+      previous : WinRt.Boolean
+   )
+   return IMapView_RemappingButtonCategory_IInspectable.Kind;
 
 end WinRt.Windows.Gaming.Input.Preview;

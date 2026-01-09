@@ -3394,6 +3394,35 @@ package WinRt.Windows.ApplicationModel.Appointments is
    -- Static RuntimeClass
    package AppointmentManager is
 
+      procedure ShowAppointmentDetailsAsync
+      (
+         appointmentId : WinRt.WString
+      );
+
+      procedure ShowAppointmentDetailsAsync
+      (
+         appointmentId : WinRt.WString;
+         instanceStartDate : Windows.Foundation.DateTime
+      );
+
+      function ShowEditNewAppointmentAsync
+      (
+         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class
+      )
+      return WinRt.WString;
+
+      function RequestStoreAsync
+      (
+         options : Windows.ApplicationModel.Appointments.AppointmentStoreAccessType
+      )
+      return WinRt.Windows.ApplicationModel.Appointments.AppointmentStore;
+
+      function GetForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.ApplicationModel.Appointments.AppointmentManagerForUser;
+
       function ShowAddAppointmentAsync
       (
          appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
@@ -3465,35 +3494,6 @@ package WinRt.Windows.ApplicationModel.Appointments is
          timeToShow : Windows.Foundation.DateTime;
          duration : Windows.Foundation.TimeSpan
       );
-
-      procedure ShowAppointmentDetailsAsync
-      (
-         appointmentId : WinRt.WString
-      );
-
-      procedure ShowAppointmentDetailsAsync
-      (
-         appointmentId : WinRt.WString;
-         instanceStartDate : Windows.Foundation.DateTime
-      );
-
-      function ShowEditNewAppointmentAsync
-      (
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class
-      )
-      return WinRt.WString;
-
-      function RequestStoreAsync
-      (
-         options : Windows.ApplicationModel.Appointments.AppointmentStoreAccessType
-      )
-      return WinRt.Windows.ApplicationModel.Appointments.AppointmentStore;
-
-      function GetForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.ApplicationModel.Appointments.AppointmentManagerForUser;
 
    end AppointmentManager;
 
@@ -3662,15 +3662,6 @@ package WinRt.Windows.ApplicationModel.Appointments is
    -- Static RuntimeClass
    package AppointmentProperties is
 
-      function get_ChangeNumber
-      return WinRt.WString;
-
-      function get_RemoteChangeNumber
-      return WinRt.WString;
-
-      function get_DetailsKind
-      return WinRt.WString;
-
       function get_Subject
       return WinRt.WString;
 
@@ -3739,6 +3730,15 @@ package WinRt.Windows.ApplicationModel.Appointments is
 
       function get_DefaultProperties
       return IVector_HString.Kind;
+
+      function get_ChangeNumber
+      return WinRt.WString;
+
+      function get_RemoteChangeNumber
+      return WinRt.WString;
+
+      function get_DetailsKind
+      return WinRt.WString;
 
    end AppointmentProperties;
 

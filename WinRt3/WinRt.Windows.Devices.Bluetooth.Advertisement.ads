@@ -1774,14 +1774,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BluetoothLEManufacturerData
 
-   function Constructor return BluetoothLEManufacturerData;
-
    function Constructor
    (
       companyId : WinRt.UInt16;
       data : Windows.Storage.Streams.IBuffer
    )
    return BluetoothLEManufacturerData;
+
+   function Constructor return BluetoothLEManufacturerData;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BluetoothLEManufacturerData

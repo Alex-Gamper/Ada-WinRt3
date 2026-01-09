@@ -29,6 +29,9 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.ApplicationModel.Core;
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
+limited with WinRt.Windows.Graphics.Imaging;
+limited with WinRt.Windows.Storage.Streams;
 limited with WinRt.Windows.UI.StartScreen;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
@@ -57,8 +60,54 @@ package WinRt.Windows.UI.Shell is
    type ITaskbarManager2_Interface is interface and WinRt.IInspectable_Interface;
    type ITaskbarManager2 is access all ITaskbarManager2_Interface'Class;
 
+   type ITaskbarManagerDesktopAppSupportStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type ITaskbarManagerDesktopAppSupportStatics is access all ITaskbarManagerDesktopAppSupportStatics_Interface'Class;
+
    type ITaskbarManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITaskbarManagerStatics is access all ITaskbarManagerStatics_Interface'Class;
+
+   type IWindowTab_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowTab is access all IWindowTab_Interface'Class;
+   type IWindowTab_Ptr is access all IWindowTab;
+   type IWindowTab_Array is array (Natural range <>) of IWindowTab;
+
+   type IWindowTabCloseRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowTabCloseRequestedEventArgs is access all IWindowTabCloseRequestedEventArgs_Interface'Class;
+   type IWindowTabCloseRequestedEventArgs_Ptr is access all IWindowTabCloseRequestedEventArgs;
+
+   type IWindowTabCollection_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowTabCollection is access all IWindowTabCollection_Interface'Class;
+   type IWindowTabCollection_Ptr is access all IWindowTabCollection;
+
+   type IWindowTabGroup_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowTabGroup is access all IWindowTabGroup_Interface'Class;
+   type IWindowTabGroup_Ptr is access all IWindowTabGroup;
+
+   type IWindowTabIcon_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowTabIcon is access all IWindowTabIcon_Interface'Class;
+   type IWindowTabIcon_Ptr is access all IWindowTabIcon;
+
+   type IWindowTabIconStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowTabIconStatics is access all IWindowTabIconStatics_Interface'Class;
+
+   type IWindowTabManager_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowTabManager is access all IWindowTabManager_Interface'Class;
+   type IWindowTabManager_Ptr is access all IWindowTabManager;
+
+   type IWindowTabManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowTabManagerStatics is access all IWindowTabManagerStatics_Interface'Class;
+
+   type IWindowTabSwitchRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowTabSwitchRequestedEventArgs is access all IWindowTabSwitchRequestedEventArgs_Interface'Class;
+   type IWindowTabSwitchRequestedEventArgs_Ptr is access all IWindowTabSwitchRequestedEventArgs;
+
+   type IWindowTabTearOutRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowTabTearOutRequestedEventArgs is access all IWindowTabTearOutRequestedEventArgs_Interface'Class;
+   type IWindowTabTearOutRequestedEventArgs_Ptr is access all IWindowTabTearOutRequestedEventArgs;
+
+   type IWindowTabThumbnailRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowTabThumbnailRequestedEventArgs is access all IWindowTabThumbnailRequestedEventArgs_Interface'Class;
+   type IWindowTabThumbnailRequestedEventArgs_Ptr is access all IWindowTabThumbnailRequestedEventArgs;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -75,6 +124,60 @@ package WinRt.Windows.UI.Shell is
          m_ITaskbarManager : access Windows.UI.Shell.ITaskbarManager;
       end record;
    type TaskbarManager_Ptr is access all TaskbarManager;
+
+   type WindowTab is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowTab : access Windows.UI.Shell.IWindowTab;
+      end record;
+   type WindowTab_Ptr is access all WindowTab;
+
+   type WindowTabCloseRequestedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowTabCloseRequestedEventArgs : access Windows.UI.Shell.IWindowTabCloseRequestedEventArgs;
+      end record;
+   type WindowTabCloseRequestedEventArgs_Ptr is access all WindowTabCloseRequestedEventArgs;
+
+   type WindowTabCollection is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowTabCollection : access Windows.UI.Shell.IWindowTabCollection;
+      end record;
+   type WindowTabCollection_Ptr is access all WindowTabCollection;
+
+   type WindowTabGroup is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowTabGroup : access Windows.UI.Shell.IWindowTabGroup;
+      end record;
+   type WindowTabGroup_Ptr is access all WindowTabGroup;
+
+   type WindowTabIcon is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowTabIcon : access Windows.UI.Shell.IWindowTabIcon;
+      end record;
+   type WindowTabIcon_Ptr is access all WindowTabIcon;
+
+   type WindowTabManager is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowTabManager : access Windows.UI.Shell.IWindowTabManager;
+      end record;
+   type WindowTabManager_Ptr is access all WindowTabManager;
+
+   type WindowTabSwitchRequestedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowTabSwitchRequestedEventArgs : access Windows.UI.Shell.IWindowTabSwitchRequestedEventArgs;
+      end record;
+   type WindowTabSwitchRequestedEventArgs_Ptr is access all WindowTabSwitchRequestedEventArgs;
+
+   type WindowTabTearOutRequestedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowTabTearOutRequestedEventArgs : access Windows.UI.Shell.IWindowTabTearOutRequestedEventArgs;
+      end record;
+   type WindowTabTearOutRequestedEventArgs_Ptr is access all WindowTabTearOutRequestedEventArgs;
+
+   type WindowTabThumbnailRequestedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowTabThumbnailRequestedEventArgs : access Windows.UI.Shell.IWindowTabThumbnailRequestedEventArgs;
+      end record;
+   type WindowTabThumbnailRequestedEventArgs_Ptr is access all WindowTabThumbnailRequestedEventArgs;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -120,6 +223,11 @@ package WinRt.Windows.UI.Shell is
       null;
    end record with Convention => C_Pass_By_Copy;
    type SecurityAppManagerContract_Ptr is access all SecurityAppManagerContract;
+
+   type WindowTabManagerContract is record
+      null;
+   end record with Convention => C_Pass_By_Copy;
+   type WindowTabManagerContract_Ptr is access all WindowTabManagerContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -264,6 +372,11 @@ package WinRt.Windows.UI.Shell is
       IID_ITaskbarManager2 : aliased WinRt.IID := (2045812846, 31490, 18705, (145, 140, 222, 224, 187, 210, 11, 164 ));
 
    -----------------------------------------------------------------------------
+   -- type ITaskbarManagerDesktopAppSupportStatics is interface and WinRt.IInspectable;
+
+      IID_ITaskbarManagerDesktopAppSupportStatics : aliased WinRt.IID := (3456040291, 59513, 16692, (185, 167, 130, 131, 240, 95, 148, 128 ));
+
+   -----------------------------------------------------------------------------
    -- type ITaskbarManagerStatics is interface and WinRt.IInspectable;
 
       function GetDefault
@@ -274,6 +387,380 @@ package WinRt.Windows.UI.Shell is
       return WinRt.Hresult is abstract;
 
       IID_ITaskbarManagerStatics : aliased WinRt.IID := (3677530996, 56914, 20454, (183, 182, 149, 255, 159, 131, 149, 223 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowTab is interface and WinRt.IInspectable;
+
+      function get_Tag
+      (
+         this : access IWindowTab_Interface;
+         RetVal : access WinRt.IInspectable
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Tag
+      (
+         this : access IWindowTab_Interface;
+         value : WinRt.IInspectable
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Title
+      (
+         this : access IWindowTab_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Title
+      (
+         this : access IWindowTab_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Icon
+      (
+         this : access IWindowTab_Interface;
+         RetVal : access Windows.UI.Shell.IWindowTabIcon
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Icon
+      (
+         this : access IWindowTab_Interface;
+         value : Windows.UI.Shell.IWindowTabIcon
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TreatAsSecondaryTileId
+      (
+         this : access IWindowTab_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TreatAsSecondaryTileId
+      (
+         this : access IWindowTab_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Group
+      (
+         this : access IWindowTab_Interface;
+         RetVal : access Windows.UI.Shell.IWindowTabGroup
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Group
+      (
+         this : access IWindowTab_Interface;
+         value : Windows.UI.Shell.IWindowTabGroup
+      )
+      return WinRt.Hresult is abstract;
+
+      function ReportThumbnailAvailable
+      (
+         this : access IWindowTab_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowTab : aliased WinRt.IID := (1428060010, 31016, 19808, (189, 217, 103, 43, 90, 87, 88, 235 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowTabCloseRequestedEventArgs is interface and WinRt.IInspectable;
+
+      function get_Tab
+      (
+         this : access IWindowTabCloseRequestedEventArgs_Interface;
+         RetVal : access Windows.UI.Shell.IWindowTab
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowTabCloseRequestedEventArgs : aliased WinRt.IID := (1198686953, 61124, 22658, (152, 137, 45, 214, 77, 15, 159, 182 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowTabCollection is interface and WinRt.IInspectable;
+
+      function MoveTab
+      (
+         this : access IWindowTabCollection_Interface;
+         tab : Windows.UI.Shell.IWindowTab;
+         index : WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowTabCollection : aliased WinRt.IID := (2899119468, 60679, 20890, (140, 51, 23, 224, 46, 126, 155, 15 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowTabGroup is interface and WinRt.IInspectable;
+
+      function get_Title
+      (
+         this : access IWindowTabGroup_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Title
+      (
+         this : access IWindowTabGroup_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Icon
+      (
+         this : access IWindowTabGroup_Interface;
+         RetVal : access Windows.UI.Shell.IWindowTabIcon
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Icon
+      (
+         this : access IWindowTabGroup_Interface;
+         value : Windows.UI.Shell.IWindowTabIcon
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowTabGroup : aliased WinRt.IID := (2848113918, 27902, 17564, (139, 87, 87, 86, 119, 26, 190, 86 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowTabIcon is interface and WinRt.IInspectable;
+
+      IID_IWindowTabIcon : aliased WinRt.IID := (4180621711, 13929, 19724, (161, 131, 20, 221, 174, 111, 101, 56 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowTabIconStatics is interface and WinRt.IInspectable;
+
+      function CreateFromFontGlyph
+      (
+         this : access IWindowTabIconStatics_Interface;
+         glyph : WinRt.HString;
+         fontFamily : WinRt.HString;
+         RetVal : access Windows.UI.Shell.IWindowTabIcon
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateFromFontGlyph
+      (
+         this : access IWindowTabIconStatics_Interface;
+         glyph : WinRt.HString;
+         fontFamily : WinRt.HString;
+         fontUri : Windows.Foundation.IUriRuntimeClass;
+         RetVal : access Windows.UI.Shell.IWindowTabIcon
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateFromImage
+      (
+         this : access IWindowTabIconStatics_Interface;
+         image : Windows.Storage.Streams.IRandomAccessStreamReference;
+         RetVal : access Windows.UI.Shell.IWindowTabIcon
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowTabIconStatics : aliased WinRt.IID := (773380446, 11451, 16516, (175, 12, 54, 238, 28, 45, 84, 177 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowTabManager is interface and WinRt.IInspectable;
+
+      function get_Tabs
+      (
+         this : access IWindowTabManager_Interface;
+         RetVal : access Windows.UI.Shell.IWindowTabCollection
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetActiveTab
+      (
+         this : access IWindowTabManager_Interface;
+         tab : Windows.UI.Shell.IWindowTab
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_TabSwitchRequested
+      (
+         this : access IWindowTabManager_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_TabSwitchRequested
+      (
+         this : access IWindowTabManager_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_TabCloseRequested
+      (
+         this : access IWindowTabManager_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_TabCloseRequested
+      (
+         this : access IWindowTabManager_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_TabTearOutRequested
+      (
+         this : access IWindowTabManager_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_TabTearOutRequested
+      (
+         this : access IWindowTabManager_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_TabThumbnailRequested
+      (
+         this : access IWindowTabManager_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_TabThumbnailRequested
+      (
+         this : access IWindowTabManager_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowTabManager : aliased WinRt.IID := (2545141399, 62522, 17383, (179, 162, 232, 137, 169, 131, 85, 153 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowTabManagerStatics is interface and WinRt.IInspectable;
+
+      function GetForWindow
+      (
+         this : access IWindowTabManagerStatics_Interface;
+         windowId : WinRt.UInt64;
+         RetVal : access Windows.UI.Shell.IWindowTabManager
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsSupported
+      (
+         this : access IWindowTabManagerStatics_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsTabTearOutSupported
+      (
+         this : access IWindowTabManagerStatics_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowTabManagerStatics : aliased WinRt.IID := (1987401320, 17904, 19979, (129, 114, 78, 109, 157, 15, 135, 189 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowTabSwitchRequestedEventArgs is interface and WinRt.IInspectable;
+
+      function get_Tab
+      (
+         this : access IWindowTabSwitchRequestedEventArgs_Interface;
+         RetVal : access Windows.UI.Shell.IWindowTab
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowTabSwitchRequestedEventArgs : aliased WinRt.IID := (2092712474, 22692, 22155, (163, 81, 248, 169, 71, 165, 170, 216 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowTabTearOutRequestedEventArgs is interface and WinRt.IInspectable;
+
+      function get_Tab
+      (
+         this : access IWindowTabTearOutRequestedEventArgs_Interface;
+         RetVal : access Windows.UI.Shell.IWindowTab
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_WindowId
+      (
+         this : access IWindowTabTearOutRequestedEventArgs_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_WindowId
+      (
+         this : access IWindowTabTearOutRequestedEventArgs_Interface;
+         value : WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetDeferral
+      (
+         this : access IWindowTabTearOutRequestedEventArgs_Interface;
+         RetVal : access Windows.Foundation.IDeferral
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowTabTearOutRequestedEventArgs : aliased WinRt.IID := (399926873, 20485, 24270, (153, 175, 86, 99, 6, 231, 54, 66 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowTabThumbnailRequestedEventArgs is interface and WinRt.IInspectable;
+
+      function get_Tab
+      (
+         this : access IWindowTabThumbnailRequestedEventArgs_Interface;
+         RetVal : access Windows.UI.Shell.IWindowTab
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RequestedSize
+      (
+         this : access IWindowTabThumbnailRequestedEventArgs_Interface;
+         RetVal : access Windows.Graphics.Imaging.BitmapSize
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Image
+      (
+         this : access IWindowTabThumbnailRequestedEventArgs_Interface;
+         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Image
+      (
+         this : access IWindowTabThumbnailRequestedEventArgs_Interface;
+         value : Windows.Storage.Streams.IRandomAccessStreamReference
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetDeferral
+      (
+         this : access IWindowTabThumbnailRequestedEventArgs_Interface;
+         RetVal : access Windows.Foundation.IDeferral
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsCompositedOnWindow
+      (
+         this : access IWindowTabThumbnailRequestedEventArgs_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowTabThumbnailRequestedEventArgs : aliased WinRt.IID := (760581716, 40014, 23228, (171, 114, 51, 80, 251, 73, 55, 160 ));
 
    -----------------------------------------------------------------------------
    -- Class method declarations
@@ -403,6 +890,453 @@ package WinRt.Windows.UI.Shell is
    (
       this : in out TaskbarManager;
       tileId : WinRt.WString
+   )
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTab
+
+   overriding procedure Initialize (this : in out WindowTab);
+   overriding procedure Finalize (this : in out WindowTab);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowTab
+
+   function Constructor return WindowTab;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTab
+
+   function get_Tag
+   (
+      this : in out WindowTab
+   )
+   return WinRt.IInspectable;
+
+   procedure put_Tag
+   (
+      this : in out WindowTab;
+      value : WinRt.IInspectable
+   );
+
+   function get_Title
+   (
+      this : in out WindowTab
+   )
+   return WinRt.WString;
+
+   procedure put_Title
+   (
+      this : in out WindowTab;
+      value : WinRt.WString
+   );
+
+   function get_Icon
+   (
+      this : in out WindowTab
+   )
+   return WinRt.Windows.UI.Shell.WindowTabIcon'Class;
+
+   procedure put_Icon
+   (
+      this : in out WindowTab;
+      value : Windows.UI.Shell.WindowTabIcon'Class
+   );
+
+   function get_TreatAsSecondaryTileId
+   (
+      this : in out WindowTab
+   )
+   return WinRt.WString;
+
+   procedure put_TreatAsSecondaryTileId
+   (
+      this : in out WindowTab;
+      value : WinRt.WString
+   );
+
+   function get_Group
+   (
+      this : in out WindowTab
+   )
+   return WinRt.Windows.UI.Shell.WindowTabGroup'Class;
+
+   procedure put_Group
+   (
+      this : in out WindowTab;
+      value : Windows.UI.Shell.WindowTabGroup'Class
+   );
+
+   procedure ReportThumbnailAvailable
+   (
+      this : in out WindowTab
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabCloseRequestedEventArgs
+
+   overriding procedure Initialize (this : in out WindowTabCloseRequestedEventArgs);
+   overriding procedure Finalize (this : in out WindowTabCloseRequestedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabCloseRequestedEventArgs
+
+   function get_Tab
+   (
+      this : in out WindowTabCloseRequestedEventArgs
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabCollection
+
+   overriding procedure Initialize (this : in out WindowTabCollection);
+   overriding procedure Finalize (this : in out WindowTabCollection);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabCollection
+
+   procedure MoveTab
+   (
+      this : in out WindowTabCollection;
+      tab : Windows.UI.Shell.WindowTab'Class;
+      index : WinRt.UInt32
+   );
+
+   -- Generic Interface Windows.Foundation.Collections.IVector`1<Windows.UI.Shell.WindowTab>
+   function GetAt
+   (
+      this : in out WindowTabCollection;
+      index : WinRt.UInt32
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class;
+
+   function get_Size
+   (
+      this : in out WindowTabCollection
+   )
+   return WinRt.UInt32;
+
+   function GetView
+   (
+      this : in out WindowTabCollection
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class;
+
+   function IndexOf
+   (
+      this : in out WindowTabCollection;
+      value : Windows.UI.Shell.WindowTab'Class;
+      index : WinRt.UInt32_Ptr
+   )
+   return WinRt.Boolean;
+
+   procedure SetAt
+   (
+      this : in out WindowTabCollection;
+      index : WinRt.UInt32;
+      value : Windows.UI.Shell.WindowTab'Class
+   );
+
+   procedure InsertAt
+   (
+      this : in out WindowTabCollection;
+      index : WinRt.UInt32;
+      value : Windows.UI.Shell.WindowTab'Class
+   );
+
+   procedure RemoveAt
+   (
+      this : in out WindowTabCollection;
+      index : WinRt.UInt32
+   );
+
+   procedure Append
+   (
+      this : in out WindowTabCollection;
+      value : Windows.UI.Shell.WindowTab'Class
+   );
+
+   procedure RemoveAtEnd
+   (
+      this : in out WindowTabCollection
+   );
+
+   procedure Clear
+   (
+      this : in out WindowTabCollection
+   );
+
+   function GetMany
+   (
+      this : in out WindowTabCollection;
+      startIndex : WinRt.UInt32;
+      items : Windows.UI.Shell.IWindowTab_Array
+   )
+   return WinRt.UInt32;
+
+   procedure ReplaceAll
+   (
+      this : in out WindowTabCollection;
+      items : Windows.UI.Shell.IWindowTab_Array
+   );
+
+   -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Shell.WindowTab>
+   function First
+   (
+      this : in out WindowTabCollection
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabGroup
+
+   overriding procedure Initialize (this : in out WindowTabGroup);
+   overriding procedure Finalize (this : in out WindowTabGroup);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowTabGroup
+
+   function Constructor return WindowTabGroup;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabGroup
+
+   function get_Title
+   (
+      this : in out WindowTabGroup
+   )
+   return WinRt.WString;
+
+   procedure put_Title
+   (
+      this : in out WindowTabGroup;
+      value : WinRt.WString
+   );
+
+   function get_Icon
+   (
+      this : in out WindowTabGroup
+   )
+   return WinRt.Windows.UI.Shell.WindowTabIcon'Class;
+
+   procedure put_Icon
+   (
+      this : in out WindowTabGroup;
+      value : Windows.UI.Shell.WindowTabIcon'Class
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabIcon
+
+   overriding procedure Initialize (this : in out WindowTabIcon);
+   overriding procedure Finalize (this : in out WindowTabIcon);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for WindowTabIcon
+
+   function CreateFromFontGlyph
+   (
+      glyph : WinRt.WString;
+      fontFamily : WinRt.WString
+   )
+   return WinRt.Windows.UI.Shell.WindowTabIcon;
+
+   function CreateFromFontGlyph
+   (
+      glyph : WinRt.WString;
+      fontFamily : WinRt.WString;
+      fontUri : Windows.Foundation.Uri'Class
+   )
+   return WinRt.Windows.UI.Shell.WindowTabIcon;
+
+   function CreateFromImage
+   (
+      image : Windows.Storage.Streams.IRandomAccessStreamReference
+   )
+   return WinRt.Windows.UI.Shell.WindowTabIcon;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabIcon
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabManager
+
+   overriding procedure Initialize (this : in out WindowTabManager);
+   overriding procedure Finalize (this : in out WindowTabManager);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for WindowTabManager
+
+   function GetForWindow
+   (
+      windowId : WinRt.UInt64
+   )
+   return WinRt.Windows.UI.Shell.WindowTabManager;
+
+   function IsSupported
+   return WinRt.Boolean;
+
+   function IsTabTearOutSupported
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabManager
+
+   function get_Tabs
+   (
+      this : in out WindowTabManager
+   )
+   return WinRt.Windows.UI.Shell.WindowTabCollection'Class;
+
+   procedure SetActiveTab
+   (
+      this : in out WindowTabManager;
+      tab : Windows.UI.Shell.WindowTab'Class
+   );
+
+   function add_TabSwitchRequested
+   (
+      this : in out WindowTabManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_TabSwitchRequested
+   (
+      this : in out WindowTabManager;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_TabCloseRequested
+   (
+      this : in out WindowTabManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_TabCloseRequested
+   (
+      this : in out WindowTabManager;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_TabTearOutRequested
+   (
+      this : in out WindowTabManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_TabTearOutRequested
+   (
+      this : in out WindowTabManager;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_TabThumbnailRequested
+   (
+      this : in out WindowTabManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_TabThumbnailRequested
+   (
+      this : in out WindowTabManager;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabSwitchRequestedEventArgs
+
+   overriding procedure Initialize (this : in out WindowTabSwitchRequestedEventArgs);
+   overriding procedure Finalize (this : in out WindowTabSwitchRequestedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabSwitchRequestedEventArgs
+
+   function get_Tab
+   (
+      this : in out WindowTabSwitchRequestedEventArgs
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabTearOutRequestedEventArgs
+
+   overriding procedure Initialize (this : in out WindowTabTearOutRequestedEventArgs);
+   overriding procedure Finalize (this : in out WindowTabTearOutRequestedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabTearOutRequestedEventArgs
+
+   function get_Tab
+   (
+      this : in out WindowTabTearOutRequestedEventArgs
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class;
+
+   function get_WindowId
+   (
+      this : in out WindowTabTearOutRequestedEventArgs
+   )
+   return WinRt.UInt64;
+
+   procedure put_WindowId
+   (
+      this : in out WindowTabTearOutRequestedEventArgs;
+      value : WinRt.UInt64
+   );
+
+   function GetDeferral
+   (
+      this : in out WindowTabTearOutRequestedEventArgs
+   )
+   return WinRt.Windows.Foundation.Deferral'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowTabThumbnailRequestedEventArgs
+
+   overriding procedure Initialize (this : in out WindowTabThumbnailRequestedEventArgs);
+   overriding procedure Finalize (this : in out WindowTabThumbnailRequestedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowTabThumbnailRequestedEventArgs
+
+   function get_Tab
+   (
+      this : in out WindowTabThumbnailRequestedEventArgs
+   )
+   return WinRt.Windows.UI.Shell.WindowTab'Class;
+
+   function get_RequestedSize
+   (
+      this : in out WindowTabThumbnailRequestedEventArgs
+   )
+   return WinRt.Windows.Graphics.Imaging.BitmapSize;
+
+   function get_Image
+   (
+      this : in out WindowTabThumbnailRequestedEventArgs
+   )
+   return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+
+   procedure put_Image
+   (
+      this : in out WindowTabThumbnailRequestedEventArgs;
+      value : Windows.Storage.Streams.IRandomAccessStreamReference
+   );
+
+   function GetDeferral
+   (
+      this : in out WindowTabThumbnailRequestedEventArgs
+   )
+   return WinRt.Windows.Foundation.Deferral'Class;
+
+   function get_IsCompositedOnWindow
+   (
+      this : in out WindowTabThumbnailRequestedEventArgs
    )
    return WinRt.Boolean;
 

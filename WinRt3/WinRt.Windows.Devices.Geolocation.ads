@@ -1550,6 +1550,17 @@ package WinRt.Windows.Devices.Geolocation is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Geolocator
 
+   function get_IsDefaultGeopositionRecommended
+   return WinRt.Boolean;
+
+   procedure put_DefaultGeoposition
+   (
+      value : GenericObject
+   );
+
+   function get_DefaultGeoposition
+   return WinRt.GenericObject;
+
    function RequestAccessAsync
    return WinRt.Windows.Devices.Geolocation.GeolocationAccessStatus;
 
@@ -1564,17 +1575,6 @@ package WinRt.Windows.Devices.Geolocation is
       startTime : Windows.Foundation.DateTime;
       duration : Windows.Foundation.TimeSpan
    )
-   return WinRt.GenericObject;
-
-   function get_IsDefaultGeopositionRecommended
-   return WinRt.Boolean;
-
-   procedure put_DefaultGeoposition
-   (
-      value : GenericObject
-   );
-
-   function get_DefaultGeoposition
    return WinRt.GenericObject;
 
    -----------------------------------------------------------------------------

@@ -1334,13 +1334,13 @@ package WinRt.Windows.Storage.Streams is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for DataWriter
 
-   function Constructor return DataWriter;
-
    function Constructor
    (
       outputStream : Windows.Storage.Streams.IOutputStream
    )
    return DataWriter;
+
+   function Constructor return DataWriter;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for DataWriter

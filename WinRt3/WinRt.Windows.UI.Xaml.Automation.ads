@@ -2595,8 +2595,6 @@ package WinRt.Windows.UI.Xaml.Automation is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for AutomationAnnotation
 
-   function Constructor return AutomationAnnotation;
-
    function Constructor
    (
       type_x : Windows.UI.Xaml.Automation.AnnotationType
@@ -2609,6 +2607,8 @@ package WinRt.Windows.UI.Xaml.Automation is
       element : Windows.UI.Xaml.UIElement'Class
    )
    return AutomationAnnotation;
+
+   function Constructor return AutomationAnnotation;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for AutomationAnnotation
@@ -2654,45 +2654,6 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for AutomationElementIdentifiers
-
-   function get_IsPeripheralProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_IsDataValidForFormProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_FullDescriptionProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_DescribedByProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_FlowsToProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_FlowsFromProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_PositionInSetProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_SizeOfSetProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_LevelProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_AnnotationsProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_LandmarkTypeProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_LocalizedLandmarkTypeProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_IsDialogProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
 
    function get_AcceleratorKeyProperty
    return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
@@ -2763,13 +2724,52 @@ package WinRt.Windows.UI.Xaml.Automation is
    function get_LiveSettingProperty
    return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
 
-   function get_HeadingLevelProperty
+   function get_PositionInSetProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_SizeOfSetProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_LevelProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_AnnotationsProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_LandmarkTypeProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_LocalizedLandmarkTypeProperty
    return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
 
    function get_CultureProperty
    return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
 
+   function get_IsDialogProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
    function get_ControlledPeersProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_HeadingLevelProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_IsPeripheralProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_IsDataValidForFormProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_FullDescriptionProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_DescribedByProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_FlowsToProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_FlowsFromProperty
    return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
 
    -----------------------------------------------------------------------------
@@ -2783,222 +2783,6 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for AutomationProperties
-
-   function get_LandmarkTypeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetLandmarkType
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType;
-
-   procedure SetLandmarkType
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
-   );
-
-   function get_LocalizedLandmarkTypeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetLocalizedLandmarkType
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.WString;
-
-   procedure SetLocalizedLandmarkType
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.WString
-   );
-
-   function get_HeadingLevelProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetHeadingLevel
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel;
-
-   procedure SetHeadingLevel
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
-   );
-
-   function get_CultureProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetCulture
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Int32;
-
-   procedure SetCulture
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.Int32
-   );
-
-   function get_IsDialogProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetIsDialog
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Boolean;
-
-   procedure SetIsDialog
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.Boolean
-   );
-
-   function get_PositionInSetProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetPositionInSet
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Int32;
-
-   procedure SetPositionInSet
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.Int32
-   );
-
-   function get_SizeOfSetProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetSizeOfSet
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Int32;
-
-   procedure SetSizeOfSet
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.Int32
-   );
-
-   function get_LevelProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetLevel
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Int32;
-
-   procedure SetLevel
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.Int32
-   );
-
-   function get_AnnotationsProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetAnnotations
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.GenericObject;
-
-   function get_IsPeripheralProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetIsPeripheral
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Boolean;
-
-   procedure SetIsPeripheral
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.Boolean
-   );
-
-   function get_IsDataValidForFormProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetIsDataValidForForm
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Boolean;
-
-   procedure SetIsDataValidForForm
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.Boolean
-   );
-
-   function get_FullDescriptionProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetFullDescription
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.WString;
-
-   procedure SetFullDescription
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.WString
-   );
-
-   function get_LocalizedControlTypeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetLocalizedControlType
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.WString;
-
-   procedure SetLocalizedControlType
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.WString
-   );
-
-   function get_DescribedByProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetDescribedBy
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.GenericObject;
-
-   function get_FlowsToProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetFlowsTo
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.GenericObject;
-
-   function get_FlowsFromProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetFlowsFrom
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.GenericObject;
 
    function get_AcceleratorKeyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
@@ -3150,6 +2934,75 @@ package WinRt.Windows.UI.Xaml.Automation is
       value : Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
    );
 
+   function get_CultureProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetCulture
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Int32;
+
+   procedure SetCulture
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Int32
+   );
+
+   function get_PositionInSetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetPositionInSet
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Int32;
+
+   procedure SetPositionInSet
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Int32
+   );
+
+   function get_SizeOfSetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetSizeOfSet
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Int32;
+
+   procedure SetSizeOfSet
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Int32
+   );
+
+   function get_LevelProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetLevel
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Int32;
+
+   procedure SetLevel
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Int32
+   );
+
+   function get_AnnotationsProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetAnnotations
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.GenericObject;
+
    function get_AccessibilityViewProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -3173,6 +3026,153 @@ package WinRt.Windows.UI.Xaml.Automation is
       element : Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.GenericObject;
+
+   function get_HeadingLevelProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetHeadingLevel
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel;
+
+   procedure SetHeadingLevel
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
+   );
+
+   function get_IsPeripheralProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetIsPeripheral
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Boolean;
+
+   procedure SetIsPeripheral
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Boolean
+   );
+
+   function get_IsDataValidForFormProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetIsDataValidForForm
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Boolean;
+
+   procedure SetIsDataValidForForm
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Boolean
+   );
+
+   function get_FullDescriptionProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetFullDescription
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.WString;
+
+   procedure SetFullDescription
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.WString
+   );
+
+   function get_LocalizedControlTypeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetLocalizedControlType
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.WString;
+
+   procedure SetLocalizedControlType
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.WString
+   );
+
+   function get_DescribedByProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetDescribedBy
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.GenericObject;
+
+   function get_FlowsToProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetFlowsTo
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.GenericObject;
+
+   function get_FlowsFromProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetFlowsFrom
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.GenericObject;
+
+   function get_LandmarkTypeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetLandmarkType
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType;
+
+   procedure SetLandmarkType
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
+   );
+
+   function get_LocalizedLandmarkTypeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetLocalizedLandmarkType
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.WString;
+
+   procedure SetLocalizedLandmarkType
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.WString
+   );
+
+   function get_IsDialogProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetIsDialog
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Boolean;
+
+   procedure SetIsDialog
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Boolean
+   );
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for AutomationProperties

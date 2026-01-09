@@ -256,6 +256,76 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       return m_RetVal;
    end;
 
+   function GetCurrentDownloadsForTransferGroupAsync
+   (
+      group : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
+   )
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundDownloader");
+      m_Factory        : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloaderStaticMethods2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_GenericObject.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_GenericObject.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.GenericObject;
+      m_IID            : aliased WinRt.IID := (2923613663, 12354, 23954, (160, 30, 100, 60, 37, 43, 128, 80 )); -- GenericObject;
+      m_HandlerIID     : aliased WinRt.IID := (428258162, 3547, 21004, (183, 45, 251, 37, 119, 233, 159, 245 ));
+      m_Handler        : AsyncOperationCompletedHandler_GenericObject.Kind := new AsyncOperationCompletedHandler_GenericObject.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_GenericObject.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_GenericObject.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBackgroundDownloaderStaticMethods2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetCurrentDownloadsForTransferGroupAsync (group.m_IBackgroundTransferGroup.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_RetVal;
+   end;
+
    function RequestUnconstrainedDownloadsAsync
    (
       operations : GenericObject
@@ -327,76 +397,6 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
-   end;
-
-   function GetCurrentDownloadsForTransferGroupAsync
-   (
-      group : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
-   )
-   return WinRt.GenericObject is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundDownloader");
-      m_Factory        : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloaderStaticMethods2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_GenericObject.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_GenericObject.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.GenericObject;
-      m_IID            : aliased WinRt.IID := (2923613663, 12354, 23954, (160, 30, 100, 60, 37, 43, 128, 80 )); -- GenericObject;
-      m_HandlerIID     : aliased WinRt.IID := (428258162, 3547, 21004, (183, 45, 251, 37, 119, 233, 159, 245 ));
-      m_Handler        : AsyncOperationCompletedHandler_GenericObject.Kind := new AsyncOperationCompletedHandler_GenericObject.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_GenericObject.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_GenericObject.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBackgroundDownloaderStaticMethods2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetCurrentDownloadsForTransferGroupAsync (group.m_IBackgroundTransferGroup.all, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr = S_OK then
-            m_AsyncOperation := QI (m_ComRetVal);
-            temp := m_ComRetVal.Release;
-            if m_AsyncOperation /= null then
-               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-               while m_Captured = m_Compare loop
-                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                  m_Captured := m_Completed;
-               end loop;
-               if m_AsyncStatus = Completed_e then
-                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-               end if;
-               temp := m_AsyncOperation.Release;
-               temp := m_Handler.Release;
-               if temp = 0 then
-                  Free (m_Handler);
-               end if;
-            end if;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_RetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -1171,6 +1171,22 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BackgroundTransferContentPart
 
+   function Constructor return BackgroundTransferContentPart is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart");
+      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
+   begin
+      return RetVal : BackgroundTransferContentPart do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBackgroundTransferContentPart := new Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
+            Retval.m_IBackgroundTransferContentPart.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       name : WinRt.WString
@@ -1223,22 +1239,6 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_name);
          tmp := WindowsDeleteString (HStr_fileName);
-      end return;
-   end;
-
-   function Constructor return BackgroundTransferContentPart is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart");
-      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
-   begin
-      return RetVal : BackgroundTransferContentPart do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IBackgroundTransferContentPart := new Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
-            Retval.m_IBackgroundTransferContentPart.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1580,36 +1580,36 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BackgroundUploader
 
-   function GetCurrentUploadsForTransferGroupAsync
+   function RequestUnconstrainedUploadsAsync
    (
-      group : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
+      operations : GenericObject
    )
-   return WinRt.GenericObject is
+   return WinRt.Windows.Networking.BackgroundTransfer.UnconstrainedTransferRequestResult is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundUploader");
-      m_Factory        : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploaderStaticMethods2_Interface'Class := null;
+      m_Factory        : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploaderUserConsent_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type IAsyncOperation_GenericObject.Kind;
+      use type IAsyncOperation_UnconstrainedTransferRequestResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
 
-      m_AsyncOperation : aliased IAsyncOperation_GenericObject.Kind;
+      m_AsyncOperation : aliased IAsyncOperation_UnconstrainedTransferRequestResult.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.GenericObject;
-      m_IID            : aliased WinRt.IID := (1045195324, 18596, 24098, (178, 154, 62, 66, 148, 105, 70, 47 )); -- GenericObject;
-      m_HandlerIID     : aliased WinRt.IID := (1619667368, 48069, 24227, (179, 247, 135, 237, 196, 231, 187, 188 ));
-      m_Handler        : AsyncOperationCompletedHandler_GenericObject.Kind := new AsyncOperationCompletedHandler_GenericObject.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+      m_RetVal         : aliased WinRt.Windows.Networking.BackgroundTransfer.IUnconstrainedTransferRequestResult;
+      m_IID            : aliased WinRt.IID := (2833000964, 16196, 20550, (129, 130, 205, 14, 193, 71, 225, 125 )); -- Windows.Networking.BackgroundTransfer.UnconstrainedTransferRequestResult;
+      m_HandlerIID     : aliased WinRt.IID := (1330823144, 39694, 23330, (145, 107, 131, 68, 37, 180, 171, 151 ));
+      m_Handler        : AsyncOperationCompletedHandler_UnconstrainedTransferRequestResult.Kind := new AsyncOperationCompletedHandler_UnconstrainedTransferRequestResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
 
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_GenericObject.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_GenericObject.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_UnconstrainedTransferRequestResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_UnconstrainedTransferRequestResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UnconstrainedTransferRequestResult.Kind_Delegate, AsyncOperationCompletedHandler_UnconstrainedTransferRequestResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
          pragma unreferenced (asyncInfo);
@@ -1622,32 +1622,35 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       end;
 
    begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBackgroundUploaderStaticMethods2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetCurrentUploadsForTransferGroupAsync (group.m_IBackgroundTransferGroup.all, m_ComRetVal'Access);
-         temp := m_Factory.Release;
+      return RetVal : WinRt.Windows.Networking.BackgroundTransfer.UnconstrainedTransferRequestResult do
+         Hr := RoGetActivationFactory (m_hString, IID_IBackgroundUploaderUserConsent'Access , m_Factory'Address);
          if Hr = S_OK then
-            m_AsyncOperation := QI (m_ComRetVal);
-            temp := m_ComRetVal.Release;
-            if m_AsyncOperation /= null then
-               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-               while m_Captured = m_Compare loop
-                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                  m_Captured := m_Completed;
-               end loop;
-               if m_AsyncStatus = Completed_e then
-                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-               end if;
-               temp := m_AsyncOperation.Release;
-               temp := m_Handler.Release;
-               if temp = 0 then
-                  Free (m_Handler);
+            Hr := m_Factory.RequestUnconstrainedUploadsAsync (operations, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_IUnconstrainedTransferRequestResult := new Windows.Networking.BackgroundTransfer.IUnconstrainedTransferRequestResult;
+                     Retval.m_IUnconstrainedTransferRequestResult.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
                end if;
             end if;
          end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_RetVal;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
    end;
 
    function GetCurrentUploadsAsync
@@ -1789,36 +1792,36 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       return m_RetVal;
    end;
 
-   function RequestUnconstrainedUploadsAsync
+   function GetCurrentUploadsForTransferGroupAsync
    (
-      operations : GenericObject
+      group : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
    )
-   return WinRt.Windows.Networking.BackgroundTransfer.UnconstrainedTransferRequestResult is
+   return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundUploader");
-      m_Factory        : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploaderUserConsent_Interface'Class := null;
+      m_Factory        : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploaderStaticMethods2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type IAsyncOperation_UnconstrainedTransferRequestResult.Kind;
+      use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
 
-      m_AsyncOperation : aliased IAsyncOperation_UnconstrainedTransferRequestResult.Kind;
+      m_AsyncOperation : aliased IAsyncOperation_GenericObject.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.Windows.Networking.BackgroundTransfer.IUnconstrainedTransferRequestResult;
-      m_IID            : aliased WinRt.IID := (2833000964, 16196, 20550, (129, 130, 205, 14, 193, 71, 225, 125 )); -- Windows.Networking.BackgroundTransfer.UnconstrainedTransferRequestResult;
-      m_HandlerIID     : aliased WinRt.IID := (1330823144, 39694, 23330, (145, 107, 131, 68, 37, 180, 171, 151 ));
-      m_Handler        : AsyncOperationCompletedHandler_UnconstrainedTransferRequestResult.Kind := new AsyncOperationCompletedHandler_UnconstrainedTransferRequestResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+      m_RetVal         : aliased WinRt.GenericObject;
+      m_IID            : aliased WinRt.IID := (1045195324, 18596, 24098, (178, 154, 62, 66, 148, 105, 70, 47 )); -- GenericObject;
+      m_HandlerIID     : aliased WinRt.IID := (1619667368, 48069, 24227, (179, 247, 135, 237, 196, 231, 187, 188 ));
+      m_Handler        : AsyncOperationCompletedHandler_GenericObject.Kind := new AsyncOperationCompletedHandler_GenericObject.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
 
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_UnconstrainedTransferRequestResult.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_UnconstrainedTransferRequestResult.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UnconstrainedTransferRequestResult.Kind_Delegate, AsyncOperationCompletedHandler_UnconstrainedTransferRequestResult.Kind);
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_GenericObject.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_GenericObject.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
          pragma unreferenced (asyncInfo);
@@ -1831,35 +1834,32 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       end;
 
    begin
-      return RetVal : WinRt.Windows.Networking.BackgroundTransfer.UnconstrainedTransferRequestResult do
-         Hr := RoGetActivationFactory (m_hString, IID_IBackgroundUploaderUserConsent'Access , m_Factory'Address);
+      Hr := RoGetActivationFactory (m_hString, IID_IBackgroundUploaderStaticMethods2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetCurrentUploadsForTransferGroupAsync (group.m_IBackgroundTransferGroup.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
          if Hr = S_OK then
-            Hr := m_Factory.RequestUnconstrainedUploadsAsync (operations, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IUnconstrainedTransferRequestResult := new Windows.Networking.BackgroundTransfer.IUnconstrainedTransferRequestResult;
-                     Retval.m_IUnconstrainedTransferRequestResult.all := m_RetVal;
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
                end if;
             end if;
          end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_RetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -2651,6 +2651,27 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    -- Static RuntimeClass
    package body ContentPrefetcher is
 
+      function get_LastSuccessfulPrefetchTime
+      return WinRt.GenericObject is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.ContentPrefetcher");
+         m_Factory        : access WinRt.Windows.Networking.BackgroundTransfer.IContentPrefetcherTime_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased GenericObject;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IContentPrefetcherTime'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_LastSuccessfulPrefetchTime (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
       function get_ContentUris
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
@@ -2715,27 +2736,6 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
             end if;
             tmp := WindowsDeleteString (m_hString);
          end return;
-      end;
-
-      function get_LastSuccessfulPrefetchTime
-      return WinRt.GenericObject is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.ContentPrefetcher");
-         m_Factory        : access WinRt.Windows.Networking.BackgroundTransfer.IContentPrefetcherTime_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IContentPrefetcherTime'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_LastSuccessfulPrefetchTime (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
       end;
 
    end ContentPrefetcher;

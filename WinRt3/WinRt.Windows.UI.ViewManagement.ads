@@ -2203,27 +2203,8 @@ package WinRt.Windows.UI.ViewManagement is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ApplicationView
 
-   function get_Value
-   return WinRt.Windows.UI.ViewManagement.ApplicationViewState;
-
-   function TryUnsnap
-   return WinRt.Boolean;
-
-   procedure ClearAllPersistedState;
-
-   procedure ClearPersistedState
-   (
-      key : WinRt.WString
-   );
-
    function TryUnsnapToFullscreen
    return WinRt.Boolean;
-
-   function GetApplicationViewIdForWindow
-   (
-      window : Windows.UI.Core.ICoreWindow
-   )
-   return WinRt.Int32;
 
    function GetForCurrentView
    return WinRt.Windows.UI.ViewManagement.ApplicationView;
@@ -2251,6 +2232,25 @@ package WinRt.Windows.UI.ViewManagement is
    (
       value : Windows.Foundation.Size
    );
+
+   procedure ClearAllPersistedState;
+
+   procedure ClearPersistedState
+   (
+      key : WinRt.WString
+   );
+
+   function GetApplicationViewIdForWindow
+   (
+      window : Windows.UI.Core.ICoreWindow
+   )
+   return WinRt.Int32;
+
+   function get_Value
+   return WinRt.Windows.UI.ViewManagement.ApplicationViewState;
+
+   function TryUnsnap
+   return WinRt.Boolean;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ApplicationView
@@ -2535,8 +2535,6 @@ package WinRt.Windows.UI.ViewManagement is
    -- Static RuntimeClass
    package ApplicationViewSwitcher is
 
-      procedure DisableSystemViewActivationPolicy;
-
       function TryShowAsViewModeAsync
       (
          viewId : WinRt.Int32;
@@ -2551,6 +2549,8 @@ package WinRt.Windows.UI.ViewManagement is
          viewModePreferences_p : Windows.UI.ViewManagement.ViewModePreferences'Class
       )
       return WinRt.Boolean;
+
+      procedure DisableSystemViewActivationPolicy;
 
       procedure DisableShowingMainViewOnActivation;
 
@@ -2798,13 +2798,13 @@ package WinRt.Windows.UI.ViewManagement is
    -----------------------------------------------------------------------------
    -- Static Interfaces for InputPane
 
-   function GetForCurrentView
-   return WinRt.Windows.UI.ViewManagement.InputPane;
-
    function GetForUIContext
    (
       context : Windows.UI.UIContext'Class
    )
+   return WinRt.Windows.UI.ViewManagement.InputPane;
+
+   function GetForCurrentView
    return WinRt.Windows.UI.ViewManagement.InputPane;
 
    -----------------------------------------------------------------------------

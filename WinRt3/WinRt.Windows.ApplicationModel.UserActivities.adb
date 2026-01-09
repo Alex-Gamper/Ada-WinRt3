@@ -731,6 +731,33 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    -----------------------------------------------------------------------------
    -- Static Interfaces for UserActivityChannel
 
+   function GetForUser
+   (
+      user : Windows.System.User'Class
+   )
+   return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityChannel");
+      m_Factory        : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannelStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivityChannel;
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel do
+         Hr := RoGetActivationFactory (m_hString, IID_IUserActivityChannelStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IUserActivityChannel := new Windows.ApplicationModel.UserActivities.IUserActivityChannel;
+            Retval.m_IUserActivityChannel.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function GetDefault
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel is
       Hr               : WinRt.HResult := S_OK;
@@ -789,33 +816,6 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
          Hr := RoGetActivationFactory (m_hString, IID_IUserActivityChannelStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryGetForWebAccount (account.m_IWebAccount.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IUserActivityChannel := new Windows.ApplicationModel.UserActivities.IUserActivityChannel;
-            Retval.m_IUserActivityChannel.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetForUser
-   (
-      user : Windows.System.User'Class
-   )
-   return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityChannel");
-      m_Factory        : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannelStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivityChannel;
-   begin
-      return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel do
-         Hr := RoGetActivationFactory (m_hString, IID_IUserActivityChannelStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

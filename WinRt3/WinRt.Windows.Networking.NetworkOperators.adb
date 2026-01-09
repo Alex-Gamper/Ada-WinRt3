@@ -10079,85 +10079,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
    -----------------------------------------------------------------------------
    -- Static Interfaces for NetworkOperatorTetheringManager
 
-   function GetTetheringCapabilityFromConnectionProfile
-   (
-      profile : Windows.Networking.Connectivity.ConnectionProfile'Class
-   )
-   return WinRt.Windows.Networking.NetworkOperators.TetheringCapability is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
-      m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringCapability;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetTetheringCapabilityFromConnectionProfile (profile.m_IConnectionProfile.all, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   function CreateFromConnectionProfile
-   (
-      profile : Windows.Networking.Connectivity.ConnectionProfile'Class
-   )
-   return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
-      m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
-   begin
-      return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager do
-         Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromConnectionProfile (profile.m_IConnectionProfile.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_INetworkOperatorTetheringManager := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
-            Retval.m_INetworkOperatorTetheringManager.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function CreateFromConnectionProfile
-   (
-      profile : Windows.Networking.Connectivity.ConnectionProfile'Class;
-      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
-   )
-   return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
-      m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
-   begin
-      return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager do
-         Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromConnectionProfile (profile.m_IConnectionProfile.all, adapter.m_INetworkAdapter.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_INetworkOperatorTetheringManager := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
-            Retval.m_INetworkOperatorTetheringManager.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function IsNoConnectionsTimeoutEnabled
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -10305,6 +10226,85 @@ package body WinRt.Windows.Networking.NetworkOperators is
          end if;
       end if;
       tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function CreateFromConnectionProfile
+   (
+      profile : Windows.Networking.Connectivity.ConnectionProfile'Class;
+      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
+   )
+   return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
+   begin
+      return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager do
+         Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromConnectionProfile (profile.m_IConnectionProfile.all, adapter.m_INetworkAdapter.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_INetworkOperatorTetheringManager := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
+            Retval.m_INetworkOperatorTetheringManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetTetheringCapabilityFromConnectionProfile
+   (
+      profile : Windows.Networking.Connectivity.ConnectionProfile'Class
+   )
+   return WinRt.Windows.Networking.NetworkOperators.TetheringCapability is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringCapability;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetTetheringCapabilityFromConnectionProfile (profile.m_IConnectionProfile.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function CreateFromConnectionProfile
+   (
+      profile : Windows.Networking.Connectivity.ConnectionProfile'Class
+   )
+   return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
+   begin
+      return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager do
+         Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromConnectionProfile (profile.m_IConnectionProfile.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_INetworkOperatorTetheringManager := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
+            Retval.m_INetworkOperatorTetheringManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
    end;
 
    function GetTetheringCapability

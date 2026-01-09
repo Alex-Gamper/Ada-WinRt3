@@ -120,6 +120,33 @@ package body WinRt.Windows.ApplicationModel.Email is
    function Constructor
    (
       fileName : WinRt.WString;
+      data : Windows.Storage.Streams.IRandomAccessStreamReference
+   )
+   return EmailAttachment is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailAttachment");
+      m_Factory    : access IEmailAttachmentFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailAttachment;
+      HStr_fileName : constant WinRt.HString := To_HString (fileName);
+   begin
+      return RetVal : EmailAttachment do
+         Hr := RoGetActivationFactory (m_hString, IID_IEmailAttachmentFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.Create (HStr_fileName, data, m_ComRetVal'Access);
+            Retval.m_IEmailAttachment := new Windows.ApplicationModel.Email.IEmailAttachment;
+            Retval.m_IEmailAttachment.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_fileName);
+      end return;
+   end;
+
+   function Constructor
+   (
+      fileName : WinRt.WString;
       data : Windows.Storage.Streams.IRandomAccessStreamReference;
       mimeType : WinRt.WString
    )
@@ -144,33 +171,6 @@ package body WinRt.Windows.ApplicationModel.Email is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_fileName);
          tmp := WindowsDeleteString (HStr_mimeType);
-      end return;
-   end;
-
-   function Constructor
-   (
-      fileName : WinRt.WString;
-      data : Windows.Storage.Streams.IRandomAccessStreamReference
-   )
-   return EmailAttachment is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailAttachment");
-      m_Factory    : access IEmailAttachmentFactory_Interface'Class := null;
-      temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailAttachment;
-      HStr_fileName : constant WinRt.HString := To_HString (fileName);
-   begin
-      return RetVal : EmailAttachment do
-         Hr := RoGetActivationFactory (m_hString, IID_IEmailAttachmentFactory'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.Create (HStr_fileName, data, m_ComRetVal'Access);
-            Retval.m_IEmailAttachment := new Windows.ApplicationModel.Email.IEmailAttachment;
-            Retval.m_IEmailAttachment.all := m_ComRetVal;
-            temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_fileName);
       end return;
    end;
 
@@ -2427,6 +2427,22 @@ package body WinRt.Windows.ApplicationModel.Email is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for EmailIrmTemplate
 
+   function Constructor return EmailIrmTemplate is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmTemplate");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailIrmTemplate;
+   begin
+      return RetVal : EmailIrmTemplate do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IEmailIrmTemplate := new Windows.ApplicationModel.Email.IEmailIrmTemplate;
+            Retval.m_IEmailIrmTemplate.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       id : WinRt.WString;
@@ -2456,22 +2472,6 @@ package body WinRt.Windows.ApplicationModel.Email is
          tmp := WindowsDeleteString (HStr_id);
          tmp := WindowsDeleteString (HStr_name);
          tmp := WindowsDeleteString (HStr_description);
-      end return;
-   end;
-
-   function Constructor return EmailIrmTemplate is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmTemplate");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailIrmTemplate;
-   begin
-      return RetVal : EmailIrmTemplate do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IEmailIrmTemplate := new Windows.ApplicationModel.Email.IEmailIrmTemplate;
-            Retval.m_IEmailIrmTemplate.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9279,22 +9279,6 @@ package body WinRt.Windows.ApplicationModel.Email is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for EmailQueryOptions
 
-   function Constructor return EmailQueryOptions is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailQueryOptions");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailQueryOptions;
-   begin
-      return RetVal : EmailQueryOptions do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IEmailQueryOptions := new Windows.ApplicationModel.Email.IEmailQueryOptions;
-            Retval.m_IEmailQueryOptions.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       text : WinRt.WString
@@ -9345,6 +9329,22 @@ package body WinRt.Windows.ApplicationModel.Email is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_text);
+      end return;
+   end;
+
+   function Constructor return EmailQueryOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailQueryOptions");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailQueryOptions;
+   begin
+      return RetVal : EmailQueryOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IEmailQueryOptions := new Windows.ApplicationModel.Email.IEmailQueryOptions;
+            Retval.m_IEmailQueryOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9634,22 +9634,6 @@ package body WinRt.Windows.ApplicationModel.Email is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for EmailRecipient
 
-   function Constructor return EmailRecipient is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipient");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailRecipient;
-   begin
-      return RetVal : EmailRecipient do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IEmailRecipient := new Windows.ApplicationModel.Email.IEmailRecipient;
-            Retval.m_IEmailRecipient.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       address_x : WinRt.WString
@@ -9702,6 +9686,22 @@ package body WinRt.Windows.ApplicationModel.Email is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_address_x);
          tmp := WindowsDeleteString (HStr_name);
+      end return;
+   end;
+
+   function Constructor return EmailRecipient is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipient");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailRecipient;
+   begin
+      return RetVal : EmailRecipient do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IEmailRecipient := new Windows.ApplicationModel.Email.IEmailRecipient;
+            Retval.m_IEmailRecipient.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

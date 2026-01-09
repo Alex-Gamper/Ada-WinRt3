@@ -1860,43 +1860,6 @@ package WinRt.Windows.Security.Cryptography.Core is
    -- Static RuntimeClass
    package CryptographicEngine is
 
-      function SignHashedData
-      (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer
-      )
-      return WinRt.Windows.Storage.Streams.IBuffer;
-
-      function VerifySignatureWithHashInput
-      (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         signature : Windows.Storage.Streams.IBuffer
-      )
-      return WinRt.Boolean;
-
-      function DecryptAsync
-      (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         iv : Windows.Storage.Streams.IBuffer
-      )
-      return WinRt.Windows.Storage.Streams.IBuffer;
-
-      function SignAsync
-      (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer
-      )
-      return WinRt.Windows.Storage.Streams.IBuffer;
-
-      function SignHashedDataAsync
-      (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer
-      )
-      return WinRt.Windows.Storage.Streams.IBuffer;
-
       function Encrypt
       (
          key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
@@ -1952,6 +1915,43 @@ package WinRt.Windows.Security.Cryptography.Core is
          key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
          parameters : Windows.Security.Cryptography.Core.KeyDerivationParameters'Class;
          desiredKeySize : WinRt.UInt32
+      )
+      return WinRt.Windows.Storage.Streams.IBuffer;
+
+      function SignHashedData
+      (
+         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Windows.Storage.Streams.IBuffer;
+
+      function VerifySignatureWithHashInput
+      (
+         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : Windows.Storage.Streams.IBuffer;
+         signature : Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Boolean;
+
+      function DecryptAsync
+      (
+         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : Windows.Storage.Streams.IBuffer;
+         iv : Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Windows.Storage.Streams.IBuffer;
+
+      function SignAsync
+      (
+         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Windows.Storage.Streams.IBuffer;
+
+      function SignHashedDataAsync
+      (
+         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -2354,12 +2354,6 @@ package WinRt.Windows.Security.Cryptography.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for KeyDerivationParameters
 
-   function BuildForCapi1Kdf
-   (
-      capi1KdfTargetAlgorithm : Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
-   )
-   return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters;
-
    function BuildForPbkdf2
    (
       pbkdf2Salt : Windows.Storage.Streams.IBuffer;
@@ -2381,6 +2375,12 @@ package WinRt.Windows.Security.Cryptography.Core is
       partyVInfo : Windows.Storage.Streams.IBuffer;
       suppPubInfo : Windows.Storage.Streams.IBuffer;
       suppPrivInfo : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters;
+
+   function BuildForCapi1Kdf
+   (
+      capi1KdfTargetAlgorithm : Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters;
 

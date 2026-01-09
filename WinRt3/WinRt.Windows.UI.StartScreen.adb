@@ -561,6 +561,56 @@ package body WinRt.Windows.UI.StartScreen is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SecondaryTile
 
+   function Constructor return SecondaryTile is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
+      m_ComRetVal  : aliased Windows.UI.StartScreen.ISecondaryTile;
+   begin
+      return RetVal : SecondaryTile do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ISecondaryTile := new Windows.UI.StartScreen.ISecondaryTile;
+            Retval.m_ISecondaryTile.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
+      tileId : WinRt.WString;
+      displayName : WinRt.WString;
+      arguments : WinRt.WString;
+      square150x150Logo : Windows.Foundation.Uri'Class;
+      desiredSize : Windows.UI.StartScreen.TileSize
+   )
+   return SecondaryTile is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
+      m_Factory    : access ISecondaryTileFactory2_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.UI.StartScreen.ISecondaryTile;
+      HStr_tileId : constant WinRt.HString := To_HString (tileId);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
+      HStr_arguments : constant WinRt.HString := To_HString (arguments);
+   begin
+      return RetVal : SecondaryTile do
+         Hr := RoGetActivationFactory (m_hString, IID_ISecondaryTileFactory2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateMinimalTile (HStr_tileId, HStr_displayName, HStr_arguments, square150x150Logo.m_IUriRuntimeClass.all, desiredSize, m_ComRetVal'Access);
+            Retval.m_ISecondaryTile := new Windows.UI.StartScreen.ISecondaryTile;
+            Retval.m_ISecondaryTile.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_tileId);
+         tmp := WindowsDeleteString (HStr_displayName);
+         tmp := WindowsDeleteString (HStr_arguments);
+      end return;
+   end;
+
    function Constructor
    (
       tileId : WinRt.WString;
@@ -659,56 +709,6 @@ package body WinRt.Windows.UI.StartScreen is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_tileId);
-      end return;
-   end;
-
-   function Constructor
-   (
-      tileId : WinRt.WString;
-      displayName : WinRt.WString;
-      arguments : WinRt.WString;
-      square150x150Logo : Windows.Foundation.Uri'Class;
-      desiredSize : Windows.UI.StartScreen.TileSize
-   )
-   return SecondaryTile is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
-      m_Factory    : access ISecondaryTileFactory2_Interface'Class := null;
-      temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.StartScreen.ISecondaryTile;
-      HStr_tileId : constant WinRt.HString := To_HString (tileId);
-      HStr_displayName : constant WinRt.HString := To_HString (displayName);
-      HStr_arguments : constant WinRt.HString := To_HString (arguments);
-   begin
-      return RetVal : SecondaryTile do
-         Hr := RoGetActivationFactory (m_hString, IID_ISecondaryTileFactory2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateMinimalTile (HStr_tileId, HStr_displayName, HStr_arguments, square150x150Logo.m_IUriRuntimeClass.all, desiredSize, m_ComRetVal'Access);
-            Retval.m_ISecondaryTile := new Windows.UI.StartScreen.ISecondaryTile;
-            Retval.m_ISecondaryTile.all := m_ComRetVal;
-            temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_tileId);
-         tmp := WindowsDeleteString (HStr_displayName);
-         tmp := WindowsDeleteString (HStr_arguments);
-      end return;
-   end;
-
-   function Constructor return SecondaryTile is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
-      m_ComRetVal  : aliased Windows.UI.StartScreen.ISecondaryTile;
-   begin
-      return RetVal : SecondaryTile do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ISecondaryTile := new Windows.UI.StartScreen.ISecondaryTile;
-            Retval.m_ISecondaryTile.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

@@ -2463,14 +2463,6 @@ package WinRt.Windows.AI.MachineLearning is
 
    function Constructor
    (
-      model : Windows.AI.MachineLearning.LearningModel'Class;
-      deviceToRunOn : Windows.AI.MachineLearning.LearningModelDevice'Class;
-      learningModelSessionOptions_p : Windows.AI.MachineLearning.LearningModelSessionOptions'Class
-   )
-   return LearningModelSession;
-
-   function Constructor
-   (
       model : Windows.AI.MachineLearning.LearningModel'Class
    )
    return LearningModelSession;
@@ -2479,6 +2471,14 @@ package WinRt.Windows.AI.MachineLearning is
    (
       model : Windows.AI.MachineLearning.LearningModel'Class;
       deviceToRunOn : Windows.AI.MachineLearning.LearningModelDevice'Class
+   )
+   return LearningModelSession;
+
+   function Constructor
+   (
+      model : Windows.AI.MachineLearning.LearningModel'Class;
+      deviceToRunOn : Windows.AI.MachineLearning.LearningModelDevice'Class;
+      learningModelSessionOptions_p : Windows.AI.MachineLearning.LearningModelSessionOptions'Class
    )
    return LearningModelSession;
 
@@ -2671,6 +2671,20 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorBoolean
 
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Boolean_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorBoolean;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorBoolean;
+
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorBoolean;
 
@@ -2691,20 +2705,6 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorBoolean;
-
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Boolean_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorBoolean;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorBoolean;
 
@@ -2755,6 +2755,20 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorDouble
 
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Double_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorDouble;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorDouble;
+
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorDouble;
 
@@ -2775,20 +2789,6 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorDouble;
-
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Double_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorDouble;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorDouble;
 
@@ -2968,6 +2968,20 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorFloat16Bit
 
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Single_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit;
+
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit;
 
@@ -2988,20 +3002,6 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit;
-
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Single_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit;
 
@@ -3052,6 +3052,20 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorInt16Bit
 
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Int16_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorInt16Bit;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorInt16Bit;
+
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorInt16Bit;
 
@@ -3072,20 +3086,6 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorInt16Bit;
-
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Int16_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorInt16Bit;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt16Bit;
 
@@ -3136,6 +3136,20 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorInt32Bit
 
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Int32_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorInt32Bit;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorInt32Bit;
+
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorInt32Bit;
 
@@ -3156,20 +3170,6 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorInt32Bit;
-
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Int32_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorInt32Bit;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt32Bit;
 
@@ -3220,20 +3220,6 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorInt64Bit
 
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Int64_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorInt64Bit;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorInt64Bit;
-
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorInt64Bit;
 
@@ -3254,6 +3240,20 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorInt64Bit;
+
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Int64_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorInt64Bit;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt64Bit;
 
@@ -3304,6 +3304,20 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorInt8Bit
 
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Byte_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorInt8Bit;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorInt8Bit;
+
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorInt8Bit;
 
@@ -3324,20 +3338,6 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorInt8Bit;
-
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Byte_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorInt8Bit;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt8Bit;
 
@@ -3633,20 +3633,6 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorUInt64Bit
 
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.UInt64_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorUInt64Bit;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorUInt64Bit;
-
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorUInt64Bit;
 
@@ -3667,6 +3653,20 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorUInt64Bit;
+
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.UInt64_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorUInt64Bit;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt64Bit;
 
@@ -3717,6 +3717,20 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorUInt8Bit
 
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Byte_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorUInt8Bit;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorUInt8Bit;
+
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorUInt8Bit;
 
@@ -3737,20 +3751,6 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorUInt8Bit;
-
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Byte_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorUInt8Bit;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt8Bit;
 

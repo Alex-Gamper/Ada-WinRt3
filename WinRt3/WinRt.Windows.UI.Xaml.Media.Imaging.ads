@@ -1034,28 +1034,16 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BitmapImage
 
+   function Constructor return BitmapImage;
+
    function Constructor
    (
       uriSource : Windows.Foundation.Uri'Class
    )
    return BitmapImage;
 
-   function Constructor return BitmapImage;
-
    -----------------------------------------------------------------------------
    -- Static Interfaces for BitmapImage
-
-   function get_DecodePixelTypeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsAnimatedBitmapProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsPlayingProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AutoPlayProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_CreateOptionsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
@@ -1067,6 +1055,18 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_DecodePixelHeightProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsAnimatedBitmapProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsPlayingProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AutoPlayProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_DecodePixelTypeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------

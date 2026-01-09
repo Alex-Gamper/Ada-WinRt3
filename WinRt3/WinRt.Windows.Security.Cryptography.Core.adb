@@ -791,6 +791,193 @@ package body WinRt.Windows.Security.Cryptography.Core is
    -- Static RuntimeClass
    package body CryptographicEngine is
 
+      function Encrypt
+      (
+         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : Windows.Storage.Streams.IBuffer;
+         iv : Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Windows.Storage.Streams.IBuffer is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.Encrypt (key.m_ICryptographicKey.all, data, iv, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function Decrypt
+      (
+         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : Windows.Storage.Streams.IBuffer;
+         iv : Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Windows.Storage.Streams.IBuffer is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.Decrypt (key.m_ICryptographicKey.all, data, iv, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function EncryptAndAuthenticate
+      (
+         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : Windows.Storage.Streams.IBuffer;
+         nonce : Windows.Storage.Streams.IBuffer;
+         authenticatedData : Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData;
+      begin
+         return RetVal : WinRt.Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData do
+            Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.EncryptAndAuthenticate (key.m_ICryptographicKey.all, data, nonce, authenticatedData, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IEncryptedAndAuthenticatedData := new Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData;
+               Retval.m_IEncryptedAndAuthenticatedData.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function DecryptAndAuthenticate
+      (
+         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : Windows.Storage.Streams.IBuffer;
+         nonce : Windows.Storage.Streams.IBuffer;
+         authenticationTag : Windows.Storage.Streams.IBuffer;
+         authenticatedData : Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Windows.Storage.Streams.IBuffer is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.DecryptAndAuthenticate (key.m_ICryptographicKey.all, data, nonce, authenticationTag, authenticatedData, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function Sign
+      (
+         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Windows.Storage.Streams.IBuffer is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.Sign (key.m_ICryptographicKey.all, data, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function VerifySignature
+      (
+         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : Windows.Storage.Streams.IBuffer;
+         signature : Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.VerifySignature (key.m_ICryptographicKey.all, data, signature, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function DeriveKeyMaterial
+      (
+         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         parameters : Windows.Security.Cryptography.Core.KeyDerivationParameters'Class;
+         desiredKeySize : WinRt.UInt32
+      )
+      return WinRt.Windows.Storage.Streams.IBuffer is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.DeriveKeyMaterial (key.m_ICryptographicKey.all, parameters.m_IKeyDerivationParameters.all, desiredKeySize, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
       function SignHashedData
       (
          key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
@@ -1054,193 +1241,6 @@ package body WinRt.Windows.Security.Cryptography.Core is
          end if;
          tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
-      end;
-
-      function Encrypt
-      (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         iv : Windows.Storage.Streams.IBuffer
-      )
-      return WinRt.Windows.Storage.Streams.IBuffer is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
-         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.Encrypt (key.m_ICryptographicKey.all, data, iv, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function Decrypt
-      (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         iv : Windows.Storage.Streams.IBuffer
-      )
-      return WinRt.Windows.Storage.Streams.IBuffer is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
-         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.Decrypt (key.m_ICryptographicKey.all, data, iv, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function EncryptAndAuthenticate
-      (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         nonce : Windows.Storage.Streams.IBuffer;
-         authenticatedData : Windows.Storage.Streams.IBuffer
-      )
-      return WinRt.Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
-         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData;
-      begin
-         return RetVal : WinRt.Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData do
-            Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.EncryptAndAuthenticate (key.m_ICryptographicKey.all, data, nonce, authenticatedData, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IEncryptedAndAuthenticatedData := new Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData;
-               Retval.m_IEncryptedAndAuthenticatedData.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function DecryptAndAuthenticate
-      (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         nonce : Windows.Storage.Streams.IBuffer;
-         authenticationTag : Windows.Storage.Streams.IBuffer;
-         authenticatedData : Windows.Storage.Streams.IBuffer
-      )
-      return WinRt.Windows.Storage.Streams.IBuffer is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
-         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.DecryptAndAuthenticate (key.m_ICryptographicKey.all, data, nonce, authenticationTag, authenticatedData, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function Sign
-      (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer
-      )
-      return WinRt.Windows.Storage.Streams.IBuffer is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
-         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.Sign (key.m_ICryptographicKey.all, data, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function VerifySignature
-      (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         signature : Windows.Storage.Streams.IBuffer
-      )
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
-         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.VerifySignature (key.m_ICryptographicKey.all, data, signature, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function DeriveKeyMaterial
-      (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         parameters : Windows.Security.Cryptography.Core.KeyDerivationParameters'Class;
-         desiredKeySize : WinRt.UInt32
-      )
-      return WinRt.Windows.Storage.Streams.IBuffer is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
-         m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.DeriveKeyMaterial (key.m_ICryptographicKey.all, parameters.m_IKeyDerivationParameters.all, desiredKeySize, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
       end;
 
    end CryptographicEngine;
@@ -3435,33 +3435,6 @@ package body WinRt.Windows.Security.Cryptography.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for KeyDerivationParameters
 
-   function BuildForCapi1Kdf
-   (
-      capi1KdfTargetAlgorithm : Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
-   )
-   return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
-      m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IKeyDerivationParameters;
-   begin
-      return RetVal : WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters do
-         Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationParametersStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.BuildForCapi1Kdf (capi1KdfTargetAlgorithm, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IKeyDerivationParameters := new Windows.Security.Cryptography.Core.IKeyDerivationParameters;
-            Retval.m_IKeyDerivationParameters.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function BuildForPbkdf2
    (
       pbkdf2Salt : Windows.Storage.Streams.IBuffer;
@@ -3538,6 +3511,33 @@ package body WinRt.Windows.Security.Cryptography.Core is
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationParametersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.BuildForSP80056a (algorithmId, partyUInfo, partyVInfo, suppPubInfo, suppPrivInfo, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IKeyDerivationParameters := new Windows.Security.Cryptography.Core.IKeyDerivationParameters;
+            Retval.m_IKeyDerivationParameters.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function BuildForCapi1Kdf
+   (
+      capi1KdfTargetAlgorithm : Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
+   )
+   return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
+      m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IKeyDerivationParameters;
+   begin
+      return RetVal : WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters do
+         Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationParametersStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.BuildForCapi1Kdf (capi1KdfTargetAlgorithm, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

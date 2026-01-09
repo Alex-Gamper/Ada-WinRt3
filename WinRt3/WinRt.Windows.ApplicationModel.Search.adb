@@ -204,24 +204,6 @@ package body WinRt.Windows.ApplicationModel.Search is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SearchPane
 
-   procedure HideThisApplication is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Search.SearchPane");
-      m_Factory        : access WinRt.Windows.ApplicationModel.Search.ISearchPaneStaticsWithHideThisApplication_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_ISearchPaneStaticsWithHideThisApplication'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.HideThisApplication;
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
    function GetForCurrentView
    return WinRt.Windows.ApplicationModel.Search.SearchPane is
       Hr               : WinRt.HResult := S_OK;
@@ -244,6 +226,24 @@ package body WinRt.Windows.ApplicationModel.Search is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
+   end;
+
+   procedure HideThisApplication is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Search.SearchPane");
+      m_Factory        : access WinRt.Windows.ApplicationModel.Search.ISearchPaneStaticsWithHideThisApplication_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_ISearchPaneStaticsWithHideThisApplication'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.HideThisApplication;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------

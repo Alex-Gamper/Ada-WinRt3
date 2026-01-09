@@ -6148,21 +6148,15 @@ package WinRt.Windows.Media.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MediaSource
 
-   function CreateFromDownloadOperation
+   function CreateFromMediaFrameSource
    (
-      downloadOperation : Windows.Networking.BackgroundTransfer.DownloadOperation'Class
+      frameSource : Windows.Media.Capture.Frames.MediaFrameSource'Class
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
    function CreateFromMediaBinder
    (
       binder : Windows.Media.Core.MediaBinder'Class
-   )
-   return WinRt.Windows.Media.Core.MediaSource;
-
-   function CreateFromMediaFrameSource
-   (
-      frameSource : Windows.Media.Capture.Frames.MediaFrameSource'Class
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
@@ -6213,6 +6207,12 @@ package WinRt.Windows.Media.Core is
    function CreateFromUri
    (
       uri : Windows.Foundation.Uri'Class
+   )
+   return WinRt.Windows.Media.Core.MediaSource;
+
+   function CreateFromDownloadOperation
+   (
+      downloadOperation : Windows.Networking.BackgroundTransfer.DownloadOperation'Class
    )
    return WinRt.Windows.Media.Core.MediaSource;
 

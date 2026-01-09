@@ -1792,27 +1792,6 @@ package WinRt.Windows.Devices.Bluetooth is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BluetoothDevice
 
-   function FromIdAsync_BluetoothDevice
-   (
-      deviceId : WinRt.WString
-   )
-   return WinRt.Windows.Devices.Bluetooth.BluetoothDevice;
-
-   function FromHostNameAsync
-   (
-      hostName : Windows.Networking.HostName'Class
-   )
-   return WinRt.Windows.Devices.Bluetooth.BluetoothDevice;
-
-   function FromBluetoothAddressAsync
-   (
-      address_x : WinRt.UInt64
-   )
-   return WinRt.Windows.Devices.Bluetooth.BluetoothDevice;
-
-   function GetDeviceSelector_BluetoothDevice
-   return WinRt.WString;
-
    function GetDeviceSelectorFromPairingState
    (
       pairingState : WinRt.Boolean
@@ -1841,6 +1820,27 @@ package WinRt.Windows.Devices.Bluetooth is
    (
       classOfDevice : Windows.Devices.Bluetooth.BluetoothClassOfDevice'Class
    )
+   return WinRt.WString;
+
+   function FromIdAsync_BluetoothDevice
+   (
+      deviceId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothDevice;
+
+   function FromHostNameAsync
+   (
+      hostName : Windows.Networking.HostName'Class
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothDevice;
+
+   function FromBluetoothAddressAsync
+   (
+      address_x : WinRt.UInt64
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothDevice;
+
+   function GetDeviceSelector_BluetoothDevice
    return WinRt.WString;
 
    -----------------------------------------------------------------------------

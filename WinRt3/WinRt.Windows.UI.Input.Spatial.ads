@@ -2185,14 +2185,14 @@ package WinRt.Windows.UI.Input.Spatial is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SpatialInteractionManager
 
+   function GetForCurrentView
+   return WinRt.Windows.UI.Input.Spatial.SpatialInteractionManager;
+
    function IsSourceKindSupported
    (
       kind : Windows.UI.Input.Spatial.SpatialInteractionSourceKind
    )
    return WinRt.Boolean;
-
-   function GetForCurrentView
-   return WinRt.Windows.UI.Input.Spatial.SpatialInteractionManager;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SpatialInteractionManager

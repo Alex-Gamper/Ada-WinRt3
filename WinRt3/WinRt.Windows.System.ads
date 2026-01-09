@@ -3593,9 +3593,6 @@ package WinRt.Windows.System is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AppDiagnosticInfo
 
-   function RequestInfoAsync
-   return WinRt.GenericObject;
-
    function CreateWatcher
    return WinRt.Windows.System.AppDiagnosticInfoWatcher;
 
@@ -3615,6 +3612,9 @@ package WinRt.Windows.System is
    (
       appUserModelId : WinRt.WString
    )
+   return WinRt.GenericObject;
+
+   function RequestInfoAsync
    return WinRt.GenericObject;
 
    -----------------------------------------------------------------------------
@@ -4464,34 +4464,6 @@ package WinRt.Windows.System is
    -- Static RuntimeClass
    package Launcher is
 
-      function LaunchFolderPathAsync
-      (
-         path : WinRt.WString
-      )
-      return WinRt.Boolean;
-
-      function LaunchFolderPathAsync
-      (
-         path : WinRt.WString;
-         options : Windows.System.FolderLauncherOptions'Class
-      )
-      return WinRt.Boolean;
-
-      function LaunchFolderPathForUserAsync
-      (
-         user_p : Windows.System.User'Class;
-         path : WinRt.WString
-      )
-      return WinRt.Boolean;
-
-      function LaunchFolderPathForUserAsync
-      (
-         user_p : Windows.System.User'Class;
-         path : WinRt.WString;
-         options : Windows.System.FolderLauncherOptions'Class
-      )
-      return WinRt.Boolean;
-
       function LaunchUriForResultsAsync
       (
          uri : Windows.Foundation.Uri'Class;
@@ -4645,6 +4617,34 @@ package WinRt.Windows.System is
       (
          uri : Windows.Foundation.Uri'Class;
          options : Windows.System.LauncherOptions'Class
+      )
+      return WinRt.Boolean;
+
+      function LaunchFolderPathAsync
+      (
+         path : WinRt.WString
+      )
+      return WinRt.Boolean;
+
+      function LaunchFolderPathAsync
+      (
+         path : WinRt.WString;
+         options : Windows.System.FolderLauncherOptions'Class
+      )
+      return WinRt.Boolean;
+
+      function LaunchFolderPathForUserAsync
+      (
+         user_p : Windows.System.User'Class;
+         path : WinRt.WString
+      )
+      return WinRt.Boolean;
+
+      function LaunchFolderPathForUserAsync
+      (
+         user_p : Windows.System.User'Class;
+         path : WinRt.WString;
+         options : Windows.System.FolderLauncherOptions'Class
       )
       return WinRt.Boolean;
 
@@ -4864,11 +4864,20 @@ package WinRt.Windows.System is
    -- Static RuntimeClass
    package MemoryManager is
 
+      function get_ExpectedAppMemoryUsageLimit
+      return WinRt.UInt64;
+
       function GetAppMemoryReport
       return WinRt.Windows.System.AppMemoryReport;
 
       function GetProcessMemoryReport
       return WinRt.Windows.System.ProcessMemoryReport;
+
+      function TrySetAppMemoryUsageLimit
+      (
+         value : WinRt.UInt64
+      )
+      return WinRt.Boolean;
 
       function get_AppMemoryUsage
       return WinRt.UInt64;
@@ -4911,15 +4920,6 @@ package WinRt.Windows.System is
       (
          token : Windows.Foundation.EventRegistrationToken
       );
-
-      function TrySetAppMemoryUsageLimit
-      (
-         value : WinRt.UInt64
-      )
-      return WinRt.Boolean;
-
-      function get_ExpectedAppMemoryUsageLimit
-      return WinRt.UInt64;
 
    end MemoryManager;
 
@@ -5123,6 +5123,14 @@ package WinRt.Windows.System is
    -- Static RuntimeClass
    package ShutdownManager is
 
+      procedure BeginShutdown
+      (
+         shutdownKind : Windows.System.ShutdownKind;
+         timeout : Windows.Foundation.TimeSpan
+      );
+
+      procedure CancelShutdown;
+
       function IsPowerStateSupported
       (
          powerState : Windows.System.PowerState
@@ -5139,14 +5147,6 @@ package WinRt.Windows.System is
          powerState : Windows.System.PowerState;
          wakeUpAfter : Windows.Foundation.TimeSpan
       );
-
-      procedure BeginShutdown
-      (
-         shutdownKind : Windows.System.ShutdownKind;
-         timeout : Windows.Foundation.TimeSpan
-      );
-
-      procedure CancelShutdown;
 
    end ShutdownManager;
 

@@ -1421,17 +1421,17 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    )
    return WinRt.GenericObject;
 
-   function RequestUnconstrainedDownloadsAsync
-   (
-      operations : GenericObject
-   )
-   return WinRt.Windows.Networking.BackgroundTransfer.UnconstrainedTransferRequestResult;
-
    function GetCurrentDownloadsForTransferGroupAsync
    (
       group : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
    )
    return WinRt.GenericObject;
+
+   function RequestUnconstrainedDownloadsAsync
+   (
+      operations : GenericObject
+   )
+   return WinRt.Windows.Networking.BackgroundTransfer.UnconstrainedTransferRequestResult;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BackgroundDownloader
@@ -1656,6 +1656,8 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BackgroundTransferContentPart
 
+   function Constructor return BackgroundTransferContentPart;
+
    function Constructor
    (
       name : WinRt.WString
@@ -1668,8 +1670,6 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       fileName : WinRt.WString
    )
    return BackgroundTransferContentPart;
-
-   function Constructor return BackgroundTransferContentPart;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BackgroundTransferContentPart
@@ -1788,11 +1788,11 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BackgroundUploader
 
-   function GetCurrentUploadsForTransferGroupAsync
+   function RequestUnconstrainedUploadsAsync
    (
-      group : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
+      operations : GenericObject
    )
-   return WinRt.GenericObject;
+   return WinRt.Windows.Networking.BackgroundTransfer.UnconstrainedTransferRequestResult;
 
    function GetCurrentUploadsAsync
    return WinRt.GenericObject;
@@ -1803,11 +1803,11 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    )
    return WinRt.GenericObject;
 
-   function RequestUnconstrainedUploadsAsync
+   function GetCurrentUploadsForTransferGroupAsync
    (
-      operations : GenericObject
+      group : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
    )
-   return WinRt.Windows.Networking.BackgroundTransfer.UnconstrainedTransferRequestResult;
+   return WinRt.GenericObject;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BackgroundUploader
@@ -1992,6 +1992,9 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    -- Static RuntimeClass
    package ContentPrefetcher is
 
+      function get_LastSuccessfulPrefetchTime
+      return WinRt.GenericObject;
+
       function get_ContentUris
       return WinRt.GenericObject;
 
@@ -2002,9 +2005,6 @@ package WinRt.Windows.Networking.BackgroundTransfer is
 
       function get_IndirectContentUri
       return WinRt.Windows.Foundation.Uri;
-
-      function get_LastSuccessfulPrefetchTime
-      return WinRt.GenericObject;
 
    end ContentPrefetcher;
 

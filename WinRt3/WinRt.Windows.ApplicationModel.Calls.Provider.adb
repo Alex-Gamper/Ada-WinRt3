@@ -282,6 +282,27 @@ package body WinRt.Windows.ApplicationModel.Calls.Provider is
    -- Static RuntimeClass
    package body PhoneCallOriginManager is
 
+      function get_IsSupported
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Calls.Provider.IPhoneCallOriginManagerStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IPhoneCallOriginManagerStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_IsSupported (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
       function get_IsCurrentAppActiveCallOriginApp
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -341,27 +362,6 @@ package body WinRt.Windows.ApplicationModel.Calls.Provider is
             end if;
          end if;
          tmp := WindowsDeleteString (m_hString);
-      end;
-
-      function get_IsSupported
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Calls.Provider.IPhoneCallOriginManagerStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IPhoneCallOriginManagerStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_IsSupported (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
       end;
 
       function RequestSetAsActiveCallOriginAppAsync

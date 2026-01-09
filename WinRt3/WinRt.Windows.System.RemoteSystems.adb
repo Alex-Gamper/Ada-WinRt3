@@ -1326,6 +1326,33 @@ package body WinRt.Windows.System.RemoteSystems is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RemoteSystemConnectionRequest
 
+   function CreateForApp
+   (
+      remoteSystemApp_p : Windows.System.RemoteSystems.RemoteSystemApp'Class
+   )
+   return WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemConnectionRequest");
+      m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequestStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+   begin
+      return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest do
+         Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemConnectionRequestStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateForApp (remoteSystemApp_p.m_IRemoteSystemApp.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IRemoteSystemConnectionRequest := new Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+            Retval.m_IRemoteSystemConnectionRequest.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function CreateFromConnectionToken
    (
       connectionToken : WinRt.WString
@@ -1382,33 +1409,6 @@ package body WinRt.Windows.System.RemoteSystems is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_connectionToken);
-      end return;
-   end;
-
-   function CreateForApp
-   (
-      remoteSystemApp_p : Windows.System.RemoteSystems.RemoteSystemApp'Class
-   )
-   return WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemConnectionRequest");
-      m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequestStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
-   begin
-      return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest do
-         Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemConnectionRequestStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateForApp (remoteSystemApp_p.m_IRemoteSystemApp.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IRemoteSystemConnectionRequest := new Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
-            Retval.m_IRemoteSystemConnectionRequest.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

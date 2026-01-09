@@ -41,6 +41,2025 @@ package body WinRt.Windows.Devices.Printers is
    package AsyncOperationCompletedHandler_IRandomAccessStreamWithContentType is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType);
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppAttributeError
+
+   procedure Initialize (this : in out IppAttributeError) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out IppAttributeError) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IIppAttributeError, IIppAttributeError_Ptr);
+   begin
+      if this.m_IIppAttributeError /= null then
+         if this.m_IIppAttributeError.all /= null then
+            temp := this.m_IIppAttributeError.all.Release;
+            Free (this.m_IIppAttributeError);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppAttributeError
+
+   function get_Reason
+   (
+      this : in out IppAttributeError
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeErrorReason is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IppAttributeErrorReason;
+   begin
+      Hr := this.m_IIppAttributeError.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out IppAttributeError
+   )
+   return WinRt.Windows.Foundation.HResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.HResult;
+   begin
+      Hr := this.m_IIppAttributeError.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetUnsupportedValues
+   (
+      this : in out IppAttributeError
+   )
+   return IVectorView_IIppAttributeValue.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IIppAttributeValue.Kind;
+   begin
+      Hr := this.m_IIppAttributeError.all.GetUnsupportedValues (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IIppAttributeValue (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppAttributeValue
+
+   procedure Initialize (this : in out IppAttributeValue) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out IppAttributeValue) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IIppAttributeValue, IIppAttributeValue_Ptr);
+   begin
+      if this.m_IIppAttributeValue /= null then
+         if this.m_IIppAttributeValue.all /= null then
+            temp := this.m_IIppAttributeValue.all.Release;
+            Free (this.m_IIppAttributeValue);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for IppAttributeValue
+
+   function CreateUnsupported
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateUnsupported (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateUnknown
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateUnknown (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateNoValue
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateNoValue (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateInteger
+   (
+      value : WinRt.Int32
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInteger (value, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateIntegerArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateIntegerArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateBoolean
+   (
+      value : WinRt.Boolean
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateBoolean (value, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateBooleanArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateBooleanArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateEnum
+   (
+      value : WinRt.Int32
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateEnum (value, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateEnumArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateEnumArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateOctetString
+   (
+      value : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateOctetString (value, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateOctetStringArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateOctetStringArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateDateTime
+   (
+      value : Windows.Foundation.DateTime
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateDateTime (value, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateDateTimeArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateDateTimeArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateResolution
+   (
+      value : Windows.Devices.Printers.IppResolution'Class
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateResolution (value.m_IIppResolution.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateResolutionArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateResolutionArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateRangeOfInteger
+   (
+      value : Windows.Devices.Printers.IppIntegerRange'Class
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateRangeOfInteger (value.m_IIppIntegerRange.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateRangeOfIntegerArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateRangeOfIntegerArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateCollection
+   (
+      memberAttributes : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateCollection (memberAttributes, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateCollectionArray
+   (
+      memberAttributesArray : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateCollectionArray (memberAttributesArray, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateTextWithLanguage
+   (
+      value : Windows.Devices.Printers.IppTextWithLanguage'Class
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateTextWithLanguage (value.m_IIppTextWithLanguage.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateTextWithLanguageArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateTextWithLanguageArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateNameWithLanguage
+   (
+      value : Windows.Devices.Printers.IppTextWithLanguage'Class
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateNameWithLanguage (value.m_IIppTextWithLanguage.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateNameWithLanguageArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateNameWithLanguageArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateTextWithoutLanguage
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateTextWithoutLanguage (HStr_value, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_value);
+      end return;
+   end;
+
+   function CreateTextWithoutLanguageArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateTextWithoutLanguageArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateNameWithoutLanguage
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateNameWithoutLanguage (HStr_value, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_value);
+      end return;
+   end;
+
+   function CreateNameWithoutLanguageArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateNameWithoutLanguageArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateKeyword
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateKeyword (HStr_value, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_value);
+      end return;
+   end;
+
+   function CreateKeywordArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateKeywordArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateUri
+   (
+      value : Windows.Foundation.Uri'Class
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateUri (value.m_IUriRuntimeClass.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateUriArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateUriArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateUriSchema
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateUriSchema (HStr_value, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_value);
+      end return;
+   end;
+
+   function CreateUriSchemaArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateUriSchemaArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateCharset
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateCharset (HStr_value, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_value);
+      end return;
+   end;
+
+   function CreateCharsetArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateCharsetArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateNaturalLanguage
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateNaturalLanguage (HStr_value, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_value);
+      end return;
+   end;
+
+   function CreateNaturalLanguageArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateNaturalLanguageArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateMimeMedia
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateMimeMedia (HStr_value, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_value);
+      end return;
+   end;
+
+   function CreateMimeMediaArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateMimeMediaArray (values, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppAttributeValue
+
+   function get_Kind
+   (
+      this : in out IppAttributeValue
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValueKind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IppAttributeValueKind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetIntegerArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_Int32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_Int32.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetIntegerArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_Int32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetBooleanArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_Boolean.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_Boolean.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetBooleanArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_Boolean (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetEnumArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_Int32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_Int32.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetEnumArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_Int32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetOctetStringArray
+   (
+      this : in out IppAttributeValue
+   )
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetOctetStringArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetDateTimeArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_DateTime.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_DateTime.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetDateTimeArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_DateTime (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetResolutionArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_IIppResolution.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_IIppResolution.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetResolutionArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_IIppResolution (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetRangeOfIntegerArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_IIppIntegerRange.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_IIppIntegerRange.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetRangeOfIntegerArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_IIppIntegerRange (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetCollectionArray
+   (
+      this : in out IppAttributeValue
+   )
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetCollectionArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetTextWithLanguageArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_IIppTextWithLanguage.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_IIppTextWithLanguage.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetTextWithLanguageArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_IIppTextWithLanguage (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetNameWithLanguageArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_IIppTextWithLanguage.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_IIppTextWithLanguage.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetNameWithLanguageArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_IIppTextWithLanguage (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetTextWithoutLanguageArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetTextWithoutLanguageArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetNameWithoutLanguageArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetNameWithoutLanguageArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetKeywordArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetKeywordArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetUriArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_IUriRuntimeClass.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_IUriRuntimeClass.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetUriArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_IUriRuntimeClass (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetUriSchemaArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetUriSchemaArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetCharsetArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetCharsetArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetNaturalLanguageArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetNaturalLanguageArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetMimeMediaTypeArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IIppAttributeValue.all.GetMimeMediaTypeArray (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppIntegerRange
+
+   procedure Initialize (this : in out IppIntegerRange) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out IppIntegerRange) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IIppIntegerRange, IIppIntegerRange_Ptr);
+   begin
+      if this.m_IIppIntegerRange /= null then
+         if this.m_IIppIntegerRange.all /= null then
+            temp := this.m_IIppIntegerRange.all.Release;
+            Free (this.m_IIppIntegerRange);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for IppIntegerRange
+
+   function Constructor
+   (
+      start : WinRt.Int32;
+      end_x : WinRt.Int32
+   )
+   return IppIntegerRange is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppIntegerRange");
+      m_Factory    : access IIppIntegerRangeFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Devices.Printers.IIppIntegerRange;
+   begin
+      return RetVal : IppIntegerRange do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppIntegerRangeFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (start, end_x, m_ComRetVal'Access);
+            Retval.m_IIppIntegerRange := new Windows.Devices.Printers.IIppIntegerRange;
+            Retval.m_IIppIntegerRange.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppIntegerRange
+
+   function get_Start
+   (
+      this : in out IppIntegerRange
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IIppIntegerRange.all.get_Start (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_End
+   (
+      this : in out IppIntegerRange
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IIppIntegerRange.all.get_End (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppPrintDevice
+
+   procedure Initialize (this : in out IppPrintDevice) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out IppPrintDevice) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IIppPrintDevice, IIppPrintDevice_Ptr);
+   begin
+      if this.m_IIppPrintDevice /= null then
+         if this.m_IIppPrintDevice.all /= null then
+            temp := this.m_IIppPrintDevice.all.Release;
+            Free (this.m_IIppPrintDevice);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppPrintDevice
+
+   function get_PrinterName
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IIppPrintDevice.all.get_PrinterName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_PrinterUri
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IIppPrintDevice.all.get_PrinterUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetPrinterAttributesAsBuffer
+   (
+      this : in out IppPrintDevice;
+      attributeNames : GenericObject
+   )
+   return WinRt.Windows.Storage.Streams.IBuffer is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+   begin
+      Hr := this.m_IIppPrintDevice.all.GetPrinterAttributesAsBuffer (attributeNames, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetPrinterAttributes
+   (
+      this : in out IppPrintDevice;
+      attributeNames : GenericObject
+   )
+   return IMap_HString_IIppAttributeValue.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IMap_HString_IIppAttributeValue.Kind;
+   begin
+      Hr := this.m_IIppPrintDevice.all.GetPrinterAttributes (attributeNames, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IMap_HString_IIppAttributeValue (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function SetPrinterAttributesFromBuffer
+   (
+      this : in out IppPrintDevice;
+      printerAttributesBuffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.Devices.Printers.IppSetAttributesResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppSetAttributesResult;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppSetAttributesResult do
+         Hr := this.m_IIppPrintDevice.all.SetPrinterAttributesFromBuffer (printerAttributesBuffer, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IIppSetAttributesResult := new Windows.Devices.Printers.IIppSetAttributesResult;
+         Retval.m_IIppSetAttributesResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   function SetPrinterAttributes
+   (
+      this : in out IppPrintDevice;
+      printerAttributes : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppSetAttributesResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppSetAttributesResult;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppSetAttributesResult do
+         Hr := this.m_IIppPrintDevice.all.SetPrinterAttributes (printerAttributes, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IIppSetAttributesResult := new Windows.Devices.Printers.IIppSetAttributesResult;
+         Retval.m_IIppSetAttributesResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppResolution
+
+   procedure Initialize (this : in out IppResolution) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out IppResolution) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IIppResolution, IIppResolution_Ptr);
+   begin
+      if this.m_IIppResolution /= null then
+         if this.m_IIppResolution.all /= null then
+            temp := this.m_IIppResolution.all.Release;
+            Free (this.m_IIppResolution);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for IppResolution
+
+   function Constructor
+   (
+      width : WinRt.Int32;
+      height : WinRt.Int32;
+      unit : Windows.Devices.Printers.IppResolutionUnit
+   )
+   return IppResolution is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppResolution");
+      m_Factory    : access IIppResolutionFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Devices.Printers.IIppResolution;
+   begin
+      return RetVal : IppResolution do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppResolutionFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (width, height, unit, m_ComRetVal'Access);
+            Retval.m_IIppResolution := new Windows.Devices.Printers.IIppResolution;
+            Retval.m_IIppResolution.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppResolution
+
+   function get_Width
+   (
+      this : in out IppResolution
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IIppResolution.all.get_Width (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Height
+   (
+      this : in out IppResolution
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IIppResolution.all.get_Height (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Unit
+   (
+      this : in out IppResolution
+   )
+   return WinRt.Windows.Devices.Printers.IppResolutionUnit is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IppResolutionUnit;
+   begin
+      Hr := this.m_IIppResolution.all.get_Unit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppSetAttributesResult
+
+   procedure Initialize (this : in out IppSetAttributesResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out IppSetAttributesResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IIppSetAttributesResult, IIppSetAttributesResult_Ptr);
+   begin
+      if this.m_IIppSetAttributesResult /= null then
+         if this.m_IIppSetAttributesResult.all /= null then
+            temp := this.m_IIppSetAttributesResult.all.Release;
+            Free (this.m_IIppSetAttributesResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppSetAttributesResult
+
+   function get_Succeeded
+   (
+      this : in out IppSetAttributesResult
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IIppSetAttributesResult.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_AttributeErrors
+   (
+      this : in out IppSetAttributesResult
+   )
+   return IMapView_HString_IIppAttributeError.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IMapView_HString_IIppAttributeError.Kind;
+   begin
+      Hr := this.m_IIppSetAttributesResult.all.get_AttributeErrors (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IMapView_HString_IIppAttributeError (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppTextWithLanguage
+
+   procedure Initialize (this : in out IppTextWithLanguage) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out IppTextWithLanguage) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IIppTextWithLanguage, IIppTextWithLanguage_Ptr);
+   begin
+      if this.m_IIppTextWithLanguage /= null then
+         if this.m_IIppTextWithLanguage.all /= null then
+            temp := this.m_IIppTextWithLanguage.all.Release;
+            Free (this.m_IIppTextWithLanguage);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for IppTextWithLanguage
+
+   function Constructor
+   (
+      language : WinRt.WString;
+      text : WinRt.WString
+   )
+   return IppTextWithLanguage is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppTextWithLanguage");
+      m_Factory    : access IIppTextWithLanguageFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Devices.Printers.IIppTextWithLanguage;
+      HStr_language : constant WinRt.HString := To_HString (language);
+      HStr_text : constant WinRt.HString := To_HString (text);
+   begin
+      return RetVal : IppTextWithLanguage do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppTextWithLanguageFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (HStr_language, HStr_text, m_ComRetVal'Access);
+            Retval.m_IIppTextWithLanguage := new Windows.Devices.Printers.IIppTextWithLanguage;
+            Retval.m_IIppTextWithLanguage.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_language);
+         tmp := WindowsDeleteString (HStr_text);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppTextWithLanguage
+
+   function get_Language
+   (
+      this : in out IppTextWithLanguage
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IIppTextWithLanguage.all.get_Language (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Value
+   (
+      this : in out IppTextWithLanguage
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IIppTextWithLanguage.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Print3DDevice
 
    procedure Initialize (this : in out Print3DDevice) is

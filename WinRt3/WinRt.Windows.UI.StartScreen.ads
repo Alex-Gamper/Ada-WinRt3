@@ -1338,6 +1338,18 @@ package WinRt.Windows.UI.StartScreen is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SecondaryTile
 
+   function Constructor return SecondaryTile;
+
+   function Constructor
+   (
+      tileId : WinRt.WString;
+      displayName : WinRt.WString;
+      arguments : WinRt.WString;
+      square150x150Logo : Windows.Foundation.Uri'Class;
+      desiredSize : Windows.UI.StartScreen.TileSize
+   )
+   return SecondaryTile;
+
    function Constructor
    (
       tileId : WinRt.WString;
@@ -1366,18 +1378,6 @@ package WinRt.Windows.UI.StartScreen is
       tileId : WinRt.WString
    )
    return SecondaryTile;
-
-   function Constructor
-   (
-      tileId : WinRt.WString;
-      displayName : WinRt.WString;
-      arguments : WinRt.WString;
-      square150x150Logo : Windows.Foundation.Uri'Class;
-      desiredSize : Windows.UI.StartScreen.TileSize
-   )
-   return SecondaryTile;
-
-   function Constructor return SecondaryTile;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for SecondaryTile

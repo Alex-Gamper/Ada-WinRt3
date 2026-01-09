@@ -212,6 +212,11 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    -- Static RuntimeClass
    package LicenseManager is
 
+      procedure RefreshLicensesAsync
+      (
+         refreshOption : Windows.ApplicationModel.Store.LicenseManagement.LicenseRefreshOption
+      );
+
       procedure AddLicenseAsync
       (
          license : Windows.Storage.Streams.IBuffer
@@ -223,11 +228,6 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
          keyIds : GenericObject
       )
       return WinRt.Windows.ApplicationModel.Store.LicenseManagement.LicenseSatisfactionResult;
-
-      procedure RefreshLicensesAsync
-      (
-         refreshOption : Windows.ApplicationModel.Store.LicenseManagement.LicenseRefreshOption
-      );
 
    end LicenseManager;
 

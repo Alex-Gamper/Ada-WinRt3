@@ -4335,22 +4335,22 @@ package body WinRt.Windows.Media.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MediaSource
 
-   function CreateFromDownloadOperation
+   function CreateFromMediaFrameSource
    (
-      downloadOperation : Windows.Networking.BackgroundTransfer.DownloadOperation'Class
+      frameSource : Windows.Media.Capture.Frames.MediaFrameSource'Class
    )
    return WinRt.Windows.Media.Core.MediaSource is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
-      m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics4_Interface'Class := null;
+      m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
-         Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics4'Access , m_Factory'Address);
+         Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
-            Hr := m_Factory.CreateFromDownloadOperation (downloadOperation.m_IDownloadOperation.all, m_ComRetVal'Access);
+            Hr := m_Factory.CreateFromMediaFrameSource (frameSource.m_IMediaFrameSource.all, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -4378,33 +4378,6 @@ package body WinRt.Windows.Media.Core is
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromMediaBinder (binder.m_IMediaBinder.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
-            Retval.m_IMediaSource2.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function CreateFromMediaFrameSource
-   (
-      frameSource : Windows.Media.Capture.Frames.MediaFrameSource'Class
-   )
-   return WinRt.Windows.Media.Core.MediaSource is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
-      m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
-   begin
-      return RetVal : WinRt.Windows.Media.Core.MediaSource do
-         Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromMediaFrameSource (frameSource.m_IMediaFrameSource.all, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -4627,6 +4600,33 @@ package body WinRt.Windows.Media.Core is
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromUri (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
+            Retval.m_IMediaSource2.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateFromDownloadOperation
+   (
+      downloadOperation : Windows.Networking.BackgroundTransfer.DownloadOperation'Class
+   )
+   return WinRt.Windows.Media.Core.MediaSource is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
+   begin
+      return RetVal : WinRt.Windows.Media.Core.MediaSource do
+         Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromDownloadOperation (downloadOperation.m_IDownloadOperation.all, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

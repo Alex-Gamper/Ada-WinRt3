@@ -138,6 +138,310 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    -- Static RuntimeClass
    package body StoreConfiguration is
 
+      function IsPinToDesktopSupported
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.IsPinToDesktopSupported (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function IsPinToTaskbarSupported
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.IsPinToTaskbarSupported (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function IsPinToStartSupported
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.IsPinToStartSupported (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      procedure PinToDesktop
+      (
+         appPackageFamilyName : WinRt.WString
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_appPackageFamilyName : constant WinRt.HString := To_HString (appPackageFamilyName);
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.PinToDesktop (HStr_appPackageFamilyName);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appPackageFamilyName);
+      end;
+
+      procedure PinToDesktopForUser
+      (
+         user : Windows.System.User'Class;
+         appPackageFamilyName : WinRt.WString
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_appPackageFamilyName : constant WinRt.HString := To_HString (appPackageFamilyName);
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.PinToDesktopForUser (user.m_IUser.all, HStr_appPackageFamilyName);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appPackageFamilyName);
+      end;
+
+      function GetStoreWebAccountId
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetStoreWebAccountId (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function GetStoreWebAccountIdForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetStoreWebAccountIdForUser (user.m_IUser.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      procedure SetEnterpriseStoreWebAccountId
+      (
+         webAccountId : WinRt.WString
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_webAccountId : constant WinRt.HString := To_HString (webAccountId);
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.SetEnterpriseStoreWebAccountId (HStr_webAccountId);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_webAccountId);
+      end;
+
+      procedure SetEnterpriseStoreWebAccountIdForUser
+      (
+         user : Windows.System.User'Class;
+         webAccountId : WinRt.WString
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_webAccountId : constant WinRt.HString := To_HString (webAccountId);
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.SetEnterpriseStoreWebAccountIdForUser (user.m_IUser.all, HStr_webAccountId);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_webAccountId);
+      end;
+
+      function GetEnterpriseStoreWebAccountId
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetEnterpriseStoreWebAccountId (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function GetEnterpriseStoreWebAccountIdForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetEnterpriseStoreWebAccountIdForUser (user.m_IUser.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function ShouldRestrictToEnterpriseStoreOnly
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.ShouldRestrictToEnterpriseStoreOnly (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function ShouldRestrictToEnterpriseStoreOnlyForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.ShouldRestrictToEnterpriseStoreOnlyForUser (user.m_IUser.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
       procedure SetSystemConfiguration
       (
          catalogHardwareManufacturerId : WinRt.WString;
@@ -546,310 +850,6 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
             end if;
          end if;
          tmp := WindowsDeleteString (m_hString);
-      end;
-
-      function IsPinToDesktopSupported
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.IsPinToDesktopSupported (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function IsPinToTaskbarSupported
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.IsPinToTaskbarSupported (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function IsPinToStartSupported
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.IsPinToStartSupported (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      procedure PinToDesktop
-      (
-         appPackageFamilyName : WinRt.WString
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_appPackageFamilyName : constant WinRt.HString := To_HString (appPackageFamilyName);
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.PinToDesktop (HStr_appPackageFamilyName);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_appPackageFamilyName);
-      end;
-
-      procedure PinToDesktopForUser
-      (
-         user : Windows.System.User'Class;
-         appPackageFamilyName : WinRt.WString
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_appPackageFamilyName : constant WinRt.HString := To_HString (appPackageFamilyName);
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.PinToDesktopForUser (user.m_IUser.all, HStr_appPackageFamilyName);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_appPackageFamilyName);
-      end;
-
-      function GetStoreWebAccountId
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetStoreWebAccountId (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function GetStoreWebAccountIdForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetStoreWebAccountIdForUser (user.m_IUser.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      procedure SetEnterpriseStoreWebAccountId
-      (
-         webAccountId : WinRt.WString
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_webAccountId : constant WinRt.HString := To_HString (webAccountId);
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.SetEnterpriseStoreWebAccountId (HStr_webAccountId);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_webAccountId);
-      end;
-
-      procedure SetEnterpriseStoreWebAccountIdForUser
-      (
-         user : Windows.System.User'Class;
-         webAccountId : WinRt.WString
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_webAccountId : constant WinRt.HString := To_HString (webAccountId);
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.SetEnterpriseStoreWebAccountIdForUser (user.m_IUser.all, HStr_webAccountId);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_webAccountId);
-      end;
-
-      function GetEnterpriseStoreWebAccountId
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetEnterpriseStoreWebAccountId (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function GetEnterpriseStoreWebAccountIdForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetEnterpriseStoreWebAccountIdForUser (user.m_IUser.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function ShouldRestrictToEnterpriseStoreOnly
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.ShouldRestrictToEnterpriseStoreOnly (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function ShouldRestrictToEnterpriseStoreOnlyForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.ShouldRestrictToEnterpriseStoreOnlyForUser (user.m_IUser.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
       end;
 
       function get_PurchasePromptingPolicy

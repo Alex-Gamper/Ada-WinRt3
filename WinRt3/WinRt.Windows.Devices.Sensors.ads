@@ -4078,12 +4078,6 @@ package WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Accelerometer
 
-   function GetDefault
-   (
-      readingType : Windows.Devices.Sensors.AccelerometerReadingType
-   )
-   return WinRt.Windows.Devices.Sensors.Accelerometer;
-
    function FromIdAsync
    (
       deviceId : WinRt.WString
@@ -4095,6 +4089,12 @@ package WinRt.Windows.Devices.Sensors is
       readingType : Windows.Devices.Sensors.AccelerometerReadingType
    )
    return WinRt.WString;
+
+   function GetDefault
+   (
+      readingType : Windows.Devices.Sensors.AccelerometerReadingType
+   )
+   return WinRt.Windows.Devices.Sensors.Accelerometer;
 
    function GetDefault
    return WinRt.Windows.Devices.Sensors.Accelerometer;
@@ -4955,6 +4955,9 @@ package WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Gyrometer
 
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.Gyrometer;
+
    function GetDeviceSelector_Gyrometer
    return WinRt.WString;
 
@@ -4962,9 +4965,6 @@ package WinRt.Windows.Devices.Sensors is
    (
       deviceId : WinRt.WString
    )
-   return WinRt.Windows.Devices.Sensors.Gyrometer;
-
-   function GetDefault
    return WinRt.Windows.Devices.Sensors.Gyrometer;
 
    -----------------------------------------------------------------------------
@@ -5280,15 +5280,6 @@ package WinRt.Windows.Devices.Sensors is
    -- Static Interfaces for Inclinometer
 
    function GetDefault
-   (
-      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
-   )
-   return WinRt.Windows.Devices.Sensors.Inclinometer;
-
-   function GetDefaultForRelativeReadings
-   return WinRt.Windows.Devices.Sensors.Inclinometer;
-
-   function GetDefault
    return WinRt.Windows.Devices.Sensors.Inclinometer;
 
    function GetDeviceSelector
@@ -5301,6 +5292,15 @@ package WinRt.Windows.Devices.Sensors is
    (
       deviceId : WinRt.WString
    )
+   return WinRt.Windows.Devices.Sensors.Inclinometer;
+
+   function GetDefault
+   (
+      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
+   )
+   return WinRt.Windows.Devices.Sensors.Inclinometer;
+
+   function GetDefaultForRelativeReadings
    return WinRt.Windows.Devices.Sensors.Inclinometer;
 
    -----------------------------------------------------------------------------
@@ -5511,6 +5511,9 @@ package WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for LightSensor
 
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.LightSensor;
+
    function GetDeviceSelector_LightSensor
    return WinRt.WString;
 
@@ -5518,9 +5521,6 @@ package WinRt.Windows.Devices.Sensors is
    (
       deviceId : WinRt.WString
    )
-   return WinRt.Windows.Devices.Sensors.LightSensor;
-
-   function GetDefault
    return WinRt.Windows.Devices.Sensors.LightSensor;
 
    -----------------------------------------------------------------------------
@@ -5897,22 +5897,6 @@ package WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for OrientationSensor
 
-   function GetDefault
-   (
-      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
-   )
-   return WinRt.Windows.Devices.Sensors.OrientationSensor;
-
-   function GetDefault
-   (
-      sensorReadingType : Windows.Devices.Sensors.SensorReadingType;
-      optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal
-   )
-   return WinRt.Windows.Devices.Sensors.OrientationSensor;
-
-   function GetDefaultForRelativeReadings
-   return WinRt.Windows.Devices.Sensors.OrientationSensor;
-
    function GetDeviceSelector_OrientationSensor
    (
       readingType : Windows.Devices.Sensors.SensorReadingType
@@ -5933,6 +5917,22 @@ package WinRt.Windows.Devices.Sensors is
    return WinRt.Windows.Devices.Sensors.OrientationSensor;
 
    function GetDefault
+   return WinRt.Windows.Devices.Sensors.OrientationSensor;
+
+   function GetDefaultForRelativeReadings
+   return WinRt.Windows.Devices.Sensors.OrientationSensor;
+
+   function GetDefault
+   (
+      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
+   )
+   return WinRt.Windows.Devices.Sensors.OrientationSensor;
+
+   function GetDefault
+   (
+      sensorReadingType : Windows.Devices.Sensors.SensorReadingType;
+      optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal
+   )
    return WinRt.Windows.Devices.Sensors.OrientationSensor;
 
    -----------------------------------------------------------------------------
@@ -6245,6 +6245,12 @@ package WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ProximitySensor
 
+   function GetReadingsFromTriggerDetails_ProximitySensor
+   (
+      triggerDetails : Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
+   )
+   return WinRt.GenericObject;
+
    function GetDeviceSelector_ProximitySensor
    return WinRt.WString;
 
@@ -6253,12 +6259,6 @@ package WinRt.Windows.Devices.Sensors is
       sensorId : WinRt.WString
    )
    return WinRt.Windows.Devices.Sensors.ProximitySensor;
-
-   function GetReadingsFromTriggerDetails_ProximitySensor
-   (
-      triggerDetails : Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
-   )
-   return WinRt.GenericObject;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ProximitySensor
@@ -6506,6 +6506,9 @@ package WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SimpleOrientationSensor
 
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.SimpleOrientationSensor;
+
    function GetDeviceSelector_SimpleOrientationSensor
    return WinRt.WString;
 
@@ -6513,9 +6516,6 @@ package WinRt.Windows.Devices.Sensors is
    (
       deviceId : WinRt.WString
    )
-   return WinRt.Windows.Devices.Sensors.SimpleOrientationSensor;
-
-   function GetDefault
    return WinRt.Windows.Devices.Sensors.SimpleOrientationSensor;
 
    -----------------------------------------------------------------------------

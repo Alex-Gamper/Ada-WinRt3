@@ -197,6 +197,14 @@ package WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
    -- Static RuntimeClass
    package GameService is
 
+      procedure NotifyPartnerTokenExpired
+      (
+         audienceUri : Windows.Foundation.Uri'Class
+      );
+
+      function GetAuthenticationStatus
+      return WinRt.UInt32;
+
       function get_ServiceUri
       return WinRt.Windows.Foundation.Uri;
 
@@ -233,14 +241,6 @@ package WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
          gameOutcome : Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome;
          buffer : Windows.Storage.Streams.IBuffer
       );
-
-      procedure NotifyPartnerTokenExpired
-      (
-         audienceUri : Windows.Foundation.Uri'Class
-      );
-
-      function GetAuthenticationStatus
-      return WinRt.UInt32;
 
    end GameService;
 

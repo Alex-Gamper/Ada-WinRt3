@@ -695,6 +695,11 @@ package WinRt.Windows.UI.ApplicationSettings is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AccountsSettingsPane
 
+   function GetForCurrentView
+   return WinRt.Windows.UI.ApplicationSettings.AccountsSettingsPane;
+
+   procedure Show;
+
    procedure ShowManageAccountsForUserAsync
    (
       user : Windows.System.User'Class
@@ -704,11 +709,6 @@ package WinRt.Windows.UI.ApplicationSettings is
    (
       user : Windows.System.User'Class
    );
-
-   function GetForCurrentView
-   return WinRt.Windows.UI.ApplicationSettings.AccountsSettingsPane;
-
-   procedure Show;
 
    procedure ShowManageAccountsAsync;
 

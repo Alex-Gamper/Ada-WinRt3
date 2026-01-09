@@ -2500,12 +2500,6 @@ package WinRt.Windows.Foundation.Diagnostics is
 
    function Constructor
    (
-      name : WinRt.WString
-   )
-   return LoggingChannel;
-
-   function Constructor
-   (
       name : WinRt.WString;
       options : Windows.Foundation.Diagnostics.LoggingChannelOptions'Class
    )
@@ -2516,6 +2510,12 @@ package WinRt.Windows.Foundation.Diagnostics is
       name : WinRt.WString;
       options : Windows.Foundation.Diagnostics.LoggingChannelOptions'Class;
       id : WinRt.Guid
+   )
+   return LoggingChannel;
+
+   function Constructor
+   (
+      name : WinRt.WString
    )
    return LoggingChannel;
 
@@ -2686,13 +2686,13 @@ package WinRt.Windows.Foundation.Diagnostics is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for LoggingChannelOptions
 
-   function Constructor return LoggingChannelOptions;
-
    function Constructor
    (
       group : WinRt.Guid
    )
    return LoggingChannelOptions;
+
+   function Constructor return LoggingChannelOptions;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for LoggingChannelOptions

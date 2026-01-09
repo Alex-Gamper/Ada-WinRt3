@@ -1745,19 +1745,6 @@ package WinRt.Windows.UI.Composition.Interactions is
    -----------------------------------------------------------------------------
    -- Static Interfaces for InteractionTracker
 
-   function Create
-   (
-      compositor : Windows.UI.Composition.Compositor'Class
-   )
-   return WinRt.Windows.UI.Composition.Interactions.InteractionTracker;
-
-   function CreateWithOwner
-   (
-      compositor : Windows.UI.Composition.Compositor'Class;
-      owner : Windows.UI.Composition.Interactions.IInteractionTrackerOwner
-   )
-   return WinRt.Windows.UI.Composition.Interactions.InteractionTracker;
-
    procedure SetBindingMode
    (
       boundTracker1 : Windows.UI.Composition.Interactions.InteractionTracker'Class;
@@ -1771,6 +1758,19 @@ package WinRt.Windows.UI.Composition.Interactions is
       boundTracker2 : Windows.UI.Composition.Interactions.InteractionTracker'Class
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionBindingAxisModes;
+
+   function Create
+   (
+      compositor : Windows.UI.Composition.Compositor'Class
+   )
+   return WinRt.Windows.UI.Composition.Interactions.InteractionTracker;
+
+   function CreateWithOwner
+   (
+      compositor : Windows.UI.Composition.Compositor'Class;
+      owner : Windows.UI.Composition.Interactions.IInteractionTrackerOwner
+   )
+   return WinRt.Windows.UI.Composition.Interactions.InteractionTracker;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for InteractionTracker
@@ -2406,15 +2406,15 @@ package WinRt.Windows.UI.Composition.Interactions is
    -----------------------------------------------------------------------------
    -- Static Interfaces for VisualInteractionSource
 
-   function CreateFromIVisualElement
-   (
-      source : Windows.UI.Composition.IVisualElement
-   )
-   return WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource;
-
    function Create
    (
       source : Windows.UI.Composition.Visual'Class
+   )
+   return WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource;
+
+   function CreateFromIVisualElement
+   (
+      source : Windows.UI.Composition.IVisualElement
    )
    return WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource;
 

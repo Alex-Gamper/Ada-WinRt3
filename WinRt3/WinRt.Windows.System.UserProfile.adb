@@ -565,6 +565,83 @@ package body WinRt.Windows.System.UserProfile is
    -- Static RuntimeClass
    package body GlobalizationPreferences is
 
+      function GetForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.System.UserProfile.GlobalizationPreferencesForUser is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
+         m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.System.UserProfile.IGlobalizationPreferencesForUser;
+      begin
+         return RetVal : WinRt.Windows.System.UserProfile.GlobalizationPreferencesForUser do
+            Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics3'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IGlobalizationPreferencesForUser := new Windows.System.UserProfile.IGlobalizationPreferencesForUser;
+               Retval.m_IGlobalizationPreferencesForUser.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function TrySetHomeGeographicRegion
+      (
+         region : WinRt.WString
+      )
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
+         m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+         HStr_region : constant WinRt.HString := To_HString (region);
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.TrySetHomeGeographicRegion (HStr_region, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_region);
+         return m_ComRetVal;
+      end;
+
+      function TrySetLanguages
+      (
+         languageTags : GenericObject
+      )
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
+         m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.TrySetLanguages (languageTags, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
       function get_Calendars
       return IVectorView_HString.Kind is
          Hr               : WinRt.HResult := S_OK;
@@ -697,83 +774,6 @@ package body WinRt.Windows.System.UserProfile is
          Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_WeekStartsOn (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function GetForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.System.UserProfile.GlobalizationPreferencesForUser is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
-         m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.UserProfile.IGlobalizationPreferencesForUser;
-      begin
-         return RetVal : WinRt.Windows.System.UserProfile.GlobalizationPreferencesForUser do
-            Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics3'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IGlobalizationPreferencesForUser := new Windows.System.UserProfile.IGlobalizationPreferencesForUser;
-               Retval.m_IGlobalizationPreferencesForUser.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function TrySetHomeGeographicRegion
-      (
-         region : WinRt.WString
-      )
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
-         m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-         HStr_region : constant WinRt.HString := To_HString (region);
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.TrySetHomeGeographicRegion (HStr_region, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_region);
-         return m_ComRetVal;
-      end;
-
-      function TrySetLanguages
-      (
-         languageTags : GenericObject
-      )
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
-         m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.TrySetLanguages (languageTags, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

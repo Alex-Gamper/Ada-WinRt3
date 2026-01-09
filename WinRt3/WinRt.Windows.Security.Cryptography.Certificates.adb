@@ -794,6 +794,61 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    -- Static RuntimeClass
    package body CertificateEnrollmentManager is
 
+      procedure ImportPfxDataAsync
+      (
+         pfxData : WinRt.WString;
+         password : WinRt.WString;
+         pfxImportParameters_p : Windows.Security.Cryptography.Certificates.PfxImportParameters'Class
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
+         m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateEnrollmentManagerStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_pfxData : constant WinRt.HString := To_HString (pfxData);
+         HStr_password : constant WinRt.HString := To_HString (password);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
+
+         procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         begin
+            if asyncStatus = Completed_e then
+               Hr := asyncInfo.GetResults;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+         m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
+         procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICertificateEnrollmentManagerStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.ImportPfxDataAsync (HStr_pfxData, HStr_password, pfxImportParameters_p.m_IPfxImportParameters.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_Captured := m_Completed;
+               Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
+                  Free (m_CompletedHandler);
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_pfxData);
+         tmp := WindowsDeleteString (HStr_password);
+      end;
+
       function CreateRequestAsync
       (
          request : Windows.Security.Cryptography.Certificates.CertificateRequestProperties'Class
@@ -977,61 +1032,6 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          tmp := WindowsDeleteString (HStr_pfxData);
          tmp := WindowsDeleteString (HStr_password);
          tmp := WindowsDeleteString (HStr_friendlyName);
-      end;
-
-      procedure ImportPfxDataAsync
-      (
-         pfxData : WinRt.WString;
-         password : WinRt.WString;
-         pfxImportParameters_p : Windows.Security.Cryptography.Certificates.PfxImportParameters'Class
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
-         m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateEnrollmentManagerStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_pfxData : constant WinRt.HString := To_HString (pfxData);
-         HStr_password : constant WinRt.HString := To_HString (password);
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
-
-         procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         begin
-            if asyncStatus = Completed_e then
-               Hr := asyncInfo.GetResults;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-         m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
-         procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
-
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICertificateEnrollmentManagerStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.ImportPfxDataAsync (HStr_pfxData, HStr_password, pfxImportParameters_p.m_IPfxImportParameters.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_Captured := m_Completed;
-               Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
-               while m_Captured = m_Compare loop
-                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                  m_Captured := m_Completed;
-               end loop;
-               temp := m_ComRetVal.Release;
-               temp := m_CompletedHandler.Release;
-               if temp = 0 then
-                  Free (m_CompletedHandler);
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_pfxData);
-         tmp := WindowsDeleteString (HStr_password);
       end;
 
       function get_UserCertificateEnrollmentManager
@@ -2790,35 +2790,6 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    -- Static RuntimeClass
    package body CertificateStores is
 
-      function GetUserStoreByName
-      (
-         storeName : WinRt.WString
-      )
-      return WinRt.Windows.Security.Cryptography.Certificates.UserCertificateStore is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
-         m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateStoresStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.IUserCertificateStore;
-         HStr_storeName : constant WinRt.HString := To_HString (storeName);
-      begin
-         return RetVal : WinRt.Windows.Security.Cryptography.Certificates.UserCertificateStore do
-            Hr := RoGetActivationFactory (m_hString, IID_ICertificateStoresStatics2'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.GetUserStoreByName (HStr_storeName, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IUserCertificateStore := new Windows.Security.Cryptography.Certificates.IUserCertificateStore;
-               Retval.m_IUserCertificateStore.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-            tmp := WindowsDeleteString (HStr_storeName);
-         end return;
-      end;
-
       function FindAllAsync
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
@@ -3027,6 +2998,35 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                end if;
                Retval.m_ICertificateStore := new Windows.Security.Cryptography.Certificates.ICertificateStore;
                Retval.m_ICertificateStore.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_storeName);
+         end return;
+      end;
+
+      function GetUserStoreByName
+      (
+         storeName : WinRt.WString
+      )
+      return WinRt.Windows.Security.Cryptography.Certificates.UserCertificateStore is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
+         m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateStoresStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.IUserCertificateStore;
+         HStr_storeName : constant WinRt.HString := To_HString (storeName);
+      begin
+         return RetVal : WinRt.Windows.Security.Cryptography.Certificates.UserCertificateStore do
+            Hr := RoGetActivationFactory (m_hString, IID_ICertificateStoresStatics2'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.GetUserStoreByName (HStr_storeName, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IUserCertificateStore := new Windows.Security.Cryptography.Certificates.IUserCertificateStore;
+               Retval.m_IUserCertificateStore.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
             tmp := WindowsDeleteString (HStr_storeName);
@@ -4041,54 +4041,6 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    -- Static RuntimeClass
    package body KeyAlgorithmNames is
 
-      function get_Ecdsa
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
-         m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_Ecdsa (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_Ecdh
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
-         m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_Ecdh (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
       function get_Rsa
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -4281,11 +4233,137 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          return AdaRetVal;
       end;
 
+      function get_Ecdsa
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
+         m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Ecdsa (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_Ecdh
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
+         m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Ecdh (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
    end KeyAlgorithmNames;
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package body KeyAttestationHelper is
+
+      function DecryptTpmAttestationCredentialAsync
+      (
+         credential : WinRt.WString;
+         containerName : WinRt.WString
+      )
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAttestationHelper");
+         m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAttestationHelperStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_credential : constant WinRt.HString := To_HString (credential);
+         HStr_containerName : constant WinRt.HString := To_HString (containerName);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_HString.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.HString;
+         AdaRetval        : WString;
+         m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
+         m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
+         m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKeyAttestationHelperStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.DecryptTpmAttestationCredentialAsync (HStr_credential, HStr_containerName, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_credential);
+         tmp := WindowsDeleteString (HStr_containerName);
+         AdaRetval := To_Ada (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
+         return AdaRetVal;
+      end;
 
       function DecryptTpmAttestationCredentialAsync
       (
@@ -4388,84 +4466,6 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          tmp := WindowsDeleteString (HStr_credential);
          AdaRetval := To_Ada (m_ComRetVal);
          tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function DecryptTpmAttestationCredentialAsync
-      (
-         credential : WinRt.WString;
-         containerName : WinRt.WString
-      )
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAttestationHelper");
-         m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAttestationHelperStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_credential : constant WinRt.HString := To_HString (credential);
-         HStr_containerName : constant WinRt.HString := To_HString (containerName);
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_HString.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.HString;
-         AdaRetval        : WString;
-         m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
-         m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
-         m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IKeyAttestationHelperStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.DecryptTpmAttestationCredentialAsync (HStr_credential, HStr_containerName, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_credential);
-         tmp := WindowsDeleteString (HStr_containerName);
-         AdaRetval := To_Ada (m_RetVal);
-         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 

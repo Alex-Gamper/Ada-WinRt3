@@ -770,6 +770,64 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
    -- Static RuntimeClass
    package StoreConfiguration is
 
+      function IsPinToDesktopSupported
+      return WinRt.Boolean;
+
+      function IsPinToTaskbarSupported
+      return WinRt.Boolean;
+
+      function IsPinToStartSupported
+      return WinRt.Boolean;
+
+      procedure PinToDesktop
+      (
+         appPackageFamilyName : WinRt.WString
+      );
+
+      procedure PinToDesktopForUser
+      (
+         user : Windows.System.User'Class;
+         appPackageFamilyName : WinRt.WString
+      );
+
+      function GetStoreWebAccountId
+      return WinRt.WString;
+
+      function GetStoreWebAccountIdForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.WString;
+
+      procedure SetEnterpriseStoreWebAccountId
+      (
+         webAccountId : WinRt.WString
+      );
+
+      procedure SetEnterpriseStoreWebAccountIdForUser
+      (
+         user : Windows.System.User'Class;
+         webAccountId : WinRt.WString
+      );
+
+      function GetEnterpriseStoreWebAccountId
+      return WinRt.WString;
+
+      function GetEnterpriseStoreWebAccountIdForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.WString;
+
+      function ShouldRestrictToEnterpriseStoreOnly
+      return WinRt.Boolean;
+
+      function ShouldRestrictToEnterpriseStoreOnlyForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Boolean;
+
       procedure SetSystemConfiguration
       (
          catalogHardwareManufacturerId : WinRt.WString;
@@ -844,64 +902,6 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
          user : Windows.System.User'Class;
          value : GenericObject
       );
-
-      function IsPinToDesktopSupported
-      return WinRt.Boolean;
-
-      function IsPinToTaskbarSupported
-      return WinRt.Boolean;
-
-      function IsPinToStartSupported
-      return WinRt.Boolean;
-
-      procedure PinToDesktop
-      (
-         appPackageFamilyName : WinRt.WString
-      );
-
-      procedure PinToDesktopForUser
-      (
-         user : Windows.System.User'Class;
-         appPackageFamilyName : WinRt.WString
-      );
-
-      function GetStoreWebAccountId
-      return WinRt.WString;
-
-      function GetStoreWebAccountIdForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.WString;
-
-      procedure SetEnterpriseStoreWebAccountId
-      (
-         webAccountId : WinRt.WString
-      );
-
-      procedure SetEnterpriseStoreWebAccountIdForUser
-      (
-         user : Windows.System.User'Class;
-         webAccountId : WinRt.WString
-      );
-
-      function GetEnterpriseStoreWebAccountId
-      return WinRt.WString;
-
-      function GetEnterpriseStoreWebAccountIdForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.WString;
-
-      function ShouldRestrictToEnterpriseStoreOnly
-      return WinRt.Boolean;
-
-      function ShouldRestrictToEnterpriseStoreOnlyForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Boolean;
 
       function get_PurchasePromptingPolicy
       return WinRt.GenericObject;

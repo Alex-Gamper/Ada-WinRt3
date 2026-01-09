@@ -237,6 +237,9 @@ package WinRt.Windows.UI.Notifications is
    type IToastNotificationManagerForUser2_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationManagerForUser2 is access all IToastNotificationManagerForUser2_Interface'Class;
 
+   type IToastNotificationManagerForUser3_Interface is interface and WinRt.IInspectable_Interface;
+   type IToastNotificationManagerForUser3 is access all IToastNotificationManagerForUser3_Interface'Class;
+
    type IToastNotificationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationManagerStatics is access all IToastNotificationManagerStatics_Interface'Class;
 
@@ -736,6 +739,18 @@ package WinRt.Windows.UI.Notifications is
       Added_e => 3
    );
    type ToastHistoryChangedType_Ptr is access all ToastHistoryChangedType;
+
+   type ToastNotificationMode is (
+      Unrestricted_e,
+      PriorityOnly_e,
+      AlarmsOnly_e
+   );
+   for ToastNotificationMode use (
+      Unrestricted_e => 0,
+      PriorityOnly_e => 1,
+      AlarmsOnly_e => 2
+   );
+   type ToastNotificationMode_Ptr is access all ToastNotificationMode;
 
    type ToastNotificationPriority is (
       Default_e,
@@ -2646,6 +2661,33 @@ package WinRt.Windows.UI.Notifications is
       IID_IToastNotificationManagerForUser2 : aliased WinRt.IID := (1738302647, 33195, 17090, (136, 25, 201, 88, 118, 119, 83, 244 ));
 
    -----------------------------------------------------------------------------
+   -- type IToastNotificationManagerForUser3 is interface and WinRt.IInspectable;
+
+      function get_NotificationMode
+      (
+         this : access IToastNotificationManagerForUser3_Interface;
+         RetVal : access Windows.UI.Notifications.ToastNotificationMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_NotificationModeChanged
+      (
+         this : access IToastNotificationManagerForUser3_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_NotificationModeChanged
+      (
+         this : access IToastNotificationManagerForUser3_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IToastNotificationManagerForUser3 : aliased WinRt.IID := (1056747894, 27841, 22236, (151, 59, 37, 31, 122, 172, 177, 197 ));
+
+   -----------------------------------------------------------------------------
    -- type IToastNotificationManagerStatics is interface and WinRt.IInspectable;
 
       function CreateToastNotifier
@@ -2954,6 +2996,12 @@ package WinRt.Windows.UI.Notifications is
    -- Static RuntimeClass
    package BadgeUpdateManager is
 
+      function GetForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.UI.Notifications.BadgeUpdateManagerForUser;
+
       function CreateBadgeUpdaterForApplication
       return WinRt.Windows.UI.Notifications.BadgeUpdater;
 
@@ -2974,12 +3022,6 @@ package WinRt.Windows.UI.Notifications is
          type_x : Windows.UI.Notifications.BadgeTemplateType
       )
       return WinRt.Windows.Data.Xml.Dom.XmlDocument;
-
-      function GetForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.UI.Notifications.BadgeUpdateManagerForUser;
 
    end BadgeUpdateManager;
 
@@ -4344,16 +4386,8 @@ package WinRt.Windows.UI.Notifications is
    -- Static RuntimeClass
    package ToastNotificationManager is
 
-      function GetForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser;
-
-      procedure ConfigureNotificationMirroring
-      (
-         value : Windows.UI.Notifications.NotificationMirroring
-      );
+      function get_History
+      return WinRt.Windows.UI.Notifications.ToastNotificationHistory;
 
       function CreateToastNotifier
       return WinRt.Windows.UI.Notifications.ToastNotifier;
@@ -4370,11 +4404,19 @@ package WinRt.Windows.UI.Notifications is
       )
       return WinRt.Windows.Data.Xml.Dom.XmlDocument;
 
-      function get_History
-      return WinRt.Windows.UI.Notifications.ToastNotificationHistory;
-
       function GetDefault
       return WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser;
+
+      function GetForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser;
+
+      procedure ConfigureNotificationMirroring
+      (
+         value : Windows.UI.Notifications.NotificationMirroring
+      );
 
    end ToastNotificationManager;
 
@@ -4438,6 +4480,25 @@ package WinRt.Windows.UI.Notifications is
       appId : WinRt.WString
    )
    return WinRt.Windows.UI.Notifications.ToastCollectionManager'Class;
+
+   function get_NotificationMode
+   (
+      this : in out ToastNotificationManagerForUser
+   )
+   return WinRt.Windows.UI.Notifications.ToastNotificationMode;
+
+   function add_NotificationModeChanged
+   (
+      this : in out ToastNotificationManagerForUser;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_NotificationModeChanged
+   (
+      this : in out ToastNotificationManagerForUser;
+      token : Windows.Foundation.EventRegistrationToken
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ToastNotifier

@@ -5004,22 +5004,6 @@ package body WinRt.Windows.Services.Store is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for StorePurchaseProperties
 
-   function Constructor return StorePurchaseProperties is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Store.StorePurchaseProperties");
-      m_ComRetVal  : aliased Windows.Services.Store.IStorePurchaseProperties;
-   begin
-      return RetVal : StorePurchaseProperties do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IStorePurchaseProperties := new Windows.Services.Store.IStorePurchaseProperties;
-            Retval.m_IStorePurchaseProperties.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       name : WinRt.WString
@@ -5043,6 +5027,22 @@ package body WinRt.Windows.Services.Store is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_name);
+      end return;
+   end;
+
+   function Constructor return StorePurchaseProperties is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Store.StorePurchaseProperties");
+      m_ComRetVal  : aliased Windows.Services.Store.IStorePurchaseProperties;
+   begin
+      return RetVal : StorePurchaseProperties do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IStorePurchaseProperties := new Windows.Services.Store.IStorePurchaseProperties;
+            Retval.m_IStorePurchaseProperties.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

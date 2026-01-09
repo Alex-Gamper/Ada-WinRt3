@@ -1064,6 +1064,30 @@ package WinRt.Windows.UI.Xaml.Hosting is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ElementCompositionPreview
 
+   function GetElementVisual
+   (
+      element : Windows.UI.Xaml.UIElement'Class
+   )
+   return WinRt.Windows.UI.Composition.Visual;
+
+   function GetElementChildVisual
+   (
+      element : Windows.UI.Xaml.UIElement'Class
+   )
+   return WinRt.Windows.UI.Composition.Visual;
+
+   procedure SetElementChildVisual
+   (
+      element : Windows.UI.Xaml.UIElement'Class;
+      visual : Windows.UI.Composition.Visual'Class
+   );
+
+   function GetScrollViewerManipulationPropertySet
+   (
+      scrollViewer : Windows.UI.Xaml.Controls.ScrollViewer'Class
+   )
+   return WinRt.Windows.UI.Composition.CompositionPropertySet;
+
    procedure SetAppWindowContent
    (
       appWindow : Windows.UI.WindowManagement.AppWindow'Class;
@@ -1097,30 +1121,6 @@ package WinRt.Windows.UI.Xaml.Hosting is
    function GetPointerPositionPropertySet
    (
       targetElement : Windows.UI.Xaml.UIElement'Class
-   )
-   return WinRt.Windows.UI.Composition.CompositionPropertySet;
-
-   function GetElementVisual
-   (
-      element : Windows.UI.Xaml.UIElement'Class
-   )
-   return WinRt.Windows.UI.Composition.Visual;
-
-   function GetElementChildVisual
-   (
-      element : Windows.UI.Xaml.UIElement'Class
-   )
-   return WinRt.Windows.UI.Composition.Visual;
-
-   procedure SetElementChildVisual
-   (
-      element : Windows.UI.Xaml.UIElement'Class;
-      visual : Windows.UI.Composition.Visual'Class
-   );
-
-   function GetScrollViewerManipulationPropertySet
-   (
-      scrollViewer : Windows.UI.Xaml.Controls.ScrollViewer'Class
    )
    return WinRt.Windows.UI.Composition.CompositionPropertySet;
 
@@ -1231,21 +1231,6 @@ package WinRt.Windows.UI.Xaml.Hosting is
    -----------------------------------------------------------------------------
    -- Static Interfaces for XamlUIPresenter
 
-   function get_CompleteTimelinesAutomatically
-   return WinRt.Boolean;
-
-   procedure put_CompleteTimelinesAutomatically
-   (
-      value : WinRt.Boolean
-   );
-
-   procedure SetHost
-   (
-      host : Windows.UI.Xaml.Hosting.IXamlUIPresenterHost
-   );
-
-   procedure NotifyWindowSizeChanged;
-
    function GetFlyoutPlacementTargetInfo
    (
       placementTarget : Windows.UI.Xaml.FrameworkElement'Class;
@@ -1266,6 +1251,21 @@ package WinRt.Windows.UI.Xaml.Hosting is
       chosenPlacement : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode_Ptr
    )
    return WinRt.Windows.Foundation.Rect;
+
+   function get_CompleteTimelinesAutomatically
+   return WinRt.Boolean;
+
+   procedure put_CompleteTimelinesAutomatically
+   (
+      value : WinRt.Boolean
+   );
+
+   procedure SetHost
+   (
+      host : Windows.UI.Xaml.Hosting.IXamlUIPresenterHost
+   );
+
+   procedure NotifyWindowSizeChanged;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for XamlUIPresenter

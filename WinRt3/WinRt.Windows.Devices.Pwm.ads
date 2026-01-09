@@ -264,9 +264,6 @@ package WinRt.Windows.Devices.Pwm is
    -----------------------------------------------------------------------------
    -- Static Interfaces for PwmController
 
-   function GetDefaultAsync
-   return WinRt.Windows.Devices.Pwm.PwmController;
-
    function GetDeviceSelector
    return WinRt.WString;
 
@@ -280,6 +277,9 @@ package WinRt.Windows.Devices.Pwm is
    (
       deviceId : WinRt.WString
    )
+   return WinRt.Windows.Devices.Pwm.PwmController;
+
+   function GetDefaultAsync
    return WinRt.Windows.Devices.Pwm.PwmController;
 
    function GetControllersAsync

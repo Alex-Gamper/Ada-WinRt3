@@ -797,22 +797,6 @@ package body WinRt.Windows.ApplicationModel.Payments is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PaymentDetails
 
-   function Constructor return PaymentDetails is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetails");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentDetails;
-   begin
-      return RetVal : PaymentDetails do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IPaymentDetails := new Windows.ApplicationModel.Payments.IPaymentDetails;
-            Retval.m_IPaymentDetails.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       total : Windows.ApplicationModel.Payments.PaymentItem'Class
@@ -857,6 +841,22 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Retval.m_IPaymentDetails := new Windows.ApplicationModel.Payments.IPaymentDetails;
             Retval.m_IPaymentDetails.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return PaymentDetails is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetails");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentDetails;
+   begin
+      return RetVal : PaymentDetails do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IPaymentDetails := new Windows.ApplicationModel.Payments.IPaymentDetails;
+            Retval.m_IPaymentDetails.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

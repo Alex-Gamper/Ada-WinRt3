@@ -4322,14 +4322,14 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AutomationPeer
 
+   function GenerateRawElementProviderRuntimeId
+   return WinRt.Windows.UI.Xaml.Automation.Peers.RawElementProviderRuntimeId;
+
    function ListenerExists
    (
       eventId : Windows.UI.Xaml.Automation.Peers.AutomationEvents
    )
    return WinRt.Boolean;
-
-   function GenerateRawElementProviderRuntimeId
-   return WinRt.Windows.UI.Xaml.Automation.Peers.RawElementProviderRuntimeId;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for AutomationPeer

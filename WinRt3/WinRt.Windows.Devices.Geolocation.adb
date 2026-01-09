@@ -1094,6 +1094,69 @@ package body WinRt.Windows.Devices.Geolocation is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Geolocator
 
+   function get_IsDefaultGeopositionRecommended
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geolocator");
+      m_Factory        : access WinRt.Windows.Devices.Geolocation.IGeolocatorStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IGeolocatorStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_IsDefaultGeopositionRecommended (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   procedure put_DefaultGeoposition
+   (
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geolocator");
+      m_Factory        : access WinRt.Windows.Devices.Geolocation.IGeolocatorStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IGeolocatorStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.put_DefaultGeoposition (value);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function get_DefaultGeoposition
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geolocator");
+      m_Factory        : access WinRt.Windows.Devices.Geolocation.IGeolocatorStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IGeolocatorStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_DefaultGeoposition (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
    function RequestAccessAsync
    return WinRt.Windows.Devices.Geolocation.GeolocationAccessStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -1300,69 +1363,6 @@ package body WinRt.Windows.Devices.Geolocation is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
-   end;
-
-   function get_IsDefaultGeopositionRecommended
-   return WinRt.Boolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geolocator");
-      m_Factory        : access WinRt.Windows.Devices.Geolocation.IGeolocatorStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Boolean;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IGeolocatorStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.get_IsDefaultGeopositionRecommended (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   procedure put_DefaultGeoposition
-   (
-      value : GenericObject
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geolocator");
-      m_Factory        : access WinRt.Windows.Devices.Geolocation.IGeolocatorStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IGeolocatorStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.put_DefaultGeoposition (value);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
-   function get_DefaultGeoposition
-   return WinRt.GenericObject is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geolocator");
-      m_Factory        : access WinRt.Windows.Devices.Geolocation.IGeolocatorStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IGeolocatorStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.get_DefaultGeoposition (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

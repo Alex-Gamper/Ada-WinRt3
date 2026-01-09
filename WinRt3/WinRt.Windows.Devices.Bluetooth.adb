@@ -699,6 +699,143 @@ package body WinRt.Windows.Devices.Bluetooth is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BluetoothDevice
 
+   function GetDeviceSelectorFromPairingState
+   (
+      pairingState : WinRt.Boolean
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelectorFromPairingState (pairingState, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetDeviceSelectorFromConnectionStatus
+   (
+      connectionStatus : Windows.Devices.Bluetooth.BluetoothConnectionStatus
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelectorFromConnectionStatus (connectionStatus, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetDeviceSelectorFromDeviceName
+   (
+      deviceName : WinRt.WString
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      HStr_deviceName : constant WinRt.HString := To_HString (deviceName);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelectorFromDeviceName (HStr_deviceName, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_deviceName);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetDeviceSelectorFromBluetoothAddress
+   (
+      bluetoothAddress : WinRt.UInt64
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelectorFromBluetoothAddress (bluetoothAddress, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetDeviceSelectorFromClassOfDevice
+   (
+      classOfDevice : Windows.Devices.Bluetooth.BluetoothClassOfDevice'Class
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelectorFromClassOfDevice (classOfDevice.m_IBluetoothClassOfDevice.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
    function FromIdAsync_BluetoothDevice
    (
       deviceId : WinRt.WString
@@ -933,143 +1070,6 @@ package body WinRt.Windows.Devices.Bluetooth is
       Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function GetDeviceSelectorFromPairingState
-   (
-      pairingState : WinRt.Boolean
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelectorFromPairingState (pairingState, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function GetDeviceSelectorFromConnectionStatus
-   (
-      connectionStatus : Windows.Devices.Bluetooth.BluetoothConnectionStatus
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelectorFromConnectionStatus (connectionStatus, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function GetDeviceSelectorFromDeviceName
-   (
-      deviceName : WinRt.WString
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-      HStr_deviceName : constant WinRt.HString := To_HString (deviceName);
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelectorFromDeviceName (HStr_deviceName, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      tmp := WindowsDeleteString (HStr_deviceName);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function GetDeviceSelectorFromBluetoothAddress
-   (
-      bluetoothAddress : WinRt.UInt64
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelectorFromBluetoothAddress (bluetoothAddress, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function GetDeviceSelectorFromClassOfDevice
-   (
-      classOfDevice : Windows.Devices.Bluetooth.BluetoothClassOfDevice'Class
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelectorFromClassOfDevice (classOfDevice.m_IBluetoothClassOfDevice.all, m_ComRetVal'Access);
          temp := m_Factory.Release;
          if Hr /= S_OK then
             raise Program_Error;

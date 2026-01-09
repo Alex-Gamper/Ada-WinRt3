@@ -2202,54 +2202,6 @@ package body WinRt.Windows.Graphics.Holographic is
    -----------------------------------------------------------------------------
    -- Static Interfaces for HolographicSpace
 
-   function CreateForCoreWindow
-   (
-      window : Windows.UI.Core.CoreWindow'Class
-   )
-   return WinRt.Windows.Graphics.Holographic.HolographicSpace is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.HolographicSpace");
-      m_Factory        : access WinRt.Windows.Graphics.Holographic.IHolographicSpaceStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicSpace;
-   begin
-      return RetVal : WinRt.Windows.Graphics.Holographic.HolographicSpace do
-         Hr := RoGetActivationFactory (m_hString, IID_IHolographicSpaceStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateForCoreWindow (window.m_ICoreWindow.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IHolographicSpace := new Windows.Graphics.Holographic.IHolographicSpace;
-            Retval.m_IHolographicSpace.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_IsConfigured
-   return WinRt.Boolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.HolographicSpace");
-      m_Factory        : access WinRt.Windows.Graphics.Holographic.IHolographicSpaceStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Boolean;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IHolographicSpaceStatics3'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.get_IsConfigured (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
    function get_IsSupported
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2335,6 +2287,54 @@ package body WinRt.Windows.Graphics.Holographic is
          end if;
       end if;
       tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function get_IsConfigured
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.HolographicSpace");
+      m_Factory        : access WinRt.Windows.Graphics.Holographic.IHolographicSpaceStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IHolographicSpaceStatics3'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_IsConfigured (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function CreateForCoreWindow
+   (
+      window : Windows.UI.Core.CoreWindow'Class
+   )
+   return WinRt.Windows.Graphics.Holographic.HolographicSpace is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.HolographicSpace");
+      m_Factory        : access WinRt.Windows.Graphics.Holographic.IHolographicSpaceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicSpace;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Holographic.HolographicSpace do
+         Hr := RoGetActivationFactory (m_hString, IID_IHolographicSpaceStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateForCoreWindow (window.m_ICoreWindow.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IHolographicSpace := new Windows.Graphics.Holographic.IHolographicSpace;
+            Retval.m_IHolographicSpace.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
    end;
 
    -----------------------------------------------------------------------------

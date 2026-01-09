@@ -1569,6 +1569,12 @@ package WinRt.Windows.Gaming.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Gamepad
 
+   function FromGameController
+   (
+      gameController : Windows.Gaming.Input.IGameController
+   )
+   return WinRt.Windows.Gaming.Input.Gamepad;
+
    function add_GamepadAdded
    (
       value : GenericObject
@@ -1593,12 +1599,6 @@ package WinRt.Windows.Gaming.Input is
 
    function get_Gamepads
    return WinRt.GenericObject;
-
-   function FromGameController
-   (
-      gameController : Windows.Gaming.Input.IGameController
-   )
-   return WinRt.Windows.Gaming.Input.Gamepad;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for Gamepad

@@ -87,6 +87,27 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AutomationPeer
 
+   function GenerateRawElementProviderRuntimeId
+   return WinRt.Windows.UI.Xaml.Automation.Peers.RawElementProviderRuntimeId is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeer");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.RawElementProviderRuntimeId;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IAutomationPeerStatics3'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GenerateRawElementProviderRuntimeId (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
    function ListenerExists
    (
       eventId : Windows.UI.Xaml.Automation.Peers.AutomationEvents
@@ -102,27 +123,6 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPeerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ListenerExists (eventId, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   function GenerateRawElementProviderRuntimeId
-   return WinRt.Windows.UI.Xaml.Automation.Peers.RawElementProviderRuntimeId is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeer");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.RawElementProviderRuntimeId;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IAutomationPeerStatics3'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GenerateRawElementProviderRuntimeId (m_ComRetVal'Access);
          temp := m_Factory.Release;
          if Hr /= S_OK then
             raise Program_Error;

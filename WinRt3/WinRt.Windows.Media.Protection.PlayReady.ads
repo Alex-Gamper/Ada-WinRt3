@@ -3804,6 +3804,12 @@ package WinRt.Windows.Media.Protection.PlayReady is
       )
       return WinRt.Boolean;
 
+      function get_InputTrustAuthorityToCreate
+      return WinRt.WString;
+
+      function get_ProtectionSystemId
+      return WinRt.Guid;
+
       function get_DomainJoinServiceRequestType
       return WinRt.Guid;
 
@@ -3830,12 +3836,6 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
       function get_PlayReadyCertificateSecurityLevel
       return WinRt.UInt32;
-
-      function get_InputTrustAuthorityToCreate
-      return WinRt.WString;
-
-      function get_ProtectionSystemId
-      return WinRt.Guid;
 
       function get_HardwareDRMDisabledAtTime
       return IReference_DateTime.Kind;

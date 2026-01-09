@@ -2048,6 +2048,81 @@ package body WinRt.Windows.Devices.Sms is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SmsDevice
 
+   function FromNetworkAccountIdAsync
+   (
+      networkAccountId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Sms.SmsDevice is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsDevice");
+      m_Factory        : access WinRt.Windows.Devices.Sms.ISmsDeviceStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_SmsDevice.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_SmsDevice.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.Sms.ISmsDevice;
+      m_IID            : aliased WinRt.IID := (2876313057, 64699, 23510, (159, 47, 40, 95, 169, 251, 68, 232 )); -- Windows.Devices.Sms.SmsDevice;
+      m_HandlerIID     : aliased WinRt.IID := (1152013444, 17360, 22675, (164, 238, 125, 176, 1, 19, 174, 96 ));
+      m_Handler        : AsyncOperationCompletedHandler_SmsDevice.Kind := new AsyncOperationCompletedHandler_SmsDevice.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_SmsDevice.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_SmsDevice.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmsDevice.Kind_Delegate, AsyncOperationCompletedHandler_SmsDevice.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.Sms.SmsDevice do
+         Hr := RoGetActivationFactory (m_hString, IID_ISmsDeviceStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FromNetworkAccountIdAsync (HStr_networkAccountId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_ISmsDevice := new Windows.Devices.Sms.ISmsDevice;
+                     Retval.m_ISmsDevice.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_networkAccountId);
+      end return;
+   end;
+
    function GetDeviceSelector
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -2214,81 +2289,6 @@ package body WinRt.Windows.Devices.Sms is
             end if;
          end if;
          tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function FromNetworkAccountIdAsync
-   (
-      networkAccountId : WinRt.WString
-   )
-   return WinRt.Windows.Devices.Sms.SmsDevice is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsDevice");
-      m_Factory        : access WinRt.Windows.Devices.Sms.ISmsDeviceStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_SmsDevice.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_SmsDevice.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.Windows.Devices.Sms.ISmsDevice;
-      m_IID            : aliased WinRt.IID := (2876313057, 64699, 23510, (159, 47, 40, 95, 169, 251, 68, 232 )); -- Windows.Devices.Sms.SmsDevice;
-      m_HandlerIID     : aliased WinRt.IID := (1152013444, 17360, 22675, (164, 238, 125, 176, 1, 19, 174, 96 ));
-      m_Handler        : AsyncOperationCompletedHandler_SmsDevice.Kind := new AsyncOperationCompletedHandler_SmsDevice.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_SmsDevice.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_SmsDevice.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmsDevice.Kind_Delegate, AsyncOperationCompletedHandler_SmsDevice.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      return RetVal : WinRt.Windows.Devices.Sms.SmsDevice do
-         Hr := RoGetActivationFactory (m_hString, IID_ISmsDeviceStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FromNetworkAccountIdAsync (HStr_networkAccountId, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmsDevice := new Windows.Devices.Sms.ISmsDevice;
-                     Retval.m_ISmsDevice.all := m_RetVal;
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_networkAccountId);
       end return;
    end;
 

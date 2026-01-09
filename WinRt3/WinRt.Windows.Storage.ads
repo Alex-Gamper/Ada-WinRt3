@@ -3067,13 +3067,13 @@ package WinRt.Windows.Storage is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ApplicationData
 
+   function get_Current
+   return WinRt.Windows.Storage.ApplicationData;
+
    function GetForUserAsync
    (
       user : Windows.System.User'Class
    )
-   return WinRt.Windows.Storage.ApplicationData;
-
-   function get_Current
    return WinRt.Windows.Storage.ApplicationData;
 
    -----------------------------------------------------------------------------
@@ -3557,6 +3557,28 @@ package WinRt.Windows.Storage is
    -- Static RuntimeClass
    package KnownFolders is
 
+      function get_SavedPictures
+      return WinRt.Windows.Storage.StorageFolder;
+
+      function get_Objects3D
+      return WinRt.Windows.Storage.StorageFolder;
+
+      function get_AppCaptures
+      return WinRt.Windows.Storage.StorageFolder;
+
+      function get_RecordedCalls
+      return WinRt.Windows.Storage.StorageFolder;
+
+      function get_Playlists
+      return WinRt.Windows.Storage.StorageFolder;
+
+      function GetFolderForUserAsync
+      (
+         user : Windows.System.User'Class;
+         folderId : Windows.Storage.KnownFolderId
+      )
+      return WinRt.Windows.Storage.StorageFolder;
+
       function get_MusicLibrary
       return WinRt.Windows.Storage.StorageFolder;
 
@@ -3578,31 +3600,6 @@ package WinRt.Windows.Storage is
       function get_MediaServerDevices
       return WinRt.Windows.Storage.StorageFolder;
 
-      function get_SavedPictures
-      return WinRt.Windows.Storage.StorageFolder;
-
-      function get_Playlists
-      return WinRt.Windows.Storage.StorageFolder;
-
-      function get_Objects3D
-      return WinRt.Windows.Storage.StorageFolder;
-
-      function get_AppCaptures
-      return WinRt.Windows.Storage.StorageFolder;
-
-      function get_RecordedCalls
-      return WinRt.Windows.Storage.StorageFolder;
-
-      function GetFolderForUserAsync
-      (
-         user : Windows.System.User'Class;
-         folderId : Windows.Storage.KnownFolderId
-      )
-      return WinRt.Windows.Storage.StorageFolder;
-
-      function get_CameraRoll
-      return WinRt.Windows.Storage.StorageFolder;
-
       function RequestAccessAsync
       (
          folderId : Windows.Storage.KnownFolderId
@@ -3620,6 +3617,9 @@ package WinRt.Windows.Storage is
       (
          folderId : Windows.Storage.KnownFolderId
       )
+      return WinRt.Windows.Storage.StorageFolder;
+
+      function get_CameraRoll
       return WinRt.Windows.Storage.StorageFolder;
 
    end KnownFolders;
@@ -3776,6 +3776,13 @@ package WinRt.Windows.Storage is
    -----------------------------------------------------------------------------
    -- Static Interfaces for StorageFile
 
+   function GetFileFromPathForUserAsync
+   (
+      user : Windows.System.User'Class;
+      path : WinRt.WString
+   )
+   return WinRt.Windows.Storage.StorageFile;
+
    function GetFileFromPathAsync
    (
       path : WinRt.WString
@@ -3817,13 +3824,6 @@ package WinRt.Windows.Storage is
       fileToReplace : Windows.Storage.IStorageFile;
       uri : Windows.Foundation.Uri'Class;
       thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference
-   )
-   return WinRt.Windows.Storage.StorageFile;
-
-   function GetFileFromPathForUserAsync
-   (
-      user : Windows.System.User'Class;
-      path : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFile;
 
@@ -4485,15 +4485,15 @@ package WinRt.Windows.Storage is
    -----------------------------------------------------------------------------
    -- Static Interfaces for StorageLibrary
 
-   function GetLibraryForUserAsync
+   function GetLibraryAsync
    (
-      user : Windows.System.User'Class;
       libraryId : Windows.Storage.KnownLibraryId
    )
    return WinRt.Windows.Storage.StorageLibrary;
 
-   function GetLibraryAsync
+   function GetLibraryForUserAsync
    (
+      user : Windows.System.User'Class;
       libraryId : Windows.Storage.KnownLibraryId
    )
    return WinRt.Windows.Storage.StorageLibrary;

@@ -2737,14 +2737,14 @@ package WinRt.Windows.ApplicationModel.Calls is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PhoneCallHistoryEntryAddress
 
-   function Constructor return PhoneCallHistoryEntryAddress;
-
    function Constructor
    (
       rawAddress : WinRt.WString;
       rawAddressKind : Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind
    )
    return PhoneCallHistoryEntryAddress;
+
+   function Constructor return PhoneCallHistoryEntryAddress;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for PhoneCallHistoryEntryAddress
@@ -2848,17 +2848,17 @@ package WinRt.Windows.ApplicationModel.Calls is
    -- Static RuntimeClass
    package PhoneCallHistoryManager is
 
-      function GetForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryManagerForUser;
-
       function RequestStoreAsync
       (
          accessType : Windows.ApplicationModel.Calls.PhoneCallHistoryStoreAccessType
       )
       return WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryStore;
+
+      function GetForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryManagerForUser;
 
    end PhoneCallHistoryManager;
 

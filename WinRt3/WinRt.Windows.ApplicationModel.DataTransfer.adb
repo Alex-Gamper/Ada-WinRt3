@@ -67,6 +67,132 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    -- Static RuntimeClass
    package body Clipboard is
 
+      function GetContent
+      return WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
+         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackageView;
+      begin
+         return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView do
+            Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.GetContent (m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IDataPackageView := new Windows.ApplicationModel.DataTransfer.IDataPackageView;
+               Retval.m_IDataPackageView.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      procedure SetContent
+      (
+         content : Windows.ApplicationModel.DataTransfer.DataPackage'Class
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
+         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.SetContent (content.m_IDataPackage.all);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+      procedure Flush is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
+         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.Flush;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+      procedure Clear is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
+         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.Clear;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+      function add_ContentChanged
+      (
+         handler : GenericObject
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
+         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.add_ContentChanged (handler, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      procedure remove_ContentChanged
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
+         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.remove_ContentChanged (token);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
       function GetHistoryItemsAsync
       return WinRt.Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResult is
          Hr               : WinRt.HResult := S_OK;
@@ -400,132 +526,6 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
          Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_HistoryEnabledChanged (token);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      function GetContent
-      return WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
-         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackageView;
-      begin
-         return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView do
-            Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.GetContent (m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IDataPackageView := new Windows.ApplicationModel.DataTransfer.IDataPackageView;
-               Retval.m_IDataPackageView.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      procedure SetContent
-      (
-         content : Windows.ApplicationModel.DataTransfer.DataPackage'Class
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
-         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.SetContent (content.m_IDataPackage.all);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      procedure Flush is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
-         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.Flush;
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      procedure Clear is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
-         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.Clear;
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      function add_ContentChanged
-      (
-         handler : GenericObject
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
-         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.add_ContentChanged (handler, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      procedure remove_ContentChanged
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
-         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.remove_ContentChanged (token);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -3801,6 +3801,27 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DataTransferManager
 
+   procedure ShowShareUI
+   (
+      options : Windows.ApplicationModel.DataTransfer.ShareUIOptions'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.DataTransferManager");
+      m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IDataTransferManagerStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IDataTransferManagerStatics3'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.ShowShareUI (options.m_IShareUIOptions.all);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
    function IsSupported
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3862,27 +3883,6 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
-   end;
-
-   procedure ShowShareUI
-   (
-      options : Windows.ApplicationModel.DataTransfer.ShareUIOptions'Class
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.DataTransferManager");
-      m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IDataTransferManagerStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IDataTransferManagerStatics3'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.ShowShareUI (options.m_IShareUIOptions.all);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -4792,54 +4792,6 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    -- Static RuntimeClass
    package body StandardDataFormats is
 
-      function get_WebLink
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.StandardDataFormats");
-         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IStandardDataFormatsStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStandardDataFormatsStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_WebLink (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_ApplicationLink
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.StandardDataFormats");
-         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IStandardDataFormatsStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStandardDataFormatsStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_ApplicationLink (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
       function get_Text
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -4973,6 +4925,54 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
          Hr := RoGetActivationFactory (m_hString, IID_IStandardDataFormatsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StorageItems (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_WebLink
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.StandardDataFormats");
+         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IStandardDataFormatsStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStandardDataFormatsStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_WebLink (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_ApplicationLink
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.StandardDataFormats");
+         m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IStandardDataFormatsStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStandardDataFormatsStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_ApplicationLink (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

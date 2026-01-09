@@ -1675,6 +1675,36 @@ package WinRt.Windows.Devices.Enumeration is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DeviceInformation
 
+   function GetAqsFilterFromDeviceClass
+   (
+      deviceClass : Windows.Devices.Enumeration.DeviceClass
+   )
+   return WinRt.WString;
+
+   function CreateFromIdAsync
+   (
+      deviceId : WinRt.WString;
+      additionalProperties : GenericObject;
+      kind : Windows.Devices.Enumeration.DeviceInformationKind
+   )
+   return WinRt.Windows.Devices.Enumeration.DeviceInformation;
+
+   function FindAllAsync
+   (
+      aqsFilter : WinRt.WString;
+      additionalProperties : GenericObject;
+      kind : Windows.Devices.Enumeration.DeviceInformationKind
+   )
+   return WinRt.Windows.Devices.Enumeration.DeviceInformationCollection;
+
+   function CreateWatcher
+   (
+      aqsFilter : WinRt.WString;
+      additionalProperties : GenericObject;
+      kind : Windows.Devices.Enumeration.DeviceInformationKind
+   )
+   return WinRt.Windows.Devices.Enumeration.DeviceWatcher;
+
    function CreateFromIdAsync
    (
       deviceId : WinRt.WString
@@ -1729,36 +1759,6 @@ package WinRt.Windows.Devices.Enumeration is
    (
       aqsFilter : WinRt.WString;
       additionalProperties : GenericObject
-   )
-   return WinRt.Windows.Devices.Enumeration.DeviceWatcher;
-
-   function GetAqsFilterFromDeviceClass
-   (
-      deviceClass : Windows.Devices.Enumeration.DeviceClass
-   )
-   return WinRt.WString;
-
-   function CreateFromIdAsync
-   (
-      deviceId : WinRt.WString;
-      additionalProperties : GenericObject;
-      kind : Windows.Devices.Enumeration.DeviceInformationKind
-   )
-   return WinRt.Windows.Devices.Enumeration.DeviceInformation;
-
-   function FindAllAsync
-   (
-      aqsFilter : WinRt.WString;
-      additionalProperties : GenericObject;
-      kind : Windows.Devices.Enumeration.DeviceInformationKind
-   )
-   return WinRt.Windows.Devices.Enumeration.DeviceInformationCollection;
-
-   function CreateWatcher
-   (
-      aqsFilter : WinRt.WString;
-      additionalProperties : GenericObject;
-      kind : Windows.Devices.Enumeration.DeviceInformationKind
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcher;
 
@@ -1932,16 +1932,16 @@ package WinRt.Windows.Devices.Enumeration is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DeviceInformationPairing
 
-   function TryRegisterForAllInboundPairingRequests
-   (
-      pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds
-   )
-   return WinRt.Boolean;
-
    function TryRegisterForAllInboundPairingRequestsWithProtectionLevel
    (
       pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds;
       minProtectionLevel : Windows.Devices.Enumeration.DevicePairingProtectionLevel
+   )
+   return WinRt.Boolean;
+
+   function TryRegisterForAllInboundPairingRequests
+   (
+      pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds
    )
    return WinRt.Boolean;
 

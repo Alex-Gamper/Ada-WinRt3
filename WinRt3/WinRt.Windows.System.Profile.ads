@@ -65,6 +65,9 @@ package WinRt.Windows.System.Profile is
    type IKnownRetailInfoPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownRetailInfoPropertiesStatics is access all IKnownRetailInfoPropertiesStatics_Interface'Class;
 
+   type IPlatformAutomaticAppSignInManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IPlatformAutomaticAppSignInManagerStatics is access all IPlatformAutomaticAppSignInManagerStatics_Interface'Class;
+
    type IPlatformDiagnosticsAndUsageDataSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPlatformDiagnosticsAndUsageDataSettingsStatics is access all IPlatformDiagnosticsAndUsageDataSettingsStatics_Interface'Class;
 
@@ -126,6 +129,18 @@ package WinRt.Windows.System.Profile is
    -- Enum declarations
    -----------------------------------------------------------------------------
 
+   type PlatformAutomaticAppSignInPolicy is (
+      Unknown_e,
+      PermissionRequired_e,
+      AlwaysAllowed_e
+   );
+   for PlatformAutomaticAppSignInPolicy use (
+      Unknown_e => 0,
+      PermissionRequired_e => 1,
+      AlwaysAllowed_e => 2
+   );
+   type PlatformAutomaticAppSignInPolicy_Ptr is access all PlatformAutomaticAppSignInPolicy;
+
    type PlatformDataCollectionLevel is (
       Security_e,
       Basic_e,
@@ -179,6 +194,11 @@ package WinRt.Windows.System.Profile is
    -----------------------------------------------------------------------------
    -- Record declarations
    -----------------------------------------------------------------------------
+
+   type PlatformAutomaticAppSignInContract is record
+      null;
+   end record with Convention => C_Pass_By_Copy;
+   type PlatformAutomaticAppSignInContract_Ptr is access all PlatformAutomaticAppSignInContract;
 
    type ProfileHardwareTokenContract is record
       null;
@@ -472,6 +492,18 @@ package WinRt.Windows.System.Profile is
       return WinRt.Hresult is abstract;
 
       IID_IKnownRetailInfoPropertiesStatics : aliased WinRt.IID := (2572620152, 20495, 18558, (142, 117, 41, 229, 81, 114, 135, 18 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPlatformAutomaticAppSignInManagerStatics is interface and WinRt.IInspectable;
+
+      function get_Policy
+      (
+         this : access IPlatformAutomaticAppSignInManagerStatics_Interface;
+         RetVal : access Windows.System.Profile.PlatformAutomaticAppSignInPolicy
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPlatformAutomaticAppSignInManagerStatics : aliased WinRt.IID := (449425358, 36309, 23597, (180, 32, 118, 125, 31, 59, 125, 3 ));
 
    -----------------------------------------------------------------------------
    -- type IPlatformDiagnosticsAndUsageDataSettingsStatics is interface and WinRt.IInspectable;
@@ -858,6 +890,15 @@ package WinRt.Windows.System.Profile is
       return WinRt.WString;
 
    end KnownRetailInfoProperties;
+
+   -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package PlatformAutomaticAppSignInManager is
+
+      function get_Policy
+      return WinRt.Windows.System.Profile.PlatformAutomaticAppSignInPolicy;
+
+   end PlatformAutomaticAppSignInManager;
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass

@@ -1315,124 +1315,6 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       end return;
    end;
 
-   function get_PlacementProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_PlacementProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_AttachedFlyoutProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_AttachedFlyoutProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetAttachedFlyout
-   (
-      element : Windows.UI.Xaml.FrameworkElement'Class
-   )
-   return WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutBase is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.IFlyoutBase;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutBase do
-         Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetAttachedFlyout (element.m_IFrameworkElement.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IFlyoutBase := new Windows.UI.Xaml.Controls.Primitives.IFlyoutBase;
-            Retval.m_IFlyoutBase.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   procedure SetAttachedFlyout
-   (
-      element : Windows.UI.Xaml.FrameworkElement'Class;
-      value : Windows.UI.Xaml.Controls.Primitives.FlyoutBase'Class
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.SetAttachedFlyout (element.m_IFrameworkElement.all, value.m_IFlyoutBase.all);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
-   procedure ShowAttachedFlyout
-   (
-      flyoutOwner : Windows.UI.Xaml.FrameworkElement'Class
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.ShowAttachedFlyout (flyoutOwner.m_IFrameworkElement.all);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
    function get_TargetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
@@ -1575,6 +1457,124 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
+   end;
+
+   function get_PlacementProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_PlacementProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_AttachedFlyoutProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_AttachedFlyoutProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetAttachedFlyout
+   (
+      element : Windows.UI.Xaml.FrameworkElement'Class
+   )
+   return WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutBase is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.IFlyoutBase;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutBase do
+         Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetAttachedFlyout (element.m_IFrameworkElement.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IFlyoutBase := new Windows.UI.Xaml.Controls.Primitives.IFlyoutBase;
+            Retval.m_IFlyoutBase.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   procedure SetAttachedFlyout
+   (
+      element : Windows.UI.Xaml.FrameworkElement'Class;
+      value : Windows.UI.Xaml.Controls.Primitives.FlyoutBase'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.SetAttachedFlyout (element.m_IFrameworkElement.all, value.m_IFlyoutBase.all);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   procedure ShowAttachedFlyout
+   (
+      flyoutOwner : Windows.UI.Xaml.FrameworkElement'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.ShowAttachedFlyout (flyoutOwner.m_IFrameworkElement.all);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -8291,6 +8291,30 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
    -- Static Interfaces for LayoutInformation
 
+   function GetAvailableSize
+   (
+      element : Windows.UI.Xaml.UIElement'Class
+   )
+   return WinRt.Windows.Foundation.Size is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LayoutInformation");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ILayoutInformationStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.Size;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_ILayoutInformationStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetAvailableSize (element.m_IUIElement.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
    function GetLayoutExceptionElement
    (
       dispatcher : WinRt.IInspectable
@@ -8333,30 +8357,6 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       Hr := RoGetActivationFactory (m_hString, IID_ILayoutInformationStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetLayoutSlot (element.m_IFrameworkElement.all, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   function GetAvailableSize
-   (
-      element : Windows.UI.Xaml.UIElement'Class
-   )
-   return WinRt.Windows.Foundation.Size is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LayoutInformation");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ILayoutInformationStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_ILayoutInformationStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetAvailableSize (element.m_IUIElement.all, m_ComRetVal'Access);
          temp := m_Factory.Release;
          if Hr /= S_OK then
             raise Program_Error;
@@ -8948,6 +8948,102 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       end return;
    end;
 
+   function get_RevealBackgroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_RevealBackgroundProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_RevealBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_RevealBorderBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_RevealBorderThicknessProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_RevealBorderThicknessProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_RevealBackgroundShowsAboveContentProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_RevealBackgroundShowsAboveContentProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function get_SelectedPressedBackgroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
@@ -9081,102 +9177,6 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PointerOverForegroundProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_RevealBackgroundProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_RevealBackgroundProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_RevealBorderBrushProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_RevealBorderBrushProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_RevealBorderThicknessProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_RevealBorderThicknessProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_RevealBackgroundShowsAboveContentProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_RevealBackgroundShowsAboveContentProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -12249,54 +12249,6 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Popup
 
-   function get_LightDismissOverlayModeProperty_Popup
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_LightDismissOverlayModeProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_ShouldConstrainToRootBoundsProperty_Popup
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_ShouldConstrainToRootBoundsProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function get_ChildProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
@@ -12430,6 +12382,54 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
          Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsLightDismissEnabledProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_LightDismissOverlayModeProperty_Popup
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_LightDismissOverlayModeProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_ShouldConstrainToRootBoundsProperty_Popup
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_ShouldConstrainToRootBoundsProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

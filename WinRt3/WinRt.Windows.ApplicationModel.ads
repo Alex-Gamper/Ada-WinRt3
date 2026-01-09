@@ -2173,10 +2173,10 @@ package WinRt.Windows.ApplicationModel is
    -- Static RuntimeClass
    package DesignMode is
 
-      function get_DesignModeEnabled
+      function get_DesignMode2Enabled
       return WinRt.Boolean;
 
-      function get_DesignMode2Enabled
+      function get_DesignModeEnabled
       return WinRt.Boolean;
 
    end DesignMode;

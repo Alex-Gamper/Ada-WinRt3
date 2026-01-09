@@ -956,22 +956,6 @@ package body WinRt.Windows.Storage.Streams is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for DataWriter
 
-   function Constructor return DataWriter is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.DataWriter");
-      m_ComRetVal  : aliased Windows.Storage.Streams.IDataWriter;
-   begin
-      return RetVal : DataWriter do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IDataWriter := new Windows.Storage.Streams.IDataWriter;
-            Retval.m_IDataWriter.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       outputStream : Windows.Storage.Streams.IOutputStream
@@ -991,6 +975,22 @@ package body WinRt.Windows.Storage.Streams is
             Retval.m_IDataWriter := new Windows.Storage.Streams.IDataWriter;
             Retval.m_IDataWriter.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return DataWriter is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.DataWriter");
+      m_ComRetVal  : aliased Windows.Storage.Streams.IDataWriter;
+   begin
+      return RetVal : DataWriter do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IDataWriter := new Windows.Storage.Streams.IDataWriter;
+            Retval.m_IDataWriter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

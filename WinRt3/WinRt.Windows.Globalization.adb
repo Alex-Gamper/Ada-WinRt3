@@ -186,55 +186,6 @@ package body WinRt.Windows.Globalization is
 
    function Constructor
    (
-      languages : GenericObject;
-      calendar_p : WinRt.WString;
-      clock : WinRt.WString;
-      timeZoneId : WinRt.WString
-   )
-   return Calendar is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Calendar");
-      m_Factory    : access ICalendarFactory2_Interface'Class := null;
-      temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.ICalendar;
-      HStr_calendar_p : constant WinRt.HString := To_HString (calendar_p);
-      HStr_clock : constant WinRt.HString := To_HString (clock);
-      HStr_timeZoneId : constant WinRt.HString := To_HString (timeZoneId);
-   begin
-      return RetVal : Calendar do
-         Hr := RoGetActivationFactory (m_hString, IID_ICalendarFactory2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateCalendarWithTimeZone (languages, HStr_calendar_p, HStr_clock, HStr_timeZoneId, m_ComRetVal'Access);
-            Retval.m_ICalendar := new Windows.Globalization.ICalendar;
-            Retval.m_ICalendar.all := m_ComRetVal;
-            temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_calendar_p);
-         tmp := WindowsDeleteString (HStr_clock);
-         tmp := WindowsDeleteString (HStr_timeZoneId);
-      end return;
-   end;
-
-   function Constructor return Calendar is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Calendar");
-      m_ComRetVal  : aliased Windows.Globalization.ICalendar;
-   begin
-      return RetVal : Calendar do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ICalendar := new Windows.Globalization.ICalendar;
-            Retval.m_ICalendar.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor
-   (
       languages : GenericObject
    )
    return Calendar is
@@ -284,6 +235,55 @@ package body WinRt.Windows.Globalization is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_calendar_p);
          tmp := WindowsDeleteString (HStr_clock);
+      end return;
+   end;
+
+   function Constructor return Calendar is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Calendar");
+      m_ComRetVal  : aliased Windows.Globalization.ICalendar;
+   begin
+      return RetVal : Calendar do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ICalendar := new Windows.Globalization.ICalendar;
+            Retval.m_ICalendar.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
+      languages : GenericObject;
+      calendar_p : WinRt.WString;
+      clock : WinRt.WString;
+      timeZoneId : WinRt.WString
+   )
+   return Calendar is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Calendar");
+      m_Factory    : access ICalendarFactory2_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Globalization.ICalendar;
+      HStr_calendar_p : constant WinRt.HString := To_HString (calendar_p);
+      HStr_clock : constant WinRt.HString := To_HString (clock);
+      HStr_timeZoneId : constant WinRt.HString := To_HString (timeZoneId);
+   begin
+      return RetVal : Calendar do
+         Hr := RoGetActivationFactory (m_hString, IID_ICalendarFactory2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateCalendarWithTimeZone (languages, HStr_calendar_p, HStr_clock, HStr_timeZoneId, m_ComRetVal'Access);
+            Retval.m_ICalendar := new Windows.Globalization.ICalendar;
+            Retval.m_ICalendar.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_calendar_p);
+         tmp := WindowsDeleteString (HStr_clock);
+         tmp := WindowsDeleteString (HStr_timeZoneId);
       end return;
    end;
 
@@ -2118,6 +2118,126 @@ package body WinRt.Windows.Globalization is
    -- Static RuntimeClass
    package body CalendarIdentifiers is
 
+      function get_ChineseLunar
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.CalendarIdentifiers");
+         m_Factory        : access WinRt.Windows.Globalization.ICalendarIdentifiersStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICalendarIdentifiersStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_ChineseLunar (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_JapaneseLunar
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.CalendarIdentifiers");
+         m_Factory        : access WinRt.Windows.Globalization.ICalendarIdentifiersStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICalendarIdentifiersStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_JapaneseLunar (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_KoreanLunar
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.CalendarIdentifiers");
+         m_Factory        : access WinRt.Windows.Globalization.ICalendarIdentifiersStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICalendarIdentifiersStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_KoreanLunar (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_TaiwanLunar
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.CalendarIdentifiers");
+         m_Factory        : access WinRt.Windows.Globalization.ICalendarIdentifiersStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICalendarIdentifiersStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_TaiwanLunar (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_VietnameseLunar
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.CalendarIdentifiers");
+         m_Factory        : access WinRt.Windows.Globalization.ICalendarIdentifiersStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICalendarIdentifiersStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_VietnameseLunar (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
       function get_Gregorian
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -2334,126 +2454,6 @@ package body WinRt.Windows.Globalization is
          return AdaRetVal;
       end;
 
-      function get_ChineseLunar
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.CalendarIdentifiers");
-         m_Factory        : access WinRt.Windows.Globalization.ICalendarIdentifiersStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICalendarIdentifiersStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_ChineseLunar (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_JapaneseLunar
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.CalendarIdentifiers");
-         m_Factory        : access WinRt.Windows.Globalization.ICalendarIdentifiersStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICalendarIdentifiersStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_JapaneseLunar (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_KoreanLunar
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.CalendarIdentifiers");
-         m_Factory        : access WinRt.Windows.Globalization.ICalendarIdentifiersStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICalendarIdentifiersStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_KoreanLunar (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_TaiwanLunar
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.CalendarIdentifiers");
-         m_Factory        : access WinRt.Windows.Globalization.ICalendarIdentifiersStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICalendarIdentifiersStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_TaiwanLunar (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_VietnameseLunar
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.CalendarIdentifiers");
-         m_Factory        : access WinRt.Windows.Globalization.ICalendarIdentifiersStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICalendarIdentifiersStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_VietnameseLunar (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
       function get_Persian
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -2632,6 +2632,30 @@ package body WinRt.Windows.Globalization is
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package body CurrencyIdentifiers is
+
+      function get_BYN
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.CurrencyIdentifiers");
+         m_Factory        : access WinRt.Windows.Globalization.ICurrencyIdentifiersStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICurrencyIdentifiersStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_BYN (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
 
       function get_AED
       return WinRt.WString is
@@ -6401,30 +6425,6 @@ package body WinRt.Windows.Globalization is
          return AdaRetVal;
       end;
 
-      function get_BYN
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.CurrencyIdentifiers");
-         m_Factory        : access WinRt.Windows.Globalization.ICurrencyIdentifiersStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICurrencyIdentifiersStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_BYN (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
       function get_MRU
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -6546,22 +6546,6 @@ package body WinRt.Windows.Globalization is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for GeographicRegion
 
-   function Constructor return GeographicRegion is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.GeographicRegion");
-      m_ComRetVal  : aliased Windows.Globalization.IGeographicRegion;
-   begin
-      return RetVal : GeographicRegion do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IGeographicRegion := new Windows.Globalization.IGeographicRegion;
-            Retval.m_IGeographicRegion.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       geographicRegionCode : WinRt.WString
@@ -6585,6 +6569,22 @@ package body WinRt.Windows.Globalization is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_geographicRegionCode);
+      end return;
+   end;
+
+   function Constructor return GeographicRegion is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.GeographicRegion");
+      m_ComRetVal  : aliased Windows.Globalization.IGeographicRegion;
+   begin
+      return RetVal : GeographicRegion do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IGeographicRegion := new Windows.Globalization.IGeographicRegion;
+            Retval.m_IGeographicRegion.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6951,6 +6951,30 @@ package body WinRt.Windows.Globalization is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Language
 
+   function GetMuiCompatibleLanguageListFromLanguageTags
+   (
+      languageTags : GenericObject
+   )
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.Language");
+      m_Factory        : access WinRt.Windows.Globalization.ILanguageStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_ILanguageStatics3'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetMuiCompatibleLanguageListFromLanguageTags (languageTags, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
    function IsWellFormed
    (
       languageTag : WinRt.WString
@@ -7024,30 +7048,6 @@ package body WinRt.Windows.Globalization is
       end if;
       tmp := WindowsDeleteString (m_hString);
       tmp := WindowsDeleteString (HStr_languageTag);
-      return m_ComRetVal;
-   end;
-
-   function GetMuiCompatibleLanguageListFromLanguageTags
-   (
-      languageTags : GenericObject
-   )
-   return WinRt.GenericObject is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.Language");
-      m_Factory        : access WinRt.Windows.Globalization.ILanguageStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_ILanguageStatics3'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetMuiCompatibleLanguageListFromLanguageTags (languageTags, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 

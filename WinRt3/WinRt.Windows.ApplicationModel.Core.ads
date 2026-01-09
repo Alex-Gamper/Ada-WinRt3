@@ -809,6 +809,26 @@ package WinRt.Windows.ApplicationModel.Core is
    -- Static RuntimeClass
    package CoreApplication is
 
+      function CreateNewView
+      return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
+
+      function CreateNewView
+      (
+         viewSource : Windows.ApplicationModel.Core.IFrameworkViewSource
+      )
+      return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
+
+      function add_UnhandledErrorDetected
+      (
+         handler : GenericObject
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken;
+
+      procedure remove_UnhandledErrorDetected
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
+
       procedure Exit_x;
 
       function add_Exiting
@@ -835,12 +855,43 @@ package WinRt.Windows.ApplicationModel.Core is
       function get_MainView
       return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
 
-      function CreateNewView
-      return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
+      function add_BackgroundActivated
+      (
+         handler : GenericObject
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken;
 
-      procedure IncrementApplicationUseCount;
+      procedure remove_BackgroundActivated
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
 
-      procedure DecrementApplicationUseCount;
+      function add_LeavingBackground
+      (
+         handler : GenericObject
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken;
+
+      procedure remove_LeavingBackground
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
+
+      function add_EnteredBackground
+      (
+         handler : GenericObject
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken;
+
+      procedure remove_EnteredBackground
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
+
+      procedure EnablePrelaunch
+      (
+         value : WinRt.Boolean
+      );
 
       function get_Id
       return WinRt.WString;
@@ -883,61 +934,6 @@ package WinRt.Windows.ApplicationModel.Core is
          activationFactoryCallback : Windows.Foundation.IGetActivationFactory
       );
 
-      function add_BackgroundActivated
-      (
-         handler : GenericObject
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken;
-
-      procedure remove_BackgroundActivated
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      );
-
-      function add_LeavingBackground
-      (
-         handler : GenericObject
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken;
-
-      procedure remove_LeavingBackground
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      );
-
-      function add_EnteredBackground
-      (
-         handler : GenericObject
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken;
-
-      procedure remove_EnteredBackground
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      );
-
-      procedure EnablePrelaunch
-      (
-         value : WinRt.Boolean
-      );
-
-      function add_UnhandledErrorDetected
-      (
-         handler : GenericObject
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken;
-
-      procedure remove_UnhandledErrorDetected
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      );
-
-      function CreateNewView
-      (
-         viewSource : Windows.ApplicationModel.Core.IFrameworkViewSource
-      )
-      return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
-
       function RequestRestartAsync
       (
          launchArguments : WinRt.WString
@@ -950,6 +946,10 @@ package WinRt.Windows.ApplicationModel.Core is
          launchArguments : WinRt.WString
       )
       return WinRt.Windows.ApplicationModel.Core.AppRestartFailureReason;
+
+      procedure IncrementApplicationUseCount;
+
+      procedure DecrementApplicationUseCount;
 
    end CoreApplication;
 

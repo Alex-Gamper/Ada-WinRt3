@@ -1756,13 +1756,13 @@ package WinRt.Windows.Graphics.Printing is
    -----------------------------------------------------------------------------
    -- Static Interfaces for PrintManager
 
+   function IsSupported
+   return WinRt.Boolean;
+
    function GetForCurrentView
    return WinRt.Windows.Graphics.Printing.PrintManager;
 
    function ShowPrintUIAsync
-   return WinRt.Boolean;
-
-   function IsSupported
    return WinRt.Boolean;
 
    -----------------------------------------------------------------------------
@@ -2382,9 +2382,6 @@ package WinRt.Windows.Graphics.Printing is
    -- Static RuntimeClass
    package StandardPrintTaskOptions is
 
-      function get_CustomPageRanges
-      return WinRt.WString;
-
       function get_MediaSize
       return WinRt.WString;
 
@@ -2422,6 +2419,9 @@ package WinRt.Windows.Graphics.Printing is
       return WinRt.WString;
 
       function get_InputBin
+      return WinRt.WString;
+
+      function get_CustomPageRanges
       return WinRt.WString;
 
       function get_Bordering

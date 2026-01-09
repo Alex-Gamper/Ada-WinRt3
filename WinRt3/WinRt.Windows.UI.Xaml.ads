@@ -9805,21 +9805,6 @@ package WinRt.Windows.UI.Xaml is
    -----------------------------------------------------------------------------
    -- Static Interfaces for UIElement
 
-   function get_ContextFlyoutProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ExitDisplayModeOnAccessKeyInvokedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsAccessKeyScopeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AccessKeyScopeOwnerProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AccessKeyProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_KeyDownEvent
    return WinRt.Windows.UI.Xaml.RoutedEvent;
 
@@ -9940,6 +9925,53 @@ package WinRt.Windows.UI.Xaml is
    function get_PointerCapturesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_CompositeModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CanBeScrollAnchorProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_GettingFocusEvent
+   return WinRt.Windows.UI.Xaml.RoutedEvent;
+
+   function get_LosingFocusEvent
+   return WinRt.Windows.UI.Xaml.RoutedEvent;
+
+   function get_NoFocusCandidateFoundEvent
+   return WinRt.Windows.UI.Xaml.RoutedEvent;
+
+   function get_BringIntoViewRequestedEvent
+   return WinRt.Windows.UI.Xaml.RoutedEvent;
+
+   function get_ContextRequestedEvent
+   return WinRt.Windows.UI.Xaml.RoutedEvent;
+
+   function get_KeyTipTargetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_KeyboardAcceleratorPlacementTargetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_KeyboardAcceleratorPlacementModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   procedure RegisterAsScrollPort
+   (
+      element : Windows.UI.Xaml.UIElement'Class
+   );
+
+   function get_PreviewKeyDownEvent
+   return WinRt.Windows.UI.Xaml.RoutedEvent;
+
+   function get_CharacterReceivedEvent
+   return WinRt.Windows.UI.Xaml.RoutedEvent;
+
+   function get_PreviewKeyUpEvent
+   return WinRt.Windows.UI.Xaml.RoutedEvent;
+
+   function get_ShadowProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_LightsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -9973,6 +10005,21 @@ package WinRt.Windows.UI.Xaml is
    function get_TabFocusNavigationProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_ContextFlyoutProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ExitDisplayModeOnAccessKeyInvokedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsAccessKeyScopeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AccessKeyScopeOwnerProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AccessKeyProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_Transform3DProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -9984,53 +10031,6 @@ package WinRt.Windows.UI.Xaml is
       value : Windows.UI.Xaml.Input.Pointer'Class
    )
    return WinRt.Boolean;
-
-   function get_CompositeModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PreviewKeyDownEvent
-   return WinRt.Windows.UI.Xaml.RoutedEvent;
-
-   function get_CharacterReceivedEvent
-   return WinRt.Windows.UI.Xaml.RoutedEvent;
-
-   function get_PreviewKeyUpEvent
-   return WinRt.Windows.UI.Xaml.RoutedEvent;
-
-   function get_BringIntoViewRequestedEvent
-   return WinRt.Windows.UI.Xaml.RoutedEvent;
-
-   function get_ContextRequestedEvent
-   return WinRt.Windows.UI.Xaml.RoutedEvent;
-
-   function get_KeyTipTargetProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_KeyboardAcceleratorPlacementTargetProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_KeyboardAcceleratorPlacementModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   procedure RegisterAsScrollPort
-   (
-      element : Windows.UI.Xaml.UIElement'Class
-   );
-
-   function get_GettingFocusEvent
-   return WinRt.Windows.UI.Xaml.RoutedEvent;
-
-   function get_LosingFocusEvent
-   return WinRt.Windows.UI.Xaml.RoutedEvent;
-
-   function get_NoFocusCandidateFoundEvent
-   return WinRt.Windows.UI.Xaml.RoutedEvent;
-
-   function get_CanBeScrollAnchorProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ShadowProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for UIElement
@@ -11388,6 +11388,35 @@ package WinRt.Windows.UI.Xaml is
    -----------------------------------------------------------------------------
    -- Static Interfaces for FrameworkElement
 
+   function get_ActualThemeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   procedure DeferTree
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   );
+
+   function get_AllowFocusOnInteractionProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FocusVisualMarginProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FocusVisualSecondaryThicknessProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FocusVisualPrimaryThicknessProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FocusVisualSecondaryBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FocusVisualPrimaryBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AllowFocusWhenDisabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_TagProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -11439,36 +11468,7 @@ package WinRt.Windows.UI.Xaml is
    function get_FlowDirectionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_ActualThemeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_RequestedThemeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   procedure DeferTree
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   );
-
-   function get_AllowFocusOnInteractionProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FocusVisualMarginProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FocusVisualSecondaryThicknessProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FocusVisualPrimaryThicknessProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FocusVisualSecondaryBrushProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FocusVisualPrimaryBrushProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AllowFocusWhenDisabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -12951,6 +12951,14 @@ package WinRt.Windows.UI.Xaml is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ElementSoundPlayer
 
+   function get_SpatialAudioMode
+   return WinRt.Windows.UI.Xaml.ElementSpatialAudioMode;
+
+   procedure put_SpatialAudioMode
+   (
+      value : Windows.UI.Xaml.ElementSpatialAudioMode
+   );
+
    function get_Volume
    return WinRt.Double;
 
@@ -12970,14 +12978,6 @@ package WinRt.Windows.UI.Xaml is
    procedure Play
    (
       sound : Windows.UI.Xaml.ElementSoundKind
-   );
-
-   function get_SpatialAudioMode
-   return WinRt.Windows.UI.Xaml.ElementSpatialAudioMode;
-
-   procedure put_SpatialAudioMode
-   (
-      value : Windows.UI.Xaml.ElementSpatialAudioMode
    );
 
    -----------------------------------------------------------------------------
@@ -13470,14 +13470,14 @@ package WinRt.Windows.UI.Xaml is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for Setter
 
-   function Constructor return Setter;
-
    function Constructor
    (
       targetProperty : Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.IInspectable
    )
    return Setter;
+
+   function Constructor return Setter;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for Setter
@@ -13720,13 +13720,13 @@ package WinRt.Windows.UI.Xaml is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for Style
 
-   function Constructor return Style;
-
    function Constructor
    (
       targetType : Windows.UI.Xaml.Interop.TypeName
    )
    return Style;
+
+   function Constructor return Style;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for Style

@@ -1423,6 +1423,27 @@ package WinRt.Windows.Security.EnterpriseData is
    -- Static RuntimeClass
    package FileProtectionManager is
 
+      function IsContainerAsync
+      (
+         file : Windows.Storage.IStorageFile
+      )
+      return WinRt.Boolean;
+
+      function LoadFileFromContainerAsync
+      (
+         containerFile : Windows.Storage.IStorageFile;
+         target : Windows.Storage.IStorageItem;
+         collisionOption : Windows.Storage.NameCollisionOption
+      )
+      return WinRt.Windows.Security.EnterpriseData.ProtectedContainerImportResult;
+
+      function SaveFileAsContainerAsync
+      (
+         protectedFile : Windows.Storage.IStorageFile;
+         sharedWithIdentities : GenericObject
+      )
+      return WinRt.Windows.Security.EnterpriseData.ProtectedContainerExportResult;
+
       function UnprotectAsync
       (
          target : Windows.Storage.IStorageItem
@@ -1483,27 +1504,6 @@ package WinRt.Windows.Security.EnterpriseData is
          collisionOption : Windows.Storage.CreationCollisionOption
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedFileCreateResult;
-
-      function IsContainerAsync
-      (
-         file : Windows.Storage.IStorageFile
-      )
-      return WinRt.Boolean;
-
-      function LoadFileFromContainerAsync
-      (
-         containerFile : Windows.Storage.IStorageFile;
-         target : Windows.Storage.IStorageItem;
-         collisionOption : Windows.Storage.NameCollisionOption
-      )
-      return WinRt.Windows.Security.EnterpriseData.ProtectedContainerImportResult;
-
-      function SaveFileAsContainerAsync
-      (
-         protectedFile : Windows.Storage.IStorageFile;
-         sharedWithIdentities : GenericObject
-      )
-      return WinRt.Windows.Security.EnterpriseData.ProtectedContainerExportResult;
 
    end FileProtectionManager;
 
@@ -1779,46 +1779,86 @@ package WinRt.Windows.Security.EnterpriseData is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ProtectionPolicyManager
 
-   function RequestAccessAsync
+   function IsIdentityManaged
    (
-      sourceIdentity : WinRt.WString;
-      targetIdentity : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+      identity : WinRt.WString
    )
-   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+   return WinRt.Boolean;
 
-   function RequestAccessAsync
+   function TryApplyProcessUIPolicy
    (
-      sourceIdentity : WinRt.WString;
-      targetIdentity : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
-      messageFromApp : WinRt.WString
+      identity : WinRt.WString
    )
-   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+   return WinRt.Boolean;
 
-   function RequestAccessForAppAsync
+   procedure ClearProcessUIPolicy;
+
+   function CreateCurrentThreadNetworkContext
    (
-      sourceIdentity : WinRt.WString;
-      appPackageFamilyName : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+      identity : WinRt.WString
    )
-   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+   return WinRt.Windows.Security.EnterpriseData.ThreadNetworkContext;
 
-   function RequestAccessForAppAsync
+   function GetPrimaryManagedIdentityForNetworkEndpointAsync
    (
-      sourceIdentity : WinRt.WString;
-      appPackageFamilyName : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
-      messageFromApp : WinRt.WString
+      endpointHost : Windows.Networking.HostName'Class
    )
-   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+   return WinRt.WString;
 
-   procedure LogAuditEvent
+   procedure RevokeContent
    (
-      sourceIdentity : WinRt.WString;
-      targetIdentity : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+      identity : WinRt.WString
    );
+
+   function GetForCurrentView
+   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyManager;
+
+   function add_ProtectedAccessSuspending
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ProtectedAccessSuspending
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_ProtectedAccessResumed
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ProtectedAccessResumed
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_ProtectedContentRevoked
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ProtectedContentRevoked
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function CheckAccess
+   (
+      sourceIdentity : WinRt.WString;
+      targetIdentity : WinRt.WString
+   )
+   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+
+   function RequestAccessAsync
+   (
+      sourceIdentity : WinRt.WString;
+      targetIdentity : WinRt.WString
+   )
+   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
 
    function IsRoamableProtectionEnabled
    (
@@ -1906,87 +1946,6 @@ package WinRt.Windows.Security.EnterpriseData is
    )
    return WinRt.WString;
 
-   function IsIdentityManaged
-   (
-      identity : WinRt.WString
-   )
-   return WinRt.Boolean;
-
-   function TryApplyProcessUIPolicy
-   (
-      identity : WinRt.WString
-   )
-   return WinRt.Boolean;
-
-   procedure ClearProcessUIPolicy;
-
-   function CreateCurrentThreadNetworkContext
-   (
-      identity : WinRt.WString
-   )
-   return WinRt.Windows.Security.EnterpriseData.ThreadNetworkContext;
-
-   function GetPrimaryManagedIdentityForNetworkEndpointAsync
-   (
-      endpointHost : Windows.Networking.HostName'Class
-   )
-   return WinRt.WString;
-
-   procedure RevokeContent
-   (
-      identity : WinRt.WString
-   );
-
-   function GetForCurrentView
-   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyManager;
-
-   function add_ProtectedAccessSuspending
-   (
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_ProtectedAccessSuspending
-   (
-      token : Windows.Foundation.EventRegistrationToken
-   );
-
-   function add_ProtectedAccessResumed
-   (
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_ProtectedAccessResumed
-   (
-      token : Windows.Foundation.EventRegistrationToken
-   );
-
-   function add_ProtectedContentRevoked
-   (
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_ProtectedContentRevoked
-   (
-      token : Windows.Foundation.EventRegistrationToken
-   );
-
-   function CheckAccess
-   (
-      sourceIdentity : WinRt.WString;
-      targetIdentity : WinRt.WString
-   )
-   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
-
-   function RequestAccessAsync
-   (
-      sourceIdentity : WinRt.WString;
-      targetIdentity : WinRt.WString
-   )
-   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
-
    function HasContentBeenRevokedSince
    (
       identity : WinRt.WString;
@@ -2039,6 +1998,47 @@ package WinRt.Windows.Security.EnterpriseData is
 
    function get_IsProtectionEnabled
    return WinRt.Boolean;
+
+   function RequestAccessAsync
+   (
+      sourceIdentity : WinRt.WString;
+      targetIdentity : WinRt.WString;
+      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+   )
+   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+
+   function RequestAccessAsync
+   (
+      sourceIdentity : WinRt.WString;
+      targetIdentity : WinRt.WString;
+      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      messageFromApp : WinRt.WString
+   )
+   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+
+   function RequestAccessForAppAsync
+   (
+      sourceIdentity : WinRt.WString;
+      appPackageFamilyName : WinRt.WString;
+      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+   )
+   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+
+   function RequestAccessForAppAsync
+   (
+      sourceIdentity : WinRt.WString;
+      appPackageFamilyName : WinRt.WString;
+      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      messageFromApp : WinRt.WString
+   )
+   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+
+   procedure LogAuditEvent
+   (
+      sourceIdentity : WinRt.WString;
+      targetIdentity : WinRt.WString;
+      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+   );
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ProtectionPolicyManager

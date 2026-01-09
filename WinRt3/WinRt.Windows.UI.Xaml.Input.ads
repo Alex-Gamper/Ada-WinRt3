@@ -3119,14 +3119,6 @@ package WinRt.Windows.UI.Xaml.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AccessKeyManager
 
-   function get_AreKeyTipsEnabled
-   return WinRt.Boolean;
-
-   procedure put_AreKeyTipsEnabled
-   (
-      value : WinRt.Boolean
-   );
-
    function get_IsDisplayModeEnabled
    return WinRt.Boolean;
 
@@ -3142,6 +3134,14 @@ package WinRt.Windows.UI.Xaml.Input is
    );
 
    procedure ExitDisplayMode;
+
+   function get_AreKeyTipsEnabled
+   return WinRt.Boolean;
+
+   procedure put_AreKeyTipsEnabled
+   (
+      value : WinRt.Boolean
+   );
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for AccessKeyManager
@@ -3385,64 +3385,7 @@ package WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.FocusMovementResult;
 
-   function TryMoveFocus
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
-   )
-   return WinRt.Boolean;
-
    function GetFocusedElement
-   return WinRt.IInspectable;
-
-   function FindNextFocusableElement
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
-   )
-   return WinRt.Windows.UI.Xaml.UIElement;
-
-   function FindNextFocusableElement
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-      hintRect : Windows.Foundation.Rect
-   )
-   return WinRt.Windows.UI.Xaml.UIElement;
-
-   function TryMoveFocus
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
-   )
-   return WinRt.Boolean;
-
-   function FindNextElement
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
-   )
-   return WinRt.Windows.UI.Xaml.DependencyObject;
-
-   function FindFirstFocusableElement
-   (
-      searchScope : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Windows.UI.Xaml.DependencyObject;
-
-   function FindLastFocusableElement
-   (
-      searchScope : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Windows.UI.Xaml.DependencyObject;
-
-   function FindNextElement
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
-   )
-   return WinRt.Windows.UI.Xaml.DependencyObject;
-
-   function GetFocusedElement
-   (
-      xamlRoot : Windows.UI.Xaml.XamlRoot'Class
-   )
    return WinRt.IInspectable;
 
    function add_GotFocus
@@ -3488,6 +3431,63 @@ package WinRt.Windows.UI.Xaml.Input is
    (
       token : Windows.Foundation.EventRegistrationToken
    );
+
+   function TryMoveFocus
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
+   )
+   return WinRt.Boolean;
+
+   function TryMoveFocus
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
+      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
+   )
+   return WinRt.Boolean;
+
+   function FindNextElement
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
+   )
+   return WinRt.Windows.UI.Xaml.DependencyObject;
+
+   function FindFirstFocusableElement
+   (
+      searchScope : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Windows.UI.Xaml.DependencyObject;
+
+   function FindLastFocusableElement
+   (
+      searchScope : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Windows.UI.Xaml.DependencyObject;
+
+   function FindNextElement
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
+      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
+   )
+   return WinRt.Windows.UI.Xaml.DependencyObject;
+
+   function FindNextFocusableElement
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
+   )
+   return WinRt.Windows.UI.Xaml.UIElement;
+
+   function FindNextFocusableElement
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
+      hintRect : Windows.Foundation.Rect
+   )
+   return WinRt.Windows.UI.Xaml.UIElement;
+
+   function GetFocusedElement
+   (
+      xamlRoot : Windows.UI.Xaml.XamlRoot'Class
+   )
+   return WinRt.IInspectable;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for FocusManager

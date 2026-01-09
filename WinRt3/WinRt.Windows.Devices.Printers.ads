@@ -27,6 +27,8 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
@@ -37,6 +39,46 @@ package WinRt.Windows.Devices.Printers is
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
+
+   type IIppAttributeError_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppAttributeError is access all IIppAttributeError_Interface'Class;
+   type IIppAttributeError_Ptr is access all IIppAttributeError;
+
+   type IIppAttributeValue_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppAttributeValue is access all IIppAttributeValue_Interface'Class;
+   type IIppAttributeValue_Ptr is access all IIppAttributeValue;
+
+   type IIppAttributeValueStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppAttributeValueStatics is access all IIppAttributeValueStatics_Interface'Class;
+
+   type IIppIntegerRange_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppIntegerRange is access all IIppIntegerRange_Interface'Class;
+   type IIppIntegerRange_Ptr is access all IIppIntegerRange;
+
+   type IIppIntegerRangeFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppIntegerRangeFactory is access all IIppIntegerRangeFactory_Interface'Class;
+
+   type IIppPrintDevice_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppPrintDevice is access all IIppPrintDevice_Interface'Class;
+   type IIppPrintDevice_Ptr is access all IIppPrintDevice;
+
+   type IIppResolution_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppResolution is access all IIppResolution_Interface'Class;
+   type IIppResolution_Ptr is access all IIppResolution;
+
+   type IIppResolutionFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppResolutionFactory is access all IIppResolutionFactory_Interface'Class;
+
+   type IIppSetAttributesResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppSetAttributesResult is access all IIppSetAttributesResult_Interface'Class;
+   type IIppSetAttributesResult_Ptr is access all IIppSetAttributesResult;
+
+   type IIppTextWithLanguage_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppTextWithLanguage is access all IIppTextWithLanguage_Interface'Class;
+   type IIppTextWithLanguage_Ptr is access all IIppTextWithLanguage;
+
+   type IIppTextWithLanguageFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppTextWithLanguageFactory is access all IIppTextWithLanguageFactory_Interface'Class;
 
    type IPrint3DDevice_Interface is interface and WinRt.IInspectable_Interface;
    type IPrint3DDevice is access all IPrint3DDevice_Interface'Class;
@@ -53,6 +95,48 @@ package WinRt.Windows.Devices.Printers is
    -- Class declarations
    -----------------------------------------------------------------------------
 
+   type IppAttributeError is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IIppAttributeError : access Windows.Devices.Printers.IIppAttributeError;
+      end record;
+   type IppAttributeError_Ptr is access all IppAttributeError;
+
+   type IppAttributeValue is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IIppAttributeValue : access Windows.Devices.Printers.IIppAttributeValue;
+      end record;
+   type IppAttributeValue_Ptr is access all IppAttributeValue;
+
+   type IppIntegerRange is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IIppIntegerRange : access Windows.Devices.Printers.IIppIntegerRange;
+      end record;
+   type IppIntegerRange_Ptr is access all IppIntegerRange;
+
+   type IppPrintDevice is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IIppPrintDevice : access Windows.Devices.Printers.IIppPrintDevice;
+      end record;
+   type IppPrintDevice_Ptr is access all IppPrintDevice;
+
+   type IppResolution is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IIppResolution : access Windows.Devices.Printers.IIppResolution;
+      end record;
+   type IppResolution_Ptr is access all IppResolution;
+
+   type IppSetAttributesResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IIppSetAttributesResult : access Windows.Devices.Printers.IIppSetAttributesResult;
+      end record;
+   type IppSetAttributesResult_Ptr is access all IppSetAttributesResult;
+
+   type IppTextWithLanguage is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IIppTextWithLanguage : access Windows.Devices.Printers.IIppTextWithLanguage;
+      end record;
+   type IppTextWithLanguage_Ptr is access all IppTextWithLanguage;
+
    type Print3DDevice is new Ada.Finalization.Limited_Controlled with
       record
          m_IPrint3DDevice : access Windows.Devices.Printers.IPrint3DDevice;
@@ -66,6 +150,84 @@ package WinRt.Windows.Devices.Printers is
    type PrintSchema_Ptr is access all PrintSchema;
 
    -----------------------------------------------------------------------------
+   -- Enum declarations
+   -----------------------------------------------------------------------------
+
+   type IppAttributeErrorReason is (
+      RequestEntityTooLarge_e,
+      AttributeNotSupported_e,
+      AttributeValuesNotSupported_e,
+      AttributeNotSettable_e,
+      ConflictingAttributes_e
+   );
+   for IppAttributeErrorReason use (
+      RequestEntityTooLarge_e => 0,
+      AttributeNotSupported_e => 1,
+      AttributeValuesNotSupported_e => 2,
+      AttributeNotSettable_e => 3,
+      ConflictingAttributes_e => 4
+   );
+   type IppAttributeErrorReason_Ptr is access all IppAttributeErrorReason;
+
+   type IppAttributeValueKind is (
+      Unsupported_e,
+      Unknown_e,
+      NoValue_e,
+      Integer_e,
+      Boolean_e,
+      Enum_e,
+      OctetString_e,
+      DateTime_e,
+      Resolution_e,
+      RangeOfInteger_e,
+      Collection_e,
+      TextWithLanguage_e,
+      NameWithLanguage_e,
+      TextWithoutLanguage_e,
+      NameWithoutLanguage_e,
+      Keyword_e,
+      Uri_e,
+      UriSchema_e,
+      Charset_e,
+      NaturalLanguage_e,
+      MimeMediaType_e
+   );
+   for IppAttributeValueKind use (
+      Unsupported_e => 0,
+      Unknown_e => 1,
+      NoValue_e => 2,
+      Integer_e => 3,
+      Boolean_e => 4,
+      Enum_e => 5,
+      OctetString_e => 6,
+      DateTime_e => 7,
+      Resolution_e => 8,
+      RangeOfInteger_e => 9,
+      Collection_e => 10,
+      TextWithLanguage_e => 11,
+      NameWithLanguage_e => 12,
+      TextWithoutLanguage_e => 13,
+      NameWithoutLanguage_e => 14,
+      Keyword_e => 15,
+      Uri_e => 16,
+      UriSchema_e => 17,
+      Charset_e => 18,
+      NaturalLanguage_e => 19,
+      MimeMediaType_e => 20
+   );
+   type IppAttributeValueKind_Ptr is access all IppAttributeValueKind;
+
+   type IppResolutionUnit is (
+      DotsPerInch_e,
+      DotsPerCentimeter_e
+   );
+   for IppResolutionUnit use (
+      DotsPerInch_e => 0,
+      DotsPerCentimeter_e => 1
+   );
+   type IppResolutionUnit_Ptr is access all IppResolutionUnit;
+
+   -----------------------------------------------------------------------------
    -- Record declarations
    -----------------------------------------------------------------------------
 
@@ -75,8 +237,711 @@ package WinRt.Windows.Devices.Printers is
    type PrintersContract_Ptr is access all PrintersContract;
 
    -----------------------------------------------------------------------------
+   -- Generic package declarations
+   -----------------------------------------------------------------------------
+
+   package IVectorView_IIppAttributeValue is new WinRt.Windows.Foundation.Collections.IVectorView (IIppAttributeValue);
+   IID_IVectorView_IIppAttributeValue : aliased WinRt.IID := (486699877, 19943, 22407, (141, 81, 11, 45, 192, 174, 188, 177 ));
+   function QInterface_IVectorView_IIppAttributeValue is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IIppAttributeValue.Kind, IID_IVectorView_IIppAttributeValue'Access);
+
+   package IVector_Int32 is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Int32);
+   IID_IVector_Int32 : aliased WinRt.IID := (4100364303, 63746, 23368, (155, 174, 227, 230, 132, 143, 56, 219 ));
+   function QInterface_IVector_Int32 is new Generic_QueryInterface (GenericObject_Interface, IVector_Int32.Kind, IID_IVector_Int32'Access);
+
+   package IVector_Boolean is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Boolean);
+   IID_IVector_Boolean : aliased WinRt.IID := (4100364303, 63746, 23368, (155, 174, 227, 230, 132, 143, 56, 219 ));
+   function QInterface_IVector_Boolean is new Generic_QueryInterface (GenericObject_Interface, IVector_Boolean.Kind, IID_IVector_Boolean'Access);
+
+   package IVector_DateTime is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Foundation.DateTime);
+   IID_IVector_DateTime : aliased WinRt.IID := (4100364303, 63746, 23368, (155, 174, 227, 230, 132, 143, 56, 219 ));
+   function QInterface_IVector_DateTime is new Generic_QueryInterface (GenericObject_Interface, IVector_DateTime.Kind, IID_IVector_DateTime'Access);
+
+   package IVector_IIppResolution is new WinRt.Windows.Foundation.Collections.IVector (IIppResolution);
+   IID_IVector_IIppResolution : aliased WinRt.IID := (4100364303, 63746, 23368, (155, 174, 227, 230, 132, 143, 56, 219 ));
+   function QInterface_IVector_IIppResolution is new Generic_QueryInterface (GenericObject_Interface, IVector_IIppResolution.Kind, IID_IVector_IIppResolution'Access);
+
+   package IVector_IIppIntegerRange is new WinRt.Windows.Foundation.Collections.IVector (IIppIntegerRange);
+   IID_IVector_IIppIntegerRange : aliased WinRt.IID := (4100364303, 63746, 23368, (155, 174, 227, 230, 132, 143, 56, 219 ));
+   function QInterface_IVector_IIppIntegerRange is new Generic_QueryInterface (GenericObject_Interface, IVector_IIppIntegerRange.Kind, IID_IVector_IIppIntegerRange'Access);
+
+   package IVector_IIppTextWithLanguage is new WinRt.Windows.Foundation.Collections.IVector (IIppTextWithLanguage);
+   IID_IVector_IIppTextWithLanguage : aliased WinRt.IID := (4100364303, 63746, 23368, (155, 174, 227, 230, 132, 143, 56, 219 ));
+   function QInterface_IVector_IIppTextWithLanguage is new Generic_QueryInterface (GenericObject_Interface, IVector_IIppTextWithLanguage.Kind, IID_IVector_IIppTextWithLanguage'Access);
+
+   package IVector_HString is new WinRt.Windows.Foundation.Collections.IVector (WinRt.HString);
+   IID_IVector_HString : aliased WinRt.IID := (4100364303, 63746, 23368, (155, 174, 227, 230, 132, 143, 56, 219 ));
+   function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
+
+   package IVector_IUriRuntimeClass is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.Foundation.IUriRuntimeClass);
+   IID_IVector_IUriRuntimeClass : aliased WinRt.IID := (4100364303, 63746, 23368, (155, 174, 227, 230, 132, 143, 56, 219 ));
+   function QInterface_IVector_IUriRuntimeClass is new Generic_QueryInterface (GenericObject_Interface, IVector_IUriRuntimeClass.Kind, IID_IVector_IUriRuntimeClass'Access);
+
+   package IMap_HString_IIppAttributeValue is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, IIppAttributeValue);
+   IID_IMap_HString_IIppAttributeValue : aliased WinRt.IID := (729521714, 56979, 23036, (151, 226, 178, 59, 33, 232, 128, 195 ));
+   function QInterface_IMap_HString_IIppAttributeValue is new Generic_QueryInterface (GenericObject_Interface, IMap_HString_IIppAttributeValue.Kind, IID_IMap_HString_IIppAttributeValue'Access);
+
+   package IMapView_HString_IIppAttributeError is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, IIppAttributeError);
+   IID_IMapView_HString_IIppAttributeError : aliased WinRt.IID := (4201262953, 49120, 24519, (141, 35, 120, 12, 184, 100, 102, 108 ));
+   function QInterface_IMapView_HString_IIppAttributeError is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_IIppAttributeError.Kind, IID_IMapView_HString_IIppAttributeError'Access);
+
+   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
+   -- type IIppAttributeError is interface and WinRt.IInspectable;
+
+      function get_Reason
+      (
+         this : access IIppAttributeError_Interface;
+         RetVal : access Windows.Devices.Printers.IppAttributeErrorReason
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IIppAttributeError_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetUnsupportedValues
+      (
+         this : access IIppAttributeError_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppAttributeError : aliased WinRt.IID := (1963978145, 40687, 23609, (147, 228, 70, 20, 155, 188, 239, 39 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppAttributeValue is interface and WinRt.IInspectable;
+
+      function get_Kind
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access Windows.Devices.Printers.IppAttributeValueKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetIntegerArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetBooleanArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetEnumArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetOctetStringArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetDateTimeArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetResolutionArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetRangeOfIntegerArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetCollectionArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetTextWithLanguageArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetNameWithLanguageArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetTextWithoutLanguageArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetNameWithoutLanguageArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetKeywordArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetUriArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetUriSchemaArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetCharsetArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetNaturalLanguageArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetMimeMediaTypeArray
+      (
+         this : access IIppAttributeValue_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppAttributeValue : aliased WinRt.IID := (2571141101, 58043, 22947, (152, 139, 40, 169, 116, 5, 42, 38 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppAttributeValueStatics is interface and WinRt.IInspectable;
+
+      function CreateUnsupported
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateUnknown
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateNoValue
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateInteger
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : WinRt.Int32;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateIntegerArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateBoolean
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : WinRt.Boolean;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateBooleanArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateEnum
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : WinRt.Int32;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateEnumArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateOctetString
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : Windows.Storage.Streams.IBuffer;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateOctetStringArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateDateTime
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : Windows.Foundation.DateTime;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateDateTimeArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateResolution
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : Windows.Devices.Printers.IIppResolution;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateResolutionArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateRangeOfInteger
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : Windows.Devices.Printers.IIppIntegerRange;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateRangeOfIntegerArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateCollection
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         memberAttributes : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateCollectionArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         memberAttributesArray : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateTextWithLanguage
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : Windows.Devices.Printers.IIppTextWithLanguage;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateTextWithLanguageArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateNameWithLanguage
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : Windows.Devices.Printers.IIppTextWithLanguage;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateNameWithLanguageArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateTextWithoutLanguage
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : WinRt.HString;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateTextWithoutLanguageArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateNameWithoutLanguage
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : WinRt.HString;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateNameWithoutLanguageArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateKeyword
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : WinRt.HString;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateKeywordArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateUri
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : Windows.Foundation.IUriRuntimeClass;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateUriArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateUriSchema
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : WinRt.HString;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateUriSchemaArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateCharset
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : WinRt.HString;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateCharsetArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateNaturalLanguage
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : WinRt.HString;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateNaturalLanguageArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateMimeMedia
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         value : WinRt.HString;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateMimeMediaArray
+      (
+         this : access IIppAttributeValueStatics_Interface;
+         values : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppAttributeValueStatics : aliased WinRt.IID := (282343746, 56724, 22936, (178, 53, 175, 175, 182, 250, 121, 53 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppIntegerRange is interface and WinRt.IInspectable;
+
+      function get_Start
+      (
+         this : access IIppIntegerRange_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_End
+      (
+         this : access IIppIntegerRange_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppIntegerRange : aliased WinRt.IID := (2458940230, 50154, 24278, (189, 177, 55, 82, 198, 44, 111, 127 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppIntegerRangeFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IIppIntegerRangeFactory_Interface;
+         start : WinRt.Int32;
+         end_x : WinRt.Int32;
+         RetVal : access Windows.Devices.Printers.IIppIntegerRange
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppIntegerRangeFactory : aliased WinRt.IID := (1976888494, 63614, 21677, (181, 208, 70, 82, 4, 219, 117, 83 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppPrintDevice is interface and WinRt.IInspectable;
+
+      function get_PrinterName
+      (
+         this : access IIppPrintDevice_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PrinterUri
+      (
+         this : access IIppPrintDevice_Interface;
+         RetVal : access Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetPrinterAttributesAsBuffer
+      (
+         this : access IIppPrintDevice_Interface;
+         attributeNames : GenericObject;
+         RetVal : access Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetPrinterAttributes
+      (
+         this : access IIppPrintDevice_Interface;
+         attributeNames : GenericObject;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetPrinterAttributesFromBuffer
+      (
+         this : access IIppPrintDevice_Interface;
+         printerAttributesBuffer : Windows.Storage.Streams.IBuffer;
+         RetVal : access Windows.Devices.Printers.IIppSetAttributesResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetPrinterAttributes
+      (
+         this : access IIppPrintDevice_Interface;
+         printerAttributes : GenericObject;
+         RetVal : access Windows.Devices.Printers.IIppSetAttributesResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppPrintDevice : aliased WinRt.IID := (3611864150, 30451, 24006, (175, 212, 194, 168, 104, 107, 147, 89 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppResolution is interface and WinRt.IInspectable;
+
+      function get_Width
+      (
+         this : access IIppResolution_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Height
+      (
+         this : access IIppResolution_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Unit
+      (
+         this : access IIppResolution_Interface;
+         RetVal : access Windows.Devices.Printers.IppResolutionUnit
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppResolution : aliased WinRt.IID := (3410575238, 27635, 22261, (134, 206, 38, 61, 8, 174, 173, 99 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppResolutionFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IIppResolutionFactory_Interface;
+         width : WinRt.Int32;
+         height : WinRt.Int32;
+         unit : Windows.Devices.Printers.IppResolutionUnit;
+         RetVal : access Windows.Devices.Printers.IIppResolution
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppResolutionFactory : aliased WinRt.IID := (3833709230, 9498, 21286, (177, 115, 149, 84, 62, 217, 154, 53 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppSetAttributesResult is interface and WinRt.IInspectable;
+
+      function get_Succeeded
+      (
+         this : access IIppSetAttributesResult_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AttributeErrors
+      (
+         this : access IIppSetAttributesResult_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppSetAttributesResult : aliased WinRt.IID := (2099019605, 43677, 22691, (144, 233, 23, 189, 197, 40, 31, 7 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppTextWithLanguage is interface and WinRt.IInspectable;
+
+      function get_Language
+      (
+         this : access IIppTextWithLanguage_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Value
+      (
+         this : access IIppTextWithLanguage_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppTextWithLanguage : aliased WinRt.IID := (845432742, 20809, 22838, (144, 232, 12, 115, 96, 54, 191, 119 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppTextWithLanguageFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IIppTextWithLanguageFactory_Interface;
+         language : WinRt.HString;
+         text : WinRt.HString;
+         RetVal : access Windows.Devices.Printers.IIppTextWithLanguage
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppTextWithLanguageFactory : aliased WinRt.IID := (3393855117, 10600, 22389, (153, 124, 138, 70, 241, 165, 116, 237 ));
 
    -----------------------------------------------------------------------------
    -- type IPrint3DDevice is interface and WinRt.IInspectable;
@@ -141,6 +1006,554 @@ package WinRt.Windows.Devices.Printers is
    -----------------------------------------------------------------------------
    -- Class method declarations
    -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppAttributeError
+
+   overriding procedure Initialize (this : in out IppAttributeError);
+   overriding procedure Finalize (this : in out IppAttributeError);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppAttributeError
+
+   function get_Reason
+   (
+      this : in out IppAttributeError
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeErrorReason;
+
+   function get_ExtendedError
+   (
+      this : in out IppAttributeError
+   )
+   return WinRt.Windows.Foundation.HResult;
+
+   function GetUnsupportedValues
+   (
+      this : in out IppAttributeError
+   )
+   return IVectorView_IIppAttributeValue.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppAttributeValue
+
+   overriding procedure Initialize (this : in out IppAttributeValue);
+   overriding procedure Finalize (this : in out IppAttributeValue);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for IppAttributeValue
+
+   function CreateUnsupported
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateUnknown
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateNoValue
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateInteger
+   (
+      value : WinRt.Int32
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateIntegerArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateBoolean
+   (
+      value : WinRt.Boolean
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateBooleanArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateEnum
+   (
+      value : WinRt.Int32
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateEnumArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateOctetString
+   (
+      value : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateOctetStringArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateDateTime
+   (
+      value : Windows.Foundation.DateTime
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateDateTimeArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateResolution
+   (
+      value : Windows.Devices.Printers.IppResolution'Class
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateResolutionArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateRangeOfInteger
+   (
+      value : Windows.Devices.Printers.IppIntegerRange'Class
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateRangeOfIntegerArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateCollection
+   (
+      memberAttributes : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateCollectionArray
+   (
+      memberAttributesArray : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateTextWithLanguage
+   (
+      value : Windows.Devices.Printers.IppTextWithLanguage'Class
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateTextWithLanguageArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateNameWithLanguage
+   (
+      value : Windows.Devices.Printers.IppTextWithLanguage'Class
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateNameWithLanguageArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateTextWithoutLanguage
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateTextWithoutLanguageArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateNameWithoutLanguage
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateNameWithoutLanguageArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateKeyword
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateKeywordArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateUri
+   (
+      value : Windows.Foundation.Uri'Class
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateUriArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateUriSchema
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateUriSchemaArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateCharset
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateCharsetArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateNaturalLanguage
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateNaturalLanguageArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateMimeMedia
+   (
+      value : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   function CreateMimeMediaArray
+   (
+      values : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValue;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppAttributeValue
+
+   function get_Kind
+   (
+      this : in out IppAttributeValue
+   )
+   return WinRt.Windows.Devices.Printers.IppAttributeValueKind;
+
+   function GetIntegerArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_Int32.Kind;
+
+   function GetBooleanArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_Boolean.Kind;
+
+   function GetEnumArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_Int32.Kind;
+
+   function GetOctetStringArray
+   (
+      this : in out IppAttributeValue
+   )
+   return WinRt.GenericObject;
+
+   function GetDateTimeArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_DateTime.Kind;
+
+   function GetResolutionArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_IIppResolution.Kind;
+
+   function GetRangeOfIntegerArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_IIppIntegerRange.Kind;
+
+   function GetCollectionArray
+   (
+      this : in out IppAttributeValue
+   )
+   return WinRt.GenericObject;
+
+   function GetTextWithLanguageArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_IIppTextWithLanguage.Kind;
+
+   function GetNameWithLanguageArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_IIppTextWithLanguage.Kind;
+
+   function GetTextWithoutLanguageArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind;
+
+   function GetNameWithoutLanguageArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind;
+
+   function GetKeywordArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind;
+
+   function GetUriArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_IUriRuntimeClass.Kind;
+
+   function GetUriSchemaArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind;
+
+   function GetCharsetArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind;
+
+   function GetNaturalLanguageArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind;
+
+   function GetMimeMediaTypeArray
+   (
+      this : in out IppAttributeValue
+   )
+   return IVector_HString.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppIntegerRange
+
+   overriding procedure Initialize (this : in out IppIntegerRange);
+   overriding procedure Finalize (this : in out IppIntegerRange);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for IppIntegerRange
+
+   function Constructor
+   (
+      start : WinRt.Int32;
+      end_x : WinRt.Int32
+   )
+   return IppIntegerRange;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppIntegerRange
+
+   function get_Start
+   (
+      this : in out IppIntegerRange
+   )
+   return WinRt.Int32;
+
+   function get_End
+   (
+      this : in out IppIntegerRange
+   )
+   return WinRt.Int32;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppPrintDevice
+
+   overriding procedure Initialize (this : in out IppPrintDevice);
+   overriding procedure Finalize (this : in out IppPrintDevice);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppPrintDevice
+
+   function get_PrinterName
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.WString;
+
+   function get_PrinterUri
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Windows.Foundation.Uri'Class;
+
+   function GetPrinterAttributesAsBuffer
+   (
+      this : in out IppPrintDevice;
+      attributeNames : GenericObject
+   )
+   return WinRt.Windows.Storage.Streams.IBuffer;
+
+   function GetPrinterAttributes
+   (
+      this : in out IppPrintDevice;
+      attributeNames : GenericObject
+   )
+   return IMap_HString_IIppAttributeValue.Kind;
+
+   function SetPrinterAttributesFromBuffer
+   (
+      this : in out IppPrintDevice;
+      printerAttributesBuffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.Devices.Printers.IppSetAttributesResult'Class;
+
+   function SetPrinterAttributes
+   (
+      this : in out IppPrintDevice;
+      printerAttributes : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.IppSetAttributesResult'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppResolution
+
+   overriding procedure Initialize (this : in out IppResolution);
+   overriding procedure Finalize (this : in out IppResolution);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for IppResolution
+
+   function Constructor
+   (
+      width : WinRt.Int32;
+      height : WinRt.Int32;
+      unit : Windows.Devices.Printers.IppResolutionUnit
+   )
+   return IppResolution;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppResolution
+
+   function get_Width
+   (
+      this : in out IppResolution
+   )
+   return WinRt.Int32;
+
+   function get_Height
+   (
+      this : in out IppResolution
+   )
+   return WinRt.Int32;
+
+   function get_Unit
+   (
+      this : in out IppResolution
+   )
+   return WinRt.Windows.Devices.Printers.IppResolutionUnit;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppSetAttributesResult
+
+   overriding procedure Initialize (this : in out IppSetAttributesResult);
+   overriding procedure Finalize (this : in out IppSetAttributesResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppSetAttributesResult
+
+   function get_Succeeded
+   (
+      this : in out IppSetAttributesResult
+   )
+   return WinRt.Boolean;
+
+   function get_AttributeErrors
+   (
+      this : in out IppSetAttributesResult
+   )
+   return IMapView_HString_IIppAttributeError.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppTextWithLanguage
+
+   overriding procedure Initialize (this : in out IppTextWithLanguage);
+   overriding procedure Finalize (this : in out IppTextWithLanguage);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for IppTextWithLanguage
+
+   function Constructor
+   (
+      language : WinRt.WString;
+      text : WinRt.WString
+   )
+   return IppTextWithLanguage;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppTextWithLanguage
+
+   function get_Language
+   (
+      this : in out IppTextWithLanguage
+   )
+   return WinRt.WString;
+
+   function get_Value
+   (
+      this : in out IppTextWithLanguage
+   )
+   return WinRt.WString;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Print3DDevice

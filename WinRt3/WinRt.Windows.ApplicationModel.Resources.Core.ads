@@ -851,24 +851,12 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ResourceContext
 
-   function CreateMatchingContext
-   (
-      result : GenericObject
-   )
-   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext;
-
    procedure SetGlobalQualifierValue
    (
       key : WinRt.WString;
       value : WinRt.WString;
       persistence : Windows.ApplicationModel.Resources.Core.ResourceQualifierPersistence
    );
-
-   function GetForUIContext
-   (
-      context : Windows.UI.UIContext'Class
-   )
-   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext;
 
    function GetForCurrentView
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext;
@@ -887,6 +875,18 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    );
 
    function GetForViewIndependentUse
+   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext;
+
+   function GetForUIContext
+   (
+      context : Windows.UI.UIContext'Class
+   )
+   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext;
+
+   function CreateMatchingContext
+   (
+      result : GenericObject
+   )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext;
 
    -----------------------------------------------------------------------------

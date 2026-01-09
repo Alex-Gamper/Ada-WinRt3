@@ -3263,22 +3263,6 @@ package body WinRt.Windows.Devices.Usb is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for UsbSetupPacket
 
-   function Constructor return UsbSetupPacket is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbSetupPacket");
-      m_ComRetVal  : aliased Windows.Devices.Usb.IUsbSetupPacket;
-   begin
-      return RetVal : UsbSetupPacket do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IUsbSetupPacket := new Windows.Devices.Usb.IUsbSetupPacket;
-            Retval.m_IUsbSetupPacket.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       eightByteBuffer : Windows.Storage.Streams.IBuffer
@@ -3298,6 +3282,22 @@ package body WinRt.Windows.Devices.Usb is
             Retval.m_IUsbSetupPacket := new Windows.Devices.Usb.IUsbSetupPacket;
             Retval.m_IUsbSetupPacket.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return UsbSetupPacket is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbSetupPacket");
+      m_ComRetVal  : aliased Windows.Devices.Usb.IUsbSetupPacket;
+   begin
+      return RetVal : UsbSetupPacket do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IUsbSetupPacket := new Windows.Devices.Usb.IUsbSetupPacket;
+            Retval.m_IUsbSetupPacket.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

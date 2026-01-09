@@ -2654,8 +2654,6 @@ package WinRt.Windows.Devices.SmartCards is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SmartCardAppletIdGroup
 
-   function Constructor return SmartCardAppletIdGroup;
-
    function Constructor
    (
       displayName : WinRt.WString;
@@ -2664,6 +2662,8 @@ package WinRt.Windows.Devices.SmartCards is
       emulationType : Windows.Devices.SmartCards.SmartCardEmulationType
    )
    return SmartCardAppletIdGroup;
+
+   function Constructor return SmartCardAppletIdGroup;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for SmartCardAppletIdGroup
@@ -3016,11 +3016,11 @@ package WinRt.Windows.Devices.SmartCards is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SmartCardCryptogramGenerator
 
-   function IsSupported
-   return WinRt.Boolean;
-
    function GetSmartCardCryptogramGeneratorAsync
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGenerator;
+
+   function IsSupported
+   return WinRt.Boolean;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SmartCardCryptogramGenerator
@@ -3580,9 +3580,6 @@ package WinRt.Windows.Devices.SmartCards is
    function IsSupported_SmartCardEmulator
    return WinRt.Boolean;
 
-   function GetDefaultAsync
-   return WinRt.Windows.Devices.SmartCards.SmartCardEmulator;
-
    function GetAppletIdGroupRegistrationsAsync
    return WinRt.GenericObject;
 
@@ -3599,6 +3596,9 @@ package WinRt.Windows.Devices.SmartCards is
 
    function get_MaxAppletIdGroupRegistrations
    return WinRt.UInt16;
+
+   function GetDefaultAsync
+   return WinRt.Windows.Devices.SmartCards.SmartCardEmulator;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SmartCardEmulator

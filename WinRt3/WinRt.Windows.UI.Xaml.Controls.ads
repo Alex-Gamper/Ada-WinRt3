@@ -39273,75 +39273,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Control
 
-   function get_UseSystemFocusVisualsProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsTemplateFocusTargetProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetIsTemplateFocusTarget
-   (
-      element : Windows.UI.Xaml.FrameworkElement'Class
-   )
-   return WinRt.Boolean;
-
-   procedure SetIsTemplateFocusTarget
-   (
-      element : Windows.UI.Xaml.FrameworkElement'Class;
-      value : WinRt.Boolean
-   );
-
-   function get_BackgroundSizingProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CornerRadiusProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsFocusEngagementEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsFocusEngagedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RequiresPointerProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_XYFocusLeftProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_XYFocusRightProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_XYFocusUpProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_XYFocusDownProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ElementSoundModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_DefaultStyleResourceUriProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsTemplateKeyTipTargetProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetIsTemplateKeyTipTarget
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Boolean;
-
-   procedure SetIsTemplateKeyTipTarget
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.Boolean
-   );
-
-   function get_IsTextScaleFactorEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_FontSizeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -39400,6 +39331,75 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_FocusStateProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_DefaultStyleResourceUriProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsTemplateKeyTipTargetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetIsTemplateKeyTipTarget
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Boolean;
+
+   procedure SetIsTemplateKeyTipTarget
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Boolean
+   );
+
+   function get_BackgroundSizingProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CornerRadiusProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_UseSystemFocusVisualsProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsTemplateFocusTargetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetIsTemplateFocusTarget
+   (
+      element : Windows.UI.Xaml.FrameworkElement'Class
+   )
+   return WinRt.Boolean;
+
+   procedure SetIsTemplateFocusTarget
+   (
+      element : Windows.UI.Xaml.FrameworkElement'Class;
+      value : WinRt.Boolean
+   );
+
+   function get_IsTextScaleFactorEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsFocusEngagementEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsFocusEngagedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RequiresPointerProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_XYFocusLeftProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_XYFocusRightProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_XYFocusUpProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_XYFocusDownProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ElementSoundModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -40155,16 +40155,16 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AppBar
 
-   function get_LightDismissOverlayModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ClosedDisplayModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_IsOpenProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsStickyProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LightDismissOverlayModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ClosedDisplayModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -40356,9 +40356,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AppBarButton
 
-   function get_KeyboardAcceleratorTextOverrideProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_LabelPositionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -40366,6 +40363,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_DynamicOverflowOrderProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_KeyboardAcceleratorTextOverrideProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_LabelProperty
@@ -40614,6 +40614,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_IsCompactProperty_AppBarToggleButton
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_KeyboardAcceleratorTextOverrideProperty_AppBarToggleButton
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_LabelPositionProperty_AppBarToggleButton
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -40621,9 +40624,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_DynamicOverflowOrderProperty_AppBarToggleButton
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_KeyboardAcceleratorTextOverrideProperty_AppBarToggleButton
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -41035,7 +41035,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_DescriptionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_QueryIconProperty
+   function get_LightDismissOverlayModeProperty_AutoSuggestBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_MaxSuggestionListHeightProperty
@@ -41065,7 +41065,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_TextBoxStyleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_LightDismissOverlayModeProperty_AutoSuggestBox
+   function get_QueryIconProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -41696,9 +41696,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_DescriptionProperty_CalendarDatePicker
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_LightDismissOverlayModeProperty_CalendarDatePicker
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_DateProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -41745,6 +41742,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsGroupLabelVisibleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LightDismissOverlayModeProperty_CalendarDatePicker
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -43849,31 +43849,19 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ComboBox
 
-   function get_PlaceholderForegroundProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SelectionChangedTriggerProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_IsDropDownOpenProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_MaxDropDownHeightProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_HeaderProperty_ComboBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_HeaderTemplateProperty_ComboBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PlaceholderTextProperty_ComboBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_LightDismissOverlayModeProperty_ComboBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsTextSearchEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PlaceholderForegroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsEditableProperty
@@ -43886,6 +43874,18 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_DescriptionProperty_ComboBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionChangedTriggerProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HeaderProperty_ComboBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HeaderTemplateProperty_ComboBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PlaceholderTextProperty_ComboBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -44425,27 +44425,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ContentDialog
 
-   function get_CloseButtonTextProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CloseButtonCommandProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CloseButtonCommandParameterProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PrimaryButtonStyleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SecondaryButtonStyleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CloseButtonStyleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_DefaultButtonProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_TitleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -44477,6 +44456,27 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsSecondaryButtonEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CloseButtonTextProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CloseButtonCommandProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CloseButtonCommandParameterProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PrimaryButtonStyleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SecondaryButtonStyleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CloseButtonStyleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_DefaultButtonProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -44952,37 +44952,13 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ContentPresenter
 
-   function get_TextWrappingProperty
+   function get_OpticalMarginAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_MaxLinesProperty
+   function get_TextLineBoundsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_LineStackingStrategyProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_LineHeightProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_BorderBrushProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_BorderThicknessProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CornerRadiusProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PaddingProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_BackgroundProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_HorizontalContentAlignmentProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_VerticalContentAlignmentProperty_ContentPresenter
+   function get_BackgroundSizingProperty_ContentPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_ContentProperty_ContentPresenter
@@ -45018,16 +44994,40 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_ForegroundProperty_ContentPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_TextWrappingProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_MaxLinesProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LineStackingStrategyProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LineHeightProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_BorderBrushProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_BorderThicknessProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CornerRadiusProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PaddingProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_BackgroundProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HorizontalContentAlignmentProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_VerticalContentAlignmentProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_IsTextScaleFactorEnabledProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_BackgroundSizingProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_OpticalMarginAlignmentProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextLineBoundsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -45537,12 +45537,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DatePicker
 
-   function get_SelectedDateProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_LightDismissOverlayModeProperty_DatePicker
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_HeaderProperty_DatePicker
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -45580,6 +45574,12 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_OrientationProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectedDateProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LightDismissOverlayModeProperty_DatePicker
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -45805,6 +45805,15 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DatePickerFlyout
 
+   function get_DayFormatProperty_DatePickerFlyout
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_MonthFormatProperty_DatePickerFlyout
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_YearFormatProperty_DatePickerFlyout
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_CalendarIdentifierProperty_DatePickerFlyout
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -45824,15 +45833,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_MaxYearProperty_DatePickerFlyout
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_DayFormatProperty_DatePickerFlyout
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_MonthFormatProperty_DatePickerFlyout
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_YearFormatProperty_DatePickerFlyout
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -46444,6 +46444,12 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for FontIcon
 
+   function get_MirroredWhenRightToLeftProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsTextScaleFactorEnabledProperty_FontIcon
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_GlyphProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -46457,12 +46463,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_FontStyleProperty_FontIcon
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsTextScaleFactorEnabledProperty_FontIcon
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_MirroredWhenRightToLeftProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -46698,6 +46698,12 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Frame
 
+   function get_BackStackProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ForwardStackProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_CacheSizeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -46714,12 +46720,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_BackStackDepthProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_BackStackProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ForwardStackProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsNavigationStackEnabledProperty
@@ -46939,27 +46939,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Grid
 
-   function get_BackgroundSizingProperty_Grid
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RowSpacingProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ColumnSpacingProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_BorderBrushProperty_Grid
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_BorderThicknessProperty_Grid
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CornerRadiusProperty_Grid
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PaddingProperty_Grid
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_RowProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -47019,6 +46998,27 @@ package WinRt.Windows.UI.Xaml.Controls is
       element : Windows.UI.Xaml.FrameworkElement'Class;
       value : WinRt.Int32
    );
+
+   function get_BorderBrushProperty_Grid
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_BorderThicknessProperty_Grid
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CornerRadiusProperty_Grid
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PaddingProperty_Grid
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_BackgroundSizingProperty_Grid
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RowSpacingProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ColumnSpacingProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for Grid
@@ -47138,6 +47138,21 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ListViewBase
 
+   function get_SingleSelectionFollowsFocusProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ShowsScrollingPlaceholdersProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FooterProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FooterTemplateProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FooterTransitionsProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_SelectionModeProperty_ListViewBase
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -47180,25 +47195,10 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_HeaderTransitionsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_IsMultiSelectCheckBoxEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_ReorderModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_SingleSelectionFollowsFocusProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ShowsScrollingPlaceholdersProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FooterProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FooterTemplateProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FooterTransitionsProperty
+   function get_IsMultiSelectCheckBoxEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -48677,6 +48677,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for InkToolbar
 
+   function get_TargetInkPresenterProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_InitialControlsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -48693,9 +48696,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_TargetInkCanvasProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TargetInkPresenterProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsStencilButtonCheckedProperty
@@ -49925,15 +49925,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ItemsPresenter
 
-   function get_FooterProperty_ItemsPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FooterTemplateProperty_ItemsPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FooterTransitionsProperty_ItemsPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_HeaderProperty_ItemsPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -49944,6 +49935,15 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_PaddingProperty_ItemsPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FooterProperty_ItemsPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FooterTemplateProperty_ItemsPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FooterTransitionsProperty_ItemsPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -50102,9 +50102,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ItemsStackPanel
 
-   function get_AreStickyGroupHeadersEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_GroupPaddingProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -50115,6 +50112,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_CacheLengthProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AreStickyGroupHeadersEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -50236,6 +50236,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ItemsWrapGrid
 
+   function get_AreStickyGroupHeadersEnabledProperty_ItemsWrapGrid
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_GroupPaddingProperty_ItemsWrapGrid
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -50255,9 +50258,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_CacheLengthProperty_ItemsWrapGrid
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AreStickyGroupHeadersEnabledProperty_ItemsWrapGrid
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -50752,6 +50752,18 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MediaElement
 
+   function get_AreTransportControlsEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_StretchProperty_MediaElement
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsFullWindowProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PlayToPreferredSourceUriProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_PosterSourceProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -50849,18 +50861,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_ActualStereo3DVideoPackingModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AreTransportControlsEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_StretchProperty_MediaElement
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsFullWindowProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PlayToPreferredSourceUriProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -51675,6 +51675,21 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MediaTransportControls
 
+   function get_ShowAndHideAutomaticallyProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsRepeatEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsRepeatButtonVisibleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsCompactOverlayButtonVisibleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsCompactOverlayEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_IsFullWindowButtonVisibleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -51724,21 +51739,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsCompactProperty_MediaTransportControls
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ShowAndHideAutomaticallyProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsRepeatEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsRepeatButtonVisibleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsCompactOverlayButtonVisibleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsCompactOverlayEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsSkipForwardButtonVisibleProperty
@@ -52343,6 +52343,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_KeyboardAcceleratorTextOverrideProperty_MenuFlyoutItem
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_IconProperty_MenuFlyoutItem
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_TextProperty_MenuFlyoutItem
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -52350,9 +52353,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_CommandParameterProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IconProperty_MenuFlyoutItem
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -52513,10 +52513,10 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MenuFlyoutSubItem
 
-   function get_TextProperty_MenuFlyoutSubItem
+   function get_IconProperty_MenuFlyoutSubItem
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_IconProperty_MenuFlyoutSubItem
+   function get_TextProperty_MenuFlyoutSubItem
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -52571,6 +52571,15 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for NavigationView
 
+   function get_IsBackButtonVisibleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsBackEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PaneTitleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_PaneDisplayModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -52596,15 +52605,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_OverflowLabelModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsBackButtonVisibleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsBackEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PaneTitleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsPaneOpenProperty
@@ -53233,13 +53233,13 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for NavigationViewItem
 
+   function get_SelectsOnInvokedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_IconProperty_NavigationViewItem
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_CompactPaneLengthProperty_NavigationViewItem
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SelectsOnInvokedProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -53929,15 +53929,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_PreventKeyboardDisplayOnProgrammaticFocusProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_PasswordRevealModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextReadingOrderProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_InputScopeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_CanPasteClipboardContentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -53945,6 +53936,15 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_DescriptionProperty_PasswordBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PasswordRevealModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TextReadingOrderProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_InputScopeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_PasswordProperty
@@ -54568,6 +54568,18 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Pivot
 
+   function get_LeftHeaderProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LeftHeaderTemplateProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RightHeaderProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RightHeaderTemplateProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_TitleProperty_Pivot
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -54600,18 +54612,6 @@ package WinRt.Windows.UI.Xaml.Controls is
       element : Windows.UI.Xaml.FrameworkElement'Class;
       value : Windows.UI.Xaml.Controls.PivotSlideInAnimationGroup
    );
-
-   function get_LeftHeaderProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_LeftHeaderTemplateProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RightHeaderProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RightHeaderTemplateProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_HeaderFocusVisualPlacementProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
@@ -54969,12 +54969,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Slider
 
-   function get_HeaderProperty_Slider
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_HeaderTemplateProperty_Slider
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_IntermediateValueProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -55000,6 +54994,12 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_ThumbToolTipValueConverterProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HeaderProperty_Slider
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HeaderTemplateProperty_Slider
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -56218,28 +56218,28 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RichEditBox
 
-   function get_HorizontalTextAlignmentProperty
+   function get_SelectionHighlightColorWhenNotFocusedProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_CharacterCasingProperty
+   function get_MaxLengthProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_DisabledFormattingAcceleratorsProperty
+   function get_HeaderProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_ContentLinkForegroundColorProperty
+   function get_HeaderTemplateProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_ContentLinkBackgroundColorProperty
+   function get_PlaceholderTextProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_ContentLinkProvidersProperty
+   function get_SelectionHighlightColorProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_HandwritingViewProperty
+   function get_PreventKeyboardDisplayOnProgrammaticFocusProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_IsHandwritingViewEnabledProperty
+   function get_IsColorFontEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsReadOnlyProperty_RichEditBox
@@ -56263,6 +56263,30 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_InputScopeProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_ContentLinkForegroundColorProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ContentLinkBackgroundColorProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ContentLinkProvidersProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HandwritingViewProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsHandwritingViewEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HorizontalTextAlignmentProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CharacterCasingProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_DisabledFormattingAcceleratorsProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_SelectionFlyoutProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -56272,37 +56296,13 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_DescriptionProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_SelectionHighlightColorWhenNotFocusedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_MaxLengthProperty_RichEditBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ClipboardCopyFormatProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_DesiredCandidateWindowAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_TextReadingOrderProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_HeaderProperty_RichEditBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_HeaderTemplateProperty_RichEditBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PlaceholderTextProperty_RichEditBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SelectionHighlightColorProperty_RichEditBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PreventKeyboardDisplayOnProgrammaticFocusProperty_RichEditBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsColorFontEnabledProperty
+   function get_ClipboardCopyFormatProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -56912,37 +56912,16 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RichTextBlock
 
+   function get_SelectionFlyoutProperty_RichTextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_IsTextTrimmedProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_HorizontalTextAlignmentProperty_RichTextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_MaxLinesProperty_RichTextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextLineBoundsProperty_RichTextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SelectionHighlightColorProperty_RichTextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_OpticalMarginAlignmentProperty_RichTextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsColorFontEnabledProperty_RichTextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextReadingOrderProperty_RichTextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextDecorationsProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_IsTextScaleFactorEnabledProperty_RichTextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SelectionFlyoutProperty_RichTextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_FontSizeProperty_RichTextBlock
@@ -56997,6 +56976,27 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_TextIndentProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_MaxLinesProperty_RichTextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TextLineBoundsProperty_RichTextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionHighlightColorProperty_RichTextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_OpticalMarginAlignmentProperty_RichTextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsColorFontEnabledProperty_RichTextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TextReadingOrderProperty_RichTextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TextDecorationsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -57458,6 +57458,12 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RichTextBlockOverflow
 
+   function get_MaxLinesProperty_RichTextBlockOverflow
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsTextTrimmedProperty_RichTextBlockOverflow
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_OverflowContentTargetProperty_RichTextBlockOverflow
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -57465,12 +57471,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_HasOverflowContentProperty_RichTextBlockOverflow
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsTextTrimmedProperty_RichTextBlockOverflow
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_MaxLinesProperty_RichTextBlockOverflow
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -57974,6 +57974,15 @@ package WinRt.Windows.UI.Xaml.Controls is
       canContentRenderOutsideBounds : WinRt.Boolean
    );
 
+   function get_TopLeftHeaderProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LeftHeaderProperty_ScrollViewer
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TopHeaderProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_HorizontalSnapPointsAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -58240,15 +58249,6 @@ package WinRt.Windows.UI.Xaml.Controls is
       element : Windows.UI.Xaml.DependencyObject'Class;
       bringIntoViewOnFocusChange : WinRt.Boolean
    );
-
-   function get_TopLeftHeaderProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_LeftHeaderProperty_ScrollViewer
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TopHeaderProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ScrollViewer
@@ -59937,6 +59937,15 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_BackgroundSizingProperty_StackPanel
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_SpacingProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AreScrollSnapPointsRegularProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_OrientationProperty_StackPanel
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_BorderBrushProperty_StackPanel
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -59947,15 +59956,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_PaddingProperty_StackPanel
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SpacingProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AreScrollSnapPointsRegularProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_OrientationProperty_StackPanel
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -60721,9 +60721,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_HorizontalTextAlignmentProperty_TextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_TextDecorationsProperty_TextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_IsTextScaleFactorEnabledProperty_TextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -60773,6 +60770,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_SelectedTextProperty_TextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TextDecorationsProperty_TextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -61220,13 +61220,22 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TextBox
 
-   function get_DesiredCandidateWindowAlignmentProperty_TextBox
+   function get_HeaderProperty_TextBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_TextReadingOrderProperty_TextBox
+   function get_HeaderTemplateProperty_TextBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_SelectionHighlightColorWhenNotFocusedProperty_TextBox
+   function get_PlaceholderTextProperty_TextBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionHighlightColorProperty_TextBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PreventKeyboardDisplayOnProgrammaticFocusProperty_TextBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsColorFontEnabledProperty_TextBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_CanPasteClipboardContentProperty_TextBox
@@ -61280,6 +61289,12 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_IsHandwritingViewEnabledProperty_TextBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_DesiredCandidateWindowAlignmentProperty_TextBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TextReadingOrderProperty_TextBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_HorizontalTextAlignmentProperty_TextBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -61289,22 +61304,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_PlaceholderForegroundProperty_TextBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_HeaderProperty_TextBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_HeaderTemplateProperty_TextBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PlaceholderTextProperty_TextBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SelectionHighlightColorProperty_TextBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PreventKeyboardDisplayOnProgrammaticFocusProperty_TextBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsColorFontEnabledProperty_TextBox
+   function get_SelectionHighlightColorWhenNotFocusedProperty_TextBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -62169,6 +62169,12 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TimePicker
 
+   function get_LightDismissOverlayModeProperty_TimePicker
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectedTimeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_HeaderProperty_TimePicker
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -62182,12 +62188,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_TimeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SelectedTimeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_LightDismissOverlayModeProperty_TimePicker
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -62777,6 +62777,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ToolTip
 
+   function get_PlacementRectProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_HorizontalOffsetProperty_ToolTip
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -62790,9 +62793,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_VerticalOffsetProperty_ToolTip
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PlacementRectProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------

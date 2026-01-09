@@ -1805,6 +1805,26 @@ package WinRt.Windows.Phone.Notification.Management is
    -- Static RuntimeClass
    package AccessoryManager is
 
+      procedure SnoozeAlarmByInstanceId
+      (
+         instanceId : WinRt.WString
+      );
+
+      procedure DismissAlarmByInstanceId
+      (
+         instanceId : WinRt.WString
+      );
+
+      procedure SnoozeReminderByInstanceId
+      (
+         instanceId : WinRt.WString
+      );
+
+      procedure DismissReminderByInstanceId
+      (
+         instanceId : WinRt.WString
+      );
+
       procedure RingDevice;
 
       function get_SpeedDialList
@@ -2077,26 +2097,6 @@ package WinRt.Windows.Phone.Notification.Management is
          appId : WinRt.WString
       )
       return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
-
-      procedure SnoozeAlarmByInstanceId
-      (
-         instanceId : WinRt.WString
-      );
-
-      procedure DismissAlarmByInstanceId
-      (
-         instanceId : WinRt.WString
-      );
-
-      procedure SnoozeReminderByInstanceId
-      (
-         instanceId : WinRt.WString
-      );
-
-      procedure DismissReminderByInstanceId
-      (
-         instanceId : WinRt.WString
-      );
 
    end AccessoryManager;
 

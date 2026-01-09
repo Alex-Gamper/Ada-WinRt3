@@ -27,12 +27,14 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+limited with WinRt.Windows.ApplicationModel.Activation;
 with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Networking.Sockets;
 limited with WinRt.Windows.Security.Credentials;
 limited with WinRt.Windows.Security.Cryptography.Certificates;
 limited with WinRt.Windows.Storage.Streams;
+limited with WinRt.Windows.System;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Networking.Vpn is
@@ -59,6 +61,12 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnChannel4_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnChannel4 is access all IVpnChannel4_Interface'Class;
+
+   type IVpnChannel5_Interface is interface and WinRt.IInspectable_Interface;
+   type IVpnChannel5 is access all IVpnChannel5_Interface'Class;
+
+   type IVpnChannel6_Interface is interface and WinRt.IInspectable_Interface;
+   type IVpnChannel6 is access all IVpnChannel6_Interface'Class;
 
    type IVpnChannelActivityEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnChannelActivityEventArgs is access all IVpnChannelActivityEventArgs_Interface'Class;
@@ -137,6 +145,14 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnDomainNameInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnDomainNameInfoFactory is access all IVpnDomainNameInfoFactory_Interface'Class;
+
+   type IVpnForegroundActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IVpnForegroundActivatedEventArgs is access all IVpnForegroundActivatedEventArgs_Interface'Class;
+   type IVpnForegroundActivatedEventArgs_Ptr is access all IVpnForegroundActivatedEventArgs;
+
+   type IVpnForegroundActivationOperation_Interface is interface and WinRt.IInspectable_Interface;
+   type IVpnForegroundActivationOperation is access all IVpnForegroundActivationOperation_Interface'Class;
+   type IVpnForegroundActivationOperation_Ptr is access all IVpnForegroundActivationOperation;
 
    type IVpnInterfaceId_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnInterfaceId is access all IVpnInterfaceId_Interface'Class;
@@ -335,6 +351,18 @@ package WinRt.Windows.Networking.Vpn is
          m_IVpnDomainNameInfo : access Windows.Networking.Vpn.IVpnDomainNameInfo;
       end record;
    type VpnDomainNameInfo_Ptr is access all VpnDomainNameInfo;
+
+   type VpnForegroundActivatedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IVpnForegroundActivatedEventArgs : access Windows.Networking.Vpn.IVpnForegroundActivatedEventArgs;
+      end record;
+   type VpnForegroundActivatedEventArgs_Ptr is access all VpnForegroundActivatedEventArgs;
+
+   type VpnForegroundActivationOperation is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IVpnForegroundActivationOperation : access Windows.Networking.Vpn.IVpnForegroundActivationOperation;
+      end record;
+   type VpnForegroundActivationOperation_Ptr is access all VpnForegroundActivationOperation;
 
    type VpnInterfaceId is new Ada.Finalization.Limited_Controlled with
       record
@@ -1039,6 +1067,51 @@ package WinRt.Windows.Networking.Vpn is
       IID_IVpnChannel4 : aliased WinRt.IID := (3609620190, 10551, 16797, (149, 112, 72, 106, 235, 184, 24, 3 ));
 
    -----------------------------------------------------------------------------
+   -- type IVpnChannel5 is interface and WinRt.IInspectable;
+
+      function AppendVpnReceivePacketBuffer
+      (
+         this : access IVpnChannel5_Interface;
+         decapsulatedPacketBuffer : Windows.Networking.Vpn.IVpnPacketBuffer
+      )
+      return WinRt.Hresult is abstract;
+
+      function AppendVpnSendPacketBuffer
+      (
+         this : access IVpnChannel5_Interface;
+         encapsulatedPacketBuffer : Windows.Networking.Vpn.IVpnPacketBuffer
+      )
+      return WinRt.Hresult is abstract;
+
+      function FlushVpnReceivePacketBuffers
+      (
+         this : access IVpnChannel5_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function FlushVpnSendPacketBuffers
+      (
+         this : access IVpnChannel5_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVpnChannel5 : aliased WinRt.IID := (3732539794, 33668, 20412, (136, 44, 31, 210, 49, 36, 205, 59 ));
+
+   -----------------------------------------------------------------------------
+   -- type IVpnChannel6 is interface and WinRt.IInspectable;
+
+      function ActivateForeground
+      (
+         this : access IVpnChannel6_Interface;
+         packageRelativeAppId : WinRt.HString;
+         sharedContext : Windows.Foundation.Collections.IPropertySet;
+         RetVal : access Windows.Foundation.Collections.IPropertySet
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVpnChannel6 : aliased WinRt.IID := (1434728086, 48483, 18885, (171, 202, 93, 167, 120, 133, 85, 26 ));
+
+   -----------------------------------------------------------------------------
    -- type IVpnChannelActivityEventArgs is interface and WinRt.IInspectable;
 
       function get_Type
@@ -1560,6 +1633,44 @@ package WinRt.Windows.Networking.Vpn is
       return WinRt.Hresult is abstract;
 
       IID_IVpnDomainNameInfoFactory : aliased WinRt.IID := (621263733, 655, 18056, (141, 58, 196, 83, 29, 243, 125, 168 ));
+
+   -----------------------------------------------------------------------------
+   -- type IVpnForegroundActivatedEventArgs is interface and WinRt.IInspectable;
+
+      function get_ProfileName
+      (
+         this : access IVpnForegroundActivatedEventArgs_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SharedContext
+      (
+         this : access IVpnForegroundActivatedEventArgs_Interface;
+         RetVal : access Windows.Foundation.Collections.IPropertySet
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ActivationOperation
+      (
+         this : access IVpnForegroundActivatedEventArgs_Interface;
+         RetVal : access Windows.Networking.Vpn.IVpnForegroundActivationOperation
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVpnForegroundActivatedEventArgs : aliased WinRt.IID := (2243192240, 51931, 19824, (172, 146, 84, 58, 36, 220, 158, 188 ));
+
+   -----------------------------------------------------------------------------
+   -- type IVpnForegroundActivationOperation is interface and WinRt.IInspectable;
+
+      function Complete
+      (
+         this : access IVpnForegroundActivationOperation_Interface;
+         result : Windows.Foundation.Collections.IPropertySet
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVpnForegroundActivationOperation : aliased WinRt.IID := (2650869079, 61818, 19413, (155, 109, 249, 132, 241, 41, 125, 60 ));
 
    -----------------------------------------------------------------------------
    -- type IVpnInterfaceId is interface and WinRt.IInspectable;
@@ -2859,6 +2970,36 @@ package WinRt.Windows.Networking.Vpn is
    )
    return WinRt.IInspectable;
 
+   procedure AppendVpnReceivePacketBuffer
+   (
+      this : in out VpnChannel;
+      decapsulatedPacketBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class
+   );
+
+   procedure AppendVpnSendPacketBuffer
+   (
+      this : in out VpnChannel;
+      encapsulatedPacketBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class
+   );
+
+   procedure FlushVpnReceivePacketBuffers
+   (
+      this : in out VpnChannel
+   );
+
+   procedure FlushVpnSendPacketBuffers
+   (
+      this : in out VpnChannel
+   );
+
+   function ActivateForeground
+   (
+      this : in out VpnChannel;
+      packageRelativeAppId : WinRt.WString;
+      sharedContext : Windows.Foundation.Collections.ValueSet'Class
+   )
+   return WinRt.Windows.Foundation.Collections.ValueSet'Class;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for VpnChannelActivityEventArgs
 
@@ -3649,6 +3790,72 @@ package WinRt.Windows.Networking.Vpn is
       this : in out VpnDomainNameInfo
    )
    return IVector_IUriRuntimeClass.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for VpnForegroundActivatedEventArgs
+
+   overriding procedure Initialize (this : in out VpnForegroundActivatedEventArgs);
+   overriding procedure Finalize (this : in out VpnForegroundActivatedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for VpnForegroundActivatedEventArgs
+
+   function get_ProfileName
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.WString;
+
+   function get_SharedContext
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.Windows.Foundation.Collections.ValueSet'Class;
+
+   function get_ActivationOperation
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.Windows.Networking.Vpn.VpnForegroundActivationOperation'Class;
+
+   function get_Kind
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.ActivationKind;
+
+   function get_PreviousExecutionState
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
+
+   function get_SplashScreen
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class;
+
+   function get_User
+   (
+      this : in out VpnForegroundActivatedEventArgs
+   )
+   return WinRt.Windows.System.User'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for VpnForegroundActivationOperation
+
+   overriding procedure Initialize (this : in out VpnForegroundActivationOperation);
+   overriding procedure Finalize (this : in out VpnForegroundActivationOperation);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for VpnForegroundActivationOperation
+
+   procedure Complete
+   (
+      this : in out VpnForegroundActivationOperation;
+      result : Windows.Foundation.Collections.ValueSet'Class
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for VpnInterfaceId

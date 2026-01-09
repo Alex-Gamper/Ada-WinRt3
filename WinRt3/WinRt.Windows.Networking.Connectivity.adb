@@ -1307,6 +1307,28 @@ package body WinRt.Windows.Networking.Connectivity is
       return m_RetVal;
    end;
 
+   function IsDomainAuthenticatedBy
+   (
+      this : in out ConnectionProfile;
+      kind : Windows.Networking.Connectivity.DomainAuthenticationKind
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile6 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfile_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfile6, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfile6'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IConnectionProfile.all);
+      Hr := m_Interface.IsDomainAuthenticatedBy (kind, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ConnectionProfileFilter
 

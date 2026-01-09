@@ -44,6 +44,9 @@ package WinRt.Windows.Management.Deployment is
    type IAddPackageOptions is access all IAddPackageOptions_Interface'Class;
    type IAddPackageOptions_Ptr is access all IAddPackageOptions;
 
+   type IAddPackageOptions2_Interface is interface and WinRt.IInspectable_Interface;
+   type IAddPackageOptions2 is access all IAddPackageOptions2_Interface'Class;
+
    type IDeploymentResult_Interface is interface and WinRt.IInspectable_Interface;
    type IDeploymentResult is access all IDeploymentResult_Interface'Class;
    type IDeploymentResult_Ptr is access all IDeploymentResult;
@@ -98,9 +101,15 @@ package WinRt.Windows.Management.Deployment is
    type IRegisterPackageOptions is access all IRegisterPackageOptions_Interface'Class;
    type IRegisterPackageOptions_Ptr is access all IRegisterPackageOptions;
 
+   type IRegisterPackageOptions2_Interface is interface and WinRt.IInspectable_Interface;
+   type IRegisterPackageOptions2 is access all IRegisterPackageOptions2_Interface'Class;
+
    type IStagePackageOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IStagePackageOptions is access all IStagePackageOptions_Interface'Class;
    type IStagePackageOptions_Ptr is access all IStagePackageOptions;
+
+   type IStagePackageOptions2_Interface is interface and WinRt.IInspectable_Interface;
+   type IStagePackageOptions2 is access all IStagePackageOptions2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -334,6 +343,10 @@ package WinRt.Windows.Management.Deployment is
    IID_IVector_HString : aliased WinRt.IID := (452610822, 63973, 23541, (145, 81, 174, 128, 179, 64, 102, 12 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
+   package IMap_IUriRuntimeClass_HString is new WinRt.Windows.Foundation.Collections.IMap (WinRt.Windows.Foundation.IUriRuntimeClass, WinRt.HString);
+   IID_IMap_IUriRuntimeClass_HString : aliased WinRt.IID := (2659774265, 41892, 24450, (152, 44, 10, 95, 80, 71, 199, 68 ));
+   function QInterface_IMap_IUriRuntimeClass_HString is new Generic_QueryInterface (GenericObject_Interface, IMap_IUriRuntimeClass_HString.Kind, IID_IMap_IUriRuntimeClass_HString'Access);
+
    package IIterable_IPackageUserInformation is new WinRt.Windows.Foundation.Collections.IIterable (IPackageUserInformation);
    IID_IIterable_IPackageUserInformation : aliased WinRt.IID := (1041388540, 30476, 23957, (175, 5, 88, 173, 164, 47, 24, 43 ));
    function QInterface_IIterable_IPackageUserInformation is new Generic_QueryInterface (GenericObject_Interface, IIterable_IPackageUserInformation.Kind, IID_IIterable_IPackageUserInformation'Access);
@@ -560,6 +573,32 @@ package WinRt.Windows.Management.Deployment is
       return WinRt.Hresult is abstract;
 
       IID_IAddPackageOptions : aliased WinRt.IID := (97443864, 63119, 16939, (149, 164, 102, 103, 158, 199, 127, 192 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAddPackageOptions2 is interface and WinRt.IInspectable;
+
+      function get_ExpectedDigests
+      (
+         this : access IAddPackageOptions2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_LimitToExistingPackages
+      (
+         this : access IAddPackageOptions2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_LimitToExistingPackages
+      (
+         this : access IAddPackageOptions2_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAddPackageOptions2 : aliased WinRt.IID := (3998308392, 48947, 16631, (132, 175, 27, 111, 173, 41, 25, 215 ));
 
    -----------------------------------------------------------------------------
    -- type IDeploymentResult is interface and WinRt.IInspectable;
@@ -1612,6 +1651,18 @@ package WinRt.Windows.Management.Deployment is
       IID_IRegisterPackageOptions : aliased WinRt.IID := (1735463591, 20692, 18796, (132, 21, 6, 2, 180, 198, 211, 191 ));
 
    -----------------------------------------------------------------------------
+   -- type IRegisterPackageOptions2 is interface and WinRt.IInspectable;
+
+      function get_ExpectedDigests
+      (
+         this : access IRegisterPackageOptions2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IRegisterPackageOptions2 : aliased WinRt.IID := (1039832899, 34559, 18961, (188, 147, 67, 78, 182, 190, 58, 11 ));
+
+   -----------------------------------------------------------------------------
    -- type IStagePackageOptions is interface and WinRt.IInspectable;
 
       function get_DependencyPackageUris
@@ -1769,6 +1820,18 @@ package WinRt.Windows.Management.Deployment is
       return WinRt.Hresult is abstract;
 
       IID_IStagePackageOptions : aliased WinRt.IID := (185666716, 47453, 19542, (189, 54, 109, 101, 104, 0, 208, 107 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStagePackageOptions2 is interface and WinRt.IInspectable;
+
+      function get_ExpectedDigests
+      (
+         this : access IStagePackageOptions2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStagePackageOptions2 : aliased WinRt.IID := (2567720140, 25126, 16786, (186, 146, 121, 135, 95, 206, 13, 156 ));
 
    -----------------------------------------------------------------------------
    -- Class method declarations
@@ -1963,6 +2026,24 @@ package WinRt.Windows.Management.Deployment is
    return WinRt.Boolean;
 
    procedure put_DeferRegistrationWhenPackagesAreInUse
+   (
+      this : in out AddPackageOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_ExpectedDigests
+   (
+      this : in out AddPackageOptions
+   )
+   return IMap_IUriRuntimeClass_HString.Kind;
+
+   function get_LimitToExistingPackages
+   (
+      this : in out AddPackageOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_LimitToExistingPackages
    (
       this : in out AddPackageOptions;
       value : WinRt.Boolean
@@ -2886,6 +2967,12 @@ package WinRt.Windows.Management.Deployment is
       value : WinRt.Boolean
    );
 
+   function get_ExpectedDigests
+   (
+      this : in out RegisterPackageOptions
+   )
+   return IMap_IUriRuntimeClass_HString.Kind;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StagePackageOptions
 
@@ -3031,5 +3118,11 @@ package WinRt.Windows.Management.Deployment is
       this : in out StagePackageOptions;
       value : WinRt.Boolean
    );
+
+   function get_ExpectedDigests
+   (
+      this : in out StagePackageOptions
+   )
+   return IMap_IUriRuntimeClass_HString.Kind;
 
 end WinRt.Windows.Management.Deployment;

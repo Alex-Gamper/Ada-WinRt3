@@ -590,6 +590,70 @@ package body WinRt.Windows.Management.Deployment is
       end if;
    end;
 
+   function get_ExpectedDigests
+   (
+      this : in out AddPackageOptions
+   )
+   return IMap_IUriRuntimeClass_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IAddPackageOptions2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IMap_IUriRuntimeClass_HString.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IAddPackageOptions_Interface, WinRt.Windows.Management.Deployment.IAddPackageOptions2, WinRt.Windows.Management.Deployment.IID_IAddPackageOptions2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAddPackageOptions.all);
+      Hr := m_Interface.get_ExpectedDigests (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IMap_IUriRuntimeClass_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_LimitToExistingPackages
+   (
+      this : in out AddPackageOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IAddPackageOptions2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IAddPackageOptions_Interface, WinRt.Windows.Management.Deployment.IAddPackageOptions2, WinRt.Windows.Management.Deployment.IID_IAddPackageOptions2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAddPackageOptions.all);
+      Hr := m_Interface.get_LimitToExistingPackages (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_LimitToExistingPackages
+   (
+      this : in out AddPackageOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IAddPackageOptions2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IAddPackageOptions_Interface, WinRt.Windows.Management.Deployment.IAddPackageOptions2, WinRt.Windows.Management.Deployment.IID_IAddPackageOptions2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAddPackageOptions.all);
+      Hr := m_Interface.put_LimitToExistingPackages (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DeploymentResult
 
@@ -5024,6 +5088,30 @@ package body WinRt.Windows.Management.Deployment is
       end if;
    end;
 
+   function get_ExpectedDigests
+   (
+      this : in out RegisterPackageOptions
+   )
+   return IMap_IUriRuntimeClass_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IRegisterPackageOptions2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IMap_IUriRuntimeClass_HString.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IRegisterPackageOptions_Interface, WinRt.Windows.Management.Deployment.IRegisterPackageOptions2, WinRt.Windows.Management.Deployment.IID_IRegisterPackageOptions2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IRegisterPackageOptions.all);
+      Hr := m_Interface.get_ExpectedDigests (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IMap_IUriRuntimeClass_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StagePackageOptions
 
@@ -5438,6 +5526,30 @@ package body WinRt.Windows.Management.Deployment is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   function get_ExpectedDigests
+   (
+      this : in out StagePackageOptions
+   )
+   return IMap_IUriRuntimeClass_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IStagePackageOptions2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IMap_IUriRuntimeClass_HString.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IStagePackageOptions_Interface, WinRt.Windows.Management.Deployment.IStagePackageOptions2, WinRt.Windows.Management.Deployment.IID_IStagePackageOptions2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IStagePackageOptions.all);
+      Hr := m_Interface.get_ExpectedDigests (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IMap_IUriRuntimeClass_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
    end;
 
 end WinRt.Windows.Management.Deployment;
