@@ -40,18 +40,23 @@ package WinRt.Windows.Gaming.Input.Custom is
 
    type ICustomGameControllerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICustomGameControllerFactory is access all ICustomGameControllerFactory_Interface'Class;
+   type ICustomGameControllerFactory_Ptr is access all ICustomGameControllerFactory;
 
    type IGameControllerFactoryManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGameControllerFactoryManagerStatics is access all IGameControllerFactoryManagerStatics_Interface'Class;
+   type IGameControllerFactoryManagerStatics_Ptr is access all IGameControllerFactoryManagerStatics;
 
    type IGameControllerFactoryManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IGameControllerFactoryManagerStatics2 is access all IGameControllerFactoryManagerStatics2_Interface'Class;
+   type IGameControllerFactoryManagerStatics2_Ptr is access all IGameControllerFactoryManagerStatics2;
 
    type IGameControllerInputSink_Interface is interface and WinRt.IInspectable_Interface;
    type IGameControllerInputSink is access all IGameControllerInputSink_Interface'Class;
+   type IGameControllerInputSink_Ptr is access all IGameControllerInputSink;
 
    type IGameControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IGameControllerProvider is access all IGameControllerProvider_Interface'Class;
+   type IGameControllerProvider_Ptr is access all IGameControllerProvider;
 
    type IGipFirmwareUpdateResult_Interface is interface and WinRt.IInspectable_Interface;
    type IGipFirmwareUpdateResult is access all IGipFirmwareUpdateResult_Interface'Class;
@@ -59,6 +64,7 @@ package WinRt.Windows.Gaming.Input.Custom is
 
    type IGipGameControllerInputSink_Interface is interface and WinRt.IInspectable_Interface;
    type IGipGameControllerInputSink is access all IGipGameControllerInputSink_Interface'Class;
+   type IGipGameControllerInputSink_Ptr is access all IGipGameControllerInputSink;
 
    type IGipGameControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IGipGameControllerProvider is access all IGipGameControllerProvider_Interface'Class;
@@ -66,6 +72,7 @@ package WinRt.Windows.Gaming.Input.Custom is
 
    type IHidGameControllerInputSink_Interface is interface and WinRt.IInspectable_Interface;
    type IHidGameControllerInputSink is access all IHidGameControllerInputSink_Interface'Class;
+   type IHidGameControllerInputSink_Ptr is access all IHidGameControllerInputSink;
 
    type IHidGameControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IHidGameControllerProvider is access all IHidGameControllerProvider_Interface'Class;
@@ -73,6 +80,7 @@ package WinRt.Windows.Gaming.Input.Custom is
 
    type IXusbGameControllerInputSink_Interface is interface and WinRt.IInspectable_Interface;
    type IXusbGameControllerInputSink is access all IXusbGameControllerInputSink_Interface'Class;
+   type IXusbGameControllerInputSink_Ptr is access all IXusbGameControllerInputSink;
 
    type IXusbGameControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IXusbGameControllerProvider is access all IXusbGameControllerProvider_Interface'Class;
@@ -509,6 +517,13 @@ package WinRt.Windows.Gaming.Input.Custom is
    -- Static RuntimeClass
    package GameControllerFactoryManager is
 
+      function TryGetFactoryControllerFromGameController
+      (
+         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         gameController : Windows.Gaming.Input.IGameController
+      )
+      return WinRt.Windows.Gaming.Input.IGameController;
+
       procedure RegisterCustomFactoryForGipInterface
       (
          factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
@@ -528,13 +543,6 @@ package WinRt.Windows.Gaming.Input.Custom is
          xusbType : Windows.Gaming.Input.Custom.XusbDeviceType;
          xusbSubtype : Windows.Gaming.Input.Custom.XusbDeviceSubtype
       );
-
-      function TryGetFactoryControllerFromGameController
-      (
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
-         gameController : Windows.Gaming.Input.IGameController
-      )
-      return WinRt.Windows.Gaming.Input.IGameController;
 
    end GameControllerFactoryManager;
 

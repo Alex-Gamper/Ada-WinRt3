@@ -47,6 +47,7 @@ package WinRt.Windows.Devices.Lights.Effects is
 
    type ILampArrayBitmapEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArrayBitmapEffectFactory is access all ILampArrayBitmapEffectFactory_Interface'Class;
+   type ILampArrayBitmapEffectFactory_Ptr is access all ILampArrayBitmapEffectFactory;
 
    type ILampArrayBitmapRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArrayBitmapRequestedEventArgs is access all ILampArrayBitmapRequestedEventArgs_Interface'Class;
@@ -58,6 +59,7 @@ package WinRt.Windows.Devices.Lights.Effects is
 
    type ILampArrayBlinkEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArrayBlinkEffectFactory is access all ILampArrayBlinkEffectFactory_Interface'Class;
+   type ILampArrayBlinkEffectFactory_Ptr is access all ILampArrayBlinkEffectFactory;
 
    type ILampArrayColorRampEffect_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArrayColorRampEffect is access all ILampArrayColorRampEffect_Interface'Class;
@@ -65,6 +67,7 @@ package WinRt.Windows.Devices.Lights.Effects is
 
    type ILampArrayColorRampEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArrayColorRampEffectFactory is access all ILampArrayColorRampEffectFactory_Interface'Class;
+   type ILampArrayColorRampEffectFactory_Ptr is access all ILampArrayColorRampEffectFactory;
 
    type ILampArrayCustomEffect_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArrayCustomEffect is access all ILampArrayCustomEffect_Interface'Class;
@@ -72,9 +75,11 @@ package WinRt.Windows.Devices.Lights.Effects is
 
    type ILampArrayCustomEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArrayCustomEffectFactory is access all ILampArrayCustomEffectFactory_Interface'Class;
+   type ILampArrayCustomEffectFactory_Ptr is access all ILampArrayCustomEffectFactory;
 
    type ILampArrayEffect_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArrayEffect is access all ILampArrayEffect_Interface'Class;
+   type ILampArrayEffect_Ptr is access all ILampArrayEffect;
    type ILampArrayEffect_Array is array (Natural range <>) of ILampArrayEffect;
 
    type ILampArrayEffectPlaylist_Interface is interface and WinRt.IInspectable_Interface;
@@ -83,6 +88,7 @@ package WinRt.Windows.Devices.Lights.Effects is
 
    type ILampArrayEffectPlaylistStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArrayEffectPlaylistStatics is access all ILampArrayEffectPlaylistStatics_Interface'Class;
+   type ILampArrayEffectPlaylistStatics_Ptr is access all ILampArrayEffectPlaylistStatics;
 
    type ILampArraySolidEffect_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArraySolidEffect is access all ILampArraySolidEffect_Interface'Class;
@@ -90,6 +96,7 @@ package WinRt.Windows.Devices.Lights.Effects is
 
    type ILampArraySolidEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArraySolidEffectFactory is access all ILampArraySolidEffectFactory_Interface'Class;
+   type ILampArraySolidEffectFactory_Ptr is access all ILampArraySolidEffectFactory;
 
    type ILampArrayUpdateRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArrayUpdateRequestedEventArgs is access all ILampArrayUpdateRequestedEventArgs_Interface'Class;

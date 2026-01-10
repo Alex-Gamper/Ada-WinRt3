@@ -53,9 +53,11 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
 
    type IResourceIndexerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceIndexerFactory is access all IResourceIndexerFactory_Interface'Class;
+   type IResourceIndexerFactory_Ptr is access all IResourceIndexerFactory;
 
    type IResourceIndexerFactory2_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceIndexerFactory2 is access all IResourceIndexerFactory2_Interface'Class;
+   type IResourceIndexerFactory2_Ptr is access all IResourceIndexerFactory2;
 
    -----------------------------------------------------------------------------
    -- Class declarations

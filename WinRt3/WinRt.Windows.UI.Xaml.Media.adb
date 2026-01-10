@@ -2914,6 +2914,51 @@ package body WinRt.Windows.UI.Xaml.Media is
    -----------------------------------------------------------------------------
    -- Static Interfaces for CompositionTarget
 
+   function add_Rendered
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositionTarget");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositionTargetStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_ICompositionTargetStatics3'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.add_Rendered (handler, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   procedure remove_Rendered
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositionTarget");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositionTargetStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_ICompositionTargetStatics3'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.remove_Rendered (token);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
    function add_Rendering
    (
       handler : GenericObject
@@ -2996,51 +3041,6 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr := RoGetActivationFactory (m_hString, IID_ICompositionTargetStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_SurfaceContentsLost (token);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
-   function add_Rendered
-   (
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositionTarget");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositionTargetStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_ICompositionTargetStatics3'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.add_Rendered (handler, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   procedure remove_Rendered
-   (
-      token : Windows.Foundation.EventRegistrationToken
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositionTarget");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositionTargetStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_ICompositionTargetStatics3'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.remove_Rendered (token);
          temp := m_Factory.Release;
          if Hr /= S_OK then
             raise Program_Error;

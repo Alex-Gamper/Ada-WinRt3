@@ -59,6 +59,7 @@ package WinRt.Windows.Media.Protection is
 
    type IComponentRenewalStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IComponentRenewalStatics is access all IComponentRenewalStatics_Interface'Class;
+   type IComponentRenewalStatics_Ptr is access all IComponentRenewalStatics;
 
    type IHdcpSession_Interface is interface and WinRt.IInspectable_Interface;
    type IHdcpSession is access all IHdcpSession_Interface'Class;
@@ -74,6 +75,7 @@ package WinRt.Windows.Media.Protection is
 
    type IMediaProtectionPMPServerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaProtectionPMPServerFactory is access all IMediaProtectionPMPServerFactory_Interface'Class;
+   type IMediaProtectionPMPServerFactory_Ptr is access all IMediaProtectionPMPServerFactory;
 
    type IMediaProtectionServiceCompletion_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaProtectionServiceCompletion is access all IMediaProtectionServiceCompletion_Interface'Class;
@@ -81,6 +83,7 @@ package WinRt.Windows.Media.Protection is
 
    type IMediaProtectionServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaProtectionServiceRequest is access all IMediaProtectionServiceRequest_Interface'Class;
+   type IMediaProtectionServiceRequest_Ptr is access all IMediaProtectionServiceRequest;
 
    type IProtectionCapabilities_Interface is interface and WinRt.IInspectable_Interface;
    type IProtectionCapabilities is access all IProtectionCapabilities_Interface'Class;
@@ -100,6 +103,7 @@ package WinRt.Windows.Media.Protection is
 
    type IServiceRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IServiceRequestedEventArgs2 is access all IServiceRequestedEventArgs2_Interface'Class;
+   type IServiceRequestedEventArgs2_Ptr is access all IServiceRequestedEventArgs2;
 
    -----------------------------------------------------------------------------
    -- Class declarations

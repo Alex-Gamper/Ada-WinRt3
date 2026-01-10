@@ -1290,6 +1290,51 @@ package body WinRt.Windows.System.Diagnostics is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SystemDiagnosticInfo
 
+   function IsArchitectureSupported
+   (
+      type_x : Windows.System.ProcessorArchitecture
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.SystemDiagnosticInfo");
+      m_Factory        : access WinRt.Windows.System.Diagnostics.ISystemDiagnosticInfoStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_ISystemDiagnosticInfoStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.IsArchitectureSupported (type_x, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function get_PreferredArchitecture
+   return WinRt.Windows.System.ProcessorArchitecture is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.SystemDiagnosticInfo");
+      m_Factory        : access WinRt.Windows.System.Diagnostics.ISystemDiagnosticInfoStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.System.ProcessorArchitecture;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_ISystemDiagnosticInfoStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_PreferredArchitecture (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
    function GetForCurrentSystem
    return WinRt.Windows.System.Diagnostics.SystemDiagnosticInfo is
       Hr               : WinRt.HResult := S_OK;

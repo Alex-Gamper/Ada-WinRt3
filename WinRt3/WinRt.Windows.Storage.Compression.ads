@@ -45,6 +45,7 @@ package WinRt.Windows.Storage.Compression is
 
    type ICompressorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompressorFactory is access all ICompressorFactory_Interface'Class;
+   type ICompressorFactory_Ptr is access all ICompressorFactory;
 
    type IDecompressor_Interface is interface and WinRt.IInspectable_Interface;
    type IDecompressor is access all IDecompressor_Interface'Class;
@@ -52,6 +53,7 @@ package WinRt.Windows.Storage.Compression is
 
    type IDecompressorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDecompressorFactory is access all IDecompressorFactory_Interface'Class;
+   type IDecompressorFactory_Ptr is access all IDecompressorFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations

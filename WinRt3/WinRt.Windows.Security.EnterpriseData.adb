@@ -60,11 +60,11 @@ package body WinRt.Windows.Security.EnterpriseData is
    package IAsyncOperation_FileProtectionStatus is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Security.EnterpriseData.FileProtectionStatus);
    package AsyncOperationCompletedHandler_FileProtectionStatus is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Security.EnterpriseData.FileProtectionStatus);
 
-   package IAsyncOperation_HString is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.HString);
-   package AsyncOperationCompletedHandler_HString is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.HString);
-
    package IAsyncOperation_ProtectionPolicyEvaluationResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult);
    package AsyncOperationCompletedHandler_ProtectionPolicyEvaluationResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult);
+
+   package IAsyncOperation_HString is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.HString);
+   package AsyncOperationCompletedHandler_HString is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.HString);
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BufferProtectUnprotectResult
@@ -959,153 +959,6 @@ package body WinRt.Windows.Security.EnterpriseData is
          end return;
       end;
 
-      function UnprotectAsync
-      (
-         target : Windows.Storage.IStorageItem
-      )
-      return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.FileProtectionManager");
-         m_Factory        : access WinRt.Windows.Security.EnterpriseData.IFileProtectionManagerStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_FileProtectionInfo.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_FileProtectionInfo.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Windows.Security.EnterpriseData.IFileProtectionInfo;
-         m_IID            : aliased WinRt.IID := (1742751121, 11537, 20504, (159, 240, 11, 133, 82, 11, 136, 139 )); -- Windows.Security.EnterpriseData.FileProtectionInfo;
-         m_HandlerIID     : aliased WinRt.IID := (689504234, 57489, 21474, (189, 229, 97, 124, 155, 179, 216, 254 ));
-         m_Handler        : AsyncOperationCompletedHandler_FileProtectionInfo.Kind := new AsyncOperationCompletedHandler_FileProtectionInfo.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_FileProtectionInfo.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_FileProtectionInfo.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_FileProtectionInfo.Kind_Delegate, AsyncOperationCompletedHandler_FileProtectionInfo.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         return RetVal : WinRt.Windows.Security.EnterpriseData.FileProtectionInfo do
-            Hr := RoGetActivationFactory (m_hString, IID_IFileProtectionManagerStatics3'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.UnprotectAsync (target, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr = S_OK then
-                  m_AsyncOperation := QI (m_ComRetVal);
-                  temp := m_ComRetVal.Release;
-                  if m_AsyncOperation /= null then
-                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                     while m_Captured = m_Compare loop
-                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                        m_Captured := m_Completed;
-                     end loop;
-                     if m_AsyncStatus = Completed_e then
-                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IFileProtectionInfo := new Windows.Security.EnterpriseData.IFileProtectionInfo;
-                        Retval.m_IFileProtectionInfo.all := m_RetVal;
-                     end if;
-                     temp := m_AsyncOperation.Release;
-                     temp := m_Handler.Release;
-                     if temp = 0 then
-                        Free (m_Handler);
-                     end if;
-                  end if;
-               end if;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function UnprotectAsync
-      (
-         target : Windows.Storage.IStorageItem;
-         options : Windows.Security.EnterpriseData.FileUnprotectOptions'Class
-      )
-      return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.FileProtectionManager");
-         m_Factory        : access WinRt.Windows.Security.EnterpriseData.IFileProtectionManagerStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_FileProtectionInfo.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_FileProtectionInfo.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Windows.Security.EnterpriseData.IFileProtectionInfo;
-         m_IID            : aliased WinRt.IID := (1742751121, 11537, 20504, (159, 240, 11, 133, 82, 11, 136, 139 )); -- Windows.Security.EnterpriseData.FileProtectionInfo;
-         m_HandlerIID     : aliased WinRt.IID := (689504234, 57489, 21474, (189, 229, 97, 124, 155, 179, 216, 254 ));
-         m_Handler        : AsyncOperationCompletedHandler_FileProtectionInfo.Kind := new AsyncOperationCompletedHandler_FileProtectionInfo.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_FileProtectionInfo.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_FileProtectionInfo.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_FileProtectionInfo.Kind_Delegate, AsyncOperationCompletedHandler_FileProtectionInfo.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         return RetVal : WinRt.Windows.Security.EnterpriseData.FileProtectionInfo do
-            Hr := RoGetActivationFactory (m_hString, IID_IFileProtectionManagerStatics3'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.UnprotectAsync (target, options.m_IFileUnprotectOptions.all, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr = S_OK then
-                  m_AsyncOperation := QI (m_ComRetVal);
-                  temp := m_ComRetVal.Release;
-                  if m_AsyncOperation /= null then
-                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                     while m_Captured = m_Compare loop
-                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                        m_Captured := m_Completed;
-                     end loop;
-                     if m_AsyncStatus = Completed_e then
-                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IFileProtectionInfo := new Windows.Security.EnterpriseData.IFileProtectionInfo;
-                        Retval.m_IFileProtectionInfo.all := m_RetVal;
-                     end if;
-                     temp := m_AsyncOperation.Release;
-                     temp := m_Handler.Release;
-                     if temp = 0 then
-                        Free (m_Handler);
-                     end if;
-                  end if;
-               end if;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
       function ProtectAsync
       (
          target : Windows.Storage.IStorageItem;
@@ -1623,6 +1476,153 @@ package body WinRt.Windows.Security.EnterpriseData is
             tmp := WindowsDeleteString (m_hString);
             tmp := WindowsDeleteString (HStr_desiredName);
             tmp := WindowsDeleteString (HStr_identity);
+         end return;
+      end;
+
+      function UnprotectAsync
+      (
+         target : Windows.Storage.IStorageItem
+      )
+      return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.FileProtectionManager");
+         m_Factory        : access WinRt.Windows.Security.EnterpriseData.IFileProtectionManagerStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_FileProtectionInfo.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_FileProtectionInfo.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Security.EnterpriseData.IFileProtectionInfo;
+         m_IID            : aliased WinRt.IID := (1742751121, 11537, 20504, (159, 240, 11, 133, 82, 11, 136, 139 )); -- Windows.Security.EnterpriseData.FileProtectionInfo;
+         m_HandlerIID     : aliased WinRt.IID := (689504234, 57489, 21474, (189, 229, 97, 124, 155, 179, 216, 254 ));
+         m_Handler        : AsyncOperationCompletedHandler_FileProtectionInfo.Kind := new AsyncOperationCompletedHandler_FileProtectionInfo.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_FileProtectionInfo.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_FileProtectionInfo.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_FileProtectionInfo.Kind_Delegate, AsyncOperationCompletedHandler_FileProtectionInfo.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Security.EnterpriseData.FileProtectionInfo do
+            Hr := RoGetActivationFactory (m_hString, IID_IFileProtectionManagerStatics3'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.UnprotectAsync (target, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IFileProtectionInfo := new Windows.Security.EnterpriseData.IFileProtectionInfo;
+                        Retval.m_IFileProtectionInfo.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function UnprotectAsync
+      (
+         target : Windows.Storage.IStorageItem;
+         options : Windows.Security.EnterpriseData.FileUnprotectOptions'Class
+      )
+      return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.FileProtectionManager");
+         m_Factory        : access WinRt.Windows.Security.EnterpriseData.IFileProtectionManagerStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_FileProtectionInfo.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_FileProtectionInfo.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Security.EnterpriseData.IFileProtectionInfo;
+         m_IID            : aliased WinRt.IID := (1742751121, 11537, 20504, (159, 240, 11, 133, 82, 11, 136, 139 )); -- Windows.Security.EnterpriseData.FileProtectionInfo;
+         m_HandlerIID     : aliased WinRt.IID := (689504234, 57489, 21474, (189, 229, 97, 124, 155, 179, 216, 254 ));
+         m_Handler        : AsyncOperationCompletedHandler_FileProtectionInfo.Kind := new AsyncOperationCompletedHandler_FileProtectionInfo.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_FileProtectionInfo.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_FileProtectionInfo.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_FileProtectionInfo.Kind_Delegate, AsyncOperationCompletedHandler_FileProtectionInfo.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Security.EnterpriseData.FileProtectionInfo do
+            Hr := RoGetActivationFactory (m_hString, IID_IFileProtectionManagerStatics3'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.UnprotectAsync (target, options.m_IFileUnprotectOptions.all, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IFileProtectionInfo := new Windows.Security.EnterpriseData.IFileProtectionInfo;
+                        Retval.m_IFileProtectionInfo.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -2570,464 +2570,6 @@ package body WinRt.Windows.Security.EnterpriseData is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for ProtectionPolicyManager
-
-   function IsIdentityManaged
-   (
-      identity : WinRt.WString
-   )
-   return WinRt.Boolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_identity : constant WinRt.HString := To_HString (identity);
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.IsIdentityManaged (HStr_identity, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      tmp := WindowsDeleteString (HStr_identity);
-      return m_ComRetVal;
-   end;
-
-   function TryApplyProcessUIPolicy
-   (
-      identity : WinRt.WString
-   )
-   return WinRt.Boolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_identity : constant WinRt.HString := To_HString (identity);
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.TryApplyProcessUIPolicy (HStr_identity, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      tmp := WindowsDeleteString (HStr_identity);
-      return m_ComRetVal;
-   end;
-
-   procedure ClearProcessUIPolicy is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.ClearProcessUIPolicy;
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
-   function CreateCurrentThreadNetworkContext
-   (
-      identity : WinRt.WString
-   )
-   return WinRt.Windows.Security.EnterpriseData.ThreadNetworkContext is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.IThreadNetworkContext;
-      HStr_identity : constant WinRt.HString := To_HString (identity);
-   begin
-      return RetVal : WinRt.Windows.Security.EnterpriseData.ThreadNetworkContext do
-         Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateCurrentThreadNetworkContext (HStr_identity, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IThreadNetworkContext := new Windows.Security.EnterpriseData.IThreadNetworkContext;
-            Retval.m_IThreadNetworkContext.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_identity);
-      end return;
-   end;
-
-   function GetPrimaryManagedIdentityForNetworkEndpointAsync
-   (
-      endpointHost : Windows.Networking.HostName'Class
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_HString.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.HString;
-      AdaRetval        : WString;
-      m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
-      m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
-      m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetPrimaryManagedIdentityForNetworkEndpointAsync (endpointHost.m_IHostName.all, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr = S_OK then
-            m_AsyncOperation := QI (m_ComRetVal);
-            temp := m_ComRetVal.Release;
-            if m_AsyncOperation /= null then
-               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-               while m_Captured = m_Compare loop
-                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                  m_Captured := m_Completed;
-               end loop;
-               if m_AsyncStatus = Completed_e then
-                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-               end if;
-               temp := m_AsyncOperation.Release;
-               temp := m_Handler.Release;
-               if temp = 0 then
-                  Free (m_Handler);
-               end if;
-            end if;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      AdaRetval := To_Ada (m_RetVal);
-      tmp := WindowsDeleteString (m_RetVal);
-      return AdaRetVal;
-   end;
-
-   procedure RevokeContent
-   (
-      identity : WinRt.WString
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      HStr_identity : constant WinRt.HString := To_HString (identity);
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.RevokeContent (HStr_identity);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      tmp := WindowsDeleteString (HStr_identity);
-   end;
-
-   function GetForCurrentView
-   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyManager is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.IProtectionPolicyManager;
-   begin
-      return RetVal : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyManager do
-         Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IProtectionPolicyManager := new Windows.Security.EnterpriseData.IProtectionPolicyManager;
-            Retval.m_IProtectionPolicyManager.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function add_ProtectedAccessSuspending
-   (
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.add_ProtectedAccessSuspending (handler, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   procedure remove_ProtectedAccessSuspending
-   (
-      token : Windows.Foundation.EventRegistrationToken
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.remove_ProtectedAccessSuspending (token);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
-   function add_ProtectedAccessResumed
-   (
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.add_ProtectedAccessResumed (handler, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   procedure remove_ProtectedAccessResumed
-   (
-      token : Windows.Foundation.EventRegistrationToken
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.remove_ProtectedAccessResumed (token);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
-   function add_ProtectedContentRevoked
-   (
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.add_ProtectedContentRevoked (handler, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   procedure remove_ProtectedContentRevoked
-   (
-      token : Windows.Foundation.EventRegistrationToken
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.remove_ProtectedContentRevoked (token);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
-   function CheckAccess
-   (
-      sourceIdentity : WinRt.WString;
-      targetIdentity : WinRt.WString
-   )
-   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
-      HStr_sourceIdentity : constant WinRt.HString := To_HString (sourceIdentity);
-      HStr_targetIdentity : constant WinRt.HString := To_HString (targetIdentity);
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.CheckAccess (HStr_sourceIdentity, HStr_targetIdentity, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      tmp := WindowsDeleteString (HStr_sourceIdentity);
-      tmp := WindowsDeleteString (HStr_targetIdentity);
-      return m_ComRetVal;
-   end;
-
-   function RequestAccessAsync
-   (
-      sourceIdentity : WinRt.WString;
-      targetIdentity : WinRt.WString
-   )
-   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
-      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      HStr_sourceIdentity : constant WinRt.HString := To_HString (sourceIdentity);
-      HStr_targetIdentity : constant WinRt.HString := To_HString (targetIdentity);
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_ProtectionPolicyEvaluationResult.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_ProtectionPolicyEvaluationResult.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
-      m_IID            : aliased WinRt.IID := (3906475797, 50540, 23147, (183, 56, 93, 246, 194, 119, 91, 123 )); -- Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
-      m_HandlerIID     : aliased WinRt.IID := (674478676, 42209, 23597, (138, 122, 19, 110, 133, 16, 199, 139 ));
-      m_Handler        : AsyncOperationCompletedHandler_ProtectionPolicyEvaluationResult.Kind := new AsyncOperationCompletedHandler_ProtectionPolicyEvaluationResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_ProtectionPolicyEvaluationResult.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_ProtectionPolicyEvaluationResult.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ProtectionPolicyEvaluationResult.Kind_Delegate, AsyncOperationCompletedHandler_ProtectionPolicyEvaluationResult.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.RequestAccessAsync (HStr_sourceIdentity, HStr_targetIdentity, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr = S_OK then
-            m_AsyncOperation := QI (m_ComRetVal);
-            temp := m_ComRetVal.Release;
-            if m_AsyncOperation /= null then
-               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-               while m_Captured = m_Compare loop
-                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                  m_Captured := m_Completed;
-               end loop;
-               if m_AsyncStatus = Completed_e then
-                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-               end if;
-               temp := m_AsyncOperation.Release;
-               temp := m_Handler.Release;
-               if temp = 0 then
-                  Free (m_Handler);
-               end if;
-            end if;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      tmp := WindowsDeleteString (HStr_sourceIdentity);
-      tmp := WindowsDeleteString (HStr_targetIdentity);
-      return m_RetVal;
-   end;
 
    function IsRoamableProtectionEnabled
    (
@@ -4327,6 +3869,464 @@ package body WinRt.Windows.Security.EnterpriseData is
       tmp := WindowsDeleteString (m_hString);
       tmp := WindowsDeleteString (HStr_sourceIdentity);
       tmp := WindowsDeleteString (HStr_targetIdentity);
+   end;
+
+   function IsIdentityManaged
+   (
+      identity : WinRt.WString
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      HStr_identity : constant WinRt.HString := To_HString (identity);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.IsIdentityManaged (HStr_identity, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_identity);
+      return m_ComRetVal;
+   end;
+
+   function TryApplyProcessUIPolicy
+   (
+      identity : WinRt.WString
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      HStr_identity : constant WinRt.HString := To_HString (identity);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.TryApplyProcessUIPolicy (HStr_identity, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_identity);
+      return m_ComRetVal;
+   end;
+
+   procedure ClearProcessUIPolicy is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.ClearProcessUIPolicy;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function CreateCurrentThreadNetworkContext
+   (
+      identity : WinRt.WString
+   )
+   return WinRt.Windows.Security.EnterpriseData.ThreadNetworkContext is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Security.EnterpriseData.IThreadNetworkContext;
+      HStr_identity : constant WinRt.HString := To_HString (identity);
+   begin
+      return RetVal : WinRt.Windows.Security.EnterpriseData.ThreadNetworkContext do
+         Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateCurrentThreadNetworkContext (HStr_identity, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IThreadNetworkContext := new Windows.Security.EnterpriseData.IThreadNetworkContext;
+            Retval.m_IThreadNetworkContext.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_identity);
+      end return;
+   end;
+
+   function GetPrimaryManagedIdentityForNetworkEndpointAsync
+   (
+      endpointHost : Windows.Networking.HostName'Class
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_HString.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.HString;
+      AdaRetval        : WString;
+      m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
+      m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
+      m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetPrimaryManagedIdentityForNetworkEndpointAsync (endpointHost.m_IHostName.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
+      return AdaRetVal;
+   end;
+
+   procedure RevokeContent
+   (
+      identity : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_identity : constant WinRt.HString := To_HString (identity);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.RevokeContent (HStr_identity);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_identity);
+   end;
+
+   function GetForCurrentView
+   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyManager is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Security.EnterpriseData.IProtectionPolicyManager;
+   begin
+      return RetVal : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyManager do
+         Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IProtectionPolicyManager := new Windows.Security.EnterpriseData.IProtectionPolicyManager;
+            Retval.m_IProtectionPolicyManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function add_ProtectedAccessSuspending
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.add_ProtectedAccessSuspending (handler, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ProtectedAccessSuspending
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.remove_ProtectedAccessSuspending (token);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function add_ProtectedAccessResumed
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.add_ProtectedAccessResumed (handler, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ProtectedAccessResumed
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.remove_ProtectedAccessResumed (token);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function add_ProtectedContentRevoked
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.add_ProtectedContentRevoked (handler, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ProtectedContentRevoked
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.remove_ProtectedContentRevoked (token);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function CheckAccess
+   (
+      sourceIdentity : WinRt.WString;
+      targetIdentity : WinRt.WString
+   )
+   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+      HStr_sourceIdentity : constant WinRt.HString := To_HString (sourceIdentity);
+      HStr_targetIdentity : constant WinRt.HString := To_HString (targetIdentity);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.CheckAccess (HStr_sourceIdentity, HStr_targetIdentity, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_sourceIdentity);
+      tmp := WindowsDeleteString (HStr_targetIdentity);
+      return m_ComRetVal;
+   end;
+
+   function RequestAccessAsync
+   (
+      sourceIdentity : WinRt.WString;
+      targetIdentity : WinRt.WString
+   )
+   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
+      m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_sourceIdentity : constant WinRt.HString := To_HString (sourceIdentity);
+      HStr_targetIdentity : constant WinRt.HString := To_HString (targetIdentity);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_ProtectionPolicyEvaluationResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_ProtectionPolicyEvaluationResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+      m_IID            : aliased WinRt.IID := (3906475797, 50540, 23147, (183, 56, 93, 246, 194, 119, 91, 123 )); -- Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+      m_HandlerIID     : aliased WinRt.IID := (674478676, 42209, 23597, (138, 122, 19, 110, 133, 16, 199, 139 ));
+      m_Handler        : AsyncOperationCompletedHandler_ProtectionPolicyEvaluationResult.Kind := new AsyncOperationCompletedHandler_ProtectionPolicyEvaluationResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_ProtectionPolicyEvaluationResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_ProtectionPolicyEvaluationResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ProtectionPolicyEvaluationResult.Kind_Delegate, AsyncOperationCompletedHandler_ProtectionPolicyEvaluationResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.RequestAccessAsync (HStr_sourceIdentity, HStr_targetIdentity, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_sourceIdentity);
+      tmp := WindowsDeleteString (HStr_targetIdentity);
+      return m_RetVal;
    end;
 
    -----------------------------------------------------------------------------

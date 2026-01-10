@@ -49,6 +49,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
 
    type ILineStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILineStatics is access all ILineStatics_Interface'Class;
+   type ILineStatics_Ptr is access all ILineStatics;
 
    type IPath_Interface is interface and WinRt.IInspectable_Interface;
    type IPath is access all IPath_Interface'Class;
@@ -56,9 +57,11 @@ package WinRt.Windows.UI.Xaml.Shapes is
 
    type IPathFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPathFactory is access all IPathFactory_Interface'Class;
+   type IPathFactory_Ptr is access all IPathFactory;
 
    type IPathStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPathStatics is access all IPathStatics_Interface'Class;
+   type IPathStatics_Ptr is access all IPathStatics;
 
    type IPolygon_Interface is interface and WinRt.IInspectable_Interface;
    type IPolygon is access all IPolygon_Interface'Class;
@@ -66,6 +69,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
 
    type IPolygonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPolygonStatics is access all IPolygonStatics_Interface'Class;
+   type IPolygonStatics_Ptr is access all IPolygonStatics;
 
    type IPolyline_Interface is interface and WinRt.IInspectable_Interface;
    type IPolyline is access all IPolyline_Interface'Class;
@@ -73,6 +77,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
 
    type IPolylineStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPolylineStatics is access all IPolylineStatics_Interface'Class;
+   type IPolylineStatics_Ptr is access all IPolylineStatics;
 
    type IRectangle_Interface is interface and WinRt.IInspectable_Interface;
    type IRectangle is access all IRectangle_Interface'Class;
@@ -80,6 +85,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
 
    type IRectangleStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRectangleStatics is access all IRectangleStatics_Interface'Class;
+   type IRectangleStatics_Ptr is access all IRectangleStatics;
 
    type IShape_Interface is interface and WinRt.IInspectable_Interface;
    type IShape is access all IShape_Interface'Class;
@@ -87,12 +93,15 @@ package WinRt.Windows.UI.Xaml.Shapes is
 
    type IShape2_Interface is interface and WinRt.IInspectable_Interface;
    type IShape2 is access all IShape2_Interface'Class;
+   type IShape2_Ptr is access all IShape2;
 
    type IShapeFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IShapeFactory is access all IShapeFactory_Interface'Class;
+   type IShapeFactory_Ptr is access all IShapeFactory;
 
    type IShapeStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IShapeStatics is access all IShapeStatics_Interface'Class;
+   type IShapeStatics_Ptr is access all IShapeStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

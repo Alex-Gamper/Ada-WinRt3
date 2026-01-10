@@ -50,6 +50,9 @@ package body WinRt.Windows.Devices.WiFi is
    package IAsyncOperation_WiFiAccessStatus is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.WiFi.WiFiAccessStatus);
    package AsyncOperationCompletedHandler_WiFiAccessStatus is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.WiFi.WiFiAccessStatus);
 
+   package IAsyncOperation_WiFiOnDemandHotspotConnectionResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult);
+   package AsyncOperationCompletedHandler_WiFiOnDemandHotspotConnectionResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult);
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for WiFiAdapter
 
@@ -1112,6 +1115,561 @@ package body WinRt.Windows.Devices.WiFi is
       m_GenericRetVal := QInterface_IVectorView_IWiFiAvailableNetwork (m_ComRetVal);
       temp := m_ComRetVal.Release;
       return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WiFiOnDemandHotspotConnectTriggerDetails
+
+   procedure Initialize (this : in out WiFiOnDemandHotspotConnectTriggerDetails) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WiFiOnDemandHotspotConnectTriggerDetails) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWiFiOnDemandHotspotConnectTriggerDetails, IWiFiOnDemandHotspotConnectTriggerDetails_Ptr);
+   begin
+      if this.m_IWiFiOnDemandHotspotConnectTriggerDetails /= null then
+         if this.m_IWiFiOnDemandHotspotConnectTriggerDetails.all /= null then
+            temp := this.m_IWiFiOnDemandHotspotConnectTriggerDetails.all.Release;
+            Free (this.m_IWiFiOnDemandHotspotConnectTriggerDetails);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WiFiOnDemandHotspotConnectTriggerDetails
+
+   function get_RequestedNetwork
+   (
+      this : in out WiFiOnDemandHotspotConnectTriggerDetails
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetwork'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork;
+   begin
+      return RetVal : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetwork do
+         Hr := this.m_IWiFiOnDemandHotspotConnectTriggerDetails.all.get_RequestedNetwork (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWiFiOnDemandHotspotNetwork := new Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork;
+         Retval.m_IWiFiOnDemandHotspotNetwork.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure ReportError
+   (
+      this : in out WiFiOnDemandHotspotConnectTriggerDetails;
+      status : Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotConnectTriggerDetails.all.ReportError (status);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function ConnectAsync
+   (
+      this : in out WiFiOnDemandHotspotConnectTriggerDetails
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectionResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_WiFiOnDemandHotspotConnectionResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_WiFiOnDemandHotspotConnectionResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult;
+      m_IID            : aliased WinRt.IID := (2179746561, 15941, 23097, (186, 236, 11, 218, 74, 177, 227, 174 )); -- Windows.Devices.WiFi.WiFiOnDemandHotspotConnectionResult;
+      m_HandlerIID     : aliased WinRt.IID := (1625569349, 54665, 21590, (189, 186, 240, 205, 36, 165, 35, 126 ));
+      m_Handler        : AsyncOperationCompletedHandler_WiFiOnDemandHotspotConnectionResult.Kind := new AsyncOperationCompletedHandler_WiFiOnDemandHotspotConnectionResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_WiFiOnDemandHotspotConnectionResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_WiFiOnDemandHotspotConnectionResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WiFiOnDemandHotspotConnectionResult.Kind_Delegate, AsyncOperationCompletedHandler_WiFiOnDemandHotspotConnectionResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectionResult do
+         Hr := this.m_IWiFiOnDemandHotspotConnectTriggerDetails.all.ConnectAsync (m_ComRetVal'Access);
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IWiFiOnDemandHotspotConnectionResult := new Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult;
+                  Retval.m_IWiFiOnDemandHotspotConnectionResult.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+      end return;
+   end;
+
+   function Connect
+   (
+      this : in out WiFiOnDemandHotspotConnectTriggerDetails
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectionResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult;
+   begin
+      return RetVal : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectionResult do
+         Hr := this.m_IWiFiOnDemandHotspotConnectTriggerDetails.all.Connect (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWiFiOnDemandHotspotConnectionResult := new Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult;
+         Retval.m_IWiFiOnDemandHotspotConnectionResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WiFiOnDemandHotspotConnectionResult
+
+   procedure Initialize (this : in out WiFiOnDemandHotspotConnectionResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WiFiOnDemandHotspotConnectionResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWiFiOnDemandHotspotConnectionResult, IWiFiOnDemandHotspotConnectionResult_Ptr);
+   begin
+      if this.m_IWiFiOnDemandHotspotConnectionResult /= null then
+         if this.m_IWiFiOnDemandHotspotConnectionResult.all /= null then
+            temp := this.m_IWiFiOnDemandHotspotConnectionResult.all.Release;
+            Free (this.m_IWiFiOnDemandHotspotConnectionResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WiFiOnDemandHotspotConnectionResult
+
+   function get_Status
+   (
+      this : in out WiFiOnDemandHotspotConnectionResult
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotConnectionResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WiFiOnDemandHotspotNetwork
+
+   procedure Initialize (this : in out WiFiOnDemandHotspotNetwork) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WiFiOnDemandHotspotNetwork) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWiFiOnDemandHotspotNetwork, IWiFiOnDemandHotspotNetwork_Ptr);
+   begin
+      if this.m_IWiFiOnDemandHotspotNetwork /= null then
+         if this.m_IWiFiOnDemandHotspotNetwork.all /= null then
+            temp := this.m_IWiFiOnDemandHotspotNetwork.all.Release;
+            Free (this.m_IWiFiOnDemandHotspotNetwork);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for WiFiOnDemandHotspotNetwork
+
+   function GetOrCreateById
+   (
+      networkId : WinRt.Guid
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetwork is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.WiFi.WiFiOnDemandHotspotNetwork");
+      m_Factory        : access WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork;
+   begin
+      return RetVal : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetwork do
+         Hr := RoGetActivationFactory (m_hString, IID_IWiFiOnDemandHotspotNetworkStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetOrCreateById (networkId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IWiFiOnDemandHotspotNetwork := new Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork;
+            Retval.m_IWiFiOnDemandHotspotNetwork.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WiFiOnDemandHotspotNetwork
+
+   function GetProperties
+   (
+      this : in out WiFiOnDemandHotspotNetwork
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetworkProperties'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkProperties;
+   begin
+      return RetVal : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetworkProperties do
+         Hr := this.m_IWiFiOnDemandHotspotNetwork.all.GetProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWiFiOnDemandHotspotNetworkProperties := new Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkProperties;
+         Retval.m_IWiFiOnDemandHotspotNetworkProperties.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure UpdateProperties
+   (
+      this : in out WiFiOnDemandHotspotNetwork;
+      newProperties : Windows.Devices.WiFi.WiFiOnDemandHotspotNetworkProperties'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetwork.all.UpdateProperties (newProperties.m_IWiFiOnDemandHotspotNetworkProperties.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Id
+   (
+      this : in out WiFiOnDemandHotspotNetwork
+   )
+   return WinRt.Guid is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Guid;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetwork.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WiFiOnDemandHotspotNetworkProperties
+
+   procedure Initialize (this : in out WiFiOnDemandHotspotNetworkProperties) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WiFiOnDemandHotspotNetworkProperties) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWiFiOnDemandHotspotNetworkProperties, IWiFiOnDemandHotspotNetworkProperties_Ptr);
+   begin
+      if this.m_IWiFiOnDemandHotspotNetworkProperties /= null then
+         if this.m_IWiFiOnDemandHotspotNetworkProperties.all /= null then
+            temp := this.m_IWiFiOnDemandHotspotNetworkProperties.all.Release;
+            Free (this.m_IWiFiOnDemandHotspotNetworkProperties);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WiFiOnDemandHotspotNetworkProperties
+
+   function get_DisplayName
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_DisplayName
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.put_DisplayName (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_Availability
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.get_Availability (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Availability
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.put_Availability (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_RemainingBatteryPercent
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return IReference_UInt32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_UInt32.Kind;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.get_RemainingBatteryPercent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_RemainingBatteryPercent
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.put_RemainingBatteryPercent (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CellularBars
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return IReference_WiFiOnDemandHotspotCellularBars.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_WiFiOnDemandHotspotCellularBars.Kind;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.get_CellularBars (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_WiFiOnDemandHotspotCellularBars (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_CellularBars
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.put_CellularBars (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IsMetered
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.get_IsMetered (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsMetered
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.put_IsMetered (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Ssid
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.get_Ssid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Ssid
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.put_Ssid (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_Password
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return WinRt.Windows.Security.Credentials.PasswordCredential'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+   begin
+      return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
+         Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.get_Password (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_Password
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : Windows.Security.Credentials.PasswordCredential'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.put_Password (value.m_IPasswordCredential.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------

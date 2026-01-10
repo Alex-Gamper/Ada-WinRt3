@@ -871,6 +871,46 @@ package body WinRt.Windows.Graphics.Holographic is
       end if;
    end;
 
+   function get_DepthReprojectionMethod
+   (
+      this : in out HolographicCameraRenderingParameters
+   )
+   return WinRt.Windows.Graphics.Holographic.HolographicDepthReprojectionMethod is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Holographic.HolographicDepthReprojectionMethod;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters_Interface, WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters4, WinRt.Windows.Graphics.Holographic.IID_IHolographicCameraRenderingParameters4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHolographicCameraRenderingParameters.all);
+      Hr := m_Interface.get_DepthReprojectionMethod (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_DepthReprojectionMethod
+   (
+      this : in out HolographicCameraRenderingParameters;
+      value : Windows.Graphics.Holographic.HolographicDepthReprojectionMethod
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters_Interface, WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters4, WinRt.Windows.Graphics.Holographic.IID_IHolographicCameraRenderingParameters4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHolographicCameraRenderingParameters.all);
+      Hr := m_Interface.put_DepthReprojectionMethod (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for HolographicCameraViewportParameters
 
@@ -2289,27 +2329,6 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp := WindowsDeleteString (m_hString);
    end;
 
-   function get_IsConfigured
-   return WinRt.Boolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.HolographicSpace");
-      m_Factory        : access WinRt.Windows.Graphics.Holographic.IHolographicSpaceStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Boolean;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IHolographicSpaceStatics3'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.get_IsConfigured (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
    function CreateForCoreWindow
    (
       window : Windows.UI.Core.CoreWindow'Class
@@ -2335,6 +2354,27 @@ package body WinRt.Windows.Graphics.Holographic is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
+   end;
+
+   function get_IsConfigured
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.HolographicSpace");
+      m_Factory        : access WinRt.Windows.Graphics.Holographic.IHolographicSpaceStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IHolographicSpaceStatics3'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_IsConfigured (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -2938,6 +2978,30 @@ package body WinRt.Windows.Graphics.Holographic is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   function get_SupportedDepthReprojectionMethods
+   (
+      this : in out HolographicViewConfiguration
+   )
+   return IVectorView_HolographicDepthReprojectionMethod.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicViewConfiguration2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_HolographicDepthReprojectionMethod.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicViewConfiguration_Interface, WinRt.Windows.Graphics.Holographic.IHolographicViewConfiguration2, WinRt.Windows.Graphics.Holographic.IID_IHolographicViewConfiguration2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHolographicViewConfiguration.all);
+      Hr := m_Interface.get_SupportedDepthReprojectionMethods (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_HolographicDepthReprojectionMethod (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
    end;
 
 end WinRt.Windows.Graphics.Holographic;

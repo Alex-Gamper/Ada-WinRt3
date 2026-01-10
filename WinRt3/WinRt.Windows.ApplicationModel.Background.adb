@@ -53,11 +53,11 @@ package body WinRt.Windows.ApplicationModel.Background is
    package IAsyncOperation_ApplicationTriggerResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Background.ApplicationTriggerResult);
    package AsyncOperationCompletedHandler_ApplicationTriggerResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Background.ApplicationTriggerResult);
 
-   package IAsyncOperation_BackgroundAccessStatus is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus);
-   package AsyncOperationCompletedHandler_BackgroundAccessStatus is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus);
-
    package IAsyncOperation_Boolean is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Boolean);
    package AsyncOperationCompletedHandler_Boolean is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Boolean);
+
+   package IAsyncOperation_BackgroundAccessStatus is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus);
+   package AsyncOperationCompletedHandler_BackgroundAccessStatus is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus);
 
    package IAsyncOperation_DeviceConnectionChangeTrigger is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Background.IDeviceConnectionChangeTrigger);
    package AsyncOperationCompletedHandler_DeviceConnectionChangeTrigger is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Background.IDeviceConnectionChangeTrigger);
@@ -853,6 +853,79 @@ package body WinRt.Windows.ApplicationModel.Background is
    -- Static RuntimeClass
    package body BackgroundExecutionManager is
 
+      function RequestAccessKindAsync
+      (
+         requestedAccess : Windows.ApplicationModel.Background.BackgroundAccessRequestKind;
+         reason : WinRt.WString
+      )
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundExecutionManagerStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_reason : constant WinRt.HString := To_HString (reason);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_Boolean.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Boolean;
+         m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
+         m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
+         m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IBackgroundExecutionManagerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.RequestAccessKindAsync (requestedAccess, HStr_reason, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_reason);
+         return m_RetVal;
+      end;
+
       function RequestAccessAsync_BackgroundExecutionManager
       return WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -1080,7 +1153,7 @@ package body WinRt.Windows.ApplicationModel.Background is
          return m_ComRetVal;
       end;
 
-      function RequestAccessKindAsync
+      function RequestAccessKindForModernStandbyAsync
       (
          requestedAccess : Windows.ApplicationModel.Background.BackgroundAccessRequestKind;
          reason : WinRt.WString
@@ -1089,7 +1162,7 @@ package body WinRt.Windows.ApplicationModel.Background is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundExecutionManagerStatics2_Interface'Class := null;
+         m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundExecutionManagerStatics3_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
          HStr_reason : constant WinRt.HString := To_HString (reason);
          m_Temp           : WinRt.Int32 := 0;
@@ -1124,9 +1197,9 @@ package body WinRt.Windows.ApplicationModel.Background is
          end;
 
       begin
-         Hr := RoGetActivationFactory (m_hString, IID_IBackgroundExecutionManagerStatics2'Access , m_Factory'Address);
+         Hr := RoGetActivationFactory (m_hString, IID_IBackgroundExecutionManagerStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
-            Hr := m_Factory.RequestAccessKindAsync (requestedAccess, HStr_reason, m_ComRetVal'Access);
+            Hr := m_Factory.RequestAccessKindForModernStandbyAsync (requestedAccess, HStr_reason, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
@@ -1151,6 +1224,53 @@ package body WinRt.Windows.ApplicationModel.Background is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_reason);
          return m_RetVal;
+      end;
+
+      function GetAccessStatusForModernStandby
+      return WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundExecutionManagerStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.ApplicationModel.Background.BackgroundAccessStatus;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IBackgroundExecutionManagerStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetAccessStatusForModernStandby (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function GetAccessStatusForModernStandby
+      (
+         applicationId : WinRt.WString
+      )
+      return WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundExecutionManagerStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.ApplicationModel.Background.BackgroundAccessStatus;
+         HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IBackgroundExecutionManagerStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetAccessStatusForModernStandby (HStr_applicationId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_applicationId);
+         return m_ComRetVal;
       end;
 
    end BackgroundExecutionManager;
@@ -1192,6 +1312,30 @@ package body WinRt.Windows.ApplicationModel.Background is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for BackgroundTaskBuilder
+
+   function get_IsRunningTaskInStandbySupported
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskBuilder");
+      m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilderStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBackgroundTaskBuilderStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_IsRunningTaskInStandbySupported (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -1463,6 +1607,94 @@ package body WinRt.Windows.ApplicationModel.Background is
       end if;
    end;
 
+   function get_AllowRunningTaskInStandby
+   (
+      this : in out BackgroundTaskBuilder
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder6 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder6, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskBuilder6'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBackgroundTaskBuilder.all);
+      Hr := m_Interface.get_AllowRunningTaskInStandby (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_AllowRunningTaskInStandby
+   (
+      this : in out BackgroundTaskBuilder;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder6 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder6, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskBuilder6'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBackgroundTaskBuilder.all);
+      Hr := m_Interface.put_AllowRunningTaskInStandby (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function Validate
+   (
+      this : in out BackgroundTaskBuilder
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder6 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder6, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskBuilder6'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBackgroundTaskBuilder.all);
+      Hr := m_Interface.Validate (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function Register
+   (
+      this : in out BackgroundTaskBuilder;
+      taskName : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistration'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder6 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Background.IBackgroundTaskRegistration;
+      HStr_taskName : constant WinRt.HString := To_HString (taskName);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder6, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskBuilder6'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistration do
+         m_Interface := QInterface (this.m_IBackgroundTaskBuilder.all);
+         Hr := m_Interface.Register (HStr_taskName, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBackgroundTaskRegistration := new Windows.ApplicationModel.Background.IBackgroundTaskRegistration;
+         Retval.m_IBackgroundTaskRegistration.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_taskName);
+      end return;
+   end;
+
    -----------------------------------------------------------------------------
    -- Delegate BackgroundTaskCanceledEventHandler
 
@@ -1682,27 +1914,6 @@ package body WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BackgroundTaskRegistration
 
-   function get_AllTasks
-   return WinRt.GenericObject is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistration");
-      m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistrationStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBackgroundTaskRegistrationStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.get_AllTasks (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
    function get_AllTaskGroups
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1751,6 +1962,27 @@ package body WinRt.Windows.ApplicationModel.Background is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_groupId);
       end return;
+   end;
+
+   function get_AllTasks
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistration");
+      m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistrationStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBackgroundTaskRegistrationStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_AllTasks (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -1917,6 +2149,48 @@ package body WinRt.Windows.ApplicationModel.Background is
          Retval.m_IBackgroundTaskRegistrationGroup := new Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup;
          Retval.m_IBackgroundTaskRegistrationGroup.all := m_ComRetVal;
       end return;
+   end;
+
+   function get_TaskLastThrottledInStandbyTimestamp
+   (
+      this : in out BackgroundTaskRegistration
+   )
+   return WinRt.Windows.Foundation.DateTime is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration4, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskRegistration4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBackgroundTaskRegistration.all);
+      Hr := m_Interface.get_TaskLastThrottledInStandbyTimestamp (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_AppEnergyUsePredictionContribution
+   (
+      this : in out BackgroundTaskRegistration
+   )
+   return WinRt.Double is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Double;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration4, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskRegistration4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBackgroundTaskRegistration.all);
+      Hr := m_Interface.get_AppEnergyUsePredictionContribution (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -2109,6 +2383,69 @@ package body WinRt.Windows.ApplicationModel.Background is
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundWorkCostStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CurrentBackgroundWorkCost (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_AppEnergyUseLevel
+      return WinRt.Windows.ApplicationModel.Background.EnergyUseLevel is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundWorkCost");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundWorkCostStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.ApplicationModel.Background.EnergyUseLevel;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IBackgroundWorkCostStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_AppEnergyUseLevel (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_AppEnergyUsePrediction
+      return WinRt.Windows.ApplicationModel.Background.EnergyUseLevel is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundWorkCost");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundWorkCostStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.ApplicationModel.Background.EnergyUseLevel;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IBackgroundWorkCostStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_AppEnergyUsePrediction (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_AppLastThrottledInStandbyTimestamp
+      return WinRt.Windows.Foundation.DateTime is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundWorkCost");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundWorkCostStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IBackgroundWorkCostStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_AppLastThrottledInStandbyTimestamp (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -2345,6 +2682,86 @@ package body WinRt.Windows.ApplicationModel.Background is
       end if;
    end;
 
+   function get_PrimaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisherTrigger
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger3, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementPublisherTrigger3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisherTrigger.all);
+      Hr := m_Interface.get_PrimaryPhy (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_PrimaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisherTrigger;
+      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger3, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementPublisherTrigger3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisherTrigger.all);
+      Hr := m_Interface.put_PrimaryPhy (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SecondaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisherTrigger
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger3, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementPublisherTrigger3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisherTrigger.all);
+      Hr := m_Interface.get_SecondaryPhy (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_SecondaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisherTrigger;
+      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger3, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementPublisherTrigger3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisherTrigger.all);
+      Hr := m_Interface.put_SecondaryPhy (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BluetoothLEAdvertisementWatcherTrigger
 
@@ -2559,6 +2976,129 @@ package body WinRt.Windows.ApplicationModel.Background is
    begin
       m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcherTrigger.all);
       Hr := m_Interface.put_AllowExtendedAdvertisements (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_UseUncoded1MPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcherTrigger
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger3, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementWatcherTrigger3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcherTrigger.all);
+      Hr := m_Interface.get_UseUncoded1MPhy (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_UseUncoded1MPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcherTrigger;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger3, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementWatcherTrigger3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcherTrigger.all);
+      Hr := m_Interface.put_UseUncoded1MPhy (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_UseCodedPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcherTrigger
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger3, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementWatcherTrigger3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcherTrigger.all);
+      Hr := m_Interface.get_UseCodedPhy (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_UseCodedPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcherTrigger;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger3, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementWatcherTrigger3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcherTrigger.all);
+      Hr := m_Interface.put_UseCodedPhy (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ScanParameters
+   (
+      this : in out BluetoothLEAdvertisementWatcherTrigger
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger3, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementWatcherTrigger3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters do
+         m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcherTrigger.all);
+         Hr := m_Interface.get_ScanParameters (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBluetoothLEAdvertisementScanParameters := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters;
+         Retval.m_IBluetoothLEAdvertisementScanParameters.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_ScanParameters
+   (
+      this : in out BluetoothLEAdvertisementWatcherTrigger;
+      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger3, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementWatcherTrigger3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcherTrigger.all);
+      Hr := m_Interface.put_ScanParameters (value.m_IBluetoothLEAdvertisementScanParameters.all);
       temp := m_Interface.Release;
       if Hr /= S_OK then
          raise Program_Error;
@@ -2875,6 +3415,22 @@ package body WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ContentPrefetchTrigger
 
+   function Constructor return ContentPrefetchTrigger is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ContentPrefetchTrigger");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IContentPrefetchTrigger;
+   begin
+      return RetVal : ContentPrefetchTrigger do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IContentPrefetchTrigger := new Windows.ApplicationModel.Background.IContentPrefetchTrigger;
+            Retval.m_IContentPrefetchTrigger.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       waitInterval : Windows.Foundation.TimeSpan
@@ -2894,22 +3450,6 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IContentPrefetchTrigger := new Windows.ApplicationModel.Background.IContentPrefetchTrigger;
             Retval.m_IContentPrefetchTrigger.all := m_ComRetVal;
             temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor return ContentPrefetchTrigger is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ContentPrefetchTrigger");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IContentPrefetchTrigger;
-   begin
-      return RetVal : ContentPrefetchTrigger do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IContentPrefetchTrigger := new Windows.ApplicationModel.Background.IContentPrefetchTrigger;
-            Retval.m_IContentPrefetchTrigger.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
@@ -5012,22 +5552,6 @@ package body WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PushNotificationTrigger
 
-   function Constructor return PushNotificationTrigger is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PushNotificationTrigger");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
-   begin
-      return RetVal : PushNotificationTrigger do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
-            Retval.m_IBackgroundTrigger.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       applicationId : WinRt.WString
@@ -5051,6 +5575,22 @@ package body WinRt.Windows.ApplicationModel.Background is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_applicationId);
+      end return;
+   end;
+
+   function Constructor return PushNotificationTrigger is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PushNotificationTrigger");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
+   begin
+      return RetVal : PushNotificationTrigger do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
+            Retval.m_IBackgroundTrigger.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5984,6 +6524,22 @@ package body WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ToastNotificationActionTrigger
 
+   function Constructor return ToastNotificationActionTrigger is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationActionTrigger");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
+   begin
+      return RetVal : ToastNotificationActionTrigger do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
+            Retval.m_IBackgroundTrigger.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       applicationId : WinRt.WString
@@ -6007,22 +6563,6 @@ package body WinRt.Windows.ApplicationModel.Background is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_applicationId);
-      end return;
-   end;
-
-   function Constructor return ToastNotificationActionTrigger is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationActionTrigger");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
-   begin
-      return RetVal : ToastNotificationActionTrigger do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
-            Retval.m_IBackgroundTrigger.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6146,5 +6686,89 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for UserNotificationChangedTrigger
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WiFiOnDemandHotspotConnectTrigger
+
+   procedure Initialize (this : in out WiFiOnDemandHotspotConnectTrigger) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WiFiOnDemandHotspotConnectTrigger) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
+   begin
+      if this.m_IBackgroundTrigger /= null then
+         if this.m_IBackgroundTrigger.all /= null then
+            temp := this.m_IBackgroundTrigger.all.Release;
+            Free (this.m_IBackgroundTrigger);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WiFiOnDemandHotspotConnectTrigger
+
+   function Constructor return WiFiOnDemandHotspotConnectTrigger is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.WiFiOnDemandHotspotConnectTrigger");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
+   begin
+      return RetVal : WiFiOnDemandHotspotConnectTrigger do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
+            Retval.m_IBackgroundTrigger.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WiFiOnDemandHotspotConnectTrigger
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WiFiOnDemandHotspotUpdateMetadataTrigger
+
+   procedure Initialize (this : in out WiFiOnDemandHotspotUpdateMetadataTrigger) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WiFiOnDemandHotspotUpdateMetadataTrigger) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
+   begin
+      if this.m_IBackgroundTrigger /= null then
+         if this.m_IBackgroundTrigger.all /= null then
+            temp := this.m_IBackgroundTrigger.all.Release;
+            Free (this.m_IBackgroundTrigger);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WiFiOnDemandHotspotUpdateMetadataTrigger
+
+   function Constructor return WiFiOnDemandHotspotUpdateMetadataTrigger is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.WiFiOnDemandHotspotUpdateMetadataTrigger");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
+   begin
+      return RetVal : WiFiOnDemandHotspotUpdateMetadataTrigger do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
+            Retval.m_IBackgroundTrigger.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WiFiOnDemandHotspotUpdateMetadataTrigger
 
 end WinRt.Windows.ApplicationModel.Background;

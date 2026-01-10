@@ -420,6 +420,51 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       end if;
    end;
 
+   function get_DisplayMessage
+   (
+      this : in out AppCapability
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapability2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapability_Interface, WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapability2, WinRt.Windows.Security.Authorization.AppCapabilityAccess.IID_IAppCapability2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppCapability.all);
+      Hr := m_Interface.get_DisplayMessage (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_DisplayMessage
+   (
+      this : in out AppCapability;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapability2 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapability_Interface, WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapability2, WinRt.Windows.Security.Authorization.AppCapabilityAccess.IID_IAppCapability2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppCapability.all);
+      Hr := m_Interface.put_DisplayMessage (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AppCapabilityAccessChangedEventArgs
 

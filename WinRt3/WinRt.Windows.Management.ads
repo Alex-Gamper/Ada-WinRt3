@@ -49,6 +49,7 @@ package WinRt.Windows.Management is
 
    type IMdmSessionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMdmSessionManagerStatics is access all IMdmSessionManagerStatics_Interface'Class;
+   type IMdmSessionManagerStatics_Ptr is access all IMdmSessionManagerStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

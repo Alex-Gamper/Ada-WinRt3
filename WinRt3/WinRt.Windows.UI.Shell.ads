@@ -45,13 +45,39 @@ package WinRt.Windows.UI.Shell is
 
    type IAdaptiveCard_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveCard is access all IAdaptiveCard_Interface'Class;
+   type IAdaptiveCard_Ptr is access all IAdaptiveCard;
 
    type IAdaptiveCardBuilderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveCardBuilderStatics is access all IAdaptiveCardBuilderStatics_Interface'Class;
+   type IAdaptiveCardBuilderStatics_Ptr is access all IAdaptiveCardBuilderStatics;
+
+   type IFocusSession_Interface is interface and WinRt.IInspectable_Interface;
+   type IFocusSession is access all IFocusSession_Interface'Class;
+   type IFocusSession_Ptr is access all IFocusSession;
+
+   type IFocusSessionManager_Interface is interface and WinRt.IInspectable_Interface;
+   type IFocusSessionManager is access all IFocusSessionManager_Interface'Class;
+   type IFocusSessionManager_Ptr is access all IFocusSessionManager;
+
+   type IFocusSessionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IFocusSessionManagerStatics is access all IFocusSessionManagerStatics_Interface'Class;
+   type IFocusSessionManagerStatics_Ptr is access all IFocusSessionManagerStatics;
 
    type ISecurityAppManager_Interface is interface and WinRt.IInspectable_Interface;
    type ISecurityAppManager is access all ISecurityAppManager_Interface'Class;
    type ISecurityAppManager_Ptr is access all ISecurityAppManager;
+
+   type IShareWindowCommandEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IShareWindowCommandEventArgs is access all IShareWindowCommandEventArgs_Interface'Class;
+   type IShareWindowCommandEventArgs_Ptr is access all IShareWindowCommandEventArgs;
+
+   type IShareWindowCommandSource_Interface is interface and WinRt.IInspectable_Interface;
+   type IShareWindowCommandSource is access all IShareWindowCommandSource_Interface'Class;
+   type IShareWindowCommandSource_Ptr is access all IShareWindowCommandSource;
+
+   type IShareWindowCommandSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IShareWindowCommandSourceStatics is access all IShareWindowCommandSourceStatics_Interface'Class;
+   type IShareWindowCommandSourceStatics_Ptr is access all IShareWindowCommandSourceStatics;
 
    type ITaskbarManager_Interface is interface and WinRt.IInspectable_Interface;
    type ITaskbarManager is access all ITaskbarManager_Interface'Class;
@@ -59,12 +85,15 @@ package WinRt.Windows.UI.Shell is
 
    type ITaskbarManager2_Interface is interface and WinRt.IInspectable_Interface;
    type ITaskbarManager2 is access all ITaskbarManager2_Interface'Class;
+   type ITaskbarManager2_Ptr is access all ITaskbarManager2;
 
    type ITaskbarManagerDesktopAppSupportStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITaskbarManagerDesktopAppSupportStatics is access all ITaskbarManagerDesktopAppSupportStatics_Interface'Class;
+   type ITaskbarManagerDesktopAppSupportStatics_Ptr is access all ITaskbarManagerDesktopAppSupportStatics;
 
    type ITaskbarManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITaskbarManagerStatics is access all ITaskbarManagerStatics_Interface'Class;
+   type ITaskbarManagerStatics_Ptr is access all ITaskbarManagerStatics;
 
    type IWindowTab_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowTab is access all IWindowTab_Interface'Class;
@@ -89,6 +118,7 @@ package WinRt.Windows.UI.Shell is
 
    type IWindowTabIconStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowTabIconStatics is access all IWindowTabIconStatics_Interface'Class;
+   type IWindowTabIconStatics_Ptr is access all IWindowTabIconStatics;
 
    type IWindowTabManager_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowTabManager is access all IWindowTabManager_Interface'Class;
@@ -96,6 +126,7 @@ package WinRt.Windows.UI.Shell is
 
    type IWindowTabManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowTabManagerStatics is access all IWindowTabManagerStatics_Interface'Class;
+   type IWindowTabManagerStatics_Ptr is access all IWindowTabManagerStatics;
 
    type IWindowTabSwitchRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowTabSwitchRequestedEventArgs is access all IWindowTabSwitchRequestedEventArgs_Interface'Class;
@@ -113,11 +144,35 @@ package WinRt.Windows.UI.Shell is
    -- Class declarations
    -----------------------------------------------------------------------------
 
+   type FocusSession is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IFocusSession : access Windows.UI.Shell.IFocusSession;
+      end record;
+   type FocusSession_Ptr is access all FocusSession;
+
+   type FocusSessionManager is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IFocusSessionManager : access Windows.UI.Shell.IFocusSessionManager;
+      end record;
+   type FocusSessionManager_Ptr is access all FocusSessionManager;
+
    type SecurityAppManager is new Ada.Finalization.Limited_Controlled with
       record
          m_ISecurityAppManager : access Windows.UI.Shell.ISecurityAppManager;
       end record;
    type SecurityAppManager_Ptr is access all SecurityAppManager;
+
+   type ShareWindowCommandEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IShareWindowCommandEventArgs : access Windows.UI.Shell.IShareWindowCommandEventArgs;
+      end record;
+   type ShareWindowCommandEventArgs_Ptr is access all ShareWindowCommandEventArgs;
+
+   type ShareWindowCommandSource is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IShareWindowCommandSource : access Windows.UI.Shell.IShareWindowCommandSource;
+      end record;
+   type ShareWindowCommandSource_Ptr is access all ShareWindowCommandSource;
 
    type TaskbarManager is new Ada.Finalization.Limited_Controlled with
       record
@@ -215,6 +270,18 @@ package WinRt.Windows.UI.Shell is
    );
    type SecurityAppSubstatus_Ptr is access all SecurityAppSubstatus;
 
+   type ShareWindowCommand is (
+      None_e,
+      StartSharing_e,
+      StopSharing_e
+   );
+   for ShareWindowCommand use (
+      None_e => 0,
+      StartSharing_e => 1,
+      StopSharing_e => 2
+   );
+   type ShareWindowCommand_Ptr is access all ShareWindowCommand;
+
    -----------------------------------------------------------------------------
    -- Record declarations
    -----------------------------------------------------------------------------
@@ -259,6 +326,99 @@ package WinRt.Windows.UI.Shell is
       IID_IAdaptiveCardBuilderStatics : aliased WinRt.IID := (1986891528, 54270, 17223, (160, 188, 185, 234, 154, 109, 194, 142 ));
 
    -----------------------------------------------------------------------------
+   -- type IFocusSession is interface and WinRt.IInspectable;
+
+      function get_Id
+      (
+         this : access IFocusSession_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function End_x
+      (
+         this : access IFocusSession_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IFocusSession : aliased WinRt.IID := (111131320, 3716, 24367, (134, 20, 155, 101, 68, 50, 98, 119 ));
+
+   -----------------------------------------------------------------------------
+   -- type IFocusSessionManager is interface and WinRt.IInspectable;
+
+      function get_IsFocusActive
+      (
+         this : access IFocusSessionManager_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetSession
+      (
+         this : access IFocusSessionManager_Interface;
+         id : WinRt.HString;
+         RetVal : access Windows.UI.Shell.IFocusSession
+      )
+      return WinRt.Hresult is abstract;
+
+      function TryStartFocusSession
+      (
+         this : access IFocusSessionManager_Interface;
+         RetVal : access Windows.UI.Shell.IFocusSession
+      )
+      return WinRt.Hresult is abstract;
+
+      function TryStartFocusSession
+      (
+         this : access IFocusSessionManager_Interface;
+         endTime : Windows.Foundation.DateTime;
+         RetVal : access Windows.UI.Shell.IFocusSession
+      )
+      return WinRt.Hresult is abstract;
+
+      function DeactivateFocus
+      (
+         this : access IFocusSessionManager_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_IsFocusActiveChanged
+      (
+         this : access IFocusSessionManager_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_IsFocusActiveChanged
+      (
+         this : access IFocusSessionManager_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IFocusSessionManager : aliased WinRt.IID := (3892296361, 55486, 23999, (186, 198, 73, 54, 72, 66, 227, 126 ));
+
+   -----------------------------------------------------------------------------
+   -- type IFocusSessionManagerStatics is interface and WinRt.IInspectable;
+
+      function GetDefault
+      (
+         this : access IFocusSessionManagerStatics_Interface;
+         RetVal : access Windows.UI.Shell.IFocusSessionManager
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsSupported
+      (
+         this : access IFocusSessionManagerStatics_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IFocusSessionManagerStatics : aliased WinRt.IID := (2202924900, 52122, 23818, (170, 159, 115, 223, 79, 36, 147, 149 ));
+
+   -----------------------------------------------------------------------------
    -- type ISecurityAppManager is interface and WinRt.IInspectable;
 
       function Register
@@ -292,6 +452,97 @@ package WinRt.Windows.UI.Shell is
       return WinRt.Hresult is abstract;
 
       IID_ISecurityAppManager : aliased WinRt.IID := (2527875084, 44756, 22045, (189, 232, 149, 53, 32, 52, 58, 45 ));
+
+   -----------------------------------------------------------------------------
+   -- type IShareWindowCommandEventArgs is interface and WinRt.IInspectable;
+
+      function get_WindowId
+      (
+         this : access IShareWindowCommandEventArgs_Interface;
+         RetVal : access Windows.UI.WindowId
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Command
+      (
+         this : access IShareWindowCommandEventArgs_Interface;
+         RetVal : access Windows.UI.Shell.ShareWindowCommand
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Command
+      (
+         this : access IShareWindowCommandEventArgs_Interface;
+         value : Windows.UI.Shell.ShareWindowCommand
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IShareWindowCommandEventArgs : aliased WinRt.IID := (1165548553, 42275, 22358, (169, 149, 228, 254, 185, 145, 255, 240 ));
+
+   -----------------------------------------------------------------------------
+   -- type IShareWindowCommandSource is interface and WinRt.IInspectable;
+
+      function Start
+      (
+         this : access IShareWindowCommandSource_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function Stop
+      (
+         this : access IShareWindowCommandSource_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function ReportCommandChanged
+      (
+         this : access IShareWindowCommandSource_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_CommandRequested
+      (
+         this : access IShareWindowCommandSource_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_CommandRequested
+      (
+         this : access IShareWindowCommandSource_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_CommandInvoked
+      (
+         this : access IShareWindowCommandSource_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_CommandInvoked
+      (
+         this : access IShareWindowCommandSource_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IShareWindowCommandSource : aliased WinRt.IID := (3409672931, 27548, 22046, (188, 204, 97, 230, 142, 10, 191, 239 ));
+
+   -----------------------------------------------------------------------------
+   -- type IShareWindowCommandSourceStatics is interface and WinRt.IInspectable;
+
+      function GetForCurrentView
+      (
+         this : access IShareWindowCommandSourceStatics_Interface;
+         RetVal : access Windows.UI.Shell.IShareWindowCommandSource
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IShareWindowCommandSourceStatics : aliased WinRt.IID := (2968217174, 40108, 20860, (182, 199, 142, 247, 21, 8, 66, 149 ));
 
    -----------------------------------------------------------------------------
    -- type ITaskbarManager is interface and WinRt.IInspectable;
@@ -649,7 +900,7 @@ package WinRt.Windows.UI.Shell is
       function GetForWindow
       (
          this : access IWindowTabManagerStatics_Interface;
-         windowId : WinRt.UInt64;
+         id : Windows.UI.WindowId;
          RetVal : access Windows.UI.Shell.IWindowTabManager
       )
       return WinRt.Hresult is abstract;
@@ -779,6 +1030,88 @@ package WinRt.Windows.UI.Shell is
    end AdaptiveCardBuilder;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for FocusSession
+
+   overriding procedure Initialize (this : in out FocusSession);
+   overriding procedure Finalize (this : in out FocusSession);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for FocusSession
+
+   function get_Id
+   (
+      this : in out FocusSession
+   )
+   return WinRt.WString;
+
+   procedure End_x
+   (
+      this : in out FocusSession
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for FocusSessionManager
+
+   overriding procedure Initialize (this : in out FocusSessionManager);
+   overriding procedure Finalize (this : in out FocusSessionManager);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for FocusSessionManager
+
+   function GetDefault
+   return WinRt.Windows.UI.Shell.FocusSessionManager;
+
+   function get_IsSupported
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for FocusSessionManager
+
+   function get_IsFocusActive
+   (
+      this : in out FocusSessionManager
+   )
+   return WinRt.Boolean;
+
+   function GetSession
+   (
+      this : in out FocusSessionManager;
+      id : WinRt.WString
+   )
+   return WinRt.Windows.UI.Shell.FocusSession'Class;
+
+   function TryStartFocusSession
+   (
+      this : in out FocusSessionManager
+   )
+   return WinRt.Windows.UI.Shell.FocusSession'Class;
+
+   function TryStartFocusSession
+   (
+      this : in out FocusSessionManager;
+      endTime : Windows.Foundation.DateTime
+   )
+   return WinRt.Windows.UI.Shell.FocusSession'Class;
+
+   procedure DeactivateFocus
+   (
+      this : in out FocusSessionManager
+   );
+
+   function add_IsFocusActiveChanged
+   (
+      this : in out FocusSessionManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_IsFocusActiveChanged
+   (
+      this : in out FocusSessionManager;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for SecurityAppManager
 
    overriding procedure Initialize (this : in out SecurityAppManager);
@@ -817,6 +1150,89 @@ package WinRt.Windows.UI.Shell is
       state : Windows.UI.Shell.SecurityAppState;
       substatus : Windows.UI.Shell.SecurityAppSubstatus;
       detailsUri : Windows.Foundation.Uri'Class
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for ShareWindowCommandEventArgs
+
+   overriding procedure Initialize (this : in out ShareWindowCommandEventArgs);
+   overriding procedure Finalize (this : in out ShareWindowCommandEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for ShareWindowCommandEventArgs
+
+   function get_WindowId
+   (
+      this : in out ShareWindowCommandEventArgs
+   )
+   return WinRt.Windows.UI.WindowId;
+
+   function get_Command
+   (
+      this : in out ShareWindowCommandEventArgs
+   )
+   return WinRt.Windows.UI.Shell.ShareWindowCommand;
+
+   procedure put_Command
+   (
+      this : in out ShareWindowCommandEventArgs;
+      value : Windows.UI.Shell.ShareWindowCommand
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for ShareWindowCommandSource
+
+   overriding procedure Initialize (this : in out ShareWindowCommandSource);
+   overriding procedure Finalize (this : in out ShareWindowCommandSource);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for ShareWindowCommandSource
+
+   function GetForCurrentView
+   return WinRt.Windows.UI.Shell.ShareWindowCommandSource;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for ShareWindowCommandSource
+
+   procedure Start
+   (
+      this : in out ShareWindowCommandSource
+   );
+
+   procedure Stop
+   (
+      this : in out ShareWindowCommandSource
+   );
+
+   procedure ReportCommandChanged
+   (
+      this : in out ShareWindowCommandSource
+   );
+
+   function add_CommandRequested
+   (
+      this : in out ShareWindowCommandSource;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_CommandRequested
+   (
+      this : in out ShareWindowCommandSource;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_CommandInvoked
+   (
+      this : in out ShareWindowCommandSource;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_CommandInvoked
+   (
+      this : in out ShareWindowCommandSource;
+      token : Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1170,7 +1586,7 @@ package WinRt.Windows.UI.Shell is
 
    function GetForWindow
    (
-      windowId : WinRt.UInt64
+      id : Windows.UI.WindowId
    )
    return WinRt.Windows.UI.Shell.WindowTabManager;
 

@@ -55,6 +55,7 @@ package WinRt.Windows.UI.Xaml.Data is
 
    type IBinding2_Interface is interface and WinRt.IInspectable_Interface;
    type IBinding2 is access all IBinding2_Interface'Class;
+   type IBinding2_Ptr is access all IBinding2;
 
    type IBindingBase_Interface is interface and WinRt.IInspectable_Interface;
    type IBindingBase is access all IBindingBase_Interface'Class;
@@ -62,6 +63,7 @@ package WinRt.Windows.UI.Xaml.Data is
 
    type IBindingBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBindingBaseFactory is access all IBindingBaseFactory_Interface'Class;
+   type IBindingBaseFactory_Ptr is access all IBindingBaseFactory;
 
    type IBindingExpression_Interface is interface and WinRt.IInspectable_Interface;
    type IBindingExpression is access all IBindingExpression_Interface'Class;
@@ -73,12 +75,15 @@ package WinRt.Windows.UI.Xaml.Data is
 
    type IBindingExpressionBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBindingExpressionBaseFactory is access all IBindingExpressionBaseFactory_Interface'Class;
+   type IBindingExpressionBaseFactory_Ptr is access all IBindingExpressionBaseFactory;
 
    type IBindingExpressionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBindingExpressionFactory is access all IBindingExpressionFactory_Interface'Class;
+   type IBindingExpressionFactory_Ptr is access all IBindingExpressionFactory;
 
    type IBindingFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBindingFactory is access all IBindingFactory_Interface'Class;
+   type IBindingFactory_Ptr is access all IBindingFactory;
 
    type IBindingOperations_Interface is interface and WinRt.IInspectable_Interface;
    type IBindingOperations is access all IBindingOperations_Interface'Class;
@@ -86,15 +91,19 @@ package WinRt.Windows.UI.Xaml.Data is
 
    type IBindingOperationsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBindingOperationsStatics is access all IBindingOperationsStatics_Interface'Class;
+   type IBindingOperationsStatics_Ptr is access all IBindingOperationsStatics;
 
    type ICollectionView_Interface is interface and WinRt.IInspectable_Interface;
    type ICollectionView is access all ICollectionView_Interface'Class;
+   type ICollectionView_Ptr is access all ICollectionView;
 
    type ICollectionViewFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICollectionViewFactory is access all ICollectionViewFactory_Interface'Class;
+   type ICollectionViewFactory_Ptr is access all ICollectionViewFactory;
 
    type ICollectionViewGroup_Interface is interface and WinRt.IInspectable_Interface;
    type ICollectionViewGroup is access all ICollectionViewGroup_Interface'Class;
+   type ICollectionViewGroup_Ptr is access all ICollectionViewGroup;
 
    type ICollectionViewSource_Interface is interface and WinRt.IInspectable_Interface;
    type ICollectionViewSource is access all ICollectionViewSource_Interface'Class;
@@ -102,6 +111,7 @@ package WinRt.Windows.UI.Xaml.Data is
 
    type ICollectionViewSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICollectionViewSourceStatics is access all ICollectionViewSourceStatics_Interface'Class;
+   type ICollectionViewSourceStatics_Ptr is access all ICollectionViewSourceStatics;
 
    type ICurrentChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrentChangingEventArgs is access all ICurrentChangingEventArgs_Interface'Class;
@@ -109,12 +119,15 @@ package WinRt.Windows.UI.Xaml.Data is
 
    type ICurrentChangingEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrentChangingEventArgsFactory is access all ICurrentChangingEventArgsFactory_Interface'Class;
+   type ICurrentChangingEventArgsFactory_Ptr is access all ICurrentChangingEventArgsFactory;
 
    type ICustomProperty_Interface is interface and WinRt.IInspectable_Interface;
    type ICustomProperty is access all ICustomProperty_Interface'Class;
+   type ICustomProperty_Ptr is access all ICustomProperty;
 
    type ICustomPropertyProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ICustomPropertyProvider is access all ICustomPropertyProvider_Interface'Class;
+   type ICustomPropertyProvider_Ptr is access all ICustomPropertyProvider;
 
    type IItemIndexRange_Interface is interface and WinRt.IInspectable_Interface;
    type IItemIndexRange is access all IItemIndexRange_Interface'Class;
@@ -122,12 +135,15 @@ package WinRt.Windows.UI.Xaml.Data is
 
    type IItemIndexRangeFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IItemIndexRangeFactory is access all IItemIndexRangeFactory_Interface'Class;
+   type IItemIndexRangeFactory_Ptr is access all IItemIndexRangeFactory;
 
    type IItemsRangeInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsRangeInfo is access all IItemsRangeInfo_Interface'Class;
+   type IItemsRangeInfo_Ptr is access all IItemsRangeInfo;
 
    type INotifyPropertyChanged_Interface is interface and WinRt.IInspectable_Interface;
    type INotifyPropertyChanged is access all INotifyPropertyChanged_Interface'Class;
+   type INotifyPropertyChanged_Ptr is access all INotifyPropertyChanged;
 
    type IPropertyChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPropertyChangedEventArgs is access all IPropertyChangedEventArgs_Interface'Class;
@@ -135,6 +151,7 @@ package WinRt.Windows.UI.Xaml.Data is
 
    type IPropertyChangedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPropertyChangedEventArgsFactory is access all IPropertyChangedEventArgsFactory_Interface'Class;
+   type IPropertyChangedEventArgsFactory_Ptr is access all IPropertyChangedEventArgsFactory;
 
    type IRelativeSource_Interface is interface and WinRt.IInspectable_Interface;
    type IRelativeSource is access all IRelativeSource_Interface'Class;
@@ -142,15 +159,19 @@ package WinRt.Windows.UI.Xaml.Data is
 
    type IRelativeSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRelativeSourceFactory is access all IRelativeSourceFactory_Interface'Class;
+   type IRelativeSourceFactory_Ptr is access all IRelativeSourceFactory;
 
    type ISelectionInfo_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectionInfo is access all ISelectionInfo_Interface'Class;
+   type ISelectionInfo_Ptr is access all ISelectionInfo;
 
    type ISupportIncrementalLoading_Interface is interface and WinRt.IInspectable_Interface;
    type ISupportIncrementalLoading is access all ISupportIncrementalLoading_Interface'Class;
+   type ISupportIncrementalLoading_Ptr is access all ISupportIncrementalLoading;
 
    type IValueConverter_Interface is interface and WinRt.IInspectable_Interface;
    type IValueConverter is access all IValueConverter_Interface'Class;
+   type IValueConverter_Ptr is access all IValueConverter;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -28,17 +28,28 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
+with WinRt.Windows.Graphics.Printing;
+with WinRt.Windows.Graphics.Printing.PrintTicket;
 with WinRt.Windows.Storage.Streams;
 with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Devices.Printers is
 
+   package IAsyncOperation_IppPrintDeviceInstallationResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Printers.IIppPrintDeviceInstallationResult);
+   package AsyncOperationCompletedHandler_IppPrintDeviceInstallationResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.Printers.IIppPrintDeviceInstallationResult);
+
    package IAsyncOperation_Print3DDevice is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Printers.IPrint3DDevice);
    package AsyncOperationCompletedHandler_Print3DDevice is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.Printers.IPrint3DDevice);
 
    package IAsyncOperation_IRandomAccessStreamWithContentType is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType);
    package AsyncOperationCompletedHandler_IRandomAccessStreamWithContentType is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType);
+
+   package IAsyncOperation_VirtualPrinterInstallationResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationResult);
+   package AsyncOperationCompletedHandler_VirtualPrinterInstallationResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationResult);
+
+   package IAsyncOperation_Boolean is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Boolean);
+   package AsyncOperationCompletedHandler_Boolean is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Boolean);
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for IppAttributeError
@@ -1678,6 +1689,117 @@ package body WinRt.Windows.Devices.Printers is
    end;
 
    -----------------------------------------------------------------------------
+   -- Static Interfaces for IppPrintDevice
+
+   function GetDeviceSelector
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppPrintDevice");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppPrintDeviceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IIppPrintDeviceStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function FromId
+   (
+      deviceId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppPrintDevice is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppPrintDevice");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppPrintDeviceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppPrintDevice;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppPrintDevice do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppPrintDeviceStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FromId (HStr_deviceId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppPrintDevice := new Windows.Devices.Printers.IIppPrintDevice;
+            Retval.m_IIppPrintDevice.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
+      end return;
+   end;
+
+   function FromPrinterName
+   (
+      printerName : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppPrintDevice is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppPrintDevice");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppPrintDeviceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppPrintDevice;
+      HStr_printerName : constant WinRt.HString := To_HString (printerName);
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppPrintDevice do
+         Hr := RoGetActivationFactory (m_hString, IID_IIppPrintDeviceStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FromPrinterName (HStr_printerName, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IIppPrintDevice := new Windows.Devices.Printers.IIppPrintDevice;
+            Retval.m_IIppPrintDevice.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_printerName);
+      end return;
+   end;
+
+   function IsIppPrinter
+   (
+      printerName : WinRt.WString
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppPrintDevice");
+      m_Factory        : access WinRt.Windows.Devices.Printers.IIppPrintDeviceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      HStr_printerName : constant WinRt.HString := To_HString (printerName);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IIppPrintDeviceStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.IsIppPrinter (HStr_printerName, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_printerName);
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
    -- Implemented Interfaces for IppPrintDevice
 
    function get_PrinterName
@@ -1800,6 +1922,479 @@ package body WinRt.Windows.Devices.Printers is
          Retval.m_IIppSetAttributesResult.all := m_ComRetVal;
       end return;
    end;
+
+   function GetMaxSupportedPdfSize
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.UInt64 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt64;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice2, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIppPrintDevice.all);
+      Hr := m_Interface.GetMaxSupportedPdfSize (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetMaxSupportedPdfVersion
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice2, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIppPrintDevice.all);
+      Hr := m_Interface.GetMaxSupportedPdfVersion (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function IsPdlPassthroughSupported
+   (
+      this : in out IppPrintDevice;
+      pdlContentType : WinRt.WString
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      HStr_pdlContentType : constant WinRt.HString := To_HString (pdlContentType);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice2, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIppPrintDevice.all);
+      Hr := m_Interface.IsPdlPassthroughSupported (HStr_pdlContentType, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_pdlContentType);
+      return m_ComRetVal;
+   end;
+
+   function GetPdlPassthroughProvider
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Windows.Devices.Printers.PdlPassthroughProvider'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IPdlPassthroughProvider;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice2, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.PdlPassthroughProvider do
+         m_Interface := QInterface (this.m_IIppPrintDevice.all);
+         Hr := m_Interface.GetPdlPassthroughProvider (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPdlPassthroughProvider := new Windows.Devices.Printers.IPdlPassthroughProvider;
+         Retval.m_IPdlPassthroughProvider.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_IsIppFaxOutPrinter
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice3, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIppPrintDevice.all);
+      Hr := m_Interface.get_IsIppFaxOutPrinter (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_DeviceKind
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Windows.Devices.Printers.IppPrintDeviceKind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IppPrintDeviceKind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice4, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIppPrintDevice.all);
+      Hr := m_Interface.get_DeviceKind (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_CanModifyUserDefaultPrintTicket
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice4, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIppPrintDevice.all);
+      Hr := m_Interface.get_CanModifyUserDefaultPrintTicket (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_UserDefaultPrintTicket
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice4, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket do
+         m_Interface := QInterface (this.m_IIppPrintDevice.all);
+         Hr := m_Interface.get_UserDefaultPrintTicket (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWorkflowPrintTicket := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         Retval.m_IWorkflowPrintTicket.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_UserDefaultPrintTicket
+   (
+      this : in out IppPrintDevice;
+      value : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice4, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIppPrintDevice.all);
+      Hr := m_Interface.put_UserDefaultPrintTicket (value.m_IWorkflowPrintTicket.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure RefreshPrintDeviceCapabilities
+   (
+      this : in out IppPrintDevice
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice4, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIppPrintDevice.all);
+      Hr := m_Interface.RefreshPrintDeviceCapabilities;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function GetMaxSupportedPdlVersion
+   (
+      this : in out IppPrintDevice;
+      pdlContentType : WinRt.WString
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      HStr_pdlContentType : constant WinRt.HString := To_HString (pdlContentType);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice4, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIppPrintDevice.all);
+      Hr := m_Interface.GetMaxSupportedPdlVersion (HStr_pdlContentType, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_pdlContentType);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetDeviceProperties
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Windows.Foundation.Collections.ValueSet'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice5 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice5, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice5'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
+         m_Interface := QInterface (this.m_IIppPrintDevice.all);
+         Hr := m_Interface.GetDeviceProperties (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet.all := m_ComRetVal;
+      end return;
+   end;
+
+   function ReplaceDeviceProperties
+   (
+      this : in out IppPrintDevice;
+      deviceProperties : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.ReplaceDevicePropertiesResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice5 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IReplaceDevicePropertiesResult;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice5, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice5'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.ReplaceDevicePropertiesResult do
+         m_Interface := QInterface (this.m_IIppPrintDevice.all);
+         Hr := m_Interface.ReplaceDeviceProperties (deviceProperties, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IReplaceDevicePropertiesResult := new Windows.Devices.Printers.IReplaceDevicePropertiesResult;
+         Retval.m_IReplaceDevicePropertiesResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppPrintDeviceInstallationResult
+
+   procedure Initialize (this : in out IppPrintDeviceInstallationResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out IppPrintDeviceInstallationResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IIppPrintDeviceInstallationResult, IIppPrintDeviceInstallationResult_Ptr);
+   begin
+      if this.m_IIppPrintDeviceInstallationResult /= null then
+         if this.m_IIppPrintDeviceInstallationResult.all /= null then
+            temp := this.m_IIppPrintDeviceInstallationResult.all.Release;
+            Free (this.m_IIppPrintDeviceInstallationResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppPrintDeviceInstallationResult
+
+   function get_Status
+   (
+      this : in out IppPrintDeviceInstallationResult
+   )
+   return WinRt.Windows.Devices.Printers.IppPrintDeviceInstallationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IppPrintDeviceInstallationStatus;
+   begin
+      Hr := this.m_IIppPrintDeviceInstallationResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_InstalledPrinterName
+   (
+      this : in out IppPrintDeviceInstallationResult
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IIppPrintDeviceInstallationResult.all.get_InstalledPrinterName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out IppPrintDeviceInstallationResult
+   )
+   return WinRt.Windows.Foundation.HResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.HResult;
+   begin
+      Hr := this.m_IIppPrintDeviceInstallationResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package body IppPrintDeviceManager is
+
+      function CanInstallIppPrintDevice
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppPrintDeviceManager");
+         m_Factory        : access WinRt.Windows.Devices.Printers.IIppPrintDeviceManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IIppPrintDeviceManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CanInstallIppPrintDevice (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function InstallIppPrintDeviceAsync
+      (
+         printerUri : Windows.Foundation.Uri'Class;
+         printerName : WinRt.WString
+      )
+      return WinRt.Windows.Devices.Printers.IppPrintDeviceInstallationResult is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppPrintDeviceManager");
+         m_Factory        : access WinRt.Windows.Devices.Printers.IIppPrintDeviceManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_printerName : constant WinRt.HString := To_HString (printerName);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_IppPrintDeviceInstallationResult.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_IppPrintDeviceInstallationResult.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Devices.Printers.IIppPrintDeviceInstallationResult;
+         m_IID            : aliased WinRt.IID := (415842971, 3213, 22108, (178, 197, 214, 30, 189, 230, 63, 49 )); -- Windows.Devices.Printers.IppPrintDeviceInstallationResult;
+         m_HandlerIID     : aliased WinRt.IID := (3614215184, 52639, 24338, (190, 43, 212, 221, 93, 160, 69, 192 ));
+         m_Handler        : AsyncOperationCompletedHandler_IppPrintDeviceInstallationResult.Kind := new AsyncOperationCompletedHandler_IppPrintDeviceInstallationResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_IppPrintDeviceInstallationResult.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_IppPrintDeviceInstallationResult.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IppPrintDeviceInstallationResult.Kind_Delegate, AsyncOperationCompletedHandler_IppPrintDeviceInstallationResult.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Devices.Printers.IppPrintDeviceInstallationResult do
+            Hr := RoGetActivationFactory (m_hString, IID_IIppPrintDeviceManagerStatics'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.InstallIppPrintDeviceAsync (printerUri.m_IUriRuntimeClass.all, HStr_printerName, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IIppPrintDeviceInstallationResult := new Windows.Devices.Printers.IIppPrintDeviceInstallationResult;
+                        Retval.m_IIppPrintDeviceInstallationResult.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_printerName);
+         end return;
+      end;
+
+   end IppPrintDeviceManager;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for IppResolution
@@ -2060,6 +2655,300 @@ package body WinRt.Windows.Devices.Printers is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PageConfigurationSettings
+
+   procedure Initialize (this : in out PageConfigurationSettings) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PageConfigurationSettings) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPageConfigurationSettings, IPageConfigurationSettings_Ptr);
+   begin
+      if this.m_IPageConfigurationSettings /= null then
+         if this.m_IPageConfigurationSettings.all /= null then
+            temp := this.m_IPageConfigurationSettings.all.Release;
+            Free (this.m_IPageConfigurationSettings);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for PageConfigurationSettings
+
+   function Constructor return PageConfigurationSettings is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.PageConfigurationSettings");
+      m_ComRetVal  : aliased Windows.Devices.Printers.IPageConfigurationSettings;
+   begin
+      return RetVal : PageConfigurationSettings do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IPageConfigurationSettings := new Windows.Devices.Printers.IPageConfigurationSettings;
+            Retval.m_IPageConfigurationSettings.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PageConfigurationSettings
+
+   function get_OrientationSource
+   (
+      this : in out PageConfigurationSettings
+   )
+   return WinRt.Windows.Devices.Printers.PageConfigurationSource is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.PageConfigurationSource;
+   begin
+      Hr := this.m_IPageConfigurationSettings.all.get_OrientationSource (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_OrientationSource
+   (
+      this : in out PageConfigurationSettings;
+      value : Windows.Devices.Printers.PageConfigurationSource
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPageConfigurationSettings.all.put_OrientationSource (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SizeSource
+   (
+      this : in out PageConfigurationSettings
+   )
+   return WinRt.Windows.Devices.Printers.PageConfigurationSource is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.PageConfigurationSource;
+   begin
+      Hr := this.m_IPageConfigurationSettings.all.get_SizeSource (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_SizeSource
+   (
+      this : in out PageConfigurationSettings;
+      value : Windows.Devices.Printers.PageConfigurationSource
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPageConfigurationSettings.all.put_SizeSource (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PdlPassthroughProvider
+
+   procedure Initialize (this : in out PdlPassthroughProvider) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PdlPassthroughProvider) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPdlPassthroughProvider, IPdlPassthroughProvider_Ptr);
+   begin
+      if this.m_IPdlPassthroughProvider /= null then
+         if this.m_IPdlPassthroughProvider.all /= null then
+            temp := this.m_IPdlPassthroughProvider.all.Release;
+            Free (this.m_IPdlPassthroughProvider);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PdlPassthroughProvider
+
+   function get_SupportedPdlContentTypes
+   (
+      this : in out PdlPassthroughProvider
+   )
+   return IVectorView_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_HString.Kind;
+   begin
+      Hr := this.m_IPdlPassthroughProvider.all.get_SupportedPdlContentTypes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function StartPrintJobWithTaskOptions
+   (
+      this : in out PdlPassthroughProvider;
+      jobName : WinRt.WString;
+      pdlContentType : WinRt.WString;
+      taskOptions : Windows.Graphics.Printing.PrintTaskOptions'Class;
+      pageConfigurationSettings_p : Windows.Devices.Printers.PageConfigurationSettings'Class
+   )
+   return WinRt.Windows.Devices.Printers.PdlPassthroughTarget'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IPdlPassthroughTarget;
+      HStr_jobName : constant WinRt.HString := To_HString (jobName);
+      HStr_pdlContentType : constant WinRt.HString := To_HString (pdlContentType);
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.PdlPassthroughTarget do
+         Hr := this.m_IPdlPassthroughProvider.all.StartPrintJobWithTaskOptions (HStr_jobName, HStr_pdlContentType, taskOptions.m_IPrintTaskOptionsCore.all, pageConfigurationSettings_p.m_IPageConfigurationSettings.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPdlPassthroughTarget := new Windows.Devices.Printers.IPdlPassthroughTarget;
+         Retval.m_IPdlPassthroughTarget.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_jobName);
+         tmp := WindowsDeleteString (HStr_pdlContentType);
+      end return;
+   end;
+
+   function StartPrintJobWithPrintTicket
+   (
+      this : in out PdlPassthroughProvider;
+      jobName : WinRt.WString;
+      pdlContentType : WinRt.WString;
+      printTicket : Windows.Storage.Streams.IInputStream;
+      pageConfigurationSettings_p : Windows.Devices.Printers.PageConfigurationSettings'Class
+   )
+   return WinRt.Windows.Devices.Printers.PdlPassthroughTarget'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IPdlPassthroughTarget;
+      HStr_jobName : constant WinRt.HString := To_HString (jobName);
+      HStr_pdlContentType : constant WinRt.HString := To_HString (pdlContentType);
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.PdlPassthroughTarget do
+         Hr := this.m_IPdlPassthroughProvider.all.StartPrintJobWithPrintTicket (HStr_jobName, HStr_pdlContentType, printTicket, pageConfigurationSettings_p.m_IPageConfigurationSettings.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPdlPassthroughTarget := new Windows.Devices.Printers.IPdlPassthroughTarget;
+         Retval.m_IPdlPassthroughTarget.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_jobName);
+         tmp := WindowsDeleteString (HStr_pdlContentType);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PdlPassthroughTarget
+
+   procedure Initialize (this : in out PdlPassthroughTarget) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PdlPassthroughTarget) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPdlPassthroughTarget, IPdlPassthroughTarget_Ptr);
+   begin
+      if this.m_IPdlPassthroughTarget /= null then
+         if this.m_IPdlPassthroughTarget.all /= null then
+            temp := this.m_IPdlPassthroughTarget.all.Release;
+            Free (this.m_IPdlPassthroughTarget);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PdlPassthroughTarget
+
+   function get_PrintJobId
+   (
+      this : in out PdlPassthroughTarget
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IPdlPassthroughTarget.all.get_PrintJobId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetOutputStream
+   (
+      this : in out PdlPassthroughTarget
+   )
+   return WinRt.Windows.Storage.Streams.IOutputStream is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+   begin
+      Hr := this.m_IPdlPassthroughTarget.all.GetOutputStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure Submit
+   (
+      this : in out PdlPassthroughTarget
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPdlPassthroughTarget.all.Submit;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure Close
+   (
+      this : in out PdlPassthroughTarget
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Foundation.IClosable := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IPdlPassthroughTarget_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPdlPassthroughTarget.all);
+      Hr := m_Interface.Close;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Print3DDevice
 
    procedure Initialize (this : in out Print3DDevice) is
@@ -2157,7 +3046,7 @@ package body WinRt.Windows.Devices.Printers is
       end return;
    end;
 
-   function GetDeviceSelector
+   function GetDeviceSelector_Print3DDevice
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2416,6 +3305,1047 @@ package body WinRt.Windows.Devices.Printers is
          end if;
       end if;
       return m_RetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for ReplaceDevicePropertiesResult
+
+   procedure Initialize (this : in out ReplaceDevicePropertiesResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out ReplaceDevicePropertiesResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IReplaceDevicePropertiesResult, IReplaceDevicePropertiesResult_Ptr);
+   begin
+      if this.m_IReplaceDevicePropertiesResult /= null then
+         if this.m_IReplaceDevicePropertiesResult.all /= null then
+            temp := this.m_IReplaceDevicePropertiesResult.all.Release;
+            Free (this.m_IReplaceDevicePropertiesResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for ReplaceDevicePropertiesResult
+
+   function get_Status
+   (
+      this : in out ReplaceDevicePropertiesResult
+   )
+   return WinRt.Windows.Devices.Printers.ReplaceDevicePropertiesStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.ReplaceDevicePropertiesStatus;
+   begin
+      Hr := this.m_IReplaceDevicePropertiesResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out ReplaceDevicePropertiesResult
+   )
+   return WinRt.Windows.Foundation.HResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.HResult;
+   begin
+      Hr := this.m_IReplaceDevicePropertiesResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for VirtualPrinterInstallationParameters
+
+   procedure Initialize (this : in out VirtualPrinterInstallationParameters) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out VirtualPrinterInstallationParameters) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IVirtualPrinterInstallationParameters, IVirtualPrinterInstallationParameters_Ptr);
+   begin
+      if this.m_IVirtualPrinterInstallationParameters /= null then
+         if this.m_IVirtualPrinterInstallationParameters.all /= null then
+            temp := this.m_IVirtualPrinterInstallationParameters.all.Release;
+            Free (this.m_IVirtualPrinterInstallationParameters);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for VirtualPrinterInstallationParameters
+
+   function Constructor return VirtualPrinterInstallationParameters is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterInstallationParameters");
+      m_ComRetVal  : aliased Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
+   begin
+      return RetVal : VirtualPrinterInstallationParameters do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IVirtualPrinterInstallationParameters := new Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
+            Retval.m_IVirtualPrinterInstallationParameters.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for VirtualPrinterInstallationParameters
+
+   function get_PrinterName
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IVirtualPrinterInstallationParameters.all.get_PrinterName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_PrinterName
+   (
+      this : in out VirtualPrinterInstallationParameters;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IVirtualPrinterInstallationParameters.all.put_PrinterName (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_OutputFileExtensions
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IVirtualPrinterInstallationParameters.all.get_OutputFileExtensions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_SupportedInputFormats
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return IVector_IVirtualPrinterSupportedFormat.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_IVirtualPrinterSupportedFormat.Kind;
+   begin
+      Hr := this.m_IVirtualPrinterInstallationParameters.all.get_SupportedInputFormats (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_IVirtualPrinterSupportedFormat (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_PrintDeviceCapabilitiesPackageRelativeFilePath
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IVirtualPrinterInstallationParameters.all.get_PrintDeviceCapabilitiesPackageRelativeFilePath (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_PrintDeviceCapabilitiesPackageRelativeFilePath
+   (
+      this : in out VirtualPrinterInstallationParameters;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IVirtualPrinterInstallationParameters.all.put_PrintDeviceCapabilitiesPackageRelativeFilePath (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_PrintDeviceResourcesPackageRelativeFilePath
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IVirtualPrinterInstallationParameters.all.get_PrintDeviceResourcesPackageRelativeFilePath (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_PrintDeviceResourcesPackageRelativeFilePath
+   (
+      this : in out VirtualPrinterInstallationParameters;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IVirtualPrinterInstallationParameters.all.put_PrintDeviceResourcesPackageRelativeFilePath (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_PreferredInputFormat
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return WinRt.Windows.Devices.Printers.VirtualPrinterPreferredInputFormat is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.VirtualPrinterPreferredInputFormat;
+   begin
+      Hr := this.m_IVirtualPrinterInstallationParameters.all.get_PreferredInputFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_PreferredInputFormat
+   (
+      this : in out VirtualPrinterInstallationParameters;
+      value : Windows.Devices.Printers.VirtualPrinterPreferredInputFormat
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IVirtualPrinterInstallationParameters.all.put_PreferredInputFormat (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_PrinterUri
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IVirtualPrinterInstallationParameters.all.get_PrinterUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_PrinterUri
+   (
+      this : in out VirtualPrinterInstallationParameters;
+      value : Windows.Foundation.Uri'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IVirtualPrinterInstallationParameters.all.put_PrinterUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_EntryPoint
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IVirtualPrinterInstallationParameters.all.get_EntryPoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_EntryPoint
+   (
+      this : in out VirtualPrinterInstallationParameters;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IVirtualPrinterInstallationParameters.all.put_EntryPoint (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for VirtualPrinterInstallationResult
+
+   procedure Initialize (this : in out VirtualPrinterInstallationResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out VirtualPrinterInstallationResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IVirtualPrinterInstallationResult, IVirtualPrinterInstallationResult_Ptr);
+   begin
+      if this.m_IVirtualPrinterInstallationResult /= null then
+         if this.m_IVirtualPrinterInstallationResult.all /= null then
+            temp := this.m_IVirtualPrinterInstallationResult.all.Release;
+            Free (this.m_IVirtualPrinterInstallationResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for VirtualPrinterInstallationResult
+
+   function get_Status
+   (
+      this : in out VirtualPrinterInstallationResult
+   )
+   return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.VirtualPrinterInstallationStatus;
+   begin
+      Hr := this.m_IVirtualPrinterInstallationResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out VirtualPrinterInstallationResult
+   )
+   return WinRt.Windows.Foundation.HResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.HResult;
+   begin
+      Hr := this.m_IVirtualPrinterInstallationResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package body VirtualPrinterManager is
+
+      function InstallVirtualPrinterAsync
+      (
+         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class
+      )
+      return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterManager");
+         m_Factory        : access WinRt.Windows.Devices.Printers.IVirtualPrinterManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_VirtualPrinterInstallationResult.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_VirtualPrinterInstallationResult.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationResult;
+         m_IID            : aliased WinRt.IID := (3058604449, 39167, 23058, (138, 227, 70, 33, 117, 142, 145, 246 )); -- Windows.Devices.Printers.VirtualPrinterInstallationResult;
+         m_HandlerIID     : aliased WinRt.IID := (2585399328, 9759, 21664, (144, 84, 226, 68, 98, 29, 52, 188 ));
+         m_Handler        : AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind := new AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_VirtualPrinterInstallationResult.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind_Delegate, AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult do
+            Hr := RoGetActivationFactory (m_hString, IID_IVirtualPrinterManagerStatics'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.InstallVirtualPrinterAsync (parameters.m_IVirtualPrinterInstallationParameters.all, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IVirtualPrinterInstallationResult := new Windows.Devices.Printers.IVirtualPrinterInstallationResult;
+                        Retval.m_IVirtualPrinterInstallationResult.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function InstallVirtualPrinterAsync
+      (
+         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class;
+         appPackageFamilyName : WinRt.WString
+      )
+      return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterManager");
+         m_Factory        : access WinRt.Windows.Devices.Printers.IVirtualPrinterManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_appPackageFamilyName : constant WinRt.HString := To_HString (appPackageFamilyName);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_VirtualPrinterInstallationResult.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_VirtualPrinterInstallationResult.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationResult;
+         m_IID            : aliased WinRt.IID := (3058604449, 39167, 23058, (138, 227, 70, 33, 117, 142, 145, 246 )); -- Windows.Devices.Printers.VirtualPrinterInstallationResult;
+         m_HandlerIID     : aliased WinRt.IID := (2585399328, 9759, 21664, (144, 84, 226, 68, 98, 29, 52, 188 ));
+         m_Handler        : AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind := new AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_VirtualPrinterInstallationResult.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind_Delegate, AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult do
+            Hr := RoGetActivationFactory (m_hString, IID_IVirtualPrinterManagerStatics'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.InstallVirtualPrinterAsync (parameters.m_IVirtualPrinterInstallationParameters.all, HStr_appPackageFamilyName, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IVirtualPrinterInstallationResult := new Windows.Devices.Printers.IVirtualPrinterInstallationResult;
+                        Retval.m_IVirtualPrinterInstallationResult.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_appPackageFamilyName);
+         end return;
+      end;
+
+      function InstallVirtualPrinterForAllUsersAsync
+      (
+         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class
+      )
+      return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterManager");
+         m_Factory        : access WinRt.Windows.Devices.Printers.IVirtualPrinterManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_VirtualPrinterInstallationResult.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_VirtualPrinterInstallationResult.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationResult;
+         m_IID            : aliased WinRt.IID := (3058604449, 39167, 23058, (138, 227, 70, 33, 117, 142, 145, 246 )); -- Windows.Devices.Printers.VirtualPrinterInstallationResult;
+         m_HandlerIID     : aliased WinRt.IID := (2585399328, 9759, 21664, (144, 84, 226, 68, 98, 29, 52, 188 ));
+         m_Handler        : AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind := new AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_VirtualPrinterInstallationResult.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind_Delegate, AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult do
+            Hr := RoGetActivationFactory (m_hString, IID_IVirtualPrinterManagerStatics'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.InstallVirtualPrinterForAllUsersAsync (parameters.m_IVirtualPrinterInstallationParameters.all, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IVirtualPrinterInstallationResult := new Windows.Devices.Printers.IVirtualPrinterInstallationResult;
+                        Retval.m_IVirtualPrinterInstallationResult.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function InstallVirtualPrinterForAllUsersAsync
+      (
+         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class;
+         appPackageFamilyName : WinRt.WString
+      )
+      return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterManager");
+         m_Factory        : access WinRt.Windows.Devices.Printers.IVirtualPrinterManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_appPackageFamilyName : constant WinRt.HString := To_HString (appPackageFamilyName);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_VirtualPrinterInstallationResult.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_VirtualPrinterInstallationResult.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationResult;
+         m_IID            : aliased WinRt.IID := (3058604449, 39167, 23058, (138, 227, 70, 33, 117, 142, 145, 246 )); -- Windows.Devices.Printers.VirtualPrinterInstallationResult;
+         m_HandlerIID     : aliased WinRt.IID := (2585399328, 9759, 21664, (144, 84, 226, 68, 98, 29, 52, 188 ));
+         m_Handler        : AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind := new AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_VirtualPrinterInstallationResult.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind_Delegate, AsyncOperationCompletedHandler_VirtualPrinterInstallationResult.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult do
+            Hr := RoGetActivationFactory (m_hString, IID_IVirtualPrinterManagerStatics'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.InstallVirtualPrinterForAllUsersAsync (parameters.m_IVirtualPrinterInstallationParameters.all, HStr_appPackageFamilyName, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IVirtualPrinterInstallationResult := new Windows.Devices.Printers.IVirtualPrinterInstallationResult;
+                        Retval.m_IVirtualPrinterInstallationResult.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_appPackageFamilyName);
+         end return;
+      end;
+
+      function FindAllVirtualPrinters
+      return IVectorView_HString.Kind is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterManager");
+         m_Factory        : access WinRt.Windows.Devices.Printers.IVirtualPrinterManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased GenericObject;
+         m_GenericRetval  : aliased IVectorView_HString.Kind;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IVirtualPrinterManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FindAllVirtualPrinters (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         return m_GenericRetVal;
+      end;
+
+      function FindAllVirtualPrinters
+      (
+         appPackageFamilyName : WinRt.WString
+      )
+      return IVectorView_HString.Kind is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterManager");
+         m_Factory        : access WinRt.Windows.Devices.Printers.IVirtualPrinterManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased GenericObject;
+         m_GenericRetval  : aliased IVectorView_HString.Kind;
+         HStr_appPackageFamilyName : constant WinRt.HString := To_HString (appPackageFamilyName);
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IVirtualPrinterManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FindAllVirtualPrinters (HStr_appPackageFamilyName, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appPackageFamilyName);
+         m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         return m_GenericRetVal;
+      end;
+
+      function RemoveVirtualPrinterAsync
+      (
+         printerName : WinRt.WString
+      )
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterManager");
+         m_Factory        : access WinRt.Windows.Devices.Printers.IVirtualPrinterManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_printerName : constant WinRt.HString := To_HString (printerName);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_Boolean.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Boolean;
+         m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
+         m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
+         m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IVirtualPrinterManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.RemoveVirtualPrinterAsync (HStr_printerName, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_printerName);
+         return m_RetVal;
+      end;
+
+      function RemoveVirtualPrinterForAllUsersAsync
+      (
+         printerName : WinRt.WString
+      )
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterManager");
+         m_Factory        : access WinRt.Windows.Devices.Printers.IVirtualPrinterManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_printerName : constant WinRt.HString := To_HString (printerName);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_Boolean.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Boolean;
+         m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
+         m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
+         m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IVirtualPrinterManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.RemoveVirtualPrinterForAllUsersAsync (HStr_printerName, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_printerName);
+         return m_RetVal;
+      end;
+
+   end VirtualPrinterManager;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for VirtualPrinterSupportedFormat
+
+   procedure Initialize (this : in out VirtualPrinterSupportedFormat) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out VirtualPrinterSupportedFormat) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IVirtualPrinterSupportedFormat, IVirtualPrinterSupportedFormat_Ptr);
+   begin
+      if this.m_IVirtualPrinterSupportedFormat /= null then
+         if this.m_IVirtualPrinterSupportedFormat.all /= null then
+            temp := this.m_IVirtualPrinterSupportedFormat.all.Release;
+            Free (this.m_IVirtualPrinterSupportedFormat);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for VirtualPrinterSupportedFormat
+
+   function Constructor
+   (
+      contentType : WinRt.WString;
+      maxSupportedVersion : WinRt.WString
+   )
+   return VirtualPrinterSupportedFormat is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterSupportedFormat");
+      m_Factory    : access IVirtualPrinterSupportedFormatFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Devices.Printers.IVirtualPrinterSupportedFormat;
+      HStr_contentType : constant WinRt.HString := To_HString (contentType);
+      HStr_maxSupportedVersion : constant WinRt.HString := To_HString (maxSupportedVersion);
+   begin
+      return RetVal : VirtualPrinterSupportedFormat do
+         Hr := RoGetActivationFactory (m_hString, IID_IVirtualPrinterSupportedFormatFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (HStr_contentType, HStr_maxSupportedVersion, m_ComRetVal'Access);
+            Retval.m_IVirtualPrinterSupportedFormat := new Windows.Devices.Printers.IVirtualPrinterSupportedFormat;
+            Retval.m_IVirtualPrinterSupportedFormat.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_contentType);
+         tmp := WindowsDeleteString (HStr_maxSupportedVersion);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for VirtualPrinterSupportedFormat
+
+   function get_ContentType
+   (
+      this : in out VirtualPrinterSupportedFormat
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IVirtualPrinterSupportedFormat.all.get_ContentType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ContentType
+   (
+      this : in out VirtualPrinterSupportedFormat;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IVirtualPrinterSupportedFormat.all.put_ContentType (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_MaxSupportedVersion
+   (
+      this : in out VirtualPrinterSupportedFormat
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IVirtualPrinterSupportedFormat.all.get_MaxSupportedVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_MaxSupportedVersion
+   (
+      this : in out VirtualPrinterSupportedFormat;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IVirtualPrinterSupportedFormat.all.put_MaxSupportedVersion (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
 end WinRt.Windows.Devices.Printers;

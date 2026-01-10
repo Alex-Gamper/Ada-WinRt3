@@ -29,6 +29,7 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Data.Xml.Dom;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
+with WinRt.Windows.Storage.Streams;
 with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
@@ -1226,6 +1227,36 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
             Free (this.m_IWorkflowPrintTicket);
          end if;
       end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WorkflowPrintTicket
+
+   function Constructor
+   (
+      printerName : WinRt.WString;
+      printTicketStream : Windows.Storage.Streams.IInputStream
+   )
+   return WorkflowPrintTicket is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket");
+      m_Factory    : access IWorkflowPrintTicketFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+      HStr_printerName : constant WinRt.HString := To_HString (printerName);
+   begin
+      return RetVal : WorkflowPrintTicket do
+         Hr := RoGetActivationFactory (m_hString, IID_IWorkflowPrintTicketFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (HStr_printerName, printTicketStream, m_ComRetVal'Access);
+            Retval.m_IWorkflowPrintTicket := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+            Retval.m_IWorkflowPrintTicket.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_printerName);
+      end return;
    end;
 
    -----------------------------------------------------------------------------

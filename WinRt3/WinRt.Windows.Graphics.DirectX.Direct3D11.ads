@@ -38,9 +38,11 @@ package WinRt.Windows.Graphics.DirectX.Direct3D11 is
 
    type IDirect3DDevice_Interface is interface and WinRt.IInspectable_Interface;
    type IDirect3DDevice is access all IDirect3DDevice_Interface'Class;
+   type IDirect3DDevice_Ptr is access all IDirect3DDevice;
 
    type IDirect3DSurface_Interface is interface and WinRt.IInspectable_Interface;
    type IDirect3DSurface is access all IDirect3DSurface_Interface'Class;
+   type IDirect3DSurface_Ptr is access all IDirect3DSurface;
 
    -----------------------------------------------------------------------------
    -- Enum declarations

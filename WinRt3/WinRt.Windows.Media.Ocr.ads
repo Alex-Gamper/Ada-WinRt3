@@ -47,6 +47,7 @@ package WinRt.Windows.Media.Ocr is
 
    type IOcrEngineStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IOcrEngineStatics is access all IOcrEngineStatics_Interface'Class;
+   type IOcrEngineStatics_Ptr is access all IOcrEngineStatics;
 
    type IOcrLine_Interface is interface and WinRt.IInspectable_Interface;
    type IOcrLine is access all IOcrLine_Interface'Class;

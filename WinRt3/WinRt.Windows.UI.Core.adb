@@ -29,6 +29,7 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
 with WinRt.Windows.System;
+with WinRt.Windows.UI.Composition;
 with WinRt.Windows.UI.Input;
 with WinRt.Windows.UI.Popups;
 with Ada.Unchecked_Conversion;
@@ -2510,6 +2511,343 @@ package body WinRt.Windows.UI.Core is
          Retval.m_IDispatcherQueue := new Windows.System.IDispatcherQueue;
          Retval.m_IDispatcherQueue.all := m_ComRetVal;
       end return;
+   end;
+
+   function add_PointerRoutedAway
+   (
+      this : in out CoreIndependentInputSource;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Core.ICorePointerRedirector := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerRedirector, WinRt.Windows.UI.Core.IID_ICorePointerRedirector'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
+      Hr := m_Interface.add_PointerRoutedAway (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_PointerRoutedAway
+   (
+      this : in out CoreIndependentInputSource;
+      cookie : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Core.ICorePointerRedirector := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerRedirector, WinRt.Windows.UI.Core.IID_ICorePointerRedirector'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
+      Hr := m_Interface.remove_PointerRoutedAway (cookie);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_PointerRoutedTo
+   (
+      this : in out CoreIndependentInputSource;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Core.ICorePointerRedirector := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerRedirector, WinRt.Windows.UI.Core.IID_ICorePointerRedirector'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
+      Hr := m_Interface.add_PointerRoutedTo (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_PointerRoutedTo
+   (
+      this : in out CoreIndependentInputSource;
+      cookie : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Core.ICorePointerRedirector := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerRedirector, WinRt.Windows.UI.Core.IID_ICorePointerRedirector'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
+      Hr := m_Interface.remove_PointerRoutedTo (cookie);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_PointerRoutedReleased
+   (
+      this : in out CoreIndependentInputSource;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Core.ICorePointerRedirector := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerRedirector, WinRt.Windows.UI.Core.IID_ICorePointerRedirector'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
+      Hr := m_Interface.add_PointerRoutedReleased (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_PointerRoutedReleased
+   (
+      this : in out CoreIndependentInputSource;
+      cookie : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Core.ICorePointerRedirector := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerRedirector, WinRt.Windows.UI.Core.IID_ICorePointerRedirector'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
+      Hr := m_Interface.remove_PointerRoutedReleased (cookie);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CoreIndependentInputSourceController
+
+   procedure Initialize (this : in out CoreIndependentInputSourceController) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out CoreIndependentInputSourceController) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ICoreIndependentInputSourceController, ICoreIndependentInputSourceController_Ptr);
+   begin
+      if this.m_ICoreIndependentInputSourceController /= null then
+         if this.m_ICoreIndependentInputSourceController.all /= null then
+            temp := this.m_ICoreIndependentInputSourceController.all.Release;
+            Free (this.m_ICoreIndependentInputSourceController);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for CoreIndependentInputSourceController
+
+   function CreateForVisual
+   (
+      visual : Windows.UI.Composition.Visual'Class
+   )
+   return WinRt.Windows.UI.Core.CoreIndependentInputSourceController is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Core.CoreIndependentInputSourceController");
+      m_Factory        : access WinRt.Windows.UI.Core.ICoreIndependentInputSourceControllerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Core.ICoreIndependentInputSourceController;
+   begin
+      return RetVal : WinRt.Windows.UI.Core.CoreIndependentInputSourceController do
+         Hr := RoGetActivationFactory (m_hString, IID_ICoreIndependentInputSourceControllerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateForVisual (visual.m_IVisual.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ICoreIndependentInputSourceController := new Windows.UI.Core.ICoreIndependentInputSourceController;
+            Retval.m_ICoreIndependentInputSourceController.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateForIVisualElement
+   (
+      visualElement : Windows.UI.Composition.IVisualElement
+   )
+   return WinRt.Windows.UI.Core.CoreIndependentInputSourceController is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Core.CoreIndependentInputSourceController");
+      m_Factory        : access WinRt.Windows.UI.Core.ICoreIndependentInputSourceControllerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Core.ICoreIndependentInputSourceController;
+   begin
+      return RetVal : WinRt.Windows.UI.Core.CoreIndependentInputSourceController do
+         Hr := RoGetActivationFactory (m_hString, IID_ICoreIndependentInputSourceControllerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateForIVisualElement (visualElement, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ICoreIndependentInputSourceController := new Windows.UI.Core.ICoreIndependentInputSourceController;
+            Retval.m_ICoreIndependentInputSourceController.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CoreIndependentInputSourceController
+
+   function get_IsTransparentForUncontrolledInput
+   (
+      this : in out CoreIndependentInputSourceController
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_ICoreIndependentInputSourceController.all.get_IsTransparentForUncontrolledInput (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsTransparentForUncontrolledInput
+   (
+      this : in out CoreIndependentInputSourceController;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ICoreIndependentInputSourceController.all.put_IsTransparentForUncontrolledInput (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IsPalmRejectionEnabled
+   (
+      this : in out CoreIndependentInputSourceController
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_ICoreIndependentInputSourceController.all.get_IsPalmRejectionEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsPalmRejectionEnabled
+   (
+      this : in out CoreIndependentInputSourceController;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ICoreIndependentInputSourceController.all.put_IsPalmRejectionEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Source
+   (
+      this : in out CoreIndependentInputSourceController
+   )
+   return WinRt.Windows.UI.Core.CoreIndependentInputSource'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Core.ICoreInputSourceBase;
+   begin
+      return RetVal : WinRt.Windows.UI.Core.CoreIndependentInputSource do
+         Hr := this.m_ICoreIndependentInputSourceController.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICoreInputSourceBase := new Windows.UI.Core.ICoreInputSourceBase;
+         Retval.m_ICoreInputSourceBase.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure SetControlledInput
+   (
+      this : in out CoreIndependentInputSourceController;
+      inputTypes : Windows.UI.Core.CoreInputDeviceTypes
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ICoreIndependentInputSourceController.all.SetControlledInput (inputTypes);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure SetControlledInput
+   (
+      this : in out CoreIndependentInputSourceController;
+      inputTypes : Windows.UI.Core.CoreInputDeviceTypes;
+      required : Windows.UI.Core.CoreIndependentInputFilters;
+      excluded : Windows.UI.Core.CoreIndependentInputFilters
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ICoreIndependentInputSourceController.all.SetControlledInput (inputTypes, required, excluded);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure Close
+   (
+      this : in out CoreIndependentInputSourceController
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Foundation.IClosable := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreIndependentInputSourceController_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICoreIndependentInputSourceController.all);
+      Hr := m_Interface.Close;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------

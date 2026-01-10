@@ -43,6 +43,7 @@ package WinRt.Windows.Services.Maps.LocalSearch is
 
    type ILocalCategoriesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILocalCategoriesStatics is access all ILocalCategoriesStatics_Interface'Class;
+   type ILocalCategoriesStatics_Ptr is access all ILocalCategoriesStatics;
 
    type ILocalLocation_Interface is interface and WinRt.IInspectable_Interface;
    type ILocalLocation is access all ILocalLocation_Interface'Class;
@@ -50,6 +51,7 @@ package WinRt.Windows.Services.Maps.LocalSearch is
 
    type ILocalLocation2_Interface is interface and WinRt.IInspectable_Interface;
    type ILocalLocation2 is access all ILocalLocation2_Interface'Class;
+   type ILocalLocation2_Ptr is access all ILocalLocation2;
 
    type ILocalLocationFinderResult_Interface is interface and WinRt.IInspectable_Interface;
    type ILocalLocationFinderResult is access all ILocalLocationFinderResult_Interface'Class;
@@ -57,6 +59,7 @@ package WinRt.Windows.Services.Maps.LocalSearch is
 
    type ILocalLocationFinderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILocalLocationFinderStatics is access all ILocalLocationFinderStatics_Interface'Class;
+   type ILocalLocationFinderStatics_Ptr is access all ILocalLocationFinderStatics;
 
    type ILocalLocationHoursOfOperationItem_Interface is interface and WinRt.IInspectable_Interface;
    type ILocalLocationHoursOfOperationItem is access all ILocalLocationHoursOfOperationItem_Interface'Class;
@@ -68,6 +71,7 @@ package WinRt.Windows.Services.Maps.LocalSearch is
 
    type IPlaceInfoHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPlaceInfoHelperStatics is access all IPlaceInfoHelperStatics_Interface'Class;
+   type IPlaceInfoHelperStatics_Ptr is access all IPlaceInfoHelperStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

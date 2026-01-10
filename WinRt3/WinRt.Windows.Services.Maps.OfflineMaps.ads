@@ -54,6 +54,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
 
    type IOfflineMapPackageStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IOfflineMapPackageStatics is access all IOfflineMapPackageStatics_Interface'Class;
+   type IOfflineMapPackageStatics_Ptr is access all IOfflineMapPackageStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

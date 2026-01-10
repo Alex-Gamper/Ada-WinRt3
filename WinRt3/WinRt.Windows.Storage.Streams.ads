@@ -28,6 +28,7 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.System;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
@@ -45,12 +46,15 @@ package WinRt.Windows.Storage.Streams is
 
    type IBufferFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBufferFactory is access all IBufferFactory_Interface'Class;
+   type IBufferFactory_Ptr is access all IBufferFactory;
 
    type IBufferStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBufferStatics is access all IBufferStatics_Interface'Class;
+   type IBufferStatics_Ptr is access all IBufferStatics;
 
    type IContentTypeProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IContentTypeProvider is access all IContentTypeProvider_Interface'Class;
+   type IContentTypeProvider_Ptr is access all IContentTypeProvider;
 
    type IDataReader_Interface is interface and WinRt.IInspectable_Interface;
    type IDataReader is access all IDataReader_Interface'Class;
@@ -58,9 +62,11 @@ package WinRt.Windows.Storage.Streams is
 
    type IDataReaderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDataReaderFactory is access all IDataReaderFactory_Interface'Class;
+   type IDataReaderFactory_Ptr is access all IDataReaderFactory;
 
    type IDataReaderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDataReaderStatics is access all IDataReaderStatics_Interface'Class;
+   type IDataReaderStatics_Ptr is access all IDataReaderStatics;
 
    type IDataWriter_Interface is interface and WinRt.IInspectable_Interface;
    type IDataWriter is access all IDataWriter_Interface'Class;
@@ -68,9 +74,11 @@ package WinRt.Windows.Storage.Streams is
 
    type IDataWriterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDataWriterFactory is access all IDataWriterFactory_Interface'Class;
+   type IDataWriterFactory_Ptr is access all IDataWriterFactory;
 
    type IFileRandomAccessStreamStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFileRandomAccessStreamStatics is access all IFileRandomAccessStreamStatics_Interface'Class;
+   type IFileRandomAccessStreamStatics_Ptr is access all IFileRandomAccessStreamStatics;
 
    type IInputStream_Interface is interface and WinRt.IInspectable_Interface;
    type IInputStream is access all IInputStream_Interface'Class;
@@ -78,10 +86,15 @@ package WinRt.Windows.Storage.Streams is
 
    type IInputStreamReference_Interface is interface and WinRt.IInspectable_Interface;
    type IInputStreamReference is access all IInputStreamReference_Interface'Class;
+   type IInputStreamReference_Ptr is access all IInputStreamReference;
 
    type IOutputStream_Interface is interface and WinRt.IInspectable_Interface;
    type IOutputStream is access all IOutputStream_Interface'Class;
    type IOutputStream_Ptr is access all IOutputStream;
+
+   type IPropertySetSerializer_Interface is interface and WinRt.IInspectable_Interface;
+   type IPropertySetSerializer is access all IPropertySetSerializer_Interface'Class;
+   type IPropertySetSerializer_Ptr is access all IPropertySetSerializer;
 
    type IRandomAccessStream_Interface is interface and WinRt.IInspectable_Interface;
    type IRandomAccessStream is access all IRandomAccessStream_Interface'Class;
@@ -93,9 +106,11 @@ package WinRt.Windows.Storage.Streams is
 
    type IRandomAccessStreamReferenceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRandomAccessStreamReferenceStatics is access all IRandomAccessStreamReferenceStatics_Interface'Class;
+   type IRandomAccessStreamReferenceStatics_Ptr is access all IRandomAccessStreamReferenceStatics;
 
    type IRandomAccessStreamStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRandomAccessStreamStatics is access all IRandomAccessStreamStatics_Interface'Class;
+   type IRandomAccessStreamStatics_Ptr is access all IRandomAccessStreamStatics;
 
    type IRandomAccessStreamWithContentType_Interface is interface and WinRt.IInspectable_Interface;
    type IRandomAccessStreamWithContentType is access all IRandomAccessStreamWithContentType_Interface'Class;
@@ -873,6 +888,27 @@ package WinRt.Windows.Storage.Streams is
       return WinRt.Hresult is abstract;
 
       IID_IOutputStream : aliased WinRt.IID := (2421821414, 48211, 4575, (140, 73, 0, 30, 79, 198, 134, 218 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPropertySetSerializer is interface and WinRt.IInspectable;
+
+      function Serialize
+      (
+         this : access IPropertySetSerializer_Interface;
+         propertySet : Windows.Foundation.Collections.IPropertySet;
+         RetVal : access Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Hresult is abstract;
+
+      function Deserialize
+      (
+         this : access IPropertySetSerializer_Interface;
+         propertySet : Windows.Foundation.Collections.IPropertySet;
+         buffer_p : Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPropertySetSerializer : aliased WinRt.IID := (1854848796, 61245, 17270, (178, 14, 91, 230, 56, 174, 172, 119 ));
 
    -----------------------------------------------------------------------------
    -- type IRandomAccessStream is interface and WinRt.IInspectable;

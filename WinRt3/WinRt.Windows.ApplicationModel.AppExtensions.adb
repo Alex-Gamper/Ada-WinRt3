@@ -298,6 +298,99 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       end return;
    end;
 
+   function get_AppUserModelId
+   (
+      this : in out AppExtension
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.AppExtensions.IAppExtension2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.AppExtensions.IAppExtension_Interface, WinRt.Windows.ApplicationModel.AppExtensions.IAppExtension2, WinRt.Windows.ApplicationModel.AppExtensions.IID_IAppExtension2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppExtension.all);
+      Hr := m_Interface.get_AppUserModelId (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetExtensionProperties
+   (
+      this : in out AppExtension
+   )
+   return WinRt.Windows.Foundation.Collections.IPropertySet is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.AppExtensions.IAppExtension3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.AppExtensions.IAppExtension_Interface, WinRt.Windows.ApplicationModel.AppExtensions.IAppExtension3, WinRt.Windows.ApplicationModel.AppExtensions.IID_IAppExtension3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppExtension.all);
+      Hr := m_Interface.GetExtensionProperties (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetPublicPath
+   (
+      this : in out AppExtension
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.AppExtensions.IAppExtension3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.AppExtensions.IAppExtension_Interface, WinRt.Windows.ApplicationModel.AppExtensions.IAppExtension3, WinRt.Windows.ApplicationModel.AppExtensions.IID_IAppExtension3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppExtension.all);
+      Hr := m_Interface.GetPublicPath (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetPublicFolder
+   (
+      this : in out AppExtension
+   )
+   return WinRt.Windows.Storage.StorageFolder'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.AppExtensions.IAppExtension3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.AppExtensions.IAppExtension_Interface, WinRt.Windows.ApplicationModel.AppExtensions.IAppExtension3, WinRt.Windows.ApplicationModel.AppExtensions.IID_IAppExtension3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Storage.StorageFolder do
+         m_Interface := QInterface (this.m_IAppExtension.all);
+         Hr := m_Interface.GetPublicFolder (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder.all := m_ComRetVal;
+      end return;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AppExtensionCatalog
 
@@ -645,6 +738,30 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   function FindAll
+   (
+      this : in out AppExtensionCatalog
+   )
+   return IVectorView_IAppExtension.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.AppExtensions.IAppExtensionCatalog2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IAppExtension.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.AppExtensions.IAppExtensionCatalog_Interface, WinRt.Windows.ApplicationModel.AppExtensions.IAppExtensionCatalog2, WinRt.Windows.ApplicationModel.AppExtensions.IID_IAppExtensionCatalog2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppExtensionCatalog.all);
+      Hr := m_Interface.FindAll (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IAppExtension (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
    end;
 
    -----------------------------------------------------------------------------

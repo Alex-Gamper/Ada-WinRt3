@@ -44,11 +44,26 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    package IAsyncOperation_DetectionConfigurationTrainingStatus is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationTrainingStatus);
    package AsyncOperationCompletedHandler_DetectionConfigurationTrainingStatus is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationTrainingStatus);
 
+   package IAsyncOperation_ActivationSignalDetectionConfigurationSetModelDataResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult);
+   package AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationSetModelDataResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult);
+
+   package IAsyncOperation_ActivationSignalDetectionConfigurationStateChangeResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationStateChangeResult);
+   package AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationStateChangeResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationStateChangeResult);
+
    package IAsyncOperation_GenericObject is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.GenericObject);
    package AsyncOperationCompletedHandler_GenericObject is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.GenericObject);
 
    package IAsyncOperation_ActivationSignalDetectionConfiguration is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration);
    package AsyncOperationCompletedHandler_ActivationSignalDetectionConfiguration is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration);
+
+   package IAsyncOperation_ActivationSignalDetectionConfigurationCreationResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfigurationCreationResult);
+   package AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationCreationResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfigurationCreationResult);
+
+   package IAsyncOperation_ActivationSignalDetectionConfigurationRemovalResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationRemovalResult);
+   package AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationRemovalResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationRemovalResult);
+
+   package IAsyncOperation_ActivationSignalDetector is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector);
+   package AsyncOperationCompletedHandler_ActivationSignalDetector is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector);
 
    package IAsyncOperation_ConversationalAgentSessionUpdateResponse is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse);
    package AsyncOperationCompletedHandler_ConversationalAgentSessionUpdateResponse is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse);
@@ -64,6 +79,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
 
    package IAsyncOperation_Boolean is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Boolean);
    package AsyncOperationCompletedHandler_Boolean is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Boolean);
+
+   package IAsyncOperation_ConversationalAgentActivationResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult);
+   package AsyncOperationCompletedHandler_ConversationalAgentActivationResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult);
 
    package IAsyncOperation_ConversationalAgentSession is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession);
    package AsyncOperationCompletedHandler_ConversationalAgentSession is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession);
@@ -756,6 +774,291 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       end if;
    end;
 
+   procedure Close
+   (
+      this : in out ActivationSignalDetectionConfiguration
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Foundation.IClosable := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IActivationSignalDetectionConfiguration.all);
+      Hr := m_Interface.Close;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function SetModelDataWithResult
+   (
+      this : in out ActivationSignalDetectionConfiguration;
+      dataType : WinRt.WString;
+      data : Windows.Storage.Streams.IInputStream
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult;
+      HStr_dataType : constant WinRt.HString := To_HString (dataType);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IActivationSignalDetectionConfiguration2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IActivationSignalDetectionConfiguration.all);
+      Hr := m_Interface.SetModelDataWithResult (HStr_dataType, data, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_dataType);
+      return m_ComRetVal;
+   end;
+
+   function SetModelDataWithResultAsync
+   (
+      this : in out ActivationSignalDetectionConfiguration;
+      dataType : WinRt.WString;
+      data : Windows.Storage.Streams.IInputStream
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration2 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_dataType : constant WinRt.HString := To_HString (dataType);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_ActivationSignalDetectionConfigurationSetModelDataResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_ActivationSignalDetectionConfigurationSetModelDataResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult;
+      m_IID            : aliased WinRt.IID := (926476092, 58573, 21933, (183, 96, 7, 175, 139, 74, 41, 211 )); -- Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult;
+      m_HandlerIID     : aliased WinRt.IID := (3281528067, 39657, 22574, (152, 116, 51, 234, 54, 100, 154, 60 ));
+      m_Handler        : AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationSetModelDataResult.Kind := new AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationSetModelDataResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_ActivationSignalDetectionConfigurationSetModelDataResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationSetModelDataResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationSetModelDataResult.Kind_Delegate, AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationSetModelDataResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IActivationSignalDetectionConfiguration2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IActivationSignalDetectionConfiguration.all);
+      Hr := m_Interface.SetModelDataWithResultAsync (HStr_dataType, data, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (HStr_dataType);
+      return m_RetVal;
+   end;
+
+   function SetEnabledWithResultAsync
+   (
+      this : in out ActivationSignalDetectionConfiguration;
+      value : WinRt.Boolean
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationStateChangeResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_ActivationSignalDetectionConfigurationStateChangeResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_ActivationSignalDetectionConfigurationStateChangeResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationStateChangeResult;
+      m_IID            : aliased WinRt.IID := (3187919903, 2698, 22648, (168, 78, 175, 70, 70, 223, 60, 197 )); -- Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationStateChangeResult;
+      m_HandlerIID     : aliased WinRt.IID := (1252596731, 37006, 21178, (162, 61, 6, 244, 100, 181, 181, 74 ));
+      m_Handler        : AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationStateChangeResult.Kind := new AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationStateChangeResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_ActivationSignalDetectionConfigurationStateChangeResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationStateChangeResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationStateChangeResult.Kind_Delegate, AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationStateChangeResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IActivationSignalDetectionConfiguration2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IActivationSignalDetectionConfiguration.all);
+      Hr := m_Interface.SetEnabledWithResultAsync (value, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function SetEnabledWithResult
+   (
+      this : in out ActivationSignalDetectionConfiguration;
+      value : WinRt.Boolean
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationStateChangeResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationStateChangeResult;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IActivationSignalDetectionConfiguration2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IActivationSignalDetectionConfiguration.all);
+      Hr := m_Interface.SetEnabledWithResult (value, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_TrainingStepCompletionMaxAllowedTime
+   (
+      this : in out ActivationSignalDetectionConfiguration
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IActivationSignalDetectionConfiguration2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IActivationSignalDetectionConfiguration.all);
+      Hr := m_Interface.get_TrainingStepCompletionMaxAllowedTime (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for ActivationSignalDetectionConfigurationCreationResult
+
+   procedure Initialize (this : in out ActivationSignalDetectionConfigurationCreationResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out ActivationSignalDetectionConfigurationCreationResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IActivationSignalDetectionConfigurationCreationResult, IActivationSignalDetectionConfigurationCreationResult_Ptr);
+   begin
+      if this.m_IActivationSignalDetectionConfigurationCreationResult /= null then
+         if this.m_IActivationSignalDetectionConfigurationCreationResult.all /= null then
+            temp := this.m_IActivationSignalDetectionConfigurationCreationResult.all.Release;
+            Free (this.m_IActivationSignalDetectionConfigurationCreationResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for ActivationSignalDetectionConfigurationCreationResult
+
+   function get_Status
+   (
+      this : in out ActivationSignalDetectionConfigurationCreationResult
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationCreationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationCreationStatus;
+   begin
+      Hr := this.m_IActivationSignalDetectionConfigurationCreationResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Configuration
+   (
+      this : in out ActivationSignalDetectionConfigurationCreationResult
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfiguration'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration;
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfiguration do
+         Hr := this.m_IActivationSignalDetectionConfigurationCreationResult.all.get_Configuration (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IActivationSignalDetectionConfiguration := new Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration;
+         Retval.m_IActivationSignalDetectionConfiguration.all := m_ComRetVal;
+      end return;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ActivationSignalDetector
 
@@ -1305,6 +1608,339 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       tmp := WindowsDeleteString (HStr_modelId);
    end;
 
+   function GetAvailableModelIdsForSignalIdAsync
+   (
+      this : in out ActivationSignalDetector;
+      signalId : WinRt.WString
+   )
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_GenericObject.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_GenericObject.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.GenericObject;
+      m_IID            : aliased WinRt.IID := (2461019347, 43630, 22333, (188, 3, 141, 35, 9, 203, 163, 235 )); -- GenericObject;
+      m_HandlerIID     : aliased WinRt.IID := (4209292182, 38856, 23747, (191, 136, 234, 48, 152, 237, 246, 178 ));
+      m_Handler        : AsyncOperationCompletedHandler_GenericObject.Kind := new AsyncOperationCompletedHandler_GenericObject.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_GenericObject.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_GenericObject.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IActivationSignalDetector2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IActivationSignalDetector.all);
+      Hr := m_Interface.GetAvailableModelIdsForSignalIdAsync (HStr_signalId, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (HStr_signalId);
+      return m_RetVal;
+   end;
+
+   function GetAvailableModelIdsForSignalId
+   (
+      this : in out ActivationSignalDetector;
+      signalId : WinRt.WString
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IActivationSignalDetector2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IActivationSignalDetector.all);
+      Hr := m_Interface.GetAvailableModelIdsForSignalId (HStr_signalId, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_signalId);
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function CreateConfigurationWithResultAsync
+   (
+      this : in out ActivationSignalDetector;
+      signalId : WinRt.WString;
+      modelId : WinRt.WString;
+      displayName : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationCreationResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
+      HStr_modelId : constant WinRt.HString := To_HString (modelId);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_ActivationSignalDetectionConfigurationCreationResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_ActivationSignalDetectionConfigurationCreationResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfigurationCreationResult;
+      m_IID            : aliased WinRt.IID := (3990169431, 29908, 22583, (148, 31, 195, 124, 93, 75, 79, 83 )); -- Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationCreationResult;
+      m_HandlerIID     : aliased WinRt.IID := (1742152390, 59878, 22255, (189, 99, 150, 252, 26, 109, 2, 146 ));
+      m_Handler        : AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationCreationResult.Kind := new AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationCreationResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_ActivationSignalDetectionConfigurationCreationResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationCreationResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationCreationResult.Kind_Delegate, AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationCreationResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IActivationSignalDetector2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationCreationResult do
+         m_Interface := QInterface (this.m_IActivationSignalDetector.all);
+         Hr := m_Interface.CreateConfigurationWithResultAsync (HStr_signalId, HStr_modelId, HStr_displayName, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IActivationSignalDetectionConfigurationCreationResult := new Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfigurationCreationResult;
+                  Retval.m_IActivationSignalDetectionConfigurationCreationResult.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (HStr_signalId);
+         tmp := WindowsDeleteString (HStr_modelId);
+         tmp := WindowsDeleteString (HStr_displayName);
+      end return;
+   end;
+
+   function CreateConfigurationWithResult
+   (
+      this : in out ActivationSignalDetector;
+      signalId : WinRt.WString;
+      modelId : WinRt.WString;
+      displayName : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationCreationResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfigurationCreationResult;
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
+      HStr_modelId : constant WinRt.HString := To_HString (modelId);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IActivationSignalDetector2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationCreationResult do
+         m_Interface := QInterface (this.m_IActivationSignalDetector.all);
+         Hr := m_Interface.CreateConfigurationWithResult (HStr_signalId, HStr_modelId, HStr_displayName, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IActivationSignalDetectionConfigurationCreationResult := new Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfigurationCreationResult;
+         Retval.m_IActivationSignalDetectionConfigurationCreationResult.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_signalId);
+         tmp := WindowsDeleteString (HStr_modelId);
+         tmp := WindowsDeleteString (HStr_displayName);
+      end return;
+   end;
+
+   function RemoveConfigurationWithResultAsync
+   (
+      this : in out ActivationSignalDetector;
+      signalId : WinRt.WString;
+      modelId : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationRemovalResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
+      HStr_modelId : constant WinRt.HString := To_HString (modelId);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_ActivationSignalDetectionConfigurationRemovalResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_ActivationSignalDetectionConfigurationRemovalResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationRemovalResult;
+      m_IID            : aliased WinRt.IID := (824677579, 3651, 23743, (161, 72, 88, 169, 215, 166, 92, 20 )); -- Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationRemovalResult;
+      m_HandlerIID     : aliased WinRt.IID := (3746812813, 13439, 22653, (177, 21, 190, 137, 58, 141, 124, 73 ));
+      m_Handler        : AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationRemovalResult.Kind := new AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationRemovalResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_ActivationSignalDetectionConfigurationRemovalResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationRemovalResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationRemovalResult.Kind_Delegate, AsyncOperationCompletedHandler_ActivationSignalDetectionConfigurationRemovalResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IActivationSignalDetector2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IActivationSignalDetector.all);
+      Hr := m_Interface.RemoveConfigurationWithResultAsync (HStr_signalId, HStr_modelId, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (HStr_signalId);
+      tmp := WindowsDeleteString (HStr_modelId);
+      return m_RetVal;
+   end;
+
+   function RemoveConfigurationWithResult
+   (
+      this : in out ActivationSignalDetector;
+      signalId : WinRt.WString;
+      modelId : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationRemovalResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationRemovalResult;
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
+      HStr_modelId : constant WinRt.HString := To_HString (modelId);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IActivationSignalDetector2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IActivationSignalDetector.all);
+      Hr := m_Interface.RemoveConfigurationWithResult (HStr_signalId, HStr_modelId, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_signalId);
+      tmp := WindowsDeleteString (HStr_modelId);
+      return m_ComRetVal;
+   end;
+
+   function get_DetectorId
+   (
+      this : in out ActivationSignalDetector
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IActivationSignalDetector2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IActivationSignalDetector.all);
+      Hr := m_Interface.get_DetectorId (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ConversationalAgentDetectorManager
 
@@ -1521,6 +2157,106 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
          end if;
       end if;
       return m_RetVal;
+   end;
+
+   function GetActivationSignalDetectorFromId
+   (
+      this : in out ConversationalAgentDetectorManager;
+      detectorId : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetector'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentDetectorManager2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector;
+      HStr_detectorId : constant WinRt.HString := To_HString (detectorId);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentDetectorManager_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentDetectorManager2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IConversationalAgentDetectorManager2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetector do
+         m_Interface := QInterface (this.m_IConversationalAgentDetectorManager.all);
+         Hr := m_Interface.GetActivationSignalDetectorFromId (HStr_detectorId, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IActivationSignalDetector := new Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector;
+         Retval.m_IActivationSignalDetector.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_detectorId);
+      end return;
+   end;
+
+   function GetActivationSignalDetectorFromIdAsync
+   (
+      this : in out ConversationalAgentDetectorManager;
+      detectorId : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetector'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentDetectorManager2 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_detectorId : constant WinRt.HString := To_HString (detectorId);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_ActivationSignalDetector.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_ActivationSignalDetector.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector;
+      m_IID            : aliased WinRt.IID := (895937326, 20380, 21089, (153, 141, 144, 41, 110, 255, 0, 197 )); -- Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetector;
+      m_HandlerIID     : aliased WinRt.IID := (1426986448, 21234, 21353, (190, 217, 100, 108, 149, 137, 20, 11 ));
+      m_Handler        : AsyncOperationCompletedHandler_ActivationSignalDetector.Kind := new AsyncOperationCompletedHandler_ActivationSignalDetector.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_ActivationSignalDetector.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_ActivationSignalDetector.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ActivationSignalDetector.Kind_Delegate, AsyncOperationCompletedHandler_ActivationSignalDetector.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentDetectorManager_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentDetectorManager2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IConversationalAgentDetectorManager2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetector do
+         m_Interface := QInterface (this.m_IConversationalAgentDetectorManager.all);
+         Hr := m_Interface.GetActivationSignalDetectorFromIdAsync (HStr_detectorId, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IActivationSignalDetector := new Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector;
+                  Retval.m_IActivationSignalDetector.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (HStr_detectorId);
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -2710,6 +3446,253 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       return m_GenericRetVal;
    end;
 
+   function RequestActivationAsync
+   (
+      this : in out ConversationalAgentSession;
+      activationKind : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_ConversationalAgentActivationResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_ConversationalAgentActivationResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult;
+      m_IID            : aliased WinRt.IID := (3514284275, 55684, 23672, (165, 127, 240, 150, 226, 145, 179, 116 )); -- Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult;
+      m_HandlerIID     : aliased WinRt.IID := (1100254432, 23939, 24082, (168, 186, 17, 76, 74, 58, 98, 227 ));
+      m_Handler        : AsyncOperationCompletedHandler_ConversationalAgentActivationResult.Kind := new AsyncOperationCompletedHandler_ConversationalAgentActivationResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_ConversationalAgentActivationResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_ConversationalAgentActivationResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ConversationalAgentActivationResult.Kind_Delegate, AsyncOperationCompletedHandler_ConversationalAgentActivationResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IConversationalAgentSession2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IConversationalAgentSession.all);
+      Hr := m_Interface.RequestActivationAsync (activationKind, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function RequestActivation
+   (
+      this : in out ConversationalAgentSession;
+      activationKind : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IConversationalAgentSession2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IConversationalAgentSession.all);
+      Hr := m_Interface.RequestActivation (activationKind, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure SetSupportLockScreenActivationAsync
+   (
+      this : in out ConversationalAgentSession;
+      lockScreenActivationSupported : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
+
+      procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+      begin
+         if asyncStatus = Completed_e then
+            Hr := asyncInfo.GetResults;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
+      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IConversationalAgentSession2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IConversationalAgentSession.all);
+      Hr := m_Interface.SetSupportLockScreenActivationAsync (lockScreenActivationSupported, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr = S_OK then
+         m_Captured := m_Completed;
+         Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
+         while m_Captured = m_Compare loop
+            m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+            m_Captured := m_Completed;
+         end loop;
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
+            Free (m_CompletedHandler);
+         end if;
+      end if;
+   end;
+
+   procedure SetSupportLockScreenActivation
+   (
+      this : in out ConversationalAgentSession;
+      lockScreenActivationSupported : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IConversationalAgentSession2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IConversationalAgentSession.all);
+      Hr := m_Interface.SetSupportLockScreenActivation (lockScreenActivationSupported);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function GetMissingPrerequisites
+   (
+      this : in out ConversationalAgentSession
+   )
+   return IVectorView_ConversationalAgentVoiceActivationPrerequisiteKind.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_ConversationalAgentVoiceActivationPrerequisiteKind.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IConversationalAgentSession2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IConversationalAgentSession.all);
+      Hr := m_Interface.GetMissingPrerequisites (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_ConversationalAgentVoiceActivationPrerequisiteKind (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetMissingPrerequisitesAsync
+   (
+      this : in out ConversationalAgentSession
+   )
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_GenericObject.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_GenericObject.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.GenericObject;
+      m_IID            : aliased WinRt.IID := (3247573405, 49802, 21770, (140, 43, 227, 28, 143, 171, 203, 75 )); -- GenericObject;
+      m_HandlerIID     : aliased WinRt.IID := (2159787537, 61893, 23106, (178, 11, 0, 90, 87, 248, 128, 17 ));
+      m_Handler        : AsyncOperationCompletedHandler_GenericObject.Kind := new AsyncOperationCompletedHandler_GenericObject.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_GenericObject.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_GenericObject.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IConversationalAgentSession2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IConversationalAgentSession.all);
+      Hr := m_Interface.GetMissingPrerequisitesAsync (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
    procedure Close
    (
       this : in out ConversationalAgentSession
@@ -2976,6 +3959,51 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       end if;
    end;
 
+   function get_DetectorId
+   (
+      this : in out ConversationalAgentSignal
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSignal2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSignal_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSignal2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IConversationalAgentSignal2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IConversationalAgentSignal.all);
+      Hr := m_Interface.get_DetectorId (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_DetectorKind
+   (
+      this : in out ConversationalAgentSignal
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSignal2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSignal_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSignal2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IConversationalAgentSignal2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IConversationalAgentSignal.all);
+      Hr := m_Interface.get_DetectorKind (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ConversationalAgentSignalDetectedEventArgs
 
@@ -3168,6 +4196,30 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   function get_UnavailableSystemResources
+   (
+      this : in out DetectionConfigurationAvailabilityInfo
+   )
+   return IVectorView_SignalDetectorResourceKind.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.ConversationalAgent.IDetectionConfigurationAvailabilityInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_SignalDetectorResourceKind.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IDetectionConfigurationAvailabilityInfo_Interface, WinRt.Windows.ApplicationModel.ConversationalAgent.IDetectionConfigurationAvailabilityInfo2, WinRt.Windows.ApplicationModel.ConversationalAgent.IID_IDetectionConfigurationAvailabilityInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IDetectionConfigurationAvailabilityInfo.all);
+      Hr := m_Interface.get_UnavailableSystemResources (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_SignalDetectorResourceKind (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
    end;
 
 end WinRt.Windows.ApplicationModel.ConversationalAgent;

@@ -126,9 +126,11 @@ package WinRt.Windows.UI.Xaml is
 
    type IAdaptiveTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveTriggerFactory is access all IAdaptiveTriggerFactory_Interface'Class;
+   type IAdaptiveTriggerFactory_Ptr is access all IAdaptiveTriggerFactory;
 
    type IAdaptiveTriggerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveTriggerStatics is access all IAdaptiveTriggerStatics_Interface'Class;
+   type IAdaptiveTriggerStatics_Ptr is access all IAdaptiveTriggerStatics;
 
    type IApplication_Interface is interface and WinRt.IInspectable_Interface;
    type IApplication is access all IApplication_Interface'Class;
@@ -136,12 +138,15 @@ package WinRt.Windows.UI.Xaml is
 
    type IApplication2_Interface is interface and WinRt.IInspectable_Interface;
    type IApplication2 is access all IApplication2_Interface'Class;
+   type IApplication2_Ptr is access all IApplication2;
 
    type IApplication3_Interface is interface and WinRt.IInspectable_Interface;
    type IApplication3 is access all IApplication3_Interface'Class;
+   type IApplication3_Ptr is access all IApplication3;
 
    type IApplicationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationFactory is access all IApplicationFactory_Interface'Class;
+   type IApplicationFactory_Ptr is access all IApplicationFactory;
 
    type IApplicationInitializationCallbackParams_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationInitializationCallbackParams is access all IApplicationInitializationCallbackParams_Interface'Class;
@@ -149,12 +154,15 @@ package WinRt.Windows.UI.Xaml is
 
    type IApplicationOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationOverrides is access all IApplicationOverrides_Interface'Class;
+   type IApplicationOverrides_Ptr is access all IApplicationOverrides;
 
    type IApplicationOverrides2_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationOverrides2 is access all IApplicationOverrides2_Interface'Class;
+   type IApplicationOverrides2_Ptr is access all IApplicationOverrides2;
 
    type IApplicationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationStatics is access all IApplicationStatics_Interface'Class;
+   type IApplicationStatics_Ptr is access all IApplicationStatics;
 
    type IBindingFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBindingFailedEventArgs is access all IBindingFailedEventArgs_Interface'Class;
@@ -166,6 +174,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IBringIntoViewOptions2_Interface is interface and WinRt.IInspectable_Interface;
    type IBringIntoViewOptions2 is access all IBringIntoViewOptions2_Interface'Class;
+   type IBringIntoViewOptions2_Ptr is access all IBringIntoViewOptions2;
 
    type IBringIntoViewRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBringIntoViewRequestedEventArgs is access all IBringIntoViewRequestedEventArgs_Interface'Class;
@@ -177,6 +186,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IBrushTransitionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBrushTransitionFactory is access all IBrushTransitionFactory_Interface'Class;
+   type IBrushTransitionFactory_Ptr is access all IBrushTransitionFactory;
 
    type IColorPaletteResources_Interface is interface and WinRt.IInspectable_Interface;
    type IColorPaletteResources is access all IColorPaletteResources_Interface'Class;
@@ -184,6 +194,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IColorPaletteResourcesFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IColorPaletteResourcesFactory is access all IColorPaletteResourcesFactory_Interface'Class;
+   type IColorPaletteResourcesFactory_Ptr is access all IColorPaletteResourcesFactory;
 
    type ICornerRadiusHelper_Interface is interface and WinRt.IInspectable_Interface;
    type ICornerRadiusHelper is access all ICornerRadiusHelper_Interface'Class;
@@ -191,6 +202,7 @@ package WinRt.Windows.UI.Xaml is
 
    type ICornerRadiusHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICornerRadiusHelperStatics is access all ICornerRadiusHelperStatics_Interface'Class;
+   type ICornerRadiusHelperStatics_Ptr is access all ICornerRadiusHelperStatics;
 
    type IDataContextChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDataContextChangedEventArgs is access all IDataContextChangedEventArgs_Interface'Class;
@@ -202,9 +214,11 @@ package WinRt.Windows.UI.Xaml is
 
    type IDataTemplateExtension_Interface is interface and WinRt.IInspectable_Interface;
    type IDataTemplateExtension is access all IDataTemplateExtension_Interface'Class;
+   type IDataTemplateExtension_Ptr is access all IDataTemplateExtension;
 
    type IDataTemplateFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDataTemplateFactory is access all IDataTemplateFactory_Interface'Class;
+   type IDataTemplateFactory_Ptr is access all IDataTemplateFactory;
 
    type IDataTemplateKey_Interface is interface and WinRt.IInspectable_Interface;
    type IDataTemplateKey is access all IDataTemplateKey_Interface'Class;
@@ -212,9 +226,11 @@ package WinRt.Windows.UI.Xaml is
 
    type IDataTemplateKeyFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDataTemplateKeyFactory is access all IDataTemplateKeyFactory_Interface'Class;
+   type IDataTemplateKeyFactory_Ptr is access all IDataTemplateKeyFactory;
 
    type IDataTemplateStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IDataTemplateStatics2 is access all IDataTemplateStatics2_Interface'Class;
+   type IDataTemplateStatics2_Ptr is access all IDataTemplateStatics2;
 
    type IDebugSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IDebugSettings is access all IDebugSettings_Interface'Class;
@@ -222,12 +238,15 @@ package WinRt.Windows.UI.Xaml is
 
    type IDebugSettings2_Interface is interface and WinRt.IInspectable_Interface;
    type IDebugSettings2 is access all IDebugSettings2_Interface'Class;
+   type IDebugSettings2_Ptr is access all IDebugSettings2;
 
    type IDebugSettings3_Interface is interface and WinRt.IInspectable_Interface;
    type IDebugSettings3 is access all IDebugSettings3_Interface'Class;
+   type IDebugSettings3_Ptr is access all IDebugSettings3;
 
    type IDebugSettings4_Interface is interface and WinRt.IInspectable_Interface;
    type IDebugSettings4 is access all IDebugSettings4_Interface'Class;
+   type IDebugSettings4_Ptr is access all IDebugSettings4;
 
    type IDependencyObject_Interface is interface and WinRt.IInspectable_Interface;
    type IDependencyObject is access all IDependencyObject_Interface'Class;
@@ -236,12 +255,15 @@ package WinRt.Windows.UI.Xaml is
 
    type IDependencyObject2_Interface is interface and WinRt.IInspectable_Interface;
    type IDependencyObject2 is access all IDependencyObject2_Interface'Class;
+   type IDependencyObject2_Ptr is access all IDependencyObject2;
 
    type IDependencyObjectCollectionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDependencyObjectCollectionFactory is access all IDependencyObjectCollectionFactory_Interface'Class;
+   type IDependencyObjectCollectionFactory_Ptr is access all IDependencyObjectCollectionFactory;
 
    type IDependencyObjectFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDependencyObjectFactory is access all IDependencyObjectFactory_Interface'Class;
+   type IDependencyObjectFactory_Ptr is access all IDependencyObjectFactory;
 
    type IDependencyProperty_Interface is interface and WinRt.IInspectable_Interface;
    type IDependencyProperty is access all IDependencyProperty_Interface'Class;
@@ -253,6 +275,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IDependencyPropertyStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDependencyPropertyStatics is access all IDependencyPropertyStatics_Interface'Class;
+   type IDependencyPropertyStatics_Ptr is access all IDependencyPropertyStatics;
 
    type IDispatcherTimer_Interface is interface and WinRt.IInspectable_Interface;
    type IDispatcherTimer is access all IDispatcherTimer_Interface'Class;
@@ -260,6 +283,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IDispatcherTimerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDispatcherTimerFactory is access all IDispatcherTimerFactory_Interface'Class;
+   type IDispatcherTimerFactory_Ptr is access all IDispatcherTimerFactory;
 
    type IDragEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDragEventArgs is access all IDragEventArgs_Interface'Class;
@@ -267,9 +291,11 @@ package WinRt.Windows.UI.Xaml is
 
    type IDragEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IDragEventArgs2 is access all IDragEventArgs2_Interface'Class;
+   type IDragEventArgs2_Ptr is access all IDragEventArgs2;
 
    type IDragEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
    type IDragEventArgs3 is access all IDragEventArgs3_Interface'Class;
+   type IDragEventArgs3_Ptr is access all IDragEventArgs3;
 
    type IDragOperationDeferral_Interface is interface and WinRt.IInspectable_Interface;
    type IDragOperationDeferral is access all IDragOperationDeferral_Interface'Class;
@@ -281,6 +307,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IDragStartingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IDragStartingEventArgs2 is access all IDragStartingEventArgs2_Interface'Class;
+   type IDragStartingEventArgs2_Ptr is access all IDragStartingEventArgs2;
 
    type IDragUI_Interface is interface and WinRt.IInspectable_Interface;
    type IDragUI is access all IDragUI_Interface'Class;
@@ -300,6 +327,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IDurationHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDurationHelperStatics is access all IDurationHelperStatics_Interface'Class;
+   type IDurationHelperStatics_Ptr is access all IDurationHelperStatics;
 
    type IEffectiveViewportChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IEffectiveViewportChangedEventArgs is access all IEffectiveViewportChangedEventArgs_Interface'Class;
@@ -307,6 +335,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IElementFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IElementFactory is access all IElementFactory_Interface'Class;
+   type IElementFactory_Ptr is access all IElementFactory;
 
    type IElementFactoryGetArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IElementFactoryGetArgs is access all IElementFactoryGetArgs_Interface'Class;
@@ -314,6 +343,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IElementFactoryGetArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IElementFactoryGetArgsFactory is access all IElementFactoryGetArgsFactory_Interface'Class;
+   type IElementFactoryGetArgsFactory_Ptr is access all IElementFactoryGetArgsFactory;
 
    type IElementFactoryRecycleArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IElementFactoryRecycleArgs is access all IElementFactoryRecycleArgs_Interface'Class;
@@ -321,6 +351,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IElementFactoryRecycleArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IElementFactoryRecycleArgsFactory is access all IElementFactoryRecycleArgsFactory_Interface'Class;
+   type IElementFactoryRecycleArgsFactory_Ptr is access all IElementFactoryRecycleArgsFactory;
 
    type IElementSoundPlayer_Interface is interface and WinRt.IInspectable_Interface;
    type IElementSoundPlayer is access all IElementSoundPlayer_Interface'Class;
@@ -328,9 +359,11 @@ package WinRt.Windows.UI.Xaml is
 
    type IElementSoundPlayerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IElementSoundPlayerStatics is access all IElementSoundPlayerStatics_Interface'Class;
+   type IElementSoundPlayerStatics_Ptr is access all IElementSoundPlayerStatics;
 
    type IElementSoundPlayerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IElementSoundPlayerStatics2 is access all IElementSoundPlayerStatics2_Interface'Class;
+   type IElementSoundPlayerStatics2_Ptr is access all IElementSoundPlayerStatics2;
 
    type IEventTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IEventTrigger is access all IEventTrigger_Interface'Class;
@@ -342,6 +375,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IExceptionRoutedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IExceptionRoutedEventArgsFactory is access all IExceptionRoutedEventArgsFactory_Interface'Class;
+   type IExceptionRoutedEventArgsFactory_Ptr is access all IExceptionRoutedEventArgsFactory;
 
    type IFrameworkElement_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElement is access all IFrameworkElement_Interface'Class;
@@ -349,45 +383,59 @@ package WinRt.Windows.UI.Xaml is
 
    type IFrameworkElement2_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElement2 is access all IFrameworkElement2_Interface'Class;
+   type IFrameworkElement2_Ptr is access all IFrameworkElement2;
 
    type IFrameworkElement3_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElement3 is access all IFrameworkElement3_Interface'Class;
+   type IFrameworkElement3_Ptr is access all IFrameworkElement3;
 
    type IFrameworkElement4_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElement4 is access all IFrameworkElement4_Interface'Class;
+   type IFrameworkElement4_Ptr is access all IFrameworkElement4;
 
    type IFrameworkElement6_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElement6 is access all IFrameworkElement6_Interface'Class;
+   type IFrameworkElement6_Ptr is access all IFrameworkElement6;
 
    type IFrameworkElement7_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElement7 is access all IFrameworkElement7_Interface'Class;
+   type IFrameworkElement7_Ptr is access all IFrameworkElement7;
 
    type IFrameworkElementFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElementFactory is access all IFrameworkElementFactory_Interface'Class;
+   type IFrameworkElementFactory_Ptr is access all IFrameworkElementFactory;
 
    type IFrameworkElementOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElementOverrides is access all IFrameworkElementOverrides_Interface'Class;
+   type IFrameworkElementOverrides_Ptr is access all IFrameworkElementOverrides;
 
    type IFrameworkElementOverrides2_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElementOverrides2 is access all IFrameworkElementOverrides2_Interface'Class;
+   type IFrameworkElementOverrides2_Ptr is access all IFrameworkElementOverrides2;
 
    type IFrameworkElementProtected7_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElementProtected7 is access all IFrameworkElementProtected7_Interface'Class;
+   type IFrameworkElementProtected7_Ptr is access all IFrameworkElementProtected7;
 
    type IFrameworkElementStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElementStatics is access all IFrameworkElementStatics_Interface'Class;
+   type IFrameworkElementStatics_Ptr is access all IFrameworkElementStatics;
 
    type IFrameworkElementStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElementStatics2 is access all IFrameworkElementStatics2_Interface'Class;
+   type IFrameworkElementStatics2_Ptr is access all IFrameworkElementStatics2;
 
    type IFrameworkElementStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElementStatics4 is access all IFrameworkElementStatics4_Interface'Class;
+   type IFrameworkElementStatics4_Ptr is access all IFrameworkElementStatics4;
 
    type IFrameworkElementStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElementStatics5 is access all IFrameworkElementStatics5_Interface'Class;
+   type IFrameworkElementStatics5_Ptr is access all IFrameworkElementStatics5;
 
    type IFrameworkElementStatics6_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkElementStatics6 is access all IFrameworkElementStatics6_Interface'Class;
+   type IFrameworkElementStatics6_Ptr is access all IFrameworkElementStatics6;
 
    type IFrameworkTemplate_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkTemplate is access all IFrameworkTemplate_Interface'Class;
@@ -395,6 +443,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IFrameworkTemplateFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkTemplateFactory is access all IFrameworkTemplateFactory_Interface'Class;
+   type IFrameworkTemplateFactory_Ptr is access all IFrameworkTemplateFactory;
 
    type IFrameworkView_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkView is access all IFrameworkView_Interface'Class;
@@ -410,6 +459,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IGridLengthHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGridLengthHelperStatics is access all IGridLengthHelperStatics_Interface'Class;
+   type IGridLengthHelperStatics_Ptr is access all IGridLengthHelperStatics;
 
    type IMediaFailedRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFailedRoutedEventArgs is access all IMediaFailedRoutedEventArgs_Interface'Class;
@@ -421,6 +471,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IPointHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPointHelperStatics is access all IPointHelperStatics_Interface'Class;
+   type IPointHelperStatics_Ptr is access all IPointHelperStatics;
 
    type IPropertyMetadata_Interface is interface and WinRt.IInspectable_Interface;
    type IPropertyMetadata is access all IPropertyMetadata_Interface'Class;
@@ -428,9 +479,11 @@ package WinRt.Windows.UI.Xaml is
 
    type IPropertyMetadataFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPropertyMetadataFactory is access all IPropertyMetadataFactory_Interface'Class;
+   type IPropertyMetadataFactory_Ptr is access all IPropertyMetadataFactory;
 
    type IPropertyMetadataStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPropertyMetadataStatics is access all IPropertyMetadataStatics_Interface'Class;
+   type IPropertyMetadataStatics_Ptr is access all IPropertyMetadataStatics;
 
    type IPropertyPath_Interface is interface and WinRt.IInspectable_Interface;
    type IPropertyPath is access all IPropertyPath_Interface'Class;
@@ -438,6 +491,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IPropertyPathFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPropertyPathFactory is access all IPropertyPathFactory_Interface'Class;
+   type IPropertyPathFactory_Ptr is access all IPropertyPathFactory;
 
    type IRectHelper_Interface is interface and WinRt.IInspectable_Interface;
    type IRectHelper is access all IRectHelper_Interface'Class;
@@ -445,6 +499,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IRectHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRectHelperStatics is access all IRectHelperStatics_Interface'Class;
+   type IRectHelperStatics_Ptr is access all IRectHelperStatics;
 
    type IResourceDictionary_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceDictionary is access all IResourceDictionary_Interface'Class;
@@ -452,6 +507,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IResourceDictionaryFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceDictionaryFactory is access all IResourceDictionaryFactory_Interface'Class;
+   type IResourceDictionaryFactory_Ptr is access all IResourceDictionaryFactory;
 
    type IRoutedEvent_Interface is interface and WinRt.IInspectable_Interface;
    type IRoutedEvent is access all IRoutedEvent_Interface'Class;
@@ -463,6 +519,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IRoutedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRoutedEventArgsFactory is access all IRoutedEventArgsFactory_Interface'Class;
+   type IRoutedEventArgsFactory_Ptr is access all IRoutedEventArgsFactory;
 
    type IScalarTransition_Interface is interface and WinRt.IInspectable_Interface;
    type IScalarTransition is access all IScalarTransition_Interface'Class;
@@ -470,6 +527,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IScalarTransitionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IScalarTransitionFactory is access all IScalarTransitionFactory_Interface'Class;
+   type IScalarTransitionFactory_Ptr is access all IScalarTransitionFactory;
 
    type ISetter_Interface is interface and WinRt.IInspectable_Interface;
    type ISetter is access all ISetter_Interface'Class;
@@ -477,6 +535,7 @@ package WinRt.Windows.UI.Xaml is
 
    type ISetter2_Interface is interface and WinRt.IInspectable_Interface;
    type ISetter2 is access all ISetter2_Interface'Class;
+   type ISetter2_Ptr is access all ISetter2;
 
    type ISetterBase_Interface is interface and WinRt.IInspectable_Interface;
    type ISetterBase is access all ISetterBase_Interface'Class;
@@ -489,9 +548,11 @@ package WinRt.Windows.UI.Xaml is
 
    type ISetterBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISetterBaseFactory is access all ISetterBaseFactory_Interface'Class;
+   type ISetterBaseFactory_Ptr is access all ISetterBaseFactory;
 
    type ISetterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISetterFactory is access all ISetterFactory_Interface'Class;
+   type ISetterFactory_Ptr is access all ISetterFactory;
 
    type ISizeChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISizeChangedEventArgs is access all ISizeChangedEventArgs_Interface'Class;
@@ -503,6 +564,7 @@ package WinRt.Windows.UI.Xaml is
 
    type ISizeHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISizeHelperStatics is access all ISizeHelperStatics_Interface'Class;
+   type ISizeHelperStatics_Ptr is access all ISizeHelperStatics;
 
    type IStateTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IStateTrigger is access all IStateTrigger_Interface'Class;
@@ -514,12 +576,15 @@ package WinRt.Windows.UI.Xaml is
 
    type IStateTriggerBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IStateTriggerBaseFactory is access all IStateTriggerBaseFactory_Interface'Class;
+   type IStateTriggerBaseFactory_Ptr is access all IStateTriggerBaseFactory;
 
    type IStateTriggerBaseProtected_Interface is interface and WinRt.IInspectable_Interface;
    type IStateTriggerBaseProtected is access all IStateTriggerBaseProtected_Interface'Class;
+   type IStateTriggerBaseProtected_Ptr is access all IStateTriggerBaseProtected;
 
    type IStateTriggerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStateTriggerStatics is access all IStateTriggerStatics_Interface'Class;
+   type IStateTriggerStatics_Ptr is access all IStateTriggerStatics;
 
    type IStyle_Interface is interface and WinRt.IInspectable_Interface;
    type IStyle is access all IStyle_Interface'Class;
@@ -527,6 +592,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IStyleFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IStyleFactory is access all IStyleFactory_Interface'Class;
+   type IStyleFactory_Ptr is access all IStyleFactory;
 
    type ITargetPropertyPath_Interface is interface and WinRt.IInspectable_Interface;
    type ITargetPropertyPath is access all ITargetPropertyPath_Interface'Class;
@@ -534,6 +600,7 @@ package WinRt.Windows.UI.Xaml is
 
    type ITargetPropertyPathFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITargetPropertyPathFactory is access all ITargetPropertyPathFactory_Interface'Class;
+   type ITargetPropertyPathFactory_Ptr is access all ITargetPropertyPathFactory;
 
    type IThicknessHelper_Interface is interface and WinRt.IInspectable_Interface;
    type IThicknessHelper is access all IThicknessHelper_Interface'Class;
@@ -541,6 +608,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IThicknessHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IThicknessHelperStatics is access all IThicknessHelperStatics_Interface'Class;
+   type IThicknessHelperStatics_Ptr is access all IThicknessHelperStatics;
 
    type ITriggerAction_Interface is interface and WinRt.IInspectable_Interface;
    type ITriggerAction is access all ITriggerAction_Interface'Class;
@@ -549,6 +617,7 @@ package WinRt.Windows.UI.Xaml is
 
    type ITriggerActionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITriggerActionFactory is access all ITriggerActionFactory_Interface'Class;
+   type ITriggerActionFactory_Ptr is access all ITriggerActionFactory;
 
    type ITriggerBase_Interface is interface and WinRt.IInspectable_Interface;
    type ITriggerBase is access all ITriggerBase_Interface'Class;
@@ -557,6 +626,7 @@ package WinRt.Windows.UI.Xaml is
 
    type ITriggerBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITriggerBaseFactory is access all ITriggerBaseFactory_Interface'Class;
+   type ITriggerBaseFactory_Ptr is access all ITriggerBaseFactory;
 
    type IUIElement_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElement is access all IUIElement_Interface'Class;
@@ -565,72 +635,95 @@ package WinRt.Windows.UI.Xaml is
 
    type IUIElement10_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElement10 is access all IUIElement10_Interface'Class;
+   type IUIElement10_Ptr is access all IUIElement10;
 
    type IUIElement2_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElement2 is access all IUIElement2_Interface'Class;
+   type IUIElement2_Ptr is access all IUIElement2;
 
    type IUIElement3_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElement3 is access all IUIElement3_Interface'Class;
+   type IUIElement3_Ptr is access all IUIElement3;
 
    type IUIElement4_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElement4 is access all IUIElement4_Interface'Class;
+   type IUIElement4_Ptr is access all IUIElement4;
 
    type IUIElement5_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElement5 is access all IUIElement5_Interface'Class;
+   type IUIElement5_Ptr is access all IUIElement5;
 
    type IUIElement7_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElement7 is access all IUIElement7_Interface'Class;
+   type IUIElement7_Ptr is access all IUIElement7;
 
    type IUIElement8_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElement8 is access all IUIElement8_Interface'Class;
+   type IUIElement8_Ptr is access all IUIElement8;
 
    type IUIElement9_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElement9 is access all IUIElement9_Interface'Class;
+   type IUIElement9_Ptr is access all IUIElement9;
 
    type IUIElementFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementFactory is access all IUIElementFactory_Interface'Class;
+   type IUIElementFactory_Ptr is access all IUIElementFactory;
 
    type IUIElementOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementOverrides is access all IUIElementOverrides_Interface'Class;
+   type IUIElementOverrides_Ptr is access all IUIElementOverrides;
 
    type IUIElementOverrides7_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementOverrides7 is access all IUIElementOverrides7_Interface'Class;
+   type IUIElementOverrides7_Ptr is access all IUIElementOverrides7;
 
    type IUIElementOverrides8_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementOverrides8 is access all IUIElementOverrides8_Interface'Class;
+   type IUIElementOverrides8_Ptr is access all IUIElementOverrides8;
 
    type IUIElementOverrides9_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementOverrides9 is access all IUIElementOverrides9_Interface'Class;
+   type IUIElementOverrides9_Ptr is access all IUIElementOverrides9;
 
    type IUIElementStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementStatics is access all IUIElementStatics_Interface'Class;
+   type IUIElementStatics_Ptr is access all IUIElementStatics;
 
    type IUIElementStatics10_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementStatics10 is access all IUIElementStatics10_Interface'Class;
+   type IUIElementStatics10_Ptr is access all IUIElementStatics10;
 
    type IUIElementStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementStatics2 is access all IUIElementStatics2_Interface'Class;
+   type IUIElementStatics2_Ptr is access all IUIElementStatics2;
 
    type IUIElementStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementStatics3 is access all IUIElementStatics3_Interface'Class;
+   type IUIElementStatics3_Ptr is access all IUIElementStatics3;
 
    type IUIElementStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementStatics4 is access all IUIElementStatics4_Interface'Class;
+   type IUIElementStatics4_Ptr is access all IUIElementStatics4;
 
    type IUIElementStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementStatics5 is access all IUIElementStatics5_Interface'Class;
+   type IUIElementStatics5_Ptr is access all IUIElementStatics5;
 
    type IUIElementStatics6_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementStatics6 is access all IUIElementStatics6_Interface'Class;
+   type IUIElementStatics6_Ptr is access all IUIElementStatics6;
 
    type IUIElementStatics7_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementStatics7 is access all IUIElementStatics7_Interface'Class;
+   type IUIElementStatics7_Ptr is access all IUIElementStatics7;
 
    type IUIElementStatics8_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementStatics8 is access all IUIElementStatics8_Interface'Class;
+   type IUIElementStatics8_Ptr is access all IUIElementStatics8;
 
    type IUIElementStatics9_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementStatics9 is access all IUIElementStatics9_Interface'Class;
+   type IUIElementStatics9_Ptr is access all IUIElementStatics9;
 
    type IUIElementWeakCollection_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementWeakCollection is access all IUIElementWeakCollection_Interface'Class;
@@ -638,6 +731,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IUIElementWeakCollectionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementWeakCollectionFactory is access all IUIElementWeakCollectionFactory_Interface'Class;
+   type IUIElementWeakCollectionFactory_Ptr is access all IUIElementWeakCollectionFactory;
 
    type IUnhandledExceptionEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IUnhandledExceptionEventArgs is access all IUnhandledExceptionEventArgs_Interface'Class;
@@ -649,6 +743,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IVector3TransitionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVector3TransitionFactory is access all IVector3TransitionFactory_Interface'Class;
+   type IVector3TransitionFactory_Ptr is access all IVector3TransitionFactory;
 
    type IVisualState_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualState is access all IVisualState_Interface'Class;
@@ -656,6 +751,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IVisualState2_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualState2 is access all IVisualState2_Interface'Class;
+   type IVisualState2_Ptr is access all IVisualState2;
 
    type IVisualStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualStateChangedEventArgs is access all IVisualStateChangedEventArgs_Interface'Class;
@@ -671,15 +767,19 @@ package WinRt.Windows.UI.Xaml is
 
    type IVisualStateManagerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualStateManagerFactory is access all IVisualStateManagerFactory_Interface'Class;
+   type IVisualStateManagerFactory_Ptr is access all IVisualStateManagerFactory;
 
    type IVisualStateManagerOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualStateManagerOverrides is access all IVisualStateManagerOverrides_Interface'Class;
+   type IVisualStateManagerOverrides_Ptr is access all IVisualStateManagerOverrides;
 
    type IVisualStateManagerProtected_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualStateManagerProtected is access all IVisualStateManagerProtected_Interface'Class;
+   type IVisualStateManagerProtected_Ptr is access all IVisualStateManagerProtected;
 
    type IVisualStateManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualStateManagerStatics is access all IVisualStateManagerStatics_Interface'Class;
+   type IVisualStateManagerStatics_Ptr is access all IVisualStateManagerStatics;
 
    type IVisualTransition_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualTransition is access all IVisualTransition_Interface'Class;
@@ -687,6 +787,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IVisualTransitionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualTransitionFactory is access all IVisualTransitionFactory_Interface'Class;
+   type IVisualTransitionFactory_Ptr is access all IVisualTransitionFactory;
 
    type IWindow_Interface is interface and WinRt.IInspectable_Interface;
    type IWindow is access all IWindow_Interface'Class;
@@ -694,12 +795,15 @@ package WinRt.Windows.UI.Xaml is
 
    type IWindow2_Interface is interface and WinRt.IInspectable_Interface;
    type IWindow2 is access all IWindow2_Interface'Class;
+   type IWindow2_Ptr is access all IWindow2;
 
    type IWindow3_Interface is interface and WinRt.IInspectable_Interface;
    type IWindow3 is access all IWindow3_Interface'Class;
+   type IWindow3_Ptr is access all IWindow3;
 
    type IWindow4_Interface is interface and WinRt.IInspectable_Interface;
    type IWindow4 is access all IWindow4_Interface'Class;
+   type IWindow4_Ptr is access all IWindow4;
 
    type IWindowCreatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowCreatedEventArgs is access all IWindowCreatedEventArgs_Interface'Class;
@@ -707,6 +811,7 @@ package WinRt.Windows.UI.Xaml is
 
    type IWindowStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowStatics is access all IWindowStatics_Interface'Class;
+   type IWindowStatics_Ptr is access all IWindowStatics;
 
    type IXamlRoot_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlRoot is access all IXamlRoot_Interface'Class;
@@ -9805,6 +9910,9 @@ package WinRt.Windows.UI.Xaml is
    -----------------------------------------------------------------------------
    -- Static Interfaces for UIElement
 
+   function get_CanBeScrollAnchorProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_KeyDownEvent
    return WinRt.Windows.UI.Xaml.RoutedEvent;
 
@@ -9928,16 +10036,13 @@ package WinRt.Windows.UI.Xaml is
    function get_CompositeModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_CanBeScrollAnchorProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_GettingFocusEvent
+   function get_PreviewKeyDownEvent
    return WinRt.Windows.UI.Xaml.RoutedEvent;
 
-   function get_LosingFocusEvent
+   function get_CharacterReceivedEvent
    return WinRt.Windows.UI.Xaml.RoutedEvent;
 
-   function get_NoFocusCandidateFoundEvent
+   function get_PreviewKeyUpEvent
    return WinRt.Windows.UI.Xaml.RoutedEvent;
 
    function get_BringIntoViewRequestedEvent
@@ -9960,16 +10065,19 @@ package WinRt.Windows.UI.Xaml is
       element : Windows.UI.Xaml.UIElement'Class
    );
 
-   function get_PreviewKeyDownEvent
-   return WinRt.Windows.UI.Xaml.RoutedEvent;
+   function get_ContextFlyoutProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_CharacterReceivedEvent
-   return WinRt.Windows.UI.Xaml.RoutedEvent;
+   function get_ExitDisplayModeOnAccessKeyInvokedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_PreviewKeyUpEvent
-   return WinRt.Windows.UI.Xaml.RoutedEvent;
+   function get_IsAccessKeyScopeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_ShadowProperty
+   function get_AccessKeyScopeOwnerProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AccessKeyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_LightsProperty
@@ -10005,21 +10113,6 @@ package WinRt.Windows.UI.Xaml is
    function get_TabFocusNavigationProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_ContextFlyoutProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ExitDisplayModeOnAccessKeyInvokedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsAccessKeyScopeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AccessKeyScopeOwnerProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AccessKeyProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_Transform3DProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -10031,6 +10124,18 @@ package WinRt.Windows.UI.Xaml is
       value : Windows.UI.Xaml.Input.Pointer'Class
    )
    return WinRt.Boolean;
+
+   function get_ShadowProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_GettingFocusEvent
+   return WinRt.Windows.UI.Xaml.RoutedEvent;
+
+   function get_LosingFocusEvent
+   return WinRt.Windows.UI.Xaml.RoutedEvent;
+
+   function get_NoFocusCandidateFoundEvent
+   return WinRt.Windows.UI.Xaml.RoutedEvent;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for UIElement
@@ -11388,14 +11493,6 @@ package WinRt.Windows.UI.Xaml is
    -----------------------------------------------------------------------------
    -- Static Interfaces for FrameworkElement
 
-   function get_ActualThemeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   procedure DeferTree
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   );
-
    function get_AllowFocusOnInteractionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -11415,6 +11512,17 @@ package WinRt.Windows.UI.Xaml is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_AllowFocusWhenDisabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ActualThemeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   procedure DeferTree
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   );
+
+   function get_RequestedThemeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_TagProperty
@@ -11466,9 +11574,6 @@ package WinRt.Windows.UI.Xaml is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_FlowDirectionProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RequestedThemeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -13470,14 +13575,14 @@ package WinRt.Windows.UI.Xaml is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for Setter
 
+   function Constructor return Setter;
+
    function Constructor
    (
       targetProperty : Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.IInspectable
    )
    return Setter;
-
-   function Constructor return Setter;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for Setter
@@ -13781,13 +13886,13 @@ package WinRt.Windows.UI.Xaml is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for TargetPropertyPath
 
-   function Constructor return TargetPropertyPath;
-
    function Constructor
    (
       targetProperty : Windows.UI.Xaml.DependencyProperty'Class
    )
    return TargetPropertyPath;
+
+   function Constructor return TargetPropertyPath;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for TargetPropertyPath

@@ -52,6 +52,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IBackEaseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBackEaseStatics is access all IBackEaseStatics_Interface'Class;
+   type IBackEaseStatics_Ptr is access all IBackEaseStatics;
 
    type IBasicConnectedAnimationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type IBasicConnectedAnimationConfiguration is access all IBasicConnectedAnimationConfiguration_Interface'Class;
@@ -59,6 +60,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IBasicConnectedAnimationConfigurationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBasicConnectedAnimationConfigurationFactory is access all IBasicConnectedAnimationConfigurationFactory_Interface'Class;
+   type IBasicConnectedAnimationConfigurationFactory_Ptr is access all IBasicConnectedAnimationConfigurationFactory;
 
    type IBeginStoryboard_Interface is interface and WinRt.IInspectable_Interface;
    type IBeginStoryboard is access all IBeginStoryboard_Interface'Class;
@@ -66,6 +68,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IBeginStoryboardStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBeginStoryboardStatics is access all IBeginStoryboardStatics_Interface'Class;
+   type IBeginStoryboardStatics_Ptr is access all IBeginStoryboardStatics;
 
    type IBounceEase_Interface is interface and WinRt.IInspectable_Interface;
    type IBounceEase is access all IBounceEase_Interface'Class;
@@ -73,6 +76,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IBounceEaseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBounceEaseStatics is access all IBounceEaseStatics_Interface'Class;
+   type IBounceEaseStatics_Ptr is access all IBounceEaseStatics;
 
    type ICircleEase_Interface is interface and WinRt.IInspectable_Interface;
    type ICircleEase is access all ICircleEase_Interface'Class;
@@ -84,6 +88,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IColorAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IColorAnimationStatics is access all IColorAnimationStatics_Interface'Class;
+   type IColorAnimationStatics_Ptr is access all IColorAnimationStatics;
 
    type IColorAnimationUsingKeyFrames_Interface is interface and WinRt.IInspectable_Interface;
    type IColorAnimationUsingKeyFrames is access all IColorAnimationUsingKeyFrames_Interface'Class;
@@ -91,6 +96,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IColorAnimationUsingKeyFramesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IColorAnimationUsingKeyFramesStatics is access all IColorAnimationUsingKeyFramesStatics_Interface'Class;
+   type IColorAnimationUsingKeyFramesStatics_Ptr is access all IColorAnimationUsingKeyFramesStatics;
 
    type IColorKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IColorKeyFrame is access all IColorKeyFrame_Interface'Class;
@@ -99,9 +105,11 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IColorKeyFrameFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IColorKeyFrameFactory is access all IColorKeyFrameFactory_Interface'Class;
+   type IColorKeyFrameFactory_Ptr is access all IColorKeyFrameFactory;
 
    type IColorKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IColorKeyFrameStatics is access all IColorKeyFrameStatics_Interface'Class;
+   type IColorKeyFrameStatics_Ptr is access all IColorKeyFrameStatics;
 
    type ICommonNavigationTransitionInfo_Interface is interface and WinRt.IInspectable_Interface;
    type ICommonNavigationTransitionInfo is access all ICommonNavigationTransitionInfo_Interface'Class;
@@ -109,6 +117,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type ICommonNavigationTransitionInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICommonNavigationTransitionInfoStatics is access all ICommonNavigationTransitionInfoStatics_Interface'Class;
+   type ICommonNavigationTransitionInfoStatics_Ptr is access all ICommonNavigationTransitionInfoStatics;
 
    type IConnectedAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectedAnimation is access all IConnectedAnimation_Interface'Class;
@@ -116,9 +125,11 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IConnectedAnimation2_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectedAnimation2 is access all IConnectedAnimation2_Interface'Class;
+   type IConnectedAnimation2_Ptr is access all IConnectedAnimation2;
 
    type IConnectedAnimation3_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectedAnimation3 is access all IConnectedAnimation3_Interface'Class;
+   type IConnectedAnimation3_Ptr is access all IConnectedAnimation3;
 
    type IConnectedAnimationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectedAnimationConfiguration is access all IConnectedAnimationConfiguration_Interface'Class;
@@ -126,6 +137,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IConnectedAnimationConfigurationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectedAnimationConfigurationFactory is access all IConnectedAnimationConfigurationFactory_Interface'Class;
+   type IConnectedAnimationConfigurationFactory_Ptr is access all IConnectedAnimationConfigurationFactory;
 
    type IConnectedAnimationService_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectedAnimationService is access all IConnectedAnimationService_Interface'Class;
@@ -133,6 +145,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IConnectedAnimationServiceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectedAnimationServiceStatics is access all IConnectedAnimationServiceStatics_Interface'Class;
+   type IConnectedAnimationServiceStatics_Ptr is access all IConnectedAnimationServiceStatics;
 
    type IContentThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
    type IContentThemeTransition is access all IContentThemeTransition_Interface'Class;
@@ -140,6 +153,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IContentThemeTransitionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IContentThemeTransitionStatics is access all IContentThemeTransitionStatics_Interface'Class;
+   type IContentThemeTransitionStatics_Ptr is access all IContentThemeTransitionStatics;
 
    type IContinuumNavigationTransitionInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IContinuumNavigationTransitionInfo is access all IContinuumNavigationTransitionInfo_Interface'Class;
@@ -147,6 +161,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IContinuumNavigationTransitionInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IContinuumNavigationTransitionInfoStatics is access all IContinuumNavigationTransitionInfoStatics_Interface'Class;
+   type IContinuumNavigationTransitionInfoStatics_Ptr is access all IContinuumNavigationTransitionInfoStatics;
 
    type ICubicEase_Interface is interface and WinRt.IInspectable_Interface;
    type ICubicEase is access all ICubicEase_Interface'Class;
@@ -158,6 +173,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IDirectConnectedAnimationConfigurationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDirectConnectedAnimationConfigurationFactory is access all IDirectConnectedAnimationConfigurationFactory_Interface'Class;
+   type IDirectConnectedAnimationConfigurationFactory_Ptr is access all IDirectConnectedAnimationConfigurationFactory;
 
    type IDiscreteColorKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IDiscreteColorKeyFrame is access all IDiscreteColorKeyFrame_Interface'Class;
@@ -181,6 +197,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IDoubleAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDoubleAnimationStatics is access all IDoubleAnimationStatics_Interface'Class;
+   type IDoubleAnimationStatics_Ptr is access all IDoubleAnimationStatics;
 
    type IDoubleAnimationUsingKeyFrames_Interface is interface and WinRt.IInspectable_Interface;
    type IDoubleAnimationUsingKeyFrames is access all IDoubleAnimationUsingKeyFrames_Interface'Class;
@@ -188,6 +205,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IDoubleAnimationUsingKeyFramesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDoubleAnimationUsingKeyFramesStatics is access all IDoubleAnimationUsingKeyFramesStatics_Interface'Class;
+   type IDoubleAnimationUsingKeyFramesStatics_Ptr is access all IDoubleAnimationUsingKeyFramesStatics;
 
    type IDoubleKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IDoubleKeyFrame is access all IDoubleKeyFrame_Interface'Class;
@@ -196,9 +214,11 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IDoubleKeyFrameFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDoubleKeyFrameFactory is access all IDoubleKeyFrameFactory_Interface'Class;
+   type IDoubleKeyFrameFactory_Ptr is access all IDoubleKeyFrameFactory;
 
    type IDoubleKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDoubleKeyFrameStatics is access all IDoubleKeyFrameStatics_Interface'Class;
+   type IDoubleKeyFrameStatics_Ptr is access all IDoubleKeyFrameStatics;
 
    type IDragItemThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IDragItemThemeAnimation is access all IDragItemThemeAnimation_Interface'Class;
@@ -206,6 +226,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IDragItemThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDragItemThemeAnimationStatics is access all IDragItemThemeAnimationStatics_Interface'Class;
+   type IDragItemThemeAnimationStatics_Ptr is access all IDragItemThemeAnimationStatics;
 
    type IDragOverThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IDragOverThemeAnimation is access all IDragOverThemeAnimation_Interface'Class;
@@ -213,6 +234,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IDragOverThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDragOverThemeAnimationStatics is access all IDragOverThemeAnimationStatics_Interface'Class;
+   type IDragOverThemeAnimationStatics_Ptr is access all IDragOverThemeAnimationStatics;
 
    type IDrillInNavigationTransitionInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IDrillInNavigationTransitionInfo is access all IDrillInNavigationTransitionInfo_Interface'Class;
@@ -224,6 +246,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IDrillInThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDrillInThemeAnimationStatics is access all IDrillInThemeAnimationStatics_Interface'Class;
+   type IDrillInThemeAnimationStatics_Ptr is access all IDrillInThemeAnimationStatics;
 
    type IDrillOutThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IDrillOutThemeAnimation is access all IDrillOutThemeAnimation_Interface'Class;
@@ -231,6 +254,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IDrillOutThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDrillOutThemeAnimationStatics is access all IDrillOutThemeAnimationStatics_Interface'Class;
+   type IDrillOutThemeAnimationStatics_Ptr is access all IDrillOutThemeAnimationStatics;
 
    type IDropTargetItemThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IDropTargetItemThemeAnimation is access all IDropTargetItemThemeAnimation_Interface'Class;
@@ -238,6 +262,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IDropTargetItemThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDropTargetItemThemeAnimationStatics is access all IDropTargetItemThemeAnimationStatics_Interface'Class;
+   type IDropTargetItemThemeAnimationStatics_Ptr is access all IDropTargetItemThemeAnimationStatics;
 
    type IEasingColorKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IEasingColorKeyFrame is access all IEasingColorKeyFrame_Interface'Class;
@@ -245,6 +270,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IEasingColorKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IEasingColorKeyFrameStatics is access all IEasingColorKeyFrameStatics_Interface'Class;
+   type IEasingColorKeyFrameStatics_Ptr is access all IEasingColorKeyFrameStatics;
 
    type IEasingDoubleKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IEasingDoubleKeyFrame is access all IEasingDoubleKeyFrame_Interface'Class;
@@ -252,6 +278,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IEasingDoubleKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IEasingDoubleKeyFrameStatics is access all IEasingDoubleKeyFrameStatics_Interface'Class;
+   type IEasingDoubleKeyFrameStatics_Ptr is access all IEasingDoubleKeyFrameStatics;
 
    type IEasingFunctionBase_Interface is interface and WinRt.IInspectable_Interface;
    type IEasingFunctionBase is access all IEasingFunctionBase_Interface'Class;
@@ -259,9 +286,11 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IEasingFunctionBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IEasingFunctionBaseFactory is access all IEasingFunctionBaseFactory_Interface'Class;
+   type IEasingFunctionBaseFactory_Ptr is access all IEasingFunctionBaseFactory;
 
    type IEasingFunctionBaseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IEasingFunctionBaseStatics is access all IEasingFunctionBaseStatics_Interface'Class;
+   type IEasingFunctionBaseStatics_Ptr is access all IEasingFunctionBaseStatics;
 
    type IEasingPointKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IEasingPointKeyFrame is access all IEasingPointKeyFrame_Interface'Class;
@@ -269,6 +298,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IEasingPointKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IEasingPointKeyFrameStatics is access all IEasingPointKeyFrameStatics_Interface'Class;
+   type IEasingPointKeyFrameStatics_Ptr is access all IEasingPointKeyFrameStatics;
 
    type IEdgeUIThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
    type IEdgeUIThemeTransition is access all IEdgeUIThemeTransition_Interface'Class;
@@ -276,6 +306,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IEdgeUIThemeTransitionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IEdgeUIThemeTransitionStatics is access all IEdgeUIThemeTransitionStatics_Interface'Class;
+   type IEdgeUIThemeTransitionStatics_Ptr is access all IEdgeUIThemeTransitionStatics;
 
    type IElasticEase_Interface is interface and WinRt.IInspectable_Interface;
    type IElasticEase is access all IElasticEase_Interface'Class;
@@ -283,6 +314,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IElasticEaseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IElasticEaseStatics is access all IElasticEaseStatics_Interface'Class;
+   type IElasticEaseStatics_Ptr is access all IElasticEaseStatics;
 
    type IEntranceNavigationTransitionInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IEntranceNavigationTransitionInfo is access all IEntranceNavigationTransitionInfo_Interface'Class;
@@ -290,6 +322,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IEntranceNavigationTransitionInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IEntranceNavigationTransitionInfoStatics is access all IEntranceNavigationTransitionInfoStatics_Interface'Class;
+   type IEntranceNavigationTransitionInfoStatics_Ptr is access all IEntranceNavigationTransitionInfoStatics;
 
    type IEntranceThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
    type IEntranceThemeTransition is access all IEntranceThemeTransition_Interface'Class;
@@ -297,6 +330,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IEntranceThemeTransitionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IEntranceThemeTransitionStatics is access all IEntranceThemeTransitionStatics_Interface'Class;
+   type IEntranceThemeTransitionStatics_Ptr is access all IEntranceThemeTransitionStatics;
 
    type IExponentialEase_Interface is interface and WinRt.IInspectable_Interface;
    type IExponentialEase is access all IExponentialEase_Interface'Class;
@@ -304,6 +338,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IExponentialEaseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IExponentialEaseStatics is access all IExponentialEaseStatics_Interface'Class;
+   type IExponentialEaseStatics_Ptr is access all IExponentialEaseStatics;
 
    type IFadeInThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IFadeInThemeAnimation is access all IFadeInThemeAnimation_Interface'Class;
@@ -311,6 +346,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IFadeInThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFadeInThemeAnimationStatics is access all IFadeInThemeAnimationStatics_Interface'Class;
+   type IFadeInThemeAnimationStatics_Ptr is access all IFadeInThemeAnimationStatics;
 
    type IFadeOutThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IFadeOutThemeAnimation is access all IFadeOutThemeAnimation_Interface'Class;
@@ -318,6 +354,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IFadeOutThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFadeOutThemeAnimationStatics is access all IFadeOutThemeAnimationStatics_Interface'Class;
+   type IFadeOutThemeAnimationStatics_Ptr is access all IFadeOutThemeAnimationStatics;
 
    type IGravityConnectedAnimationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type IGravityConnectedAnimationConfiguration is access all IGravityConnectedAnimationConfiguration_Interface'Class;
@@ -325,9 +362,11 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IGravityConnectedAnimationConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
    type IGravityConnectedAnimationConfiguration2 is access all IGravityConnectedAnimationConfiguration2_Interface'Class;
+   type IGravityConnectedAnimationConfiguration2_Ptr is access all IGravityConnectedAnimationConfiguration2;
 
    type IGravityConnectedAnimationConfigurationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGravityConnectedAnimationConfigurationFactory is access all IGravityConnectedAnimationConfigurationFactory_Interface'Class;
+   type IGravityConnectedAnimationConfigurationFactory_Ptr is access all IGravityConnectedAnimationConfigurationFactory;
 
    type IKeySpline_Interface is interface and WinRt.IInspectable_Interface;
    type IKeySpline is access all IKeySpline_Interface'Class;
@@ -339,6 +378,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IKeyTimeHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyTimeHelperStatics is access all IKeyTimeHelperStatics_Interface'Class;
+   type IKeyTimeHelperStatics_Ptr is access all IKeyTimeHelperStatics;
 
    type ILinearColorKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
    type ILinearColorKeyFrame is access all ILinearColorKeyFrame_Interface'Class;
@@ -358,6 +398,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type INavigationThemeTransitionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationThemeTransitionStatics is access all INavigationThemeTransitionStatics_Interface'Class;
+   type INavigationThemeTransitionStatics_Ptr is access all INavigationThemeTransitionStatics;
 
    type INavigationTransitionInfo_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationTransitionInfo is access all INavigationTransitionInfo_Interface'Class;
@@ -365,9 +406,11 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type INavigationTransitionInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationTransitionInfoFactory is access all INavigationTransitionInfoFactory_Interface'Class;
+   type INavigationTransitionInfoFactory_Ptr is access all INavigationTransitionInfoFactory;
 
    type INavigationTransitionInfoOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationTransitionInfoOverrides is access all INavigationTransitionInfoOverrides_Interface'Class;
+   type INavigationTransitionInfoOverrides_Ptr is access all INavigationTransitionInfoOverrides;
 
    type IObjectAnimationUsingKeyFrames_Interface is interface and WinRt.IInspectable_Interface;
    type IObjectAnimationUsingKeyFrames is access all IObjectAnimationUsingKeyFrames_Interface'Class;
@@ -375,6 +418,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IObjectAnimationUsingKeyFramesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IObjectAnimationUsingKeyFramesStatics is access all IObjectAnimationUsingKeyFramesStatics_Interface'Class;
+   type IObjectAnimationUsingKeyFramesStatics_Ptr is access all IObjectAnimationUsingKeyFramesStatics;
 
    type IObjectKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IObjectKeyFrame is access all IObjectKeyFrame_Interface'Class;
@@ -383,9 +427,11 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IObjectKeyFrameFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IObjectKeyFrameFactory is access all IObjectKeyFrameFactory_Interface'Class;
+   type IObjectKeyFrameFactory_Ptr is access all IObjectKeyFrameFactory;
 
    type IObjectKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IObjectKeyFrameStatics is access all IObjectKeyFrameStatics_Interface'Class;
+   type IObjectKeyFrameStatics_Ptr is access all IObjectKeyFrameStatics;
 
    type IPaneThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
    type IPaneThemeTransition is access all IPaneThemeTransition_Interface'Class;
@@ -393,6 +439,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IPaneThemeTransitionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPaneThemeTransitionStatics is access all IPaneThemeTransitionStatics_Interface'Class;
+   type IPaneThemeTransitionStatics_Ptr is access all IPaneThemeTransitionStatics;
 
    type IPointAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IPointAnimation is access all IPointAnimation_Interface'Class;
@@ -400,6 +447,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IPointAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPointAnimationStatics is access all IPointAnimationStatics_Interface'Class;
+   type IPointAnimationStatics_Ptr is access all IPointAnimationStatics;
 
    type IPointAnimationUsingKeyFrames_Interface is interface and WinRt.IInspectable_Interface;
    type IPointAnimationUsingKeyFrames is access all IPointAnimationUsingKeyFrames_Interface'Class;
@@ -407,6 +455,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IPointAnimationUsingKeyFramesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPointAnimationUsingKeyFramesStatics is access all IPointAnimationUsingKeyFramesStatics_Interface'Class;
+   type IPointAnimationUsingKeyFramesStatics_Ptr is access all IPointAnimationUsingKeyFramesStatics;
 
    type IPointKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IPointKeyFrame is access all IPointKeyFrame_Interface'Class;
@@ -415,9 +464,11 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IPointKeyFrameFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPointKeyFrameFactory is access all IPointKeyFrameFactory_Interface'Class;
+   type IPointKeyFrameFactory_Ptr is access all IPointKeyFrameFactory;
 
    type IPointKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPointKeyFrameStatics is access all IPointKeyFrameStatics_Interface'Class;
+   type IPointKeyFrameStatics_Ptr is access all IPointKeyFrameStatics;
 
    type IPointerDownThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerDownThemeAnimation is access all IPointerDownThemeAnimation_Interface'Class;
@@ -425,6 +476,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IPointerDownThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerDownThemeAnimationStatics is access all IPointerDownThemeAnimationStatics_Interface'Class;
+   type IPointerDownThemeAnimationStatics_Ptr is access all IPointerDownThemeAnimationStatics;
 
    type IPointerUpThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerUpThemeAnimation is access all IPointerUpThemeAnimation_Interface'Class;
@@ -432,6 +484,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IPointerUpThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerUpThemeAnimationStatics is access all IPointerUpThemeAnimationStatics_Interface'Class;
+   type IPointerUpThemeAnimationStatics_Ptr is access all IPointerUpThemeAnimationStatics;
 
    type IPopInThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IPopInThemeAnimation is access all IPopInThemeAnimation_Interface'Class;
@@ -439,6 +492,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IPopInThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPopInThemeAnimationStatics is access all IPopInThemeAnimationStatics_Interface'Class;
+   type IPopInThemeAnimationStatics_Ptr is access all IPopInThemeAnimationStatics;
 
    type IPopOutThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IPopOutThemeAnimation is access all IPopOutThemeAnimation_Interface'Class;
@@ -446,6 +500,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IPopOutThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPopOutThemeAnimationStatics is access all IPopOutThemeAnimationStatics_Interface'Class;
+   type IPopOutThemeAnimationStatics_Ptr is access all IPopOutThemeAnimationStatics;
 
    type IPopupThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
    type IPopupThemeTransition is access all IPopupThemeTransition_Interface'Class;
@@ -453,6 +508,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IPopupThemeTransitionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPopupThemeTransitionStatics is access all IPopupThemeTransitionStatics_Interface'Class;
+   type IPopupThemeTransitionStatics_Ptr is access all IPopupThemeTransitionStatics;
 
    type IPowerEase_Interface is interface and WinRt.IInspectable_Interface;
    type IPowerEase is access all IPowerEase_Interface'Class;
@@ -460,6 +516,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IPowerEaseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPowerEaseStatics is access all IPowerEaseStatics_Interface'Class;
+   type IPowerEaseStatics_Ptr is access all IPowerEaseStatics;
 
    type IQuadraticEase_Interface is interface and WinRt.IInspectable_Interface;
    type IQuadraticEase is access all IQuadraticEase_Interface'Class;
@@ -483,6 +540,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IRepeatBehaviorHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRepeatBehaviorHelperStatics is access all IRepeatBehaviorHelperStatics_Interface'Class;
+   type IRepeatBehaviorHelperStatics_Ptr is access all IRepeatBehaviorHelperStatics;
 
    type IRepositionThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IRepositionThemeAnimation is access all IRepositionThemeAnimation_Interface'Class;
@@ -490,6 +548,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IRepositionThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRepositionThemeAnimationStatics is access all IRepositionThemeAnimationStatics_Interface'Class;
+   type IRepositionThemeAnimationStatics_Ptr is access all IRepositionThemeAnimationStatics;
 
    type IRepositionThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
    type IRepositionThemeTransition is access all IRepositionThemeTransition_Interface'Class;
@@ -497,9 +556,11 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IRepositionThemeTransition2_Interface is interface and WinRt.IInspectable_Interface;
    type IRepositionThemeTransition2 is access all IRepositionThemeTransition2_Interface'Class;
+   type IRepositionThemeTransition2_Ptr is access all IRepositionThemeTransition2;
 
    type IRepositionThemeTransitionStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IRepositionThemeTransitionStatics2 is access all IRepositionThemeTransitionStatics2_Interface'Class;
+   type IRepositionThemeTransitionStatics2_Ptr is access all IRepositionThemeTransitionStatics2;
 
    type ISineEase_Interface is interface and WinRt.IInspectable_Interface;
    type ISineEase is access all ISineEase_Interface'Class;
@@ -511,9 +572,11 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type ISlideNavigationTransitionInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type ISlideNavigationTransitionInfo2 is access all ISlideNavigationTransitionInfo2_Interface'Class;
+   type ISlideNavigationTransitionInfo2_Ptr is access all ISlideNavigationTransitionInfo2;
 
    type ISlideNavigationTransitionInfoStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ISlideNavigationTransitionInfoStatics2 is access all ISlideNavigationTransitionInfoStatics2_Interface'Class;
+   type ISlideNavigationTransitionInfoStatics2_Ptr is access all ISlideNavigationTransitionInfoStatics2;
 
    type ISplineColorKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
    type ISplineColorKeyFrame is access all ISplineColorKeyFrame_Interface'Class;
@@ -521,6 +584,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type ISplineColorKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISplineColorKeyFrameStatics is access all ISplineColorKeyFrameStatics_Interface'Class;
+   type ISplineColorKeyFrameStatics_Ptr is access all ISplineColorKeyFrameStatics;
 
    type ISplineDoubleKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
    type ISplineDoubleKeyFrame is access all ISplineDoubleKeyFrame_Interface'Class;
@@ -528,6 +592,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type ISplineDoubleKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISplineDoubleKeyFrameStatics is access all ISplineDoubleKeyFrameStatics_Interface'Class;
+   type ISplineDoubleKeyFrameStatics_Ptr is access all ISplineDoubleKeyFrameStatics;
 
    type ISplinePointKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
    type ISplinePointKeyFrame is access all ISplinePointKeyFrame_Interface'Class;
@@ -535,6 +600,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type ISplinePointKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISplinePointKeyFrameStatics is access all ISplinePointKeyFrameStatics_Interface'Class;
+   type ISplinePointKeyFrameStatics_Ptr is access all ISplinePointKeyFrameStatics;
 
    type ISplitCloseThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitCloseThemeAnimation is access all ISplitCloseThemeAnimation_Interface'Class;
@@ -542,6 +608,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type ISplitCloseThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitCloseThemeAnimationStatics is access all ISplitCloseThemeAnimationStatics_Interface'Class;
+   type ISplitCloseThemeAnimationStatics_Ptr is access all ISplitCloseThemeAnimationStatics;
 
    type ISplitOpenThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitOpenThemeAnimation is access all ISplitOpenThemeAnimation_Interface'Class;
@@ -549,6 +616,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type ISplitOpenThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitOpenThemeAnimationStatics is access all ISplitOpenThemeAnimationStatics_Interface'Class;
+   type ISplitOpenThemeAnimationStatics_Ptr is access all ISplitOpenThemeAnimationStatics;
 
    type IStoryboard_Interface is interface and WinRt.IInspectable_Interface;
    type IStoryboard is access all IStoryboard_Interface'Class;
@@ -556,6 +624,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type IStoryboardStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStoryboardStatics is access all IStoryboardStatics_Interface'Class;
+   type IStoryboardStatics_Ptr is access all IStoryboardStatics;
 
    type ISuppressNavigationTransitionInfo_Interface is interface and WinRt.IInspectable_Interface;
    type ISuppressNavigationTransitionInfo is access all ISuppressNavigationTransitionInfo_Interface'Class;
@@ -567,6 +636,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type ISwipeBackThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISwipeBackThemeAnimationStatics is access all ISwipeBackThemeAnimationStatics_Interface'Class;
+   type ISwipeBackThemeAnimationStatics_Ptr is access all ISwipeBackThemeAnimationStatics;
 
    type ISwipeHintThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type ISwipeHintThemeAnimation is access all ISwipeHintThemeAnimation_Interface'Class;
@@ -574,6 +644,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type ISwipeHintThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISwipeHintThemeAnimationStatics is access all ISwipeHintThemeAnimationStatics_Interface'Class;
+   type ISwipeHintThemeAnimationStatics_Ptr is access all ISwipeHintThemeAnimationStatics;
 
    type ITimeline_Interface is interface and WinRt.IInspectable_Interface;
    type ITimeline is access all ITimeline_Interface'Class;
@@ -582,9 +653,11 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type ITimelineFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITimelineFactory is access all ITimelineFactory_Interface'Class;
+   type ITimelineFactory_Ptr is access all ITimelineFactory;
 
    type ITimelineStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITimelineStatics is access all ITimelineStatics_Interface'Class;
+   type ITimelineStatics_Ptr is access all ITimelineStatics;
 
    type ITransition_Interface is interface and WinRt.IInspectable_Interface;
    type ITransition is access all ITransition_Interface'Class;
@@ -593,6 +666,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    type ITransitionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITransitionFactory is access all ITransitionFactory_Interface'Class;
+   type ITransitionFactory_Ptr is access all ITransitionFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations

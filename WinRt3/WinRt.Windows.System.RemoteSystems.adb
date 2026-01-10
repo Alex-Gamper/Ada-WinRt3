@@ -176,85 +176,6 @@ package body WinRt.Windows.System.RemoteSystems is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RemoteSystem
 
-   function IsAuthorizationKindEnabled
-   (
-      kind : Windows.System.RemoteSystems.RemoteSystemAuthorizationKind
-   )
-   return WinRt.Boolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystem");
-      m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Boolean;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.IsAuthorizationKindEnabled (kind, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   function CreateWatcherForUser
-   (
-      user : Windows.System.User'Class
-   )
-   return WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystem");
-      m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemWatcher;
-   begin
-      return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher do
-         Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateWatcherForUser (user.m_IUser.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IRemoteSystemWatcher := new Windows.System.RemoteSystems.IRemoteSystemWatcher;
-            Retval.m_IRemoteSystemWatcher.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function CreateWatcherForUser
-   (
-      user : Windows.System.User'Class;
-      filters : GenericObject
-   )
-   return WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystem");
-      m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemWatcher;
-   begin
-      return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher do
-         Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateWatcherForUser (user.m_IUser.all, filters, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IRemoteSystemWatcher := new Windows.System.RemoteSystems.IRemoteSystemWatcher;
-            Retval.m_IRemoteSystemWatcher.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function FindByHostNameAsync
    (
       hostName : Windows.Networking.HostName'Class
@@ -444,6 +365,85 @@ package body WinRt.Windows.System.RemoteSystems is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
+   end;
+
+   function CreateWatcherForUser
+   (
+      user : Windows.System.User'Class
+   )
+   return WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystem");
+      m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemWatcher;
+   begin
+      return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher do
+         Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateWatcherForUser (user.m_IUser.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IRemoteSystemWatcher := new Windows.System.RemoteSystems.IRemoteSystemWatcher;
+            Retval.m_IRemoteSystemWatcher.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateWatcherForUser
+   (
+      user : Windows.System.User'Class;
+      filters : GenericObject
+   )
+   return WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystem");
+      m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemWatcher;
+   begin
+      return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher do
+         Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateWatcherForUser (user.m_IUser.all, filters, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IRemoteSystemWatcher := new Windows.System.RemoteSystems.IRemoteSystemWatcher;
+            Retval.m_IRemoteSystemWatcher.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function IsAuthorizationKindEnabled
+   (
+      kind : Windows.System.RemoteSystems.RemoteSystemAuthorizationKind
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystem");
+      m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.IsAuthorizationKindEnabled (kind, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

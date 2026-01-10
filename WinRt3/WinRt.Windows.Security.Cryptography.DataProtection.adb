@@ -60,6 +60,22 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for DataProtectionProvider
 
+   function Constructor return DataProtectionProvider is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.DataProtectionProvider");
+      m_ComRetVal  : aliased Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
+   begin
+      return RetVal : DataProtectionProvider do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IDataProtectionProvider := new Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
+            Retval.m_IDataProtectionProvider.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       protectionDescriptor : WinRt.WString
@@ -83,22 +99,6 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_protectionDescriptor);
-      end return;
-   end;
-
-   function Constructor return DataProtectionProvider is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.DataProtectionProvider");
-      m_ComRetVal  : aliased Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
-   begin
-      return RetVal : DataProtectionProvider do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IDataProtectionProvider := new Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
-            Retval.m_IDataProtectionProvider.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

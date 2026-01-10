@@ -46,6 +46,216 @@ package body WinRt.Windows.Devices.Haptics is
    -- Static RuntimeClass
    package body KnownSimpleHapticsControllerWaveforms is
 
+      function get_BrushContinuous
+      return WinRt.UInt16 is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.UInt16;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_BrushContinuous (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_ChiselMarkerContinuous
+      return WinRt.UInt16 is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.UInt16;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_ChiselMarkerContinuous (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_EraserContinuous
+      return WinRt.UInt16 is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.UInt16;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_EraserContinuous (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_Error
+      return WinRt.UInt16 is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.UInt16;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Error (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_GalaxyPenContinuous
+      return WinRt.UInt16 is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.UInt16;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_GalaxyPenContinuous (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_Hover
+      return WinRt.UInt16 is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.UInt16;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Hover (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_InkContinuous
+      return WinRt.UInt16 is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.UInt16;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_InkContinuous (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_MarkerContinuous
+      return WinRt.UInt16 is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.UInt16;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_MarkerContinuous (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_PencilContinuous
+      return WinRt.UInt16 is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.UInt16;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_PencilContinuous (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_Success
+      return WinRt.UInt16 is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.UInt16;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Success (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
       function get_Click
       return WinRt.UInt16 is
          Hr               : WinRt.HResult := S_OK;

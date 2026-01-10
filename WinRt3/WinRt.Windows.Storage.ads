@@ -60,6 +60,7 @@ package WinRt.Windows.Storage is
 
    type IAppDataPathsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppDataPathsStatics is access all IAppDataPathsStatics_Interface'Class;
+   type IAppDataPathsStatics_Ptr is access all IAppDataPathsStatics;
 
    type IApplicationData_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationData is access all IApplicationData_Interface'Class;
@@ -67,9 +68,11 @@ package WinRt.Windows.Storage is
 
    type IApplicationData2_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationData2 is access all IApplicationData2_Interface'Class;
+   type IApplicationData2_Ptr is access all IApplicationData2;
 
    type IApplicationData3_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationData3 is access all IApplicationData3_Interface'Class;
+   type IApplicationData3_Ptr is access all IApplicationData3;
 
    type IApplicationDataContainer_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationDataContainer is access all IApplicationDataContainer_Interface'Class;
@@ -77,45 +80,59 @@ package WinRt.Windows.Storage is
 
    type IApplicationDataStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationDataStatics is access all IApplicationDataStatics_Interface'Class;
+   type IApplicationDataStatics_Ptr is access all IApplicationDataStatics;
 
    type IApplicationDataStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationDataStatics2 is access all IApplicationDataStatics2_Interface'Class;
+   type IApplicationDataStatics2_Ptr is access all IApplicationDataStatics2;
 
    type ICachedFileManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICachedFileManagerStatics is access all ICachedFileManagerStatics_Interface'Class;
+   type ICachedFileManagerStatics_Ptr is access all ICachedFileManagerStatics;
 
    type IDownloadsFolderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDownloadsFolderStatics is access all IDownloadsFolderStatics_Interface'Class;
+   type IDownloadsFolderStatics_Ptr is access all IDownloadsFolderStatics;
 
    type IDownloadsFolderStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IDownloadsFolderStatics2 is access all IDownloadsFolderStatics2_Interface'Class;
+   type IDownloadsFolderStatics2_Ptr is access all IDownloadsFolderStatics2;
 
    type IFileIOStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFileIOStatics is access all IFileIOStatics_Interface'Class;
+   type IFileIOStatics_Ptr is access all IFileIOStatics;
 
    type IKnownFoldersCameraRollStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownFoldersCameraRollStatics is access all IKnownFoldersCameraRollStatics_Interface'Class;
+   type IKnownFoldersCameraRollStatics_Ptr is access all IKnownFoldersCameraRollStatics;
 
    type IKnownFoldersPlaylistsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownFoldersPlaylistsStatics is access all IKnownFoldersPlaylistsStatics_Interface'Class;
+   type IKnownFoldersPlaylistsStatics_Ptr is access all IKnownFoldersPlaylistsStatics;
 
    type IKnownFoldersSavedPicturesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownFoldersSavedPicturesStatics is access all IKnownFoldersSavedPicturesStatics_Interface'Class;
+   type IKnownFoldersSavedPicturesStatics_Ptr is access all IKnownFoldersSavedPicturesStatics;
 
    type IKnownFoldersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownFoldersStatics is access all IKnownFoldersStatics_Interface'Class;
+   type IKnownFoldersStatics_Ptr is access all IKnownFoldersStatics;
 
    type IKnownFoldersStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownFoldersStatics2 is access all IKnownFoldersStatics2_Interface'Class;
+   type IKnownFoldersStatics2_Ptr is access all IKnownFoldersStatics2;
 
    type IKnownFoldersStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownFoldersStatics3 is access all IKnownFoldersStatics3_Interface'Class;
+   type IKnownFoldersStatics3_Ptr is access all IKnownFoldersStatics3;
 
    type IKnownFoldersStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownFoldersStatics4 is access all IKnownFoldersStatics4_Interface'Class;
+   type IKnownFoldersStatics4_Ptr is access all IKnownFoldersStatics4;
 
    type IPathIOStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPathIOStatics is access all IPathIOStatics_Interface'Class;
+   type IPathIOStatics_Ptr is access all IPathIOStatics;
 
    type ISetVersionDeferral_Interface is interface and WinRt.IInspectable_Interface;
    type ISetVersionDeferral is access all ISetVersionDeferral_Interface'Class;
@@ -132,15 +149,19 @@ package WinRt.Windows.Storage is
 
    type IStorageFile2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageFile2 is access all IStorageFile2_Interface'Class;
+   type IStorageFile2_Ptr is access all IStorageFile2;
 
    type IStorageFilePropertiesWithAvailability_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageFilePropertiesWithAvailability is access all IStorageFilePropertiesWithAvailability_Interface'Class;
+   type IStorageFilePropertiesWithAvailability_Ptr is access all IStorageFilePropertiesWithAvailability;
 
    type IStorageFileStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageFileStatics is access all IStorageFileStatics_Interface'Class;
+   type IStorageFileStatics_Ptr is access all IStorageFileStatics;
 
    type IStorageFileStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageFileStatics2 is access all IStorageFileStatics2_Interface'Class;
+   type IStorageFileStatics2_Ptr is access all IStorageFileStatics2;
 
    type IStorageFolder_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageFolder is access all IStorageFolder_Interface'Class;
@@ -148,30 +169,39 @@ package WinRt.Windows.Storage is
 
    type IStorageFolder2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageFolder2 is access all IStorageFolder2_Interface'Class;
+   type IStorageFolder2_Ptr is access all IStorageFolder2;
 
    type IStorageFolder3_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageFolder3 is access all IStorageFolder3_Interface'Class;
+   type IStorageFolder3_Ptr is access all IStorageFolder3;
 
    type IStorageFolderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageFolderStatics is access all IStorageFolderStatics_Interface'Class;
+   type IStorageFolderStatics_Ptr is access all IStorageFolderStatics;
 
    type IStorageFolderStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageFolderStatics2 is access all IStorageFolderStatics2_Interface'Class;
+   type IStorageFolderStatics2_Ptr is access all IStorageFolderStatics2;
 
    type IStorageItem_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageItem is access all IStorageItem_Interface'Class;
+   type IStorageItem_Ptr is access all IStorageItem;
 
    type IStorageItem2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageItem2 is access all IStorageItem2_Interface'Class;
+   type IStorageItem2_Ptr is access all IStorageItem2;
 
    type IStorageItemProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageItemProperties is access all IStorageItemProperties_Interface'Class;
+   type IStorageItemProperties_Ptr is access all IStorageItemProperties;
 
    type IStorageItemProperties2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageItemProperties2 is access all IStorageItemProperties2_Interface'Class;
+   type IStorageItemProperties2_Ptr is access all IStorageItemProperties2;
 
    type IStorageItemPropertiesWithProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageItemPropertiesWithProvider is access all IStorageItemPropertiesWithProvider_Interface'Class;
+   type IStorageItemPropertiesWithProvider_Ptr is access all IStorageItemPropertiesWithProvider;
 
    type IStorageLibrary_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageLibrary is access all IStorageLibrary_Interface'Class;
@@ -179,9 +209,11 @@ package WinRt.Windows.Storage is
 
    type IStorageLibrary2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageLibrary2 is access all IStorageLibrary2_Interface'Class;
+   type IStorageLibrary2_Ptr is access all IStorageLibrary2;
 
    type IStorageLibrary3_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageLibrary3 is access all IStorageLibrary3_Interface'Class;
+   type IStorageLibrary3_Ptr is access all IStorageLibrary3;
 
    type IStorageLibraryChange_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageLibraryChange is access all IStorageLibraryChange_Interface'Class;
@@ -191,15 +223,37 @@ package WinRt.Windows.Storage is
    type IStorageLibraryChangeReader is access all IStorageLibraryChangeReader_Interface'Class;
    type IStorageLibraryChangeReader_Ptr is access all IStorageLibraryChangeReader;
 
+   type IStorageLibraryChangeReader2_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageLibraryChangeReader2 is access all IStorageLibraryChangeReader2_Interface'Class;
+   type IStorageLibraryChangeReader2_Ptr is access all IStorageLibraryChangeReader2;
+
    type IStorageLibraryChangeTracker_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageLibraryChangeTracker is access all IStorageLibraryChangeTracker_Interface'Class;
    type IStorageLibraryChangeTracker_Ptr is access all IStorageLibraryChangeTracker;
 
+   type IStorageLibraryChangeTracker2_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageLibraryChangeTracker2 is access all IStorageLibraryChangeTracker2_Interface'Class;
+   type IStorageLibraryChangeTracker2_Ptr is access all IStorageLibraryChangeTracker2;
+
+   type IStorageLibraryChangeTrackerOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageLibraryChangeTrackerOptions is access all IStorageLibraryChangeTrackerOptions_Interface'Class;
+   type IStorageLibraryChangeTrackerOptions_Ptr is access all IStorageLibraryChangeTrackerOptions;
+
+   type IStorageLibraryLastChangeId_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageLibraryLastChangeId is access all IStorageLibraryLastChangeId_Interface'Class;
+   type IStorageLibraryLastChangeId_Ptr is access all IStorageLibraryLastChangeId;
+
+   type IStorageLibraryLastChangeIdStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageLibraryLastChangeIdStatics is access all IStorageLibraryLastChangeIdStatics_Interface'Class;
+   type IStorageLibraryLastChangeIdStatics_Ptr is access all IStorageLibraryLastChangeIdStatics;
+
    type IStorageLibraryStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageLibraryStatics is access all IStorageLibraryStatics_Interface'Class;
+   type IStorageLibraryStatics_Ptr is access all IStorageLibraryStatics;
 
    type IStorageLibraryStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageLibraryStatics2 is access all IStorageLibraryStatics2_Interface'Class;
+   type IStorageLibraryStatics2_Ptr is access all IStorageLibraryStatics2;
 
    type IStorageProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProvider is access all IStorageProvider_Interface'Class;
@@ -207,6 +261,7 @@ package WinRt.Windows.Storage is
 
    type IStorageProvider2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProvider2 is access all IStorageProvider2_Interface'Class;
+   type IStorageProvider2_Ptr is access all IStorageProvider2;
 
    type IStorageStreamTransaction_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageStreamTransaction is access all IStorageStreamTransaction_Interface'Class;
@@ -214,6 +269,7 @@ package WinRt.Windows.Storage is
 
    type IStreamedFileDataRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamedFileDataRequest is access all IStreamedFileDataRequest_Interface'Class;
+   type IStreamedFileDataRequest_Ptr is access all IStreamedFileDataRequest;
 
    type ISystemAudioProperties_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemAudioProperties is access all ISystemAudioProperties_Interface'Class;
@@ -225,6 +281,7 @@ package WinRt.Windows.Storage is
 
    type ISystemDataPathsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemDataPathsStatics is access all ISystemDataPathsStatics_Interface'Class;
+   type ISystemDataPathsStatics_Ptr is access all ISystemDataPathsStatics;
 
    type ISystemGPSProperties_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemGPSProperties is access all ISystemGPSProperties_Interface'Class;
@@ -248,6 +305,7 @@ package WinRt.Windows.Storage is
 
    type ISystemProperties_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemProperties is access all ISystemProperties_Interface'Class;
+   type ISystemProperties_Ptr is access all ISystemProperties;
 
    type ISystemVideoProperties_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemVideoProperties is access all ISystemVideoProperties_Interface'Class;
@@ -259,6 +317,7 @@ package WinRt.Windows.Storage is
 
    type IUserDataPathsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataPathsStatics is access all IUserDataPathsStatics_Interface'Class;
+   type IUserDataPathsStatics_Ptr is access all IUserDataPathsStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -341,6 +400,18 @@ package WinRt.Windows.Storage is
          m_IStorageLibraryChangeTracker : access Windows.Storage.IStorageLibraryChangeTracker;
       end record;
    type StorageLibraryChangeTracker_Ptr is access all StorageLibraryChangeTracker;
+
+   type StorageLibraryChangeTrackerOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IStorageLibraryChangeTrackerOptions : access Windows.Storage.IStorageLibraryChangeTrackerOptions;
+      end record;
+   type StorageLibraryChangeTrackerOptions_Ptr is access all StorageLibraryChangeTrackerOptions;
+
+   type StorageLibraryLastChangeId is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IStorageLibraryLastChangeId : access Windows.Storage.IStorageLibraryLastChangeId;
+      end record;
+   type StorageLibraryLastChangeId_Ptr is access all StorageLibraryLastChangeId;
 
    type StorageProvider is new Ada.Finalization.Limited_Controlled with
       record
@@ -432,13 +503,15 @@ package WinRt.Windows.Storage is
       Local_e,
       Roaming_e,
       Temporary_e,
-      LocalCache_e
+      LocalCache_e,
+      SharedLocal_e
    );
    for ApplicationDataLocality use (
       Local_e => 0,
       Roaming_e => 1,
       Temporary_e => 2,
-      LocalCache_e => 3
+      LocalCache_e => 3,
+      SharedLocal_e => 4
    );
    type ApplicationDataLocality_Ptr is access all ApplicationDataLocality;
 
@@ -500,7 +573,8 @@ package WinRt.Windows.Storage is
       Screenshots_e,
       VideosLibrary_e,
       AllAppMods_e,
-      CurrentAppMods_e
+      CurrentAppMods_e,
+      DownloadsFolder_e
    );
    for KnownFolderId use (
       AppCaptures_e => 0,
@@ -518,7 +592,8 @@ package WinRt.Windows.Storage is
       Screenshots_e => 12,
       VideosLibrary_e => 13,
       AllAppMods_e => 14,
-      CurrentAppMods_e => 15
+      CurrentAppMods_e => 15,
+      DownloadsFolder_e => 16
    );
    type KnownFolderId_Ptr is access all KnownFolderId;
 
@@ -527,14 +602,16 @@ package WinRt.Windows.Storage is
       NotDeclaredByApp_e,
       DeniedByUser_e,
       UserPromptRequired_e,
-      Allowed_e
+      Allowed_e,
+      AllowedPerAppFolder_e
    );
    for KnownFoldersAccessStatus use (
       DeniedBySystem_e => 0,
       NotDeclaredByApp_e => 1,
       DeniedByUser_e => 2,
       UserPromptRequired_e => 3,
-      Allowed_e => 4
+      Allowed_e => 4,
+      AllowedPerAppFolder_e => 5
    );
    type KnownFoldersAccessStatus_Ptr is access all KnownFoldersAccessStatus;
 
@@ -2245,6 +2322,18 @@ package WinRt.Windows.Storage is
       IID_IStorageLibraryChangeReader : aliased WinRt.IID := (4060462211, 64674, 16889, (137, 84, 238, 46, 153, 30, 185, 111 ));
 
    -----------------------------------------------------------------------------
+   -- type IStorageLibraryChangeReader2 is interface and WinRt.IInspectable;
+
+      function GetLastChangeId
+      (
+         this : access IStorageLibraryChangeReader2_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageLibraryChangeReader2 : aliased WinRt.IID := (2884929163, 64460, 19023, (153, 158, 231, 171, 124, 100, 109, 190 ));
+
+   -----------------------------------------------------------------------------
    -- type IStorageLibraryChangeTracker is interface and WinRt.IInspectable;
 
       function GetChangeReader
@@ -2267,6 +2356,60 @@ package WinRt.Windows.Storage is
       return WinRt.Hresult is abstract;
 
       IID_IStorageLibraryChangeTracker : aliased WinRt.IID := (2652205846, 24691, 17654, (150, 129, 116, 146, 209, 40, 108, 144 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageLibraryChangeTracker2 is interface and WinRt.IInspectable;
+
+      function Enable
+      (
+         this : access IStorageLibraryChangeTracker2_Interface;
+         options : Windows.Storage.IStorageLibraryChangeTrackerOptions
+      )
+      return WinRt.Hresult is abstract;
+
+      function Disable
+      (
+         this : access IStorageLibraryChangeTracker2_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageLibraryChangeTracker2 : aliased WinRt.IID := (3439664187, 3999, 17145, (143, 179, 21, 141, 130, 225, 56, 33 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageLibraryChangeTrackerOptions is interface and WinRt.IInspectable;
+
+      function get_TrackChangeDetails
+      (
+         this : access IStorageLibraryChangeTrackerOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TrackChangeDetails
+      (
+         this : access IStorageLibraryChangeTrackerOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageLibraryChangeTrackerOptions : aliased WinRt.IID := (3142761684, 6765, 22976, (173, 42, 130, 58, 32, 83, 36, 131 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageLibraryLastChangeId is interface and WinRt.IInspectable;
+
+      IID_IStorageLibraryLastChangeId : aliased WinRt.IID := (1384219242, 48097, 21436, (130, 202, 129, 204, 127, 3, 147, 41 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageLibraryLastChangeIdStatics is interface and WinRt.IInspectable;
+
+      function get_Unknown
+      (
+         this : access IStorageLibraryLastChangeIdStatics_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageLibraryLastChangeIdStatics : aliased WinRt.IID := (2175045928, 11427, 21257, (176, 209, 207, 7, 136, 228, 7, 98 ));
 
    -----------------------------------------------------------------------------
    -- type IStorageLibraryStatics is interface and WinRt.IInspectable;
@@ -3182,6 +3325,11 @@ package WinRt.Windows.Storage is
    )
    return WinRt.Windows.Storage.StorageFolder'Class;
 
+   procedure Close
+   (
+      this : in out ApplicationData
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ApplicationDataCompositeValue
 
@@ -3303,6 +3451,11 @@ package WinRt.Windows.Storage is
       name : WinRt.WString
    );
 
+   procedure Close
+   (
+      this : in out ApplicationDataContainer
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ApplicationDataContainerSettings
 
@@ -3393,32 +3546,6 @@ package WinRt.Windows.Storage is
    -- Static RuntimeClass
    package DownloadsFolder is
 
-      function CreateFileAsync
-      (
-         desiredName : WinRt.WString
-      )
-      return WinRt.Windows.Storage.StorageFile;
-
-      function CreateFolderAsync
-      (
-         desiredName : WinRt.WString
-      )
-      return WinRt.Windows.Storage.StorageFolder;
-
-      function CreateFileAsync
-      (
-         desiredName : WinRt.WString;
-         option : Windows.Storage.CreationCollisionOption
-      )
-      return WinRt.Windows.Storage.StorageFile;
-
-      function CreateFolderAsync
-      (
-         desiredName : WinRt.WString;
-         option : Windows.Storage.CreationCollisionOption
-      )
-      return WinRt.Windows.Storage.StorageFolder;
-
       function CreateFileForUserAsync
       (
          user : Windows.System.User'Class;
@@ -3444,6 +3571,32 @@ package WinRt.Windows.Storage is
       function CreateFolderForUserAsync
       (
          user : Windows.System.User'Class;
+         desiredName : WinRt.WString;
+         option : Windows.Storage.CreationCollisionOption
+      )
+      return WinRt.Windows.Storage.StorageFolder;
+
+      function CreateFileAsync
+      (
+         desiredName : WinRt.WString
+      )
+      return WinRt.Windows.Storage.StorageFile;
+
+      function CreateFolderAsync
+      (
+         desiredName : WinRt.WString
+      )
+      return WinRt.Windows.Storage.StorageFolder;
+
+      function CreateFileAsync
+      (
+         desiredName : WinRt.WString;
+         option : Windows.Storage.CreationCollisionOption
+      )
+      return WinRt.Windows.Storage.StorageFile;
+
+      function CreateFolderAsync
+      (
          desiredName : WinRt.WString;
          option : Windows.Storage.CreationCollisionOption
       )
@@ -3557,7 +3710,14 @@ package WinRt.Windows.Storage is
    -- Static RuntimeClass
    package KnownFolders is
 
-      function get_SavedPictures
+      function get_Playlists
+      return WinRt.Windows.Storage.StorageFolder;
+
+      function GetFolderForUserAsync
+      (
+         user : Windows.System.User'Class;
+         folderId : Windows.Storage.KnownFolderId
+      )
       return WinRt.Windows.Storage.StorageFolder;
 
       function get_Objects3D
@@ -3567,16 +3727,6 @@ package WinRt.Windows.Storage is
       return WinRt.Windows.Storage.StorageFolder;
 
       function get_RecordedCalls
-      return WinRt.Windows.Storage.StorageFolder;
-
-      function get_Playlists
-      return WinRt.Windows.Storage.StorageFolder;
-
-      function GetFolderForUserAsync
-      (
-         user : Windows.System.User'Class;
-         folderId : Windows.Storage.KnownFolderId
-      )
       return WinRt.Windows.Storage.StorageFolder;
 
       function get_MusicLibrary
@@ -3598,6 +3748,9 @@ package WinRt.Windows.Storage is
       return WinRt.Windows.Storage.StorageFolder;
 
       function get_MediaServerDevices
+      return WinRt.Windows.Storage.StorageFolder;
+
+      function get_SavedPictures
       return WinRt.Windows.Storage.StorageFolder;
 
       function RequestAccessAsync
@@ -3776,13 +3929,6 @@ package WinRt.Windows.Storage is
    -----------------------------------------------------------------------------
    -- Static Interfaces for StorageFile
 
-   function GetFileFromPathForUserAsync
-   (
-      user : Windows.System.User'Class;
-      path : WinRt.WString
-   )
-   return WinRt.Windows.Storage.StorageFile;
-
    function GetFileFromPathAsync
    (
       path : WinRt.WString
@@ -3824,6 +3970,13 @@ package WinRt.Windows.Storage is
       fileToReplace : Windows.Storage.IStorageFile;
       uri : Windows.Foundation.Uri'Class;
       thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference
+   )
+   return WinRt.Windows.Storage.StorageFile;
+
+   function GetFileFromPathForUserAsync
+   (
+      user : Windows.System.User'Class;
+      path : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFile;
 
@@ -4106,15 +4259,15 @@ package WinRt.Windows.Storage is
    -----------------------------------------------------------------------------
    -- Static Interfaces for StorageFolder
 
-   function GetFolderFromPathForUserAsync
+   function GetFolderFromPathAsync
    (
-      user : Windows.System.User'Class;
       path : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFolder;
 
-   function GetFolderFromPathAsync
+   function GetFolderFromPathForUserAsync
    (
+      user : Windows.System.User'Class;
       path : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFolder;
@@ -4611,6 +4764,12 @@ package WinRt.Windows.Storage is
       this : in out StorageLibraryChangeReader
    );
 
+   function GetLastChangeId
+   (
+      this : in out StorageLibraryChangeReader
+   )
+   return WinRt.UInt64;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StorageLibraryChangeTracker
 
@@ -4635,6 +4794,58 @@ package WinRt.Windows.Storage is
    (
       this : in out StorageLibraryChangeTracker
    );
+
+   procedure Enable
+   (
+      this : in out StorageLibraryChangeTracker;
+      options : Windows.Storage.StorageLibraryChangeTrackerOptions'Class
+   );
+
+   procedure Disable
+   (
+      this : in out StorageLibraryChangeTracker
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageLibraryChangeTrackerOptions
+
+   overriding procedure Initialize (this : in out StorageLibraryChangeTrackerOptions);
+   overriding procedure Finalize (this : in out StorageLibraryChangeTrackerOptions);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageLibraryChangeTrackerOptions
+
+   function Constructor return StorageLibraryChangeTrackerOptions;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageLibraryChangeTrackerOptions
+
+   function get_TrackChangeDetails
+   (
+      this : in out StorageLibraryChangeTrackerOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_TrackChangeDetails
+   (
+      this : in out StorageLibraryChangeTrackerOptions;
+      value : WinRt.Boolean
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageLibraryLastChangeId
+
+   overriding procedure Initialize (this : in out StorageLibraryLastChangeId);
+   overriding procedure Finalize (this : in out StorageLibraryLastChangeId);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for StorageLibraryLastChangeId
+
+   function get_Unknown
+   return WinRt.UInt64;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageLibraryLastChangeId
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StorageProvider

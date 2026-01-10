@@ -47,6 +47,7 @@ package WinRt.Windows.Services.Maps is
 
    type IEnhancedWaypointFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IEnhancedWaypointFactory is access all IEnhancedWaypointFactory_Interface'Class;
+   type IEnhancedWaypointFactory_Ptr is access all IEnhancedWaypointFactory;
 
    type IManeuverWarning_Interface is interface and WinRt.IInspectable_Interface;
    type IManeuverWarning is access all IManeuverWarning_Interface'Class;
@@ -58,6 +59,7 @@ package WinRt.Windows.Services.Maps is
 
    type IMapAddress2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapAddress2 is access all IMapAddress2_Interface'Class;
+   type IMapAddress2_Ptr is access all IMapAddress2;
 
    type IMapLocation_Interface is interface and WinRt.IInspectable_Interface;
    type IMapLocation is access all IMapLocation_Interface'Class;
@@ -69,12 +71,15 @@ package WinRt.Windows.Services.Maps is
 
    type IMapLocationFinderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapLocationFinderStatics is access all IMapLocationFinderStatics_Interface'Class;
+   type IMapLocationFinderStatics_Ptr is access all IMapLocationFinderStatics;
 
    type IMapLocationFinderStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapLocationFinderStatics2 is access all IMapLocationFinderStatics2_Interface'Class;
+   type IMapLocationFinderStatics2_Ptr is access all IMapLocationFinderStatics2;
 
    type IMapManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapManagerStatics is access all IMapManagerStatics_Interface'Class;
+   type IMapManagerStatics_Ptr is access all IMapManagerStatics;
 
    type IMapRoute_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRoute is access all IMapRoute_Interface'Class;
@@ -82,12 +87,15 @@ package WinRt.Windows.Services.Maps is
 
    type IMapRoute2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRoute2 is access all IMapRoute2_Interface'Class;
+   type IMapRoute2_Ptr is access all IMapRoute2;
 
    type IMapRoute3_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRoute3 is access all IMapRoute3_Interface'Class;
+   type IMapRoute3_Ptr is access all IMapRoute3;
 
    type IMapRoute4_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRoute4 is access all IMapRoute4_Interface'Class;
+   type IMapRoute4_Ptr is access all IMapRoute4;
 
    type IMapRouteDrivingOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRouteDrivingOptions is access all IMapRouteDrivingOptions_Interface'Class;
@@ -95,6 +103,7 @@ package WinRt.Windows.Services.Maps is
 
    type IMapRouteDrivingOptions2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRouteDrivingOptions2 is access all IMapRouteDrivingOptions2_Interface'Class;
+   type IMapRouteDrivingOptions2_Ptr is access all IMapRouteDrivingOptions2;
 
    type IMapRouteFinderResult_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRouteFinderResult is access all IMapRouteFinderResult_Interface'Class;
@@ -102,15 +111,19 @@ package WinRt.Windows.Services.Maps is
 
    type IMapRouteFinderResult2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRouteFinderResult2 is access all IMapRouteFinderResult2_Interface'Class;
+   type IMapRouteFinderResult2_Ptr is access all IMapRouteFinderResult2;
 
    type IMapRouteFinderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRouteFinderStatics is access all IMapRouteFinderStatics_Interface'Class;
+   type IMapRouteFinderStatics_Ptr is access all IMapRouteFinderStatics;
 
    type IMapRouteFinderStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRouteFinderStatics2 is access all IMapRouteFinderStatics2_Interface'Class;
+   type IMapRouteFinderStatics2_Ptr is access all IMapRouteFinderStatics2;
 
    type IMapRouteFinderStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRouteFinderStatics3 is access all IMapRouteFinderStatics3_Interface'Class;
+   type IMapRouteFinderStatics3_Ptr is access all IMapRouteFinderStatics3;
 
    type IMapRouteLeg_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRouteLeg is access all IMapRouteLeg_Interface'Class;
@@ -118,6 +131,7 @@ package WinRt.Windows.Services.Maps is
 
    type IMapRouteLeg2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRouteLeg2 is access all IMapRouteLeg2_Interface'Class;
+   type IMapRouteLeg2_Ptr is access all IMapRouteLeg2;
 
    type IMapRouteManeuver_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRouteManeuver is access all IMapRouteManeuver_Interface'Class;
@@ -125,21 +139,27 @@ package WinRt.Windows.Services.Maps is
 
    type IMapRouteManeuver2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRouteManeuver2 is access all IMapRouteManeuver2_Interface'Class;
+   type IMapRouteManeuver2_Ptr is access all IMapRouteManeuver2;
 
    type IMapRouteManeuver3_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRouteManeuver3 is access all IMapRouteManeuver3_Interface'Class;
+   type IMapRouteManeuver3_Ptr is access all IMapRouteManeuver3;
 
    type IMapServiceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapServiceStatics is access all IMapServiceStatics_Interface'Class;
+   type IMapServiceStatics_Ptr is access all IMapServiceStatics;
 
    type IMapServiceStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapServiceStatics2 is access all IMapServiceStatics2_Interface'Class;
+   type IMapServiceStatics2_Ptr is access all IMapServiceStatics2;
 
    type IMapServiceStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IMapServiceStatics3 is access all IMapServiceStatics3_Interface'Class;
+   type IMapServiceStatics3_Ptr is access all IMapServiceStatics3;
 
    type IMapServiceStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IMapServiceStatics4 is access all IMapServiceStatics4_Interface'Class;
+   type IMapServiceStatics4_Ptr is access all IMapServiceStatics4;
 
    type IPlaceInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IPlaceInfo is access all IPlaceInfo_Interface'Class;
@@ -151,9 +171,11 @@ package WinRt.Windows.Services.Maps is
 
    type IPlaceInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPlaceInfoStatics is access all IPlaceInfoStatics_Interface'Class;
+   type IPlaceInfoStatics_Ptr is access all IPlaceInfoStatics;
 
    type IPlaceInfoStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IPlaceInfoStatics2 is access all IPlaceInfoStatics2_Interface'Class;
+   type IPlaceInfoStatics2_Ptr is access all IPlaceInfoStatics2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1773,6 +1795,13 @@ package WinRt.Windows.Services.Maps is
 
       function FindLocationsAtAsync
       (
+         queryPoint : Windows.Devices.Geolocation.Geopoint'Class;
+         accuracy : Windows.Services.Maps.MapLocationDesiredAccuracy
+      )
+      return WinRt.Windows.Services.Maps.MapLocationFinderResult;
+
+      function FindLocationsAtAsync
+      (
          queryPoint : Windows.Devices.Geolocation.Geopoint'Class
       )
       return WinRt.Windows.Services.Maps.MapLocationFinderResult;
@@ -1789,13 +1818,6 @@ package WinRt.Windows.Services.Maps is
          searchText : WinRt.WString;
          referencePoint : Windows.Devices.Geolocation.Geopoint'Class;
          maxCount : WinRt.UInt32
-      )
-      return WinRt.Windows.Services.Maps.MapLocationFinderResult;
-
-      function FindLocationsAtAsync
-      (
-         queryPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         accuracy : Windows.Services.Maps.MapLocationDesiredAccuracy
       )
       return WinRt.Windows.Services.Maps.MapLocationFinderResult;
 
@@ -1985,19 +2007,6 @@ package WinRt.Windows.Services.Maps is
    -- Static RuntimeClass
    package MapRouteFinder is
 
-      function GetDrivingRouteFromEnhancedWaypointsAsync
-      (
-         waypoints : GenericObject
-      )
-      return WinRt.Windows.Services.Maps.MapRouteFinderResult;
-
-      function GetDrivingRouteFromEnhancedWaypointsAsync
-      (
-         waypoints : GenericObject;
-         options : Windows.Services.Maps.MapRouteDrivingOptions'Class
-      )
-      return WinRt.Windows.Services.Maps.MapRouteFinderResult;
-
       function GetDrivingRouteAsync
       (
          startPoint : Windows.Devices.Geolocation.Geopoint'Class;
@@ -2080,6 +2089,19 @@ package WinRt.Windows.Services.Maps is
       function GetWalkingRouteFromWaypointsAsync
       (
          wayPoints : GenericObject
+      )
+      return WinRt.Windows.Services.Maps.MapRouteFinderResult;
+
+      function GetDrivingRouteFromEnhancedWaypointsAsync
+      (
+         waypoints : GenericObject
+      )
+      return WinRt.Windows.Services.Maps.MapRouteFinderResult;
+
+      function GetDrivingRouteFromEnhancedWaypointsAsync
+      (
+         waypoints : GenericObject;
+         options : Windows.Services.Maps.MapRouteDrivingOptions'Class
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult;
 
@@ -2236,12 +2258,10 @@ package WinRt.Windows.Services.Maps is
    -- Static RuntimeClass
    package MapService is
 
-      procedure put_ServiceToken
-      (
-         value : WinRt.WString
-      );
+      function get_WorldViewRegionCode
+      return WinRt.WString;
 
-      function get_ServiceToken
+      function get_DataAttributions
       return WinRt.WString;
 
       procedure put_DataUsagePreference
@@ -2252,10 +2272,12 @@ package WinRt.Windows.Services.Maps is
       function get_DataUsagePreference
       return WinRt.Windows.Services.Maps.MapServiceDataUsagePreference;
 
-      function get_DataAttributions
-      return WinRt.WString;
+      procedure put_ServiceToken
+      (
+         value : WinRt.WString
+      );
 
-      function get_WorldViewRegionCode
+      function get_ServiceToken
       return WinRt.WString;
 
    end MapService;

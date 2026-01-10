@@ -72,6 +72,22 @@ package body WinRt.Windows.Web.AtomPub is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for AtomPubClient
 
+   function Constructor return AtomPubClient is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.AtomPub.AtomPubClient");
+      m_ComRetVal  : aliased Windows.Web.AtomPub.IAtomPubClient;
+   begin
+      return RetVal : AtomPubClient do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IAtomPubClient := new Windows.Web.AtomPub.IAtomPubClient;
+            Retval.m_IAtomPubClient.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       serverCredential : Windows.Security.Credentials.PasswordCredential'Class
@@ -91,22 +107,6 @@ package body WinRt.Windows.Web.AtomPub is
             Retval.m_IAtomPubClient := new Windows.Web.AtomPub.IAtomPubClient;
             Retval.m_IAtomPubClient.all := m_ComRetVal;
             temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor return AtomPubClient is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.AtomPub.AtomPubClient");
-      m_ComRetVal  : aliased Windows.Web.AtomPub.IAtomPubClient;
-   begin
-      return RetVal : AtomPubClient do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IAtomPubClient := new Windows.Web.AtomPub.IAtomPubClient;
-            Retval.m_IAtomPubClient.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

@@ -30,6 +30,7 @@
 with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.System;
+limited with WinRt.Windows.UI.Composition;
 limited with WinRt.Windows.UI.Input;
 limited with WinRt.Windows.UI.Popups;
 with Ada.Finalization;
@@ -58,6 +59,7 @@ package WinRt.Windows.UI.Core is
 
    type IAcceleratorKeyEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IAcceleratorKeyEventArgs2 is access all IAcceleratorKeyEventArgs2_Interface'Class;
+   type IAcceleratorKeyEventArgs2_Ptr is access all IAcceleratorKeyEventArgs2;
 
    type IAutomationProviderRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationProviderRequestedEventArgs is access all IAutomationProviderRequestedEventArgs_Interface'Class;
@@ -81,9 +83,11 @@ package WinRt.Windows.UI.Core is
 
    type ICoreClosestInteractiveBoundsRequested_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreClosestInteractiveBoundsRequested is access all ICoreClosestInteractiveBoundsRequested_Interface'Class;
+   type ICoreClosestInteractiveBoundsRequested_Ptr is access all ICoreClosestInteractiveBoundsRequested;
 
    type ICoreComponentFocusable_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreComponentFocusable is access all ICoreComponentFocusable_Interface'Class;
+   type ICoreComponentFocusable_Ptr is access all ICoreComponentFocusable;
 
    type ICoreCursor_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreCursor is access all ICoreCursor_Interface'Class;
@@ -91,6 +95,7 @@ package WinRt.Windows.UI.Core is
 
    type ICoreCursorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreCursorFactory is access all ICoreCursorFactory_Interface'Class;
+   type ICoreCursorFactory_Ptr is access all ICoreCursorFactory;
 
    type ICoreDispatcher_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreDispatcher is access all ICoreDispatcher_Interface'Class;
@@ -98,9 +103,19 @@ package WinRt.Windows.UI.Core is
 
    type ICoreDispatcher2_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreDispatcher2 is access all ICoreDispatcher2_Interface'Class;
+   type ICoreDispatcher2_Ptr is access all ICoreDispatcher2;
 
    type ICoreDispatcherWithTaskPriority_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreDispatcherWithTaskPriority is access all ICoreDispatcherWithTaskPriority_Interface'Class;
+   type ICoreDispatcherWithTaskPriority_Ptr is access all ICoreDispatcherWithTaskPriority;
+
+   type ICoreIndependentInputSourceController_Interface is interface and WinRt.IInspectable_Interface;
+   type ICoreIndependentInputSourceController is access all ICoreIndependentInputSourceController_Interface'Class;
+   type ICoreIndependentInputSourceController_Ptr is access all ICoreIndependentInputSourceController;
+
+   type ICoreIndependentInputSourceControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type ICoreIndependentInputSourceControllerStatics is access all ICoreIndependentInputSourceControllerStatics_Interface'Class;
+   type ICoreIndependentInputSourceControllerStatics_Ptr is access all ICoreIndependentInputSourceControllerStatics;
 
    type ICoreInputSourceBase_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreInputSourceBase is access all ICoreInputSourceBase_Interface'Class;
@@ -108,21 +123,27 @@ package WinRt.Windows.UI.Core is
 
    type ICoreKeyboardInputSource_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreKeyboardInputSource is access all ICoreKeyboardInputSource_Interface'Class;
+   type ICoreKeyboardInputSource_Ptr is access all ICoreKeyboardInputSource;
 
    type ICoreKeyboardInputSource2_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreKeyboardInputSource2 is access all ICoreKeyboardInputSource2_Interface'Class;
+   type ICoreKeyboardInputSource2_Ptr is access all ICoreKeyboardInputSource2;
 
    type ICorePointerInputSource_Interface is interface and WinRt.IInspectable_Interface;
    type ICorePointerInputSource is access all ICorePointerInputSource_Interface'Class;
+   type ICorePointerInputSource_Ptr is access all ICorePointerInputSource;
 
    type ICorePointerInputSource2_Interface is interface and WinRt.IInspectable_Interface;
    type ICorePointerInputSource2 is access all ICorePointerInputSource2_Interface'Class;
+   type ICorePointerInputSource2_Ptr is access all ICorePointerInputSource2;
 
    type ICorePointerRedirector_Interface is interface and WinRt.IInspectable_Interface;
    type ICorePointerRedirector is access all ICorePointerRedirector_Interface'Class;
+   type ICorePointerRedirector_Ptr is access all ICorePointerRedirector;
 
    type ICoreTouchHitTesting_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreTouchHitTesting is access all ICoreTouchHitTesting_Interface'Class;
+   type ICoreTouchHitTesting_Ptr is access all ICoreTouchHitTesting;
 
    type ICoreWindow_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindow is access all ICoreWindow_Interface'Class;
@@ -130,15 +151,19 @@ package WinRt.Windows.UI.Core is
 
    type ICoreWindow2_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindow2 is access all ICoreWindow2_Interface'Class;
+   type ICoreWindow2_Ptr is access all ICoreWindow2;
 
    type ICoreWindow3_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindow3 is access all ICoreWindow3_Interface'Class;
+   type ICoreWindow3_Ptr is access all ICoreWindow3;
 
    type ICoreWindow4_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindow4 is access all ICoreWindow4_Interface'Class;
+   type ICoreWindow4_Ptr is access all ICoreWindow4;
 
    type ICoreWindow5_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindow5 is access all ICoreWindow5_Interface'Class;
+   type ICoreWindow5_Ptr is access all ICoreWindow5;
 
    type ICoreWindowDialog_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindowDialog is access all ICoreWindowDialog_Interface'Class;
@@ -146,6 +171,7 @@ package WinRt.Windows.UI.Core is
 
    type ICoreWindowDialogFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindowDialogFactory is access all ICoreWindowDialogFactory_Interface'Class;
+   type ICoreWindowDialogFactory_Ptr is access all ICoreWindowDialogFactory;
 
    type ICoreWindowEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindowEventArgs is access all ICoreWindowEventArgs_Interface'Class;
@@ -157,6 +183,7 @@ package WinRt.Windows.UI.Core is
 
    type ICoreWindowFlyoutFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindowFlyoutFactory is access all ICoreWindowFlyoutFactory_Interface'Class;
+   type ICoreWindowFlyoutFactory_Ptr is access all ICoreWindowFlyoutFactory;
 
    type ICoreWindowPopupShowingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindowPopupShowingEventArgs is access all ICoreWindowPopupShowingEventArgs_Interface'Class;
@@ -168,15 +195,19 @@ package WinRt.Windows.UI.Core is
 
    type ICoreWindowResizeManagerLayoutCapability_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindowResizeManagerLayoutCapability is access all ICoreWindowResizeManagerLayoutCapability_Interface'Class;
+   type ICoreWindowResizeManagerLayoutCapability_Ptr is access all ICoreWindowResizeManagerLayoutCapability;
 
    type ICoreWindowResizeManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindowResizeManagerStatics is access all ICoreWindowResizeManagerStatics_Interface'Class;
+   type ICoreWindowResizeManagerStatics_Ptr is access all ICoreWindowResizeManagerStatics;
 
    type ICoreWindowStatic_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindowStatic is access all ICoreWindowStatic_Interface'Class;
+   type ICoreWindowStatic_Ptr is access all ICoreWindowStatic;
 
    type ICoreWindowWithContext_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWindowWithContext is access all ICoreWindowWithContext_Interface'Class;
+   type ICoreWindowWithContext_Ptr is access all ICoreWindowWithContext;
 
    type IIdleDispatchedHandlerArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IIdleDispatchedHandlerArgs is access all IIdleDispatchedHandlerArgs_Interface'Class;
@@ -184,6 +215,7 @@ package WinRt.Windows.UI.Core is
 
    type IInitializeWithCoreWindow_Interface is interface and WinRt.IInspectable_Interface;
    type IInitializeWithCoreWindow is access all IInitializeWithCoreWindow_Interface'Class;
+   type IInitializeWithCoreWindow_Ptr is access all IInitializeWithCoreWindow;
 
    type IInputEnabledEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IInputEnabledEventArgs is access all IInputEnabledEventArgs_Interface'Class;
@@ -195,6 +227,7 @@ package WinRt.Windows.UI.Core is
 
    type IKeyEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyEventArgs2 is access all IKeyEventArgs2_Interface'Class;
+   type IKeyEventArgs2_Ptr is access all IKeyEventArgs2;
 
    type IPointerEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerEventArgs is access all IPointerEventArgs_Interface'Class;
@@ -206,9 +239,11 @@ package WinRt.Windows.UI.Core is
 
    type ISystemNavigationManager2_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemNavigationManager2 is access all ISystemNavigationManager2_Interface'Class;
+   type ISystemNavigationManager2_Ptr is access all ISystemNavigationManager2;
 
    type ISystemNavigationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemNavigationManagerStatics is access all ISystemNavigationManagerStatics_Interface'Class;
+   type ISystemNavigationManagerStatics_Ptr is access all ISystemNavigationManagerStatics;
 
    type ITouchHitTestingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITouchHitTestingEventArgs is access all ITouchHitTestingEventArgs_Interface'Class;
@@ -289,6 +324,12 @@ package WinRt.Windows.UI.Core is
          m_ICoreInputSourceBase : access Windows.UI.Core.ICoreInputSourceBase;
       end record;
    type CoreIndependentInputSource_Ptr is access all CoreIndependentInputSource;
+
+   type CoreIndependentInputSourceController is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ICoreIndependentInputSourceController : access Windows.UI.Core.ICoreIndependentInputSourceController;
+      end record;
+   type CoreIndependentInputSourceController_Ptr is access all CoreIndependentInputSourceController;
 
    type CoreWindow is new Ada.Finalization.Limited_Controlled with
       record
@@ -471,6 +512,24 @@ package WinRt.Windows.UI.Core is
       High_e => 1
    );
    type CoreDispatcherPriority_Ptr is access all CoreDispatcherPriority;
+
+   type CoreIndependentInputFilters is (
+      None_e,
+      MouseButton_e,
+      MouseWheel_e,
+      MouseHover_e,
+      PenWithBarrel_e,
+      PenInverted_e
+   );
+   for CoreIndependentInputFilters use (
+      None_e => 0,
+      MouseButton_e => 1,
+      MouseWheel_e => 2,
+      MouseHover_e => 4,
+      PenWithBarrel_e => 8,
+      PenInverted_e => 16
+   );
+   type CoreIndependentInputFilters_Ptr is access all CoreIndependentInputFilters;
 
    type CoreInputDeviceTypes is (
       None_e,
@@ -952,6 +1011,83 @@ package WinRt.Windows.UI.Core is
       return WinRt.Hresult is abstract;
 
       IID_ICoreDispatcherWithTaskPriority : aliased WinRt.IID := (3137006765, 18509, 16830, (186, 128, 29, 88, 198, 82, 99, 234 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICoreIndependentInputSourceController is interface and WinRt.IInspectable;
+
+      function get_IsTransparentForUncontrolledInput
+      (
+         this : access ICoreIndependentInputSourceController_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsTransparentForUncontrolledInput
+      (
+         this : access ICoreIndependentInputSourceController_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsPalmRejectionEnabled
+      (
+         this : access ICoreIndependentInputSourceController_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsPalmRejectionEnabled
+      (
+         this : access ICoreIndependentInputSourceController_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Source
+      (
+         this : access ICoreIndependentInputSourceController_Interface;
+         RetVal : access Windows.UI.Core.ICoreInputSourceBase
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetControlledInput
+      (
+         this : access ICoreIndependentInputSourceController_Interface;
+         inputTypes : Windows.UI.Core.CoreInputDeviceTypes
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetControlledInput
+      (
+         this : access ICoreIndependentInputSourceController_Interface;
+         inputTypes : Windows.UI.Core.CoreInputDeviceTypes;
+         required : Windows.UI.Core.CoreIndependentInputFilters;
+         excluded : Windows.UI.Core.CoreIndependentInputFilters
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICoreIndependentInputSourceController : aliased WinRt.IID := (157492764, 34046, 22410, (131, 202, 100, 37, 48, 156, 205, 228 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICoreIndependentInputSourceControllerStatics is interface and WinRt.IInspectable;
+
+      function CreateForVisual
+      (
+         this : access ICoreIndependentInputSourceControllerStatics_Interface;
+         visual : Windows.UI.Composition.IVisual;
+         RetVal : access Windows.UI.Core.ICoreIndependentInputSourceController
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateForIVisualElement
+      (
+         this : access ICoreIndependentInputSourceControllerStatics_Interface;
+         visualElement : Windows.UI.Composition.IVisualElement;
+         RetVal : access Windows.UI.Core.ICoreIndependentInputSourceController
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICoreIndependentInputSourceControllerStatics : aliased WinRt.IID := (1054625312, 39562, 22161, (133, 134, 252, 164, 203, 87, 82, 109 ));
 
    -----------------------------------------------------------------------------
    -- type ICoreInputSourceBase is interface and WinRt.IInspectable;
@@ -3122,6 +3258,118 @@ package WinRt.Windows.UI.Core is
       this : in out CoreIndependentInputSource
    )
    return WinRt.Windows.System.DispatcherQueue'Class;
+
+   function add_PointerRoutedAway
+   (
+      this : in out CoreIndependentInputSource;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_PointerRoutedAway
+   (
+      this : in out CoreIndependentInputSource;
+      cookie : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_PointerRoutedTo
+   (
+      this : in out CoreIndependentInputSource;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_PointerRoutedTo
+   (
+      this : in out CoreIndependentInputSource;
+      cookie : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_PointerRoutedReleased
+   (
+      this : in out CoreIndependentInputSource;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_PointerRoutedReleased
+   (
+      this : in out CoreIndependentInputSource;
+      cookie : Windows.Foundation.EventRegistrationToken
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CoreIndependentInputSourceController
+
+   overriding procedure Initialize (this : in out CoreIndependentInputSourceController);
+   overriding procedure Finalize (this : in out CoreIndependentInputSourceController);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for CoreIndependentInputSourceController
+
+   function CreateForVisual
+   (
+      visual : Windows.UI.Composition.Visual'Class
+   )
+   return WinRt.Windows.UI.Core.CoreIndependentInputSourceController;
+
+   function CreateForIVisualElement
+   (
+      visualElement : Windows.UI.Composition.IVisualElement
+   )
+   return WinRt.Windows.UI.Core.CoreIndependentInputSourceController;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CoreIndependentInputSourceController
+
+   function get_IsTransparentForUncontrolledInput
+   (
+      this : in out CoreIndependentInputSourceController
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsTransparentForUncontrolledInput
+   (
+      this : in out CoreIndependentInputSourceController;
+      value : WinRt.Boolean
+   );
+
+   function get_IsPalmRejectionEnabled
+   (
+      this : in out CoreIndependentInputSourceController
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsPalmRejectionEnabled
+   (
+      this : in out CoreIndependentInputSourceController;
+      value : WinRt.Boolean
+   );
+
+   function get_Source
+   (
+      this : in out CoreIndependentInputSourceController
+   )
+   return WinRt.Windows.UI.Core.CoreIndependentInputSource'Class;
+
+   procedure SetControlledInput
+   (
+      this : in out CoreIndependentInputSourceController;
+      inputTypes : Windows.UI.Core.CoreInputDeviceTypes
+   );
+
+   procedure SetControlledInput
+   (
+      this : in out CoreIndependentInputSourceController;
+      inputTypes : Windows.UI.Core.CoreInputDeviceTypes;
+      required : Windows.UI.Core.CoreIndependentInputFilters;
+      excluded : Windows.UI.Core.CoreIndependentInputFilters
+   );
+
+   procedure Close
+   (
+      this : in out CoreIndependentInputSourceController
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CoreWindow

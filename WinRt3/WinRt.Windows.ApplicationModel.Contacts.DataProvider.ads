@@ -44,6 +44,7 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
 
    type IContactDataProviderConnection2_Interface is interface and WinRt.IInspectable_Interface;
    type IContactDataProviderConnection2 is access all IContactDataProviderConnection2_Interface'Class;
+   type IContactDataProviderConnection2_Ptr is access all IContactDataProviderConnection2;
 
    type IContactDataProviderTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IContactDataProviderTriggerDetails is access all IContactDataProviderTriggerDetails_Interface'Class;

@@ -49,18 +49,23 @@ package WinRt.Windows.Web.Http.Filters is
 
    type IHttpBaseProtocolFilter2_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpBaseProtocolFilter2 is access all IHttpBaseProtocolFilter2_Interface'Class;
+   type IHttpBaseProtocolFilter2_Ptr is access all IHttpBaseProtocolFilter2;
 
    type IHttpBaseProtocolFilter3_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpBaseProtocolFilter3 is access all IHttpBaseProtocolFilter3_Interface'Class;
+   type IHttpBaseProtocolFilter3_Ptr is access all IHttpBaseProtocolFilter3;
 
    type IHttpBaseProtocolFilter4_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpBaseProtocolFilter4 is access all IHttpBaseProtocolFilter4_Interface'Class;
+   type IHttpBaseProtocolFilter4_Ptr is access all IHttpBaseProtocolFilter4;
 
    type IHttpBaseProtocolFilter5_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpBaseProtocolFilter5 is access all IHttpBaseProtocolFilter5_Interface'Class;
+   type IHttpBaseProtocolFilter5_Ptr is access all IHttpBaseProtocolFilter5;
 
    type IHttpBaseProtocolFilterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpBaseProtocolFilterStatics is access all IHttpBaseProtocolFilterStatics_Interface'Class;
+   type IHttpBaseProtocolFilterStatics_Ptr is access all IHttpBaseProtocolFilterStatics;
 
    type IHttpCacheControl_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpCacheControl is access all IHttpCacheControl_Interface'Class;
@@ -68,6 +73,7 @@ package WinRt.Windows.Web.Http.Filters is
 
    type IHttpFilter_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpFilter is access all IHttpFilter_Interface'Class;
+   type IHttpFilter_Ptr is access all IHttpFilter;
 
    type IHttpServerCustomValidationRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpServerCustomValidationRequestedEventArgs is access all IHttpServerCustomValidationRequestedEventArgs_Interface'Class;

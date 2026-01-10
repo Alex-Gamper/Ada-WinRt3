@@ -48,9 +48,11 @@ package WinRt.Windows.ApplicationModel.Appointments is
 
    type IAppointment2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointment2 is access all IAppointment2_Interface'Class;
+   type IAppointment2_Ptr is access all IAppointment2;
 
    type IAppointment3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointment3 is access all IAppointment3_Interface'Class;
+   type IAppointment3_Ptr is access all IAppointment3;
 
    type IAppointmentCalendar_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentCalendar is access all IAppointmentCalendar_Interface'Class;
@@ -58,9 +60,11 @@ package WinRt.Windows.ApplicationModel.Appointments is
 
    type IAppointmentCalendar2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentCalendar2 is access all IAppointmentCalendar2_Interface'Class;
+   type IAppointmentCalendar2_Ptr is access all IAppointmentCalendar2;
 
    type IAppointmentCalendar3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentCalendar3 is access all IAppointmentCalendar3_Interface'Class;
+   type IAppointmentCalendar3_Ptr is access all IAppointmentCalendar3;
 
    type IAppointmentCalendarSyncManager_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentCalendarSyncManager is access all IAppointmentCalendarSyncManager_Interface'Class;
@@ -68,6 +72,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
 
    type IAppointmentCalendarSyncManager2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentCalendarSyncManager2 is access all IAppointmentCalendarSyncManager2_Interface'Class;
+   type IAppointmentCalendarSyncManager2_Ptr is access all IAppointmentCalendarSyncManager2;
 
    type IAppointmentConflictResult_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentConflictResult is access all IAppointmentConflictResult_Interface'Class;
@@ -87,12 +92,15 @@ package WinRt.Windows.ApplicationModel.Appointments is
 
    type IAppointmentManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentManagerStatics is access all IAppointmentManagerStatics_Interface'Class;
+   type IAppointmentManagerStatics_Ptr is access all IAppointmentManagerStatics;
 
    type IAppointmentManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentManagerStatics2 is access all IAppointmentManagerStatics2_Interface'Class;
+   type IAppointmentManagerStatics2_Ptr is access all IAppointmentManagerStatics2;
 
    type IAppointmentManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentManagerStatics3 is access all IAppointmentManagerStatics3_Interface'Class;
+   type IAppointmentManagerStatics3_Ptr is access all IAppointmentManagerStatics3;
 
    type IAppointmentParticipant_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentParticipant is access all IAppointmentParticipant_Interface'Class;
@@ -100,9 +108,11 @@ package WinRt.Windows.ApplicationModel.Appointments is
 
    type IAppointmentPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentPropertiesStatics is access all IAppointmentPropertiesStatics_Interface'Class;
+   type IAppointmentPropertiesStatics_Ptr is access all IAppointmentPropertiesStatics;
 
    type IAppointmentPropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentPropertiesStatics2 is access all IAppointmentPropertiesStatics2_Interface'Class;
+   type IAppointmentPropertiesStatics2_Ptr is access all IAppointmentPropertiesStatics2;
 
    type IAppointmentRecurrence_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentRecurrence is access all IAppointmentRecurrence_Interface'Class;
@@ -110,9 +120,11 @@ package WinRt.Windows.ApplicationModel.Appointments is
 
    type IAppointmentRecurrence2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentRecurrence2 is access all IAppointmentRecurrence2_Interface'Class;
+   type IAppointmentRecurrence2_Ptr is access all IAppointmentRecurrence2;
 
    type IAppointmentRecurrence3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentRecurrence3 is access all IAppointmentRecurrence3_Interface'Class;
+   type IAppointmentRecurrence3_Ptr is access all IAppointmentRecurrence3;
 
    type IAppointmentStore_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentStore is access all IAppointmentStore_Interface'Class;
@@ -120,9 +132,11 @@ package WinRt.Windows.ApplicationModel.Appointments is
 
    type IAppointmentStore2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentStore2 is access all IAppointmentStore2_Interface'Class;
+   type IAppointmentStore2_Ptr is access all IAppointmentStore2;
 
    type IAppointmentStore3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentStore3 is access all IAppointmentStore3_Interface'Class;
+   type IAppointmentStore3_Ptr is access all IAppointmentStore3;
 
    type IAppointmentStoreChange_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentStoreChange is access all IAppointmentStoreChange_Interface'Class;
@@ -130,6 +144,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
 
    type IAppointmentStoreChange2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentStoreChange2 is access all IAppointmentStoreChange2_Interface'Class;
+   type IAppointmentStoreChange2_Ptr is access all IAppointmentStoreChange2;
 
    type IAppointmentStoreChangeReader_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentStoreChangeReader is access all IAppointmentStoreChangeReader_Interface'Class;
@@ -141,6 +156,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
 
    type IAppointmentStoreChangeTracker2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentStoreChangeTracker2 is access all IAppointmentStoreChangeTracker2_Interface'Class;
+   type IAppointmentStoreChangeTracker2_Ptr is access all IAppointmentStoreChangeTracker2;
 
    type IAppointmentStoreChangedDeferral_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentStoreChangedDeferral is access all IAppointmentStoreChangedDeferral_Interface'Class;
@@ -3394,29 +3410,6 @@ package WinRt.Windows.ApplicationModel.Appointments is
    -- Static RuntimeClass
    package AppointmentManager is
 
-      procedure ShowAppointmentDetailsAsync
-      (
-         appointmentId : WinRt.WString
-      );
-
-      procedure ShowAppointmentDetailsAsync
-      (
-         appointmentId : WinRt.WString;
-         instanceStartDate : Windows.Foundation.DateTime
-      );
-
-      function ShowEditNewAppointmentAsync
-      (
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class
-      )
-      return WinRt.WString;
-
-      function RequestStoreAsync
-      (
-         options : Windows.ApplicationModel.Appointments.AppointmentStoreAccessType
-      )
-      return WinRt.Windows.ApplicationModel.Appointments.AppointmentStore;
-
       function GetForUser
       (
          user : Windows.System.User'Class
@@ -3494,6 +3487,29 @@ package WinRt.Windows.ApplicationModel.Appointments is
          timeToShow : Windows.Foundation.DateTime;
          duration : Windows.Foundation.TimeSpan
       );
+
+      procedure ShowAppointmentDetailsAsync
+      (
+         appointmentId : WinRt.WString
+      );
+
+      procedure ShowAppointmentDetailsAsync
+      (
+         appointmentId : WinRt.WString;
+         instanceStartDate : Windows.Foundation.DateTime
+      );
+
+      function ShowEditNewAppointmentAsync
+      (
+         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class
+      )
+      return WinRt.WString;
+
+      function RequestStoreAsync
+      (
+         options : Windows.ApplicationModel.Appointments.AppointmentStoreAccessType
+      )
+      return WinRt.Windows.ApplicationModel.Appointments.AppointmentStore;
 
    end AppointmentManager;
 
@@ -3662,6 +3678,15 @@ package WinRt.Windows.ApplicationModel.Appointments is
    -- Static RuntimeClass
    package AppointmentProperties is
 
+      function get_ChangeNumber
+      return WinRt.WString;
+
+      function get_RemoteChangeNumber
+      return WinRt.WString;
+
+      function get_DetailsKind
+      return WinRt.WString;
+
       function get_Subject
       return WinRt.WString;
 
@@ -3730,15 +3755,6 @@ package WinRt.Windows.ApplicationModel.Appointments is
 
       function get_DefaultProperties
       return IVector_HString.Kind;
-
-      function get_ChangeNumber
-      return WinRt.WString;
-
-      function get_RemoteChangeNumber
-      return WinRt.WString;
-
-      function get_DetailsKind
-      return WinRt.WString;
 
    end AppointmentProperties;
 

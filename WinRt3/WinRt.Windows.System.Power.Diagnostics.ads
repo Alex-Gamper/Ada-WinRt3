@@ -38,9 +38,11 @@ package WinRt.Windows.System.Power.Diagnostics is
 
    type IBackgroundEnergyDiagnosticsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundEnergyDiagnosticsStatics is access all IBackgroundEnergyDiagnosticsStatics_Interface'Class;
+   type IBackgroundEnergyDiagnosticsStatics_Ptr is access all IBackgroundEnergyDiagnosticsStatics;
 
    type IForegroundEnergyDiagnosticsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IForegroundEnergyDiagnosticsStatics is access all IForegroundEnergyDiagnosticsStatics_Interface'Class;
+   type IForegroundEnergyDiagnosticsStatics_Ptr is access all IForegroundEnergyDiagnosticsStatics;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

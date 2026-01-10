@@ -1347,41 +1347,6 @@ package body WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor
    (
-      dwFlags : WinRt.UInt32;
-      contentKeyIds : WinRt.Guid_Array;
-      contentKeyIdStrings : WinRt.HString_Array;
-      contentEncryptionAlgorithm : Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm;
-      licenseAcquisitionUrl : Windows.Foundation.Uri'Class;
-      licenseAcquisitionUserInterfaceUrl : Windows.Foundation.Uri'Class;
-      customAttributes : WinRt.WString;
-      domainServiceId : WinRt.Guid
-   )
-   return PlayReadyContentHeader is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
-      m_Factory    : access IPlayReadyContentHeaderFactory2_Interface'Class := null;
-      temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
-      HStr_customAttributes : constant WinRt.HString := To_HString (customAttributes);
-      function Convert_contentKeyIds is new Ada.Unchecked_Conversion (Address, WinRt.Guid_Ptr);
-      function Convert_contentKeyIdStrings is new Ada.Unchecked_Conversion (Address, WinRt.HString_Ptr);
-   begin
-      return RetVal : PlayReadyContentHeader do
-         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyContentHeaderFactory2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateInstanceFromComponents2 (dwFlags, WinRt.UInt32(contentKeyIds'Length), Convert_contentKeyIds (contentKeyIds (contentKeyIds'First)'Address), WinRt.UInt32(contentKeyIdStrings'Length), Convert_contentKeyIdStrings (contentKeyIdStrings (contentKeyIdStrings'First)'Address), contentEncryptionAlgorithm, licenseAcquisitionUrl.m_IUriRuntimeClass.all, licenseAcquisitionUserInterfaceUrl.m_IUriRuntimeClass.all, HStr_customAttributes, domainServiceId, m_ComRetVal'Access);
-            Retval.m_IPlayReadyContentHeader := new Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
-            Retval.m_IPlayReadyContentHeader.all := m_ComRetVal;
-            temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_customAttributes);
-      end return;
-   end;
-
-   function Constructor
-   (
       headerBytes : WinRt.Byte_Array;
       licenseAcquisitionUrl : Windows.Foundation.Uri'Class;
       licenseAcquisitionUserInterfaceUrl : Windows.Foundation.Uri'Class;
@@ -1467,6 +1432,41 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             temp := m_Factory.Release;
          end if;
          tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
+      dwFlags : WinRt.UInt32;
+      contentKeyIds : WinRt.Guid_Array;
+      contentKeyIdStrings : WinRt.HString_Array;
+      contentEncryptionAlgorithm : Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm;
+      licenseAcquisitionUrl : Windows.Foundation.Uri'Class;
+      licenseAcquisitionUserInterfaceUrl : Windows.Foundation.Uri'Class;
+      customAttributes : WinRt.WString;
+      domainServiceId : WinRt.Guid
+   )
+   return PlayReadyContentHeader is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
+      m_Factory    : access IPlayReadyContentHeaderFactory2_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
+      HStr_customAttributes : constant WinRt.HString := To_HString (customAttributes);
+      function Convert_contentKeyIds is new Ada.Unchecked_Conversion (Address, WinRt.Guid_Ptr);
+      function Convert_contentKeyIdStrings is new Ada.Unchecked_Conversion (Address, WinRt.HString_Ptr);
+   begin
+      return RetVal : PlayReadyContentHeader do
+         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyContentHeaderFactory2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstanceFromComponents2 (dwFlags, WinRt.UInt32(contentKeyIds'Length), Convert_contentKeyIds (contentKeyIds (contentKeyIds'First)'Address), WinRt.UInt32(contentKeyIdStrings'Length), Convert_contentKeyIdStrings (contentKeyIdStrings (contentKeyIdStrings'First)'Address), contentEncryptionAlgorithm, licenseAcquisitionUrl.m_IUriRuntimeClass.all, licenseAcquisitionUserInterfaceUrl.m_IUriRuntimeClass.all, HStr_customAttributes, domainServiceId, m_ComRetVal'Access);
+            Retval.m_IPlayReadyContentHeader := new Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
+            Retval.m_IPlayReadyContentHeader.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_customAttributes);
       end return;
    end;
 
@@ -3883,22 +3883,6 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PlayReadyLicenseIterable
 
-   function Constructor return PlayReadyLicenseIterable is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable");
-      m_ComRetVal  : aliased GenericObject;
-   begin
-      return RetVal : PlayReadyLicenseIterable do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_GenericObject := new GenericObject;
-            Retval.m_GenericObject.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       contentHeader : Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class;
@@ -3919,6 +3903,22 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Retval.m_GenericObject := new GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return PlayReadyLicenseIterable is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable");
+      m_ComRetVal  : aliased GenericObject;
+   begin
+      return RetVal : PlayReadyLicenseIterable do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_GenericObject := new GenericObject;
+            Retval.m_GenericObject.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
@@ -5585,51 +5585,6 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    -- Static RuntimeClass
    package body PlayReadyStatics is
 
-      function get_SecureStopServiceRequestType
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
-         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_SecureStopServiceRequestType (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function CheckSupportedHardware
-      (
-         hwdrmFeature : Windows.Media.Protection.PlayReady.PlayReadyHardwareDRMFeatures
-      )
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
-         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CheckSupportedHardware (hwdrmFeature, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
       function get_InputTrustAuthorityToCreate
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -5673,6 +5628,72 @@ package body WinRt.Windows.Media.Protection.PlayReady is
          end if;
          tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
+      end;
+
+      function get_HardwareDRMDisabledAtTime
+      return IReference_DateTime.Kind is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics5_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased GenericObject;
+         m_GenericRetval  : aliased IReference_DateTime.Kind;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics5'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_HardwareDRMDisabledAtTime (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         return m_GenericRetVal;
+      end;
+
+      function get_HardwareDRMDisabledUntilTime
+      return IReference_DateTime.Kind is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics5_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased GenericObject;
+         m_GenericRetval  : aliased IReference_DateTime.Kind;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics5'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_HardwareDRMDisabledUntilTime (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         return m_GenericRetVal;
+      end;
+
+      procedure ResetHardwareDRMDisabled is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics5_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics5'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.ResetHardwareDRMDisabled;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function get_DomainJoinServiceRequestType
@@ -5864,70 +5885,49 @@ package body WinRt.Windows.Media.Protection.PlayReady is
          return m_ComRetVal;
       end;
 
-      function get_HardwareDRMDisabledAtTime
-      return IReference_DateTime.Kind is
+      function get_SecureStopServiceRequestType
+      return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
          m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
-         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics5_Interface'Class := null;
+         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics3_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
-         m_GenericRetval  : aliased IReference_DateTime.Kind;
+         m_ComRetVal      : aliased WinRt.Guid;
       begin
-         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics5'Access , m_Factory'Address);
+         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
-            Hr := m_Factory.get_HardwareDRMDisabledAtTime (m_ComRetVal'Access);
+            Hr := m_Factory.get_SecureStopServiceRequestType (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
             end if;
          end if;
          tmp := WindowsDeleteString (m_hString);
-         m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-         temp := m_ComRetVal.Release;
-         return m_GenericRetVal;
+         return m_ComRetVal;
       end;
 
-      function get_HardwareDRMDisabledUntilTime
-      return IReference_DateTime.Kind is
+      function CheckSupportedHardware
+      (
+         hwdrmFeature : Windows.Media.Protection.PlayReady.PlayReadyHardwareDRMFeatures
+      )
+      return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
          m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
-         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics5_Interface'Class := null;
+         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics3_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
-         m_GenericRetval  : aliased IReference_DateTime.Kind;
+         m_ComRetVal      : aliased WinRt.Boolean;
       begin
-         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics5'Access , m_Factory'Address);
+         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
-            Hr := m_Factory.get_HardwareDRMDisabledUntilTime (m_ComRetVal'Access);
+            Hr := m_Factory.CheckSupportedHardware (hwdrmFeature, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
             end if;
          end if;
          tmp := WindowsDeleteString (m_hString);
-         m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-         temp := m_ComRetVal.Release;
-         return m_GenericRetVal;
-      end;
-
-      procedure ResetHardwareDRMDisabled is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
-         m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics5_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics5'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.ResetHardwareDRMDisabled;
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
       end;
 
    end PlayReadyStatics;

@@ -36,6 +36,9 @@ package body WinRt.Windows.Management.Update is
    package IAsyncOperation_Boolean is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Boolean);
    package AsyncOperationCompletedHandler_Boolean is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Boolean);
 
+   package IAsyncOperation_GenericObject is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.GenericObject);
+   package AsyncOperationCompletedHandler_GenericObject is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.GenericObject);
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PreviewBuildsManager
 
@@ -263,6 +266,5613 @@ package body WinRt.Windows.Management.Update is
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdate
+
+   procedure Initialize (this : in out WindowsSoftwareUpdate) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdate) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdate, IWindowsSoftwareUpdate_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdate /= null then
+         if this.m_IWindowsSoftwareUpdate.all /= null then
+            temp := this.m_IWindowsSoftwareUpdate.all.Release;
+            Free (this.m_IWindowsSoftwareUpdate);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdate
+
+   function Constructor
+   (
+      providerId : WinRt.WString;
+      installationType : Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
+      updateId : WinRt.WString;
+      title : WinRt.WString;
+      description : WinRt.WString;
+      moreInfoUrl : Windows.Foundation.Uri'Class;
+      downloadSizeInBytes : WinRt.UInt64;
+      installSizeInBytes : WinRt.UInt64;
+      sourceVersion : Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+      targetVersion : Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+      appPackageInfo : Windows.Management.Update.WindowsSoftwareUpdateAppPackageInfo'Class;
+      executionInfo : Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo'Class;
+      optionalInfo : Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo'Class
+   )
+   return WindowsSoftwareUpdate is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdate");
+      m_Factory    : access IWindowsSoftwareUpdateFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdate;
+      HStr_providerId : constant WinRt.HString := To_HString (providerId);
+      HStr_updateId : constant WinRt.HString := To_HString (updateId);
+      HStr_title : constant WinRt.HString := To_HString (title);
+      HStr_description : constant WinRt.HString := To_HString (description);
+   begin
+      return RetVal : WindowsSoftwareUpdate do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (HStr_providerId, installationType, HStr_updateId, HStr_title, HStr_description, moreInfoUrl.m_IUriRuntimeClass.all, downloadSizeInBytes, installSizeInBytes, sourceVersion.m_IWindowsSoftwareUpdateVersion.all, targetVersion.m_IWindowsSoftwareUpdateVersion.all, appPackageInfo.m_IWindowsSoftwareUpdateAppPackageInfo.all, executionInfo.m_IWindowsSoftwareUpdateExecutionInfo.all, optionalInfo.m_IWindowsSoftwareUpdateOptionalInfo.all, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdate := new Windows.Management.Update.IWindowsSoftwareUpdate;
+            Retval.m_IWindowsSoftwareUpdate.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_providerId);
+         tmp := WindowsDeleteString (HStr_updateId);
+         tmp := WindowsDeleteString (HStr_title);
+         tmp := WindowsDeleteString (HStr_description);
+      end return;
+   end;
+
+   function Constructor
+   (
+      providerId : WinRt.WString;
+      installationType : Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
+      updateId : WinRt.WString;
+      title : WinRt.WString;
+      description : WinRt.WString;
+      moreInfoUrl : Windows.Foundation.Uri'Class;
+      downloadSizeInBytes : WinRt.UInt64;
+      installSizeInBytes : WinRt.UInt64;
+      productCode : GenericObject;
+      packageFamilyName : WinRt.WString;
+      sourceVersion : Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+      targetVersion : Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+      appPackageInfo : Windows.Management.Update.WindowsSoftwareUpdateAppPackageInfo'Class;
+      executionInfo : Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo'Class;
+      optionalInfo : Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo'Class
+   )
+   return WindowsSoftwareUpdate is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdate");
+      m_Factory    : access IWindowsSoftwareUpdateFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdate;
+      HStr_providerId : constant WinRt.HString := To_HString (providerId);
+      HStr_updateId : constant WinRt.HString := To_HString (updateId);
+      HStr_title : constant WinRt.HString := To_HString (title);
+      HStr_description : constant WinRt.HString := To_HString (description);
+      HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
+   begin
+      return RetVal : WindowsSoftwareUpdate do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance2 (HStr_providerId, installationType, HStr_updateId, HStr_title, HStr_description, moreInfoUrl.m_IUriRuntimeClass.all, downloadSizeInBytes, installSizeInBytes, productCode, HStr_packageFamilyName, sourceVersion.m_IWindowsSoftwareUpdateVersion.all, targetVersion.m_IWindowsSoftwareUpdateVersion.all, appPackageInfo.m_IWindowsSoftwareUpdateAppPackageInfo.all, executionInfo.m_IWindowsSoftwareUpdateExecutionInfo.all, optionalInfo.m_IWindowsSoftwareUpdateOptionalInfo.all, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdate := new Windows.Management.Update.IWindowsSoftwareUpdate;
+            Retval.m_IWindowsSoftwareUpdate.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_providerId);
+         tmp := WindowsDeleteString (HStr_updateId);
+         tmp := WindowsDeleteString (HStr_title);
+         tmp := WindowsDeleteString (HStr_description);
+         tmp := WindowsDeleteString (HStr_packageFamilyName);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdate
+
+   function get_InstallationType
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateInstallationType is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdate.all.get_InstallationType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ProviderId
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdate.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_UpdateId
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdate.all.get_UpdateId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Title
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdate.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Description
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdate.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_MoreInfoUrl
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IWindowsSoftwareUpdate.all.get_MoreInfoUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_DownloadSizeInBytes
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.UInt64 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt64;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdate.all.get_DownloadSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_InstallSizeInBytes
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.UInt64 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt64;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdate.all.get_InstallSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_SourceVersion
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateVersion'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateVersion do
+         Hr := this.m_IWindowsSoftwareUpdate.all.get_SourceVersion (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateVersion := new Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+         Retval.m_IWindowsSoftwareUpdateVersion.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_TargetVersion
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateVersion'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateVersion do
+         Hr := this.m_IWindowsSoftwareUpdate.all.get_TargetVersion (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateVersion := new Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+         Retval.m_IWindowsSoftwareUpdateVersion.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_ProductCode
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return IReference_Guid.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Guid.Kind;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdate.all.get_ProductCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Guid (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_PackageFamilyName
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdate.all.get_PackageFamilyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function Approve
+   (
+      this : in out WindowsSoftwareUpdate;
+      approvalInfo : Windows.Management.Update.WindowsSoftwareUpdateApprovalInfo'Class
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateResult;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult do
+         Hr := this.m_IWindowsSoftwareUpdate.all.Approve (approvalInfo.m_IWindowsSoftwareUpdateApprovalInfo.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateResult := new Windows.Management.Update.IWindowsSoftwareUpdateResult;
+         Retval.m_IWindowsSoftwareUpdateResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   function ApproveCurrentAction
+   (
+      this : in out WindowsSoftwareUpdate;
+      approve : WinRt.Boolean
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateResult;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult do
+         Hr := this.m_IWindowsSoftwareUpdate.all.ApproveCurrentAction (approve, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateResult := new Windows.Management.Update.IWindowsSoftwareUpdateResult;
+         Retval.m_IWindowsSoftwareUpdateResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_CurrentAction
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdate.all.get_CurrentAction (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_ActionResultInfo
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionResultInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateActionResultInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionResultInfo do
+         Hr := this.m_IWindowsSoftwareUpdate.all.get_ActionResultInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateActionResultInfo := new Windows.Management.Update.IWindowsSoftwareUpdateActionResultInfo;
+         Retval.m_IWindowsSoftwareUpdateActionResultInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_ApprovalInfo
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateApprovalInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateApprovalInfo do
+         Hr := this.m_IWindowsSoftwareUpdate.all.get_ApprovalInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateApprovalInfo := new Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo;
+         Retval.m_IWindowsSoftwareUpdateApprovalInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_ApprovedActions
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return IVectorView_WindowsSoftwareUpdateActionType.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_WindowsSoftwareUpdateActionType.Kind;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdate.all.get_ApprovedActions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_WindowsSoftwareUpdateActionType (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_AttentionRequiredInfo
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAttentionRequiredInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsUpdateAttentionRequiredInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsUpdateAttentionRequiredInfo do
+         Hr := this.m_IWindowsSoftwareUpdate.all.get_AttentionRequiredInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsUpdateAttentionRequiredInfo := new Windows.Management.Update.IWindowsUpdateAttentionRequiredInfo;
+         Retval.m_IWindowsUpdateAttentionRequiredInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_ActionProgress
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionProgress'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateActionProgress;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionProgress do
+         Hr := this.m_IWindowsSoftwareUpdate.all.get_ActionProgress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateActionProgress := new Windows.Management.Update.IWindowsSoftwareUpdateActionProgress;
+         Retval.m_IWindowsSoftwareUpdateActionProgress.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_RestartReason
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return IReference_WindowsSoftwareUpdateRestartReason.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_WindowsSoftwareUpdateRestartReason.Kind;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdate.all.get_RestartReason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_WindowsSoftwareUpdateRestartReason (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_AppPackageInfo
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateAppPackageInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateAppPackageInfo do
+         Hr := this.m_IWindowsSoftwareUpdate.all.get_AppPackageInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateAppPackageInfo := new Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo;
+         Retval.m_IWindowsSoftwareUpdateAppPackageInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_ExecutionInfo
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo do
+         Hr := this.m_IWindowsSoftwareUpdate.all.get_ExecutionInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateExecutionInfo := new Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
+         Retval.m_IWindowsSoftwareUpdateExecutionInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_OptionalInfo
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo do
+         Hr := this.m_IWindowsSoftwareUpdate.all.get_OptionalInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateOptionalInfo := new Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
+         Retval.m_IWindowsSoftwareUpdateOptionalInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateActionInfo
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateActionInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateActionInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateActionInfo, IWindowsSoftwareUpdateActionInfo_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateActionInfo /= null then
+         if this.m_IWindowsSoftwareUpdateActionInfo.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateActionInfo.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateActionInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateActionInfo
+
+   function Constructor
+   (
+      fileName : WinRt.WString;
+      fileArguments : WinRt.WString;
+      actionType : Windows.Management.Update.WindowsSoftwareUpdateActionType
+   )
+   return WindowsSoftwareUpdateActionInfo is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateActionInfo");
+      m_Factory    : access IWindowsSoftwareUpdateActionInfoFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+      HStr_fileName : constant WinRt.HString := To_HString (fileName);
+      HStr_fileArguments : constant WinRt.HString := To_HString (fileArguments);
+   begin
+      return RetVal : WindowsSoftwareUpdateActionInfo do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateActionInfoFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (HStr_fileName, HStr_fileArguments, actionType, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateActionInfo := new Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+            Retval.m_IWindowsSoftwareUpdateActionInfo.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_fileName);
+         tmp := WindowsDeleteString (HStr_fileArguments);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateActionInfo
+
+   function get_FileName
+   (
+      this : in out WindowsSoftwareUpdateActionInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateActionInfo.all.get_FileName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_FileArguments
+   (
+      this : in out WindowsSoftwareUpdateActionInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateActionInfo.all.get_FileArguments (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_ActionType
+   (
+      this : in out WindowsSoftwareUpdateActionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionType is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsSoftwareUpdateActionType;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateActionInfo.all.get_ActionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateActionProgress
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateActionProgress) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateActionProgress) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateActionProgress, IWindowsSoftwareUpdateActionProgress_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateActionProgress /= null then
+         if this.m_IWindowsSoftwareUpdateActionProgress.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateActionProgress.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateActionProgress);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateActionProgress
+
+   function get_Action
+   (
+      this : in out WindowsSoftwareUpdateActionProgress
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateActionProgress.all.get_Action (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_CurrentProgress
+   (
+      this : in out WindowsSoftwareUpdateActionProgress
+   )
+   return WinRt.UInt64 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt64;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateActionProgress.all.get_CurrentProgress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_TotalProgress
+   (
+      this : in out WindowsSoftwareUpdateActionProgress
+   )
+   return WinRt.UInt64 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt64;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateActionProgress.all.get_TotalProgress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateActionResultInfo
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateActionResultInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateActionResultInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateActionResultInfo, IWindowsSoftwareUpdateActionResultInfo_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateActionResultInfo /= null then
+         if this.m_IWindowsSoftwareUpdateActionResultInfo.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateActionResultInfo.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateActionResultInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateActionResultInfo
+
+   function get_Timestamp
+   (
+      this : in out WindowsSoftwareUpdateActionResultInfo
+   )
+   return WinRt.Windows.Foundation.DateTime is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateActionResultInfo.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Succeeded
+   (
+      this : in out WindowsSoftwareUpdateActionResultInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateActionResultInfo.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ResultCode
+   (
+      this : in out WindowsSoftwareUpdateActionResultInfo
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateActionResultInfo.all.get_ResultCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsSoftwareUpdateActionResultInfo
+   )
+   return WinRt.UInt64 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt64;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateActionResultInfo.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Action
+   (
+      this : in out WindowsSoftwareUpdateActionResultInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateActionResultInfo.all.get_Action (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateAppPackageInfo
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateAppPackageInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateAppPackageInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateAppPackageInfo, IWindowsSoftwareUpdateAppPackageInfo_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateAppPackageInfo /= null then
+         if this.m_IWindowsSoftwareUpdateAppPackageInfo.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateAppPackageInfo.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateAppPackageInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateAppPackageInfo
+
+   function Constructor
+   (
+      packageFamilyName : WinRt.WString;
+      packageArchitecture : Windows.Management.Update.WindowsSoftwareUpdateArchitecture;
+      installUri : Windows.Foundation.Uri'Class
+   )
+   return WindowsSoftwareUpdateAppPackageInfo is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateAppPackageInfo");
+      m_Factory    : access IWindowsSoftwareUpdateAppPackageInfoFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo;
+      HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
+   begin
+      return RetVal : WindowsSoftwareUpdateAppPackageInfo do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateAppPackageInfoFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (HStr_packageFamilyName, packageArchitecture, installUri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateAppPackageInfo := new Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo;
+            Retval.m_IWindowsSoftwareUpdateAppPackageInfo.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_packageFamilyName);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateAppPackageInfo
+
+   function get_PackageFamilyName
+   (
+      this : in out WindowsSoftwareUpdateAppPackageInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateAppPackageInfo.all.get_PackageFamilyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_PackageArchitecture
+   (
+      this : in out WindowsSoftwareUpdateAppPackageInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateArchitecture is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsSoftwareUpdateArchitecture;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateAppPackageInfo.all.get_PackageArchitecture (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_InstallUri
+   (
+      this : in out WindowsSoftwareUpdateAppPackageInfo
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IWindowsSoftwareUpdateAppPackageInfo.all.get_InstallUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateApprovalInfo
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateApprovalInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateApprovalInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateApprovalInfo, IWindowsSoftwareUpdateApprovalInfo_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateApprovalInfo /= null then
+         if this.m_IWindowsSoftwareUpdateApprovalInfo.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateApprovalInfo.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateApprovalInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateApprovalInfo
+
+   function Constructor
+   (
+      userInitiated : WinRt.Boolean;
+      appClosure : WinRt.Boolean;
+      meteredNetwork : WinRt.Boolean;
+      seeker : WinRt.Boolean
+   )
+   return WindowsSoftwareUpdateApprovalInfo is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateApprovalInfo");
+      m_Factory    : access IWindowsSoftwareUpdateApprovalInfoFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo;
+   begin
+      return RetVal : WindowsSoftwareUpdateApprovalInfo do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateApprovalInfoFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (userInitiated, appClosure, meteredNetwork, seeker, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateApprovalInfo := new Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo;
+            Retval.m_IWindowsSoftwareUpdateApprovalInfo.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateApprovalInfo
+
+   function get_UserInitiated
+   (
+      this : in out WindowsSoftwareUpdateApprovalInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateApprovalInfo.all.get_UserInitiated (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_AppClosure
+   (
+      this : in out WindowsSoftwareUpdateApprovalInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateApprovalInfo.all.get_AppClosure (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_MeteredNetwork
+   (
+      this : in out WindowsSoftwareUpdateApprovalInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateApprovalInfo.all.get_MeteredNetwork (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Seeker
+   (
+      this : in out WindowsSoftwareUpdateApprovalInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateApprovalInfo.all.get_Seeker (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateExecutionInfo
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateExecutionInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateExecutionInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateExecutionInfo, IWindowsSoftwareUpdateExecutionInfo_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateExecutionInfo /= null then
+         if this.m_IWindowsSoftwareUpdateExecutionInfo.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateExecutionInfo.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateExecutionInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateExecutionInfo
+
+   function Constructor
+   (
+      downloadInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      installInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      actions : Windows.Management.Update.WindowsSoftwareUpdateOptionalActionInfo'Class
+   )
+   return WindowsSoftwareUpdateExecutionInfo is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo");
+      m_Factory    : access IWindowsSoftwareUpdateExecutionInfoFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
+   begin
+      return RetVal : WindowsSoftwareUpdateExecutionInfo do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateExecutionInfoFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (downloadInfo.m_IWindowsSoftwareUpdateActionInfo.all, installInfo.m_IWindowsSoftwareUpdateActionInfo.all, actions.m_IWindowsSoftwareUpdateOptionalActionInfo.all, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateExecutionInfo := new Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
+            Retval.m_IWindowsSoftwareUpdateExecutionInfo.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
+      deployInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      actions : Windows.Management.Update.WindowsSoftwareUpdateOptionalActionInfo'Class
+   )
+   return WindowsSoftwareUpdateExecutionInfo is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo");
+      m_Factory    : access IWindowsSoftwareUpdateExecutionInfoFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
+   begin
+      return RetVal : WindowsSoftwareUpdateExecutionInfo do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateExecutionInfoFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance2 (deployInfo.m_IWindowsSoftwareUpdateActionInfo.all, actions.m_IWindowsSoftwareUpdateOptionalActionInfo.all, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateExecutionInfo := new Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
+            Retval.m_IWindowsSoftwareUpdateExecutionInfo.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateExecutionInfo
+
+   function get_DownloadInfo
+   (
+      this : in out WindowsSoftwareUpdateExecutionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo do
+         Hr := this.m_IWindowsSoftwareUpdateExecutionInfo.all.get_DownloadInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateActionInfo := new Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         Retval.m_IWindowsSoftwareUpdateActionInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_InstallInfo
+   (
+      this : in out WindowsSoftwareUpdateExecutionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo do
+         Hr := this.m_IWindowsSoftwareUpdateExecutionInfo.all.get_InstallInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateActionInfo := new Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         Retval.m_IWindowsSoftwareUpdateActionInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_DeployInfo
+   (
+      this : in out WindowsSoftwareUpdateExecutionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo do
+         Hr := this.m_IWindowsSoftwareUpdateExecutionInfo.all.get_DeployInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateActionInfo := new Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         Retval.m_IWindowsSoftwareUpdateActionInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_OptionalActionInfo
+   (
+      this : in out WindowsSoftwareUpdateExecutionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateOptionalActionInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateOptionalActionInfo do
+         Hr := this.m_IWindowsSoftwareUpdateExecutionInfo.all.get_OptionalActionInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateOptionalActionInfo := new Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo;
+         Retval.m_IWindowsSoftwareUpdateOptionalActionInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateLocalizationInfo
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateLocalizationInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateLocalizationInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateLocalizationInfo, IWindowsSoftwareUpdateLocalizationInfo_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateLocalizationInfo /= null then
+         if this.m_IWindowsSoftwareUpdateLocalizationInfo.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateLocalizationInfo.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateLocalizationInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateLocalizationInfo
+
+   function Constructor
+   (
+      languageId : WinRt.UInt32;
+      title : WinRt.WString;
+      description : WinRt.WString;
+      moreInfoUrl : Windows.Foundation.Uri'Class
+   )
+   return WindowsSoftwareUpdateLocalizationInfo is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateLocalizationInfo");
+      m_Factory    : access IWindowsSoftwareUpdateLocalizationInfoFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateLocalizationInfo;
+      HStr_title : constant WinRt.HString := To_HString (title);
+      HStr_description : constant WinRt.HString := To_HString (description);
+   begin
+      return RetVal : WindowsSoftwareUpdateLocalizationInfo do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateLocalizationInfoFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (languageId, HStr_title, HStr_description, moreInfoUrl.m_IUriRuntimeClass.all, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateLocalizationInfo := new Windows.Management.Update.IWindowsSoftwareUpdateLocalizationInfo;
+            Retval.m_IWindowsSoftwareUpdateLocalizationInfo.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_title);
+         tmp := WindowsDeleteString (HStr_description);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateLocalizationInfo
+
+   function get_LanguageId
+   (
+      this : in out WindowsSoftwareUpdateLocalizationInfo
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateLocalizationInfo.all.get_LanguageId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Title
+   (
+      this : in out WindowsSoftwareUpdateLocalizationInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateLocalizationInfo.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Description
+   (
+      this : in out WindowsSoftwareUpdateLocalizationInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateLocalizationInfo.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_MoreInfoUrl
+   (
+      this : in out WindowsSoftwareUpdateLocalizationInfo
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IWindowsSoftwareUpdateLocalizationInfo.all.get_MoreInfoUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateOptionalActionInfo
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateOptionalActionInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateOptionalActionInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateOptionalActionInfo, IWindowsSoftwareUpdateOptionalActionInfo_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateOptionalActionInfo /= null then
+         if this.m_IWindowsSoftwareUpdateOptionalActionInfo.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateOptionalActionInfo.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateOptionalActionInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateOptionalActionInfo
+
+   function Constructor
+   (
+      closeAndDeployInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      closeAndInstallInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      closeAndRestartInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class
+   )
+   return WindowsSoftwareUpdateOptionalActionInfo is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateOptionalActionInfo");
+      m_Factory    : access IWindowsSoftwareUpdateOptionalActionInfoFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo;
+   begin
+      return RetVal : WindowsSoftwareUpdateOptionalActionInfo do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateOptionalActionInfoFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (closeAndDeployInfo.m_IWindowsSoftwareUpdateActionInfo.all, closeAndInstallInfo.m_IWindowsSoftwareUpdateActionInfo.all, closeAndRestartInfo.m_IWindowsSoftwareUpdateActionInfo.all, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateOptionalActionInfo := new Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo;
+            Retval.m_IWindowsSoftwareUpdateOptionalActionInfo.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateOptionalActionInfo
+
+   function get_CloseAndDeployInfo
+   (
+      this : in out WindowsSoftwareUpdateOptionalActionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo do
+         Hr := this.m_IWindowsSoftwareUpdateOptionalActionInfo.all.get_CloseAndDeployInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateActionInfo := new Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         Retval.m_IWindowsSoftwareUpdateActionInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_CloseAndInstallInfo
+   (
+      this : in out WindowsSoftwareUpdateOptionalActionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo do
+         Hr := this.m_IWindowsSoftwareUpdateOptionalActionInfo.all.get_CloseAndInstallInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateActionInfo := new Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         Retval.m_IWindowsSoftwareUpdateActionInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_CloseAndRestartInfo
+   (
+      this : in out WindowsSoftwareUpdateOptionalActionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo do
+         Hr := this.m_IWindowsSoftwareUpdateOptionalActionInfo.all.get_CloseAndRestartInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateActionInfo := new Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         Retval.m_IWindowsSoftwareUpdateActionInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateOptionalInfo
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateOptionalInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateOptionalInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateOptionalInfo, IWindowsSoftwareUpdateOptionalInfo_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateOptionalInfo /= null then
+         if this.m_IWindowsSoftwareUpdateOptionalInfo.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateOptionalInfo.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateOptionalInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateOptionalInfo
+
+   function Constructor
+   (
+      complianceDeadlineInDays : GenericObject;
+      complianceGracePeriodInDays : GenericObject
+   )
+   return WindowsSoftwareUpdateOptionalInfo is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo");
+      m_Factory    : access IWindowsSoftwareUpdateOptionalInfoFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
+   begin
+      return RetVal : WindowsSoftwareUpdateOptionalInfo do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateOptionalInfoFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (complianceDeadlineInDays, complianceGracePeriodInDays, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateOptionalInfo := new Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
+            Retval.m_IWindowsSoftwareUpdateOptionalInfo.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
+      localizationInfo : GenericObject;
+      complianceDeadlineInDays : GenericObject;
+      complianceGracePeriodInDays : GenericObject
+   )
+   return WindowsSoftwareUpdateOptionalInfo is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo");
+      m_Factory    : access IWindowsSoftwareUpdateOptionalInfoFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
+   begin
+      return RetVal : WindowsSoftwareUpdateOptionalInfo do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateOptionalInfoFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance2 (localizationInfo, complianceDeadlineInDays, complianceGracePeriodInDays, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateOptionalInfo := new Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
+            Retval.m_IWindowsSoftwareUpdateOptionalInfo.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateOptionalInfo
+
+   function get_LocalizationInfo
+   (
+      this : in out WindowsSoftwareUpdateOptionalInfo
+   )
+   return IVectorView_IWindowsSoftwareUpdateLocalizationInfo.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IWindowsSoftwareUpdateLocalizationInfo.Kind;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateOptionalInfo.all.get_LocalizationInfo (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IWindowsSoftwareUpdateLocalizationInfo (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_ComplianceDeadlineInDays
+   (
+      this : in out WindowsSoftwareUpdateOptionalInfo
+   )
+   return IReference_Int32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Int32.Kind;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateOptionalInfo.all.get_ComplianceDeadlineInDays (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_ComplianceGracePeriodInDays
+   (
+      this : in out WindowsSoftwareUpdateOptionalInfo
+   )
+   return IReference_Int32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Int32.Kind;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateOptionalInfo.all.get_ComplianceGracePeriodInDays (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateProvider
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateProvider) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateProvider) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateProvider, IWindowsSoftwareUpdateProvider_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateProvider /= null then
+         if this.m_IWindowsSoftwareUpdateProvider.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateProvider.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateProvider);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateProvider
+
+   function Constructor
+   (
+      folderPath : WinRt.WString
+   )
+   return WindowsSoftwareUpdateProvider is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateProvider");
+      m_Factory    : access IWindowsSoftwareUpdateProviderFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateProvider;
+      HStr_folderPath : constant WinRt.HString := To_HString (folderPath);
+   begin
+      return RetVal : WindowsSoftwareUpdateProvider do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateProviderFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (HStr_folderPath, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateProvider := new Windows.Management.Update.IWindowsSoftwareUpdateProvider;
+            Retval.m_IWindowsSoftwareUpdateProvider.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_folderPath);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateProvider
+
+   function Register
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateResult;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult do
+         Hr := this.m_IWindowsSoftwareUpdateProvider.all.Register (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateResult := new Windows.Management.Update.IWindowsSoftwareUpdateResult;
+         Retval.m_IWindowsSoftwareUpdateResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   function Unregister
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateResult;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult do
+         Hr := this.m_IWindowsSoftwareUpdateProvider.all.Unregister (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateResult := new Windows.Management.Update.IWindowsSoftwareUpdateResult;
+         Retval.m_IWindowsSoftwareUpdateResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   function Validate
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateResult;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult do
+         Hr := this.m_IWindowsSoftwareUpdateProvider.all.Validate (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateResult := new Windows.Management.Update.IWindowsSoftwareUpdateResult;
+         Retval.m_IWindowsSoftwareUpdateResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_Id
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProvider.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Version
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProvider.all.get_Version (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_FolderPath
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProvider.all.get_FolderPath (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_CatalogFile
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProvider.all.get_CatalogFile (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_ScanFileName
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProvider.all.get_ScanFileName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_ScanFileArguments
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProvider.all.get_ScanFileArguments (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Type
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateProviderType is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsSoftwareUpdateProviderType;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProvider.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_PayloadFiles
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return IVectorView_IWindowsSoftwareUpdateProviderPayloadFileInfo.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IWindowsSoftwareUpdateProviderPayloadFileInfo.Kind;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProvider.all.get_PayloadFiles (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IWindowsSoftwareUpdateProviderPayloadFileInfo (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_TrustState
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateProviderTrustState is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsSoftwareUpdateProviderTrustState;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProvider.all.get_TrustState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_RegistrationType
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateProviderRegistrationType is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsSoftwareUpdateProviderRegistrationType;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProvider.all.get_RegistrationType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Properties
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Foundation.Collections.PropertySet'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Collections.PropertySet do
+         Hr := this.m_IWindowsSoftwareUpdateProvider.all.get_Properties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetPropertyValue
+   (
+      this : in out WindowsSoftwareUpdateProvider;
+      name : WinRt.WString
+   )
+   return WinRt.IInspectable is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.IInspectable;
+      HStr_name : constant WinRt.HString := To_HString (name);
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProvider.all.GetPropertyValue (HStr_name, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateProviderActionResult
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateProviderActionResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateProviderActionResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateProviderActionResult, IWindowsSoftwareUpdateProviderActionResult_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateProviderActionResult /= null then
+         if this.m_IWindowsSoftwareUpdateProviderActionResult.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateProviderActionResult.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateProviderActionResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateProviderActionResult
+
+   function Constructor
+   (
+      actionResult : Windows.Management.Update.WindowsSoftwareUpdateActionResult;
+      restartReason : Windows.Management.Update.WindowsSoftwareUpdateRestartReason;
+      resultCode : WinRt.UInt32;
+      extendedError : WinRt.UInt64
+   )
+   return WindowsSoftwareUpdateProviderActionResult is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateProviderActionResult");
+      m_Factory    : access IWindowsSoftwareUpdateProviderActionResultFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateProviderActionResult;
+   begin
+      return RetVal : WindowsSoftwareUpdateProviderActionResult do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateProviderActionResultFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (actionResult, restartReason, resultCode, extendedError, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateProviderActionResult := new Windows.Management.Update.IWindowsSoftwareUpdateProviderActionResult;
+            Retval.m_IWindowsSoftwareUpdateProviderActionResult.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateProviderActionResult
+
+   function get_Result
+   (
+      this : in out WindowsSoftwareUpdateProviderActionResult
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsSoftwareUpdateActionResult;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProviderActionResult.all.get_Result (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_RestartReason
+   (
+      this : in out WindowsSoftwareUpdateProviderActionResult
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateRestartReason is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsSoftwareUpdateRestartReason;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProviderActionResult.all.get_RestartReason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ResultCode
+   (
+      this : in out WindowsSoftwareUpdateProviderActionResult
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProviderActionResult.all.get_ResultCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsSoftwareUpdateProviderActionResult
+   )
+   return WinRt.UInt64 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt64;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProviderActionResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateProviderPayloadFileInfo
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateProviderPayloadFileInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateProviderPayloadFileInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateProviderPayloadFileInfo, IWindowsSoftwareUpdateProviderPayloadFileInfo_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateProviderPayloadFileInfo /= null then
+         if this.m_IWindowsSoftwareUpdateProviderPayloadFileInfo.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateProviderPayloadFileInfo.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateProviderPayloadFileInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateProviderPayloadFileInfo
+
+   function get_Filename
+   (
+      this : in out WindowsSoftwareUpdateProviderPayloadFileInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProviderPayloadFileInfo.all.get_Filename (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_FileHash
+   (
+      this : in out WindowsSoftwareUpdateProviderPayloadFileInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProviderPayloadFileInfo.all.get_FileHash (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_CatalogFile
+   (
+      this : in out WindowsSoftwareUpdateProviderPayloadFileInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProviderPayloadFileInfo.all.get_CatalogFile (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_TrustState
+   (
+      this : in out WindowsSoftwareUpdateProviderPayloadFileInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateProviderTrustState is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsSoftwareUpdateProviderTrustState;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProviderPayloadFileInfo.all.get_TrustState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateProviderStatus
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateProviderStatus) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateProviderStatus) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateProviderStatus, IWindowsSoftwareUpdateProviderStatus_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateProviderStatus /= null then
+         if this.m_IWindowsSoftwareUpdateProviderStatus.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateProviderStatus.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateProviderStatus);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateProviderStatus
+
+   function Constructor
+   (
+      providerId : WinRt.WString
+   )
+   return WindowsSoftwareUpdateProviderStatus is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateProviderStatus");
+      m_Factory    : access IWindowsSoftwareUpdateProviderStatusFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateProviderStatus;
+      HStr_providerId : constant WinRt.HString := To_HString (providerId);
+   begin
+      return RetVal : WindowsSoftwareUpdateProviderStatus do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateProviderStatusFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (HStr_providerId, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateProviderStatus := new Windows.Management.Update.IWindowsSoftwareUpdateProviderStatus;
+            Retval.m_IWindowsSoftwareUpdateProviderStatus.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_providerId);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateProviderStatus
+
+   function add_CancelRequested
+   (
+      this : in out WindowsSoftwareUpdateProviderStatus;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProviderStatus.all.add_CancelRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_CancelRequested
+   (
+      this : in out WindowsSoftwareUpdateProviderStatus;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateProviderStatus.all.remove_CancelRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function SetScanResult
+   (
+      this : in out WindowsSoftwareUpdateProviderStatus;
+      succeeded : WinRt.Boolean;
+      resultCode : WinRt.UInt32;
+      extendedError : WinRt.UInt64;
+      updates : GenericObject
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateResult;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult do
+         Hr := this.m_IWindowsSoftwareUpdateProviderStatus.all.SetScanResult (succeeded, resultCode, extendedError, updates, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateResult := new Windows.Management.Update.IWindowsSoftwareUpdateResult;
+         Retval.m_IWindowsSoftwareUpdateResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   function SetActionProgress
+   (
+      this : in out WindowsSoftwareUpdateProviderStatus;
+      current : WinRt.UInt64;
+      total : WinRt.UInt64
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateResult;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult do
+         Hr := this.m_IWindowsSoftwareUpdateProviderStatus.all.SetActionProgress (current, total, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateResult := new Windows.Management.Update.IWindowsSoftwareUpdateResult;
+         Retval.m_IWindowsSoftwareUpdateResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   function SetActionResult
+   (
+      this : in out WindowsSoftwareUpdateProviderStatus;
+      actionResult : Windows.Management.Update.WindowsSoftwareUpdateProviderActionResult'Class
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateResult;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult do
+         Hr := this.m_IWindowsSoftwareUpdateProviderStatus.all.SetActionResult (actionResult.m_IWindowsSoftwareUpdateProviderActionResult.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateResult := new Windows.Management.Update.IWindowsSoftwareUpdateResult;
+         Retval.m_IWindowsSoftwareUpdateResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateResult
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateResult, IWindowsSoftwareUpdateResult_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateResult /= null then
+         if this.m_IWindowsSoftwareUpdateResult.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateResult.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateResult
+
+   function Constructor
+   (
+      succeeded : WinRt.Boolean;
+      resultCode : WinRt.UInt32
+   )
+   return WindowsSoftwareUpdateResult is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateResult");
+      m_Factory    : access IWindowsSoftwareUpdateResultFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateResult;
+   begin
+      return RetVal : WindowsSoftwareUpdateResult do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateResultFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (succeeded, resultCode, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateResult := new Windows.Management.Update.IWindowsSoftwareUpdateResult;
+            Retval.m_IWindowsSoftwareUpdateResult.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
+      succeeded : WinRt.Boolean;
+      resultCode : WinRt.UInt32;
+      extendedError : WinRt.UInt64
+   )
+   return WindowsSoftwareUpdateResult is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateResult");
+      m_Factory    : access IWindowsSoftwareUpdateResultFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateResult;
+   begin
+      return RetVal : WindowsSoftwareUpdateResult do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateResultFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance2 (succeeded, resultCode, extendedError, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateResult := new Windows.Management.Update.IWindowsSoftwareUpdateResult;
+            Retval.m_IWindowsSoftwareUpdateResult.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
+      succeeded : WinRt.Boolean;
+      cancelRequested : WinRt.Boolean;
+      resultCode : WinRt.UInt32;
+      extendedError : WinRt.UInt64
+   )
+   return WindowsSoftwareUpdateResult is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateResult");
+      m_Factory    : access IWindowsSoftwareUpdateResultFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateResult;
+   begin
+      return RetVal : WindowsSoftwareUpdateResult do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateResultFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance3 (succeeded, cancelRequested, resultCode, extendedError, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateResult := new Windows.Management.Update.IWindowsSoftwareUpdateResult;
+            Retval.m_IWindowsSoftwareUpdateResult.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateResult
+
+   function get_Succeeded
+   (
+      this : in out WindowsSoftwareUpdateResult
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateResult.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_CancelRequested
+   (
+      this : in out WindowsSoftwareUpdateResult
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateResult.all.get_CancelRequested (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ResultCode
+   (
+      this : in out WindowsSoftwareUpdateResult
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateResult.all.get_ResultCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsSoftwareUpdateResult
+   )
+   return WinRt.UInt64 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt64;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateScanResult
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateScanResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateScanResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateScanResult, IWindowsSoftwareUpdateScanResult_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateScanResult /= null then
+         if this.m_IWindowsSoftwareUpdateScanResult.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateScanResult.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateScanResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateScanResult
+
+   function Constructor
+   (
+      succeeded : WinRt.Boolean;
+      resultCode : WinRt.UInt32;
+      updates : GenericObject
+   )
+   return WindowsSoftwareUpdateScanResult is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateScanResult");
+      m_Factory    : access IWindowsSoftwareUpdateScanResultFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateScanResult;
+   begin
+      return RetVal : WindowsSoftwareUpdateScanResult do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateScanResultFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (succeeded, resultCode, updates, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateScanResult := new Windows.Management.Update.IWindowsSoftwareUpdateScanResult;
+            Retval.m_IWindowsSoftwareUpdateScanResult.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
+      succeeded : WinRt.Boolean;
+      resultCode : WinRt.UInt32;
+      extendedError : WinRt.UInt64;
+      updates : GenericObject
+   )
+   return WindowsSoftwareUpdateScanResult is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateScanResult");
+      m_Factory    : access IWindowsSoftwareUpdateScanResultFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateScanResult;
+   begin
+      return RetVal : WindowsSoftwareUpdateScanResult do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateScanResultFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance2 (succeeded, resultCode, extendedError, updates, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateScanResult := new Windows.Management.Update.IWindowsSoftwareUpdateScanResult;
+            Retval.m_IWindowsSoftwareUpdateScanResult.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateScanResult
+
+   function get_Succeeded
+   (
+      this : in out WindowsSoftwareUpdateScanResult
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateScanResult.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ResultCode
+   (
+      this : in out WindowsSoftwareUpdateScanResult
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateScanResult.all.get_ResultCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsSoftwareUpdateScanResult
+   )
+   return WinRt.UInt64 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt64;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateScanResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Updates
+   (
+      this : in out WindowsSoftwareUpdateScanResult
+   )
+   return IVectorView_IWindowsSoftwareUpdate.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IWindowsSoftwareUpdate.Kind;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateScanResult.all.get_Updates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IWindowsSoftwareUpdate (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateVersion
+
+   procedure Initialize (this : in out WindowsSoftwareUpdateVersion) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsSoftwareUpdateVersion) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsSoftwareUpdateVersion, IWindowsSoftwareUpdateVersion_Ptr);
+   begin
+      if this.m_IWindowsSoftwareUpdateVersion /= null then
+         if this.m_IWindowsSoftwareUpdateVersion.all /= null then
+            temp := this.m_IWindowsSoftwareUpdateVersion.all.Release;
+            Free (this.m_IWindowsSoftwareUpdateVersion);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateVersion
+
+   function Constructor
+   (
+      major : WinRt.UInt32;
+      minor : WinRt.UInt32;
+      revisionMajor : WinRt.UInt32;
+      revisionMinor : WinRt.UInt32
+   )
+   return WindowsSoftwareUpdateVersion is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateVersion");
+      m_Factory    : access IWindowsSoftwareUpdateVersionFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+   begin
+      return RetVal : WindowsSoftwareUpdateVersion do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsSoftwareUpdateVersionFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (major, minor, revisionMajor, revisionMinor, m_ComRetVal'Access);
+            Retval.m_IWindowsSoftwareUpdateVersion := new Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+            Retval.m_IWindowsSoftwareUpdateVersion.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateVersion
+
+   function get_Major
+   (
+      this : in out WindowsSoftwareUpdateVersion
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateVersion.all.get_Major (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Minor
+   (
+      this : in out WindowsSoftwareUpdateVersion
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateVersion.all.get_Minor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_RevisionMajor
+   (
+      this : in out WindowsSoftwareUpdateVersion
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateVersion.all.get_RevisionMajor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_RevisionMinor
+   (
+      this : in out WindowsSoftwareUpdateVersion
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IWindowsSoftwareUpdateVersion.all.get_RevisionMinor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdate
+
+   procedure Initialize (this : in out WindowsUpdate) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdate) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdate, IWindowsUpdate_Ptr);
+   begin
+      if this.m_IWindowsUpdate /= null then
+         if this.m_IWindowsUpdate.all /= null then
+            temp := this.m_IWindowsUpdate.all.Release;
+            Free (this.m_IWindowsUpdate);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdate
+
+   function get_ProviderId
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_UpdateId
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_UpdateId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Title
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Description
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_IsFeatureUpdate
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_IsFeatureUpdate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsMinorImpact
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_IsMinorImpact (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsSecurity
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_IsSecurity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsCritical
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_IsCritical (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsForOS
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_IsForOS (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsDriver
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_IsDriver (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsMandatory
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_IsMandatory (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsUrgent
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_IsUrgent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsSeeker
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_IsSeeker (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_MoreInfoUrl
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IWindowsUpdate.all.get_MoreInfoUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_SupportUrl
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IWindowsUpdate.all.get_SupportUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_IsEulaAccepted
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_IsEulaAccepted (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_EulaText
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_EulaText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Deadline
+   (
+      this : in out WindowsUpdate
+   )
+   return IReference_DateTime.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_DateTime.Kind;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_Deadline (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_AttentionRequiredInfo
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAttentionRequiredInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsUpdateAttentionRequiredInfo;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsUpdateAttentionRequiredInfo do
+         Hr := this.m_IWindowsUpdate.all.get_AttentionRequiredInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsUpdateAttentionRequiredInfo := new Windows.Management.Update.IWindowsUpdateAttentionRequiredInfo;
+         Retval.m_IWindowsUpdateAttentionRequiredInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_ActionResult
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateActionResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsUpdateActionResult;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsUpdateActionResult do
+         Hr := this.m_IWindowsUpdate.all.get_ActionResult (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsUpdateActionResult := new Windows.Management.Update.IWindowsUpdateActionResult;
+         Retval.m_IWindowsUpdateActionResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_CurrentAction
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdate.all.get_CurrentAction (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_ActionProgress
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateActionProgress'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsUpdateActionProgress;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsUpdateActionProgress do
+         Hr := this.m_IWindowsUpdate.all.get_ActionProgress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsUpdateActionProgress := new Windows.Management.Update.IWindowsUpdateActionProgress;
+         Retval.m_IWindowsUpdateActionProgress.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetPropertyValue
+   (
+      this : in out WindowsUpdate;
+      propertyName : WinRt.WString
+   )
+   return WinRt.IInspectable is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.IInspectable;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
+   begin
+      Hr := this.m_IWindowsUpdate.all.GetPropertyValue (HStr_propertyName, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
+      return m_ComRetVal;
+   end;
+
+   procedure AcceptEula
+   (
+      this : in out WindowsUpdate
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdate.all.AcceptEula;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateActionCompletedEventArgs
+
+   procedure Initialize (this : in out WindowsUpdateActionCompletedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateActionCompletedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateActionCompletedEventArgs, IWindowsUpdateActionCompletedEventArgs_Ptr);
+   begin
+      if this.m_IWindowsUpdateActionCompletedEventArgs /= null then
+         if this.m_IWindowsUpdateActionCompletedEventArgs.all /= null then
+            temp := this.m_IWindowsUpdateActionCompletedEventArgs.all.Release;
+            Free (this.m_IWindowsUpdateActionCompletedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateActionCompletedEventArgs
+
+   function get_Update
+   (
+      this : in out WindowsUpdateActionCompletedEventArgs
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdate'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsUpdate;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsUpdate do
+         Hr := this.m_IWindowsUpdateActionCompletedEventArgs.all.get_Update (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsUpdate := new Windows.Management.Update.IWindowsUpdate;
+         Retval.m_IWindowsUpdate.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_Action
+   (
+      this : in out WindowsUpdateActionCompletedEventArgs
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdateActionCompletedEventArgs.all.get_Action (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Succeeded
+   (
+      this : in out WindowsUpdateActionCompletedEventArgs
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdateActionCompletedEventArgs.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsUpdateActionCompletedEventArgs
+   )
+   return WinRt.Windows.Foundation.HResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.HResult;
+   begin
+      Hr := this.m_IWindowsUpdateActionCompletedEventArgs.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateActionProgress
+
+   procedure Initialize (this : in out WindowsUpdateActionProgress) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateActionProgress) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateActionProgress, IWindowsUpdateActionProgress_Ptr);
+   begin
+      if this.m_IWindowsUpdateActionProgress /= null then
+         if this.m_IWindowsUpdateActionProgress.all /= null then
+            temp := this.m_IWindowsUpdateActionProgress.all.Release;
+            Free (this.m_IWindowsUpdateActionProgress);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateActionProgress
+
+   function get_Action
+   (
+      this : in out WindowsUpdateActionProgress
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdateActionProgress.all.get_Action (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Progress
+   (
+      this : in out WindowsUpdateActionProgress
+   )
+   return WinRt.Double is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Double;
+   begin
+      Hr := this.m_IWindowsUpdateActionProgress.all.get_Progress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateActionResult
+
+   procedure Initialize (this : in out WindowsUpdateActionResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateActionResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateActionResult, IWindowsUpdateActionResult_Ptr);
+   begin
+      if this.m_IWindowsUpdateActionResult /= null then
+         if this.m_IWindowsUpdateActionResult.all /= null then
+            temp := this.m_IWindowsUpdateActionResult.all.Release;
+            Free (this.m_IWindowsUpdateActionResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateActionResult
+
+   function get_Timestamp
+   (
+      this : in out WindowsUpdateActionResult
+   )
+   return WinRt.Windows.Foundation.DateTime is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+   begin
+      Hr := this.m_IWindowsUpdateActionResult.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Succeeded
+   (
+      this : in out WindowsUpdateActionResult
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdateActionResult.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsUpdateActionResult
+   )
+   return WinRt.Windows.Foundation.HResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.HResult;
+   begin
+      Hr := this.m_IWindowsUpdateActionResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Action
+   (
+      this : in out WindowsUpdateActionResult
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdateActionResult.all.get_Action (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateAdministrator
+
+   procedure Initialize (this : in out WindowsUpdateAdministrator) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateAdministrator) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateAdministrator, IWindowsUpdateAdministrator_Ptr);
+   begin
+      if this.m_IWindowsUpdateAdministrator /= null then
+         if this.m_IWindowsUpdateAdministrator.all /= null then
+            temp := this.m_IWindowsUpdateAdministrator.all.Release;
+            Free (this.m_IWindowsUpdateAdministrator);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for WindowsUpdateAdministrator
+
+   function GetRegisteredAdministrator
+   (
+      organizationName : WinRt.WString
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateGetAdministratorResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsUpdateAdministrator");
+      m_Factory        : access WinRt.Windows.Management.Update.IWindowsUpdateAdministratorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsUpdateGetAdministratorResult;
+      HStr_organizationName : constant WinRt.HString := To_HString (organizationName);
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsUpdateGetAdministratorResult do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsUpdateAdministratorStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetRegisteredAdministrator (HStr_organizationName, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IWindowsUpdateGetAdministratorResult := new Windows.Management.Update.IWindowsUpdateGetAdministratorResult;
+            Retval.m_IWindowsUpdateGetAdministratorResult.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_organizationName);
+      end return;
+   end;
+
+   function RegisterForAdministration
+   (
+      organizationName : WinRt.WString;
+      options : Windows.Management.Update.WindowsUpdateAdministratorOptions
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAdministratorStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsUpdateAdministrator");
+      m_Factory        : access WinRt.Windows.Management.Update.IWindowsUpdateAdministratorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsUpdateAdministratorStatus;
+      HStr_organizationName : constant WinRt.HString := To_HString (organizationName);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IWindowsUpdateAdministratorStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.RegisterForAdministration (HStr_organizationName, options, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_organizationName);
+      return m_ComRetVal;
+   end;
+
+   function UnregisterForAdministration
+   (
+      organizationName : WinRt.WString
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAdministratorStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsUpdateAdministrator");
+      m_Factory        : access WinRt.Windows.Management.Update.IWindowsUpdateAdministratorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsUpdateAdministratorStatus;
+      HStr_organizationName : constant WinRt.HString := To_HString (organizationName);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IWindowsUpdateAdministratorStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.UnregisterForAdministration (HStr_organizationName, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_organizationName);
+      return m_ComRetVal;
+   end;
+
+   function GetRegisteredAdministratorName
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsUpdateAdministrator");
+      m_Factory        : access WinRt.Windows.Management.Update.IWindowsUpdateAdministratorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IWindowsUpdateAdministratorStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetRegisteredAdministratorName (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function RequestRestart
+   (
+      restartOptions : Windows.Management.Update.WindowsUpdateRestartRequestOptions'Class
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsUpdateAdministrator");
+      m_Factory        : access WinRt.Windows.Management.Update.IWindowsUpdateAdministratorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IWindowsUpdateAdministratorStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.RequestRestart (restartOptions.m_IWindowsUpdateRestartRequestOptions.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure CancelRestartRequest
+   (
+      requestRestartToken : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsUpdateAdministrator");
+      m_Factory        : access WinRt.Windows.Management.Update.IWindowsUpdateAdministratorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_requestRestartToken : constant WinRt.HString := To_HString (requestRestartToken);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IWindowsUpdateAdministratorStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.CancelRestartRequest (HStr_requestRestartToken);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_requestRestartToken);
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateAdministrator
+
+   procedure StartAdministratorScan
+   (
+      this : in out WindowsUpdateAdministrator
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateAdministrator.all.StartAdministratorScan;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure ApproveWindowsUpdateAction
+   (
+      this : in out WindowsUpdateAdministrator;
+      updateId : WinRt.WString;
+      action : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_updateId : constant WinRt.HString := To_HString (updateId);
+      HStr_action : constant WinRt.HString := To_HString (action);
+   begin
+      Hr := this.m_IWindowsUpdateAdministrator.all.ApproveWindowsUpdateAction (HStr_updateId, HStr_action);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_updateId);
+      tmp := WindowsDeleteString (HStr_action);
+   end;
+
+   procedure RevokeWindowsUpdateActionApproval
+   (
+      this : in out WindowsUpdateAdministrator;
+      updateId : WinRt.WString;
+      action : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_updateId : constant WinRt.HString := To_HString (updateId);
+      HStr_action : constant WinRt.HString := To_HString (action);
+   begin
+      Hr := this.m_IWindowsUpdateAdministrator.all.RevokeWindowsUpdateActionApproval (HStr_updateId, HStr_action);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_updateId);
+      tmp := WindowsDeleteString (HStr_action);
+   end;
+
+   procedure ApproveWindowsUpdate
+   (
+      this : in out WindowsUpdateAdministrator;
+      updateId : WinRt.WString;
+      approvalData : Windows.Management.Update.WindowsUpdateApprovalData'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_updateId : constant WinRt.HString := To_HString (updateId);
+   begin
+      Hr := this.m_IWindowsUpdateAdministrator.all.ApproveWindowsUpdate (HStr_updateId, approvalData.m_IWindowsUpdateApprovalData.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_updateId);
+   end;
+
+   procedure RevokeWindowsUpdateApproval
+   (
+      this : in out WindowsUpdateAdministrator;
+      updateId : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_updateId : constant WinRt.HString := To_HString (updateId);
+   begin
+      Hr := this.m_IWindowsUpdateAdministrator.all.RevokeWindowsUpdateApproval (HStr_updateId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_updateId);
+   end;
+
+   function GetUpdates
+   (
+      this : in out WindowsUpdateAdministrator
+   )
+   return IVectorView_IWindowsUpdate.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IWindowsUpdate.Kind;
+   begin
+      Hr := this.m_IWindowsUpdateAdministrator.all.GetUpdates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IWindowsUpdate (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateApprovalData
+
+   procedure Initialize (this : in out WindowsUpdateApprovalData) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateApprovalData) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateApprovalData, IWindowsUpdateApprovalData_Ptr);
+   begin
+      if this.m_IWindowsUpdateApprovalData /= null then
+         if this.m_IWindowsUpdateApprovalData.all /= null then
+            temp := this.m_IWindowsUpdateApprovalData.all.Release;
+            Free (this.m_IWindowsUpdateApprovalData);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsUpdateApprovalData
+
+   function Constructor return WindowsUpdateApprovalData is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsUpdateApprovalData");
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsUpdateApprovalData;
+   begin
+      return RetVal : WindowsUpdateApprovalData do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IWindowsUpdateApprovalData := new Windows.Management.Update.IWindowsUpdateApprovalData;
+            Retval.m_IWindowsUpdateApprovalData.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateApprovalData
+
+   function get_Seeker
+   (
+      this : in out WindowsUpdateApprovalData
+   )
+   return IReference_Boolean.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Boolean.Kind;
+   begin
+      Hr := this.m_IWindowsUpdateApprovalData.all.get_Seeker (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Boolean (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_Seeker
+   (
+      this : in out WindowsUpdateApprovalData;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateApprovalData.all.put_Seeker (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_AllowDownloadOnMetered
+   (
+      this : in out WindowsUpdateApprovalData
+   )
+   return IReference_Boolean.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Boolean.Kind;
+   begin
+      Hr := this.m_IWindowsUpdateApprovalData.all.get_AllowDownloadOnMetered (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Boolean (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_AllowDownloadOnMetered
+   (
+      this : in out WindowsUpdateApprovalData;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateApprovalData.all.put_AllowDownloadOnMetered (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ComplianceDeadlineInDays
+   (
+      this : in out WindowsUpdateApprovalData
+   )
+   return IReference_Int32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Int32.Kind;
+   begin
+      Hr := this.m_IWindowsUpdateApprovalData.all.get_ComplianceDeadlineInDays (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_ComplianceDeadlineInDays
+   (
+      this : in out WindowsUpdateApprovalData;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateApprovalData.all.put_ComplianceDeadlineInDays (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ComplianceGracePeriodInDays
+   (
+      this : in out WindowsUpdateApprovalData
+   )
+   return IReference_Int32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Int32.Kind;
+   begin
+      Hr := this.m_IWindowsUpdateApprovalData.all.get_ComplianceGracePeriodInDays (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_ComplianceGracePeriodInDays
+   (
+      this : in out WindowsUpdateApprovalData;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateApprovalData.all.put_ComplianceGracePeriodInDays (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_OptOutOfAutoReboot
+   (
+      this : in out WindowsUpdateApprovalData
+   )
+   return IReference_Boolean.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Boolean.Kind;
+   begin
+      Hr := this.m_IWindowsUpdateApprovalData.all.get_OptOutOfAutoReboot (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Boolean (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_OptOutOfAutoReboot
+   (
+      this : in out WindowsUpdateApprovalData;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateApprovalData.all.put_OptOutOfAutoReboot (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateAttentionRequiredInfo
+
+   procedure Initialize (this : in out WindowsUpdateAttentionRequiredInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateAttentionRequiredInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateAttentionRequiredInfo, IWindowsUpdateAttentionRequiredInfo_Ptr);
+   begin
+      if this.m_IWindowsUpdateAttentionRequiredInfo /= null then
+         if this.m_IWindowsUpdateAttentionRequiredInfo.all /= null then
+            temp := this.m_IWindowsUpdateAttentionRequiredInfo.all.Release;
+            Free (this.m_IWindowsUpdateAttentionRequiredInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateAttentionRequiredInfo
+
+   function get_Reason
+   (
+      this : in out WindowsUpdateAttentionRequiredInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAttentionRequiredReason is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsUpdateAttentionRequiredReason;
+   begin
+      Hr := this.m_IWindowsUpdateAttentionRequiredInfo.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Timestamp
+   (
+      this : in out WindowsUpdateAttentionRequiredInfo
+   )
+   return IReference_DateTime.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_DateTime.Kind;
+   begin
+      Hr := this.m_IWindowsUpdateAttentionRequiredInfo.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateAttentionRequiredReasonChangedEventArgs
+
+   procedure Initialize (this : in out WindowsUpdateAttentionRequiredReasonChangedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateAttentionRequiredReasonChangedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateAttentionRequiredReasonChangedEventArgs, IWindowsUpdateAttentionRequiredReasonChangedEventArgs_Ptr);
+   begin
+      if this.m_IWindowsUpdateAttentionRequiredReasonChangedEventArgs /= null then
+         if this.m_IWindowsUpdateAttentionRequiredReasonChangedEventArgs.all /= null then
+            temp := this.m_IWindowsUpdateAttentionRequiredReasonChangedEventArgs.all.Release;
+            Free (this.m_IWindowsUpdateAttentionRequiredReasonChangedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateAttentionRequiredReasonChangedEventArgs
+
+   function get_Update
+   (
+      this : in out WindowsUpdateAttentionRequiredReasonChangedEventArgs
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdate'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsUpdate;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsUpdate do
+         Hr := this.m_IWindowsUpdateAttentionRequiredReasonChangedEventArgs.all.get_Update (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsUpdate := new Windows.Management.Update.IWindowsUpdate;
+         Retval.m_IWindowsUpdate.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_Reason
+   (
+      this : in out WindowsUpdateAttentionRequiredReasonChangedEventArgs
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAttentionRequiredReason is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsUpdateAttentionRequiredReason;
+   begin
+      Hr := this.m_IWindowsUpdateAttentionRequiredReasonChangedEventArgs.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateGetAdministratorResult
+
+   procedure Initialize (this : in out WindowsUpdateGetAdministratorResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateGetAdministratorResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateGetAdministratorResult, IWindowsUpdateGetAdministratorResult_Ptr);
+   begin
+      if this.m_IWindowsUpdateGetAdministratorResult /= null then
+         if this.m_IWindowsUpdateGetAdministratorResult.all /= null then
+            temp := this.m_IWindowsUpdateGetAdministratorResult.all.Release;
+            Free (this.m_IWindowsUpdateGetAdministratorResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateGetAdministratorResult
+
+   function get_Administrator
+   (
+      this : in out WindowsUpdateGetAdministratorResult
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAdministrator'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsUpdateAdministrator;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsUpdateAdministrator do
+         Hr := this.m_IWindowsUpdateGetAdministratorResult.all.get_Administrator (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsUpdateAdministrator := new Windows.Management.Update.IWindowsUpdateAdministrator;
+         Retval.m_IWindowsUpdateAdministrator.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_Status
+   (
+      this : in out WindowsUpdateGetAdministratorResult
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAdministratorStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.WindowsUpdateAdministratorStatus;
+   begin
+      Hr := this.m_IWindowsUpdateGetAdministratorResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateItem
+
+   procedure Initialize (this : in out WindowsUpdateItem) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateItem) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateItem, IWindowsUpdateItem_Ptr);
+   begin
+      if this.m_IWindowsUpdateItem /= null then
+         if this.m_IWindowsUpdateItem.all /= null then
+            temp := this.m_IWindowsUpdateItem.all.Release;
+            Free (this.m_IWindowsUpdateItem);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateItem
+
+   function get_ProviderId
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdateItem.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_UpdateId
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdateItem.all.get_UpdateId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Timestamp
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.Windows.Foundation.DateTime is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+   begin
+      Hr := this.m_IWindowsUpdateItem.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Title
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdateItem.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Description
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdateItem.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_MoreInfoUrl
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IWindowsUpdateItem.all.get_MoreInfoUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_Category
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdateItem.all.get_Category (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Operation
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdateItem.all.get_Operation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateManager
+
+   procedure Initialize (this : in out WindowsUpdateManager) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateManager) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateManager, IWindowsUpdateManager_Ptr);
+   begin
+      if this.m_IWindowsUpdateManager /= null then
+         if this.m_IWindowsUpdateManager.all /= null then
+            temp := this.m_IWindowsUpdateManager.all.Release;
+            Free (this.m_IWindowsUpdateManager);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsUpdateManager
+
+   function Constructor
+   (
+      clientId : WinRt.WString
+   )
+   return WindowsUpdateManager is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsUpdateManager");
+      m_Factory    : access IWindowsUpdateManagerFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsUpdateManager;
+      HStr_clientId : constant WinRt.HString := To_HString (clientId);
+   begin
+      return RetVal : WindowsUpdateManager do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsUpdateManagerFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (HStr_clientId, m_ComRetVal'Access);
+            Retval.m_IWindowsUpdateManager := new Windows.Management.Update.IWindowsUpdateManager;
+            Retval.m_IWindowsUpdateManager.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_clientId);
+      end return;
+   end;
+
+   function Constructor
+   (
+      clientId : WinRt.WString;
+      providerIdFilter : WinRt.HString_Array
+   )
+   return WindowsUpdateManager is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsUpdateManager");
+      m_Factory    : access IWindowsUpdateManagerFactory2_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsUpdateManager;
+      HStr_clientId : constant WinRt.HString := To_HString (clientId);
+      function Convert_providerIdFilter is new Ada.Unchecked_Conversion (Address, WinRt.HString_Ptr);
+   begin
+      return RetVal : WindowsUpdateManager do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsUpdateManagerFactory2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (HStr_clientId, WinRt.UInt32(providerIdFilter'Length), Convert_providerIdFilter (providerIdFilter (providerIdFilter'First)'Address), m_ComRetVal'Access);
+            Retval.m_IWindowsUpdateManager := new Windows.Management.Update.IWindowsUpdateManager;
+            Retval.m_IWindowsUpdateManager.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_clientId);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateManager
+
+   function add_ScanningStateChanged
+   (
+      this : in out WindowsUpdateManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.add_ScanningStateChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ScanningStateChanged
+   (
+      this : in out WindowsUpdateManager;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.remove_ScanningStateChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_WorkingStateChanged
+   (
+      this : in out WindowsUpdateManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.add_WorkingStateChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_WorkingStateChanged
+   (
+      this : in out WindowsUpdateManager;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.remove_WorkingStateChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_ProgressChanged
+   (
+      this : in out WindowsUpdateManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.add_ProgressChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ProgressChanged
+   (
+      this : in out WindowsUpdateManager;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.remove_ProgressChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_AttentionRequiredReasonChanged
+   (
+      this : in out WindowsUpdateManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.add_AttentionRequiredReasonChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_AttentionRequiredReasonChanged
+   (
+      this : in out WindowsUpdateManager;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.remove_AttentionRequiredReasonChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_ActionCompleted
+   (
+      this : in out WindowsUpdateManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.add_ActionCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ActionCompleted
+   (
+      this : in out WindowsUpdateManager;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.remove_ActionCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_ScanCompleted
+   (
+      this : in out WindowsUpdateManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.add_ScanCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ScanCompleted
+   (
+      this : in out WindowsUpdateManager;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.remove_ScanCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IsScanning
+   (
+      this : in out WindowsUpdateManager
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.get_IsScanning (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsWorking
+   (
+      this : in out WindowsUpdateManager
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.get_IsWorking (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_LastSuccessfulScanTimestamp
+   (
+      this : in out WindowsUpdateManager
+   )
+   return IReference_DateTime.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_DateTime.Kind;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.get_LastSuccessfulScanTimestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetApplicableUpdates
+   (
+      this : in out WindowsUpdateManager
+   )
+   return IVectorView_IWindowsUpdate.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IWindowsUpdate.Kind;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.GetApplicableUpdates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IWindowsUpdate (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetMostRecentCompletedUpdates
+   (
+      this : in out WindowsUpdateManager;
+      count : WinRt.Int32
+   )
+   return IVectorView_IWindowsUpdateItem.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IWindowsUpdateItem.Kind;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.GetMostRecentCompletedUpdates (count, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IWindowsUpdateItem (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetMostRecentCompletedUpdatesAsync
+   (
+      this : in out WindowsUpdateManager;
+      count : WinRt.Int32
+   )
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_GenericObject.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_GenericObject.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.GenericObject;
+      m_IID            : aliased WinRt.IID := (1877410127, 17178, 20995, (149, 116, 82, 70, 252, 73, 214, 187 )); -- GenericObject;
+      m_HandlerIID     : aliased WinRt.IID := (2508913601, 21723, 21330, (168, 153, 212, 252, 160, 68, 166, 212 ));
+      m_Handler        : AsyncOperationCompletedHandler_GenericObject.Kind := new AsyncOperationCompletedHandler_GenericObject.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_GenericObject.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_GenericObject.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.GetMostRecentCompletedUpdatesAsync (count, m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   procedure StartScan
+   (
+      this : in out WindowsUpdateManager;
+      userInitiated : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateManager.all.StartScan (userInitiated);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function GetProvider
+   (
+      this : in out WindowsUpdateManager;
+      id : WinRt.WString
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateProvider'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Update.IWindowsUpdateManager2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateProvider;
+      HStr_id : constant WinRt.HString := To_HString (id);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Update.IWindowsUpdateManager_Interface, WinRt.Windows.Management.Update.IWindowsUpdateManager2, WinRt.Windows.Management.Update.IID_IWindowsUpdateManager2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateProvider do
+         m_Interface := QInterface (this.m_IWindowsUpdateManager.all);
+         Hr := m_Interface.GetProvider (HStr_id, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateProvider := new Windows.Management.Update.IWindowsSoftwareUpdateProvider;
+         Retval.m_IWindowsSoftwareUpdateProvider.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_id);
+      end return;
+   end;
+
+   function get_ProviderIds
+   (
+      this : in out WindowsUpdateManager
+   )
+   return WinRt.WString_Array is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Update.IWindowsUpdateManager2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString_Ptr;
+      m_ComRetValSize  : aliased WinRt.UInt32 := 0;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Update.IWindowsUpdateManager_Interface, WinRt.Windows.Management.Update.IWindowsUpdateManager2, WinRt.Windows.Management.Update.IID_IWindowsUpdateManager2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IWindowsUpdateManager.all);
+      Hr := m_Interface.get_ProviderIds (m_ComRetValSize'Access, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      declare
+         ArrayRetVal : WinRt.WString_Array (1..Integer(m_ComRetValSize));
+         function To_Ada_HString is new To_Ada_Type (WinRt.HString, WinRt.HString_Ptr); 
+      begin
+         for i in ArrayRetVal'Range loop
+            ArrayRetval (i) := To_Ada (To_Ada_HString (m_ComRetVal, i));
+         end loop;
+         tmp := WindowsDeleteString (m_ComRetVal.all);
+         return ArrayRetVal;
+      end;
+   end;
+
+   function GetApplicableSoftwareUpdates
+   (
+      this : in out WindowsUpdateManager
+   )
+   return IVectorView_IWindowsSoftwareUpdate.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Update.IWindowsUpdateManager2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IWindowsSoftwareUpdate.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Update.IWindowsUpdateManager_Interface, WinRt.Windows.Management.Update.IWindowsUpdateManager2, WinRt.Windows.Management.Update.IID_IWindowsUpdateManager2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IWindowsUpdateManager.all);
+      Hr := m_Interface.GetApplicableSoftwareUpdates (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IWindowsSoftwareUpdate (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function PerformScan
+   (
+      this : in out WindowsUpdateManager;
+      options : Windows.Management.Update.WindowsUpdateManagerScanOptions'Class
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateScanResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Update.IWindowsUpdateManager2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsSoftwareUpdateScanResult;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Update.IWindowsUpdateManager_Interface, WinRt.Windows.Management.Update.IWindowsUpdateManager2, WinRt.Windows.Management.Update.IID_IWindowsUpdateManager2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsSoftwareUpdateScanResult do
+         m_Interface := QInterface (this.m_IWindowsUpdateManager.all);
+         Hr := m_Interface.PerformScan (options.m_IWindowsUpdateManagerScanOptions.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsSoftwareUpdateScanResult := new Windows.Management.Update.IWindowsSoftwareUpdateScanResult;
+         Retval.m_IWindowsSoftwareUpdateScanResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateManagerScanOptions
+
+   procedure Initialize (this : in out WindowsUpdateManagerScanOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateManagerScanOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateManagerScanOptions, IWindowsUpdateManagerScanOptions_Ptr);
+   begin
+      if this.m_IWindowsUpdateManagerScanOptions /= null then
+         if this.m_IWindowsUpdateManagerScanOptions.all /= null then
+            temp := this.m_IWindowsUpdateManagerScanOptions.all.Release;
+            Free (this.m_IWindowsUpdateManagerScanOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsUpdateManagerScanOptions
+
+   function Constructor return WindowsUpdateManagerScanOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsUpdateManagerScanOptions");
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsUpdateManagerScanOptions;
+   begin
+      return RetVal : WindowsUpdateManagerScanOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IWindowsUpdateManagerScanOptions := new Windows.Management.Update.IWindowsUpdateManagerScanOptions;
+            Retval.m_IWindowsUpdateManagerScanOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
+      isUserInitiated : WinRt.Boolean
+   )
+   return WindowsUpdateManagerScanOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsUpdateManagerScanOptions");
+      m_Factory    : access IWindowsUpdateManagerScanOptionsFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsUpdateManagerScanOptions;
+   begin
+      return RetVal : WindowsUpdateManagerScanOptions do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsUpdateManagerScanOptionsFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (isUserInitiated, m_ComRetVal'Access);
+            Retval.m_IWindowsUpdateManagerScanOptions := new Windows.Management.Update.IWindowsUpdateManagerScanOptions;
+            Retval.m_IWindowsUpdateManagerScanOptions.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateManagerScanOptions
+
+   function get_IsUserInitiated
+   (
+      this : in out WindowsUpdateManagerScanOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdateManagerScanOptions.all.get_IsUserInitiated (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsUserInitiated
+   (
+      this : in out WindowsUpdateManagerScanOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateManagerScanOptions.all.put_IsUserInitiated (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_AllowBypassThrottling
+   (
+      this : in out WindowsUpdateManagerScanOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdateManagerScanOptions.all.get_AllowBypassThrottling (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_AllowBypassThrottling
+   (
+      this : in out WindowsUpdateManagerScanOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateManagerScanOptions.all.put_AllowBypassThrottling (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_PerformUpdateActions
+   (
+      this : in out WindowsUpdateManagerScanOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdateManagerScanOptions.all.get_PerformUpdateActions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_PerformUpdateActions
+   (
+      this : in out WindowsUpdateManagerScanOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateManagerScanOptions.all.put_PerformUpdateActions (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateProgressChangedEventArgs
+
+   procedure Initialize (this : in out WindowsUpdateProgressChangedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateProgressChangedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateProgressChangedEventArgs, IWindowsUpdateProgressChangedEventArgs_Ptr);
+   begin
+      if this.m_IWindowsUpdateProgressChangedEventArgs /= null then
+         if this.m_IWindowsUpdateProgressChangedEventArgs.all /= null then
+            temp := this.m_IWindowsUpdateProgressChangedEventArgs.all.Release;
+            Free (this.m_IWindowsUpdateProgressChangedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateProgressChangedEventArgs
+
+   function get_Update
+   (
+      this : in out WindowsUpdateProgressChangedEventArgs
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdate'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsUpdate;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsUpdate do
+         Hr := this.m_IWindowsUpdateProgressChangedEventArgs.all.get_Update (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsUpdate := new Windows.Management.Update.IWindowsUpdate;
+         Retval.m_IWindowsUpdate.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_ActionProgress
+   (
+      this : in out WindowsUpdateProgressChangedEventArgs
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateActionProgress'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Update.IWindowsUpdateActionProgress;
+   begin
+      return RetVal : WinRt.Windows.Management.Update.WindowsUpdateActionProgress do
+         Hr := this.m_IWindowsUpdateProgressChangedEventArgs.all.get_ActionProgress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWindowsUpdateActionProgress := new Windows.Management.Update.IWindowsUpdateActionProgress;
+         Retval.m_IWindowsUpdateActionProgress.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateRestartRequestOptions
+
+   procedure Initialize (this : in out WindowsUpdateRestartRequestOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateRestartRequestOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateRestartRequestOptions, IWindowsUpdateRestartRequestOptions_Ptr);
+   begin
+      if this.m_IWindowsUpdateRestartRequestOptions /= null then
+         if this.m_IWindowsUpdateRestartRequestOptions.all /= null then
+            temp := this.m_IWindowsUpdateRestartRequestOptions.all.Release;
+            Free (this.m_IWindowsUpdateRestartRequestOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsUpdateRestartRequestOptions
+
+   function Constructor
+   (
+      title : WinRt.WString;
+      description : WinRt.WString;
+      moreInfoUrl : Windows.Foundation.Uri'Class;
+      complianceDeadlineInDays : WinRt.Int32;
+      complianceGracePeriodInDays : WinRt.Int32
+   )
+   return WindowsUpdateRestartRequestOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsUpdateRestartRequestOptions");
+      m_Factory    : access IWindowsUpdateRestartRequestOptionsFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsUpdateRestartRequestOptions;
+      HStr_title : constant WinRt.HString := To_HString (title);
+      HStr_description : constant WinRt.HString := To_HString (description);
+   begin
+      return RetVal : WindowsUpdateRestartRequestOptions do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsUpdateRestartRequestOptionsFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (HStr_title, HStr_description, moreInfoUrl.m_IUriRuntimeClass.all, complianceDeadlineInDays, complianceGracePeriodInDays, m_ComRetVal'Access);
+            Retval.m_IWindowsUpdateRestartRequestOptions := new Windows.Management.Update.IWindowsUpdateRestartRequestOptions;
+            Retval.m_IWindowsUpdateRestartRequestOptions.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_title);
+         tmp := WindowsDeleteString (HStr_description);
+      end return;
+   end;
+
+   function Constructor return WindowsUpdateRestartRequestOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Update.WindowsUpdateRestartRequestOptions");
+      m_ComRetVal  : aliased Windows.Management.Update.IWindowsUpdateRestartRequestOptions;
+   begin
+      return RetVal : WindowsUpdateRestartRequestOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IWindowsUpdateRestartRequestOptions := new Windows.Management.Update.IWindowsUpdateRestartRequestOptions;
+            Retval.m_IWindowsUpdateRestartRequestOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateRestartRequestOptions
+
+   function get_Title
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdateRestartRequestOptions.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Title
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IWindowsUpdateRestartRequestOptions.all.put_Title (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_Description
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdateRestartRequestOptions.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Description
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IWindowsUpdateRestartRequestOptions.all.put_Description (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_MoreInfoUrl
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IWindowsUpdateRestartRequestOptions.all.get_MoreInfoUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_MoreInfoUrl
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : Windows.Foundation.Uri'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateRestartRequestOptions.all.put_MoreInfoUrl (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ComplianceDeadlineInDays
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IWindowsUpdateRestartRequestOptions.all.get_ComplianceDeadlineInDays (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_ComplianceDeadlineInDays
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : WinRt.Int32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateRestartRequestOptions.all.put_ComplianceDeadlineInDays (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ComplianceGracePeriodInDays
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IWindowsUpdateRestartRequestOptions.all.get_ComplianceGracePeriodInDays (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_ComplianceGracePeriodInDays
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : WinRt.Int32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateRestartRequestOptions.all.put_ComplianceGracePeriodInDays (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_OrganizationName
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdateRestartRequestOptions.all.get_OrganizationName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_OrganizationName
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IWindowsUpdateRestartRequestOptions.all.put_OrganizationName (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_OptOutOfAutoReboot
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdateRestartRequestOptions.all.get_OptOutOfAutoReboot (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_OptOutOfAutoReboot
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWindowsUpdateRestartRequestOptions.all.put_OptOutOfAutoReboot (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateScanCompletedEventArgs
+
+   procedure Initialize (this : in out WindowsUpdateScanCompletedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WindowsUpdateScanCompletedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWindowsUpdateScanCompletedEventArgs, IWindowsUpdateScanCompletedEventArgs_Ptr);
+   begin
+      if this.m_IWindowsUpdateScanCompletedEventArgs /= null then
+         if this.m_IWindowsUpdateScanCompletedEventArgs.all /= null then
+            temp := this.m_IWindowsUpdateScanCompletedEventArgs.all.Release;
+            Free (this.m_IWindowsUpdateScanCompletedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateScanCompletedEventArgs
+
+   function get_ProviderId
+   (
+      this : in out WindowsUpdateScanCompletedEventArgs
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IWindowsUpdateScanCompletedEventArgs.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Succeeded
+   (
+      this : in out WindowsUpdateScanCompletedEventArgs
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWindowsUpdateScanCompletedEventArgs.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsUpdateScanCompletedEventArgs
+   )
+   return WinRt.Windows.Foundation.HResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.HResult;
+   begin
+      Hr := this.m_IWindowsUpdateScanCompletedEventArgs.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Updates
+   (
+      this : in out WindowsUpdateScanCompletedEventArgs
+   )
+   return IVectorView_IWindowsUpdate.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IWindowsUpdate.Kind;
+   begin
+      Hr := this.m_IWindowsUpdateScanCompletedEventArgs.all.get_Updates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IWindowsUpdate (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
    end;
 
 end WinRt.Windows.Management.Update;

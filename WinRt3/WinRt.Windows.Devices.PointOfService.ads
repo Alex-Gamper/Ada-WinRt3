@@ -48,6 +48,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IBarcodeScanner2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScanner2 is access all IBarcodeScanner2_Interface'Class;
+   type IBarcodeScanner2_Ptr is access all IBarcodeScanner2;
 
    type IBarcodeScannerCapabilities_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerCapabilities is access all IBarcodeScannerCapabilities_Interface'Class;
@@ -55,9 +56,11 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IBarcodeScannerCapabilities1_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerCapabilities1 is access all IBarcodeScannerCapabilities1_Interface'Class;
+   type IBarcodeScannerCapabilities1_Ptr is access all IBarcodeScannerCapabilities1;
 
    type IBarcodeScannerCapabilities2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerCapabilities2 is access all IBarcodeScannerCapabilities2_Interface'Class;
+   type IBarcodeScannerCapabilities2_Ptr is access all IBarcodeScannerCapabilities2;
 
    type IBarcodeScannerDataReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerDataReceivedEventArgs is access all IBarcodeScannerDataReceivedEventArgs_Interface'Class;
@@ -77,12 +80,15 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IBarcodeScannerReportFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerReportFactory is access all IBarcodeScannerReportFactory_Interface'Class;
+   type IBarcodeScannerReportFactory_Ptr is access all IBarcodeScannerReportFactory;
 
    type IBarcodeScannerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerStatics is access all IBarcodeScannerStatics_Interface'Class;
+   type IBarcodeScannerStatics_Ptr is access all IBarcodeScannerStatics;
 
    type IBarcodeScannerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerStatics2 is access all IBarcodeScannerStatics2_Interface'Class;
+   type IBarcodeScannerStatics2_Ptr is access all IBarcodeScannerStatics2;
 
    type IBarcodeScannerStatusUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerStatusUpdatedEventArgs is access all IBarcodeScannerStatusUpdatedEventArgs_Interface'Class;
@@ -90,9 +96,11 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IBarcodeSymbologiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeSymbologiesStatics is access all IBarcodeSymbologiesStatics_Interface'Class;
+   type IBarcodeSymbologiesStatics_Ptr is access all IBarcodeSymbologiesStatics;
 
    type IBarcodeSymbologiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeSymbologiesStatics2 is access all IBarcodeSymbologiesStatics2_Interface'Class;
+   type IBarcodeSymbologiesStatics2_Ptr is access all IBarcodeSymbologiesStatics2;
 
    type IBarcodeSymbologyAttributes_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeSymbologyAttributes is access all IBarcodeSymbologyAttributes_Interface'Class;
@@ -120,9 +128,11 @@ package WinRt.Windows.Devices.PointOfService is
 
    type ICashDrawerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICashDrawerStatics is access all ICashDrawerStatics_Interface'Class;
+   type ICashDrawerStatics_Ptr is access all ICashDrawerStatics;
 
    type ICashDrawerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ICashDrawerStatics2 is access all ICashDrawerStatics2_Interface'Class;
+   type ICashDrawerStatics2_Ptr is access all ICashDrawerStatics2;
 
    type ICashDrawerStatus_Interface is interface and WinRt.IInspectable_Interface;
    type ICashDrawerStatus is access all ICashDrawerStatus_Interface'Class;
@@ -138,15 +148,19 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IClaimedBarcodeScanner1_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedBarcodeScanner1 is access all IClaimedBarcodeScanner1_Interface'Class;
+   type IClaimedBarcodeScanner1_Ptr is access all IClaimedBarcodeScanner1;
 
    type IClaimedBarcodeScanner2_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedBarcodeScanner2 is access all IClaimedBarcodeScanner2_Interface'Class;
+   type IClaimedBarcodeScanner2_Ptr is access all IClaimedBarcodeScanner2;
 
    type IClaimedBarcodeScanner3_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedBarcodeScanner3 is access all IClaimedBarcodeScanner3_Interface'Class;
+   type IClaimedBarcodeScanner3_Ptr is access all IClaimedBarcodeScanner3;
 
    type IClaimedBarcodeScanner4_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedBarcodeScanner4 is access all IClaimedBarcodeScanner4_Interface'Class;
+   type IClaimedBarcodeScanner4_Ptr is access all IClaimedBarcodeScanner4;
 
    type IClaimedBarcodeScannerClosedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedBarcodeScannerClosedEventArgs is access all IClaimedBarcodeScannerClosedEventArgs_Interface'Class;
@@ -158,6 +172,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IClaimedCashDrawer2_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedCashDrawer2 is access all IClaimedCashDrawer2_Interface'Class;
+   type IClaimedCashDrawer2_Ptr is access all IClaimedCashDrawer2;
 
    type IClaimedCashDrawerClosedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedCashDrawerClosedEventArgs is access all IClaimedCashDrawerClosedEventArgs_Interface'Class;
@@ -173,9 +188,11 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IClaimedLineDisplay2_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedLineDisplay2 is access all IClaimedLineDisplay2_Interface'Class;
+   type IClaimedLineDisplay2_Ptr is access all IClaimedLineDisplay2;
 
    type IClaimedLineDisplay3_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedLineDisplay3 is access all IClaimedLineDisplay3_Interface'Class;
+   type IClaimedLineDisplay3_Ptr is access all IClaimedLineDisplay3;
 
    type IClaimedLineDisplayClosedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedLineDisplayClosedEventArgs is access all IClaimedLineDisplayClosedEventArgs_Interface'Class;
@@ -183,6 +200,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IClaimedLineDisplayStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedLineDisplayStatics is access all IClaimedLineDisplayStatics_Interface'Class;
+   type IClaimedLineDisplayStatics_Ptr is access all IClaimedLineDisplayStatics;
 
    type IClaimedMagneticStripeReader_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedMagneticStripeReader is access all IClaimedMagneticStripeReader_Interface'Class;
@@ -190,6 +208,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IClaimedMagneticStripeReader2_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedMagneticStripeReader2 is access all IClaimedMagneticStripeReader2_Interface'Class;
+   type IClaimedMagneticStripeReader2_Ptr is access all IClaimedMagneticStripeReader2;
 
    type IClaimedMagneticStripeReaderClosedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedMagneticStripeReaderClosedEventArgs is access all IClaimedMagneticStripeReaderClosedEventArgs_Interface'Class;
@@ -201,6 +220,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IClaimedPosPrinter2_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedPosPrinter2 is access all IClaimedPosPrinter2_Interface'Class;
+   type IClaimedPosPrinter2_Ptr is access all IClaimedPosPrinter2;
 
    type IClaimedPosPrinterClosedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IClaimedPosPrinterClosedEventArgs is access all IClaimedPosPrinterClosedEventArgs_Interface'Class;
@@ -216,15 +236,19 @@ package WinRt.Windows.Devices.PointOfService is
 
    type ICommonClaimedPosPrinterStation_Interface is interface and WinRt.IInspectable_Interface;
    type ICommonClaimedPosPrinterStation is access all ICommonClaimedPosPrinterStation_Interface'Class;
+   type ICommonClaimedPosPrinterStation_Ptr is access all ICommonClaimedPosPrinterStation;
 
    type ICommonPosPrintStationCapabilities_Interface is interface and WinRt.IInspectable_Interface;
    type ICommonPosPrintStationCapabilities is access all ICommonPosPrintStationCapabilities_Interface'Class;
+   type ICommonPosPrintStationCapabilities_Ptr is access all ICommonPosPrintStationCapabilities;
 
    type ICommonReceiptSlipCapabilities_Interface is interface and WinRt.IInspectable_Interface;
    type ICommonReceiptSlipCapabilities is access all ICommonReceiptSlipCapabilities_Interface'Class;
+   type ICommonReceiptSlipCapabilities_Ptr is access all ICommonReceiptSlipCapabilities;
 
    type IJournalPrintJob_Interface is interface and WinRt.IInspectable_Interface;
    type IJournalPrintJob is access all IJournalPrintJob_Interface'Class;
+   type IJournalPrintJob_Ptr is access all IJournalPrintJob;
 
    type IJournalPrinterCapabilities_Interface is interface and WinRt.IInspectable_Interface;
    type IJournalPrinterCapabilities is access all IJournalPrinterCapabilities_Interface'Class;
@@ -232,6 +256,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IJournalPrinterCapabilities2_Interface is interface and WinRt.IInspectable_Interface;
    type IJournalPrinterCapabilities2 is access all IJournalPrinterCapabilities2_Interface'Class;
+   type IJournalPrinterCapabilities2_Ptr is access all IJournalPrinterCapabilities2;
 
    type ILineDisplay_Interface is interface and WinRt.IInspectable_Interface;
    type ILineDisplay is access all ILineDisplay_Interface'Class;
@@ -239,6 +264,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    type ILineDisplay2_Interface is interface and WinRt.IInspectable_Interface;
    type ILineDisplay2 is access all ILineDisplay2_Interface'Class;
+   type ILineDisplay2_Ptr is access all ILineDisplay2;
 
    type ILineDisplayAttributes_Interface is interface and WinRt.IInspectable_Interface;
    type ILineDisplayAttributes is access all ILineDisplayAttributes_Interface'Class;
@@ -266,9 +292,11 @@ package WinRt.Windows.Devices.PointOfService is
 
    type ILineDisplayStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILineDisplayStatics is access all ILineDisplayStatics_Interface'Class;
+   type ILineDisplayStatics_Ptr is access all ILineDisplayStatics;
 
    type ILineDisplayStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ILineDisplayStatics2 is access all ILineDisplayStatics2_Interface'Class;
+   type ILineDisplayStatics2_Ptr is access all ILineDisplayStatics2;
 
    type ILineDisplayStatisticsCategorySelector_Interface is interface and WinRt.IInspectable_Interface;
    type ILineDisplayStatisticsCategorySelector is access all ILineDisplayStatisticsCategorySelector_Interface'Class;
@@ -288,6 +316,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    type ILineDisplayWindow2_Interface is interface and WinRt.IInspectable_Interface;
    type ILineDisplayWindow2 is access all ILineDisplayWindow2_Interface'Class;
+   type ILineDisplayWindow2_Ptr is access all ILineDisplayWindow2;
 
    type IMagneticStripeReader_Interface is interface and WinRt.IInspectable_Interface;
    type IMagneticStripeReader is access all IMagneticStripeReader_Interface'Class;
@@ -307,9 +336,11 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IMagneticStripeReaderCardTypesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMagneticStripeReaderCardTypesStatics is access all IMagneticStripeReaderCardTypesStatics_Interface'Class;
+   type IMagneticStripeReaderCardTypesStatics_Ptr is access all IMagneticStripeReaderCardTypesStatics;
 
    type IMagneticStripeReaderEncryptionAlgorithmsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMagneticStripeReaderEncryptionAlgorithmsStatics is access all IMagneticStripeReaderEncryptionAlgorithmsStatics_Interface'Class;
+   type IMagneticStripeReaderEncryptionAlgorithmsStatics_Ptr is access all IMagneticStripeReaderEncryptionAlgorithmsStatics;
 
    type IMagneticStripeReaderErrorOccurredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMagneticStripeReaderErrorOccurredEventArgs is access all IMagneticStripeReaderErrorOccurredEventArgs_Interface'Class;
@@ -321,9 +352,11 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IMagneticStripeReaderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMagneticStripeReaderStatics is access all IMagneticStripeReaderStatics_Interface'Class;
+   type IMagneticStripeReaderStatics_Ptr is access all IMagneticStripeReaderStatics;
 
    type IMagneticStripeReaderStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMagneticStripeReaderStatics2 is access all IMagneticStripeReaderStatics2_Interface'Class;
+   type IMagneticStripeReaderStatics2_Ptr is access all IMagneticStripeReaderStatics2;
 
    type IMagneticStripeReaderStatusUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMagneticStripeReaderStatusUpdatedEventArgs is access all IMagneticStripeReaderStatusUpdatedEventArgs_Interface'Class;
@@ -343,6 +376,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IPosPrinter2_Interface is interface and WinRt.IInspectable_Interface;
    type IPosPrinter2 is access all IPosPrinter2_Interface'Class;
+   type IPosPrinter2_Ptr is access all IPosPrinter2;
 
    type IPosPrinterCapabilities_Interface is interface and WinRt.IInspectable_Interface;
    type IPosPrinterCapabilities is access all IPosPrinterCapabilities_Interface'Class;
@@ -350,6 +384,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IPosPrinterCharacterSetIdsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPosPrinterCharacterSetIdsStatics is access all IPosPrinterCharacterSetIdsStatics_Interface'Class;
+   type IPosPrinterCharacterSetIdsStatics_Ptr is access all IPosPrinterCharacterSetIdsStatics;
 
    type IPosPrinterFontProperty_Interface is interface and WinRt.IInspectable_Interface;
    type IPosPrinterFontProperty is access all IPosPrinterFontProperty_Interface'Class;
@@ -369,9 +404,11 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IPosPrinterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPosPrinterStatics is access all IPosPrinterStatics_Interface'Class;
+   type IPosPrinterStatics_Ptr is access all IPosPrinterStatics;
 
    type IPosPrinterStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IPosPrinterStatics2 is access all IPosPrinterStatics2_Interface'Class;
+   type IPosPrinterStatics2_Ptr is access all IPosPrinterStatics2;
 
    type IPosPrinterStatus_Interface is interface and WinRt.IInspectable_Interface;
    type IPosPrinterStatus is access all IPosPrinterStatus_Interface'Class;
@@ -391,6 +428,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IReceiptPrintJob2_Interface is interface and WinRt.IInspectable_Interface;
    type IReceiptPrintJob2 is access all IReceiptPrintJob2_Interface'Class;
+   type IReceiptPrintJob2_Ptr is access all IReceiptPrintJob2;
 
    type IReceiptPrinterCapabilities_Interface is interface and WinRt.IInspectable_Interface;
    type IReceiptPrinterCapabilities is access all IReceiptPrinterCapabilities_Interface'Class;
@@ -398,9 +436,11 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IReceiptPrinterCapabilities2_Interface is interface and WinRt.IInspectable_Interface;
    type IReceiptPrinterCapabilities2 is access all IReceiptPrinterCapabilities2_Interface'Class;
+   type IReceiptPrinterCapabilities2_Ptr is access all IReceiptPrinterCapabilities2;
 
    type ISlipPrintJob_Interface is interface and WinRt.IInspectable_Interface;
    type ISlipPrintJob is access all ISlipPrintJob_Interface'Class;
+   type ISlipPrintJob_Ptr is access all ISlipPrintJob;
 
    type ISlipPrinterCapabilities_Interface is interface and WinRt.IInspectable_Interface;
    type ISlipPrinterCapabilities is access all ISlipPrinterCapabilities_Interface'Class;
@@ -408,6 +448,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    type ISlipPrinterCapabilities2_Interface is interface and WinRt.IInspectable_Interface;
    type ISlipPrinterCapabilities2 is access all ISlipPrinterCapabilities2_Interface'Class;
+   type ISlipPrinterCapabilities2_Ptr is access all ISlipPrinterCapabilities2;
 
    type IUnifiedPosErrorData_Interface is interface and WinRt.IInspectable_Interface;
    type IUnifiedPosErrorData is access all IUnifiedPosErrorData_Interface'Class;
@@ -415,6 +456,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    type IUnifiedPosErrorDataFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IUnifiedPosErrorDataFactory is access all IUnifiedPosErrorDataFactory_Interface'Class;
+   type IUnifiedPosErrorDataFactory_Ptr is access all IUnifiedPosErrorDataFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -9447,6 +9489,9 @@ package WinRt.Windows.Devices.PointOfService is
    -----------------------------------------------------------------------------
    -- Static Interfaces for LineDisplay
 
+   function get_StatisticsCategorySelector
+   return WinRt.Windows.Devices.PointOfService.LineDisplayStatisticsCategorySelector;
+
    function FromIdAsync_LineDisplay
    (
       deviceId : WinRt.WString
@@ -9464,9 +9509,6 @@ package WinRt.Windows.Devices.PointOfService is
       connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes
    )
    return WinRt.WString;
-
-   function get_StatisticsCategorySelector
-   return WinRt.Windows.Devices.PointOfService.LineDisplayStatisticsCategorySelector;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for LineDisplay

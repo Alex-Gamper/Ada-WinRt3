@@ -68,6 +68,7 @@ package WinRt.Windows.Media.Casting is
 
    type ICastingDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICastingDeviceStatics is access all ICastingDeviceStatics_Interface'Class;
+   type ICastingDeviceStatics_Ptr is access all ICastingDeviceStatics;
 
    type ICastingSource_Interface is interface and WinRt.IInspectable_Interface;
    type ICastingSource is access all ICastingSource_Interface'Class;

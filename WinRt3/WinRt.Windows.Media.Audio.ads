@@ -57,6 +57,14 @@ package WinRt.Windows.Media.Audio is
    type IAudioDeviceOutputNode is access all IAudioDeviceOutputNode_Interface'Class;
    type IAudioDeviceOutputNode_Ptr is access all IAudioDeviceOutputNode;
 
+   type IAudioEffectsPackConfiguration_Interface is interface and WinRt.IInspectable_Interface;
+   type IAudioEffectsPackConfiguration is access all IAudioEffectsPackConfiguration_Interface'Class;
+   type IAudioEffectsPackConfiguration_Ptr is access all IAudioEffectsPackConfiguration;
+
+   type IAudioEffectsPackConfigurationStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IAudioEffectsPackConfigurationStatics is access all IAudioEffectsPackConfigurationStatics_Interface'Class;
+   type IAudioEffectsPackConfigurationStatics_Ptr is access all IAudioEffectsPackConfigurationStatics;
+
    type IAudioFileInputNode_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioFileInputNode is access all IAudioFileInputNode_Interface'Class;
    type IAudioFileInputNode_Ptr is access all IAudioFileInputNode;
@@ -83,9 +91,11 @@ package WinRt.Windows.Media.Audio is
 
    type IAudioGraph2_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioGraph2 is access all IAudioGraph2_Interface'Class;
+   type IAudioGraph2_Ptr is access all IAudioGraph2;
 
    type IAudioGraph3_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioGraph3 is access all IAudioGraph3_Interface'Class;
+   type IAudioGraph3_Ptr is access all IAudioGraph3;
 
    type IAudioGraphConnection_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioGraphConnection is access all IAudioGraphConnection_Interface'Class;
@@ -97,12 +107,15 @@ package WinRt.Windows.Media.Audio is
 
    type IAudioGraphSettings2_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioGraphSettings2 is access all IAudioGraphSettings2_Interface'Class;
+   type IAudioGraphSettings2_Ptr is access all IAudioGraphSettings2;
 
    type IAudioGraphSettingsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioGraphSettingsFactory is access all IAudioGraphSettingsFactory_Interface'Class;
+   type IAudioGraphSettingsFactory_Ptr is access all IAudioGraphSettingsFactory;
 
    type IAudioGraphStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioGraphStatics is access all IAudioGraphStatics_Interface'Class;
+   type IAudioGraphStatics_Ptr is access all IAudioGraphStatics;
 
    type IAudioGraphUnrecoverableErrorOccurredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioGraphUnrecoverableErrorOccurredEventArgs is access all IAudioGraphUnrecoverableErrorOccurredEventArgs_Interface'Class;
@@ -114,9 +127,11 @@ package WinRt.Windows.Media.Audio is
 
    type IAudioInputNode2_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioInputNode2 is access all IAudioInputNode2_Interface'Class;
+   type IAudioInputNode2_Ptr is access all IAudioInputNode2;
 
    type IAudioNode_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioNode is access all IAudioNode_Interface'Class;
+   type IAudioNode_Ptr is access all IAudioNode;
 
    type IAudioNodeEmitter_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioNodeEmitter is access all IAudioNodeEmitter_Interface'Class;
@@ -124,6 +139,7 @@ package WinRt.Windows.Media.Audio is
 
    type IAudioNodeEmitter2_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioNodeEmitter2 is access all IAudioNodeEmitter2_Interface'Class;
+   type IAudioNodeEmitter2_Ptr is access all IAudioNodeEmitter2;
 
    type IAudioNodeEmitterConeProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioNodeEmitterConeProperties is access all IAudioNodeEmitterConeProperties_Interface'Class;
@@ -135,9 +151,11 @@ package WinRt.Windows.Media.Audio is
 
    type IAudioNodeEmitterDecayModelStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioNodeEmitterDecayModelStatics is access all IAudioNodeEmitterDecayModelStatics_Interface'Class;
+   type IAudioNodeEmitterDecayModelStatics_Ptr is access all IAudioNodeEmitterDecayModelStatics;
 
    type IAudioNodeEmitterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioNodeEmitterFactory is access all IAudioNodeEmitterFactory_Interface'Class;
+   type IAudioNodeEmitterFactory_Ptr is access all IAudioNodeEmitterFactory;
 
    type IAudioNodeEmitterNaturalDecayModelProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioNodeEmitterNaturalDecayModelProperties is access all IAudioNodeEmitterNaturalDecayModelProperties_Interface'Class;
@@ -149,6 +167,7 @@ package WinRt.Windows.Media.Audio is
 
    type IAudioNodeEmitterShapeStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioNodeEmitterShapeStatics is access all IAudioNodeEmitterShapeStatics_Interface'Class;
+   type IAudioNodeEmitterShapeStatics_Ptr is access all IAudioNodeEmitterShapeStatics;
 
    type IAudioNodeListener_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioNodeListener is access all IAudioNodeListener_Interface'Class;
@@ -156,6 +175,7 @@ package WinRt.Windows.Media.Audio is
 
    type IAudioNodeWithListener_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioNodeWithListener is access all IAudioNodeWithListener_Interface'Class;
+   type IAudioNodeWithListener_Ptr is access all IAudioNodeWithListener;
 
    type IAudioPlaybackConnection_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioPlaybackConnection is access all IAudioPlaybackConnection_Interface'Class;
@@ -167,6 +187,7 @@ package WinRt.Windows.Media.Audio is
 
    type IAudioPlaybackConnectionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioPlaybackConnectionStatics is access all IAudioPlaybackConnectionStatics_Interface'Class;
+   type IAudioPlaybackConnectionStatics_Ptr is access all IAudioPlaybackConnectionStatics;
 
    type IAudioStateMonitor_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioStateMonitor is access all IAudioStateMonitor_Interface'Class;
@@ -174,6 +195,7 @@ package WinRt.Windows.Media.Audio is
 
    type IAudioStateMonitorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioStateMonitorStatics is access all IAudioStateMonitorStatics_Interface'Class;
+   type IAudioStateMonitorStatics_Ptr is access all IAudioStateMonitorStatics;
 
    type ICreateAudioDeviceInputNodeResult_Interface is interface and WinRt.IInspectable_Interface;
    type ICreateAudioDeviceInputNodeResult is access all ICreateAudioDeviceInputNodeResult_Interface'Class;
@@ -181,6 +203,7 @@ package WinRt.Windows.Media.Audio is
 
    type ICreateAudioDeviceInputNodeResult2_Interface is interface and WinRt.IInspectable_Interface;
    type ICreateAudioDeviceInputNodeResult2 is access all ICreateAudioDeviceInputNodeResult2_Interface'Class;
+   type ICreateAudioDeviceInputNodeResult2_Ptr is access all ICreateAudioDeviceInputNodeResult2;
 
    type ICreateAudioDeviceOutputNodeResult_Interface is interface and WinRt.IInspectable_Interface;
    type ICreateAudioDeviceOutputNodeResult is access all ICreateAudioDeviceOutputNodeResult_Interface'Class;
@@ -188,6 +211,7 @@ package WinRt.Windows.Media.Audio is
 
    type ICreateAudioDeviceOutputNodeResult2_Interface is interface and WinRt.IInspectable_Interface;
    type ICreateAudioDeviceOutputNodeResult2 is access all ICreateAudioDeviceOutputNodeResult2_Interface'Class;
+   type ICreateAudioDeviceOutputNodeResult2_Ptr is access all ICreateAudioDeviceOutputNodeResult2;
 
    type ICreateAudioFileInputNodeResult_Interface is interface and WinRt.IInspectable_Interface;
    type ICreateAudioFileInputNodeResult is access all ICreateAudioFileInputNodeResult_Interface'Class;
@@ -195,6 +219,7 @@ package WinRt.Windows.Media.Audio is
 
    type ICreateAudioFileInputNodeResult2_Interface is interface and WinRt.IInspectable_Interface;
    type ICreateAudioFileInputNodeResult2 is access all ICreateAudioFileInputNodeResult2_Interface'Class;
+   type ICreateAudioFileInputNodeResult2_Ptr is access all ICreateAudioFileInputNodeResult2;
 
    type ICreateAudioFileOutputNodeResult_Interface is interface and WinRt.IInspectable_Interface;
    type ICreateAudioFileOutputNodeResult is access all ICreateAudioFileOutputNodeResult_Interface'Class;
@@ -202,6 +227,7 @@ package WinRt.Windows.Media.Audio is
 
    type ICreateAudioFileOutputNodeResult2_Interface is interface and WinRt.IInspectable_Interface;
    type ICreateAudioFileOutputNodeResult2 is access all ICreateAudioFileOutputNodeResult2_Interface'Class;
+   type ICreateAudioFileOutputNodeResult2_Ptr is access all ICreateAudioFileOutputNodeResult2;
 
    type ICreateAudioGraphResult_Interface is interface and WinRt.IInspectable_Interface;
    type ICreateAudioGraphResult is access all ICreateAudioGraphResult_Interface'Class;
@@ -209,6 +235,7 @@ package WinRt.Windows.Media.Audio is
 
    type ICreateAudioGraphResult2_Interface is interface and WinRt.IInspectable_Interface;
    type ICreateAudioGraphResult2 is access all ICreateAudioGraphResult2_Interface'Class;
+   type ICreateAudioGraphResult2_Ptr is access all ICreateAudioGraphResult2;
 
    type ICreateMediaSourceAudioInputNodeResult_Interface is interface and WinRt.IInspectable_Interface;
    type ICreateMediaSourceAudioInputNodeResult is access all ICreateMediaSourceAudioInputNodeResult_Interface'Class;
@@ -216,6 +243,7 @@ package WinRt.Windows.Media.Audio is
 
    type ICreateMediaSourceAudioInputNodeResult2_Interface is interface and WinRt.IInspectable_Interface;
    type ICreateMediaSourceAudioInputNodeResult2 is access all ICreateMediaSourceAudioInputNodeResult2_Interface'Class;
+   type ICreateMediaSourceAudioInputNodeResult2_Ptr is access all ICreateMediaSourceAudioInputNodeResult2;
 
    type IEchoEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
    type IEchoEffectDefinition is access all IEchoEffectDefinition_Interface'Class;
@@ -223,6 +251,7 @@ package WinRt.Windows.Media.Audio is
 
    type IEchoEffectDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IEchoEffectDefinitionFactory is access all IEchoEffectDefinitionFactory_Interface'Class;
+   type IEchoEffectDefinitionFactory_Ptr is access all IEchoEffectDefinitionFactory;
 
    type IEqualizerBand_Interface is interface and WinRt.IInspectable_Interface;
    type IEqualizerBand is access all IEqualizerBand_Interface'Class;
@@ -234,6 +263,7 @@ package WinRt.Windows.Media.Audio is
 
    type IEqualizerEffectDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IEqualizerEffectDefinitionFactory is access all IEqualizerEffectDefinitionFactory_Interface'Class;
+   type IEqualizerEffectDefinitionFactory_Ptr is access all IEqualizerEffectDefinitionFactory;
 
    type IFrameInputNodeQuantumStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameInputNodeQuantumStartedEventArgs is access all IFrameInputNodeQuantumStartedEventArgs_Interface'Class;
@@ -245,6 +275,7 @@ package WinRt.Windows.Media.Audio is
 
    type ILimiterEffectDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILimiterEffectDefinitionFactory is access all ILimiterEffectDefinitionFactory_Interface'Class;
+   type ILimiterEffectDefinitionFactory_Ptr is access all ILimiterEffectDefinitionFactory;
 
    type IMediaSourceAudioInputNode_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaSourceAudioInputNode is access all IMediaSourceAudioInputNode_Interface'Class;
@@ -256,6 +287,7 @@ package WinRt.Windows.Media.Audio is
 
    type IReverbEffectDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IReverbEffectDefinitionFactory is access all IReverbEffectDefinitionFactory_Interface'Class;
+   type IReverbEffectDefinitionFactory_Ptr is access all IReverbEffectDefinitionFactory;
 
    type ISetDefaultSpatialAudioFormatResult_Interface is interface and WinRt.IInspectable_Interface;
    type ISetDefaultSpatialAudioFormatResult is access all ISetDefaultSpatialAudioFormatResult_Interface'Class;
@@ -267,6 +299,7 @@ package WinRt.Windows.Media.Audio is
 
    type ISpatialAudioDeviceConfigurationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialAudioDeviceConfigurationStatics is access all ISpatialAudioDeviceConfigurationStatics_Interface'Class;
+   type ISpatialAudioDeviceConfigurationStatics_Ptr is access all ISpatialAudioDeviceConfigurationStatics;
 
    type ISpatialAudioFormatConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialAudioFormatConfiguration is access all ISpatialAudioFormatConfiguration_Interface'Class;
@@ -274,9 +307,15 @@ package WinRt.Windows.Media.Audio is
 
    type ISpatialAudioFormatConfigurationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialAudioFormatConfigurationStatics is access all ISpatialAudioFormatConfigurationStatics_Interface'Class;
+   type ISpatialAudioFormatConfigurationStatics_Ptr is access all ISpatialAudioFormatConfigurationStatics;
 
    type ISpatialAudioFormatSubtypeStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialAudioFormatSubtypeStatics is access all ISpatialAudioFormatSubtypeStatics_Interface'Class;
+   type ISpatialAudioFormatSubtypeStatics_Ptr is access all ISpatialAudioFormatSubtypeStatics;
+
+   type ISpatialAudioFormatSubtypeStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type ISpatialAudioFormatSubtypeStatics2 is access all ISpatialAudioFormatSubtypeStatics2_Interface'Class;
+   type ISpatialAudioFormatSubtypeStatics2_Ptr is access all ISpatialAudioFormatSubtypeStatics2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -293,6 +332,12 @@ package WinRt.Windows.Media.Audio is
          m_IAudioDeviceOutputNode : access Windows.Media.Audio.IAudioDeviceOutputNode;
       end record;
    type AudioDeviceOutputNode_Ptr is access all AudioDeviceOutputNode;
+
+   type AudioEffectsPackConfiguration is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IAudioEffectsPackConfiguration : access Windows.Media.Audio.IAudioEffectsPackConfiguration;
+      end record;
+   type AudioEffectsPackConfiguration_Ptr is access all AudioEffectsPackConfiguration;
 
    type AudioFileInputNode is new Ada.Finalization.Limited_Controlled with
       record
@@ -530,6 +575,18 @@ package WinRt.Windows.Media.Audio is
    );
    type AudioDeviceNodeCreationStatus_Ptr is access all AudioDeviceNodeCreationStatus;
 
+   type AudioEffectsPackStatus is (
+      NotEnabled_e,
+      Enabled_e,
+      NotSupported_e
+   );
+   for AudioEffectsPackStatus use (
+      NotEnabled_e => 0,
+      Enabled_e => 1,
+      NotSupported_e => 2
+   );
+   type AudioEffectsPackStatus_Ptr is access all AudioEffectsPackStatus;
+
    type AudioFileNodeCreationStatus is (
       Success_e,
       FileNotFound_e,
@@ -739,6 +796,70 @@ package WinRt.Windows.Media.Audio is
       return WinRt.Hresult is abstract;
 
       IID_IAudioDeviceOutputNode : aliased WinRt.IID := (909040639, 65308, 17460, (158, 15, 189, 46, 245, 34, 172, 130 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAudioEffectsPackConfiguration is interface and WinRt.IInspectable;
+
+      function get_DeviceId
+      (
+         this : access IAudioEffectsPackConfiguration_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_EffectsPackId
+      (
+         this : access IAudioEffectsPackConfiguration_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Status
+      (
+         this : access IAudioEffectsPackConfiguration_Interface;
+         RetVal : access Windows.Media.Audio.AudioEffectsPackStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_StatusChanged
+      (
+         this : access IAudioEffectsPackConfiguration_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_StatusChanged
+      (
+         this : access IAudioEffectsPackConfiguration_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAudioEffectsPackConfiguration : aliased WinRt.IID := (1909940861, 28865, 21356, (168, 248, 111, 152, 1, 90, 127, 6 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAudioEffectsPackConfigurationStatics is interface and WinRt.IInspectable;
+
+      function GetForDeviceId
+      (
+         this : access IAudioEffectsPackConfigurationStatics_Interface;
+         effectsPackId : WinRt.HString;
+         deviceId : WinRt.HString;
+         RetVal : access Windows.Media.Audio.IAudioEffectsPackConfiguration
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsDeviceIdSupported
+      (
+         this : access IAudioEffectsPackConfigurationStatics_Interface;
+         effectsPackId : WinRt.HString;
+         deviceId : WinRt.HString;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAudioEffectsPackConfigurationStatics : aliased WinRt.IID := (1640104979, 21260, 22015, (186, 43, 142, 104, 169, 181, 106, 4 ));
 
    -----------------------------------------------------------------------------
    -- type IAudioFileInputNode is interface and WinRt.IInspectable;
@@ -3116,6 +3237,18 @@ package WinRt.Windows.Media.Audio is
       IID_ISpatialAudioFormatSubtypeStatics : aliased WinRt.IID := (3017706055, 33774, 16998, (169, 69, 190, 223, 80, 122, 254, 237 ));
 
    -----------------------------------------------------------------------------
+   -- type ISpatialAudioFormatSubtypeStatics2 is interface and WinRt.IInspectable;
+
+      function get_DTSXForHomeTheater
+      (
+         this : access ISpatialAudioFormatSubtypeStatics2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ISpatialAudioFormatSubtypeStatics2 : aliased WinRt.IID := (1164306123, 55643, 22049, (182, 175, 14, 136, 73, 197, 124, 128 ));
+
+   -----------------------------------------------------------------------------
    -- Class method declarations
    -----------------------------------------------------------------------------
 
@@ -3327,6 +3460,63 @@ package WinRt.Windows.Media.Audio is
       this : in out AudioDeviceOutputNode
    )
    return WinRt.Windows.Media.Audio.AudioNodeListener'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for AudioEffectsPackConfiguration
+
+   overriding procedure Initialize (this : in out AudioEffectsPackConfiguration);
+   overriding procedure Finalize (this : in out AudioEffectsPackConfiguration);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for AudioEffectsPackConfiguration
+
+   function GetForDeviceId
+   (
+      effectsPackId : WinRt.WString;
+      deviceId : WinRt.WString
+   )
+   return WinRt.Windows.Media.Audio.AudioEffectsPackConfiguration;
+
+   function IsDeviceIdSupported
+   (
+      effectsPackId : WinRt.WString;
+      deviceId : WinRt.WString
+   )
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for AudioEffectsPackConfiguration
+
+   function get_DeviceId
+   (
+      this : in out AudioEffectsPackConfiguration
+   )
+   return WinRt.WString;
+
+   function get_EffectsPackId
+   (
+      this : in out AudioEffectsPackConfiguration
+   )
+   return WinRt.WString;
+
+   function get_Status
+   (
+      this : in out AudioEffectsPackConfiguration
+   )
+   return WinRt.Windows.Media.Audio.AudioEffectsPackStatus;
+
+   function add_StatusChanged
+   (
+      this : in out AudioEffectsPackConfiguration;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_StatusChanged
+   (
+      this : in out AudioEffectsPackConfiguration;
+      token : Windows.Foundation.EventRegistrationToken
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AudioFileInputNode
@@ -4303,6 +4493,8 @@ package WinRt.Windows.Media.Audio is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for AudioNodeEmitter
 
+   function Constructor return AudioNodeEmitter;
+
    function Constructor
    (
       shape : Windows.Media.Audio.AudioNodeEmitterShape'Class;
@@ -4310,8 +4502,6 @@ package WinRt.Windows.Media.Audio is
       settings : Windows.Media.Audio.AudioNodeEmitterSettings
    )
    return AudioNodeEmitter;
-
-   function Constructor return AudioNodeEmitter;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for AudioNodeEmitter
@@ -5897,6 +6087,9 @@ package WinRt.Windows.Media.Audio is
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package SpatialAudioFormatSubtype is
+
+      function get_DTSXForHomeTheater
+      return WinRt.WString;
 
       function get_WindowsSonic
       return WinRt.WString;

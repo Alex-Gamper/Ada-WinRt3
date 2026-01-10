@@ -45,12 +45,15 @@ package WinRt.Windows.Devices.Pwm is
 
    type IPwmControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPwmControllerStatics is access all IPwmControllerStatics_Interface'Class;
+   type IPwmControllerStatics_Ptr is access all IPwmControllerStatics;
 
    type IPwmControllerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IPwmControllerStatics2 is access all IPwmControllerStatics2_Interface'Class;
+   type IPwmControllerStatics2_Ptr is access all IPwmControllerStatics2;
 
    type IPwmControllerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IPwmControllerStatics3 is access all IPwmControllerStatics3_Interface'Class;
+   type IPwmControllerStatics3_Ptr is access all IPwmControllerStatics3;
 
    type IPwmPin_Interface is interface and WinRt.IInspectable_Interface;
    type IPwmPin is access all IPwmPin_Interface'Class;
@@ -264,6 +267,9 @@ package WinRt.Windows.Devices.Pwm is
    -----------------------------------------------------------------------------
    -- Static Interfaces for PwmController
 
+   function GetDefaultAsync
+   return WinRt.Windows.Devices.Pwm.PwmController;
+
    function GetDeviceSelector
    return WinRt.WString;
 
@@ -277,9 +283,6 @@ package WinRt.Windows.Devices.Pwm is
    (
       deviceId : WinRt.WString
    )
-   return WinRt.Windows.Devices.Pwm.PwmController;
-
-   function GetDefaultAsync
    return WinRt.Windows.Devices.Pwm.PwmController;
 
    function GetControllersAsync

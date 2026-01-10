@@ -1195,6 +1195,30 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
    -- Static Interfaces for FlyoutBase
 
+   function get_OverlayInputPassThroughElementProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_OverlayInputPassThroughElementProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function get_AllowFocusOnInteractionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
@@ -1424,30 +1448,6 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsOpenProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_OverlayInputPassThroughElementProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_OverlayInputPassThroughElementProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -8420,6 +8420,654 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ListViewItemPresenter
 
+   function get_SelectedDisabledBackgroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SelectedDisabledBackgroundProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckPressedBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckPressedBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckDisabledBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckDisabledBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckBoxPointerOverBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckBoxPointerOverBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckBoxPressedBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckBoxPressedBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckBoxDisabledBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckBoxDisabledBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckBoxSelectedBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckBoxSelectedBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckBoxSelectedPointerOverBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckBoxSelectedPointerOverBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckBoxSelectedPressedBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckBoxSelectedPressedBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckBoxSelectedDisabledBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckBoxSelectedDisabledBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckBoxBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckBoxBorderBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckBoxPointerOverBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckBoxPointerOverBorderBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckBoxPressedBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckBoxPressedBorderBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckBoxDisabledBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckBoxDisabledBorderBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CheckBoxCornerRadiusProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CheckBoxCornerRadiusProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SelectionIndicatorCornerRadiusProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SelectionIndicatorCornerRadiusProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SelectionIndicatorVisualEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SelectionIndicatorVisualEnabledProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SelectionIndicatorModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SelectionIndicatorModeProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SelectionIndicatorBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SelectionIndicatorBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SelectionIndicatorPointerOverBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SelectionIndicatorPointerOverBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SelectionIndicatorPressedBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SelectionIndicatorPressedBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SelectionIndicatorDisabledBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SelectionIndicatorDisabledBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SelectedBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SelectedBorderBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SelectedPressedBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SelectedPressedBorderBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SelectedDisabledBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SelectedDisabledBorderBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SelectedInnerBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SelectedInnerBorderBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_PointerOverBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_PointerOverBorderBrushProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function get_SelectionCheckMarkVisualEnabledProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
@@ -10352,6 +11000,1155 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       end if;
    end;
 
+   function get_SelectedDisabledBackground
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_SelectedDisabledBackground (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_SelectedDisabledBackground
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_SelectedDisabledBackground (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckPressedBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_CheckPressedBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_CheckPressedBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckPressedBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckDisabledBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_CheckDisabledBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_CheckDisabledBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckDisabledBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckBoxPointerOverBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_CheckBoxPointerOverBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_CheckBoxPointerOverBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckBoxPointerOverBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckBoxPressedBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_CheckBoxPressedBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_CheckBoxPressedBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckBoxPressedBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckBoxDisabledBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_CheckBoxDisabledBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_CheckBoxDisabledBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckBoxDisabledBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckBoxSelectedBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_CheckBoxSelectedBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_CheckBoxSelectedBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckBoxSelectedBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckBoxSelectedPointerOverBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_CheckBoxSelectedPointerOverBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_CheckBoxSelectedPointerOverBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckBoxSelectedPointerOverBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckBoxSelectedPressedBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_CheckBoxSelectedPressedBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_CheckBoxSelectedPressedBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckBoxSelectedPressedBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckBoxSelectedDisabledBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_CheckBoxSelectedDisabledBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_CheckBoxSelectedDisabledBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckBoxSelectedDisabledBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckBoxBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_CheckBoxBorderBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_CheckBoxBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckBoxBorderBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckBoxPointerOverBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_CheckBoxPointerOverBorderBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_CheckBoxPointerOverBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckBoxPointerOverBorderBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckBoxPressedBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_CheckBoxPressedBorderBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_CheckBoxPressedBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckBoxPressedBorderBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckBoxDisabledBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_CheckBoxDisabledBorderBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_CheckBoxDisabledBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckBoxDisabledBorderBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CheckBoxCornerRadius
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.CornerRadius is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.CornerRadius;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.get_CheckBoxCornerRadius (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_CheckBoxCornerRadius
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.CornerRadius
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_CheckBoxCornerRadius (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SelectionIndicatorCornerRadius
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.CornerRadius is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.CornerRadius;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.get_SelectionIndicatorCornerRadius (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_SelectionIndicatorCornerRadius
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.CornerRadius
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_SelectionIndicatorCornerRadius (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SelectionIndicatorVisualEnabled
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.get_SelectionIndicatorVisualEnabled (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_SelectionIndicatorVisualEnabled
+   (
+      this : in out ListViewItemPresenter;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_SelectionIndicatorVisualEnabled (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SelectionIndicatorMode
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterSelectionIndicatorMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterSelectionIndicatorMode;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.get_SelectionIndicatorMode (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_SelectionIndicatorMode
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterSelectionIndicatorMode
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_SelectionIndicatorMode (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SelectionIndicatorBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_SelectionIndicatorBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_SelectionIndicatorBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_SelectionIndicatorBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SelectionIndicatorPointerOverBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_SelectionIndicatorPointerOverBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_SelectionIndicatorPointerOverBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_SelectionIndicatorPointerOverBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SelectionIndicatorPressedBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_SelectionIndicatorPressedBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_SelectionIndicatorPressedBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_SelectionIndicatorPressedBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SelectionIndicatorDisabledBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_SelectionIndicatorDisabledBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_SelectionIndicatorDisabledBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_SelectionIndicatorDisabledBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SelectedBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_SelectedBorderBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_SelectedBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_SelectedBorderBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SelectedPressedBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_SelectedPressedBorderBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_SelectedPressedBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_SelectedPressedBorderBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SelectedDisabledBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_SelectedDisabledBorderBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_SelectedDisabledBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_SelectedDisabledBorderBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SelectedInnerBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_SelectedInnerBorderBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_SelectedInnerBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_SelectedInnerBorderBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_PointerOverBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
+         m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+         Hr := m_Interface.get_PointerOverBorderBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_PointerOverBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IListViewItemPresenter.all);
+      Hr := m_Interface.put_PointerOverBorderBrush (value.m_IBrush.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ListViewItemTemplateSettings
 
@@ -12249,6 +14046,102 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Popup
 
+   function get_LightDismissOverlayModeProperty_Popup
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_LightDismissOverlayModeProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_PlacementTargetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_PlacementTargetProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_DesiredPlacementProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_DesiredPlacementProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_ShouldConstrainToRootBoundsProperty_Popup
+   return WinRt.Windows.UI.Xaml.DependencyProperty is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_ShouldConstrainToRootBoundsProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function get_ChildProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
@@ -12382,54 +14275,6 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
          Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsLightDismissEnabledProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_LightDismissOverlayModeProperty_Popup
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_LightDismissOverlayModeProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_ShouldConstrainToRootBoundsProperty_Popup
-   return WinRt.Windows.UI.Xaml.DependencyProperty is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_ShouldConstrainToRootBoundsProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -12807,6 +14652,151 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   function get_PlacementTarget
+   (
+      this : in out Popup
+   )
+   return WinRt.Windows.UI.Xaml.FrameworkElement'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IFrameworkElement;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPopup4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.FrameworkElement do
+         m_Interface := QInterface (this.m_IPopup.all);
+         Hr := m_Interface.get_PlacementTarget (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IFrameworkElement := new Windows.UI.Xaml.IFrameworkElement;
+         Retval.m_IFrameworkElement.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_PlacementTarget
+   (
+      this : in out Popup;
+      value : Windows.UI.Xaml.FrameworkElement'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPopup4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPopup.all);
+      Hr := m_Interface.put_PlacementTarget (value.m_IFrameworkElement.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_DesiredPlacement
+   (
+      this : in out Popup
+   )
+   return WinRt.Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPopup4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPopup.all);
+      Hr := m_Interface.get_DesiredPlacement (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_DesiredPlacement
+   (
+      this : in out Popup;
+      value : Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPopup4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPopup.all);
+      Hr := m_Interface.put_DesiredPlacement (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ActualPlacement
+   (
+      this : in out Popup
+   )
+   return WinRt.Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPopup4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPopup.all);
+      Hr := m_Interface.get_ActualPlacement (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function add_ActualPlacementChanged
+   (
+      this : in out Popup;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPopup4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPopup.all);
+      Hr := m_Interface.add_ActualPlacementChanged (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ActualPlacementChanged
+   (
+      this : in out Popup;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPopup4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPopup.all);
+      Hr := m_Interface.remove_ActualPlacementChanged (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------

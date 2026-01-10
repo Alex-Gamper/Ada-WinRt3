@@ -46,15 +46,19 @@ package WinRt.Windows.Devices.Sensors is
 
    type IAccelerometer2_Interface is interface and WinRt.IInspectable_Interface;
    type IAccelerometer2 is access all IAccelerometer2_Interface'Class;
+   type IAccelerometer2_Ptr is access all IAccelerometer2;
 
    type IAccelerometer3_Interface is interface and WinRt.IInspectable_Interface;
    type IAccelerometer3 is access all IAccelerometer3_Interface'Class;
+   type IAccelerometer3_Ptr is access all IAccelerometer3;
 
    type IAccelerometer4_Interface is interface and WinRt.IInspectable_Interface;
    type IAccelerometer4 is access all IAccelerometer4_Interface'Class;
+   type IAccelerometer4_Ptr is access all IAccelerometer4;
 
    type IAccelerometer5_Interface is interface and WinRt.IInspectable_Interface;
    type IAccelerometer5 is access all IAccelerometer5_Interface'Class;
+   type IAccelerometer5_Ptr is access all IAccelerometer5;
 
    type IAccelerometerDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
    type IAccelerometerDataThreshold is access all IAccelerometerDataThreshold_Interface'Class;
@@ -62,6 +66,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IAccelerometerDeviceId_Interface is interface and WinRt.IInspectable_Interface;
    type IAccelerometerDeviceId is access all IAccelerometerDeviceId_Interface'Class;
+   type IAccelerometerDeviceId_Ptr is access all IAccelerometerDeviceId;
 
    type IAccelerometerReading_Interface is interface and WinRt.IInspectable_Interface;
    type IAccelerometerReading is access all IAccelerometerReading_Interface'Class;
@@ -69,6 +74,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IAccelerometerReading2_Interface is interface and WinRt.IInspectable_Interface;
    type IAccelerometerReading2 is access all IAccelerometerReading2_Interface'Class;
+   type IAccelerometerReading2_Ptr is access all IAccelerometerReading2;
 
    type IAccelerometerReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAccelerometerReadingChangedEventArgs is access all IAccelerometerReadingChangedEventArgs_Interface'Class;
@@ -80,12 +86,15 @@ package WinRt.Windows.Devices.Sensors is
 
    type IAccelerometerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAccelerometerStatics is access all IAccelerometerStatics_Interface'Class;
+   type IAccelerometerStatics_Ptr is access all IAccelerometerStatics;
 
    type IAccelerometerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAccelerometerStatics2 is access all IAccelerometerStatics2_Interface'Class;
+   type IAccelerometerStatics2_Ptr is access all IAccelerometerStatics2;
 
    type IAccelerometerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IAccelerometerStatics3 is access all IAccelerometerStatics3_Interface'Class;
+   type IAccelerometerStatics3_Ptr is access all IAccelerometerStatics3;
 
    type IActivitySensor_Interface is interface and WinRt.IInspectable_Interface;
    type IActivitySensor is access all IActivitySensor_Interface'Class;
@@ -105,10 +114,15 @@ package WinRt.Windows.Devices.Sensors is
 
    type IActivitySensorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IActivitySensorStatics is access all IActivitySensorStatics_Interface'Class;
+   type IActivitySensorStatics_Ptr is access all IActivitySensorStatics;
 
    type IActivitySensorTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IActivitySensorTriggerDetails is access all IActivitySensorTriggerDetails_Interface'Class;
    type IActivitySensorTriggerDetails_Ptr is access all IActivitySensorTriggerDetails;
+
+   type IAdaptiveDimmingOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IAdaptiveDimmingOptions is access all IAdaptiveDimmingOptions_Interface'Class;
+   type IAdaptiveDimmingOptions_Ptr is access all IAdaptiveDimmingOptions;
 
    type IAltimeter_Interface is interface and WinRt.IInspectable_Interface;
    type IAltimeter is access all IAltimeter_Interface'Class;
@@ -116,6 +130,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IAltimeter2_Interface is interface and WinRt.IInspectable_Interface;
    type IAltimeter2 is access all IAltimeter2_Interface'Class;
+   type IAltimeter2_Ptr is access all IAltimeter2;
 
    type IAltimeterReading_Interface is interface and WinRt.IInspectable_Interface;
    type IAltimeterReading is access all IAltimeterReading_Interface'Class;
@@ -123,6 +138,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IAltimeterReading2_Interface is interface and WinRt.IInspectable_Interface;
    type IAltimeterReading2 is access all IAltimeterReading2_Interface'Class;
+   type IAltimeterReading2_Ptr is access all IAltimeterReading2;
 
    type IAltimeterReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAltimeterReadingChangedEventArgs is access all IAltimeterReadingChangedEventArgs_Interface'Class;
@@ -130,6 +146,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IAltimeterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAltimeterStatics is access all IAltimeterStatics_Interface'Class;
+   type IAltimeterStatics_Ptr is access all IAltimeterStatics;
 
    type IBarometer_Interface is interface and WinRt.IInspectable_Interface;
    type IBarometer is access all IBarometer_Interface'Class;
@@ -137,9 +154,11 @@ package WinRt.Windows.Devices.Sensors is
 
    type IBarometer2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarometer2 is access all IBarometer2_Interface'Class;
+   type IBarometer2_Ptr is access all IBarometer2;
 
    type IBarometer3_Interface is interface and WinRt.IInspectable_Interface;
    type IBarometer3 is access all IBarometer3_Interface'Class;
+   type IBarometer3_Ptr is access all IBarometer3;
 
    type IBarometerDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
    type IBarometerDataThreshold is access all IBarometerDataThreshold_Interface'Class;
@@ -151,6 +170,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IBarometerReading2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarometerReading2 is access all IBarometerReading2_Interface'Class;
+   type IBarometerReading2_Ptr is access all IBarometerReading2;
 
    type IBarometerReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBarometerReadingChangedEventArgs is access all IBarometerReadingChangedEventArgs_Interface'Class;
@@ -158,9 +178,11 @@ package WinRt.Windows.Devices.Sensors is
 
    type IBarometerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBarometerStatics is access all IBarometerStatics_Interface'Class;
+   type IBarometerStatics_Ptr is access all IBarometerStatics;
 
    type IBarometerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarometerStatics2 is access all IBarometerStatics2_Interface'Class;
+   type IBarometerStatics2_Ptr is access all IBarometerStatics2;
 
    type ICompass_Interface is interface and WinRt.IInspectable_Interface;
    type ICompass is access all ICompass_Interface'Class;
@@ -168,12 +190,15 @@ package WinRt.Windows.Devices.Sensors is
 
    type ICompass2_Interface is interface and WinRt.IInspectable_Interface;
    type ICompass2 is access all ICompass2_Interface'Class;
+   type ICompass2_Ptr is access all ICompass2;
 
    type ICompass3_Interface is interface and WinRt.IInspectable_Interface;
    type ICompass3 is access all ICompass3_Interface'Class;
+   type ICompass3_Ptr is access all ICompass3;
 
    type ICompass4_Interface is interface and WinRt.IInspectable_Interface;
    type ICompass4 is access all ICompass4_Interface'Class;
+   type ICompass4_Ptr is access all ICompass4;
 
    type ICompassDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
    type ICompassDataThreshold is access all ICompassDataThreshold_Interface'Class;
@@ -181,6 +206,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type ICompassDeviceId_Interface is interface and WinRt.IInspectable_Interface;
    type ICompassDeviceId is access all ICompassDeviceId_Interface'Class;
+   type ICompassDeviceId_Ptr is access all ICompassDeviceId;
 
    type ICompassReading_Interface is interface and WinRt.IInspectable_Interface;
    type ICompassReading is access all ICompassReading_Interface'Class;
@@ -188,6 +214,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type ICompassReading2_Interface is interface and WinRt.IInspectable_Interface;
    type ICompassReading2 is access all ICompassReading2_Interface'Class;
+   type ICompassReading2_Ptr is access all ICompassReading2;
 
    type ICompassReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICompassReadingChangedEventArgs is access all ICompassReadingChangedEventArgs_Interface'Class;
@@ -195,12 +222,19 @@ package WinRt.Windows.Devices.Sensors is
 
    type ICompassReadingHeadingAccuracy_Interface is interface and WinRt.IInspectable_Interface;
    type ICompassReadingHeadingAccuracy is access all ICompassReadingHeadingAccuracy_Interface'Class;
+   type ICompassReadingHeadingAccuracy_Ptr is access all ICompassReadingHeadingAccuracy;
 
    type ICompassStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICompassStatics is access all ICompassStatics_Interface'Class;
+   type ICompassStatics_Ptr is access all ICompassStatics;
 
    type ICompassStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ICompassStatics2 is access all ICompassStatics2_Interface'Class;
+   type ICompassStatics2_Ptr is access all ICompassStatics2;
+
+   type IDetectedPerson_Interface is interface and WinRt.IInspectable_Interface;
+   type IDetectedPerson is access all IDetectedPerson_Interface'Class;
+   type IDetectedPerson_Ptr is access all IDetectedPerson;
 
    type IGyrometer_Interface is interface and WinRt.IInspectable_Interface;
    type IGyrometer is access all IGyrometer_Interface'Class;
@@ -208,12 +242,15 @@ package WinRt.Windows.Devices.Sensors is
 
    type IGyrometer2_Interface is interface and WinRt.IInspectable_Interface;
    type IGyrometer2 is access all IGyrometer2_Interface'Class;
+   type IGyrometer2_Ptr is access all IGyrometer2;
 
    type IGyrometer3_Interface is interface and WinRt.IInspectable_Interface;
    type IGyrometer3 is access all IGyrometer3_Interface'Class;
+   type IGyrometer3_Ptr is access all IGyrometer3;
 
    type IGyrometer4_Interface is interface and WinRt.IInspectable_Interface;
    type IGyrometer4 is access all IGyrometer4_Interface'Class;
+   type IGyrometer4_Ptr is access all IGyrometer4;
 
    type IGyrometerDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
    type IGyrometerDataThreshold is access all IGyrometerDataThreshold_Interface'Class;
@@ -221,6 +258,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IGyrometerDeviceId_Interface is interface and WinRt.IInspectable_Interface;
    type IGyrometerDeviceId is access all IGyrometerDeviceId_Interface'Class;
+   type IGyrometerDeviceId_Ptr is access all IGyrometerDeviceId;
 
    type IGyrometerReading_Interface is interface and WinRt.IInspectable_Interface;
    type IGyrometerReading is access all IGyrometerReading_Interface'Class;
@@ -228,6 +266,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IGyrometerReading2_Interface is interface and WinRt.IInspectable_Interface;
    type IGyrometerReading2 is access all IGyrometerReading2_Interface'Class;
+   type IGyrometerReading2_Ptr is access all IGyrometerReading2;
 
    type IGyrometerReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IGyrometerReadingChangedEventArgs is access all IGyrometerReadingChangedEventArgs_Interface'Class;
@@ -235,9 +274,19 @@ package WinRt.Windows.Devices.Sensors is
 
    type IGyrometerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGyrometerStatics is access all IGyrometerStatics_Interface'Class;
+   type IGyrometerStatics_Ptr is access all IGyrometerStatics;
 
    type IGyrometerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IGyrometerStatics2 is access all IGyrometerStatics2_Interface'Class;
+   type IGyrometerStatics2_Ptr is access all IGyrometerStatics2;
+
+   type IHeadOrientation_Interface is interface and WinRt.IInspectable_Interface;
+   type IHeadOrientation is access all IHeadOrientation_Interface'Class;
+   type IHeadOrientation_Ptr is access all IHeadOrientation;
+
+   type IHeadPosition_Interface is interface and WinRt.IInspectable_Interface;
+   type IHeadPosition is access all IHeadPosition_Interface'Class;
+   type IHeadPosition_Ptr is access all IHeadPosition;
 
    type IHingeAngleReading_Interface is interface and WinRt.IInspectable_Interface;
    type IHingeAngleReading is access all IHingeAngleReading_Interface'Class;
@@ -253,6 +302,83 @@ package WinRt.Windows.Devices.Sensors is
 
    type IHingeAngleSensorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHingeAngleSensorStatics is access all IHingeAngleSensorStatics_Interface'Class;
+   type IHingeAngleSensorStatics_Ptr is access all IHingeAngleSensorStatics;
+
+   type IHumanPresenceFeatures_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceFeatures is access all IHumanPresenceFeatures_Interface'Class;
+   type IHumanPresenceFeatures_Ptr is access all IHumanPresenceFeatures;
+
+   type IHumanPresenceFeatures2_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceFeatures2 is access all IHumanPresenceFeatures2_Interface'Class;
+   type IHumanPresenceFeatures2_Ptr is access all IHumanPresenceFeatures2;
+
+   type IHumanPresenceFeatures3_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceFeatures3 is access all IHumanPresenceFeatures3_Interface'Class;
+   type IHumanPresenceFeatures3_Ptr is access all IHumanPresenceFeatures3;
+
+   type IHumanPresenceSensor_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSensor is access all IHumanPresenceSensor_Interface'Class;
+   type IHumanPresenceSensor_Ptr is access all IHumanPresenceSensor;
+
+   type IHumanPresenceSensor2_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSensor2 is access all IHumanPresenceSensor2_Interface'Class;
+   type IHumanPresenceSensor2_Ptr is access all IHumanPresenceSensor2;
+
+   type IHumanPresenceSensor3_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSensor3 is access all IHumanPresenceSensor3_Interface'Class;
+   type IHumanPresenceSensor3_Ptr is access all IHumanPresenceSensor3;
+
+   type IHumanPresenceSensorExtension_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSensorExtension is access all IHumanPresenceSensorExtension_Interface'Class;
+   type IHumanPresenceSensorExtension_Ptr is access all IHumanPresenceSensorExtension;
+
+   type IHumanPresenceSensorReading_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSensorReading is access all IHumanPresenceSensorReading_Interface'Class;
+   type IHumanPresenceSensorReading_Ptr is access all IHumanPresenceSensorReading;
+
+   type IHumanPresenceSensorReading2_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSensorReading2 is access all IHumanPresenceSensorReading2_Interface'Class;
+   type IHumanPresenceSensorReading2_Ptr is access all IHumanPresenceSensorReading2;
+
+   type IHumanPresenceSensorReading3_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSensorReading3 is access all IHumanPresenceSensorReading3_Interface'Class;
+   type IHumanPresenceSensorReading3_Ptr is access all IHumanPresenceSensorReading3;
+
+   type IHumanPresenceSensorReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSensorReadingChangedEventArgs is access all IHumanPresenceSensorReadingChangedEventArgs_Interface'Class;
+   type IHumanPresenceSensorReadingChangedEventArgs_Ptr is access all IHumanPresenceSensorReadingChangedEventArgs;
+
+   type IHumanPresenceSensorReadingUpdate_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSensorReadingUpdate is access all IHumanPresenceSensorReadingUpdate_Interface'Class;
+   type IHumanPresenceSensorReadingUpdate_Ptr is access all IHumanPresenceSensorReadingUpdate;
+
+   type IHumanPresenceSensorReadingUpdate2_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSensorReadingUpdate2 is access all IHumanPresenceSensorReadingUpdate2_Interface'Class;
+   type IHumanPresenceSensorReadingUpdate2_Ptr is access all IHumanPresenceSensorReadingUpdate2;
+
+   type IHumanPresenceSensorStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSensorStatics is access all IHumanPresenceSensorStatics_Interface'Class;
+   type IHumanPresenceSensorStatics_Ptr is access all IHumanPresenceSensorStatics;
+
+   type IHumanPresenceSensorStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSensorStatics2 is access all IHumanPresenceSensorStatics2_Interface'Class;
+   type IHumanPresenceSensorStatics2_Ptr is access all IHumanPresenceSensorStatics2;
+
+   type IHumanPresenceSettings_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSettings is access all IHumanPresenceSettings_Interface'Class;
+   type IHumanPresenceSettings_Ptr is access all IHumanPresenceSettings;
+
+   type IHumanPresenceSettings2_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSettings2 is access all IHumanPresenceSettings2_Interface'Class;
+   type IHumanPresenceSettings2_Ptr is access all IHumanPresenceSettings2;
+
+   type IHumanPresenceSettings3_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSettings3 is access all IHumanPresenceSettings3_Interface'Class;
+   type IHumanPresenceSettings3_Ptr is access all IHumanPresenceSettings3;
+
+   type IHumanPresenceSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IHumanPresenceSettingsStatics is access all IHumanPresenceSettingsStatics_Interface'Class;
+   type IHumanPresenceSettingsStatics_Ptr is access all IHumanPresenceSettingsStatics;
 
    type IInclinometer_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometer is access all IInclinometer_Interface'Class;
@@ -260,12 +386,15 @@ package WinRt.Windows.Devices.Sensors is
 
    type IInclinometer2_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometer2 is access all IInclinometer2_Interface'Class;
+   type IInclinometer2_Ptr is access all IInclinometer2;
 
    type IInclinometer3_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometer3 is access all IInclinometer3_Interface'Class;
+   type IInclinometer3_Ptr is access all IInclinometer3;
 
    type IInclinometer4_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometer4 is access all IInclinometer4_Interface'Class;
+   type IInclinometer4_Ptr is access all IInclinometer4;
 
    type IInclinometerDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometerDataThreshold is access all IInclinometerDataThreshold_Interface'Class;
@@ -273,6 +402,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IInclinometerDeviceId_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometerDeviceId is access all IInclinometerDeviceId_Interface'Class;
+   type IInclinometerDeviceId_Ptr is access all IInclinometerDeviceId;
 
    type IInclinometerReading_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometerReading is access all IInclinometerReading_Interface'Class;
@@ -280,6 +410,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IInclinometerReading2_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometerReading2 is access all IInclinometerReading2_Interface'Class;
+   type IInclinometerReading2_Ptr is access all IInclinometerReading2;
 
    type IInclinometerReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometerReadingChangedEventArgs is access all IInclinometerReadingChangedEventArgs_Interface'Class;
@@ -287,18 +418,23 @@ package WinRt.Windows.Devices.Sensors is
 
    type IInclinometerReadingYawAccuracy_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometerReadingYawAccuracy is access all IInclinometerReadingYawAccuracy_Interface'Class;
+   type IInclinometerReadingYawAccuracy_Ptr is access all IInclinometerReadingYawAccuracy;
 
    type IInclinometerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometerStatics is access all IInclinometerStatics_Interface'Class;
+   type IInclinometerStatics_Ptr is access all IInclinometerStatics;
 
    type IInclinometerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometerStatics2 is access all IInclinometerStatics2_Interface'Class;
+   type IInclinometerStatics2_Ptr is access all IInclinometerStatics2;
 
    type IInclinometerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometerStatics3 is access all IInclinometerStatics3_Interface'Class;
+   type IInclinometerStatics3_Ptr is access all IInclinometerStatics3;
 
    type IInclinometerStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IInclinometerStatics4 is access all IInclinometerStatics4_Interface'Class;
+   type IInclinometerStatics4_Ptr is access all IInclinometerStatics4;
 
    type ILightSensor_Interface is interface and WinRt.IInspectable_Interface;
    type ILightSensor is access all ILightSensor_Interface'Class;
@@ -306,16 +442,27 @@ package WinRt.Windows.Devices.Sensors is
 
    type ILightSensor2_Interface is interface and WinRt.IInspectable_Interface;
    type ILightSensor2 is access all ILightSensor2_Interface'Class;
+   type ILightSensor2_Ptr is access all ILightSensor2;
 
    type ILightSensor3_Interface is interface and WinRt.IInspectable_Interface;
    type ILightSensor3 is access all ILightSensor3_Interface'Class;
+   type ILightSensor3_Ptr is access all ILightSensor3;
+
+   type ILightSensor4_Interface is interface and WinRt.IInspectable_Interface;
+   type ILightSensor4 is access all ILightSensor4_Interface'Class;
+   type ILightSensor4_Ptr is access all ILightSensor4;
 
    type ILightSensorDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
    type ILightSensorDataThreshold is access all ILightSensorDataThreshold_Interface'Class;
    type ILightSensorDataThreshold_Ptr is access all ILightSensorDataThreshold;
 
+   type ILightSensorDataThreshold2_Interface is interface and WinRt.IInspectable_Interface;
+   type ILightSensorDataThreshold2 is access all ILightSensorDataThreshold2_Interface'Class;
+   type ILightSensorDataThreshold2_Ptr is access all ILightSensorDataThreshold2;
+
    type ILightSensorDeviceId_Interface is interface and WinRt.IInspectable_Interface;
    type ILightSensorDeviceId is access all ILightSensorDeviceId_Interface'Class;
+   type ILightSensorDeviceId_Ptr is access all ILightSensorDeviceId;
 
    type ILightSensorReading_Interface is interface and WinRt.IInspectable_Interface;
    type ILightSensorReading is access all ILightSensorReading_Interface'Class;
@@ -323,6 +470,11 @@ package WinRt.Windows.Devices.Sensors is
 
    type ILightSensorReading2_Interface is interface and WinRt.IInspectable_Interface;
    type ILightSensorReading2 is access all ILightSensorReading2_Interface'Class;
+   type ILightSensorReading2_Ptr is access all ILightSensorReading2;
+
+   type ILightSensorReading3_Interface is interface and WinRt.IInspectable_Interface;
+   type ILightSensorReading3 is access all ILightSensorReading3_Interface'Class;
+   type ILightSensorReading3_Ptr is access all ILightSensorReading3;
 
    type ILightSensorReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ILightSensorReadingChangedEventArgs is access all ILightSensorReadingChangedEventArgs_Interface'Class;
@@ -330,9 +482,15 @@ package WinRt.Windows.Devices.Sensors is
 
    type ILightSensorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILightSensorStatics is access all ILightSensorStatics_Interface'Class;
+   type ILightSensorStatics_Ptr is access all ILightSensorStatics;
 
    type ILightSensorStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ILightSensorStatics2 is access all ILightSensorStatics2_Interface'Class;
+   type ILightSensorStatics2_Ptr is access all ILightSensorStatics2;
+
+   type ILockOnLeaveOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type ILockOnLeaveOptions is access all ILockOnLeaveOptions_Interface'Class;
+   type ILockOnLeaveOptions_Ptr is access all ILockOnLeaveOptions;
 
    type IMagnetometer_Interface is interface and WinRt.IInspectable_Interface;
    type IMagnetometer is access all IMagnetometer_Interface'Class;
@@ -340,12 +498,15 @@ package WinRt.Windows.Devices.Sensors is
 
    type IMagnetometer2_Interface is interface and WinRt.IInspectable_Interface;
    type IMagnetometer2 is access all IMagnetometer2_Interface'Class;
+   type IMagnetometer2_Ptr is access all IMagnetometer2;
 
    type IMagnetometer3_Interface is interface and WinRt.IInspectable_Interface;
    type IMagnetometer3 is access all IMagnetometer3_Interface'Class;
+   type IMagnetometer3_Ptr is access all IMagnetometer3;
 
    type IMagnetometer4_Interface is interface and WinRt.IInspectable_Interface;
    type IMagnetometer4 is access all IMagnetometer4_Interface'Class;
+   type IMagnetometer4_Ptr is access all IMagnetometer4;
 
    type IMagnetometerDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
    type IMagnetometerDataThreshold is access all IMagnetometerDataThreshold_Interface'Class;
@@ -353,6 +514,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IMagnetometerDeviceId_Interface is interface and WinRt.IInspectable_Interface;
    type IMagnetometerDeviceId is access all IMagnetometerDeviceId_Interface'Class;
+   type IMagnetometerDeviceId_Ptr is access all IMagnetometerDeviceId;
 
    type IMagnetometerReading_Interface is interface and WinRt.IInspectable_Interface;
    type IMagnetometerReading is access all IMagnetometerReading_Interface'Class;
@@ -360,6 +522,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IMagnetometerReading2_Interface is interface and WinRt.IInspectable_Interface;
    type IMagnetometerReading2 is access all IMagnetometerReading2_Interface'Class;
+   type IMagnetometerReading2_Ptr is access all IMagnetometerReading2;
 
    type IMagnetometerReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMagnetometerReadingChangedEventArgs is access all IMagnetometerReadingChangedEventArgs_Interface'Class;
@@ -367,9 +530,15 @@ package WinRt.Windows.Devices.Sensors is
 
    type IMagnetometerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMagnetometerStatics is access all IMagnetometerStatics_Interface'Class;
+   type IMagnetometerStatics_Ptr is access all IMagnetometerStatics;
 
    type IMagnetometerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMagnetometerStatics2 is access all IMagnetometerStatics2_Interface'Class;
+   type IMagnetometerStatics2_Ptr is access all IMagnetometerStatics2;
+
+   type IOnlookerDetectionOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IOnlookerDetectionOptions is access all IOnlookerDetectionOptions_Interface'Class;
+   type IOnlookerDetectionOptions_Ptr is access all IOnlookerDetectionOptions;
 
    type IOrientationSensor_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientationSensor is access all IOrientationSensor_Interface'Class;
@@ -377,12 +546,15 @@ package WinRt.Windows.Devices.Sensors is
 
    type IOrientationSensor2_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientationSensor2 is access all IOrientationSensor2_Interface'Class;
+   type IOrientationSensor2_Ptr is access all IOrientationSensor2;
 
    type IOrientationSensor3_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientationSensor3 is access all IOrientationSensor3_Interface'Class;
+   type IOrientationSensor3_Ptr is access all IOrientationSensor3;
 
    type IOrientationSensorDeviceId_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientationSensorDeviceId is access all IOrientationSensorDeviceId_Interface'Class;
+   type IOrientationSensorDeviceId_Ptr is access all IOrientationSensorDeviceId;
 
    type IOrientationSensorReading_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientationSensorReading is access all IOrientationSensorReading_Interface'Class;
@@ -390,6 +562,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IOrientationSensorReading2_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientationSensorReading2 is access all IOrientationSensorReading2_Interface'Class;
+   type IOrientationSensorReading2_Ptr is access all IOrientationSensorReading2;
 
    type IOrientationSensorReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientationSensorReadingChangedEventArgs is access all IOrientationSensorReadingChangedEventArgs_Interface'Class;
@@ -397,18 +570,23 @@ package WinRt.Windows.Devices.Sensors is
 
    type IOrientationSensorReadingYawAccuracy_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientationSensorReadingYawAccuracy is access all IOrientationSensorReadingYawAccuracy_Interface'Class;
+   type IOrientationSensorReadingYawAccuracy_Ptr is access all IOrientationSensorReadingYawAccuracy;
 
    type IOrientationSensorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientationSensorStatics is access all IOrientationSensorStatics_Interface'Class;
+   type IOrientationSensorStatics_Ptr is access all IOrientationSensorStatics;
 
    type IOrientationSensorStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientationSensorStatics2 is access all IOrientationSensorStatics2_Interface'Class;
+   type IOrientationSensorStatics2_Ptr is access all IOrientationSensorStatics2;
 
    type IOrientationSensorStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientationSensorStatics3 is access all IOrientationSensorStatics3_Interface'Class;
+   type IOrientationSensorStatics3_Ptr is access all IOrientationSensorStatics3;
 
    type IOrientationSensorStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientationSensorStatics4 is access all IOrientationSensorStatics4_Interface'Class;
+   type IOrientationSensorStatics4_Ptr is access all IOrientationSensorStatics4;
 
    type IPedometer_Interface is interface and WinRt.IInspectable_Interface;
    type IPedometer is access all IPedometer_Interface'Class;
@@ -416,9 +594,11 @@ package WinRt.Windows.Devices.Sensors is
 
    type IPedometer2_Interface is interface and WinRt.IInspectable_Interface;
    type IPedometer2 is access all IPedometer2_Interface'Class;
+   type IPedometer2_Ptr is access all IPedometer2;
 
    type IPedometerDataThresholdFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPedometerDataThresholdFactory is access all IPedometerDataThresholdFactory_Interface'Class;
+   type IPedometerDataThresholdFactory_Ptr is access all IPedometerDataThresholdFactory;
 
    type IPedometerReading_Interface is interface and WinRt.IInspectable_Interface;
    type IPedometerReading is access all IPedometerReading_Interface'Class;
@@ -430,9 +610,11 @@ package WinRt.Windows.Devices.Sensors is
 
    type IPedometerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPedometerStatics is access all IPedometerStatics_Interface'Class;
+   type IPedometerStatics_Ptr is access all IPedometerStatics;
 
    type IPedometerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IPedometerStatics2 is access all IPedometerStatics2_Interface'Class;
+   type IPedometerStatics2_Ptr is access all IPedometerStatics2;
 
    type IProximitySensor_Interface is interface and WinRt.IInspectable_Interface;
    type IProximitySensor is access all IProximitySensor_Interface'Class;
@@ -440,6 +622,7 @@ package WinRt.Windows.Devices.Sensors is
 
    type IProximitySensorDataThresholdFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IProximitySensorDataThresholdFactory is access all IProximitySensorDataThresholdFactory_Interface'Class;
+   type IProximitySensorDataThresholdFactory_Ptr is access all IProximitySensorDataThresholdFactory;
 
    type IProximitySensorReading_Interface is interface and WinRt.IInspectable_Interface;
    type IProximitySensorReading is access all IProximitySensorReading_Interface'Class;
@@ -451,9 +634,11 @@ package WinRt.Windows.Devices.Sensors is
 
    type IProximitySensorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IProximitySensorStatics is access all IProximitySensorStatics_Interface'Class;
+   type IProximitySensorStatics_Ptr is access all IProximitySensorStatics;
 
    type IProximitySensorStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IProximitySensorStatics2 is access all IProximitySensorStatics2_Interface'Class;
+   type IProximitySensorStatics2_Ptr is access all IProximitySensorStatics2;
 
    type ISensorDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
    type ISensorDataThreshold is access all ISensorDataThreshold_Interface'Class;
@@ -477,9 +662,11 @@ package WinRt.Windows.Devices.Sensors is
 
    type ISimpleOrientationSensor2_Interface is interface and WinRt.IInspectable_Interface;
    type ISimpleOrientationSensor2 is access all ISimpleOrientationSensor2_Interface'Class;
+   type ISimpleOrientationSensor2_Ptr is access all ISimpleOrientationSensor2;
 
    type ISimpleOrientationSensorDeviceId_Interface is interface and WinRt.IInspectable_Interface;
    type ISimpleOrientationSensorDeviceId is access all ISimpleOrientationSensorDeviceId_Interface'Class;
+   type ISimpleOrientationSensorDeviceId_Ptr is access all ISimpleOrientationSensorDeviceId;
 
    type ISimpleOrientationSensorOrientationChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISimpleOrientationSensorOrientationChangedEventArgs is access all ISimpleOrientationSensorOrientationChangedEventArgs_Interface'Class;
@@ -487,9 +674,15 @@ package WinRt.Windows.Devices.Sensors is
 
    type ISimpleOrientationSensorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISimpleOrientationSensorStatics is access all ISimpleOrientationSensorStatics_Interface'Class;
+   type ISimpleOrientationSensorStatics_Ptr is access all ISimpleOrientationSensorStatics;
 
    type ISimpleOrientationSensorStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ISimpleOrientationSensorStatics2 is access all ISimpleOrientationSensorStatics2_Interface'Class;
+   type ISimpleOrientationSensorStatics2_Ptr is access all ISimpleOrientationSensorStatics2;
+
+   type IWakeOnApproachOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IWakeOnApproachOptions is access all IWakeOnApproachOptions_Interface'Class;
+   type IWakeOnApproachOptions_Ptr is access all IWakeOnApproachOptions;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -554,6 +747,12 @@ package WinRt.Windows.Devices.Sensors is
          m_IActivitySensorTriggerDetails : access Windows.Devices.Sensors.IActivitySensorTriggerDetails;
       end record;
    type ActivitySensorTriggerDetails_Ptr is access all ActivitySensorTriggerDetails;
+
+   type AdaptiveDimmingOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IAdaptiveDimmingOptions : access Windows.Devices.Sensors.IAdaptiveDimmingOptions;
+      end record;
+   type AdaptiveDimmingOptions_Ptr is access all AdaptiveDimmingOptions;
 
    type Altimeter is new Ada.Finalization.Limited_Controlled with
       record
@@ -621,6 +820,12 @@ package WinRt.Windows.Devices.Sensors is
       end record;
    type CompassReadingChangedEventArgs_Ptr is access all CompassReadingChangedEventArgs;
 
+   type DetectedPerson is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IDetectedPerson : access Windows.Devices.Sensors.IDetectedPerson;
+      end record;
+   type DetectedPerson_Ptr is access all DetectedPerson;
+
    type Gyrometer is new Ada.Finalization.Limited_Controlled with
       record
          m_IGyrometer : access Windows.Devices.Sensors.IGyrometer;
@@ -645,6 +850,18 @@ package WinRt.Windows.Devices.Sensors is
       end record;
    type GyrometerReadingChangedEventArgs_Ptr is access all GyrometerReadingChangedEventArgs;
 
+   type HeadOrientation is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IHeadOrientation : access Windows.Devices.Sensors.IHeadOrientation;
+      end record;
+   type HeadOrientation_Ptr is access all HeadOrientation;
+
+   type HeadPosition is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IHeadPosition : access Windows.Devices.Sensors.IHeadPosition;
+      end record;
+   type HeadPosition_Ptr is access all HeadPosition;
+
    type HingeAngleReading is new Ada.Finalization.Limited_Controlled with
       record
          m_IHingeAngleReading : access Windows.Devices.Sensors.IHingeAngleReading;
@@ -662,6 +879,42 @@ package WinRt.Windows.Devices.Sensors is
          m_IHingeAngleSensorReadingChangedEventArgs : access Windows.Devices.Sensors.IHingeAngleSensorReadingChangedEventArgs;
       end record;
    type HingeAngleSensorReadingChangedEventArgs_Ptr is access all HingeAngleSensorReadingChangedEventArgs;
+
+   type HumanPresenceFeatures is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IHumanPresenceFeatures : access Windows.Devices.Sensors.IHumanPresenceFeatures;
+      end record;
+   type HumanPresenceFeatures_Ptr is access all HumanPresenceFeatures;
+
+   type HumanPresenceSensor is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IHumanPresenceSensor : access Windows.Devices.Sensors.IHumanPresenceSensor;
+      end record;
+   type HumanPresenceSensor_Ptr is access all HumanPresenceSensor;
+
+   type HumanPresenceSensorReading is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IHumanPresenceSensorReading : access Windows.Devices.Sensors.IHumanPresenceSensorReading;
+      end record;
+   type HumanPresenceSensorReading_Ptr is access all HumanPresenceSensorReading;
+
+   type HumanPresenceSensorReadingChangedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IHumanPresenceSensorReadingChangedEventArgs : access Windows.Devices.Sensors.IHumanPresenceSensorReadingChangedEventArgs;
+      end record;
+   type HumanPresenceSensorReadingChangedEventArgs_Ptr is access all HumanPresenceSensorReadingChangedEventArgs;
+
+   type HumanPresenceSensorReadingUpdate is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IHumanPresenceSensorReadingUpdate : access Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate;
+      end record;
+   type HumanPresenceSensorReadingUpdate_Ptr is access all HumanPresenceSensorReadingUpdate;
+
+   type HumanPresenceSettings is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IHumanPresenceSettings : access Windows.Devices.Sensors.IHumanPresenceSettings;
+      end record;
+   type HumanPresenceSettings_Ptr is access all HumanPresenceSettings;
 
    type Inclinometer is new Ada.Finalization.Limited_Controlled with
       record
@@ -711,6 +964,12 @@ package WinRt.Windows.Devices.Sensors is
       end record;
    type LightSensorReadingChangedEventArgs_Ptr is access all LightSensorReadingChangedEventArgs;
 
+   type LockOnLeaveOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ILockOnLeaveOptions : access Windows.Devices.Sensors.ILockOnLeaveOptions;
+      end record;
+   type LockOnLeaveOptions_Ptr is access all LockOnLeaveOptions;
+
    type Magnetometer is new Ada.Finalization.Limited_Controlled with
       record
          m_IMagnetometer : access Windows.Devices.Sensors.IMagnetometer;
@@ -734,6 +993,12 @@ package WinRt.Windows.Devices.Sensors is
          m_IMagnetometerReadingChangedEventArgs : access Windows.Devices.Sensors.IMagnetometerReadingChangedEventArgs;
       end record;
    type MagnetometerReadingChangedEventArgs_Ptr is access all MagnetometerReadingChangedEventArgs;
+
+   type OnlookerDetectionOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IOnlookerDetectionOptions : access Windows.Devices.Sensors.IOnlookerDetectionOptions;
+      end record;
+   type OnlookerDetectionOptions_Ptr is access all OnlookerDetectionOptions;
 
    type OrientationSensor is new Ada.Finalization.Limited_Controlled with
       record
@@ -837,6 +1102,12 @@ package WinRt.Windows.Devices.Sensors is
       end record;
    type SimpleOrientationSensorOrientationChangedEventArgs_Ptr is access all SimpleOrientationSensorOrientationChangedEventArgs;
 
+   type WakeOnApproachOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWakeOnApproachOptions : access Windows.Devices.Sensors.IWakeOnApproachOptions;
+      end record;
+   type WakeOnApproachOptions_Ptr is access all WakeOnApproachOptions;
+
    -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
@@ -885,6 +1156,30 @@ package WinRt.Windows.Devices.Sensors is
    );
    type ActivityType_Ptr is access all ActivityType;
 
+   type HumanEngagement is (
+      Unknown_e,
+      Engaged_e,
+      Unengaged_e
+   );
+   for HumanEngagement use (
+      Unknown_e => 0,
+      Engaged_e => 1,
+      Unengaged_e => 2
+   );
+   type HumanEngagement_Ptr is access all HumanEngagement;
+
+   type HumanPresence is (
+      Unknown_e,
+      Present_e,
+      NotPresent_e
+   );
+   for HumanPresence use (
+      Unknown_e => 0,
+      Present_e => 1,
+      NotPresent_e => 2
+   );
+   type HumanPresence_Ptr is access all HumanPresence;
+
    type MagnetometerAccuracy is (
       Unknown_e,
       Unreliable_e,
@@ -898,6 +1193,32 @@ package WinRt.Windows.Devices.Sensors is
       High_e => 3
    );
    type MagnetometerAccuracy_Ptr is access all MagnetometerAccuracy;
+
+   type OnlookerDetectionAction is (
+      Dim_e,
+      Notify_e,
+      DimAndNotify_e
+   );
+   for OnlookerDetectionAction use (
+      Dim_e => 0,
+      Notify_e => 1,
+      DimAndNotify_e => 2
+   );
+   type OnlookerDetectionAction_Ptr is access all OnlookerDetectionAction;
+
+   type OnlookerDetectionBackOnMode is (
+      Manually_e,
+      OneHour_e,
+      FourHours_e,
+      OneDay_e
+   );
+   for OnlookerDetectionBackOnMode use (
+      Manually_e => 0,
+      OneHour_e => 1,
+      FourHours_e => 2,
+      OneDay_e => 3
+   );
+   type OnlookerDetectionBackOnMode_Ptr is access all OnlookerDetectionBackOnMode;
 
    type PedometerStepKind is (
       Unknown_e,
@@ -984,6 +1305,16 @@ package WinRt.Windows.Devices.Sensors is
    type SimpleOrientation_Ptr is access all SimpleOrientation;
 
    -----------------------------------------------------------------------------
+   -- Record declarations
+   -----------------------------------------------------------------------------
+
+   type LightSensorChromaticity is record
+      X : WinRt.Double;
+      Y : WinRt.Double;
+   end record with Convention => C_Pass_By_Copy;
+   type LightSensorChromaticity_Ptr is access all LightSensorChromaticity;
+
+   -----------------------------------------------------------------------------
    -- Generic package declarations
    -----------------------------------------------------------------------------
 
@@ -1011,13 +1342,37 @@ package WinRt.Windows.Devices.Sensors is
    IID_IReference_Double : aliased WinRt.IID := (1264524133, 60523, 23129, (187, 37, 86, 94, 188, 248, 79, 248 ));
    function QInterface_IReference_Double is new Generic_QueryInterface (GenericObject_Interface, IReference_Double.Kind, IID_IReference_Double'Access);
 
+   package IReference_UInt32 is new WinRt.Windows.Foundation.IReference (WinRt.UInt32);
+   IID_IReference_UInt32 : aliased WinRt.IID := (3593066757, 34671, 21125, (128, 143, 107, 221, 216, 49, 32, 103 ));
+   function QInterface_IReference_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IReference_UInt32.Kind, IID_IReference_UInt32'Access);
+
+   package IReference_Int32 is new WinRt.Windows.Foundation.IReference (WinRt.Int32);
+   IID_IReference_Int32 : aliased WinRt.IID := (3593066757, 34671, 21125, (128, 143, 107, 221, 216, 49, 32, 103 ));
+   function QInterface_IReference_Int32 is new Generic_QueryInterface (GenericObject_Interface, IReference_Int32.Kind, IID_IReference_Int32'Access);
+
+   package IVectorView_UInt32 is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.UInt32);
+   IID_IVectorView_UInt32 : aliased WinRt.IID := (112188182, 30503, 23167, (168, 59, 18, 108, 95, 122, 50, 167 ));
+   function QInterface_IVectorView_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IVectorView_UInt32.Kind, IID_IVectorView_UInt32'Access);
+
+   package IVectorView_IDetectedPerson is new WinRt.Windows.Foundation.Collections.IVectorView (IDetectedPerson);
+   IID_IVectorView_IDetectedPerson : aliased WinRt.IID := (3578283521, 38722, 22137, (151, 199, 121, 82, 63, 168, 175, 117 ));
+   function QInterface_IVectorView_IDetectedPerson is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IDetectedPerson.Kind, IID_IVectorView_IDetectedPerson'Access);
+
+   package IReference_DateTime is new WinRt.Windows.Foundation.IReference (WinRt.Windows.Foundation.DateTime);
+   IID_IReference_DateTime : aliased WinRt.IID := (3816108569, 42213, 23274, (141, 96, 40, 31, 163, 141, 128, 213 ));
+   function QInterface_IReference_DateTime is new Generic_QueryInterface (GenericObject_Interface, IReference_DateTime.Kind, IID_IReference_DateTime'Access);
+
+   package IReference_HumanPresence is new WinRt.Windows.Foundation.IReference (HumanPresence);
+   IID_IReference_HumanPresence : aliased WinRt.IID := (3816108569, 42213, 23274, (141, 96, 40, 31, 163, 141, 128, 213 ));
+   function QInterface_IReference_HumanPresence is new Generic_QueryInterface (GenericObject_Interface, IReference_HumanPresence.Kind, IID_IReference_HumanPresence'Access);
+
+   package IReference_HumanEngagement is new WinRt.Windows.Foundation.IReference (HumanEngagement);
+   IID_IReference_HumanEngagement : aliased WinRt.IID := (3816108569, 42213, 23274, (141, 96, 40, 31, 163, 141, 128, 213 ));
+   function QInterface_IReference_HumanEngagement is new Generic_QueryInterface (GenericObject_Interface, IReference_HumanEngagement.Kind, IID_IReference_HumanEngagement'Access);
+
    package IMapView_PedometerStepKind_IPedometerReading is new WinRt.Windows.Foundation.Collections.IMapView (PedometerStepKind, IPedometerReading);
    IID_IMapView_PedometerStepKind_IPedometerReading : aliased WinRt.IID := (1756178821, 9073, 21028, (174, 0, 108, 118, 221, 236, 113, 108 ));
    function QInterface_IMapView_PedometerStepKind_IPedometerReading is new Generic_QueryInterface (GenericObject_Interface, IMapView_PedometerStepKind_IPedometerReading.Kind, IID_IMapView_PedometerStepKind_IPedometerReading'Access);
-
-   package IReference_UInt32 is new WinRt.Windows.Foundation.IReference (WinRt.UInt32);
-   IID_IReference_UInt32 : aliased WinRt.IID := (1500918935, 32070, 22400, (151, 41, 18, 234, 12, 152, 77, 217 ));
-   function QInterface_IReference_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IReference_UInt32.Kind, IID_IReference_UInt32'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -1503,6 +1858,25 @@ package WinRt.Windows.Devices.Sensors is
       return WinRt.Hresult is abstract;
 
       IID_IActivitySensorTriggerDetails : aliased WinRt.IID := (748578322, 47562, 18039, (178, 99, 36, 50, 151, 247, 157, 58 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAdaptiveDimmingOptions is interface and WinRt.IInspectable;
+
+      function get_AllowWhenExternalDisplayConnected
+      (
+         this : access IAdaptiveDimmingOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AllowWhenExternalDisplayConnected
+      (
+         this : access IAdaptiveDimmingOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAdaptiveDimmingOptions : aliased WinRt.IID := (3542170871, 35253, 22322, (178, 160, 174, 254, 50, 79, 84, 230 ));
 
    -----------------------------------------------------------------------------
    -- type IAltimeter is interface and WinRt.IInspectable;
@@ -2079,6 +2453,46 @@ package WinRt.Windows.Devices.Sensors is
       IID_ICompassStatics2 : aliased WinRt.IID := (181276333, 15274, 18832, (156, 228, 190, 9, 19, 117, 78, 210 ));
 
    -----------------------------------------------------------------------------
+   -- type IDetectedPerson is interface and WinRt.IInspectable;
+
+      function get_Engagement
+      (
+         this : access IDetectedPerson_Interface;
+         RetVal : access Windows.Devices.Sensors.HumanEngagement
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DistanceInMillimeters
+      (
+         this : access IDetectedPerson_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_HeadOrientation
+      (
+         this : access IDetectedPerson_Interface;
+         RetVal : access Windows.Devices.Sensors.IHeadOrientation
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_HeadPosition
+      (
+         this : access IDetectedPerson_Interface;
+         RetVal : access Windows.Devices.Sensors.IHeadPosition
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PersonId
+      (
+         this : access IDetectedPerson_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDetectedPerson : aliased WinRt.IID := (378323161, 16133, 20521, (160, 191, 205, 202, 180, 190, 63, 158 ));
+
+   -----------------------------------------------------------------------------
    -- type IGyrometer is interface and WinRt.IInspectable;
 
       function GetCurrentReading
@@ -2339,6 +2753,51 @@ package WinRt.Windows.Devices.Sensors is
       IID_IGyrometerStatics2 : aliased WinRt.IID := (4018403233, 55040, 16900, (150, 19, 121, 198, 177, 97, 223, 78 ));
 
    -----------------------------------------------------------------------------
+   -- type IHeadOrientation is interface and WinRt.IInspectable;
+
+      function get_RollInDegrees
+      (
+         this : access IHeadOrientation_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PitchInDegrees
+      (
+         this : access IHeadOrientation_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_YawInDegrees
+      (
+         this : access IHeadOrientation_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHeadOrientation : aliased WinRt.IID := (1369396393, 20798, 21992, (156, 53, 62, 141, 162, 29, 238, 105 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHeadPosition is interface and WinRt.IInspectable;
+
+      function get_AzimuthInDegrees
+      (
+         this : access IHeadPosition_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AltitudeInDegrees
+      (
+         this : access IHeadPosition_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHeadPosition : aliased WinRt.IID := (1482353509, 53045, 24173, (167, 106, 55, 219, 19, 30, 23, 222 ));
+
+   -----------------------------------------------------------------------------
    -- type IHingeAngleReading is interface and WinRt.IInspectable;
 
       function get_Timestamp
@@ -2466,6 +2925,672 @@ package WinRt.Windows.Devices.Sensors is
       return WinRt.Hresult is abstract;
 
       IID_IHingeAngleSensorStatics : aliased WinRt.IID := (3082172688, 64433, 16675, (137, 206, 78, 163, 78, 176, 223, 202 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceFeatures is interface and WinRt.IInspectable;
+
+      function get_SensorId
+      (
+         this : access IHumanPresenceFeatures_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SupportedWakeOrLockDistancesInMillimeters
+      (
+         this : access IHumanPresenceFeatures_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsWakeOnApproachSupported
+      (
+         this : access IHumanPresenceFeatures_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsLockOnLeaveSupported
+      (
+         this : access IHumanPresenceFeatures_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsAttentionAwareDimmingSupported
+      (
+         this : access IHumanPresenceFeatures_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceFeatures : aliased WinRt.IID := (3182469082, 12868, 21882, (189, 41, 139, 0, 79, 89, 242, 204 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceFeatures2 is interface and WinRt.IInspectable;
+
+      function get_IsAdaptiveDimmingSupported
+      (
+         this : access IHumanPresenceFeatures2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceFeatures2 : aliased WinRt.IID := (145346010, 55593, 24258, (129, 226, 148, 11, 175, 160, 137, 207 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceFeatures3 is interface and WinRt.IInspectable;
+
+      function get_IsOnlookerDetectionSupported
+      (
+         this : access IHumanPresenceFeatures3_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceFeatures3 : aliased WinRt.IID := (3981312938, 23714, 23554, (183, 131, 38, 46, 145, 41, 86, 25 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSensor is interface and WinRt.IInspectable;
+
+      function get_DeviceId
+      (
+         this : access IHumanPresenceSensor_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MaxDetectableDistanceInMillimeters
+      (
+         this : access IHumanPresenceSensor_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MinDetectableDistanceInMillimeters
+      (
+         this : access IHumanPresenceSensor_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetCurrentReading
+      (
+         this : access IHumanPresenceSensor_Interface;
+         RetVal : access Windows.Devices.Sensors.IHumanPresenceSensorReading
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_ReadingChanged
+      (
+         this : access IHumanPresenceSensor_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_ReadingChanged
+      (
+         this : access IHumanPresenceSensor_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSensor : aliased WinRt.IID := (555120779, 58249, 23747, (154, 151, 203, 23, 190, 16, 8, 189 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSensor2 is interface and WinRt.IInspectable;
+
+      function get_IsPresenceSupported
+      (
+         this : access IHumanPresenceSensor2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsEngagementSupported
+      (
+         this : access IHumanPresenceSensor2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSensor2 : aliased WinRt.IID := (4169348985, 26110, 21530, (185, 214, 30, 71, 74, 72, 94, 122 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSensor3 is interface and WinRt.IInspectable;
+
+      function get_MaxDetectablePersons
+      (
+         this : access IHumanPresenceSensor3_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MinDetectableAzimuthInDegrees
+      (
+         this : access IHumanPresenceSensor3_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MaxDetectableAzimuthInDegrees
+      (
+         this : access IHumanPresenceSensor3_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MinDetectableAltitudeInDegrees
+      (
+         this : access IHumanPresenceSensor3_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MaxDetectableAltitudeInDegrees
+      (
+         this : access IHumanPresenceSensor3_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSensor3 : aliased WinRt.IID := (2520711277, 2317, 21292, (158, 175, 128, 58, 159, 105, 40, 91 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSensorExtension is interface and WinRt.IInspectable;
+
+      function Initialize
+      (
+         this : access IHumanPresenceSensorExtension_Interface;
+         deviceInterface : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function Start
+      (
+         this : access IHumanPresenceSensorExtension_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function ProcessReading
+      (
+         this : access IHumanPresenceSensorExtension_Interface;
+         reading : Windows.Devices.Sensors.IHumanPresenceSensorReading;
+         RetVal : access Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate
+      )
+      return WinRt.Hresult is abstract;
+
+      function ProcessReadingTimeoutExpired
+      (
+         this : access IHumanPresenceSensorExtension_Interface;
+         reading : Windows.Devices.Sensors.IHumanPresenceSensorReading
+      )
+      return WinRt.Hresult is abstract;
+
+      function Stop
+      (
+         this : access IHumanPresenceSensorExtension_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function Uninitialize
+      (
+         this : access IHumanPresenceSensorExtension_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function Reset
+      (
+         this : access IHumanPresenceSensorExtension_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSensorExtension : aliased WinRt.IID := (1045588593, 11549, 23875, (138, 142, 164, 52, 168, 36, 46, 240 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSensorReading is interface and WinRt.IInspectable;
+
+      function get_Timestamp
+      (
+         this : access IHumanPresenceSensorReading_Interface;
+         RetVal : access Windows.Foundation.DateTime
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Presence
+      (
+         this : access IHumanPresenceSensorReading_Interface;
+         RetVal : access Windows.Devices.Sensors.HumanPresence
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Engagement
+      (
+         this : access IHumanPresenceSensorReading_Interface;
+         RetVal : access Windows.Devices.Sensors.HumanEngagement
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DistanceInMillimeters
+      (
+         this : access IHumanPresenceSensorReading_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSensorReading : aliased WinRt.IID := (2203270133, 43098, 23888, (139, 228, 96, 114, 215, 69, 163, 187 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSensorReading2 is interface and WinRt.IInspectable;
+
+      function get_Properties
+      (
+         this : access IHumanPresenceSensorReading2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSensorReading2 : aliased WinRt.IID := (3304122704, 15359, 21462, (160, 248, 81, 78, 163, 112, 92, 102 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSensorReading3 is interface and WinRt.IInspectable;
+
+      function get_OnlookerPresence
+      (
+         this : access IHumanPresenceSensorReading3_Interface;
+         RetVal : access Windows.Devices.Sensors.HumanPresence
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DetectedPersons
+      (
+         this : access IHumanPresenceSensorReading3_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSensorReading3 : aliased WinRt.IID := (3094796568, 61545, 22639, (144, 227, 124, 111, 165, 197, 211, 58 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSensorReadingChangedEventArgs is interface and WinRt.IInspectable;
+
+      function get_Reading
+      (
+         this : access IHumanPresenceSensorReadingChangedEventArgs_Interface;
+         RetVal : access Windows.Devices.Sensors.IHumanPresenceSensorReading
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSensorReadingChangedEventArgs : aliased WinRt.IID := (2849785219, 64873, 23646, (171, 31, 148, 34, 4, 234, 226, 219 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSensorReadingUpdate is interface and WinRt.IInspectable;
+
+      function get_Timestamp
+      (
+         this : access IHumanPresenceSensorReadingUpdate_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Timestamp
+      (
+         this : access IHumanPresenceSensorReadingUpdate_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Presence
+      (
+         this : access IHumanPresenceSensorReadingUpdate_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Presence
+      (
+         this : access IHumanPresenceSensorReadingUpdate_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Engagement
+      (
+         this : access IHumanPresenceSensorReadingUpdate_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Engagement
+      (
+         this : access IHumanPresenceSensorReadingUpdate_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DistanceInMillimeters
+      (
+         this : access IHumanPresenceSensorReadingUpdate_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_DistanceInMillimeters
+      (
+         this : access IHumanPresenceSensorReadingUpdate_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSensorReadingUpdate : aliased WinRt.IID := (1111596151, 27951, 21920, (158, 1, 201, 203, 231, 178, 214, 223 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSensorReadingUpdate2 is interface and WinRt.IInspectable;
+
+      function get_OnlookerPresence
+      (
+         this : access IHumanPresenceSensorReadingUpdate2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_OnlookerPresence
+      (
+         this : access IHumanPresenceSensorReadingUpdate2_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSensorReadingUpdate2 : aliased WinRt.IID := (3147145267, 50824, 21610, (142, 45, 177, 38, 66, 231, 239, 235 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSensorStatics is interface and WinRt.IInspectable;
+
+      function GetDeviceSelector
+      (
+         this : access IHumanPresenceSensorStatics_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function FromIdAsync
+      (
+         this : access IHumanPresenceSensorStatics_Interface;
+         sensorId : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetDefaultAsync
+      (
+         this : access IHumanPresenceSensorStatics_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSensorStatics : aliased WinRt.IID := (719886402, 56233, 22194, (159, 39, 234, 198, 157, 98, 16, 4 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSensorStatics2 is interface and WinRt.IInspectable;
+
+      function FromId
+      (
+         this : access IHumanPresenceSensorStatics2_Interface;
+         sensorId : WinRt.HString;
+         RetVal : access Windows.Devices.Sensors.IHumanPresenceSensor
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetDefault
+      (
+         this : access IHumanPresenceSensorStatics2_Interface;
+         RetVal : access Windows.Devices.Sensors.IHumanPresenceSensor
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSensorStatics2 : aliased WinRt.IID := (1575180355, 53856, 23175, (153, 94, 172, 233, 19, 38, 225, 196 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSettings is interface and WinRt.IInspectable;
+
+      function get_SensorId
+      (
+         this : access IHumanPresenceSettings_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SensorId
+      (
+         this : access IHumanPresenceSettings_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsWakeOnApproachEnabled
+      (
+         this : access IHumanPresenceSettings_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsWakeOnApproachEnabled
+      (
+         this : access IHumanPresenceSettings_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_WakeOnApproachDistanceInMillimeters
+      (
+         this : access IHumanPresenceSettings_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_WakeOnApproachDistanceInMillimeters
+      (
+         this : access IHumanPresenceSettings_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsLockOnLeaveEnabled
+      (
+         this : access IHumanPresenceSettings_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsLockOnLeaveEnabled
+      (
+         this : access IHumanPresenceSettings_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_LockOnLeaveDistanceInMillimeters
+      (
+         this : access IHumanPresenceSettings_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_LockOnLeaveDistanceInMillimeters
+      (
+         this : access IHumanPresenceSettings_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_LockOnLeaveTimeout
+      (
+         this : access IHumanPresenceSettings_Interface;
+         RetVal : access Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_LockOnLeaveTimeout
+      (
+         this : access IHumanPresenceSettings_Interface;
+         value : Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsAttentionAwareDimmingEnabled
+      (
+         this : access IHumanPresenceSettings_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsAttentionAwareDimmingEnabled
+      (
+         this : access IHumanPresenceSettings_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSettings : aliased WinRt.IID := (4014845787, 1975, 24246, (134, 187, 183, 255, 73, 206, 68, 251 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSettings2 is interface and WinRt.IInspectable;
+
+      function get_IsAdaptiveDimmingEnabled
+      (
+         this : access IHumanPresenceSettings2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsAdaptiveDimmingEnabled
+      (
+         this : access IHumanPresenceSettings2_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_WakeOptions
+      (
+         this : access IHumanPresenceSettings2_Interface;
+         RetVal : access Windows.Devices.Sensors.IWakeOnApproachOptions
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DimmingOptions
+      (
+         this : access IHumanPresenceSettings2_Interface;
+         RetVal : access Windows.Devices.Sensors.IAdaptiveDimmingOptions
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_LockOptions
+      (
+         this : access IHumanPresenceSettings2_Interface;
+         RetVal : access Windows.Devices.Sensors.ILockOnLeaveOptions
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSettings2 : aliased WinRt.IID := (2725212254, 34454, 24244, (185, 225, 38, 165, 8, 222, 28, 212 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSettings3 is interface and WinRt.IInspectable;
+
+      function get_IsOnlookerDetectionEnabled
+      (
+         this : access IHumanPresenceSettings3_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsOnlookerDetectionEnabled
+      (
+         this : access IHumanPresenceSettings3_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OnlookerDetectionOptions
+      (
+         this : access IHumanPresenceSettings3_Interface;
+         RetVal : access Windows.Devices.Sensors.IOnlookerDetectionOptions
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSettings3 : aliased WinRt.IID := (2306175526, 44225, 20312, (129, 223, 71, 241, 214, 149, 55, 242 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHumanPresenceSettingsStatics is interface and WinRt.IInspectable;
+
+      function GetCurrentSettingsAsync
+      (
+         this : access IHumanPresenceSettingsStatics_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetCurrentSettings
+      (
+         this : access IHumanPresenceSettingsStatics_Interface;
+         RetVal : access Windows.Devices.Sensors.IHumanPresenceSettings
+      )
+      return WinRt.Hresult is abstract;
+
+      function UpdateSettingsAsync
+      (
+         this : access IHumanPresenceSettingsStatics_Interface;
+         settings : Windows.Devices.Sensors.IHumanPresenceSettings;
+         RetVal : access Windows.Foundation.IAsyncAction
+      )
+      return WinRt.Hresult is abstract;
+
+      function UpdateSettings
+      (
+         this : access IHumanPresenceSettingsStatics_Interface;
+         settings : Windows.Devices.Sensors.IHumanPresenceSettings
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetSupportedFeaturesForSensorIdAsync
+      (
+         this : access IHumanPresenceSettingsStatics_Interface;
+         sensorId : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetSupportedFeaturesForSensorId
+      (
+         this : access IHumanPresenceSettingsStatics_Interface;
+         sensorId : WinRt.HString;
+         RetVal : access Windows.Devices.Sensors.IHumanPresenceFeatures
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetSupportedLockOnLeaveTimeouts
+      (
+         this : access IHumanPresenceSettingsStatics_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_SettingsChanged
+      (
+         this : access IHumanPresenceSettingsStatics_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_SettingsChanged
+      (
+         this : access IHumanPresenceSettingsStatics_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHumanPresenceSettingsStatics : aliased WinRt.IID := (2134127106, 57360, 21188, (175, 12, 4, 168, 241, 224, 51, 218 ));
 
    -----------------------------------------------------------------------------
    -- type IInclinometer is interface and WinRt.IInspectable;
@@ -2859,6 +3984,18 @@ package WinRt.Windows.Devices.Sensors is
       IID_ILightSensor3 : aliased WinRt.IID := (1215746303, 40780, 24434, (173, 189, 163, 71, 27, 6, 60, 0 ));
 
    -----------------------------------------------------------------------------
+   -- type ILightSensor4 is interface and WinRt.IInspectable;
+
+      function IsChromaticitySupported
+      (
+         this : access ILightSensor4_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ILightSensor4 : aliased WinRt.IID := (1634188951, 25488, 16460, (156, 25, 68, 83, 17, 198, 161, 211 ));
+
+   -----------------------------------------------------------------------------
    -- type ILightSensorDataThreshold is interface and WinRt.IInspectable;
 
       function get_LuxPercentage
@@ -2890,6 +4027,25 @@ package WinRt.Windows.Devices.Sensors is
       return WinRt.Hresult is abstract;
 
       IID_ILightSensorDataThreshold : aliased WinRt.IID := (2975903697, 34703, 21650, (159, 44, 51, 220, 58, 229, 132, 163 ));
+
+   -----------------------------------------------------------------------------
+   -- type ILightSensorDataThreshold2 is interface and WinRt.IInspectable;
+
+      function get_Chromaticity
+      (
+         this : access ILightSensorDataThreshold2_Interface;
+         RetVal : access Windows.Devices.Sensors.LightSensorChromaticity
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Chromaticity
+      (
+         this : access ILightSensorDataThreshold2_Interface;
+         value : Windows.Devices.Sensors.LightSensorChromaticity
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ILightSensorDataThreshold2 : aliased WinRt.IID := (1862537149, 57483, 23447, (143, 97, 221, 78, 230, 107, 23, 51 ));
 
    -----------------------------------------------------------------------------
    -- type ILightSensorDeviceId is interface and WinRt.IInspectable;
@@ -2942,6 +4098,18 @@ package WinRt.Windows.Devices.Sensors is
       IID_ILightSensorReading2 : aliased WinRt.IID := (3075547525, 17571, 17609, (129, 144, 158, 246, 222, 10, 138, 116 ));
 
    -----------------------------------------------------------------------------
+   -- type ILightSensorReading3 is interface and WinRt.IInspectable;
+
+      function get_Chromaticity
+      (
+         this : access ILightSensorReading3_Interface;
+         RetVal : access Windows.Devices.Sensors.LightSensorChromaticity
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ILightSensorReading3 : aliased WinRt.IID := (4080594438, 38575, 16425, (181, 48, 97, 172, 192, 91, 124, 254 ));
+
+   -----------------------------------------------------------------------------
    -- type ILightSensorReadingChangedEventArgs is interface and WinRt.IInspectable;
 
       function get_Reading
@@ -2984,6 +4152,25 @@ package WinRt.Windows.Devices.Sensors is
       return WinRt.Hresult is abstract;
 
       IID_ILightSensorStatics2 : aliased WinRt.IID := (247506512, 56774, 16555, (172, 227, 236, 51, 89, 212, 44, 81 ));
+
+   -----------------------------------------------------------------------------
+   -- type ILockOnLeaveOptions is interface and WinRt.IInspectable;
+
+      function get_AllowWhenExternalDisplayConnected
+      (
+         this : access ILockOnLeaveOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AllowWhenExternalDisplayConnected
+      (
+         this : access ILockOnLeaveOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ILockOnLeaveOptions : aliased WinRt.IID := (1013708989, 1217, 22569, (141, 78, 112, 82, 23, 85, 184, 190 ));
 
    -----------------------------------------------------------------------------
    -- type IMagnetometer is interface and WinRt.IInspectable;
@@ -3251,6 +4438,39 @@ package WinRt.Windows.Devices.Sensors is
       return WinRt.Hresult is abstract;
 
       IID_IMagnetometerStatics2 : aliased WinRt.IID := (738728432, 65478, 20361, (160, 111, 24, 250, 16, 121, 41, 51 ));
+
+   -----------------------------------------------------------------------------
+   -- type IOnlookerDetectionOptions is interface and WinRt.IInspectable;
+
+      function get_Action
+      (
+         this : access IOnlookerDetectionOptions_Interface;
+         RetVal : access Windows.Devices.Sensors.OnlookerDetectionAction
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Action
+      (
+         this : access IOnlookerDetectionOptions_Interface;
+         value : Windows.Devices.Sensors.OnlookerDetectionAction
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_BackOnMode
+      (
+         this : access IOnlookerDetectionOptions_Interface;
+         RetVal : access Windows.Devices.Sensors.OnlookerDetectionBackOnMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_BackOnMode
+      (
+         this : access IOnlookerDetectionOptions_Interface;
+         value : Windows.Devices.Sensors.OnlookerDetectionBackOnMode
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IOnlookerDetectionOptions : aliased WinRt.IID := (68334447, 14054, 20962, (135, 110, 101, 25, 124, 197, 60, 18 ));
 
    -----------------------------------------------------------------------------
    -- type IOrientationSensor is interface and WinRt.IInspectable;
@@ -4066,6 +5286,39 @@ package WinRt.Windows.Devices.Sensors is
       IID_ISimpleOrientationSensorStatics2 : aliased WinRt.IID := (2224004223, 45368, 19985, (137, 16, 162, 162, 163, 181, 109, 131 ));
 
    -----------------------------------------------------------------------------
+   -- type IWakeOnApproachOptions is interface and WinRt.IInspectable;
+
+      function get_AllowWhenExternalDisplayConnected
+      (
+         this : access IWakeOnApproachOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AllowWhenExternalDisplayConnected
+      (
+         this : access IWakeOnApproachOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DisableWhenBatterySaverOn
+      (
+         this : access IWakeOnApproachOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_DisableWhenBatterySaverOn
+      (
+         this : access IWakeOnApproachOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWakeOnApproachOptions : aliased WinRt.IID := (4038621927, 32287, 24229, (129, 77, 107, 126, 7, 222, 252, 43 ));
+
+   -----------------------------------------------------------------------------
    -- Class method declarations
    -----------------------------------------------------------------------------
 
@@ -4479,6 +5732,27 @@ package WinRt.Windows.Devices.Sensors is
    return IVectorView_IActivitySensorReadingChangeReport.Kind;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for AdaptiveDimmingOptions
+
+   overriding procedure Initialize (this : in out AdaptiveDimmingOptions);
+   overriding procedure Finalize (this : in out AdaptiveDimmingOptions);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for AdaptiveDimmingOptions
+
+   function get_AllowWhenExternalDisplayConnected
+   (
+      this : in out AdaptiveDimmingOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_AllowWhenExternalDisplayConnected
+   (
+      this : in out AdaptiveDimmingOptions;
+      value : WinRt.Boolean
+   );
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Altimeter
 
    overriding procedure Initialize (this : in out Altimeter);
@@ -4771,9 +6045,6 @@ package WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Compass
 
-   function GetDefault
-   return WinRt.Windows.Devices.Sensors.Compass;
-
    function GetDeviceSelector_Compass
    return WinRt.WString;
 
@@ -4781,6 +6052,9 @@ package WinRt.Windows.Devices.Sensors is
    (
       deviceId : WinRt.WString
    )
+   return WinRt.Windows.Devices.Sensors.Compass;
+
+   function GetDefault
    return WinRt.Windows.Devices.Sensors.Compass;
 
    -----------------------------------------------------------------------------
@@ -4947,6 +6221,45 @@ package WinRt.Windows.Devices.Sensors is
    return WinRt.Windows.Devices.Sensors.CompassReading'Class;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DetectedPerson
+
+   overriding procedure Initialize (this : in out DetectedPerson);
+   overriding procedure Finalize (this : in out DetectedPerson);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DetectedPerson
+
+   function get_Engagement
+   (
+      this : in out DetectedPerson
+   )
+   return WinRt.Windows.Devices.Sensors.HumanEngagement;
+
+   function get_DistanceInMillimeters
+   (
+      this : in out DetectedPerson
+   )
+   return IReference_UInt32.Kind;
+
+   function get_HeadOrientation
+   (
+      this : in out DetectedPerson
+   )
+   return WinRt.Windows.Devices.Sensors.HeadOrientation'Class;
+
+   function get_HeadPosition
+   (
+      this : in out DetectedPerson
+   )
+   return WinRt.Windows.Devices.Sensors.HeadPosition'Class;
+
+   function get_PersonId
+   (
+      this : in out DetectedPerson
+   )
+   return IReference_Int32.Kind;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Gyrometer
 
    overriding procedure Initialize (this : in out Gyrometer);
@@ -4955,9 +6268,6 @@ package WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Gyrometer
 
-   function GetDefault
-   return WinRt.Windows.Devices.Sensors.Gyrometer;
-
    function GetDeviceSelector_Gyrometer
    return WinRt.WString;
 
@@ -4965,6 +6275,9 @@ package WinRt.Windows.Devices.Sensors is
    (
       deviceId : WinRt.WString
    )
+   return WinRt.Windows.Devices.Sensors.Gyrometer;
+
+   function GetDefault
    return WinRt.Windows.Devices.Sensors.Gyrometer;
 
    -----------------------------------------------------------------------------
@@ -5155,6 +6468,54 @@ package WinRt.Windows.Devices.Sensors is
    return WinRt.Windows.Devices.Sensors.GyrometerReading'Class;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HeadOrientation
+
+   overriding procedure Initialize (this : in out HeadOrientation);
+   overriding procedure Finalize (this : in out HeadOrientation);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HeadOrientation
+
+   function get_RollInDegrees
+   (
+      this : in out HeadOrientation
+   )
+   return IReference_Double.Kind;
+
+   function get_PitchInDegrees
+   (
+      this : in out HeadOrientation
+   )
+   return IReference_Double.Kind;
+
+   function get_YawInDegrees
+   (
+      this : in out HeadOrientation
+   )
+   return IReference_Double.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HeadPosition
+
+   overriding procedure Initialize (this : in out HeadPosition);
+   overriding procedure Finalize (this : in out HeadPosition);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HeadPosition
+
+   function get_AzimuthInDegrees
+   (
+      this : in out HeadPosition
+   )
+   return IReference_Double.Kind;
+
+   function get_AltitudeInDegrees
+   (
+      this : in out HeadPosition
+   )
+   return IReference_Double.Kind;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for HingeAngleReading
 
    overriding procedure Initialize (this : in out HingeAngleReading);
@@ -5271,6 +6632,495 @@ package WinRt.Windows.Devices.Sensors is
    return WinRt.Windows.Devices.Sensors.HingeAngleReading'Class;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HumanPresenceFeatures
+
+   overriding procedure Initialize (this : in out HumanPresenceFeatures);
+   overriding procedure Finalize (this : in out HumanPresenceFeatures);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HumanPresenceFeatures
+
+   function get_SensorId
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return WinRt.WString;
+
+   function get_SupportedWakeOrLockDistancesInMillimeters
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return IVectorView_UInt32.Kind;
+
+   function get_IsWakeOnApproachSupported
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return WinRt.Boolean;
+
+   function get_IsLockOnLeaveSupported
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return WinRt.Boolean;
+
+   function get_IsAttentionAwareDimmingSupported
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return WinRt.Boolean;
+
+   function get_IsAdaptiveDimmingSupported
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return WinRt.Boolean;
+
+   function get_IsOnlookerDetectionSupported
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HumanPresenceSensor
+
+   overriding procedure Initialize (this : in out HumanPresenceSensor);
+   overriding procedure Finalize (this : in out HumanPresenceSensor);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for HumanPresenceSensor
+
+   function FromId
+   (
+      sensorId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSensor;
+
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSensor;
+
+   function GetDeviceSelector_HumanPresenceSensor
+   return WinRt.WString;
+
+   function FromIdAsync_HumanPresenceSensor
+   (
+      sensorId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSensor;
+
+   function GetDefaultAsync_HumanPresenceSensor
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSensor;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HumanPresenceSensor
+
+   function get_DeviceId
+   (
+      this : in out HumanPresenceSensor
+   )
+   return WinRt.WString;
+
+   function get_MaxDetectableDistanceInMillimeters
+   (
+      this : in out HumanPresenceSensor
+   )
+   return IReference_UInt32.Kind;
+
+   function get_MinDetectableDistanceInMillimeters
+   (
+      this : in out HumanPresenceSensor
+   )
+   return IReference_UInt32.Kind;
+
+   function GetCurrentReading
+   (
+      this : in out HumanPresenceSensor
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSensorReading'Class;
+
+   function add_ReadingChanged
+   (
+      this : in out HumanPresenceSensor;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ReadingChanged
+   (
+      this : in out HumanPresenceSensor;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function get_IsPresenceSupported
+   (
+      this : in out HumanPresenceSensor
+   )
+   return WinRt.Boolean;
+
+   function get_IsEngagementSupported
+   (
+      this : in out HumanPresenceSensor
+   )
+   return WinRt.Boolean;
+
+   function get_MaxDetectablePersons
+   (
+      this : in out HumanPresenceSensor
+   )
+   return WinRt.Int32;
+
+   function get_MinDetectableAzimuthInDegrees
+   (
+      this : in out HumanPresenceSensor
+   )
+   return IReference_Double.Kind;
+
+   function get_MaxDetectableAzimuthInDegrees
+   (
+      this : in out HumanPresenceSensor
+   )
+   return IReference_Double.Kind;
+
+   function get_MinDetectableAltitudeInDegrees
+   (
+      this : in out HumanPresenceSensor
+   )
+   return IReference_Double.Kind;
+
+   function get_MaxDetectableAltitudeInDegrees
+   (
+      this : in out HumanPresenceSensor
+   )
+   return IReference_Double.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HumanPresenceSensorReading
+
+   overriding procedure Initialize (this : in out HumanPresenceSensorReading);
+   overriding procedure Finalize (this : in out HumanPresenceSensorReading);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HumanPresenceSensorReading
+
+   function get_Timestamp
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return WinRt.Windows.Foundation.DateTime;
+
+   function get_Presence
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresence;
+
+   function get_Engagement
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return WinRt.Windows.Devices.Sensors.HumanEngagement;
+
+   function get_DistanceInMillimeters
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return IReference_UInt32.Kind;
+
+   function get_Properties
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return IMapView_HString_IInspectable.Kind;
+
+   function get_OnlookerPresence
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresence;
+
+   function get_DetectedPersons
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return IVectorView_IDetectedPerson.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HumanPresenceSensorReadingChangedEventArgs
+
+   overriding procedure Initialize (this : in out HumanPresenceSensorReadingChangedEventArgs);
+   overriding procedure Finalize (this : in out HumanPresenceSensorReadingChangedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HumanPresenceSensorReadingChangedEventArgs
+
+   function get_Reading
+   (
+      this : in out HumanPresenceSensorReadingChangedEventArgs
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSensorReading'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HumanPresenceSensorReadingUpdate
+
+   overriding procedure Initialize (this : in out HumanPresenceSensorReadingUpdate);
+   overriding procedure Finalize (this : in out HumanPresenceSensorReadingUpdate);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for HumanPresenceSensorReadingUpdate
+
+   function Constructor return HumanPresenceSensorReadingUpdate;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HumanPresenceSensorReadingUpdate
+
+   function get_Timestamp
+   (
+      this : in out HumanPresenceSensorReadingUpdate
+   )
+   return IReference_DateTime.Kind;
+
+   procedure put_Timestamp
+   (
+      this : in out HumanPresenceSensorReadingUpdate;
+      value : GenericObject
+   );
+
+   function get_Presence
+   (
+      this : in out HumanPresenceSensorReadingUpdate
+   )
+   return IReference_HumanPresence.Kind;
+
+   procedure put_Presence
+   (
+      this : in out HumanPresenceSensorReadingUpdate;
+      value : GenericObject
+   );
+
+   function get_Engagement
+   (
+      this : in out HumanPresenceSensorReadingUpdate
+   )
+   return IReference_HumanEngagement.Kind;
+
+   procedure put_Engagement
+   (
+      this : in out HumanPresenceSensorReadingUpdate;
+      value : GenericObject
+   );
+
+   function get_DistanceInMillimeters
+   (
+      this : in out HumanPresenceSensorReadingUpdate
+   )
+   return IReference_UInt32.Kind;
+
+   procedure put_DistanceInMillimeters
+   (
+      this : in out HumanPresenceSensorReadingUpdate;
+      value : GenericObject
+   );
+
+   function get_OnlookerPresence
+   (
+      this : in out HumanPresenceSensorReadingUpdate
+   )
+   return IReference_HumanPresence.Kind;
+
+   procedure put_OnlookerPresence
+   (
+      this : in out HumanPresenceSensorReadingUpdate;
+      value : GenericObject
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HumanPresenceSettings
+
+   overriding procedure Initialize (this : in out HumanPresenceSettings);
+   overriding procedure Finalize (this : in out HumanPresenceSettings);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for HumanPresenceSettings
+
+   function GetCurrentSettingsAsync
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSettings;
+
+   function GetCurrentSettings
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSettings;
+
+   procedure UpdateSettingsAsync
+   (
+      settings : Windows.Devices.Sensors.HumanPresenceSettings'Class
+   );
+
+   procedure UpdateSettings
+   (
+      settings : Windows.Devices.Sensors.HumanPresenceSettings'Class
+   );
+
+   function GetSupportedFeaturesForSensorIdAsync
+   (
+      sensorId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresenceFeatures;
+
+   function GetSupportedFeaturesForSensorId
+   (
+      sensorId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresenceFeatures;
+
+   function GetSupportedLockOnLeaveTimeouts
+   return WinRt.GenericObject;
+
+   function add_SettingsChanged
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_SettingsChanged
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HumanPresenceSettings
+
+   function get_SensorId
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.WString;
+
+   procedure put_SensorId
+   (
+      this : in out HumanPresenceSettings;
+      value : WinRt.WString
+   );
+
+   function get_IsWakeOnApproachEnabled
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsWakeOnApproachEnabled
+   (
+      this : in out HumanPresenceSettings;
+      value : WinRt.Boolean
+   );
+
+   function get_WakeOnApproachDistanceInMillimeters
+   (
+      this : in out HumanPresenceSettings
+   )
+   return IReference_UInt32.Kind;
+
+   procedure put_WakeOnApproachDistanceInMillimeters
+   (
+      this : in out HumanPresenceSettings;
+      value : GenericObject
+   );
+
+   function get_IsLockOnLeaveEnabled
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsLockOnLeaveEnabled
+   (
+      this : in out HumanPresenceSettings;
+      value : WinRt.Boolean
+   );
+
+   function get_LockOnLeaveDistanceInMillimeters
+   (
+      this : in out HumanPresenceSettings
+   )
+   return IReference_UInt32.Kind;
+
+   procedure put_LockOnLeaveDistanceInMillimeters
+   (
+      this : in out HumanPresenceSettings;
+      value : GenericObject
+   );
+
+   function get_LockOnLeaveTimeout
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Windows.Foundation.TimeSpan;
+
+   procedure put_LockOnLeaveTimeout
+   (
+      this : in out HumanPresenceSettings;
+      value : Windows.Foundation.TimeSpan
+   );
+
+   function get_IsAttentionAwareDimmingEnabled
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsAttentionAwareDimmingEnabled
+   (
+      this : in out HumanPresenceSettings;
+      value : WinRt.Boolean
+   );
+
+   function get_IsAdaptiveDimmingEnabled
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsAdaptiveDimmingEnabled
+   (
+      this : in out HumanPresenceSettings;
+      value : WinRt.Boolean
+   );
+
+   function get_WakeOptions
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Windows.Devices.Sensors.WakeOnApproachOptions'Class;
+
+   function get_DimmingOptions
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Windows.Devices.Sensors.AdaptiveDimmingOptions'Class;
+
+   function get_LockOptions
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Windows.Devices.Sensors.LockOnLeaveOptions'Class;
+
+   function get_IsOnlookerDetectionEnabled
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsOnlookerDetectionEnabled
+   (
+      this : in out HumanPresenceSettings;
+      value : WinRt.Boolean
+   );
+
+   function get_OnlookerDetectionOptions
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Windows.Devices.Sensors.OnlookerDetectionOptions'Class;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Inclinometer
 
    overriding procedure Initialize (this : in out Inclinometer);
@@ -5282,6 +7132,12 @@ package WinRt.Windows.Devices.Sensors is
    function GetDefault
    return WinRt.Windows.Devices.Sensors.Inclinometer;
 
+   function GetDefault
+   (
+      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
+   )
+   return WinRt.Windows.Devices.Sensors.Inclinometer;
+
    function GetDeviceSelector
    (
       readingType : Windows.Devices.Sensors.SensorReadingType
@@ -5291,12 +7147,6 @@ package WinRt.Windows.Devices.Sensors is
    function FromIdAsync_Inclinometer
    (
       deviceId : WinRt.WString
-   )
-   return WinRt.Windows.Devices.Sensors.Inclinometer;
-
-   function GetDefault
-   (
-      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
    )
    return WinRt.Windows.Devices.Sensors.Inclinometer;
 
@@ -5593,6 +7443,12 @@ package WinRt.Windows.Devices.Sensors is
    )
    return WinRt.Windows.Devices.Sensors.LightSensorDataThreshold'Class;
 
+   function IsChromaticitySupported
+   (
+      this : in out LightSensor
+   )
+   return WinRt.Boolean;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for LightSensorDataThreshold
 
@@ -5624,6 +7480,18 @@ package WinRt.Windows.Devices.Sensors is
    (
       this : in out LightSensorDataThreshold;
       value : WinRt.Single
+   );
+
+   function get_Chromaticity
+   (
+      this : in out LightSensorDataThreshold
+   )
+   return WinRt.Windows.Devices.Sensors.LightSensorChromaticity;
+
+   procedure put_Chromaticity
+   (
+      this : in out LightSensorDataThreshold;
+      value : Windows.Devices.Sensors.LightSensorChromaticity
    );
 
    -----------------------------------------------------------------------------
@@ -5659,6 +7527,12 @@ package WinRt.Windows.Devices.Sensors is
    )
    return IMapView_HString_IInspectable.Kind;
 
+   function get_Chromaticity
+   (
+      this : in out LightSensorReading
+   )
+   return WinRt.Windows.Devices.Sensors.LightSensorChromaticity;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for LightSensorReadingChangedEventArgs
 
@@ -5675,6 +7549,27 @@ package WinRt.Windows.Devices.Sensors is
    return WinRt.Windows.Devices.Sensors.LightSensorReading'Class;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for LockOnLeaveOptions
+
+   overriding procedure Initialize (this : in out LockOnLeaveOptions);
+   overriding procedure Finalize (this : in out LockOnLeaveOptions);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for LockOnLeaveOptions
+
+   function get_AllowWhenExternalDisplayConnected
+   (
+      this : in out LockOnLeaveOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_AllowWhenExternalDisplayConnected
+   (
+      this : in out LockOnLeaveOptions;
+      value : WinRt.Boolean
+   );
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Magnetometer
 
    overriding procedure Initialize (this : in out Magnetometer);
@@ -5683,6 +7578,9 @@ package WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Magnetometer
 
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.Magnetometer;
+
    function GetDeviceSelector_Magnetometer
    return WinRt.WString;
 
@@ -5690,9 +7588,6 @@ package WinRt.Windows.Devices.Sensors is
    (
       deviceId : WinRt.WString
    )
-   return WinRt.Windows.Devices.Sensors.Magnetometer;
-
-   function GetDefault
    return WinRt.Windows.Devices.Sensors.Magnetometer;
 
    -----------------------------------------------------------------------------
@@ -5889,6 +7784,39 @@ package WinRt.Windows.Devices.Sensors is
    return WinRt.Windows.Devices.Sensors.MagnetometerReading'Class;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for OnlookerDetectionOptions
+
+   overriding procedure Initialize (this : in out OnlookerDetectionOptions);
+   overriding procedure Finalize (this : in out OnlookerDetectionOptions);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for OnlookerDetectionOptions
+
+   function get_Action
+   (
+      this : in out OnlookerDetectionOptions
+   )
+   return WinRt.Windows.Devices.Sensors.OnlookerDetectionAction;
+
+   procedure put_Action
+   (
+      this : in out OnlookerDetectionOptions;
+      value : Windows.Devices.Sensors.OnlookerDetectionAction
+   );
+
+   function get_BackOnMode
+   (
+      this : in out OnlookerDetectionOptions
+   )
+   return WinRt.Windows.Devices.Sensors.OnlookerDetectionBackOnMode;
+
+   procedure put_BackOnMode
+   (
+      this : in out OnlookerDetectionOptions;
+      value : Windows.Devices.Sensors.OnlookerDetectionBackOnMode
+   );
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for OrientationSensor
 
    overriding procedure Initialize (this : in out OrientationSensor);
@@ -5896,6 +7824,25 @@ package WinRt.Windows.Devices.Sensors is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for OrientationSensor
+
+   function GetDefault
+   (
+      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
+   )
+   return WinRt.Windows.Devices.Sensors.OrientationSensor;
+
+   function GetDefault
+   (
+      sensorReadingType : Windows.Devices.Sensors.SensorReadingType;
+      optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal
+   )
+   return WinRt.Windows.Devices.Sensors.OrientationSensor;
+
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.OrientationSensor;
+
+   function GetDefaultForRelativeReadings
+   return WinRt.Windows.Devices.Sensors.OrientationSensor;
 
    function GetDeviceSelector_OrientationSensor
    (
@@ -5913,25 +7860,6 @@ package WinRt.Windows.Devices.Sensors is
    function FromIdAsync_OrientationSensor
    (
       deviceId : WinRt.WString
-   )
-   return WinRt.Windows.Devices.Sensors.OrientationSensor;
-
-   function GetDefault
-   return WinRt.Windows.Devices.Sensors.OrientationSensor;
-
-   function GetDefaultForRelativeReadings
-   return WinRt.Windows.Devices.Sensors.OrientationSensor;
-
-   function GetDefault
-   (
-      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
-   )
-   return WinRt.Windows.Devices.Sensors.OrientationSensor;
-
-   function GetDefault
-   (
-      sensorReadingType : Windows.Devices.Sensors.SensorReadingType;
-      optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal
    )
    return WinRt.Windows.Devices.Sensors.OrientationSensor;
 
@@ -6245,12 +8173,6 @@ package WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ProximitySensor
 
-   function GetReadingsFromTriggerDetails_ProximitySensor
-   (
-      triggerDetails : Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
-   )
-   return WinRt.GenericObject;
-
    function GetDeviceSelector_ProximitySensor
    return WinRt.WString;
 
@@ -6259,6 +8181,12 @@ package WinRt.Windows.Devices.Sensors is
       sensorId : WinRt.WString
    )
    return WinRt.Windows.Devices.Sensors.ProximitySensor;
+
+   function GetReadingsFromTriggerDetails_ProximitySensor
+   (
+      triggerDetails : Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
+   )
+   return WinRt.GenericObject;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ProximitySensor
@@ -6506,9 +8434,6 @@ package WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SimpleOrientationSensor
 
-   function GetDefault
-   return WinRt.Windows.Devices.Sensors.SimpleOrientationSensor;
-
    function GetDeviceSelector_SimpleOrientationSensor
    return WinRt.WString;
 
@@ -6516,6 +8441,9 @@ package WinRt.Windows.Devices.Sensors is
    (
       deviceId : WinRt.WString
    )
+   return WinRt.Windows.Devices.Sensors.SimpleOrientationSensor;
+
+   function GetDefault
    return WinRt.Windows.Devices.Sensors.SimpleOrientationSensor;
 
    -----------------------------------------------------------------------------
@@ -6578,5 +8506,38 @@ package WinRt.Windows.Devices.Sensors is
       this : in out SimpleOrientationSensorOrientationChangedEventArgs
    )
    return WinRt.Windows.Devices.Sensors.SimpleOrientation;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WakeOnApproachOptions
+
+   overriding procedure Initialize (this : in out WakeOnApproachOptions);
+   overriding procedure Finalize (this : in out WakeOnApproachOptions);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WakeOnApproachOptions
+
+   function get_AllowWhenExternalDisplayConnected
+   (
+      this : in out WakeOnApproachOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_AllowWhenExternalDisplayConnected
+   (
+      this : in out WakeOnApproachOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_DisableWhenBatterySaverOn
+   (
+      this : in out WakeOnApproachOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_DisableWhenBatterySaverOn
+   (
+      this : in out WakeOnApproachOptions;
+      value : WinRt.Boolean
+   );
 
 end WinRt.Windows.Devices.Sensors;

@@ -65,6 +65,7 @@ package WinRt.Windows.UI.ApplicationSettings is
 
    type IAccountsSettingsPaneCommandsRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IAccountsSettingsPaneCommandsRequestedEventArgs2 is access all IAccountsSettingsPaneCommandsRequestedEventArgs2_Interface'Class;
+   type IAccountsSettingsPaneCommandsRequestedEventArgs2_Ptr is access all IAccountsSettingsPaneCommandsRequestedEventArgs2;
 
    type IAccountsSettingsPaneEventDeferral_Interface is interface and WinRt.IInspectable_Interface;
    type IAccountsSettingsPaneEventDeferral is access all IAccountsSettingsPaneEventDeferral_Interface'Class;
@@ -72,12 +73,15 @@ package WinRt.Windows.UI.ApplicationSettings is
 
    type IAccountsSettingsPaneStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAccountsSettingsPaneStatics is access all IAccountsSettingsPaneStatics_Interface'Class;
+   type IAccountsSettingsPaneStatics_Ptr is access all IAccountsSettingsPaneStatics;
 
    type IAccountsSettingsPaneStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAccountsSettingsPaneStatics2 is access all IAccountsSettingsPaneStatics2_Interface'Class;
+   type IAccountsSettingsPaneStatics2_Ptr is access all IAccountsSettingsPaneStatics2;
 
    type IAccountsSettingsPaneStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IAccountsSettingsPaneStatics3 is access all IAccountsSettingsPaneStatics3_Interface'Class;
+   type IAccountsSettingsPaneStatics3_Ptr is access all IAccountsSettingsPaneStatics3;
 
    type ICredentialCommand_Interface is interface and WinRt.IInspectable_Interface;
    type ICredentialCommand is access all ICredentialCommand_Interface'Class;
@@ -85,12 +89,15 @@ package WinRt.Windows.UI.ApplicationSettings is
 
    type ICredentialCommandFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICredentialCommandFactory is access all ICredentialCommandFactory_Interface'Class;
+   type ICredentialCommandFactory_Ptr is access all ICredentialCommandFactory;
 
    type ISettingsCommandFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISettingsCommandFactory is access all ISettingsCommandFactory_Interface'Class;
+   type ISettingsCommandFactory_Ptr is access all ISettingsCommandFactory;
 
    type ISettingsCommandStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISettingsCommandStatics is access all ISettingsCommandStatics_Interface'Class;
+   type ISettingsCommandStatics_Ptr is access all ISettingsCommandStatics;
 
    type ISettingsPane_Interface is interface and WinRt.IInspectable_Interface;
    type ISettingsPane is access all ISettingsPane_Interface'Class;
@@ -106,6 +113,7 @@ package WinRt.Windows.UI.ApplicationSettings is
 
    type ISettingsPaneStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISettingsPaneStatics is access all ISettingsPaneStatics_Interface'Class;
+   type ISettingsPaneStatics_Ptr is access all ISettingsPaneStatics;
 
    type IWebAccountCommand_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountCommand is access all IWebAccountCommand_Interface'Class;
@@ -113,6 +121,7 @@ package WinRt.Windows.UI.ApplicationSettings is
 
    type IWebAccountCommandFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountCommandFactory is access all IWebAccountCommandFactory_Interface'Class;
+   type IWebAccountCommandFactory_Ptr is access all IWebAccountCommandFactory;
 
    type IWebAccountInvokedArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountInvokedArgs is access all IWebAccountInvokedArgs_Interface'Class;
@@ -124,6 +133,7 @@ package WinRt.Windows.UI.ApplicationSettings is
 
    type IWebAccountProviderCommandFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProviderCommandFactory is access all IWebAccountProviderCommandFactory_Interface'Class;
+   type IWebAccountProviderCommandFactory_Ptr is access all IWebAccountProviderCommandFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -695,11 +705,6 @@ package WinRt.Windows.UI.ApplicationSettings is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AccountsSettingsPane
 
-   function GetForCurrentView
-   return WinRt.Windows.UI.ApplicationSettings.AccountsSettingsPane;
-
-   procedure Show;
-
    procedure ShowManageAccountsForUserAsync
    (
       user : Windows.System.User'Class
@@ -709,6 +714,11 @@ package WinRt.Windows.UI.ApplicationSettings is
    (
       user : Windows.System.User'Class
    );
+
+   function GetForCurrentView
+   return WinRt.Windows.UI.ApplicationSettings.AccountsSettingsPane;
+
+   procedure Show;
 
    procedure ShowManageAccountsAsync;
 

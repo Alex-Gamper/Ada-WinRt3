@@ -47,18 +47,23 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    type IGattCharacteristic2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattCharacteristic2 is access all IGattCharacteristic2_Interface'Class;
+   type IGattCharacteristic2_Ptr is access all IGattCharacteristic2;
 
    type IGattCharacteristic3_Interface is interface and WinRt.IInspectable_Interface;
    type IGattCharacteristic3 is access all IGattCharacteristic3_Interface'Class;
+   type IGattCharacteristic3_Ptr is access all IGattCharacteristic3;
 
    type IGattCharacteristicStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGattCharacteristicStatics is access all IGattCharacteristicStatics_Interface'Class;
+   type IGattCharacteristicStatics_Ptr is access all IGattCharacteristicStatics;
 
    type IGattCharacteristicUuidsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGattCharacteristicUuidsStatics is access all IGattCharacteristicUuidsStatics_Interface'Class;
+   type IGattCharacteristicUuidsStatics_Ptr is access all IGattCharacteristicUuidsStatics;
 
    type IGattCharacteristicUuidsStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattCharacteristicUuidsStatics2 is access all IGattCharacteristicUuidsStatics2_Interface'Class;
+   type IGattCharacteristicUuidsStatics2_Ptr is access all IGattCharacteristicUuidsStatics2;
 
    type IGattCharacteristicsResult_Interface is interface and WinRt.IInspectable_Interface;
    type IGattCharacteristicsResult is access all IGattCharacteristicsResult_Interface'Class;
@@ -70,6 +75,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    type IGattClientNotificationResult2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattClientNotificationResult2 is access all IGattClientNotificationResult2_Interface'Class;
+   type IGattClientNotificationResult2_Ptr is access all IGattClientNotificationResult2;
 
    type IGattDescriptor_Interface is interface and WinRt.IInspectable_Interface;
    type IGattDescriptor is access all IGattDescriptor_Interface'Class;
@@ -77,12 +83,15 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    type IGattDescriptor2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattDescriptor2 is access all IGattDescriptor2_Interface'Class;
+   type IGattDescriptor2_Ptr is access all IGattDescriptor2;
 
    type IGattDescriptorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGattDescriptorStatics is access all IGattDescriptorStatics_Interface'Class;
+   type IGattDescriptorStatics_Ptr is access all IGattDescriptorStatics;
 
    type IGattDescriptorUuidsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGattDescriptorUuidsStatics is access all IGattDescriptorUuidsStatics_Interface'Class;
+   type IGattDescriptorUuidsStatics_Ptr is access all IGattDescriptorUuidsStatics;
 
    type IGattDescriptorsResult_Interface is interface and WinRt.IInspectable_Interface;
    type IGattDescriptorsResult is access all IGattDescriptorsResult_Interface'Class;
@@ -94,15 +103,19 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    type IGattDeviceService2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattDeviceService2 is access all IGattDeviceService2_Interface'Class;
+   type IGattDeviceService2_Ptr is access all IGattDeviceService2;
 
    type IGattDeviceService3_Interface is interface and WinRt.IInspectable_Interface;
    type IGattDeviceService3 is access all IGattDeviceService3_Interface'Class;
+   type IGattDeviceService3_Ptr is access all IGattDeviceService3;
 
    type IGattDeviceServiceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGattDeviceServiceStatics is access all IGattDeviceServiceStatics_Interface'Class;
+   type IGattDeviceServiceStatics_Ptr is access all IGattDeviceServiceStatics;
 
    type IGattDeviceServiceStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattDeviceServiceStatics2 is access all IGattDeviceServiceStatics2_Interface'Class;
+   type IGattDeviceServiceStatics2_Ptr is access all IGattDeviceServiceStatics2;
 
    type IGattDeviceServicesResult_Interface is interface and WinRt.IInspectable_Interface;
    type IGattDeviceServicesResult is access all IGattDeviceServicesResult_Interface'Class;
@@ -142,15 +155,19 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    type IGattPresentationFormatStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGattPresentationFormatStatics is access all IGattPresentationFormatStatics_Interface'Class;
+   type IGattPresentationFormatStatics_Ptr is access all IGattPresentationFormatStatics;
 
    type IGattPresentationFormatStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattPresentationFormatStatics2 is access all IGattPresentationFormatStatics2_Interface'Class;
+   type IGattPresentationFormatStatics2_Ptr is access all IGattPresentationFormatStatics2;
 
    type IGattPresentationFormatTypesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGattPresentationFormatTypesStatics is access all IGattPresentationFormatTypesStatics_Interface'Class;
+   type IGattPresentationFormatTypesStatics_Ptr is access all IGattPresentationFormatTypesStatics;
 
    type IGattProtocolErrorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGattProtocolErrorStatics is access all IGattProtocolErrorStatics_Interface'Class;
+   type IGattProtocolErrorStatics_Ptr is access all IGattProtocolErrorStatics;
 
    type IGattReadClientCharacteristicConfigurationDescriptorResult_Interface is interface and WinRt.IInspectable_Interface;
    type IGattReadClientCharacteristicConfigurationDescriptorResult is access all IGattReadClientCharacteristicConfigurationDescriptorResult_Interface'Class;
@@ -158,6 +175,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    type IGattReadClientCharacteristicConfigurationDescriptorResult2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattReadClientCharacteristicConfigurationDescriptorResult2 is access all IGattReadClientCharacteristicConfigurationDescriptorResult2_Interface'Class;
+   type IGattReadClientCharacteristicConfigurationDescriptorResult2_Ptr is access all IGattReadClientCharacteristicConfigurationDescriptorResult2;
 
    type IGattReadRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IGattReadRequest is access all IGattReadRequest_Interface'Class;
@@ -173,6 +191,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    type IGattReadResult2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattReadResult2 is access all IGattReadResult2_Interface'Class;
+   type IGattReadResult2_Ptr is access all IGattReadResult2;
 
    type IGattReliableWriteTransaction_Interface is interface and WinRt.IInspectable_Interface;
    type IGattReliableWriteTransaction is access all IGattReliableWriteTransaction_Interface'Class;
@@ -180,6 +199,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    type IGattReliableWriteTransaction2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattReliableWriteTransaction2 is access all IGattReliableWriteTransaction2_Interface'Class;
+   type IGattReliableWriteTransaction2_Ptr is access all IGattReliableWriteTransaction2;
 
    type IGattRequestStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IGattRequestStateChangedEventArgs is access all IGattRequestStateChangedEventArgs_Interface'Class;
@@ -188,6 +208,10 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    type IGattServiceProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IGattServiceProvider is access all IGattServiceProvider_Interface'Class;
    type IGattServiceProvider_Ptr is access all IGattServiceProvider;
+
+   type IGattServiceProvider2_Interface is interface and WinRt.IInspectable_Interface;
+   type IGattServiceProvider2 is access all IGattServiceProvider2_Interface'Class;
+   type IGattServiceProvider2_Ptr is access all IGattServiceProvider2;
 
    type IGattServiceProviderAdvertisementStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IGattServiceProviderAdvertisementStatusChangedEventArgs is access all IGattServiceProviderAdvertisementStatusChangedEventArgs_Interface'Class;
@@ -199,6 +223,11 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    type IGattServiceProviderAdvertisingParameters2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattServiceProviderAdvertisingParameters2 is access all IGattServiceProviderAdvertisingParameters2_Interface'Class;
+   type IGattServiceProviderAdvertisingParameters2_Ptr is access all IGattServiceProviderAdvertisingParameters2;
+
+   type IGattServiceProviderAdvertisingParameters3_Interface is interface and WinRt.IInspectable_Interface;
+   type IGattServiceProviderAdvertisingParameters3 is access all IGattServiceProviderAdvertisingParameters3_Interface'Class;
+   type IGattServiceProviderAdvertisingParameters3_Ptr is access all IGattServiceProviderAdvertisingParameters3;
 
    type IGattServiceProviderResult_Interface is interface and WinRt.IInspectable_Interface;
    type IGattServiceProviderResult is access all IGattServiceProviderResult_Interface'Class;
@@ -206,12 +235,15 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    type IGattServiceProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGattServiceProviderStatics is access all IGattServiceProviderStatics_Interface'Class;
+   type IGattServiceProviderStatics_Ptr is access all IGattServiceProviderStatics;
 
    type IGattServiceUuidsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGattServiceUuidsStatics is access all IGattServiceUuidsStatics_Interface'Class;
+   type IGattServiceUuidsStatics_Ptr is access all IGattServiceUuidsStatics;
 
    type IGattServiceUuidsStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattServiceUuidsStatics2 is access all IGattServiceUuidsStatics2_Interface'Class;
+   type IGattServiceUuidsStatics2_Ptr is access all IGattServiceUuidsStatics2;
 
    type IGattSession_Interface is interface and WinRt.IInspectable_Interface;
    type IGattSession is access all IGattSession_Interface'Class;
@@ -219,6 +251,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    type IGattSessionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGattSessionStatics is access all IGattSessionStatics_Interface'Class;
+   type IGattSessionStatics_Ptr is access all IGattSessionStatics;
 
    type IGattSessionStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IGattSessionStatusChangedEventArgs is access all IGattSessionStatusChangedEventArgs_Interface'Class;
@@ -2975,6 +3008,18 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       IID_IGattServiceProvider : aliased WinRt.IID := (2015540173, 10377, 20358, (160, 81, 63, 10, 237, 28, 39, 96 ));
 
    -----------------------------------------------------------------------------
+   -- type IGattServiceProvider2 is interface and WinRt.IInspectable;
+
+      function UpdateAdvertisingParameters
+      (
+         this : access IGattServiceProvider2_Interface;
+         parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IGattServiceProvider2 : aliased WinRt.IID := (2666869161, 53010, 22947, (168, 28, 54, 47, 74, 171, 170, 207 ));
+
+   -----------------------------------------------------------------------------
    -- type IGattServiceProviderAdvertisementStatusChangedEventArgs is interface and WinRt.IInspectable;
 
       function get_Error
@@ -3044,6 +3089,39 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       return WinRt.Hresult is abstract;
 
       IID_IGattServiceProviderAdvertisingParameters2 : aliased WinRt.IID := (4285023885, 51858, 17460, (151, 67, 14, 144, 152, 138, 216, 121 ));
+
+   -----------------------------------------------------------------------------
+   -- type IGattServiceProviderAdvertisingParameters3 is interface and WinRt.IInspectable;
+
+      function get_UseLowEnergyUncoded1MPhyAsSecondaryPhy
+      (
+         this : access IGattServiceProviderAdvertisingParameters3_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_UseLowEnergyUncoded1MPhyAsSecondaryPhy
+      (
+         this : access IGattServiceProviderAdvertisingParameters3_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UseLowEnergyUncoded2MPhyAsSecondaryPhy
+      (
+         this : access IGattServiceProviderAdvertisingParameters3_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_UseLowEnergyUncoded2MPhyAsSecondaryPhy
+      (
+         this : access IGattServiceProviderAdvertisingParameters3_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IGattServiceProviderAdvertisingParameters3 : aliased WinRt.IID := (2721400498, 45590, 22825, (144, 85, 241, 49, 61, 213, 62, 42 ));
 
    -----------------------------------------------------------------------------
    -- type IGattServiceProviderResult is interface and WinRt.IInspectable;
@@ -3700,6 +3778,69 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    -- Static RuntimeClass
    package GattCharacteristicUuids is
 
+      function get_BatteryLevel
+      return WinRt.Guid;
+
+      function get_BloodPressureFeature
+      return WinRt.Guid;
+
+      function get_BloodPressureMeasurement
+      return WinRt.Guid;
+
+      function get_BodySensorLocation
+      return WinRt.Guid;
+
+      function get_CscFeature
+      return WinRt.Guid;
+
+      function get_CscMeasurement
+      return WinRt.Guid;
+
+      function get_GlucoseFeature
+      return WinRt.Guid;
+
+      function get_GlucoseMeasurement
+      return WinRt.Guid;
+
+      function get_GlucoseMeasurementContext
+      return WinRt.Guid;
+
+      function get_HeartRateControlPoint
+      return WinRt.Guid;
+
+      function get_HeartRateMeasurement
+      return WinRt.Guid;
+
+      function get_IntermediateCuffPressure
+      return WinRt.Guid;
+
+      function get_IntermediateTemperature
+      return WinRt.Guid;
+
+      function get_MeasurementInterval
+      return WinRt.Guid;
+
+      function get_RecordAccessControlPoint
+      return WinRt.Guid;
+
+      function get_RscFeature
+      return WinRt.Guid;
+
+      function get_RscMeasurement
+      return WinRt.Guid;
+
+      function get_SCControlPoint
+      return WinRt.Guid;
+
+      function get_SensorLocation
+      return WinRt.Guid;
+
+      function get_TemperatureMeasurement
+      return WinRt.Guid;
+
+      function get_TemperatureType
+      return WinRt.Guid;
+
       function get_AlertCategoryId
       return WinRt.Guid;
 
@@ -3878,69 +4019,6 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       return WinRt.Guid;
 
       function get_UnreadAlertStatus
-      return WinRt.Guid;
-
-      function get_BatteryLevel
-      return WinRt.Guid;
-
-      function get_BloodPressureFeature
-      return WinRt.Guid;
-
-      function get_BloodPressureMeasurement
-      return WinRt.Guid;
-
-      function get_BodySensorLocation
-      return WinRt.Guid;
-
-      function get_CscFeature
-      return WinRt.Guid;
-
-      function get_CscMeasurement
-      return WinRt.Guid;
-
-      function get_GlucoseFeature
-      return WinRt.Guid;
-
-      function get_GlucoseMeasurement
-      return WinRt.Guid;
-
-      function get_GlucoseMeasurementContext
-      return WinRt.Guid;
-
-      function get_HeartRateControlPoint
-      return WinRt.Guid;
-
-      function get_HeartRateMeasurement
-      return WinRt.Guid;
-
-      function get_IntermediateCuffPressure
-      return WinRt.Guid;
-
-      function get_IntermediateTemperature
-      return WinRt.Guid;
-
-      function get_MeasurementInterval
-      return WinRt.Guid;
-
-      function get_RecordAccessControlPoint
-      return WinRt.Guid;
-
-      function get_RscFeature
-      return WinRt.Guid;
-
-      function get_RscMeasurement
-      return WinRt.Guid;
-
-      function get_SCControlPoint
-      return WinRt.Guid;
-
-      function get_SensorLocation
-      return WinRt.Guid;
-
-      function get_TemperatureMeasurement
-      return WinRt.Guid;
-
-      function get_TemperatureType
       return WinRt.Guid;
 
    end GattCharacteristicUuids;
@@ -4136,30 +4214,6 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    function FromIdAsync
    (
-      deviceId : WinRt.WString
-   )
-   return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService;
-
-   function GetDeviceSelectorFromUuid
-   (
-      serviceUuid : WinRt.Guid
-   )
-   return WinRt.WString;
-
-   function GetDeviceSelectorFromShortId
-   (
-      serviceShortId : WinRt.UInt16
-   )
-   return WinRt.WString;
-
-   function ConvertShortIdToUuid_GattDeviceService
-   (
-      shortId : WinRt.UInt16
-   )
-   return WinRt.Guid;
-
-   function FromIdAsync
-   (
       deviceId : WinRt.WString;
       sharingMode : Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode
    )
@@ -4192,6 +4246,30 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.WString;
+
+   function FromIdAsync
+   (
+      deviceId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService;
+
+   function GetDeviceSelectorFromUuid
+   (
+      serviceUuid : WinRt.Guid
+   )
+   return WinRt.WString;
+
+   function GetDeviceSelectorFromShortId
+   (
+      serviceShortId : WinRt.UInt16
+   )
+   return WinRt.WString;
+
+   function ConvertShortIdToUuid_GattDeviceService
+   (
+      shortId : WinRt.UInt16
+   )
+   return WinRt.Guid;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for GattDeviceService
@@ -4765,6 +4843,9 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    -----------------------------------------------------------------------------
    -- Static Interfaces for GattPresentationFormat
 
+   function get_BluetoothSigAssignedNumbers
+   return WinRt.Byte;
+
    function FromParts
    (
       formatType : WinRt.Byte;
@@ -4774,9 +4855,6 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       description : WinRt.UInt16
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattPresentationFormat;
-
-   function get_BluetoothSigAssignedNumbers
-   return WinRt.Byte;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for GattPresentationFormat
@@ -5201,6 +5279,12 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       this : in out GattServiceProvider
    );
 
+   procedure UpdateAdvertisingParameters
+   (
+      this : in out GattServiceProvider;
+      parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for GattServiceProviderAdvertisementStatusChangedEventArgs
 
@@ -5272,6 +5356,30 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
+   function get_UseLowEnergyUncoded1MPhyAsSecondaryPhy
+   (
+      this : in out GattServiceProviderAdvertisingParameters
+   )
+   return WinRt.Boolean;
+
+   procedure put_UseLowEnergyUncoded1MPhyAsSecondaryPhy
+   (
+      this : in out GattServiceProviderAdvertisingParameters;
+      value : WinRt.Boolean
+   );
+
+   function get_UseLowEnergyUncoded2MPhyAsSecondaryPhy
+   (
+      this : in out GattServiceProviderAdvertisingParameters
+   )
+   return WinRt.Boolean;
+
+   procedure put_UseLowEnergyUncoded2MPhyAsSecondaryPhy
+   (
+      this : in out GattServiceProviderAdvertisingParameters;
+      value : WinRt.Boolean
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for GattServiceProviderResult
 
@@ -5296,33 +5404,6 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package GattServiceUuids is
-
-      function get_Battery
-      return WinRt.Guid;
-
-      function get_BloodPressure
-      return WinRt.Guid;
-
-      function get_CyclingSpeedAndCadence
-      return WinRt.Guid;
-
-      function get_GenericAccess
-      return WinRt.Guid;
-
-      function get_GenericAttribute
-      return WinRt.Guid;
-
-      function get_Glucose
-      return WinRt.Guid;
-
-      function get_HealthThermometer
-      return WinRt.Guid;
-
-      function get_HeartRate
-      return WinRt.Guid;
-
-      function get_RunningSpeedAndCadence
-      return WinRt.Guid;
 
       function get_AlertNotification
       return WinRt.Guid;
@@ -5361,6 +5442,33 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       return WinRt.Guid;
 
       function get_TxPower
+      return WinRt.Guid;
+
+      function get_Battery
+      return WinRt.Guid;
+
+      function get_BloodPressure
+      return WinRt.Guid;
+
+      function get_CyclingSpeedAndCadence
+      return WinRt.Guid;
+
+      function get_GenericAccess
+      return WinRt.Guid;
+
+      function get_GenericAttribute
+      return WinRt.Guid;
+
+      function get_Glucose
+      return WinRt.Guid;
+
+      function get_HealthThermometer
+      return WinRt.Guid;
+
+      function get_HeartRate
+      return WinRt.Guid;
+
+      function get_RunningSpeedAndCadence
       return WinRt.Guid;
 
    end GattServiceUuids;

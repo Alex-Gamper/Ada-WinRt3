@@ -44,6 +44,7 @@ package WinRt.Windows.UI.Notifications is
 
    type IAdaptiveNotificationContent_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveNotificationContent is access all IAdaptiveNotificationContent_Interface'Class;
+   type IAdaptiveNotificationContent_Ptr is access all IAdaptiveNotificationContent;
 
    type IAdaptiveNotificationText_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveNotificationText is access all IAdaptiveNotificationText_Interface'Class;
@@ -55,6 +56,7 @@ package WinRt.Windows.UI.Notifications is
 
    type IBadgeNotificationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBadgeNotificationFactory is access all IBadgeNotificationFactory_Interface'Class;
+   type IBadgeNotificationFactory_Ptr is access all IBadgeNotificationFactory;
 
    type IBadgeUpdateManagerForUser_Interface is interface and WinRt.IInspectable_Interface;
    type IBadgeUpdateManagerForUser is access all IBadgeUpdateManagerForUser_Interface'Class;
@@ -62,9 +64,11 @@ package WinRt.Windows.UI.Notifications is
 
    type IBadgeUpdateManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBadgeUpdateManagerStatics is access all IBadgeUpdateManagerStatics_Interface'Class;
+   type IBadgeUpdateManagerStatics_Ptr is access all IBadgeUpdateManagerStatics;
 
    type IBadgeUpdateManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBadgeUpdateManagerStatics2 is access all IBadgeUpdateManagerStatics2_Interface'Class;
+   type IBadgeUpdateManagerStatics2_Ptr is access all IBadgeUpdateManagerStatics2;
 
    type IBadgeUpdater_Interface is interface and WinRt.IInspectable_Interface;
    type IBadgeUpdater is access all IBadgeUpdater_Interface'Class;
@@ -72,12 +76,15 @@ package WinRt.Windows.UI.Notifications is
 
    type IKnownAdaptiveNotificationHintsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownAdaptiveNotificationHintsStatics is access all IKnownAdaptiveNotificationHintsStatics_Interface'Class;
+   type IKnownAdaptiveNotificationHintsStatics_Ptr is access all IKnownAdaptiveNotificationHintsStatics;
 
    type IKnownAdaptiveNotificationTextStylesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownAdaptiveNotificationTextStylesStatics is access all IKnownAdaptiveNotificationTextStylesStatics_Interface'Class;
+   type IKnownAdaptiveNotificationTextStylesStatics_Ptr is access all IKnownAdaptiveNotificationTextStylesStatics;
 
    type IKnownNotificationBindingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownNotificationBindingsStatics is access all IKnownNotificationBindingsStatics_Interface'Class;
+   type IKnownNotificationBindingsStatics_Ptr is access all IKnownNotificationBindingsStatics;
 
    type INotification_Interface is interface and WinRt.IInspectable_Interface;
    type INotification is access all INotification_Interface'Class;
@@ -93,6 +100,7 @@ package WinRt.Windows.UI.Notifications is
 
    type INotificationDataFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INotificationDataFactory is access all INotificationDataFactory_Interface'Class;
+   type INotificationDataFactory_Ptr is access all INotificationDataFactory;
 
    type INotificationVisual_Interface is interface and WinRt.IInspectable_Interface;
    type INotificationVisual is access all INotificationVisual_Interface'Class;
@@ -104,6 +112,7 @@ package WinRt.Windows.UI.Notifications is
 
    type IScheduledTileNotificationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IScheduledTileNotificationFactory is access all IScheduledTileNotificationFactory_Interface'Class;
+   type IScheduledTileNotificationFactory_Ptr is access all IScheduledTileNotificationFactory;
 
    type IScheduledToastNotification_Interface is interface and WinRt.IInspectable_Interface;
    type IScheduledToastNotification is access all IScheduledToastNotification_Interface'Class;
@@ -111,15 +120,19 @@ package WinRt.Windows.UI.Notifications is
 
    type IScheduledToastNotification2_Interface is interface and WinRt.IInspectable_Interface;
    type IScheduledToastNotification2 is access all IScheduledToastNotification2_Interface'Class;
+   type IScheduledToastNotification2_Ptr is access all IScheduledToastNotification2;
 
    type IScheduledToastNotification3_Interface is interface and WinRt.IInspectable_Interface;
    type IScheduledToastNotification3 is access all IScheduledToastNotification3_Interface'Class;
+   type IScheduledToastNotification3_Ptr is access all IScheduledToastNotification3;
 
    type IScheduledToastNotification4_Interface is interface and WinRt.IInspectable_Interface;
    type IScheduledToastNotification4 is access all IScheduledToastNotification4_Interface'Class;
+   type IScheduledToastNotification4_Ptr is access all IScheduledToastNotification4;
 
    type IScheduledToastNotificationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IScheduledToastNotificationFactory is access all IScheduledToastNotificationFactory_Interface'Class;
+   type IScheduledToastNotificationFactory_Ptr is access all IScheduledToastNotificationFactory;
 
    type IScheduledToastNotificationShowingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IScheduledToastNotificationShowingEventArgs is access all IScheduledToastNotificationShowingEventArgs_Interface'Class;
@@ -135,9 +148,11 @@ package WinRt.Windows.UI.Notifications is
 
    type ITileFlyoutNotificationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITileFlyoutNotificationFactory is access all ITileFlyoutNotificationFactory_Interface'Class;
+   type ITileFlyoutNotificationFactory_Ptr is access all ITileFlyoutNotificationFactory;
 
    type ITileFlyoutUpdateManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITileFlyoutUpdateManagerStatics is access all ITileFlyoutUpdateManagerStatics_Interface'Class;
+   type ITileFlyoutUpdateManagerStatics_Ptr is access all ITileFlyoutUpdateManagerStatics;
 
    type ITileFlyoutUpdater_Interface is interface and WinRt.IInspectable_Interface;
    type ITileFlyoutUpdater is access all ITileFlyoutUpdater_Interface'Class;
@@ -149,6 +164,7 @@ package WinRt.Windows.UI.Notifications is
 
    type ITileNotificationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITileNotificationFactory is access all ITileNotificationFactory_Interface'Class;
+   type ITileNotificationFactory_Ptr is access all ITileNotificationFactory;
 
    type ITileUpdateManagerForUser_Interface is interface and WinRt.IInspectable_Interface;
    type ITileUpdateManagerForUser is access all ITileUpdateManagerForUser_Interface'Class;
@@ -156,9 +172,11 @@ package WinRt.Windows.UI.Notifications is
 
    type ITileUpdateManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITileUpdateManagerStatics is access all ITileUpdateManagerStatics_Interface'Class;
+   type ITileUpdateManagerStatics_Ptr is access all ITileUpdateManagerStatics;
 
    type ITileUpdateManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITileUpdateManagerStatics2 is access all ITileUpdateManagerStatics2_Interface'Class;
+   type ITileUpdateManagerStatics2_Ptr is access all ITileUpdateManagerStatics2;
 
    type ITileUpdater_Interface is interface and WinRt.IInspectable_Interface;
    type ITileUpdater is access all ITileUpdater_Interface'Class;
@@ -166,6 +184,7 @@ package WinRt.Windows.UI.Notifications is
 
    type ITileUpdater2_Interface is interface and WinRt.IInspectable_Interface;
    type ITileUpdater2 is access all ITileUpdater2_Interface'Class;
+   type ITileUpdater2_Ptr is access all ITileUpdater2;
 
    type IToastActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IToastActivatedEventArgs is access all IToastActivatedEventArgs_Interface'Class;
@@ -173,6 +192,7 @@ package WinRt.Windows.UI.Notifications is
 
    type IToastActivatedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IToastActivatedEventArgs2 is access all IToastActivatedEventArgs2_Interface'Class;
+   type IToastActivatedEventArgs2_Ptr is access all IToastActivatedEventArgs2;
 
    type IToastCollection_Interface is interface and WinRt.IInspectable_Interface;
    type IToastCollection is access all IToastCollection_Interface'Class;
@@ -180,6 +200,7 @@ package WinRt.Windows.UI.Notifications is
 
    type IToastCollectionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IToastCollectionFactory is access all IToastCollectionFactory_Interface'Class;
+   type IToastCollectionFactory_Ptr is access all IToastCollectionFactory;
 
    type IToastCollectionManager_Interface is interface and WinRt.IInspectable_Interface;
    type IToastCollectionManager is access all IToastCollectionManager_Interface'Class;
@@ -199,15 +220,19 @@ package WinRt.Windows.UI.Notifications is
 
    type IToastNotification2_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotification2 is access all IToastNotification2_Interface'Class;
+   type IToastNotification2_Ptr is access all IToastNotification2;
 
    type IToastNotification3_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotification3 is access all IToastNotification3_Interface'Class;
+   type IToastNotification3_Ptr is access all IToastNotification3;
 
    type IToastNotification4_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotification4 is access all IToastNotification4_Interface'Class;
+   type IToastNotification4_Ptr is access all IToastNotification4;
 
    type IToastNotification6_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotification6 is access all IToastNotification6_Interface'Class;
+   type IToastNotification6_Ptr is access all IToastNotification6;
 
    type IToastNotificationActionTriggerDetail_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationActionTriggerDetail is access all IToastNotificationActionTriggerDetail_Interface'Class;
@@ -215,6 +240,7 @@ package WinRt.Windows.UI.Notifications is
 
    type IToastNotificationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationFactory is access all IToastNotificationFactory_Interface'Class;
+   type IToastNotificationFactory_Ptr is access all IToastNotificationFactory;
 
    type IToastNotificationHistory_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationHistory is access all IToastNotificationHistory_Interface'Class;
@@ -222,6 +248,7 @@ package WinRt.Windows.UI.Notifications is
 
    type IToastNotificationHistory2_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationHistory2 is access all IToastNotificationHistory2_Interface'Class;
+   type IToastNotificationHistory2_Ptr is access all IToastNotificationHistory2;
 
    type IToastNotificationHistoryChangedTriggerDetail_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationHistoryChangedTriggerDetail is access all IToastNotificationHistoryChangedTriggerDetail_Interface'Class;
@@ -229,6 +256,7 @@ package WinRt.Windows.UI.Notifications is
 
    type IToastNotificationHistoryChangedTriggerDetail2_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationHistoryChangedTriggerDetail2 is access all IToastNotificationHistoryChangedTriggerDetail2_Interface'Class;
+   type IToastNotificationHistoryChangedTriggerDetail2_Ptr is access all IToastNotificationHistoryChangedTriggerDetail2;
 
    type IToastNotificationManagerForUser_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationManagerForUser is access all IToastNotificationManagerForUser_Interface'Class;
@@ -236,21 +264,27 @@ package WinRt.Windows.UI.Notifications is
 
    type IToastNotificationManagerForUser2_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationManagerForUser2 is access all IToastNotificationManagerForUser2_Interface'Class;
+   type IToastNotificationManagerForUser2_Ptr is access all IToastNotificationManagerForUser2;
 
    type IToastNotificationManagerForUser3_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationManagerForUser3 is access all IToastNotificationManagerForUser3_Interface'Class;
+   type IToastNotificationManagerForUser3_Ptr is access all IToastNotificationManagerForUser3;
 
    type IToastNotificationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationManagerStatics is access all IToastNotificationManagerStatics_Interface'Class;
+   type IToastNotificationManagerStatics_Ptr is access all IToastNotificationManagerStatics;
 
    type IToastNotificationManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationManagerStatics2 is access all IToastNotificationManagerStatics2_Interface'Class;
+   type IToastNotificationManagerStatics2_Ptr is access all IToastNotificationManagerStatics2;
 
    type IToastNotificationManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationManagerStatics4 is access all IToastNotificationManagerStatics4_Interface'Class;
+   type IToastNotificationManagerStatics4_Ptr is access all IToastNotificationManagerStatics4;
 
    type IToastNotificationManagerStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationManagerStatics5 is access all IToastNotificationManagerStatics5_Interface'Class;
+   type IToastNotificationManagerStatics5_Ptr is access all IToastNotificationManagerStatics5;
 
    type IToastNotifier_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotifier is access all IToastNotifier_Interface'Class;
@@ -258,9 +292,11 @@ package WinRt.Windows.UI.Notifications is
 
    type IToastNotifier2_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotifier2 is access all IToastNotifier2_Interface'Class;
+   type IToastNotifier2_Ptr is access all IToastNotifier2;
 
    type IToastNotifier3_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotifier3 is access all IToastNotifier3_Interface'Class;
+   type IToastNotifier3_Ptr is access all IToastNotifier3;
 
    type IUserNotification_Interface is interface and WinRt.IInspectable_Interface;
    type IUserNotification is access all IUserNotification_Interface'Class;
@@ -2996,12 +3032,6 @@ package WinRt.Windows.UI.Notifications is
    -- Static RuntimeClass
    package BadgeUpdateManager is
 
-      function GetForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.UI.Notifications.BadgeUpdateManagerForUser;
-
       function CreateBadgeUpdaterForApplication
       return WinRt.Windows.UI.Notifications.BadgeUpdater;
 
@@ -3022,6 +3052,12 @@ package WinRt.Windows.UI.Notifications is
          type_x : Windows.UI.Notifications.BadgeTemplateType
       )
       return WinRt.Windows.Data.Xml.Dom.XmlDocument;
+
+      function GetForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.UI.Notifications.BadgeUpdateManagerForUser;
 
    end BadgeUpdateManager;
 
@@ -4386,8 +4422,19 @@ package WinRt.Windows.UI.Notifications is
    -- Static RuntimeClass
    package ToastNotificationManager is
 
-      function get_History
-      return WinRt.Windows.UI.Notifications.ToastNotificationHistory;
+      function GetDefault
+      return WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser;
+
+      function GetForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser;
+
+      procedure ConfigureNotificationMirroring
+      (
+         value : Windows.UI.Notifications.NotificationMirroring
+      );
 
       function CreateToastNotifier
       return WinRt.Windows.UI.Notifications.ToastNotifier;
@@ -4404,19 +4451,8 @@ package WinRt.Windows.UI.Notifications is
       )
       return WinRt.Windows.Data.Xml.Dom.XmlDocument;
 
-      function GetDefault
-      return WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser;
-
-      function GetForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser;
-
-      procedure ConfigureNotificationMirroring
-      (
-         value : Windows.UI.Notifications.NotificationMirroring
-      );
+      function get_History
+      return WinRt.Windows.UI.Notifications.ToastNotificationHistory;
 
    end ToastNotificationManager;
 

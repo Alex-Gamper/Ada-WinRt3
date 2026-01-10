@@ -63,12 +63,15 @@ package WinRt.Windows.Services.Maps.Guidance is
 
    type IGuidanceNavigator2_Interface is interface and WinRt.IInspectable_Interface;
    type IGuidanceNavigator2 is access all IGuidanceNavigator2_Interface'Class;
+   type IGuidanceNavigator2_Ptr is access all IGuidanceNavigator2;
 
    type IGuidanceNavigatorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGuidanceNavigatorStatics is access all IGuidanceNavigatorStatics_Interface'Class;
+   type IGuidanceNavigatorStatics_Ptr is access all IGuidanceNavigatorStatics;
 
    type IGuidanceNavigatorStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IGuidanceNavigatorStatics2 is access all IGuidanceNavigatorStatics2_Interface'Class;
+   type IGuidanceNavigatorStatics2_Ptr is access all IGuidanceNavigatorStatics2;
 
    type IGuidanceReroutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IGuidanceReroutedEventArgs is access all IGuidanceReroutedEventArgs_Interface'Class;
@@ -80,6 +83,7 @@ package WinRt.Windows.Services.Maps.Guidance is
 
    type IGuidanceRoadSegment2_Interface is interface and WinRt.IInspectable_Interface;
    type IGuidanceRoadSegment2 is access all IGuidanceRoadSegment2_Interface'Class;
+   type IGuidanceRoadSegment2_Ptr is access all IGuidanceRoadSegment2;
 
    type IGuidanceRoadSignpost_Interface is interface and WinRt.IInspectable_Interface;
    type IGuidanceRoadSignpost is access all IGuidanceRoadSignpost_Interface'Class;
@@ -91,6 +95,7 @@ package WinRt.Windows.Services.Maps.Guidance is
 
    type IGuidanceRouteStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGuidanceRouteStatics is access all IGuidanceRouteStatics_Interface'Class;
+   type IGuidanceRouteStatics_Ptr is access all IGuidanceRouteStatics;
 
    type IGuidanceTelemetryCollector_Interface is interface and WinRt.IInspectable_Interface;
    type IGuidanceTelemetryCollector is access all IGuidanceTelemetryCollector_Interface'Class;
@@ -98,6 +103,7 @@ package WinRt.Windows.Services.Maps.Guidance is
 
    type IGuidanceTelemetryCollectorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGuidanceTelemetryCollectorStatics is access all IGuidanceTelemetryCollectorStatics_Interface'Class;
+   type IGuidanceTelemetryCollectorStatics_Ptr is access all IGuidanceTelemetryCollectorStatics;
 
    type IGuidanceUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IGuidanceUpdatedEventArgs is access all IGuidanceUpdatedEventArgs_Interface'Class;

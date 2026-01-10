@@ -46,18 +46,27 @@ package WinRt.Windows.Media.MediaProperties is
 
    type IAudioEncodingProperties2_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioEncodingProperties2 is access all IAudioEncodingProperties2_Interface'Class;
+   type IAudioEncodingProperties2_Ptr is access all IAudioEncodingProperties2;
 
    type IAudioEncodingProperties3_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioEncodingProperties3 is access all IAudioEncodingProperties3_Interface'Class;
+   type IAudioEncodingProperties3_Ptr is access all IAudioEncodingProperties3;
 
    type IAudioEncodingPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioEncodingPropertiesStatics is access all IAudioEncodingPropertiesStatics_Interface'Class;
+   type IAudioEncodingPropertiesStatics_Ptr is access all IAudioEncodingPropertiesStatics;
 
    type IAudioEncodingPropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioEncodingPropertiesStatics2 is access all IAudioEncodingPropertiesStatics2_Interface'Class;
+   type IAudioEncodingPropertiesStatics2_Ptr is access all IAudioEncodingPropertiesStatics2;
 
    type IAudioEncodingPropertiesWithFormatUserData_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioEncodingPropertiesWithFormatUserData is access all IAudioEncodingPropertiesWithFormatUserData_Interface'Class;
+   type IAudioEncodingPropertiesWithFormatUserData_Ptr is access all IAudioEncodingPropertiesWithFormatUserData;
+
+   type IAv1ProfileIdsStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IAv1ProfileIdsStatics is access all IAv1ProfileIdsStatics_Interface'Class;
+   type IAv1ProfileIdsStatics_Ptr is access all IAv1ProfileIdsStatics;
 
    type IContainerEncodingProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IContainerEncodingProperties is access all IContainerEncodingProperties_Interface'Class;
@@ -65,9 +74,15 @@ package WinRt.Windows.Media.MediaProperties is
 
    type IContainerEncodingProperties2_Interface is interface and WinRt.IInspectable_Interface;
    type IContainerEncodingProperties2 is access all IContainerEncodingProperties2_Interface'Class;
+   type IContainerEncodingProperties2_Ptr is access all IContainerEncodingProperties2;
 
    type IH264ProfileIdsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IH264ProfileIdsStatics is access all IH264ProfileIdsStatics_Interface'Class;
+   type IH264ProfileIdsStatics_Ptr is access all IH264ProfileIdsStatics;
+
+   type IHevcProfileIdsStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IHevcProfileIdsStatics is access all IHevcProfileIdsStatics_Interface'Class;
+   type IHevcProfileIdsStatics_Ptr is access all IHevcProfileIdsStatics;
 
    type IImageEncodingProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IImageEncodingProperties is access all IImageEncodingProperties_Interface'Class;
@@ -75,15 +90,19 @@ package WinRt.Windows.Media.MediaProperties is
 
    type IImageEncodingProperties2_Interface is interface and WinRt.IInspectable_Interface;
    type IImageEncodingProperties2 is access all IImageEncodingProperties2_Interface'Class;
+   type IImageEncodingProperties2_Ptr is access all IImageEncodingProperties2;
 
    type IImageEncodingPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IImageEncodingPropertiesStatics is access all IImageEncodingPropertiesStatics_Interface'Class;
+   type IImageEncodingPropertiesStatics_Ptr is access all IImageEncodingPropertiesStatics;
 
    type IImageEncodingPropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IImageEncodingPropertiesStatics2 is access all IImageEncodingPropertiesStatics2_Interface'Class;
+   type IImageEncodingPropertiesStatics2_Ptr is access all IImageEncodingPropertiesStatics2;
 
    type IImageEncodingPropertiesStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IImageEncodingPropertiesStatics3 is access all IImageEncodingPropertiesStatics3_Interface'Class;
+   type IImageEncodingPropertiesStatics3_Ptr is access all IImageEncodingPropertiesStatics3;
 
    type IMediaEncodingProfile_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEncodingProfile is access all IMediaEncodingProfile_Interface'Class;
@@ -91,18 +110,27 @@ package WinRt.Windows.Media.MediaProperties is
 
    type IMediaEncodingProfile2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEncodingProfile2 is access all IMediaEncodingProfile2_Interface'Class;
+   type IMediaEncodingProfile2_Ptr is access all IMediaEncodingProfile2;
 
    type IMediaEncodingProfile3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEncodingProfile3 is access all IMediaEncodingProfile3_Interface'Class;
+   type IMediaEncodingProfile3_Ptr is access all IMediaEncodingProfile3;
 
    type IMediaEncodingProfileStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEncodingProfileStatics is access all IMediaEncodingProfileStatics_Interface'Class;
+   type IMediaEncodingProfileStatics_Ptr is access all IMediaEncodingProfileStatics;
 
    type IMediaEncodingProfileStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEncodingProfileStatics2 is access all IMediaEncodingProfileStatics2_Interface'Class;
+   type IMediaEncodingProfileStatics2_Ptr is access all IMediaEncodingProfileStatics2;
 
    type IMediaEncodingProfileStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEncodingProfileStatics3 is access all IMediaEncodingProfileStatics3_Interface'Class;
+   type IMediaEncodingProfileStatics3_Ptr is access all IMediaEncodingProfileStatics3;
+
+   type IMediaEncodingProfileStatics4_Interface is interface and WinRt.IInspectable_Interface;
+   type IMediaEncodingProfileStatics4 is access all IMediaEncodingProfileStatics4_Interface'Class;
+   type IMediaEncodingProfileStatics4_Ptr is access all IMediaEncodingProfileStatics4;
 
    type IMediaEncodingProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEncodingProperties is access all IMediaEncodingProperties_Interface'Class;
@@ -110,21 +138,31 @@ package WinRt.Windows.Media.MediaProperties is
 
    type IMediaEncodingSubtypesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEncodingSubtypesStatics is access all IMediaEncodingSubtypesStatics_Interface'Class;
+   type IMediaEncodingSubtypesStatics_Ptr is access all IMediaEncodingSubtypesStatics;
 
    type IMediaEncodingSubtypesStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEncodingSubtypesStatics2 is access all IMediaEncodingSubtypesStatics2_Interface'Class;
+   type IMediaEncodingSubtypesStatics2_Ptr is access all IMediaEncodingSubtypesStatics2;
 
    type IMediaEncodingSubtypesStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEncodingSubtypesStatics3 is access all IMediaEncodingSubtypesStatics3_Interface'Class;
+   type IMediaEncodingSubtypesStatics3_Ptr is access all IMediaEncodingSubtypesStatics3;
 
    type IMediaEncodingSubtypesStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEncodingSubtypesStatics4 is access all IMediaEncodingSubtypesStatics4_Interface'Class;
+   type IMediaEncodingSubtypesStatics4_Ptr is access all IMediaEncodingSubtypesStatics4;
 
    type IMediaEncodingSubtypesStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEncodingSubtypesStatics5 is access all IMediaEncodingSubtypesStatics5_Interface'Class;
+   type IMediaEncodingSubtypesStatics5_Ptr is access all IMediaEncodingSubtypesStatics5;
 
    type IMediaEncodingSubtypesStatics6_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEncodingSubtypesStatics6 is access all IMediaEncodingSubtypesStatics6_Interface'Class;
+   type IMediaEncodingSubtypesStatics6_Ptr is access all IMediaEncodingSubtypesStatics6;
+
+   type IMediaEncodingSubtypesStatics7_Interface is interface and WinRt.IInspectable_Interface;
+   type IMediaEncodingSubtypesStatics7 is access all IMediaEncodingSubtypesStatics7_Interface'Class;
+   type IMediaEncodingSubtypesStatics7_Ptr is access all IMediaEncodingSubtypesStatics7;
 
    type IMediaRatio_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaRatio is access all IMediaRatio_Interface'Class;
@@ -132,12 +170,15 @@ package WinRt.Windows.Media.MediaProperties is
 
    type IMpeg2ProfileIdsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMpeg2ProfileIdsStatics is access all IMpeg2ProfileIdsStatics_Interface'Class;
+   type IMpeg2ProfileIdsStatics_Ptr is access all IMpeg2ProfileIdsStatics;
 
    type ITimedMetadataEncodingProperties_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedMetadataEncodingProperties is access all ITimedMetadataEncodingProperties_Interface'Class;
+   type ITimedMetadataEncodingProperties_Ptr is access all ITimedMetadataEncodingProperties;
 
    type ITimedMetadataEncodingPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedMetadataEncodingPropertiesStatics is access all ITimedMetadataEncodingPropertiesStatics_Interface'Class;
+   type ITimedMetadataEncodingPropertiesStatics_Ptr is access all ITimedMetadataEncodingPropertiesStatics;
 
    type IVideoEncodingProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoEncodingProperties is access all IVideoEncodingProperties_Interface'Class;
@@ -145,21 +186,35 @@ package WinRt.Windows.Media.MediaProperties is
 
    type IVideoEncodingProperties2_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoEncodingProperties2 is access all IVideoEncodingProperties2_Interface'Class;
+   type IVideoEncodingProperties2_Ptr is access all IVideoEncodingProperties2;
 
    type IVideoEncodingProperties3_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoEncodingProperties3 is access all IVideoEncodingProperties3_Interface'Class;
+   type IVideoEncodingProperties3_Ptr is access all IVideoEncodingProperties3;
 
    type IVideoEncodingProperties4_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoEncodingProperties4 is access all IVideoEncodingProperties4_Interface'Class;
+   type IVideoEncodingProperties4_Ptr is access all IVideoEncodingProperties4;
 
    type IVideoEncodingProperties5_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoEncodingProperties5 is access all IVideoEncodingProperties5_Interface'Class;
+   type IVideoEncodingProperties5_Ptr is access all IVideoEncodingProperties5;
 
    type IVideoEncodingPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoEncodingPropertiesStatics is access all IVideoEncodingPropertiesStatics_Interface'Class;
+   type IVideoEncodingPropertiesStatics_Ptr is access all IVideoEncodingPropertiesStatics;
 
    type IVideoEncodingPropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoEncodingPropertiesStatics2 is access all IVideoEncodingPropertiesStatics2_Interface'Class;
+   type IVideoEncodingPropertiesStatics2_Ptr is access all IVideoEncodingPropertiesStatics2;
+
+   type IVideoEncodingPropertiesStatics3_Interface is interface and WinRt.IInspectable_Interface;
+   type IVideoEncodingPropertiesStatics3 is access all IVideoEncodingPropertiesStatics3_Interface'Class;
+   type IVideoEncodingPropertiesStatics3_Ptr is access all IVideoEncodingPropertiesStatics3;
+
+   type IVp9ProfileIdsStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IVp9ProfileIdsStatics is access all IVp9ProfileIdsStatics_Interface'Class;
+   type IVp9ProfileIdsStatics_Ptr is access all IVp9ProfileIdsStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -524,6 +579,95 @@ package WinRt.Windows.Media.MediaProperties is
       IID_IAudioEncodingPropertiesWithFormatUserData : aliased WinRt.IID := (2565934457, 5098, 18943, (190, 112, 38, 115, 219, 105, 112, 44 ));
 
    -----------------------------------------------------------------------------
+   -- type IAv1ProfileIdsStatics is interface and WinRt.IInspectable;
+
+      function get_MainChromaSubsampling420BitDepth8
+      (
+         this : access IAv1ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainChromaSubsampling420BitDepth10
+      (
+         this : access IAv1ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainChromaSubsampling400BitDepth8
+      (
+         this : access IAv1ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainChromaSubsampling400BitDepth10
+      (
+         this : access IAv1ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_HighChromaSubsampling444BitDepth8
+      (
+         this : access IAv1ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_HighChromaSubsampling444BitDepth10
+      (
+         this : access IAv1ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProfessionalChromaSubsampling420BitDepth12
+      (
+         this : access IAv1ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProfessionalChromaSubsampling400BitDepth12
+      (
+         this : access IAv1ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProfessionalChromaSubsampling444BitDepth12
+      (
+         this : access IAv1ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProfessionalChromaSubsampling422BitDepth8
+      (
+         this : access IAv1ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProfessionalChromaSubsampling422BitDepth10
+      (
+         this : access IAv1ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProfessionalChromaSubsampling422BitDepth12
+      (
+         this : access IAv1ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAv1ProfileIdsStatics : aliased WinRt.IID := (2433057067, 31753, 22658, (136, 164, 103, 128, 8, 165, 23, 77 ));
+
+   -----------------------------------------------------------------------------
    -- type IContainerEncodingProperties is interface and WinRt.IInspectable;
 
       IID_IContainerEncodingProperties : aliased WinRt.IID := (1504455255, 45866, 18334, (138, 97, 75, 127, 46, 158, 126, 160 ));
@@ -614,6 +758,165 @@ package WinRt.Windows.Media.MediaProperties is
       return WinRt.Hresult is abstract;
 
       IID_IH264ProfileIdsStatics : aliased WinRt.IID := (946162855, 33898, 20375, (162, 229, 195, 161, 91, 191, 112, 253 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHevcProfileIdsStatics is interface and WinRt.IInspectable;
+
+      function get_MainChromaSubsampling420BitDepth8
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainChromaSubsampling420BitDepth10
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainChromaSubsampling420BitDepth12
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainChromaSubsampling422BitDepth10
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainChromaSubsampling422BitDepth12
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainChromaSubsampling444BitDepth8
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainChromaSubsampling444BitDepth10
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainChromaSubsampling444BitDepth12
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MonochromeBitDepth12
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MonochromeBitDepth16
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainIntraChromaSubsampling420BitDepth8
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainIntraChromaSubsampling420BitDepth10
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainIntraChromaSubsampling420BitDepth12
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainIntraChromaSubsampling422BitDepth10
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainIntraChromaSubsampling422BitDepth12
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainIntraChromaSubsampling444BitDepth8
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainIntraChromaSubsampling444BitDepth10
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainIntraChromaSubsampling444BitDepth12
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainIntraChromaSubsampling444BitDepth16
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainStillChromaSubsampling420BitDepth8
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainStillChromaSubsampling444BitDepth8
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MainStillChromaSubsampling444BitDepth16
+      (
+         this : access IHevcProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHevcProfileIdsStatics : aliased WinRt.IID := (508613248, 10919, 21441, (151, 63, 33, 137, 250, 101, 111, 83 ));
 
    -----------------------------------------------------------------------------
    -- type IImageEncodingProperties is interface and WinRt.IInspectable;
@@ -927,6 +1230,27 @@ package WinRt.Windows.Media.MediaProperties is
       return WinRt.Hresult is abstract;
 
       IID_IMediaEncodingProfileStatics3 : aliased WinRt.IID := (2430256554, 53110, 17044, (169, 237, 26, 20, 32, 245, 31, 107 ));
+
+   -----------------------------------------------------------------------------
+   -- type IMediaEncodingProfileStatics4 is interface and WinRt.IInspectable;
+
+      function CreateVp9
+      (
+         this : access IMediaEncodingProfileStatics4_Interface;
+         quality : Windows.Media.MediaProperties.VideoEncodingQuality;
+         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateAv1
+      (
+         this : access IMediaEncodingProfileStatics4_Interface;
+         quality : Windows.Media.MediaProperties.VideoEncodingQuality;
+         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMediaEncodingProfileStatics4 : aliased WinRt.IID := (1873794997, 37892, 20810, (129, 221, 201, 68, 77, 100, 138, 240 ));
 
    -----------------------------------------------------------------------------
    -- type IMediaEncodingProperties is interface and WinRt.IInspectable;
@@ -1356,6 +1680,18 @@ package WinRt.Windows.Media.MediaProperties is
       IID_IMediaEncodingSubtypesStatics6 : aliased WinRt.IID := (2703567219, 43396, 22802, (147, 187, 84, 231, 229, 105, 224, 83 ));
 
    -----------------------------------------------------------------------------
+   -- type IMediaEncodingSubtypesStatics7 is interface and WinRt.IInspectable;
+
+      function get_Av1
+      (
+         this : access IMediaEncodingSubtypesStatics7_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMediaEncodingSubtypesStatics7 : aliased WinRt.IID := (2465389735, 39223, 21153, (182, 25, 221, 250, 216, 28, 217, 156 ));
+
+   -----------------------------------------------------------------------------
    -- type IMediaRatio is interface and WinRt.IInspectable;
 
       function put_Numerator
@@ -1667,6 +2003,51 @@ package WinRt.Windows.Media.MediaProperties is
       IID_IVideoEncodingPropertiesStatics2 : aliased WinRt.IID := (3474898269, 18942, 19712, (181, 154, 207, 164, 223, 197, 25, 68 ));
 
    -----------------------------------------------------------------------------
+   -- type IVideoEncodingPropertiesStatics3 is interface and WinRt.IInspectable;
+
+      function CreateVp9
+      (
+         this : access IVideoEncodingPropertiesStatics3_Interface;
+         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateAv1
+      (
+         this : access IVideoEncodingPropertiesStatics3_Interface;
+         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVideoEncodingPropertiesStatics3 : aliased WinRt.IID := (1706321541, 24794, 24145, (145, 162, 179, 140, 71, 99, 184, 114 ));
+
+   -----------------------------------------------------------------------------
+   -- type IVp9ProfileIdsStatics is interface and WinRt.IInspectable;
+
+      function get_Profile0ChromaSubsampling420BitDepth8
+      (
+         this : access IVp9ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Profile2ChromaSubsampling420BitDepth10
+      (
+         this : access IVp9ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Profile2ChromaSubsampling420BitDepth12
+      (
+         this : access IVp9ProfileIdsStatics_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVp9ProfileIdsStatics : aliased WinRt.IID := (540088917, 65030, 22659, (146, 217, 96, 128, 201, 119, 67, 229 ));
+
+   -----------------------------------------------------------------------------
    -- Class method declarations
    -----------------------------------------------------------------------------
 
@@ -1683,6 +2064,22 @@ package WinRt.Windows.Media.MediaProperties is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for AudioEncodingProperties
+
+   function CreateAlac
+   (
+      sampleRate : WinRt.UInt32;
+      channelCount : WinRt.UInt32;
+      bitsPerSample : WinRt.UInt32
+   )
+   return WinRt.Windows.Media.MediaProperties.AudioEncodingProperties;
+
+   function CreateFlac
+   (
+      sampleRate : WinRt.UInt32;
+      channelCount : WinRt.UInt32;
+      bitsPerSample : WinRt.UInt32
+   )
+   return WinRt.Windows.Media.MediaProperties.AudioEncodingProperties;
 
    function CreateAac
    (
@@ -1721,22 +2118,6 @@ package WinRt.Windows.Media.MediaProperties is
       sampleRate : WinRt.UInt32;
       channelCount : WinRt.UInt32;
       bitrate : WinRt.UInt32
-   )
-   return WinRt.Windows.Media.MediaProperties.AudioEncodingProperties;
-
-   function CreateAlac
-   (
-      sampleRate : WinRt.UInt32;
-      channelCount : WinRt.UInt32;
-      bitsPerSample : WinRt.UInt32
-   )
-   return WinRt.Windows.Media.MediaProperties.AudioEncodingProperties;
-
-   function CreateFlac
-   (
-      sampleRate : WinRt.UInt32;
-      channelCount : WinRt.UInt32;
-      bitsPerSample : WinRt.UInt32
    )
    return WinRt.Windows.Media.MediaProperties.AudioEncodingProperties;
 
@@ -1840,6 +2221,48 @@ package WinRt.Windows.Media.MediaProperties is
    return WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class;
 
    -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package Av1ProfileIds is
+
+      function get_MainChromaSubsampling420BitDepth8
+      return WinRt.Int32;
+
+      function get_MainChromaSubsampling420BitDepth10
+      return WinRt.Int32;
+
+      function get_MainChromaSubsampling400BitDepth8
+      return WinRt.Int32;
+
+      function get_MainChromaSubsampling400BitDepth10
+      return WinRt.Int32;
+
+      function get_HighChromaSubsampling444BitDepth8
+      return WinRt.Int32;
+
+      function get_HighChromaSubsampling444BitDepth10
+      return WinRt.Int32;
+
+      function get_ProfessionalChromaSubsampling420BitDepth12
+      return WinRt.Int32;
+
+      function get_ProfessionalChromaSubsampling400BitDepth12
+      return WinRt.Int32;
+
+      function get_ProfessionalChromaSubsampling444BitDepth12
+      return WinRt.Int32;
+
+      function get_ProfessionalChromaSubsampling422BitDepth8
+      return WinRt.Int32;
+
+      function get_ProfessionalChromaSubsampling422BitDepth10
+      return WinRt.Int32;
+
+      function get_ProfessionalChromaSubsampling422BitDepth12
+      return WinRt.Int32;
+
+   end Av1ProfileIds;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ContainerEncodingProperties
 
    overriding procedure Initialize (this : in out ContainerEncodingProperties);
@@ -1920,6 +2343,78 @@ package WinRt.Windows.Media.MediaProperties is
    end H264ProfileIds;
 
    -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package HevcProfileIds is
+
+      function get_MainChromaSubsampling420BitDepth8_HevcProfileIds
+      return WinRt.Int32;
+
+      function get_MainChromaSubsampling420BitDepth10_HevcProfileIds
+      return WinRt.Int32;
+
+      function get_MainChromaSubsampling420BitDepth12
+      return WinRt.Int32;
+
+      function get_MainChromaSubsampling422BitDepth10
+      return WinRt.Int32;
+
+      function get_MainChromaSubsampling422BitDepth12
+      return WinRt.Int32;
+
+      function get_MainChromaSubsampling444BitDepth8
+      return WinRt.Int32;
+
+      function get_MainChromaSubsampling444BitDepth10
+      return WinRt.Int32;
+
+      function get_MainChromaSubsampling444BitDepth12
+      return WinRt.Int32;
+
+      function get_MonochromeBitDepth12
+      return WinRt.Int32;
+
+      function get_MonochromeBitDepth16
+      return WinRt.Int32;
+
+      function get_MainIntraChromaSubsampling420BitDepth8
+      return WinRt.Int32;
+
+      function get_MainIntraChromaSubsampling420BitDepth10
+      return WinRt.Int32;
+
+      function get_MainIntraChromaSubsampling420BitDepth12
+      return WinRt.Int32;
+
+      function get_MainIntraChromaSubsampling422BitDepth10
+      return WinRt.Int32;
+
+      function get_MainIntraChromaSubsampling422BitDepth12
+      return WinRt.Int32;
+
+      function get_MainIntraChromaSubsampling444BitDepth8
+      return WinRt.Int32;
+
+      function get_MainIntraChromaSubsampling444BitDepth10
+      return WinRt.Int32;
+
+      function get_MainIntraChromaSubsampling444BitDepth12
+      return WinRt.Int32;
+
+      function get_MainIntraChromaSubsampling444BitDepth16
+      return WinRt.Int32;
+
+      function get_MainStillChromaSubsampling420BitDepth8
+      return WinRt.Int32;
+
+      function get_MainStillChromaSubsampling444BitDepth8
+      return WinRt.Int32;
+
+      function get_MainStillChromaSubsampling444BitDepth16
+      return WinRt.Int32;
+
+   end HevcProfileIds;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ImageEncodingProperties
 
    overriding procedure Initialize (this : in out ImageEncodingProperties);
@@ -1933,6 +2428,9 @@ package WinRt.Windows.Media.MediaProperties is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ImageEncodingProperties
 
+   function CreateHeif
+   return WinRt.Windows.Media.MediaProperties.ImageEncodingProperties;
+
    function CreateJpeg
    return WinRt.Windows.Media.MediaProperties.ImageEncodingProperties;
 
@@ -1940,9 +2438,6 @@ package WinRt.Windows.Media.MediaProperties is
    return WinRt.Windows.Media.MediaProperties.ImageEncodingProperties;
 
    function CreateJpegXR
-   return WinRt.Windows.Media.MediaProperties.ImageEncodingProperties;
-
-   function CreateHeif
    return WinRt.Windows.Media.MediaProperties.ImageEncodingProperties;
 
    function CreateUncompressed
@@ -2050,6 +2545,18 @@ package WinRt.Windows.Media.MediaProperties is
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateAvi
+   (
+      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+   )
+   return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
+
+   function CreateVp9
+   (
+      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+   )
+   return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
+
+   function CreateAv1
    (
       quality : Windows.Media.MediaProperties.VideoEncodingQuality
    )
@@ -2176,21 +2683,6 @@ package WinRt.Windows.Media.MediaProperties is
    -- Static RuntimeClass
    package MediaEncodingSubtypes is
 
-      function get_Pgs
-      return WinRt.WString;
-
-      function get_Srt
-      return WinRt.WString;
-
-      function get_Ssa
-      return WinRt.WString;
-
-      function get_VobSub
-      return WinRt.WString;
-
-      function get_P010
-      return WinRt.WString;
-
       function get_Aac
       return WinRt.WString;
 
@@ -2311,13 +2803,19 @@ package WinRt.Windows.Media.MediaProperties is
       function get_Yv12
       return WinRt.WString;
 
-      function get_Alac
+      function get_Pgs
       return WinRt.WString;
 
-      function get_Flac
+      function get_Srt
       return WinRt.WString;
 
-      function get_Heif
+      function get_Ssa
+      return WinRt.WString;
+
+      function get_VobSub
+      return WinRt.WString;
+
+      function get_Av1
       return WinRt.WString;
 
       function get_Vp9
@@ -2330,6 +2828,18 @@ package WinRt.Windows.Media.MediaProperties is
       return WinRt.WString;
 
       function get_D16
+      return WinRt.WString;
+
+      function get_Alac
+      return WinRt.WString;
+
+      function get_Flac
+      return WinRt.WString;
+
+      function get_P010
+      return WinRt.WString;
+
+      function get_Heif
       return WinRt.WString;
 
    end MediaEncodingSubtypes;
@@ -2539,6 +3049,12 @@ package WinRt.Windows.Media.MediaProperties is
    -----------------------------------------------------------------------------
    -- Static Interfaces for VideoEncodingProperties
 
+   function CreateVp9
+   return WinRt.Windows.Media.MediaProperties.VideoEncodingProperties;
+
+   function CreateAv1
+   return WinRt.Windows.Media.MediaProperties.VideoEncodingProperties;
+
    function CreateHevc
    return WinRt.Windows.Media.MediaProperties.VideoEncodingProperties;
 
@@ -2672,5 +3188,20 @@ package WinRt.Windows.Media.MediaProperties is
       this : in out VideoEncodingProperties
    )
    return WinRt.Windows.Media.MediaProperties.VideoEncodingProperties'Class;
+
+   -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package Vp9ProfileIds is
+
+      function get_Profile0ChromaSubsampling420BitDepth8
+      return WinRt.Int32;
+
+      function get_Profile2ChromaSubsampling420BitDepth10
+      return WinRt.Int32;
+
+      function get_Profile2ChromaSubsampling420BitDepth12
+      return WinRt.Int32;
+
+   end Vp9ProfileIds;
 
 end WinRt.Windows.Media.MediaProperties;

@@ -65,6 +65,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
 
    type IVoiceCommandDefinitionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IVoiceCommandDefinitionManagerStatics is access all IVoiceCommandDefinitionManagerStatics_Interface'Class;
+   type IVoiceCommandDefinitionManagerStatics_Ptr is access all IVoiceCommandDefinitionManagerStatics;
 
    type IVoiceCommandDisambiguationResult_Interface is interface and WinRt.IInspectable_Interface;
    type IVoiceCommandDisambiguationResult is access all IVoiceCommandDisambiguationResult_Interface'Class;
@@ -76,6 +77,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
 
    type IVoiceCommandResponseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IVoiceCommandResponseStatics is access all IVoiceCommandResponseStatics_Interface'Class;
+   type IVoiceCommandResponseStatics_Ptr is access all IVoiceCommandResponseStatics;
 
    type IVoiceCommandServiceConnection_Interface is interface and WinRt.IInspectable_Interface;
    type IVoiceCommandServiceConnection is access all IVoiceCommandServiceConnection_Interface'Class;
@@ -83,6 +85,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
 
    type IVoiceCommandServiceConnectionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IVoiceCommandServiceConnectionStatics is access all IVoiceCommandServiceConnectionStatics_Interface'Class;
+   type IVoiceCommandServiceConnectionStatics_Ptr is access all IVoiceCommandServiceConnectionStatics;
 
    type IVoiceCommandUserMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IVoiceCommandUserMessage is access all IVoiceCommandUserMessage_Interface'Class;

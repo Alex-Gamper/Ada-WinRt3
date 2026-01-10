@@ -49,6 +49,10 @@ package WinRt.Windows.Media.Effects is
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
+   type IAcousticEchoCancellationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
+   type IAcousticEchoCancellationConfiguration is access all IAcousticEchoCancellationConfiguration_Interface'Class;
+   type IAcousticEchoCancellationConfiguration_Ptr is access all IAcousticEchoCancellationConfiguration;
+
    type IAudioCaptureEffectsManager_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioCaptureEffectsManager is access all IAudioCaptureEffectsManager_Interface'Class;
    type IAudioCaptureEffectsManager_Ptr is access all IAudioCaptureEffectsManager;
@@ -57,15 +61,21 @@ package WinRt.Windows.Media.Effects is
    type IAudioEffect is access all IAudioEffect_Interface'Class;
    type IAudioEffect_Ptr is access all IAudioEffect;
 
+   type IAudioEffect2_Interface is interface and WinRt.IInspectable_Interface;
+   type IAudioEffect2 is access all IAudioEffect2_Interface'Class;
+   type IAudioEffect2_Ptr is access all IAudioEffect2;
+
    type IAudioEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioEffectDefinition is access all IAudioEffectDefinition_Interface'Class;
    type IAudioEffectDefinition_Ptr is access all IAudioEffectDefinition;
 
    type IAudioEffectDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioEffectDefinitionFactory is access all IAudioEffectDefinitionFactory_Interface'Class;
+   type IAudioEffectDefinitionFactory_Ptr is access all IAudioEffectDefinitionFactory;
 
    type IAudioEffectsManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioEffectsManagerStatics is access all IAudioEffectsManagerStatics_Interface'Class;
+   type IAudioEffectsManagerStatics_Ptr is access all IAudioEffectsManagerStatics;
 
    type IAudioRenderEffectsManager_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioRenderEffectsManager is access all IAudioRenderEffectsManager_Interface'Class;
@@ -73,12 +83,15 @@ package WinRt.Windows.Media.Effects is
 
    type IAudioRenderEffectsManager2_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioRenderEffectsManager2 is access all IAudioRenderEffectsManager2_Interface'Class;
+   type IAudioRenderEffectsManager2_Ptr is access all IAudioRenderEffectsManager2;
 
    type IBasicAudioEffect_Interface is interface and WinRt.IInspectable_Interface;
    type IBasicAudioEffect is access all IBasicAudioEffect_Interface'Class;
+   type IBasicAudioEffect_Ptr is access all IBasicAudioEffect;
 
    type IBasicVideoEffect_Interface is interface and WinRt.IInspectable_Interface;
    type IBasicVideoEffect is access all IBasicVideoEffect_Interface'Class;
+   type IBasicVideoEffect_Ptr is access all IBasicVideoEffect;
 
    type ICompositeVideoFrameContext_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositeVideoFrameContext is access all ICompositeVideoFrameContext_Interface'Class;
@@ -92,12 +105,9 @@ package WinRt.Windows.Media.Effects is
    type IProcessVideoFrameContext is access all IProcessVideoFrameContext_Interface'Class;
    type IProcessVideoFrameContext_Ptr is access all IProcessVideoFrameContext;
 
-   type ISlowMotionEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type ISlowMotionEffectDefinition is access all ISlowMotionEffectDefinition_Interface'Class;
-   type ISlowMotionEffectDefinition_Ptr is access all ISlowMotionEffectDefinition;
-
    type IVideoCompositor_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoCompositor is access all IVideoCompositor_Interface'Class;
+   type IVideoCompositor_Ptr is access all IVideoCompositor;
 
    type IVideoCompositorDefinition_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoCompositorDefinition is access all IVideoCompositorDefinition_Interface'Class;
@@ -105,6 +115,7 @@ package WinRt.Windows.Media.Effects is
 
    type IVideoCompositorDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoCompositorDefinitionFactory is access all IVideoCompositorDefinitionFactory_Interface'Class;
+   type IVideoCompositorDefinitionFactory_Ptr is access all IVideoCompositorDefinitionFactory;
 
    type IVideoEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoEffectDefinition is access all IVideoEffectDefinition_Interface'Class;
@@ -112,12 +123,15 @@ package WinRt.Windows.Media.Effects is
 
    type IVideoEffectDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoEffectDefinitionFactory is access all IVideoEffectDefinitionFactory_Interface'Class;
+   type IVideoEffectDefinitionFactory_Ptr is access all IVideoEffectDefinitionFactory;
 
    type IVideoTransformEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoTransformEffectDefinition is access all IVideoTransformEffectDefinition_Interface'Class;
+   type IVideoTransformEffectDefinition_Ptr is access all IVideoTransformEffectDefinition;
 
    type IVideoTransformEffectDefinition2_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoTransformEffectDefinition2 is access all IVideoTransformEffectDefinition2_Interface'Class;
+   type IVideoTransformEffectDefinition2_Ptr is access all IVideoTransformEffectDefinition2;
 
    type IVideoTransformSphericalProjection_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoTransformSphericalProjection is access all IVideoTransformSphericalProjection_Interface'Class;
@@ -126,6 +140,12 @@ package WinRt.Windows.Media.Effects is
    -----------------------------------------------------------------------------
    -- Class declarations
    -----------------------------------------------------------------------------
+
+   type AcousticEchoCancellationConfiguration is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IAcousticEchoCancellationConfiguration : access Windows.Media.Effects.IAcousticEchoCancellationConfiguration;
+      end record;
+   type AcousticEchoCancellationConfiguration_Ptr is access all AcousticEchoCancellationConfiguration;
 
    type AudioCaptureEffectsManager is new Ada.Finalization.Limited_Controlled with
       record
@@ -169,12 +189,6 @@ package WinRt.Windows.Media.Effects is
       end record;
    type ProcessVideoFrameContext_Ptr is access all ProcessVideoFrameContext;
 
-   type SlowMotionEffectDefinition is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ISlowMotionEffectDefinition : access Windows.Media.Effects.ISlowMotionEffectDefinition;
-      end record;
-   type SlowMotionEffectDefinition_Ptr is access all SlowMotionEffectDefinition;
-
    type VideoCompositorDefinition is new Ada.Finalization.Limited_Controlled with
       record
          m_IVideoCompositorDefinition : access Windows.Media.Effects.IVideoCompositorDefinition;
@@ -203,6 +217,16 @@ package WinRt.Windows.Media.Effects is
    -- Enum declarations
    -----------------------------------------------------------------------------
 
+   type AudioEffectState is (
+      Off_e,
+      On_e
+   );
+   for AudioEffectState use (
+      Off_e => 0,
+      On_e => 1
+   );
+   type AudioEffectState_Ptr is access all AudioEffectState;
+
    type AudioEffectType is (
       Other_e,
       AcousticEchoCancellation_e,
@@ -221,7 +245,9 @@ package WinRt.Windows.Media.Effects is
       EnvironmentalEffects_e,
       SpeakerProtection_e,
       SpeakerCompensation_e,
-      DynamicRangeCompression_e
+      DynamicRangeCompression_e,
+      FarFieldBeamForming_e,
+      DeepNoiseSuppression_e
    );
    for AudioEffectType use (
       Other_e => 0,
@@ -241,7 +267,9 @@ package WinRt.Windows.Media.Effects is
       EnvironmentalEffects_e => 14,
       SpeakerProtection_e => 15,
       SpeakerCompensation_e => 16,
-      DynamicRangeCompression_e => 17
+      DynamicRangeCompression_e => 17,
+      FarFieldBeamForming_e => 18,
+      DeepNoiseSuppression_e => 19
    );
    type AudioEffectType_Ptr is access all AudioEffectType;
 
@@ -284,6 +312,18 @@ package WinRt.Windows.Media.Effects is
    -----------------------------------------------------------------------------
 
    -----------------------------------------------------------------------------
+   -- type IAcousticEchoCancellationConfiguration is interface and WinRt.IInspectable;
+
+      function SetEchoCancellationRenderEndpoint
+      (
+         this : access IAcousticEchoCancellationConfiguration_Interface;
+         deviceId : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAcousticEchoCancellationConfiguration : aliased WinRt.IID := (1484682075, 5979, 20855, (164, 7, 46, 51, 186, 254, 51, 165 ));
+
+   -----------------------------------------------------------------------------
    -- type IAudioCaptureEffectsManager is interface and WinRt.IInspectable;
 
       function add_AudioCaptureEffectsChanged
@@ -321,6 +361,39 @@ package WinRt.Windows.Media.Effects is
       return WinRt.Hresult is abstract;
 
       IID_IAudioEffect : aliased WinRt.IID := (883620433, 37383, 16469, (190, 147, 110, 87, 52, 168, 106, 228 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAudioEffect2 is interface and WinRt.IInspectable;
+
+      function get_AcousticEchoCancellationConfiguration
+      (
+         this : access IAudioEffect2_Interface;
+         RetVal : access Windows.Media.Effects.IAcousticEchoCancellationConfiguration
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CanSetState
+      (
+         this : access IAudioEffect2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_State
+      (
+         this : access IAudioEffect2_Interface;
+         RetVal : access Windows.Media.Effects.AudioEffectState
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetState
+      (
+         this : access IAudioEffect2_Interface;
+         newState : Windows.Media.Effects.AudioEffectState
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAudioEffect2 : aliased WinRt.IID := (108018864, 30078, 22359, (138, 240, 107, 165, 138, 139, 41, 144 ));
 
    -----------------------------------------------------------------------------
    -- type IAudioEffectDefinition is interface and WinRt.IInspectable;
@@ -638,25 +711,6 @@ package WinRt.Windows.Media.Effects is
       IID_IProcessVideoFrameContext : aliased WinRt.IID := (661589547, 25697, 16414, (186, 120, 15, 218, 214, 17, 78, 236 ));
 
    -----------------------------------------------------------------------------
-   -- type ISlowMotionEffectDefinition is interface and WinRt.IInspectable;
-
-      function get_TimeStretchRate
-      (
-         this : access ISlowMotionEffectDefinition_Interface;
-         RetVal : access WinRt.Double
-      )
-      return WinRt.Hresult is abstract;
-
-      function put_TimeStretchRate
-      (
-         this : access ISlowMotionEffectDefinition_Interface;
-         value : WinRt.Double
-      )
-      return WinRt.Hresult is abstract;
-
-      IID_ISlowMotionEffectDefinition : aliased WinRt.IID := (889535696, 5996, 18275, (130, 196, 27, 2, 219, 227, 23, 55 ));
-
-   -----------------------------------------------------------------------------
    -- type IVideoCompositor is interface and WinRt.IInspectable;
 
       function get_TimeIndependent
@@ -959,6 +1013,21 @@ package WinRt.Windows.Media.Effects is
    -----------------------------------------------------------------------------
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for AcousticEchoCancellationConfiguration
+
+   overriding procedure Initialize (this : in out AcousticEchoCancellationConfiguration);
+   overriding procedure Finalize (this : in out AcousticEchoCancellationConfiguration);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for AcousticEchoCancellationConfiguration
+
+   procedure SetEchoCancellationRenderEndpoint
+   (
+      this : in out AcousticEchoCancellationConfiguration;
+      deviceId : WinRt.WString
+   );
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AudioCaptureEffectsManager
 
    overriding procedure Initialize (this : in out AudioCaptureEffectsManager);
@@ -1000,6 +1069,30 @@ package WinRt.Windows.Media.Effects is
       this : in out AudioEffect
    )
    return WinRt.Windows.Media.Effects.AudioEffectType;
+
+   function get_AcousticEchoCancellationConfiguration
+   (
+      this : in out AudioEffect
+   )
+   return WinRt.Windows.Media.Effects.AcousticEchoCancellationConfiguration'Class;
+
+   function get_CanSetState
+   (
+      this : in out AudioEffect
+   )
+   return WinRt.Boolean;
+
+   function get_State
+   (
+      this : in out AudioEffect
+   )
+   return WinRt.Windows.Media.Effects.AudioEffectState;
+
+   procedure SetState
+   (
+      this : in out AudioEffect;
+      newState : Windows.Media.Effects.AudioEffectState
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AudioEffectDefinition
@@ -1194,44 +1287,6 @@ package WinRt.Windows.Media.Effects is
       this : in out ProcessVideoFrameContext
    )
    return WinRt.Windows.Media.VideoFrame'Class;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for SlowMotionEffectDefinition
-
-   overriding procedure Initialize (this : in out SlowMotionEffectDefinition);
-   overriding procedure Finalize (this : in out SlowMotionEffectDefinition);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for SlowMotionEffectDefinition
-
-   function Constructor return SlowMotionEffectDefinition;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for SlowMotionEffectDefinition
-
-   function get_TimeStretchRate
-   (
-      this : in out SlowMotionEffectDefinition
-   )
-   return WinRt.Double;
-
-   procedure put_TimeStretchRate
-   (
-      this : in out SlowMotionEffectDefinition;
-      value : WinRt.Double
-   );
-
-   function get_ActivatableClassId
-   (
-      this : in out SlowMotionEffectDefinition
-   )
-   return WinRt.WString;
-
-   function get_Properties
-   (
-      this : in out SlowMotionEffectDefinition
-   )
-   return WinRt.Windows.Foundation.Collections.IPropertySet;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for VideoCompositorDefinition

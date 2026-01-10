@@ -49,6 +49,7 @@ package WinRt.Windows.Globalization.Collation is
 
    type ICharacterGroupingsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICharacterGroupingsFactory is access all ICharacterGroupingsFactory_Interface'Class;
+   type ICharacterGroupingsFactory_Ptr is access all ICharacterGroupingsFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -149,13 +150,13 @@ package WinRt.Windows.Globalization.Collation is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for CharacterGroupings
 
-   function Constructor return CharacterGroupings;
-
    function Constructor
    (
       language : WinRt.WString
    )
    return CharacterGroupings;
+
+   function Constructor return CharacterGroupings;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for CharacterGroupings

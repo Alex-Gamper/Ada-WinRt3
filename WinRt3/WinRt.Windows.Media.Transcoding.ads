@@ -49,6 +49,7 @@ package WinRt.Windows.Media.Transcoding is
 
    type IMediaTranscoder2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTranscoder2 is access all IMediaTranscoder2_Interface'Class;
+   type IMediaTranscoder2_Ptr is access all IMediaTranscoder2;
 
    type IPrepareTranscodeResult_Interface is interface and WinRt.IInspectable_Interface;
    type IPrepareTranscodeResult is access all IPrepareTranscodeResult_Interface'Class;

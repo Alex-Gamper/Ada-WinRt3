@@ -45,15 +45,19 @@ package WinRt.Windows.Globalization.NumberFormatting is
 
    type ICurrencyFormatter2_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrencyFormatter2 is access all ICurrencyFormatter2_Interface'Class;
+   type ICurrencyFormatter2_Ptr is access all ICurrencyFormatter2;
 
    type ICurrencyFormatterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrencyFormatterFactory is access all ICurrencyFormatterFactory_Interface'Class;
+   type ICurrencyFormatterFactory_Ptr is access all ICurrencyFormatterFactory;
 
    type IDecimalFormatterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDecimalFormatterFactory is access all IDecimalFormatterFactory_Interface'Class;
+   type IDecimalFormatterFactory_Ptr is access all IDecimalFormatterFactory;
 
    type IIncrementNumberRounder_Interface is interface and WinRt.IInspectable_Interface;
    type IIncrementNumberRounder is access all IIncrementNumberRounder_Interface'Class;
+   type IIncrementNumberRounder_Ptr is access all IIncrementNumberRounder;
 
    type INumberFormatter_Interface is interface and WinRt.IInspectable_Interface;
    type INumberFormatter is access all INumberFormatter_Interface'Class;
@@ -61,12 +65,15 @@ package WinRt.Windows.Globalization.NumberFormatting is
 
    type INumberFormatter2_Interface is interface and WinRt.IInspectable_Interface;
    type INumberFormatter2 is access all INumberFormatter2_Interface'Class;
+   type INumberFormatter2_Ptr is access all INumberFormatter2;
 
    type INumberFormatterOptions_Interface is interface and WinRt.IInspectable_Interface;
    type INumberFormatterOptions is access all INumberFormatterOptions_Interface'Class;
+   type INumberFormatterOptions_Ptr is access all INumberFormatterOptions;
 
    type INumberParser_Interface is interface and WinRt.IInspectable_Interface;
    type INumberParser is access all INumberParser_Interface'Class;
+   type INumberParser_Ptr is access all INumberParser;
 
    type INumberRounder_Interface is interface and WinRt.IInspectable_Interface;
    type INumberRounder is access all INumberRounder_Interface'Class;
@@ -74,6 +81,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
 
    type INumberRounderOption_Interface is interface and WinRt.IInspectable_Interface;
    type INumberRounderOption is access all INumberRounderOption_Interface'Class;
+   type INumberRounderOption_Ptr is access all INumberRounderOption;
 
    type INumeralSystemTranslator_Interface is interface and WinRt.IInspectable_Interface;
    type INumeralSystemTranslator is access all INumeralSystemTranslator_Interface'Class;
@@ -81,21 +89,27 @@ package WinRt.Windows.Globalization.NumberFormatting is
 
    type INumeralSystemTranslatorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INumeralSystemTranslatorFactory is access all INumeralSystemTranslatorFactory_Interface'Class;
+   type INumeralSystemTranslatorFactory_Ptr is access all INumeralSystemTranslatorFactory;
 
    type IPercentFormatterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPercentFormatterFactory is access all IPercentFormatterFactory_Interface'Class;
+   type IPercentFormatterFactory_Ptr is access all IPercentFormatterFactory;
 
    type IPermilleFormatterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPermilleFormatterFactory is access all IPermilleFormatterFactory_Interface'Class;
+   type IPermilleFormatterFactory_Ptr is access all IPermilleFormatterFactory;
 
    type ISignedZeroOption_Interface is interface and WinRt.IInspectable_Interface;
    type ISignedZeroOption is access all ISignedZeroOption_Interface'Class;
+   type ISignedZeroOption_Ptr is access all ISignedZeroOption;
 
    type ISignificantDigitsNumberRounder_Interface is interface and WinRt.IInspectable_Interface;
    type ISignificantDigitsNumberRounder is access all ISignificantDigitsNumberRounder_Interface'Class;
+   type ISignificantDigitsNumberRounder_Ptr is access all ISignificantDigitsNumberRounder;
 
    type ISignificantDigitsOption_Interface is interface and WinRt.IInspectable_Interface;
    type ISignificantDigitsOption is access all ISignificantDigitsOption_Interface'Class;
+   type ISignificantDigitsOption_Ptr is access all ISignificantDigitsOption;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1275,13 +1289,13 @@ package WinRt.Windows.Globalization.NumberFormatting is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for NumeralSystemTranslator
 
-   function Constructor return NumeralSystemTranslator;
-
    function Constructor
    (
       languages : GenericObject
    )
    return NumeralSystemTranslator;
+
+   function Constructor return NumeralSystemTranslator;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for NumeralSystemTranslator
@@ -1326,14 +1340,14 @@ package WinRt.Windows.Globalization.NumberFormatting is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PercentFormatter
 
-   function Constructor return PercentFormatter;
-
    function Constructor
    (
       languages : GenericObject;
       geographicRegion : WinRt.WString
    )
    return PercentFormatter;
+
+   function Constructor return PercentFormatter;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for PercentFormatter
@@ -1530,14 +1544,14 @@ package WinRt.Windows.Globalization.NumberFormatting is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PermilleFormatter
 
-   function Constructor return PermilleFormatter;
-
    function Constructor
    (
       languages : GenericObject;
       geographicRegion : WinRt.WString
    )
    return PermilleFormatter;
+
+   function Constructor return PermilleFormatter;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for PermilleFormatter

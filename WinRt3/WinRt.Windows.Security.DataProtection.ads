@@ -55,6 +55,7 @@ package WinRt.Windows.Security.DataProtection is
 
    type IUserDataProtectionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataProtectionManagerStatics is access all IUserDataProtectionManagerStatics_Interface'Class;
+   type IUserDataProtectionManagerStatics_Ptr is access all IUserDataProtectionManagerStatics;
 
    type IUserDataStorageItemProtectionInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataStorageItemProtectionInfo is access all IUserDataStorageItemProtectionInfo_Interface'Class;

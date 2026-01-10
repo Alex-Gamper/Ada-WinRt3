@@ -45,6 +45,7 @@ package WinRt.Windows.Networking is
 
    type IEndpointPairFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IEndpointPairFactory is access all IEndpointPairFactory_Interface'Class;
+   type IEndpointPairFactory_Ptr is access all IEndpointPairFactory;
 
    type IHostName_Interface is interface and WinRt.IInspectable_Interface;
    type IHostName is access all IHostName_Interface'Class;
@@ -52,9 +53,11 @@ package WinRt.Windows.Networking is
 
    type IHostNameFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHostNameFactory is access all IHostNameFactory_Interface'Class;
+   type IHostNameFactory_Ptr is access all IHostNameFactory;
 
    type IHostNameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHostNameStatics is access all IHostNameStatics_Interface'Class;
+   type IHostNameStatics_Ptr is access all IHostNameStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -601,6 +601,46 @@ package body WinRt.Windows.UI.Input.Inking is
       end if;
    end;
 
+   function get_IsPenHapticFeedbackEnabled
+   (
+      this : in out InkInputConfiguration
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Input.Inking.IInkInputConfiguration2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkInputConfiguration_Interface, WinRt.Windows.UI.Input.Inking.IInkInputConfiguration2, WinRt.Windows.UI.Input.Inking.IID_IInkInputConfiguration2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IInkInputConfiguration.all);
+      Hr := m_Interface.get_IsPenHapticFeedbackEnabled (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsPenHapticFeedbackEnabled
+   (
+      this : in out InkInputConfiguration;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Input.Inking.IInkInputConfiguration2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkInputConfiguration_Interface, WinRt.Windows.UI.Input.Inking.IInkInputConfiguration2, WinRt.Windows.UI.Input.Inking.IID_IInkInputConfiguration2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IInkInputConfiguration.all);
+      Hr := m_Interface.put_IsPenHapticFeedbackEnabled (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for InkInputProcessingConfiguration
 
@@ -1528,6 +1568,31 @@ package body WinRt.Windows.UI.Input.Inking is
    function Constructor
    (
       position : Windows.Foundation.Point;
+      pressure : WinRt.Single
+   )
+   return InkPoint is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPoint");
+      m_Factory    : access IInkPointFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.UI.Input.Inking.IInkPoint;
+   begin
+      return RetVal : InkPoint do
+         Hr := RoGetActivationFactory (m_hString, IID_IInkPointFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInkPoint (position, pressure, m_ComRetVal'Access);
+            Retval.m_IInkPoint := new Windows.UI.Input.Inking.IInkPoint;
+            Retval.m_IInkPoint.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
+      position : Windows.Foundation.Point;
       pressure : WinRt.Single;
       tiltX : WinRt.Single;
       tiltY : WinRt.Single;
@@ -1545,31 +1610,6 @@ package body WinRt.Windows.UI.Input.Inking is
          Hr := RoGetActivationFactory (m_hString, IID_IInkPointFactory2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInkPointWithTiltAndTimestamp (position, pressure, tiltX, tiltY, timestamp, m_ComRetVal'Access);
-            Retval.m_IInkPoint := new Windows.UI.Input.Inking.IInkPoint;
-            Retval.m_IInkPoint.all := m_ComRetVal;
-            temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor
-   (
-      position : Windows.Foundation.Point;
-      pressure : WinRt.Single
-   )
-   return InkPoint is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPoint");
-      m_Factory    : access IInkPointFactory_Interface'Class := null;
-      temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Input.Inking.IInkPoint;
-   begin
-      return RetVal : InkPoint do
-         Hr := RoGetActivationFactory (m_hString, IID_IInkPointFactory'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateInkPoint (position, pressure, m_ComRetVal'Access);
             Retval.m_IInkPoint := new Windows.UI.Input.Inking.IInkPoint;
             Retval.m_IInkPoint.all := m_ComRetVal;
             temp := m_Factory.Release;
@@ -3490,6 +3530,27 @@ package body WinRt.Windows.UI.Input.Inking is
       end if;
    end;
 
+   function get_PointerId
+   (
+      this : in out InkStroke
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStroke4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStroke_Interface, WinRt.Windows.UI.Input.Inking.IInkStroke4, WinRt.Windows.UI.Input.Inking.IID_IInkStroke4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IInkStroke.all);
+      Hr := m_Interface.get_PointerId (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for InkStrokeBuilder
 
@@ -5054,6 +5115,25 @@ package body WinRt.Windows.UI.Input.Inking is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   procedure SetPenHandedness
+   (
+      this : in out PenAndInkSettings;
+      value : Windows.UI.Input.Inking.PenHandedness
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Input.Inking.IPenAndInkSettings2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IPenAndInkSettings_Interface, WinRt.Windows.UI.Input.Inking.IPenAndInkSettings2, WinRt.Windows.UI.Input.Inking.IID_IPenAndInkSettings2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPenAndInkSettings.all);
+      Hr := m_Interface.SetPenHandedness (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.Input.Inking;

@@ -41,6 +41,11 @@ package WinRt.Windows.Devices.Haptics is
 
    type IKnownSimpleHapticsControllerWaveformsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownSimpleHapticsControllerWaveformsStatics is access all IKnownSimpleHapticsControllerWaveformsStatics_Interface'Class;
+   type IKnownSimpleHapticsControllerWaveformsStatics_Ptr is access all IKnownSimpleHapticsControllerWaveformsStatics;
+
+   type IKnownSimpleHapticsControllerWaveformsStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type IKnownSimpleHapticsControllerWaveformsStatics2 is access all IKnownSimpleHapticsControllerWaveformsStatics2_Interface'Class;
+   type IKnownSimpleHapticsControllerWaveformsStatics2_Ptr is access all IKnownSimpleHapticsControllerWaveformsStatics2;
 
    type ISimpleHapticsController_Interface is interface and WinRt.IInspectable_Interface;
    type ISimpleHapticsController is access all ISimpleHapticsController_Interface'Class;
@@ -56,6 +61,7 @@ package WinRt.Windows.Devices.Haptics is
 
    type IVibrationDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IVibrationDeviceStatics is access all IVibrationDeviceStatics_Interface'Class;
+   type IVibrationDeviceStatics_Ptr is access all IVibrationDeviceStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -148,6 +154,81 @@ package WinRt.Windows.Devices.Haptics is
       return WinRt.Hresult is abstract;
 
       IID_IKnownSimpleHapticsControllerWaveformsStatics : aliased WinRt.IID := (1029144311, 19694, 4582, (181, 53, 0, 27, 220, 6, 171, 59 ));
+
+   -----------------------------------------------------------------------------
+   -- type IKnownSimpleHapticsControllerWaveformsStatics2 is interface and WinRt.IInspectable;
+
+      function get_BrushContinuous
+      (
+         this : access IKnownSimpleHapticsControllerWaveformsStatics2_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ChiselMarkerContinuous
+      (
+         this : access IKnownSimpleHapticsControllerWaveformsStatics2_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_EraserContinuous
+      (
+         this : access IKnownSimpleHapticsControllerWaveformsStatics2_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Error
+      (
+         this : access IKnownSimpleHapticsControllerWaveformsStatics2_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_GalaxyPenContinuous
+      (
+         this : access IKnownSimpleHapticsControllerWaveformsStatics2_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Hover
+      (
+         this : access IKnownSimpleHapticsControllerWaveformsStatics2_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_InkContinuous
+      (
+         this : access IKnownSimpleHapticsControllerWaveformsStatics2_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MarkerContinuous
+      (
+         this : access IKnownSimpleHapticsControllerWaveformsStatics2_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PencilContinuous
+      (
+         this : access IKnownSimpleHapticsControllerWaveformsStatics2_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Success
+      (
+         this : access IKnownSimpleHapticsControllerWaveformsStatics2_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IKnownSimpleHapticsControllerWaveformsStatics2 : aliased WinRt.IID := (2815577127, 47005, 20746, (191, 121, 255, 109, 73, 23, 62, 29 ));
 
    -----------------------------------------------------------------------------
    -- type ISimpleHapticsController is interface and WinRt.IInspectable;
@@ -322,6 +403,36 @@ package WinRt.Windows.Devices.Haptics is
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package KnownSimpleHapticsControllerWaveforms is
+
+      function get_BrushContinuous
+      return WinRt.UInt16;
+
+      function get_ChiselMarkerContinuous
+      return WinRt.UInt16;
+
+      function get_EraserContinuous
+      return WinRt.UInt16;
+
+      function get_Error
+      return WinRt.UInt16;
+
+      function get_GalaxyPenContinuous
+      return WinRt.UInt16;
+
+      function get_Hover
+      return WinRt.UInt16;
+
+      function get_InkContinuous
+      return WinRt.UInt16;
+
+      function get_MarkerContinuous
+      return WinRt.UInt16;
+
+      function get_PencilContinuous
+      return WinRt.UInt16;
+
+      function get_Success
+      return WinRt.UInt16;
 
       function get_Click
       return WinRt.UInt16;

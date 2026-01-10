@@ -59,6 +59,7 @@ package WinRt.Windows.Web.UI.Interop is
 
    type IWebViewControlProcessFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewControlProcessFactory is access all IWebViewControlProcessFactory_Interface'Class;
+   type IWebViewControlProcessFactory_Ptr is access all IWebViewControlProcessFactory;
 
    type IWebViewControlProcessOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewControlProcessOptions is access all IWebViewControlProcessOptions_Interface'Class;
@@ -66,9 +67,11 @@ package WinRt.Windows.Web.UI.Interop is
 
    type IWebViewControlSite_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewControlSite is access all IWebViewControlSite_Interface'Class;
+   type IWebViewControlSite_Ptr is access all IWebViewControlSite;
 
    type IWebViewControlSite2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewControlSite2 is access all IWebViewControlSite2_Interface'Class;
+   type IWebViewControlSite2_Ptr is access all IWebViewControlSite2;
 
    -----------------------------------------------------------------------------
    -- Class declarations

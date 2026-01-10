@@ -51,24 +51,31 @@ package WinRt.Windows.Networking.BackgroundTransfer is
 
    type IBackgroundDownloader2_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundDownloader2 is access all IBackgroundDownloader2_Interface'Class;
+   type IBackgroundDownloader2_Ptr is access all IBackgroundDownloader2;
 
    type IBackgroundDownloader3_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundDownloader3 is access all IBackgroundDownloader3_Interface'Class;
+   type IBackgroundDownloader3_Ptr is access all IBackgroundDownloader3;
 
    type IBackgroundDownloaderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundDownloaderFactory is access all IBackgroundDownloaderFactory_Interface'Class;
+   type IBackgroundDownloaderFactory_Ptr is access all IBackgroundDownloaderFactory;
 
    type IBackgroundDownloaderStaticMethods_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundDownloaderStaticMethods is access all IBackgroundDownloaderStaticMethods_Interface'Class;
+   type IBackgroundDownloaderStaticMethods_Ptr is access all IBackgroundDownloaderStaticMethods;
 
    type IBackgroundDownloaderStaticMethods2_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundDownloaderStaticMethods2 is access all IBackgroundDownloaderStaticMethods2_Interface'Class;
+   type IBackgroundDownloaderStaticMethods2_Ptr is access all IBackgroundDownloaderStaticMethods2;
 
    type IBackgroundDownloaderUserConsent_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundDownloaderUserConsent is access all IBackgroundDownloaderUserConsent_Interface'Class;
+   type IBackgroundDownloaderUserConsent_Ptr is access all IBackgroundDownloaderUserConsent;
 
    type IBackgroundTransferBase_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTransferBase is access all IBackgroundTransferBase_Interface'Class;
+   type IBackgroundTransferBase_Ptr is access all IBackgroundTransferBase;
 
    type IBackgroundTransferCompletionGroup_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTransferCompletionGroup is access all IBackgroundTransferCompletionGroup_Interface'Class;
@@ -84,9 +91,11 @@ package WinRt.Windows.Networking.BackgroundTransfer is
 
    type IBackgroundTransferContentPartFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTransferContentPartFactory is access all IBackgroundTransferContentPartFactory_Interface'Class;
+   type IBackgroundTransferContentPartFactory_Ptr is access all IBackgroundTransferContentPartFactory;
 
    type IBackgroundTransferErrorStaticMethods_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTransferErrorStaticMethods is access all IBackgroundTransferErrorStaticMethods_Interface'Class;
+   type IBackgroundTransferErrorStaticMethods_Ptr is access all IBackgroundTransferErrorStaticMethods;
 
    type IBackgroundTransferGroup_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTransferGroup is access all IBackgroundTransferGroup_Interface'Class;
@@ -94,12 +103,15 @@ package WinRt.Windows.Networking.BackgroundTransfer is
 
    type IBackgroundTransferGroupStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTransferGroupStatics is access all IBackgroundTransferGroupStatics_Interface'Class;
+   type IBackgroundTransferGroupStatics_Ptr is access all IBackgroundTransferGroupStatics;
 
    type IBackgroundTransferOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTransferOperation is access all IBackgroundTransferOperation_Interface'Class;
+   type IBackgroundTransferOperation_Ptr is access all IBackgroundTransferOperation;
 
    type IBackgroundTransferOperationPriority_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTransferOperationPriority is access all IBackgroundTransferOperationPriority_Interface'Class;
+   type IBackgroundTransferOperationPriority_Ptr is access all IBackgroundTransferOperationPriority;
 
    type IBackgroundTransferRangesDownloadedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTransferRangesDownloadedEventArgs is access all IBackgroundTransferRangesDownloadedEventArgs_Interface'Class;
@@ -111,27 +123,35 @@ package WinRt.Windows.Networking.BackgroundTransfer is
 
    type IBackgroundUploader2_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundUploader2 is access all IBackgroundUploader2_Interface'Class;
+   type IBackgroundUploader2_Ptr is access all IBackgroundUploader2;
 
    type IBackgroundUploader3_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundUploader3 is access all IBackgroundUploader3_Interface'Class;
+   type IBackgroundUploader3_Ptr is access all IBackgroundUploader3;
 
    type IBackgroundUploaderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundUploaderFactory is access all IBackgroundUploaderFactory_Interface'Class;
+   type IBackgroundUploaderFactory_Ptr is access all IBackgroundUploaderFactory;
 
    type IBackgroundUploaderStaticMethods_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundUploaderStaticMethods is access all IBackgroundUploaderStaticMethods_Interface'Class;
+   type IBackgroundUploaderStaticMethods_Ptr is access all IBackgroundUploaderStaticMethods;
 
    type IBackgroundUploaderStaticMethods2_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundUploaderStaticMethods2 is access all IBackgroundUploaderStaticMethods2_Interface'Class;
+   type IBackgroundUploaderStaticMethods2_Ptr is access all IBackgroundUploaderStaticMethods2;
 
    type IBackgroundUploaderUserConsent_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundUploaderUserConsent is access all IBackgroundUploaderUserConsent_Interface'Class;
+   type IBackgroundUploaderUserConsent_Ptr is access all IBackgroundUploaderUserConsent;
 
    type IContentPrefetcher_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPrefetcher is access all IContentPrefetcher_Interface'Class;
+   type IContentPrefetcher_Ptr is access all IContentPrefetcher;
 
    type IContentPrefetcherTime_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPrefetcherTime is access all IContentPrefetcherTime_Interface'Class;
+   type IContentPrefetcherTime_Ptr is access all IContentPrefetcherTime;
 
    type IDownloadOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IDownloadOperation is access all IDownloadOperation_Interface'Class;
@@ -139,15 +159,19 @@ package WinRt.Windows.Networking.BackgroundTransfer is
 
    type IDownloadOperation2_Interface is interface and WinRt.IInspectable_Interface;
    type IDownloadOperation2 is access all IDownloadOperation2_Interface'Class;
+   type IDownloadOperation2_Ptr is access all IDownloadOperation2;
 
    type IDownloadOperation3_Interface is interface and WinRt.IInspectable_Interface;
    type IDownloadOperation3 is access all IDownloadOperation3_Interface'Class;
+   type IDownloadOperation3_Ptr is access all IDownloadOperation3;
 
    type IDownloadOperation4_Interface is interface and WinRt.IInspectable_Interface;
    type IDownloadOperation4 is access all IDownloadOperation4_Interface'Class;
+   type IDownloadOperation4_Ptr is access all IDownloadOperation4;
 
    type IDownloadOperation5_Interface is interface and WinRt.IInspectable_Interface;
    type IDownloadOperation5 is access all IDownloadOperation5_Interface'Class;
+   type IDownloadOperation5_Ptr is access all IDownloadOperation5;
 
    type IResponseInformation_Interface is interface and WinRt.IInspectable_Interface;
    type IResponseInformation is access all IResponseInformation_Interface'Class;
@@ -163,12 +187,15 @@ package WinRt.Windows.Networking.BackgroundTransfer is
 
    type IUploadOperation2_Interface is interface and WinRt.IInspectable_Interface;
    type IUploadOperation2 is access all IUploadOperation2_Interface'Class;
+   type IUploadOperation2_Ptr is access all IUploadOperation2;
 
    type IUploadOperation3_Interface is interface and WinRt.IInspectable_Interface;
    type IUploadOperation3 is access all IUploadOperation3_Interface'Class;
+   type IUploadOperation3_Ptr is access all IUploadOperation3;
 
    type IUploadOperation4_Interface is interface and WinRt.IInspectable_Interface;
    type IUploadOperation4 is access all IUploadOperation4_Interface'Class;
+   type IUploadOperation4_Ptr is access all IUploadOperation4;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1656,8 +1683,6 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BackgroundTransferContentPart
 
-   function Constructor return BackgroundTransferContentPart;
-
    function Constructor
    (
       name : WinRt.WString
@@ -1670,6 +1695,8 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       fileName : WinRt.WString
    )
    return BackgroundTransferContentPart;
+
+   function Constructor return BackgroundTransferContentPart;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BackgroundTransferContentPart
@@ -1777,13 +1804,13 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BackgroundUploader
 
-   function Constructor return BackgroundUploader;
-
    function Constructor
    (
       completionGroup : Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup'Class
    )
    return BackgroundUploader;
+
+   function Constructor return BackgroundUploader;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for BackgroundUploader

@@ -379,4 +379,210 @@ package body WinRt.Windows.Devices.Power is
       return m_ComRetVal;
    end;
 
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PowerGridData
+
+   procedure Initialize (this : in out PowerGridData) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PowerGridData) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPowerGridData, IPowerGridData_Ptr);
+   begin
+      if this.m_IPowerGridData /= null then
+         if this.m_IPowerGridData.all /= null then
+            temp := this.m_IPowerGridData.all.Release;
+            Free (this.m_IPowerGridData);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PowerGridData
+
+   function get_Severity
+   (
+      this : in out PowerGridData
+   )
+   return WinRt.Double is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Double;
+   begin
+      Hr := this.m_IPowerGridData.all.get_Severity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsLowUserExperienceImpact
+   (
+      this : in out PowerGridData
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IPowerGridData.all.get_IsLowUserExperienceImpact (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PowerGridForecast
+
+   procedure Initialize (this : in out PowerGridForecast) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PowerGridForecast) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPowerGridForecast, IPowerGridForecast_Ptr);
+   begin
+      if this.m_IPowerGridForecast /= null then
+         if this.m_IPowerGridForecast.all /= null then
+            temp := this.m_IPowerGridForecast.all.Release;
+            Free (this.m_IPowerGridForecast);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for PowerGridForecast
+
+   function GetForecast
+   return WinRt.Windows.Devices.Power.PowerGridForecast is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Power.PowerGridForecast");
+      m_Factory        : access WinRt.Windows.Devices.Power.IPowerGridForecastStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Power.IPowerGridForecast;
+   begin
+      return RetVal : WinRt.Windows.Devices.Power.PowerGridForecast do
+         Hr := RoGetActivationFactory (m_hString, IID_IPowerGridForecastStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForecast (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IPowerGridForecast := new Windows.Devices.Power.IPowerGridForecast;
+            Retval.m_IPowerGridForecast.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function add_ForecastUpdated
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Power.PowerGridForecast");
+      m_Factory        : access WinRt.Windows.Devices.Power.IPowerGridForecastStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IPowerGridForecastStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.add_ForecastUpdated (handler, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ForecastUpdated
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Power.PowerGridForecast");
+      m_Factory        : access WinRt.Windows.Devices.Power.IPowerGridForecastStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IPowerGridForecastStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.remove_ForecastUpdated (token);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PowerGridForecast
+
+   function get_StartTime
+   (
+      this : in out PowerGridForecast
+   )
+   return WinRt.Windows.Foundation.DateTime is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+   begin
+      Hr := this.m_IPowerGridForecast.all.get_StartTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_BlockDuration
+   (
+      this : in out PowerGridForecast
+   )
+   return WinRt.Windows.Foundation.TimeSpan is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+   begin
+      Hr := this.m_IPowerGridForecast.all.get_BlockDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Forecast
+   (
+      this : in out PowerGridForecast
+   )
+   return IVectorView_IPowerGridData.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IPowerGridData.Kind;
+   begin
+      Hr := this.m_IPowerGridForecast.all.get_Forecast (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IPowerGridData (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
 end WinRt.Windows.Devices.Power;

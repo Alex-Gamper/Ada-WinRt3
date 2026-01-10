@@ -47,6 +47,7 @@ package WinRt.Windows.Foundation.Collections is
 
    type IVectorChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IVectorChangedEventArgs is access all IVectorChangedEventArgs_Interface'Class;
+   type IVectorChangedEventArgs_Ptr is access all IVectorChangedEventArgs;
 
    -----------------------------------------------------------------------------
    -- Class declarations

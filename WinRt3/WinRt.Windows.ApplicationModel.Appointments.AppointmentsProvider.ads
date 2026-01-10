@@ -44,9 +44,11 @@ package WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider is
 
    type IAppointmentsProviderLaunchActionVerbsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentsProviderLaunchActionVerbsStatics is access all IAppointmentsProviderLaunchActionVerbsStatics_Interface'Class;
+   type IAppointmentsProviderLaunchActionVerbsStatics_Ptr is access all IAppointmentsProviderLaunchActionVerbsStatics;
 
    type IAppointmentsProviderLaunchActionVerbsStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentsProviderLaunchActionVerbsStatics2 is access all IAppointmentsProviderLaunchActionVerbsStatics2_Interface'Class;
+   type IAppointmentsProviderLaunchActionVerbsStatics2_Ptr is access all IAppointmentsProviderLaunchActionVerbsStatics2;
 
    type IRemoveAppointmentOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IRemoveAppointmentOperation is access all IRemoveAppointmentOperation_Interface'Class;
@@ -341,6 +343,9 @@ package WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider is
    -- Static RuntimeClass
    package AppointmentsProviderLaunchActionVerbs is
 
+      function get_ShowAppointmentDetails
+      return WinRt.WString;
+
       function get_AddAppointment
       return WinRt.WString;
 
@@ -351,9 +356,6 @@ package WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider is
       return WinRt.WString;
 
       function get_ShowTimeFrame
-      return WinRt.WString;
-
-      function get_ShowAppointmentDetails
       return WinRt.WString;
 
    end AppointmentsProviderLaunchActionVerbs;

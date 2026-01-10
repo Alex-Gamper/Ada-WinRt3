@@ -51,15 +51,19 @@ package WinRt.Windows.Networking.Sockets is
 
    type IControlChannelTrigger2_Interface is interface and WinRt.IInspectable_Interface;
    type IControlChannelTrigger2 is access all IControlChannelTrigger2_Interface'Class;
+   type IControlChannelTrigger2_Ptr is access all IControlChannelTrigger2;
 
    type IControlChannelTriggerEventDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IControlChannelTriggerEventDetails is access all IControlChannelTriggerEventDetails_Interface'Class;
+   type IControlChannelTriggerEventDetails_Ptr is access all IControlChannelTriggerEventDetails;
 
    type IControlChannelTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IControlChannelTriggerFactory is access all IControlChannelTriggerFactory_Interface'Class;
+   type IControlChannelTriggerFactory_Ptr is access all IControlChannelTriggerFactory;
 
    type IControlChannelTriggerResetEventDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IControlChannelTriggerResetEventDetails is access all IControlChannelTriggerResetEventDetails_Interface'Class;
+   type IControlChannelTriggerResetEventDetails_Ptr is access all IControlChannelTriggerResetEventDetails;
 
    type IDatagramSocket_Interface is interface and WinRt.IInspectable_Interface;
    type IDatagramSocket is access all IDatagramSocket_Interface'Class;
@@ -67,9 +71,11 @@ package WinRt.Windows.Networking.Sockets is
 
    type IDatagramSocket2_Interface is interface and WinRt.IInspectable_Interface;
    type IDatagramSocket2 is access all IDatagramSocket2_Interface'Class;
+   type IDatagramSocket2_Ptr is access all IDatagramSocket2;
 
    type IDatagramSocket3_Interface is interface and WinRt.IInspectable_Interface;
    type IDatagramSocket3 is access all IDatagramSocket3_Interface'Class;
+   type IDatagramSocket3_Ptr is access all IDatagramSocket3;
 
    type IDatagramSocketControl_Interface is interface and WinRt.IInspectable_Interface;
    type IDatagramSocketControl is access all IDatagramSocketControl_Interface'Class;
@@ -77,9 +83,11 @@ package WinRt.Windows.Networking.Sockets is
 
    type IDatagramSocketControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IDatagramSocketControl2 is access all IDatagramSocketControl2_Interface'Class;
+   type IDatagramSocketControl2_Ptr is access all IDatagramSocketControl2;
 
    type IDatagramSocketControl3_Interface is interface and WinRt.IInspectable_Interface;
    type IDatagramSocketControl3 is access all IDatagramSocketControl3_Interface'Class;
+   type IDatagramSocketControl3_Ptr is access all IDatagramSocketControl3;
 
    type IDatagramSocketInformation_Interface is interface and WinRt.IInspectable_Interface;
    type IDatagramSocketInformation is access all IDatagramSocketInformation_Interface'Class;
@@ -91,6 +99,7 @@ package WinRt.Windows.Networking.Sockets is
 
    type IDatagramSocketStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDatagramSocketStatics is access all IDatagramSocketStatics_Interface'Class;
+   type IDatagramSocketStatics_Ptr is access all IDatagramSocketStatics;
 
    type IMessageWebSocket_Interface is interface and WinRt.IInspectable_Interface;
    type IMessageWebSocket is access all IMessageWebSocket_Interface'Class;
@@ -98,9 +107,11 @@ package WinRt.Windows.Networking.Sockets is
 
    type IMessageWebSocket2_Interface is interface and WinRt.IInspectable_Interface;
    type IMessageWebSocket2 is access all IMessageWebSocket2_Interface'Class;
+   type IMessageWebSocket2_Ptr is access all IMessageWebSocket2;
 
    type IMessageWebSocket3_Interface is interface and WinRt.IInspectable_Interface;
    type IMessageWebSocket3 is access all IMessageWebSocket3_Interface'Class;
+   type IMessageWebSocket3_Ptr is access all IMessageWebSocket3;
 
    type IMessageWebSocketControl_Interface is interface and WinRt.IInspectable_Interface;
    type IMessageWebSocketControl is access all IMessageWebSocketControl_Interface'Class;
@@ -108,6 +119,7 @@ package WinRt.Windows.Networking.Sockets is
 
    type IMessageWebSocketControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IMessageWebSocketControl2 is access all IMessageWebSocketControl2_Interface'Class;
+   type IMessageWebSocketControl2_Ptr is access all IMessageWebSocketControl2;
 
    type IMessageWebSocketMessageReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMessageWebSocketMessageReceivedEventArgs is access all IMessageWebSocketMessageReceivedEventArgs_Interface'Class;
@@ -115,6 +127,7 @@ package WinRt.Windows.Networking.Sockets is
 
    type IMessageWebSocketMessageReceivedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IMessageWebSocketMessageReceivedEventArgs2 is access all IMessageWebSocketMessageReceivedEventArgs2_Interface'Class;
+   type IMessageWebSocketMessageReceivedEventArgs2_Ptr is access all IMessageWebSocketMessageReceivedEventArgs2;
 
    type IServerMessageWebSocket_Interface is interface and WinRt.IInspectable_Interface;
    type IServerMessageWebSocket is access all IServerMessageWebSocket_Interface'Class;
@@ -142,6 +155,7 @@ package WinRt.Windows.Networking.Sockets is
 
    type ISocketActivityContextFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISocketActivityContextFactory is access all ISocketActivityContextFactory_Interface'Class;
+   type ISocketActivityContextFactory_Ptr is access all ISocketActivityContextFactory;
 
    type ISocketActivityInformation_Interface is interface and WinRt.IInspectable_Interface;
    type ISocketActivityInformation is access all ISocketActivityInformation_Interface'Class;
@@ -149,6 +163,7 @@ package WinRt.Windows.Networking.Sockets is
 
    type ISocketActivityInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISocketActivityInformationStatics is access all ISocketActivityInformationStatics_Interface'Class;
+   type ISocketActivityInformationStatics_Ptr is access all ISocketActivityInformationStatics;
 
    type ISocketActivityTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type ISocketActivityTriggerDetails is access all ISocketActivityTriggerDetails_Interface'Class;
@@ -156,6 +171,7 @@ package WinRt.Windows.Networking.Sockets is
 
    type ISocketErrorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISocketErrorStatics is access all ISocketErrorStatics_Interface'Class;
+   type ISocketErrorStatics_Ptr is access all ISocketErrorStatics;
 
    type IStreamSocket_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocket is access all IStreamSocket_Interface'Class;
@@ -163,9 +179,11 @@ package WinRt.Windows.Networking.Sockets is
 
    type IStreamSocket2_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocket2 is access all IStreamSocket2_Interface'Class;
+   type IStreamSocket2_Ptr is access all IStreamSocket2;
 
    type IStreamSocket3_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocket3 is access all IStreamSocket3_Interface'Class;
+   type IStreamSocket3_Ptr is access all IStreamSocket3;
 
    type IStreamSocketControl_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocketControl is access all IStreamSocketControl_Interface'Class;
@@ -173,12 +191,15 @@ package WinRt.Windows.Networking.Sockets is
 
    type IStreamSocketControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocketControl2 is access all IStreamSocketControl2_Interface'Class;
+   type IStreamSocketControl2_Ptr is access all IStreamSocketControl2;
 
    type IStreamSocketControl3_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocketControl3 is access all IStreamSocketControl3_Interface'Class;
+   type IStreamSocketControl3_Ptr is access all IStreamSocketControl3;
 
    type IStreamSocketControl4_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocketControl4 is access all IStreamSocketControl4_Interface'Class;
+   type IStreamSocketControl4_Ptr is access all IStreamSocketControl4;
 
    type IStreamSocketInformation_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocketInformation is access all IStreamSocketInformation_Interface'Class;
@@ -186,6 +207,7 @@ package WinRt.Windows.Networking.Sockets is
 
    type IStreamSocketInformation2_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocketInformation2 is access all IStreamSocketInformation2_Interface'Class;
+   type IStreamSocketInformation2_Ptr is access all IStreamSocketInformation2;
 
    type IStreamSocketListener_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocketListener is access all IStreamSocketListener_Interface'Class;
@@ -193,9 +215,11 @@ package WinRt.Windows.Networking.Sockets is
 
    type IStreamSocketListener2_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocketListener2 is access all IStreamSocketListener2_Interface'Class;
+   type IStreamSocketListener2_Ptr is access all IStreamSocketListener2;
 
    type IStreamSocketListener3_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocketListener3 is access all IStreamSocketListener3_Interface'Class;
+   type IStreamSocketListener3_Ptr is access all IStreamSocketListener3;
 
    type IStreamSocketListenerConnectionReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocketListenerConnectionReceivedEventArgs is access all IStreamSocketListenerConnectionReceivedEventArgs_Interface'Class;
@@ -207,6 +231,7 @@ package WinRt.Windows.Networking.Sockets is
 
    type IStreamSocketListenerControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocketListenerControl2 is access all IStreamSocketListenerControl2_Interface'Class;
+   type IStreamSocketListenerControl2_Ptr is access all IStreamSocketListenerControl2;
 
    type IStreamSocketListenerInformation_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocketListenerInformation is access all IStreamSocketListenerInformation_Interface'Class;
@@ -214,6 +239,7 @@ package WinRt.Windows.Networking.Sockets is
 
    type IStreamSocketStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamSocketStatics is access all IStreamSocketStatics_Interface'Class;
+   type IStreamSocketStatics_Ptr is access all IStreamSocketStatics;
 
    type IStreamWebSocket_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamWebSocket is access all IStreamWebSocket_Interface'Class;
@@ -221,6 +247,7 @@ package WinRt.Windows.Networking.Sockets is
 
    type IStreamWebSocket2_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamWebSocket2 is access all IStreamWebSocket2_Interface'Class;
+   type IStreamWebSocket2_Ptr is access all IStreamWebSocket2;
 
    type IStreamWebSocketControl_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamWebSocketControl is access all IStreamWebSocketControl_Interface'Class;
@@ -228,9 +255,11 @@ package WinRt.Windows.Networking.Sockets is
 
    type IStreamWebSocketControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IStreamWebSocketControl2 is access all IStreamWebSocketControl2_Interface'Class;
+   type IStreamWebSocketControl2_Ptr is access all IStreamWebSocketControl2;
 
    type IWebSocket_Interface is interface and WinRt.IInspectable_Interface;
    type IWebSocket is access all IWebSocket_Interface'Class;
+   type IWebSocket_Ptr is access all IWebSocket;
 
    type IWebSocketClosedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IWebSocketClosedEventArgs is access all IWebSocketClosedEventArgs_Interface'Class;
@@ -238,12 +267,15 @@ package WinRt.Windows.Networking.Sockets is
 
    type IWebSocketControl_Interface is interface and WinRt.IInspectable_Interface;
    type IWebSocketControl is access all IWebSocketControl_Interface'Class;
+   type IWebSocketControl_Ptr is access all IWebSocketControl;
 
    type IWebSocketControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebSocketControl2 is access all IWebSocketControl2_Interface'Class;
+   type IWebSocketControl2_Ptr is access all IWebSocketControl2;
 
    type IWebSocketErrorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWebSocketErrorStatics is access all IWebSocketErrorStatics_Interface'Class;
+   type IWebSocketErrorStatics_Ptr is access all IWebSocketErrorStatics;
 
    type IWebSocketInformation_Interface is interface and WinRt.IInspectable_Interface;
    type IWebSocketInformation is access all IWebSocketInformation_Interface'Class;
@@ -251,6 +283,7 @@ package WinRt.Windows.Networking.Sockets is
 
    type IWebSocketInformation2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebSocketInformation2 is access all IWebSocketInformation2_Interface'Class;
+   type IWebSocketInformation2_Ptr is access all IWebSocketInformation2;
 
    type IWebSocketServerCustomValidationRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IWebSocketServerCustomValidationRequestedEventArgs is access all IWebSocketServerCustomValidationRequestedEventArgs_Interface'Class;
@@ -626,7 +659,8 @@ package WinRt.Windows.Networking.Sockets is
       Tls10_e,
       Tls11_e,
       Tls12_e,
-      Unspecified_e
+      Unspecified_e,
+      Tls13_e
    );
    for SocketProtectionLevel use (
       PlainSocket_e => 0,
@@ -638,7 +672,8 @@ package WinRt.Windows.Networking.Sockets is
       Tls10_e => 6,
       Tls11_e => 7,
       Tls12_e => 8,
-      Unspecified_e => 9
+      Unspecified_e => 9,
+      Tls13_e => 10
    );
    type SocketProtectionLevel_Ptr is access all SocketProtectionLevel;
 

@@ -648,22 +648,6 @@ package body WinRt.Windows.UI.Popups is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for UICommand
 
-   function Constructor return UICommand is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Popups.UICommand");
-      m_ComRetVal  : aliased Windows.UI.Popups.IUICommand;
-   begin
-      return RetVal : UICommand do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IUICommand := new Windows.UI.Popups.IUICommand;
-            Retval.m_IUICommand.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       label : WinRt.WString
@@ -742,6 +726,22 @@ package body WinRt.Windows.UI.Popups is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_label);
+      end return;
+   end;
+
+   function Constructor return UICommand is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Popups.UICommand");
+      m_ComRetVal  : aliased Windows.UI.Popups.IUICommand;
+   begin
+      return RetVal : UICommand do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IUICommand := new Windows.UI.Popups.IUICommand;
+            Retval.m_IUICommand.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

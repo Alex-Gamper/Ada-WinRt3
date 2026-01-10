@@ -39,6 +39,7 @@ package WinRt.Windows.Security.Cryptography is
 
    type ICryptographicBufferStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICryptographicBufferStatics is access all ICryptographicBufferStatics_Interface'Class;
+   type ICryptographicBufferStatics_Ptr is access all ICryptographicBufferStatics;
 
    -----------------------------------------------------------------------------
    -- Enum declarations

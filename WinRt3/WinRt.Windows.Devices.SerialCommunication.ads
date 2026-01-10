@@ -53,6 +53,7 @@ package WinRt.Windows.Devices.SerialCommunication is
 
    type ISerialDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISerialDeviceStatics is access all ISerialDeviceStatics_Interface'Class;
+   type ISerialDeviceStatics_Ptr is access all ISerialDeviceStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -37,6 +37,12 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.ApplicationModel.Calls is
 
+   package IAsyncOperation_PhoneCallInfo is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Calls.IPhoneCallInfo);
+   package AsyncOperationCompletedHandler_PhoneCallInfo is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Calls.IPhoneCallInfo);
+
+   package IAsyncOperation_PhoneCallOperationStatus is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus);
+   package AsyncOperationCompletedHandler_PhoneCallOperationStatus is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus);
+
    package IAsyncOperation_Boolean is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Boolean);
    package AsyncOperationCompletedHandler_Boolean is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Boolean);
 
@@ -61,6 +67,12 @@ package body WinRt.Windows.ApplicationModel.Calls is
    package IAsyncOperation_PhoneCallVideoCapabilities is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Calls.IPhoneCallVideoCapabilities);
    package AsyncOperationCompletedHandler_PhoneCallVideoCapabilities is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Calls.IPhoneCallVideoCapabilities);
 
+   package IAsyncOperation_PhoneLineDialResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Calls.IPhoneLineDialResult);
+   package AsyncOperationCompletedHandler_PhoneLineDialResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Calls.IPhoneLineDialResult);
+
+   package IAsyncOperation_PhoneCallsResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Calls.IPhoneCallsResult);
+   package AsyncOperationCompletedHandler_PhoneCallsResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Calls.IPhoneCallsResult);
+
    package IAsyncOperation_PhoneLine is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Calls.IPhoneLine);
    package AsyncOperationCompletedHandler_PhoneLine is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Calls.IPhoneLine);
 
@@ -69,6 +81,538 @@ package body WinRt.Windows.ApplicationModel.Calls is
 
    package IAsyncOperation_VoipPhoneCallResourceReservationStatus is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallResourceReservationStatus);
    package AsyncOperationCompletedHandler_VoipPhoneCallResourceReservationStatus is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallResourceReservationStatus);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for AcceptedVoipPhoneCallOptions
+
+   procedure Initialize (this : in out AcceptedVoipPhoneCallOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out AcceptedVoipPhoneCallOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IAcceptedVoipPhoneCallOptions, IAcceptedVoipPhoneCallOptions_Ptr);
+   begin
+      if this.m_IAcceptedVoipPhoneCallOptions /= null then
+         if this.m_IAcceptedVoipPhoneCallOptions.all /= null then
+            temp := this.m_IAcceptedVoipPhoneCallOptions.all.Release;
+            Free (this.m_IAcceptedVoipPhoneCallOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for AcceptedVoipPhoneCallOptions
+
+   function Constructor
+   (
+      associatedDeviceIds : GenericObject
+   )
+   return AcceptedVoipPhoneCallOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.AcceptedVoipPhoneCallOptions");
+      m_Factory    : access IAcceptedVoipPhoneCallOptionsFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.ApplicationModel.Calls.IAcceptedVoipPhoneCallOptions;
+   begin
+      return RetVal : AcceptedVoipPhoneCallOptions do
+         Hr := RoGetActivationFactory (m_hString, IID_IAcceptedVoipPhoneCallOptionsFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (associatedDeviceIds, m_ComRetVal'Access);
+            Retval.m_IAcceptedVoipPhoneCallOptions := new Windows.ApplicationModel.Calls.IAcceptedVoipPhoneCallOptions;
+            Retval.m_IAcceptedVoipPhoneCallOptions.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return AcceptedVoipPhoneCallOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.AcceptedVoipPhoneCallOptions");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Calls.IAcceptedVoipPhoneCallOptions;
+   begin
+      return RetVal : AcceptedVoipPhoneCallOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IAcceptedVoipPhoneCallOptions := new Windows.ApplicationModel.Calls.IAcceptedVoipPhoneCallOptions;
+            Retval.m_IAcceptedVoipPhoneCallOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for AcceptedVoipPhoneCallOptions
+
+   function get_Context
+   (
+      this : in out AcceptedVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IAcceptedVoipPhoneCallOptions.all.get_Context (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Context
+   (
+      this : in out AcceptedVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IAcceptedVoipPhoneCallOptions.all.put_Context (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_ContactName
+   (
+      this : in out AcceptedVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IAcceptedVoipPhoneCallOptions.all.get_ContactName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ContactName
+   (
+      this : in out AcceptedVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IAcceptedVoipPhoneCallOptions.all.put_ContactName (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_ContactNumber
+   (
+      this : in out AcceptedVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IAcceptedVoipPhoneCallOptions.all.get_ContactNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ContactNumber
+   (
+      this : in out AcceptedVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IAcceptedVoipPhoneCallOptions.all.put_ContactNumber (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_ServiceName
+   (
+      this : in out AcceptedVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IAcceptedVoipPhoneCallOptions.all.get_ServiceName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ServiceName
+   (
+      this : in out AcceptedVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IAcceptedVoipPhoneCallOptions.all.put_ServiceName (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_Media
+   (
+      this : in out AcceptedVoipPhoneCallOptions
+   )
+   return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
+   begin
+      Hr := this.m_IAcceptedVoipPhoneCallOptions.all.get_Media (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Media
+   (
+      this : in out AcceptedVoipPhoneCallOptions;
+      value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IAcceptedVoipPhoneCallOptions.all.put_Media (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_AssociatedDeviceIds
+   (
+      this : in out AcceptedVoipPhoneCallOptions
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IAcceptedVoipPhoneCallOptions.all.get_AssociatedDeviceIds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for AppInitiatedVoipPhoneCallOptions
+
+   procedure Initialize (this : in out AppInitiatedVoipPhoneCallOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out AppInitiatedVoipPhoneCallOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IAppInitiatedVoipPhoneCallOptions, IAppInitiatedVoipPhoneCallOptions_Ptr);
+   begin
+      if this.m_IAppInitiatedVoipPhoneCallOptions /= null then
+         if this.m_IAppInitiatedVoipPhoneCallOptions.all /= null then
+            temp := this.m_IAppInitiatedVoipPhoneCallOptions.all.Release;
+            Free (this.m_IAppInitiatedVoipPhoneCallOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for AppInitiatedVoipPhoneCallOptions
+
+   function Constructor return AppInitiatedVoipPhoneCallOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.AppInitiatedVoipPhoneCallOptions");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Calls.IAppInitiatedVoipPhoneCallOptions;
+   begin
+      return RetVal : AppInitiatedVoipPhoneCallOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IAppInitiatedVoipPhoneCallOptions := new Windows.ApplicationModel.Calls.IAppInitiatedVoipPhoneCallOptions;
+            Retval.m_IAppInitiatedVoipPhoneCallOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
+      associatedDeviceIds : GenericObject
+   )
+   return AppInitiatedVoipPhoneCallOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.AppInitiatedVoipPhoneCallOptions");
+      m_Factory    : access IAppInitiatedVoipPhoneCallOptionsFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.ApplicationModel.Calls.IAppInitiatedVoipPhoneCallOptions;
+   begin
+      return RetVal : AppInitiatedVoipPhoneCallOptions do
+         Hr := RoGetActivationFactory (m_hString, IID_IAppInitiatedVoipPhoneCallOptionsFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (associatedDeviceIds, m_ComRetVal'Access);
+            Retval.m_IAppInitiatedVoipPhoneCallOptions := new Windows.ApplicationModel.Calls.IAppInitiatedVoipPhoneCallOptions;
+            Retval.m_IAppInitiatedVoipPhoneCallOptions.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for AppInitiatedVoipPhoneCallOptions
+
+   function get_Context
+   (
+      this : in out AppInitiatedVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IAppInitiatedVoipPhoneCallOptions.all.get_Context (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Context
+   (
+      this : in out AppInitiatedVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IAppInitiatedVoipPhoneCallOptions.all.put_Context (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_ContactName
+   (
+      this : in out AppInitiatedVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IAppInitiatedVoipPhoneCallOptions.all.get_ContactName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ContactName
+   (
+      this : in out AppInitiatedVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IAppInitiatedVoipPhoneCallOptions.all.put_ContactName (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_ContactNumber
+   (
+      this : in out AppInitiatedVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IAppInitiatedVoipPhoneCallOptions.all.get_ContactNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ContactNumber
+   (
+      this : in out AppInitiatedVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IAppInitiatedVoipPhoneCallOptions.all.put_ContactNumber (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_ServiceName
+   (
+      this : in out AppInitiatedVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IAppInitiatedVoipPhoneCallOptions.all.get_ServiceName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ServiceName
+   (
+      this : in out AppInitiatedVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IAppInitiatedVoipPhoneCallOptions.all.put_ServiceName (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_Media
+   (
+      this : in out AppInitiatedVoipPhoneCallOptions
+   )
+   return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
+   begin
+      Hr := this.m_IAppInitiatedVoipPhoneCallOptions.all.get_Media (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Media
+   (
+      this : in out AppInitiatedVoipPhoneCallOptions;
+      value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IAppInitiatedVoipPhoneCallOptions.all.put_Media (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_AssociatedDeviceIds
+   (
+      this : in out AppInitiatedVoipPhoneCallOptions
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IAppInitiatedVoipPhoneCallOptions.all.get_AssociatedDeviceIds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CallAnswerEventArgs
@@ -108,6 +652,30 @@ package body WinRt.Windows.ApplicationModel.Calls is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   function get_SourceDeviceId
+   (
+      this : in out CallAnswerEventArgs
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.ICallAnswerEventArgs2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.ICallAnswerEventArgs_Interface, WinRt.Windows.ApplicationModel.Calls.ICallAnswerEventArgs2, WinRt.Windows.ApplicationModel.Calls.IID_ICallAnswerEventArgs2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICallAnswerEventArgs.all);
+      Hr := m_Interface.get_SourceDeviceId (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -188,6 +756,483 @@ package body WinRt.Windows.ApplicationModel.Calls is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IncomingVoipPhoneCallOptions
+
+   procedure Initialize (this : in out IncomingVoipPhoneCallOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out IncomingVoipPhoneCallOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IIncomingVoipPhoneCallOptions, IIncomingVoipPhoneCallOptions_Ptr);
+   begin
+      if this.m_IIncomingVoipPhoneCallOptions /= null then
+         if this.m_IIncomingVoipPhoneCallOptions.all /= null then
+            temp := this.m_IIncomingVoipPhoneCallOptions.all.Release;
+            Free (this.m_IIncomingVoipPhoneCallOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for IncomingVoipPhoneCallOptions
+
+   function Constructor
+   (
+      associatedDeviceIds : GenericObject
+   )
+   return IncomingVoipPhoneCallOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IncomingVoipPhoneCallOptions");
+      m_Factory    : access IIncomingVoipPhoneCallOptionsFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.ApplicationModel.Calls.IIncomingVoipPhoneCallOptions;
+   begin
+      return RetVal : IncomingVoipPhoneCallOptions do
+         Hr := RoGetActivationFactory (m_hString, IID_IIncomingVoipPhoneCallOptionsFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (associatedDeviceIds, m_ComRetVal'Access);
+            Retval.m_IIncomingVoipPhoneCallOptions := new Windows.ApplicationModel.Calls.IIncomingVoipPhoneCallOptions;
+            Retval.m_IIncomingVoipPhoneCallOptions.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return IncomingVoipPhoneCallOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IncomingVoipPhoneCallOptions");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Calls.IIncomingVoipPhoneCallOptions;
+   begin
+      return RetVal : IncomingVoipPhoneCallOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IIncomingVoipPhoneCallOptions := new Windows.ApplicationModel.Calls.IIncomingVoipPhoneCallOptions;
+            Retval.m_IIncomingVoipPhoneCallOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IncomingVoipPhoneCallOptions
+
+   function get_Context
+   (
+      this : in out IncomingVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.get_Context (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Context
+   (
+      this : in out IncomingVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.put_Context (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_ContactName
+   (
+      this : in out IncomingVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.get_ContactName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ContactName
+   (
+      this : in out IncomingVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.put_ContactName (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_ContactNumber
+   (
+      this : in out IncomingVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.get_ContactNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ContactNumber
+   (
+      this : in out IncomingVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.put_ContactNumber (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_ContactImage
+   (
+      this : in out IncomingVoipPhoneCallOptions
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IIncomingVoipPhoneCallOptions.all.get_ContactImage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_ContactImage
+   (
+      this : in out IncomingVoipPhoneCallOptions;
+      value : Windows.Foundation.Uri'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.put_ContactImage (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ServiceName
+   (
+      this : in out IncomingVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.get_ServiceName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ServiceName
+   (
+      this : in out IncomingVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.put_ServiceName (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_BrandingImage
+   (
+      this : in out IncomingVoipPhoneCallOptions
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IIncomingVoipPhoneCallOptions.all.get_BrandingImage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_BrandingImage
+   (
+      this : in out IncomingVoipPhoneCallOptions;
+      value : Windows.Foundation.Uri'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.put_BrandingImage (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CallDetails
+   (
+      this : in out IncomingVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.get_CallDetails (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_CallDetails
+   (
+      this : in out IncomingVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.put_CallDetails (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_Ringtone
+   (
+      this : in out IncomingVoipPhoneCallOptions
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IIncomingVoipPhoneCallOptions.all.get_Ringtone (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_Ringtone
+   (
+      this : in out IncomingVoipPhoneCallOptions;
+      value : Windows.Foundation.Uri'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.put_Ringtone (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Media
+   (
+      this : in out IncomingVoipPhoneCallOptions
+   )
+   return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.get_Media (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Media
+   (
+      this : in out IncomingVoipPhoneCallOptions;
+      value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.put_Media (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_RingTimeout
+   (
+      this : in out IncomingVoipPhoneCallOptions
+   )
+   return WinRt.Windows.Foundation.TimeSpan is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.get_RingTimeout (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_RingTimeout
+   (
+      this : in out IncomingVoipPhoneCallOptions;
+      value : Windows.Foundation.TimeSpan
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.put_RingTimeout (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ContactRemoteId
+   (
+      this : in out IncomingVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.get_ContactRemoteId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ContactRemoteId
+   (
+      this : in out IncomingVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.put_ContactRemoteId (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_AssociatedDeviceIds
+   (
+      this : in out IncomingVoipPhoneCallOptions
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IIncomingVoipPhoneCallOptions.all.get_AssociatedDeviceIds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -465,6 +1510,1272 @@ package body WinRt.Windows.ApplicationModel.Calls is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for OutgoingVoipPhoneCallOptions
+
+   procedure Initialize (this : in out OutgoingVoipPhoneCallOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out OutgoingVoipPhoneCallOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IOutgoingVoipPhoneCallOptions, IOutgoingVoipPhoneCallOptions_Ptr);
+   begin
+      if this.m_IOutgoingVoipPhoneCallOptions /= null then
+         if this.m_IOutgoingVoipPhoneCallOptions.all /= null then
+            temp := this.m_IOutgoingVoipPhoneCallOptions.all.Release;
+            Free (this.m_IOutgoingVoipPhoneCallOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for OutgoingVoipPhoneCallOptions
+
+   function Constructor
+   (
+      associatedDeviceIds : GenericObject
+   )
+   return OutgoingVoipPhoneCallOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.OutgoingVoipPhoneCallOptions");
+      m_Factory    : access IOutgoingVoipPhoneCallOptionsFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.ApplicationModel.Calls.IOutgoingVoipPhoneCallOptions;
+   begin
+      return RetVal : OutgoingVoipPhoneCallOptions do
+         Hr := RoGetActivationFactory (m_hString, IID_IOutgoingVoipPhoneCallOptionsFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (associatedDeviceIds, m_ComRetVal'Access);
+            Retval.m_IOutgoingVoipPhoneCallOptions := new Windows.ApplicationModel.Calls.IOutgoingVoipPhoneCallOptions;
+            Retval.m_IOutgoingVoipPhoneCallOptions.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return OutgoingVoipPhoneCallOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.OutgoingVoipPhoneCallOptions");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Calls.IOutgoingVoipPhoneCallOptions;
+   begin
+      return RetVal : OutgoingVoipPhoneCallOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IOutgoingVoipPhoneCallOptions := new Windows.ApplicationModel.Calls.IOutgoingVoipPhoneCallOptions;
+            Retval.m_IOutgoingVoipPhoneCallOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for OutgoingVoipPhoneCallOptions
+
+   function get_Context
+   (
+      this : in out OutgoingVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IOutgoingVoipPhoneCallOptions.all.get_Context (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Context
+   (
+      this : in out OutgoingVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IOutgoingVoipPhoneCallOptions.all.put_Context (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_ContactName
+   (
+      this : in out OutgoingVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IOutgoingVoipPhoneCallOptions.all.get_ContactName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ContactName
+   (
+      this : in out OutgoingVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IOutgoingVoipPhoneCallOptions.all.put_ContactName (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_ServiceName
+   (
+      this : in out OutgoingVoipPhoneCallOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IOutgoingVoipPhoneCallOptions.all.get_ServiceName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_ServiceName
+   (
+      this : in out OutgoingVoipPhoneCallOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IOutgoingVoipPhoneCallOptions.all.put_ServiceName (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_Media
+   (
+      this : in out OutgoingVoipPhoneCallOptions
+   )
+   return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
+   begin
+      Hr := this.m_IOutgoingVoipPhoneCallOptions.all.get_Media (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Media
+   (
+      this : in out OutgoingVoipPhoneCallOptions;
+      value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IOutgoingVoipPhoneCallOptions.all.put_Media (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_AssociatedDeviceIds
+   (
+      this : in out OutgoingVoipPhoneCallOptions
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IOutgoingVoipPhoneCallOptions.all.get_AssociatedDeviceIds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PhoneCall
+
+   procedure Initialize (this : in out PhoneCall) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PhoneCall) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPhoneCall, IPhoneCall_Ptr);
+   begin
+      if this.m_IPhoneCall /= null then
+         if this.m_IPhoneCall.all /= null then
+            temp := this.m_IPhoneCall.all.Release;
+            Free (this.m_IPhoneCall);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for PhoneCall
+
+   function GetFromId
+   (
+      callId : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCall is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.PhoneCall");
+      m_Factory        : access WinRt.Windows.ApplicationModel.Calls.IPhoneCallStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.IPhoneCall;
+      HStr_callId : constant WinRt.HString := To_HString (callId);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Calls.PhoneCall do
+         Hr := RoGetActivationFactory (m_hString, IID_IPhoneCallStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetFromId (HStr_callId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IPhoneCall := new Windows.ApplicationModel.Calls.IPhoneCall;
+            Retval.m_IPhoneCall.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_callId);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PhoneCall
+
+   function add_StatusChanged
+   (
+      this : in out PhoneCall;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IPhoneCall.all.add_StatusChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_StatusChanged
+   (
+      this : in out PhoneCall;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhoneCall.all.remove_StatusChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_AudioDeviceChanged
+   (
+      this : in out PhoneCall;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IPhoneCall.all.add_AudioDeviceChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_AudioDeviceChanged
+   (
+      this : in out PhoneCall;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhoneCall.all.remove_AudioDeviceChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_IsMutedChanged
+   (
+      this : in out PhoneCall;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IPhoneCall.all.add_IsMutedChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_IsMutedChanged
+   (
+      this : in out PhoneCall;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhoneCall.all.remove_IsMutedChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CallId
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IPhoneCall.all.get_CallId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_IsMuted
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IPhoneCall.all.get_IsMuted (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Status
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneCallStatus;
+   begin
+      Hr := this.m_IPhoneCall.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_AudioDevice
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallAudioDevice is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneCallAudioDevice;
+   begin
+      Hr := this.m_IPhoneCall.all.get_AudioDevice (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetPhoneCallInfo
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.IPhoneCallInfo;
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Calls.PhoneCallInfo do
+         Hr := this.m_IPhoneCall.all.GetPhoneCallInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPhoneCallInfo := new Windows.ApplicationModel.Calls.IPhoneCallInfo;
+         Retval.m_IPhoneCallInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetPhoneCallInfoAsync
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_PhoneCallInfo.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_PhoneCallInfo.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.Calls.IPhoneCallInfo;
+      m_IID            : aliased WinRt.IID := (1535461072, 63074, 22001, (189, 71, 191, 51, 167, 246, 63, 169 )); -- Windows.ApplicationModel.Calls.PhoneCallInfo;
+      m_HandlerIID     : aliased WinRt.IID := (698801853, 49120, 24157, (149, 141, 231, 125, 179, 7, 154, 121 ));
+      m_Handler        : AsyncOperationCompletedHandler_PhoneCallInfo.Kind := new AsyncOperationCompletedHandler_PhoneCallInfo.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PhoneCallInfo.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PhoneCallInfo.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PhoneCallInfo.Kind_Delegate, AsyncOperationCompletedHandler_PhoneCallInfo.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Calls.PhoneCallInfo do
+         Hr := this.m_IPhoneCall.all.GetPhoneCallInfoAsync (m_ComRetVal'Access);
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IPhoneCallInfo := new Windows.ApplicationModel.Calls.IPhoneCallInfo;
+                  Retval.m_IPhoneCallInfo.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+      end return;
+   end;
+
+   function End_x
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+   begin
+      Hr := this.m_IPhoneCall.all.End_x (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function EndAsync
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_PhoneCallOperationStatus.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_PhoneCallOperationStatus.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_IID            : aliased WinRt.IID := (678294433, 12099, 23418, (152, 79, 102, 184, 164, 59, 152, 118 )); -- Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_HandlerIID     : aliased WinRt.IID := (1853927062, 10033, 20985, (131, 117, 83, 230, 197, 226, 173, 138 ));
+      m_Handler        : AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind := new AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PhoneCallOperationStatus.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_IPhoneCall.all.EndAsync (m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function SendDtmfKey
+   (
+      this : in out PhoneCall;
+      key : Windows.ApplicationModel.Calls.DtmfKey;
+      dtmfToneAudioPlayback : Windows.ApplicationModel.Calls.DtmfToneAudioPlayback
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+   begin
+      Hr := this.m_IPhoneCall.all.SendDtmfKey (key, dtmfToneAudioPlayback, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function SendDtmfKeyAsync
+   (
+      this : in out PhoneCall;
+      key : Windows.ApplicationModel.Calls.DtmfKey;
+      dtmfToneAudioPlayback : Windows.ApplicationModel.Calls.DtmfToneAudioPlayback
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_PhoneCallOperationStatus.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_PhoneCallOperationStatus.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_IID            : aliased WinRt.IID := (678294433, 12099, 23418, (152, 79, 102, 184, 164, 59, 152, 118 )); -- Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_HandlerIID     : aliased WinRt.IID := (1853927062, 10033, 20985, (131, 117, 83, 230, 197, 226, 173, 138 ));
+      m_Handler        : AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind := new AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PhoneCallOperationStatus.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_IPhoneCall.all.SendDtmfKeyAsync (key, dtmfToneAudioPlayback, m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function AcceptIncoming
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+   begin
+      Hr := this.m_IPhoneCall.all.AcceptIncoming (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function AcceptIncomingAsync
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_PhoneCallOperationStatus.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_PhoneCallOperationStatus.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_IID            : aliased WinRt.IID := (678294433, 12099, 23418, (152, 79, 102, 184, 164, 59, 152, 118 )); -- Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_HandlerIID     : aliased WinRt.IID := (1853927062, 10033, 20985, (131, 117, 83, 230, 197, 226, 173, 138 ));
+      m_Handler        : AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind := new AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PhoneCallOperationStatus.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_IPhoneCall.all.AcceptIncomingAsync (m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function Hold
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+   begin
+      Hr := this.m_IPhoneCall.all.Hold (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function HoldAsync
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_PhoneCallOperationStatus.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_PhoneCallOperationStatus.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_IID            : aliased WinRt.IID := (678294433, 12099, 23418, (152, 79, 102, 184, 164, 59, 152, 118 )); -- Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_HandlerIID     : aliased WinRt.IID := (1853927062, 10033, 20985, (131, 117, 83, 230, 197, 226, 173, 138 ));
+      m_Handler        : AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind := new AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PhoneCallOperationStatus.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_IPhoneCall.all.HoldAsync (m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function ResumeFromHold
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+   begin
+      Hr := this.m_IPhoneCall.all.ResumeFromHold (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function ResumeFromHoldAsync
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_PhoneCallOperationStatus.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_PhoneCallOperationStatus.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_IID            : aliased WinRt.IID := (678294433, 12099, 23418, (152, 79, 102, 184, 164, 59, 152, 118 )); -- Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_HandlerIID     : aliased WinRt.IID := (1853927062, 10033, 20985, (131, 117, 83, 230, 197, 226, 173, 138 ));
+      m_Handler        : AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind := new AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PhoneCallOperationStatus.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_IPhoneCall.all.ResumeFromHoldAsync (m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function Mute
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+   begin
+      Hr := this.m_IPhoneCall.all.Mute (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function MuteAsync
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_PhoneCallOperationStatus.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_PhoneCallOperationStatus.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_IID            : aliased WinRt.IID := (678294433, 12099, 23418, (152, 79, 102, 184, 164, 59, 152, 118 )); -- Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_HandlerIID     : aliased WinRt.IID := (1853927062, 10033, 20985, (131, 117, 83, 230, 197, 226, 173, 138 ));
+      m_Handler        : AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind := new AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PhoneCallOperationStatus.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_IPhoneCall.all.MuteAsync (m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function Unmute
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+   begin
+      Hr := this.m_IPhoneCall.all.Unmute (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function UnmuteAsync
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_PhoneCallOperationStatus.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_PhoneCallOperationStatus.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_IID            : aliased WinRt.IID := (678294433, 12099, 23418, (152, 79, 102, 184, 164, 59, 152, 118 )); -- Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_HandlerIID     : aliased WinRt.IID := (1853927062, 10033, 20985, (131, 117, 83, 230, 197, 226, 173, 138 ));
+      m_Handler        : AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind := new AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PhoneCallOperationStatus.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_IPhoneCall.all.UnmuteAsync (m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function RejectIncoming
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+   begin
+      Hr := this.m_IPhoneCall.all.RejectIncoming (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function RejectIncomingAsync
+   (
+      this : in out PhoneCall
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_PhoneCallOperationStatus.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_PhoneCallOperationStatus.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_IID            : aliased WinRt.IID := (678294433, 12099, 23418, (152, 79, 102, 184, 164, 59, 152, 118 )); -- Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_HandlerIID     : aliased WinRt.IID := (1853927062, 10033, 20985, (131, 117, 83, 230, 197, 226, 173, 138 ));
+      m_Handler        : AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind := new AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PhoneCallOperationStatus.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_IPhoneCall.all.RejectIncomingAsync (m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function ChangeAudioDevice
+   (
+      this : in out PhoneCall;
+      endpoint : Windows.ApplicationModel.Calls.PhoneCallAudioDevice
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+   begin
+      Hr := this.m_IPhoneCall.all.ChangeAudioDevice (endpoint, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function ChangeAudioDeviceAsync
+   (
+      this : in out PhoneCall;
+      endpoint : Windows.ApplicationModel.Calls.PhoneCallAudioDevice
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_PhoneCallOperationStatus.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_PhoneCallOperationStatus.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_IID            : aliased WinRt.IID := (678294433, 12099, 23418, (152, 79, 102, 184, 164, 59, 152, 118 )); -- Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+      m_HandlerIID     : aliased WinRt.IID := (1853927062, 10033, 20985, (131, 117, 83, 230, 197, 226, 173, 138 ));
+      m_Handler        : AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind := new AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PhoneCallOperationStatus.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_PhoneCallOperationStatus.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_IPhoneCall.all.ChangeAudioDeviceAsync (endpoint, m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -1260,6 +3571,22 @@ package body WinRt.Windows.ApplicationModel.Calls is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PhoneCallHistoryEntryAddress
 
+   function Constructor return PhoneCallHistoryEntryAddress is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.PhoneCallHistoryEntryAddress");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress;
+   begin
+      return RetVal : PhoneCallHistoryEntryAddress do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IPhoneCallHistoryEntryAddress := new Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress;
+            Retval.m_IPhoneCallHistoryEntryAddress.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       rawAddress : WinRt.WString;
@@ -1284,22 +3611,6 @@ package body WinRt.Windows.ApplicationModel.Calls is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_rawAddress);
-      end return;
-   end;
-
-   function Constructor return PhoneCallHistoryEntryAddress is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.PhoneCallHistoryEntryAddress");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress;
-   begin
-      return RetVal : PhoneCallHistoryEntryAddress do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IPhoneCallHistoryEntryAddress := new Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress;
-            Retval.m_IPhoneCallHistoryEntryAddress.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2406,6 +4717,137 @@ package body WinRt.Windows.ApplicationModel.Calls is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PhoneCallInfo
+
+   procedure Initialize (this : in out PhoneCallInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PhoneCallInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPhoneCallInfo, IPhoneCallInfo_Ptr);
+   begin
+      if this.m_IPhoneCallInfo /= null then
+         if this.m_IPhoneCallInfo.all /= null then
+            temp := this.m_IPhoneCallInfo.all.Release;
+            Free (this.m_IPhoneCallInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PhoneCallInfo
+
+   function get_LineId
+   (
+      this : in out PhoneCallInfo
+   )
+   return WinRt.Guid is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Guid;
+   begin
+      Hr := this.m_IPhoneCallInfo.all.get_LineId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsHoldSupported
+   (
+      this : in out PhoneCallInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IPhoneCallInfo.all.get_IsHoldSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_StartTime
+   (
+      this : in out PhoneCallInfo
+   )
+   return WinRt.Windows.Foundation.DateTime is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+   begin
+      Hr := this.m_IPhoneCallInfo.all.get_StartTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_PhoneNumber
+   (
+      this : in out PhoneCallInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IPhoneCallInfo.all.get_PhoneNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_DisplayName
+   (
+      this : in out PhoneCallInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IPhoneCallInfo.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_CallDirection
+   (
+      this : in out PhoneCallInfo
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallDirection is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneCallDirection;
+   begin
+      Hr := this.m_IPhoneCallInfo.all.get_CallDirection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package body PhoneCallManager is
 
@@ -2904,6 +5346,66 @@ package body WinRt.Windows.ApplicationModel.Calls is
       end;
 
    end PhoneCallVideoCapabilitiesManager;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PhoneCallsResult
+
+   procedure Initialize (this : in out PhoneCallsResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PhoneCallsResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPhoneCallsResult, IPhoneCallsResult_Ptr);
+   begin
+      if this.m_IPhoneCallsResult /= null then
+         if this.m_IPhoneCallsResult.all /= null then
+            temp := this.m_IPhoneCallsResult.all.Release;
+            Free (this.m_IPhoneCallsResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PhoneCallsResult
+
+   function get_OperationStatus
+   (
+      this : in out PhoneCallsResult
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneLineOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneLineOperationStatus;
+   begin
+      Hr := this.m_IPhoneCallsResult.all.get_OperationStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_AllActivePhoneCalls
+   (
+      this : in out PhoneCallsResult
+   )
+   return IVectorView_IPhoneCall.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IPhoneCall.Kind;
+   begin
+      Hr := this.m_IPhoneCallsResult.all.get_AllActivePhoneCalls (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IPhoneCall (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PhoneDialOptions
@@ -3653,6 +6155,206 @@ package body WinRt.Windows.ApplicationModel.Calls is
       return AdaRetVal;
    end;
 
+   function DialWithResult
+   (
+      this : in out PhoneLine;
+      number : WinRt.WString;
+      displayName : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneLineDialResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IPhoneLine3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.IPhoneLineDialResult;
+      HStr_number : constant WinRt.HString := To_HString (number);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IPhoneLine_Interface, WinRt.Windows.ApplicationModel.Calls.IPhoneLine3, WinRt.Windows.ApplicationModel.Calls.IID_IPhoneLine3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Calls.PhoneLineDialResult do
+         m_Interface := QInterface (this.m_IPhoneLine.all);
+         Hr := m_Interface.DialWithResult (HStr_number, HStr_displayName, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPhoneLineDialResult := new Windows.ApplicationModel.Calls.IPhoneLineDialResult;
+         Retval.m_IPhoneLineDialResult.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_number);
+         tmp := WindowsDeleteString (HStr_displayName);
+      end return;
+   end;
+
+   function DialWithResultAsync
+   (
+      this : in out PhoneLine;
+      number : WinRt.WString;
+      displayName : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneLineDialResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IPhoneLine3 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_number : constant WinRt.HString := To_HString (number);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_PhoneLineDialResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_PhoneLineDialResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.Calls.IPhoneLineDialResult;
+      m_IID            : aliased WinRt.IID := (2510370956, 51763, 21808, (188, 192, 63, 193, 99, 148, 245, 72 )); -- Windows.ApplicationModel.Calls.PhoneLineDialResult;
+      m_HandlerIID     : aliased WinRt.IID := (2050729045, 10184, 23981, (184, 253, 63, 233, 216, 116, 106, 21 ));
+      m_Handler        : AsyncOperationCompletedHandler_PhoneLineDialResult.Kind := new AsyncOperationCompletedHandler_PhoneLineDialResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PhoneLineDialResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PhoneLineDialResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PhoneLineDialResult.Kind_Delegate, AsyncOperationCompletedHandler_PhoneLineDialResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IPhoneLine_Interface, WinRt.Windows.ApplicationModel.Calls.IPhoneLine3, WinRt.Windows.ApplicationModel.Calls.IID_IPhoneLine3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Calls.PhoneLineDialResult do
+         m_Interface := QInterface (this.m_IPhoneLine.all);
+         Hr := m_Interface.DialWithResultAsync (HStr_number, HStr_displayName, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IPhoneLineDialResult := new Windows.ApplicationModel.Calls.IPhoneLineDialResult;
+                  Retval.m_IPhoneLineDialResult.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (HStr_number);
+         tmp := WindowsDeleteString (HStr_displayName);
+      end return;
+   end;
+
+   function GetAllActivePhoneCalls
+   (
+      this : in out PhoneLine
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallsResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IPhoneLine3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.IPhoneCallsResult;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IPhoneLine_Interface, WinRt.Windows.ApplicationModel.Calls.IPhoneLine3, WinRt.Windows.ApplicationModel.Calls.IID_IPhoneLine3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Calls.PhoneCallsResult do
+         m_Interface := QInterface (this.m_IPhoneLine.all);
+         Hr := m_Interface.GetAllActivePhoneCalls (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPhoneCallsResult := new Windows.ApplicationModel.Calls.IPhoneCallsResult;
+         Retval.m_IPhoneCallsResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetAllActivePhoneCallsAsync
+   (
+      this : in out PhoneLine
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallsResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IPhoneLine3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_PhoneCallsResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_PhoneCallsResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.ApplicationModel.Calls.IPhoneCallsResult;
+      m_IID            : aliased WinRt.IID := (3389740911, 61032, 23382, (146, 224, 228, 238, 155, 86, 52, 98 )); -- Windows.ApplicationModel.Calls.PhoneCallsResult;
+      m_HandlerIID     : aliased WinRt.IID := (3760501163, 10726, 22170, (162, 110, 209, 202, 148, 116, 39, 26 ));
+      m_Handler        : AsyncOperationCompletedHandler_PhoneCallsResult.Kind := new AsyncOperationCompletedHandler_PhoneCallsResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PhoneCallsResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PhoneCallsResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PhoneCallsResult.Kind_Delegate, AsyncOperationCompletedHandler_PhoneCallsResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IPhoneLine_Interface, WinRt.Windows.ApplicationModel.Calls.IPhoneLine3, WinRt.Windows.ApplicationModel.Calls.IID_IPhoneLine3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Calls.PhoneCallsResult do
+         m_Interface := QInterface (this.m_IPhoneLine.all);
+         Hr := m_Interface.GetAllActivePhoneCallsAsync (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IPhoneCallsResult := new Windows.ApplicationModel.Calls.IPhoneCallsResult;
+                  Retval.m_IPhoneCallsResult.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+      end return;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PhoneLineCellularDetails
 
@@ -3823,6 +6525,66 @@ package body WinRt.Windows.ApplicationModel.Calls is
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
       temp := m_ComRetVal.Release;
       return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PhoneLineDialResult
+
+   procedure Initialize (this : in out PhoneLineDialResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PhoneLineDialResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPhoneLineDialResult, IPhoneLineDialResult_Ptr);
+   begin
+      if this.m_IPhoneLineDialResult /= null then
+         if this.m_IPhoneLineDialResult.all /= null then
+            temp := this.m_IPhoneLineDialResult.all.Release;
+            Free (this.m_IPhoneLineDialResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PhoneLineDialResult
+
+   function get_DialCallStatus
+   (
+      this : in out PhoneLineDialResult
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
+   begin
+      Hr := this.m_IPhoneLineDialResult.all.get_DialCallStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_DialedCall
+   (
+      this : in out PhoneLineDialResult
+   )
+   return WinRt.Windows.ApplicationModel.Calls.PhoneCall'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.IPhoneCall;
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Calls.PhoneCall do
+         Hr := this.m_IPhoneLineDialResult.all.get_DialedCall (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPhoneCall := new Windows.ApplicationModel.Calls.IPhoneCall;
+         Retval.m_IPhoneCall.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -4184,6 +6946,130 @@ package body WinRt.Windows.ApplicationModel.Calls is
          end if;
       end if;
       return m_RetVal;
+   end;
+
+   function get_AudioRoutingStatus
+   (
+      this : in out PhoneLineTransportDevice
+   )
+   return WinRt.Windows.ApplicationModel.Calls.TransportDeviceAudioRoutingStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.TransportDeviceAudioRoutingStatus;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice_Interface, WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice2, WinRt.Windows.ApplicationModel.Calls.IID_IPhoneLineTransportDevice2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPhoneLineTransportDevice.all);
+      Hr := m_Interface.get_AudioRoutingStatus (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function add_AudioRoutingStatusChanged
+   (
+      this : in out PhoneLineTransportDevice;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice_Interface, WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice2, WinRt.Windows.ApplicationModel.Calls.IID_IPhoneLineTransportDevice2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPhoneLineTransportDevice.all);
+      Hr := m_Interface.add_AudioRoutingStatusChanged (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_AudioRoutingStatusChanged
+   (
+      this : in out PhoneLineTransportDevice;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice_Interface, WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice2, WinRt.Windows.ApplicationModel.Calls.IID_IPhoneLineTransportDevice2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPhoneLineTransportDevice.all);
+      Hr := m_Interface.remove_AudioRoutingStatusChanged (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_InBandRingingEnabled
+   (
+      this : in out PhoneLineTransportDevice
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice_Interface, WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice2, WinRt.Windows.ApplicationModel.Calls.IID_IPhoneLineTransportDevice2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPhoneLineTransportDevice.all);
+      Hr := m_Interface.get_InBandRingingEnabled (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function add_InBandRingingEnabledChanged
+   (
+      this : in out PhoneLineTransportDevice;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice_Interface, WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice2, WinRt.Windows.ApplicationModel.Calls.IID_IPhoneLineTransportDevice2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPhoneLineTransportDevice.all);
+      Hr := m_Interface.add_InBandRingingEnabledChanged (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_InBandRingingEnabledChanged
+   (
+      this : in out PhoneLineTransportDevice;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice_Interface, WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice2, WinRt.Windows.ApplicationModel.Calls.IID_IPhoneLineTransportDevice2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPhoneLineTransportDevice.all);
+      Hr := m_Interface.remove_InBandRingingEnabledChanged (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4600,6 +7486,54 @@ package body WinRt.Windows.ApplicationModel.Calls is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for VoipCallCoordinator
+
+   function IsCallControlDeviceKindSupportedForAssociation
+   (
+      kind : Windows.ApplicationModel.Calls.VoipCallControlDeviceKind
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.VoipCallCoordinator");
+      m_Factory        : access WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinatorStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IVoipCallCoordinatorStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.IsCallControlDeviceKindSupportedForAssociation (kind, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function GetDeviceSelectorForCallControl
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.VoipCallCoordinator");
+      m_Factory        : access WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinatorStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IVoipCallCoordinatorStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelectorForCallControl (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
 
    function GetDefault
    return WinRt.Windows.ApplicationModel.Calls.VoipCallCoordinator is
@@ -5112,6 +8046,106 @@ package body WinRt.Windows.ApplicationModel.Calls is
       return m_RetVal;
    end;
 
+   function RequestNewIncomingCallWithOptions
+   (
+      this : in out VoipCallCoordinator;
+      callOptions : Windows.ApplicationModel.Calls.IncomingVoipPhoneCallOptions'Class
+   )
+   return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinator5 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.IVoipPhoneCall;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinator_Interface, WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinator5, WinRt.Windows.ApplicationModel.Calls.IID_IVoipCallCoordinator5'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall do
+         m_Interface := QInterface (this.m_IVoipCallCoordinator.all);
+         Hr := m_Interface.RequestNewIncomingCallWithOptions (callOptions.m_IIncomingVoipPhoneCallOptions.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IVoipPhoneCall := new Windows.ApplicationModel.Calls.IVoipPhoneCall;
+         Retval.m_IVoipPhoneCall.all := m_ComRetVal;
+      end return;
+   end;
+
+   function RequestNewOutgoingCallWithOptions
+   (
+      this : in out VoipCallCoordinator;
+      callOptions : Windows.ApplicationModel.Calls.OutgoingVoipPhoneCallOptions'Class
+   )
+   return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinator5 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.IVoipPhoneCall;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinator_Interface, WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinator5, WinRt.Windows.ApplicationModel.Calls.IID_IVoipCallCoordinator5'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall do
+         m_Interface := QInterface (this.m_IVoipCallCoordinator.all);
+         Hr := m_Interface.RequestNewOutgoingCallWithOptions (callOptions.m_IOutgoingVoipPhoneCallOptions.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IVoipPhoneCall := new Windows.ApplicationModel.Calls.IVoipPhoneCall;
+         Retval.m_IVoipPhoneCall.all := m_ComRetVal;
+      end return;
+   end;
+
+   function SetupNewAcceptedCallWithOptions
+   (
+      this : in out VoipCallCoordinator;
+      callOptions : Windows.ApplicationModel.Calls.AcceptedVoipPhoneCallOptions'Class
+   )
+   return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinator5 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.IVoipPhoneCall;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinator_Interface, WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinator5, WinRt.Windows.ApplicationModel.Calls.IID_IVoipCallCoordinator5'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall do
+         m_Interface := QInterface (this.m_IVoipCallCoordinator.all);
+         Hr := m_Interface.SetupNewAcceptedCallWithOptions (callOptions.m_IAcceptedVoipPhoneCallOptions.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IVoipPhoneCall := new Windows.ApplicationModel.Calls.IVoipPhoneCall;
+         Retval.m_IVoipPhoneCall.all := m_ComRetVal;
+      end return;
+   end;
+
+   function RequestNewAppInitiatedCallWithOptions
+   (
+      this : in out VoipCallCoordinator;
+      callOptions : Windows.ApplicationModel.Calls.AppInitiatedVoipPhoneCallOptions'Class
+   )
+   return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinator5 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.IVoipPhoneCall;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinator_Interface, WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinator5, WinRt.Windows.ApplicationModel.Calls.IID_IVoipCallCoordinator5'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall do
+         m_Interface := QInterface (this.m_IVoipCallCoordinator.all);
+         Hr := m_Interface.RequestNewAppInitiatedCallWithOptions (callOptions.m_IAppInitiatedVoipPhoneCallOptions.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IVoipPhoneCall := new Windows.ApplicationModel.Calls.IVoipPhoneCall;
+         Retval.m_IVoipPhoneCall.all := m_ComRetVal;
+      end return;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for VoipPhoneCall
 
@@ -5492,6 +8526,131 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   function get_IsUsingAssociatedDevicesList
+   (
+      this : in out VoipPhoneCall
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall_Interface, WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall4, WinRt.Windows.ApplicationModel.Calls.IID_IVoipPhoneCall4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVoipPhoneCall.all);
+      Hr := m_Interface.get_IsUsingAssociatedDevicesList (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure NotifyCallActive
+   (
+      this : in out VoipPhoneCall;
+      associatedDeviceIds : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall_Interface, WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall4, WinRt.Windows.ApplicationModel.Calls.IID_IVoipPhoneCall4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVoipPhoneCall.all);
+      Hr := m_Interface.NotifyCallActive (associatedDeviceIds);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure AddAssociatedCallControlDevice
+   (
+      this : in out VoipPhoneCall;
+      deviceId : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall4 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall_Interface, WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall4, WinRt.Windows.ApplicationModel.Calls.IID_IVoipPhoneCall4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVoipPhoneCall.all);
+      Hr := m_Interface.AddAssociatedCallControlDevice (HStr_deviceId);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_deviceId);
+   end;
+
+   procedure RemoveAssociatedCallControlDevice
+   (
+      this : in out VoipPhoneCall;
+      deviceId : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall4 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall_Interface, WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall4, WinRt.Windows.ApplicationModel.Calls.IID_IVoipPhoneCall4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVoipPhoneCall.all);
+      Hr := m_Interface.RemoveAssociatedCallControlDevice (HStr_deviceId);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_deviceId);
+   end;
+
+   procedure SetAssociatedCallControlDevices
+   (
+      this : in out VoipPhoneCall;
+      associatedDeviceIds : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall_Interface, WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall4, WinRt.Windows.ApplicationModel.Calls.IID_IVoipPhoneCall4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVoipPhoneCall.all);
+      Hr := m_Interface.SetAssociatedCallControlDevices (associatedDeviceIds);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function GetAssociatedCallControlDevices
+   (
+      this : in out VoipPhoneCall
+   )
+   return IVectorView_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_HString.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall_Interface, WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall4, WinRt.Windows.ApplicationModel.Calls.IID_IVoipPhoneCall4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVoipPhoneCall.all);
+      Hr := m_Interface.GetAssociatedCallControlDevices (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
    end;
 
 end WinRt.Windows.ApplicationModel.Calls;

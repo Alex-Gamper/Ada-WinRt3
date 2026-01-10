@@ -48,15 +48,19 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
 
    type IRfcommDeviceService2_Interface is interface and WinRt.IInspectable_Interface;
    type IRfcommDeviceService2 is access all IRfcommDeviceService2_Interface'Class;
+   type IRfcommDeviceService2_Ptr is access all IRfcommDeviceService2;
 
    type IRfcommDeviceService3_Interface is interface and WinRt.IInspectable_Interface;
    type IRfcommDeviceService3 is access all IRfcommDeviceService3_Interface'Class;
+   type IRfcommDeviceService3_Ptr is access all IRfcommDeviceService3;
 
    type IRfcommDeviceServiceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRfcommDeviceServiceStatics is access all IRfcommDeviceServiceStatics_Interface'Class;
+   type IRfcommDeviceServiceStatics_Ptr is access all IRfcommDeviceServiceStatics;
 
    type IRfcommDeviceServiceStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IRfcommDeviceServiceStatics2 is access all IRfcommDeviceServiceStatics2_Interface'Class;
+   type IRfcommDeviceServiceStatics2_Ptr is access all IRfcommDeviceServiceStatics2;
 
    type IRfcommDeviceServicesResult_Interface is interface and WinRt.IInspectable_Interface;
    type IRfcommDeviceServicesResult is access all IRfcommDeviceServicesResult_Interface'Class;
@@ -68,6 +72,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
 
    type IRfcommServiceIdStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRfcommServiceIdStatics is access all IRfcommServiceIdStatics_Interface'Class;
+   type IRfcommServiceIdStatics_Ptr is access all IRfcommServiceIdStatics;
 
    type IRfcommServiceProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IRfcommServiceProvider is access all IRfcommServiceProvider_Interface'Class;
@@ -75,9 +80,11 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
 
    type IRfcommServiceProvider2_Interface is interface and WinRt.IInspectable_Interface;
    type IRfcommServiceProvider2 is access all IRfcommServiceProvider2_Interface'Class;
+   type IRfcommServiceProvider2_Ptr is access all IRfcommServiceProvider2;
 
    type IRfcommServiceProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRfcommServiceProviderStatics is access all IRfcommServiceProviderStatics_Interface'Class;
+   type IRfcommServiceProviderStatics_Ptr is access all IRfcommServiceProviderStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

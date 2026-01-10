@@ -54,6 +54,7 @@ package WinRt.Windows.Media.Control is
 
    type IGlobalSystemMediaTransportControlsSessionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGlobalSystemMediaTransportControlsSessionManagerStatics is access all IGlobalSystemMediaTransportControlsSessionManagerStatics_Interface'Class;
+   type IGlobalSystemMediaTransportControlsSessionManagerStatics_Ptr is access all IGlobalSystemMediaTransportControlsSessionManagerStatics;
 
    type IGlobalSystemMediaTransportControlsSessionMediaProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IGlobalSystemMediaTransportControlsSessionMediaProperties is access all IGlobalSystemMediaTransportControlsSessionMediaProperties_Interface'Class;

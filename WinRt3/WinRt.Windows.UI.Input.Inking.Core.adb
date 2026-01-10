@@ -29,6 +29,7 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
 with WinRt.Windows.UI.Composition;
+with WinRt.Windows.UI.Core;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.UI.Input.Inking.Core is
@@ -478,6 +479,49 @@ package body WinRt.Windows.UI.Input.Inking.Core is
          Retval.m_IInkPresenter := new Windows.UI.Input.Inking.IInkPresenter;
          Retval.m_IInkPresenter.all := m_ComRetVal;
       end return;
+   end;
+
+   function get_PointerCursor
+   (
+      this : in out CoreInkIndependentInputSource
+   )
+   return WinRt.Windows.UI.Core.CoreCursor'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Input.Inking.Core.ICoreInkIndependentInputSource2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Core.ICoreCursor;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Core.ICoreInkIndependentInputSource_Interface, WinRt.Windows.UI.Input.Inking.Core.ICoreInkIndependentInputSource2, WinRt.Windows.UI.Input.Inking.Core.IID_ICoreInkIndependentInputSource2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Core.CoreCursor do
+         m_Interface := QInterface (this.m_ICoreInkIndependentInputSource.all);
+         Hr := m_Interface.get_PointerCursor (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICoreCursor := new Windows.UI.Core.ICoreCursor;
+         Retval.m_ICoreCursor.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_PointerCursor
+   (
+      this : in out CoreInkIndependentInputSource;
+      value : Windows.UI.Core.CoreCursor'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Input.Inking.Core.ICoreInkIndependentInputSource2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Core.ICoreInkIndependentInputSource_Interface, WinRt.Windows.UI.Input.Inking.Core.ICoreInkIndependentInputSource2, WinRt.Windows.UI.Input.Inking.Core.IID_ICoreInkIndependentInputSource2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICoreInkIndependentInputSource.all);
+      Hr := m_Interface.put_PointerCursor (value.m_ICoreCursor.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------

@@ -52,6 +52,7 @@ package WinRt.Windows.Media.Playback is
 
    type IBackgroundMediaPlayerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundMediaPlayerStatics is access all IBackgroundMediaPlayerStatics_Interface'Class;
+   type IBackgroundMediaPlayerStatics_Ptr is access all IBackgroundMediaPlayerStatics;
 
    type ICurrentMediaPlaybackItemChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrentMediaPlaybackItemChangedEventArgs is access all ICurrentMediaPlaybackItemChangedEventArgs_Interface'Class;
@@ -59,6 +60,7 @@ package WinRt.Windows.Media.Playback is
 
    type ICurrentMediaPlaybackItemChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrentMediaPlaybackItemChangedEventArgs2 is access all ICurrentMediaPlaybackItemChangedEventArgs2_Interface'Class;
+   type ICurrentMediaPlaybackItemChangedEventArgs2_Ptr is access all ICurrentMediaPlaybackItemChangedEventArgs2;
 
    type IMediaBreak_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaBreak is access all IMediaBreak_Interface'Class;
@@ -70,6 +72,7 @@ package WinRt.Windows.Media.Playback is
 
    type IMediaBreakFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaBreakFactory is access all IMediaBreakFactory_Interface'Class;
+   type IMediaBreakFactory_Ptr is access all IMediaBreakFactory;
 
    type IMediaBreakManager_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaBreakManager is access all IMediaBreakManager_Interface'Class;
@@ -93,6 +96,7 @@ package WinRt.Windows.Media.Playback is
 
    type IMediaEnginePlaybackSource_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaEnginePlaybackSource is access all IMediaEnginePlaybackSource_Interface'Class;
+   type IMediaEnginePlaybackSource_Ptr is access all IMediaEnginePlaybackSource;
 
    type IMediaItemDisplayProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaItemDisplayProperties is access all IMediaItemDisplayProperties_Interface'Class;
@@ -152,9 +156,11 @@ package WinRt.Windows.Media.Playback is
 
    type IMediaPlaybackItem2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackItem2 is access all IMediaPlaybackItem2_Interface'Class;
+   type IMediaPlaybackItem2_Ptr is access all IMediaPlaybackItem2;
 
    type IMediaPlaybackItem3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackItem3 is access all IMediaPlaybackItem3_Interface'Class;
+   type IMediaPlaybackItem3_Ptr is access all IMediaPlaybackItem3;
 
    type IMediaPlaybackItemError_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackItemError is access all IMediaPlaybackItemError_Interface'Class;
@@ -162,9 +168,11 @@ package WinRt.Windows.Media.Playback is
 
    type IMediaPlaybackItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackItemFactory is access all IMediaPlaybackItemFactory_Interface'Class;
+   type IMediaPlaybackItemFactory_Ptr is access all IMediaPlaybackItemFactory;
 
    type IMediaPlaybackItemFactory2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackItemFactory2 is access all IMediaPlaybackItemFactory2_Interface'Class;
+   type IMediaPlaybackItemFactory2_Ptr is access all IMediaPlaybackItemFactory2;
 
    type IMediaPlaybackItemFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackItemFailedEventArgs is access all IMediaPlaybackItemFailedEventArgs_Interface'Class;
@@ -176,6 +184,7 @@ package WinRt.Windows.Media.Playback is
 
    type IMediaPlaybackItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackItemStatics is access all IMediaPlaybackItemStatics_Interface'Class;
+   type IMediaPlaybackItemStatics_Ptr is access all IMediaPlaybackItemStatics;
 
    type IMediaPlaybackList_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackList is access all IMediaPlaybackList_Interface'Class;
@@ -183,9 +192,11 @@ package WinRt.Windows.Media.Playback is
 
    type IMediaPlaybackList2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackList2 is access all IMediaPlaybackList2_Interface'Class;
+   type IMediaPlaybackList2_Ptr is access all IMediaPlaybackList2;
 
    type IMediaPlaybackList3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackList3 is access all IMediaPlaybackList3_Interface'Class;
+   type IMediaPlaybackList3_Ptr is access all IMediaPlaybackList3;
 
    type IMediaPlaybackSession_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackSession is access all IMediaPlaybackSession_Interface'Class;
@@ -193,9 +204,11 @@ package WinRt.Windows.Media.Playback is
 
    type IMediaPlaybackSession2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackSession2 is access all IMediaPlaybackSession2_Interface'Class;
+   type IMediaPlaybackSession2_Ptr is access all IMediaPlaybackSession2;
 
    type IMediaPlaybackSession3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackSession3 is access all IMediaPlaybackSession3_Interface'Class;
+   type IMediaPlaybackSession3_Ptr is access all IMediaPlaybackSession3;
 
    type IMediaPlaybackSessionBufferingStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackSessionBufferingStartedEventArgs is access all IMediaPlaybackSessionBufferingStartedEventArgs_Interface'Class;
@@ -207,6 +220,7 @@ package WinRt.Windows.Media.Playback is
 
    type IMediaPlaybackSource_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackSource is access all IMediaPlaybackSource_Interface'Class;
+   type IMediaPlaybackSource_Ptr is access all IMediaPlaybackSource;
 
    type IMediaPlaybackSphericalVideoProjection_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackSphericalVideoProjection is access all IMediaPlaybackSphericalVideoProjection_Interface'Class;
@@ -214,6 +228,7 @@ package WinRt.Windows.Media.Playback is
 
    type IMediaPlaybackTimedMetadataTrackList_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlaybackTimedMetadataTrackList is access all IMediaPlaybackTimedMetadataTrackList_Interface'Class;
+   type IMediaPlaybackTimedMetadataTrackList_Ptr is access all IMediaPlaybackTimedMetadataTrackList;
 
    type IMediaPlayer_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayer is access all IMediaPlayer_Interface'Class;
@@ -221,21 +236,27 @@ package WinRt.Windows.Media.Playback is
 
    type IMediaPlayer2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayer2 is access all IMediaPlayer2_Interface'Class;
+   type IMediaPlayer2_Ptr is access all IMediaPlayer2;
 
    type IMediaPlayer3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayer3 is access all IMediaPlayer3_Interface'Class;
+   type IMediaPlayer3_Ptr is access all IMediaPlayer3;
 
    type IMediaPlayer4_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayer4 is access all IMediaPlayer4_Interface'Class;
+   type IMediaPlayer4_Ptr is access all IMediaPlayer4;
 
    type IMediaPlayer5_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayer5 is access all IMediaPlayer5_Interface'Class;
+   type IMediaPlayer5_Ptr is access all IMediaPlayer5;
 
    type IMediaPlayer6_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayer6 is access all IMediaPlayer6_Interface'Class;
+   type IMediaPlayer6_Ptr is access all IMediaPlayer6;
 
    type IMediaPlayer7_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayer7 is access all IMediaPlayer7_Interface'Class;
+   type IMediaPlayer7_Ptr is access all IMediaPlayer7;
 
    type IMediaPlayerDataReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayerDataReceivedEventArgs is access all IMediaPlayerDataReceivedEventArgs_Interface'Class;
@@ -243,9 +264,11 @@ package WinRt.Windows.Media.Playback is
 
    type IMediaPlayerEffects_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayerEffects is access all IMediaPlayerEffects_Interface'Class;
+   type IMediaPlayerEffects_Ptr is access all IMediaPlayerEffects;
 
    type IMediaPlayerEffects2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayerEffects2 is access all IMediaPlayerEffects2_Interface'Class;
+   type IMediaPlayerEffects2_Ptr is access all IMediaPlayerEffects2;
 
    type IMediaPlayerFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayerFailedEventArgs is access all IMediaPlayerFailedEventArgs_Interface'Class;
@@ -257,9 +280,11 @@ package WinRt.Windows.Media.Playback is
 
    type IMediaPlayerSource_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayerSource is access all IMediaPlayerSource_Interface'Class;
+   type IMediaPlayerSource_Ptr is access all IMediaPlayerSource;
 
    type IMediaPlayerSource2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayerSource2 is access all IMediaPlayerSource2_Interface'Class;
+   type IMediaPlayerSource2_Ptr is access all IMediaPlayerSource2;
 
    type IMediaPlayerSurface_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayerSurface is access all IMediaPlayerSurface_Interface'Class;
@@ -271,6 +296,7 @@ package WinRt.Windows.Media.Playback is
 
    type IPlaybackMediaMarkerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPlaybackMediaMarkerFactory is access all IPlaybackMediaMarkerFactory_Interface'Class;
+   type IPlaybackMediaMarkerFactory_Ptr is access all IPlaybackMediaMarkerFactory;
 
    type IPlaybackMediaMarkerReachedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPlaybackMediaMarkerReachedEventArgs is access all IPlaybackMediaMarkerReachedEventArgs_Interface'Class;
@@ -4839,6 +4865,12 @@ package WinRt.Windows.Media.Playback is
 
    function Constructor
    (
+      source : Windows.Media.Core.MediaSource'Class
+   )
+   return MediaPlaybackItem;
+
+   function Constructor
+   (
       source : Windows.Media.Core.MediaSource'Class;
       startTime : Windows.Foundation.TimeSpan
    )
@@ -4849,12 +4881,6 @@ package WinRt.Windows.Media.Playback is
       source : Windows.Media.Core.MediaSource'Class;
       startTime : Windows.Foundation.TimeSpan;
       durationLimit : Windows.Foundation.TimeSpan
-   )
-   return MediaPlaybackItem;
-
-   function Constructor
-   (
-      source : Windows.Media.Core.MediaSource'Class
    )
    return MediaPlaybackItem;
 

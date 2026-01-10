@@ -31,6 +31,7 @@ with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
 with WinRt.Windows.Foundation.Numerics;
 limited with WinRt.Windows.UI.Composition;
+limited with WinRt.Windows.UI.Core;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.UI.Input.Inking.Core is
@@ -47,13 +48,19 @@ package WinRt.Windows.UI.Input.Inking.Core is
 
    type ICoreIncrementalInkStrokeFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreIncrementalInkStrokeFactory is access all ICoreIncrementalInkStrokeFactory_Interface'Class;
+   type ICoreIncrementalInkStrokeFactory_Ptr is access all ICoreIncrementalInkStrokeFactory;
 
    type ICoreInkIndependentInputSource_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreInkIndependentInputSource is access all ICoreInkIndependentInputSource_Interface'Class;
    type ICoreInkIndependentInputSource_Ptr is access all ICoreInkIndependentInputSource;
 
+   type ICoreInkIndependentInputSource2_Interface is interface and WinRt.IInspectable_Interface;
+   type ICoreInkIndependentInputSource2 is access all ICoreInkIndependentInputSource2_Interface'Class;
+   type ICoreInkIndependentInputSource2_Ptr is access all ICoreInkIndependentInputSource2;
+
    type ICoreInkIndependentInputSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreInkIndependentInputSourceStatics is access all ICoreInkIndependentInputSourceStatics_Interface'Class;
+   type ICoreInkIndependentInputSourceStatics_Ptr is access all ICoreInkIndependentInputSourceStatics;
 
    type ICoreInkPresenterHost_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreInkPresenterHost is access all ICoreInkPresenterHost_Interface'Class;
@@ -69,6 +76,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
 
    type ICoreWetStrokeUpdateSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreWetStrokeUpdateSourceStatics is access all ICoreWetStrokeUpdateSourceStatics_Interface'Class;
+   type ICoreWetStrokeUpdateSourceStatics_Ptr is access all ICoreWetStrokeUpdateSourceStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -303,6 +311,25 @@ package WinRt.Windows.UI.Input.Inking.Core is
       return WinRt.Hresult is abstract;
 
       IID_ICoreInkIndependentInputSource : aliased WinRt.IID := (968068521, 30265, 17561, (165, 181, 25, 29, 0, 227, 91, 22 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICoreInkIndependentInputSource2 is interface and WinRt.IInspectable;
+
+      function get_PointerCursor
+      (
+         this : access ICoreInkIndependentInputSource2_Interface;
+         RetVal : access Windows.UI.Core.ICoreCursor
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PointerCursor
+      (
+         this : access ICoreInkIndependentInputSource2_Interface;
+         value : Windows.UI.Core.ICoreCursor
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICoreInkIndependentInputSource2 : aliased WinRt.IID := (675721234, 2905, 23481, (163, 197, 190, 203, 124, 240, 58, 51 ));
 
    -----------------------------------------------------------------------------
    -- type ICoreInkIndependentInputSourceStatics is interface and WinRt.IInspectable;
@@ -644,6 +671,18 @@ package WinRt.Windows.UI.Input.Inking.Core is
       this : in out CoreInkIndependentInputSource
    )
    return WinRt.Windows.UI.Input.Inking.InkPresenter'Class;
+
+   function get_PointerCursor
+   (
+      this : in out CoreInkIndependentInputSource
+   )
+   return WinRt.Windows.UI.Core.CoreCursor'Class;
+
+   procedure put_PointerCursor
+   (
+      this : in out CoreInkIndependentInputSource;
+      value : Windows.UI.Core.CoreCursor'Class
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CoreInkPresenterHost

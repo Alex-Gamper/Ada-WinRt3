@@ -2436,6 +2436,30 @@ package body WinRt.Windows.Media.Core is
          return AdaRetVal;
       end;
 
+      function get_VideoFormatAv1
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_VideoFormatAv1 (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
    end CodecSubtypes;
 
    -----------------------------------------------------------------------------
@@ -4335,60 +4359,6 @@ package body WinRt.Windows.Media.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MediaSource
 
-   function CreateFromMediaFrameSource
-   (
-      frameSource : Windows.Media.Capture.Frames.MediaFrameSource'Class
-   )
-   return WinRt.Windows.Media.Core.MediaSource is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
-      m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
-   begin
-      return RetVal : WinRt.Windows.Media.Core.MediaSource do
-         Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromMediaFrameSource (frameSource.m_IMediaFrameSource.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
-            Retval.m_IMediaSource2.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function CreateFromMediaBinder
-   (
-      binder : Windows.Media.Core.MediaBinder'Class
-   )
-   return WinRt.Windows.Media.Core.MediaSource is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
-      m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
-   begin
-      return RetVal : WinRt.Windows.Media.Core.MediaSource do
-         Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromMediaBinder (binder.m_IMediaBinder.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
-            Retval.m_IMediaSource2.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function CreateFromAdaptiveMediaSource
    (
       mediaSource_p : Windows.Media.Streaming.Adaptive.AdaptiveMediaSource'Class
@@ -4627,6 +4597,60 @@ package body WinRt.Windows.Media.Core is
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromDownloadOperation (downloadOperation.m_IDownloadOperation.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
+            Retval.m_IMediaSource2.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateFromMediaBinder
+   (
+      binder : Windows.Media.Core.MediaBinder'Class
+   )
+   return WinRt.Windows.Media.Core.MediaSource is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
+   begin
+      return RetVal : WinRt.Windows.Media.Core.MediaSource do
+         Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromMediaBinder (binder.m_IMediaBinder.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
+            Retval.m_IMediaSource2.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateFromMediaFrameSource
+   (
+      frameSource : Windows.Media.Capture.Frames.MediaFrameSource'Class
+   )
+   return WinRt.Windows.Media.Core.MediaSource is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
+   begin
+      return RetVal : WinRt.Windows.Media.Core.MediaSource do
+         Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromMediaFrameSource (frameSource.m_IMediaFrameSource.all, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -5295,6 +5319,34 @@ package body WinRt.Windows.Media.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MediaStreamSample
 
+   function CreateFromDirect3D11Surface
+   (
+      surface : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      timestamp : Windows.Foundation.TimeSpan
+   )
+   return WinRt.Windows.Media.Core.MediaStreamSample is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaStreamSample");
+      m_Factory        : access WinRt.Windows.Media.Core.IMediaStreamSampleStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSample;
+   begin
+      return RetVal : WinRt.Windows.Media.Core.MediaStreamSample do
+         Hr := RoGetActivationFactory (m_hString, IID_IMediaStreamSampleStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromDirect3D11Surface (surface, timestamp, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IMediaStreamSample := new Windows.Media.Core.IMediaStreamSample;
+            Retval.m_IMediaStreamSample.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function CreateFromBuffer
    (
       buffer : Windows.Storage.Streams.IBuffer;
@@ -5393,34 +5445,6 @@ package body WinRt.Windows.Media.Core is
                   end if;
                end if;
             end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function CreateFromDirect3D11Surface
-   (
-      surface : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-      timestamp : Windows.Foundation.TimeSpan
-   )
-   return WinRt.Windows.Media.Core.MediaStreamSample is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaStreamSample");
-      m_Factory        : access WinRt.Windows.Media.Core.IMediaStreamSampleStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSample;
-   begin
-      return RetVal : WinRt.Windows.Media.Core.MediaStreamSample do
-         Hr := RoGetActivationFactory (m_hString, IID_IMediaStreamSampleStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromDirect3D11Surface (surface, timestamp, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IMediaStreamSample := new Windows.Media.Core.IMediaStreamSample;
-            Retval.m_IMediaStreamSample.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
@@ -9756,6 +9780,125 @@ package body WinRt.Windows.Media.Core is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for TimedTextBouten
+
+   procedure Initialize (this : in out TimedTextBouten) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out TimedTextBouten) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ITimedTextBouten, ITimedTextBouten_Ptr);
+   begin
+      if this.m_ITimedTextBouten /= null then
+         if this.m_ITimedTextBouten.all /= null then
+            temp := this.m_ITimedTextBouten.all.Release;
+            Free (this.m_ITimedTextBouten);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for TimedTextBouten
+
+   function get_Type
+   (
+      this : in out TimedTextBouten
+   )
+   return WinRt.Windows.Media.Core.TimedTextBoutenType is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Core.TimedTextBoutenType;
+   begin
+      Hr := this.m_ITimedTextBouten.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Type
+   (
+      this : in out TimedTextBouten;
+      value : Windows.Media.Core.TimedTextBoutenType
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ITimedTextBouten.all.put_Type (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Color
+   (
+      this : in out TimedTextBouten
+   )
+   return WinRt.Windows.UI.Color is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Color;
+   begin
+      Hr := this.m_ITimedTextBouten.all.get_Color (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Color
+   (
+      this : in out TimedTextBouten;
+      value : Windows.UI.Color
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ITimedTextBouten.all.put_Color (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Position
+   (
+      this : in out TimedTextBouten
+   )
+   return WinRt.Windows.Media.Core.TimedTextBoutenPosition is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Core.TimedTextBoutenPosition;
+   begin
+      Hr := this.m_ITimedTextBouten.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Position
+   (
+      this : in out TimedTextBouten;
+      value : Windows.Media.Core.TimedTextBoutenPosition
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ITimedTextBouten.all.put_Position (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for TimedTextCue
 
    procedure Initialize (this : in out TimedTextCue) is
@@ -10537,6 +10680,162 @@ package body WinRt.Windows.Media.Core is
       temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextRegion.all.put_ScrollMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for TimedTextRuby
+
+   procedure Initialize (this : in out TimedTextRuby) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out TimedTextRuby) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ITimedTextRuby, ITimedTextRuby_Ptr);
+   begin
+      if this.m_ITimedTextRuby /= null then
+         if this.m_ITimedTextRuby.all /= null then
+            temp := this.m_ITimedTextRuby.all.Release;
+            Free (this.m_ITimedTextRuby);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for TimedTextRuby
+
+   function get_Text
+   (
+      this : in out TimedTextRuby
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_ITimedTextRuby.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Text
+   (
+      this : in out TimedTextRuby;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_ITimedTextRuby.all.put_Text (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_Position
+   (
+      this : in out TimedTextRuby
+   )
+   return WinRt.Windows.Media.Core.TimedTextRubyPosition is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Core.TimedTextRubyPosition;
+   begin
+      Hr := this.m_ITimedTextRuby.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Position
+   (
+      this : in out TimedTextRuby;
+      value : Windows.Media.Core.TimedTextRubyPosition
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ITimedTextRuby.all.put_Position (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Align
+   (
+      this : in out TimedTextRuby
+   )
+   return WinRt.Windows.Media.Core.TimedTextRubyAlign is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Core.TimedTextRubyAlign;
+   begin
+      Hr := this.m_ITimedTextRuby.all.get_Align (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Align
+   (
+      this : in out TimedTextRuby;
+      value : Windows.Media.Core.TimedTextRubyAlign
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ITimedTextRuby.all.put_Align (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Reserve
+   (
+      this : in out TimedTextRuby
+   )
+   return WinRt.Windows.Media.Core.TimedTextRubyReserve is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Core.TimedTextRubyReserve;
+   begin
+      Hr := this.m_ITimedTextRuby.all.get_Reserve (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Reserve
+   (
+      this : in out TimedTextRuby;
+      value : Windows.Media.Core.TimedTextRubyReserve
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ITimedTextRuby.all.put_Reserve (value);
       if Hr /= S_OK then
          raise Program_Error;
       end if;
@@ -11486,6 +11785,134 @@ package body WinRt.Windows.Media.Core is
    begin
       m_Interface := QInterface (this.m_ITimedTextStyle.all);
       Hr := m_Interface.put_IsOverlineEnabled (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Ruby
+   (
+      this : in out TimedTextStyle
+   )
+   return WinRt.Windows.Media.Core.TimedTextRuby'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Core.ITimedTextRuby;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle3, WinRt.Windows.Media.Core.IID_ITimedTextStyle3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Media.Core.TimedTextRuby do
+         m_Interface := QInterface (this.m_ITimedTextStyle.all);
+         Hr := m_Interface.get_Ruby (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITimedTextRuby := new Windows.Media.Core.ITimedTextRuby;
+         Retval.m_ITimedTextRuby.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_Bouten
+   (
+      this : in out TimedTextStyle
+   )
+   return WinRt.Windows.Media.Core.TimedTextBouten'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Core.ITimedTextBouten;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle3, WinRt.Windows.Media.Core.IID_ITimedTextStyle3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Media.Core.TimedTextBouten do
+         m_Interface := QInterface (this.m_ITimedTextStyle.all);
+         Hr := m_Interface.get_Bouten (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ITimedTextBouten := new Windows.Media.Core.ITimedTextBouten;
+         Retval.m_ITimedTextBouten.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_IsTextCombined
+   (
+      this : in out TimedTextStyle
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle3, WinRt.Windows.Media.Core.IID_ITimedTextStyle3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ITimedTextStyle.all);
+      Hr := m_Interface.get_IsTextCombined (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsTextCombined
+   (
+      this : in out TimedTextStyle;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle3, WinRt.Windows.Media.Core.IID_ITimedTextStyle3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ITimedTextStyle.all);
+      Hr := m_Interface.put_IsTextCombined (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_FontAngleInDegrees
+   (
+      this : in out TimedTextStyle
+   )
+   return WinRt.Double is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Double;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle3, WinRt.Windows.Media.Core.IID_ITimedTextStyle3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ITimedTextStyle.all);
+      Hr := m_Interface.get_FontAngleInDegrees (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_FontAngleInDegrees
+   (
+      this : in out TimedTextStyle;
+      value : WinRt.Double
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle3, WinRt.Windows.Media.Core.IID_ITimedTextStyle3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ITimedTextStyle.all);
+      Hr := m_Interface.put_FontAngleInDegrees (value);
       temp := m_Interface.Release;
       if Hr /= S_OK then
          raise Program_Error;

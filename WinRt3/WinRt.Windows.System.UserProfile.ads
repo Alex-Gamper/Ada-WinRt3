@@ -48,9 +48,11 @@ package WinRt.Windows.System.UserProfile is
 
    type IAdvertisingManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAdvertisingManagerStatics is access all IAdvertisingManagerStatics_Interface'Class;
+   type IAdvertisingManagerStatics_Ptr is access all IAdvertisingManagerStatics;
 
    type IAdvertisingManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAdvertisingManagerStatics2 is access all IAdvertisingManagerStatics2_Interface'Class;
+   type IAdvertisingManagerStatics2_Ptr is access all IAdvertisingManagerStatics2;
 
    type IAssignedAccessSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IAssignedAccessSettings is access all IAssignedAccessSettings_Interface'Class;
@@ -58,6 +60,7 @@ package WinRt.Windows.System.UserProfile is
 
    type IAssignedAccessSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAssignedAccessSettingsStatics is access all IAssignedAccessSettingsStatics_Interface'Class;
+   type IAssignedAccessSettingsStatics_Ptr is access all IAssignedAccessSettingsStatics;
 
    type IDiagnosticsSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IDiagnosticsSettings is access all IDiagnosticsSettings_Interface'Class;
@@ -65,6 +68,7 @@ package WinRt.Windows.System.UserProfile is
 
    type IDiagnosticsSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDiagnosticsSettingsStatics is access all IDiagnosticsSettingsStatics_Interface'Class;
+   type IDiagnosticsSettingsStatics_Ptr is access all IDiagnosticsSettingsStatics;
 
    type IFirstSignInSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IFirstSignInSettings is access all IFirstSignInSettings_Interface'Class;
@@ -72,6 +76,7 @@ package WinRt.Windows.System.UserProfile is
 
    type IFirstSignInSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFirstSignInSettingsStatics is access all IFirstSignInSettingsStatics_Interface'Class;
+   type IFirstSignInSettingsStatics_Ptr is access all IFirstSignInSettingsStatics;
 
    type IGlobalizationPreferencesForUser_Interface is interface and WinRt.IInspectable_Interface;
    type IGlobalizationPreferencesForUser is access all IGlobalizationPreferencesForUser_Interface'Class;
@@ -79,21 +84,27 @@ package WinRt.Windows.System.UserProfile is
 
    type IGlobalizationPreferencesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGlobalizationPreferencesStatics is access all IGlobalizationPreferencesStatics_Interface'Class;
+   type IGlobalizationPreferencesStatics_Ptr is access all IGlobalizationPreferencesStatics;
 
    type IGlobalizationPreferencesStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IGlobalizationPreferencesStatics2 is access all IGlobalizationPreferencesStatics2_Interface'Class;
+   type IGlobalizationPreferencesStatics2_Ptr is access all IGlobalizationPreferencesStatics2;
 
    type IGlobalizationPreferencesStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IGlobalizationPreferencesStatics3 is access all IGlobalizationPreferencesStatics3_Interface'Class;
+   type IGlobalizationPreferencesStatics3_Ptr is access all IGlobalizationPreferencesStatics3;
 
    type ILockScreenImageFeedStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILockScreenImageFeedStatics is access all ILockScreenImageFeedStatics_Interface'Class;
+   type ILockScreenImageFeedStatics_Ptr is access all ILockScreenImageFeedStatics;
 
    type ILockScreenStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILockScreenStatics is access all ILockScreenStatics_Interface'Class;
+   type ILockScreenStatics_Ptr is access all ILockScreenStatics;
 
    type IUserInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserInformationStatics is access all IUserInformationStatics_Interface'Class;
+   type IUserInformationStatics_Ptr is access all IUserInformationStatics;
 
    type IUserProfilePersonalizationSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IUserProfilePersonalizationSettings is access all IUserProfilePersonalizationSettings_Interface'Class;
@@ -101,6 +112,7 @@ package WinRt.Windows.System.UserProfile is
 
    type IUserProfilePersonalizationSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserProfilePersonalizationSettingsStatics is access all IUserProfilePersonalizationSettingsStatics_Interface'Class;
+   type IUserProfilePersonalizationSettingsStatics_Ptr is access all IUserProfilePersonalizationSettingsStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -718,14 +730,14 @@ package WinRt.Windows.System.UserProfile is
    -- Static RuntimeClass
    package AdvertisingManager is
 
-      function get_AdvertisingId
-      return WinRt.WString;
-
       function GetForUser
       (
          user : Windows.System.User'Class
       )
       return WinRt.Windows.System.UserProfile.AdvertisingManagerForUser;
+
+      function get_AdvertisingId
+      return WinRt.WString;
 
    end AdvertisingManager;
 
@@ -869,12 +881,6 @@ package WinRt.Windows.System.UserProfile is
    -- Static RuntimeClass
    package GlobalizationPreferences is
 
-      function GetForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.System.UserProfile.GlobalizationPreferencesForUser;
-
       function TrySetHomeGeographicRegion
       (
          region : WinRt.WString
@@ -904,6 +910,12 @@ package WinRt.Windows.System.UserProfile is
 
       function get_WeekStartsOn
       return WinRt.Windows.Globalization.DayOfWeek;
+
+      function GetForUser
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.System.UserProfile.GlobalizationPreferencesForUser;
 
    end GlobalizationPreferences;
 

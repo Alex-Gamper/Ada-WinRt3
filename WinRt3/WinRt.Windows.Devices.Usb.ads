@@ -66,6 +66,7 @@ package WinRt.Windows.Devices.Usb is
 
    type IUsbConfigurationDescriptorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUsbConfigurationDescriptorStatics is access all IUsbConfigurationDescriptorStatics_Interface'Class;
+   type IUsbConfigurationDescriptorStatics_Ptr is access all IUsbConfigurationDescriptorStatics;
 
    type IUsbControlRequestType_Interface is interface and WinRt.IInspectable_Interface;
    type IUsbControlRequestType is access all IUsbControlRequestType_Interface'Class;
@@ -89,6 +90,7 @@ package WinRt.Windows.Devices.Usb is
 
    type IUsbDeviceClassesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUsbDeviceClassesStatics is access all IUsbDeviceClassesStatics_Interface'Class;
+   type IUsbDeviceClassesStatics_Ptr is access all IUsbDeviceClassesStatics;
 
    type IUsbDeviceDescriptor_Interface is interface and WinRt.IInspectable_Interface;
    type IUsbDeviceDescriptor is access all IUsbDeviceDescriptor_Interface'Class;
@@ -96,6 +98,7 @@ package WinRt.Windows.Devices.Usb is
 
    type IUsbDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUsbDeviceStatics is access all IUsbDeviceStatics_Interface'Class;
+   type IUsbDeviceStatics_Ptr is access all IUsbDeviceStatics;
 
    type IUsbEndpointDescriptor_Interface is interface and WinRt.IInspectable_Interface;
    type IUsbEndpointDescriptor is access all IUsbEndpointDescriptor_Interface'Class;
@@ -103,6 +106,7 @@ package WinRt.Windows.Devices.Usb is
 
    type IUsbEndpointDescriptorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUsbEndpointDescriptorStatics is access all IUsbEndpointDescriptorStatics_Interface'Class;
+   type IUsbEndpointDescriptorStatics_Ptr is access all IUsbEndpointDescriptorStatics;
 
    type IUsbInterface_Interface is interface and WinRt.IInspectable_Interface;
    type IUsbInterface is access all IUsbInterface_Interface'Class;
@@ -114,6 +118,7 @@ package WinRt.Windows.Devices.Usb is
 
    type IUsbInterfaceDescriptorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUsbInterfaceDescriptorStatics is access all IUsbInterfaceDescriptorStatics_Interface'Class;
+   type IUsbInterfaceDescriptorStatics_Ptr is access all IUsbInterfaceDescriptorStatics;
 
    type IUsbInterfaceSetting_Interface is interface and WinRt.IInspectable_Interface;
    type IUsbInterfaceSetting is access all IUsbInterfaceSetting_Interface'Class;
@@ -145,6 +150,7 @@ package WinRt.Windows.Devices.Usb is
 
    type IUsbSetupPacketFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IUsbSetupPacketFactory is access all IUsbSetupPacketFactory_Interface'Class;
+   type IUsbSetupPacketFactory_Ptr is access all IUsbSetupPacketFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -2435,13 +2441,13 @@ package WinRt.Windows.Devices.Usb is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for UsbSetupPacket
 
+   function Constructor return UsbSetupPacket;
+
    function Constructor
    (
       eightByteBuffer : Windows.Storage.Streams.IBuffer
    )
    return UsbSetupPacket;
-
-   function Constructor return UsbSetupPacket;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for UsbSetupPacket

@@ -44,12 +44,15 @@ package WinRt.Windows.Perception is
 
    type IPerceptionTimestamp2_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionTimestamp2 is access all IPerceptionTimestamp2_Interface'Class;
+   type IPerceptionTimestamp2_Ptr is access all IPerceptionTimestamp2;
 
    type IPerceptionTimestampHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionTimestampHelperStatics is access all IPerceptionTimestampHelperStatics_Interface'Class;
+   type IPerceptionTimestampHelperStatics_Ptr is access all IPerceptionTimestampHelperStatics;
 
    type IPerceptionTimestampHelperStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionTimestampHelperStatics2 is access all IPerceptionTimestampHelperStatics2_Interface'Class;
+   type IPerceptionTimestampHelperStatics2_Ptr is access all IPerceptionTimestampHelperStatics2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -157,15 +160,15 @@ package WinRt.Windows.Perception is
    -- Static RuntimeClass
    package PerceptionTimestampHelper is
 
-      function FromHistoricalTargetTime
-      (
-         targetTime : Windows.Foundation.DateTime
-      )
-      return WinRt.Windows.Perception.PerceptionTimestamp;
-
       function FromSystemRelativeTargetTime
       (
          targetTime : Windows.Foundation.TimeSpan
+      )
+      return WinRt.Windows.Perception.PerceptionTimestamp;
+
+      function FromHistoricalTargetTime
+      (
+         targetTime : Windows.Foundation.DateTime
       )
       return WinRt.Windows.Perception.PerceptionTimestamp;
 

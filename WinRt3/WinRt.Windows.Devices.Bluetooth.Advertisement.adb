@@ -436,22 +436,6 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BluetoothLEAdvertisementDataSection
 
-   function Constructor return BluetoothLEAdvertisementDataSection is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementDataSection");
-      m_ComRetVal  : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementDataSection;
-   begin
-      return RetVal : BluetoothLEAdvertisementDataSection do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IBluetoothLEAdvertisementDataSection := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementDataSection;
-            Retval.m_IBluetoothLEAdvertisementDataSection.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       dataType : WinRt.Byte;
@@ -472,6 +456,22 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
             Retval.m_IBluetoothLEAdvertisementDataSection := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementDataSection;
             Retval.m_IBluetoothLEAdvertisementDataSection.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return BluetoothLEAdvertisementDataSection is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementDataSection");
+      m_ComRetVal  : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementDataSection;
+   begin
+      return RetVal : BluetoothLEAdvertisementDataSection do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBluetoothLEAdvertisementDataSection := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementDataSection;
+            Retval.m_IBluetoothLEAdvertisementDataSection.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
@@ -758,7 +758,7 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
          return m_ComRetVal;
       end;
 
-      function get_SlaveConnectionIntervalRange
+      function get_PeripheralConnectionIntervalRange
       return WinRt.Byte is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -769,7 +769,7 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBluetoothLEAdvertisementDataTypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
-            Hr := m_Factory.get_SlaveConnectionIntervalRange (m_ComRetVal'Access);
+            Hr := m_Factory.get_PeripheralConnectionIntervalRange (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -1436,6 +1436,86 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       end if;
    end;
 
+   function get_PrimaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisher
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementPublisher3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisher.all);
+      Hr := m_Interface.get_PrimaryPhy (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_PrimaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisher;
+      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementPublisher3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisher.all);
+      Hr := m_Interface.put_PrimaryPhy (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SecondaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisher
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementPublisher3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisher.all);
+      Hr := m_Interface.get_SecondaryPhy (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_SecondaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisher;
+      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementPublisher3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisher.all);
+      Hr := m_Interface.put_SecondaryPhy (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BluetoothLEAdvertisementPublisherStatusChangedEventArgs
 
@@ -1778,6 +1858,156 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       return m_ComRetVal;
    end;
 
+   function get_PrimaryPhy
+   (
+      this : in out BluetoothLEAdvertisementReceivedEventArgs
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementReceivedEventArgs3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementReceivedEventArgs_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementReceivedEventArgs3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementReceivedEventArgs3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementReceivedEventArgs.all);
+      Hr := m_Interface.get_PrimaryPhy (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_SecondaryPhy
+   (
+      this : in out BluetoothLEAdvertisementReceivedEventArgs
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementReceivedEventArgs3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementReceivedEventArgs_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementReceivedEventArgs3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementReceivedEventArgs3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementReceivedEventArgs.all);
+      Hr := m_Interface.get_SecondaryPhy (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BluetoothLEAdvertisementScanParameters
+
+   procedure Initialize (this : in out BluetoothLEAdvertisementScanParameters) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out BluetoothLEAdvertisementScanParameters) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IBluetoothLEAdvertisementScanParameters, IBluetoothLEAdvertisementScanParameters_Ptr);
+   begin
+      if this.m_IBluetoothLEAdvertisementScanParameters /= null then
+         if this.m_IBluetoothLEAdvertisementScanParameters.all /= null then
+            temp := this.m_IBluetoothLEAdvertisementScanParameters.all.Release;
+            Free (this.m_IBluetoothLEAdvertisementScanParameters);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for BluetoothLEAdvertisementScanParameters
+
+   function CoexistenceOptimized
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParametersStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters;
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters do
+         Hr := RoGetActivationFactory (m_hString, IID_IBluetoothLEAdvertisementScanParametersStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CoexistenceOptimized (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IBluetoothLEAdvertisementScanParameters := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters;
+            Retval.m_IBluetoothLEAdvertisementScanParameters.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function LowLatency
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParametersStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters;
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters do
+         Hr := RoGetActivationFactory (m_hString, IID_IBluetoothLEAdvertisementScanParametersStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.LowLatency (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IBluetoothLEAdvertisementScanParameters := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters;
+            Retval.m_IBluetoothLEAdvertisementScanParameters.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BluetoothLEAdvertisementScanParameters
+
+   function get_ScanWindow
+   (
+      this : in out BluetoothLEAdvertisementScanParameters
+   )
+   return WinRt.UInt16 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt16;
+   begin
+      Hr := this.m_IBluetoothLEAdvertisementScanParameters.all.get_ScanWindow (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ScanInterval
+   (
+      this : in out BluetoothLEAdvertisementScanParameters
+   )
+   return WinRt.UInt16 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt16;
+   begin
+      Hr := this.m_IBluetoothLEAdvertisementScanParameters.all.get_ScanInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BluetoothLEAdvertisementWatcher
 
@@ -1801,22 +2031,6 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BluetoothLEAdvertisementWatcher
 
-   function Constructor return BluetoothLEAdvertisementWatcher is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementWatcher");
-      m_ComRetVal  : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher;
-   begin
-      return RetVal : BluetoothLEAdvertisementWatcher do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IBluetoothLEAdvertisementWatcher := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher;
-            Retval.m_IBluetoothLEAdvertisementWatcher.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       advertisementFilter : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementFilter'Class
@@ -1836,6 +2050,22 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
             Retval.m_IBluetoothLEAdvertisementWatcher := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher;
             Retval.m_IBluetoothLEAdvertisementWatcher.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return BluetoothLEAdvertisementWatcher is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementWatcher");
+      m_ComRetVal  : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher;
+   begin
+      return RetVal : BluetoothLEAdvertisementWatcher do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBluetoothLEAdvertisementWatcher := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher;
+            Retval.m_IBluetoothLEAdvertisementWatcher.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
@@ -2165,6 +2395,169 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       end if;
    end;
 
+   function get_UseUncoded1MPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcher
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementWatcher3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcher.all);
+      Hr := m_Interface.get_UseUncoded1MPhy (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_UseUncoded1MPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcher;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementWatcher3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcher.all);
+      Hr := m_Interface.put_UseUncoded1MPhy (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_UseCodedPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcher
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementWatcher3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcher.all);
+      Hr := m_Interface.get_UseCodedPhy (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_UseCodedPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcher;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementWatcher3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcher.all);
+      Hr := m_Interface.put_UseCodedPhy (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ScanParameters
+   (
+      this : in out BluetoothLEAdvertisementWatcher
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementWatcher3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters do
+         m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcher.all);
+         Hr := m_Interface.get_ScanParameters (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBluetoothLEAdvertisementScanParameters := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters;
+         Retval.m_IBluetoothLEAdvertisementScanParameters.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_ScanParameters
+   (
+      this : in out BluetoothLEAdvertisementWatcher;
+      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementWatcher3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcher.all);
+      Hr := m_Interface.put_ScanParameters (value.m_IBluetoothLEAdvertisementScanParameters.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_UseHardwareFilter
+   (
+      this : in out BluetoothLEAdvertisementWatcher
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementWatcher3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcher.all);
+      Hr := m_Interface.get_UseHardwareFilter (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_UseHardwareFilter
+   (
+      this : in out BluetoothLEAdvertisementWatcher;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher_Interface, WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher3, WinRt.Windows.Devices.Bluetooth.Advertisement.IID_IBluetoothLEAdvertisementWatcher3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcher.all);
+      Hr := m_Interface.put_UseHardwareFilter (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BluetoothLEAdvertisementWatcherStoppedEventArgs
 
@@ -2228,6 +2621,22 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BluetoothLEManufacturerData
 
+   function Constructor return BluetoothLEManufacturerData is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEManufacturerData");
+      m_ComRetVal  : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData;
+   begin
+      return RetVal : BluetoothLEManufacturerData do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBluetoothLEManufacturerData := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData;
+            Retval.m_IBluetoothLEManufacturerData.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       companyId : WinRt.UInt16;
@@ -2248,22 +2657,6 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
             Retval.m_IBluetoothLEManufacturerData := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData;
             Retval.m_IBluetoothLEManufacturerData.all := m_ComRetVal;
             temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor return BluetoothLEManufacturerData is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEManufacturerData");
-      m_ComRetVal  : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData;
-   begin
-      return RetVal : BluetoothLEManufacturerData do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IBluetoothLEManufacturerData := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData;
-            Retval.m_IBluetoothLEManufacturerData.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

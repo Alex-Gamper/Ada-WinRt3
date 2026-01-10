@@ -39,12 +39,15 @@ package WinRt.Windows.System.Power is
 
    type IBackgroundEnergyManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundEnergyManagerStatics is access all IBackgroundEnergyManagerStatics_Interface'Class;
+   type IBackgroundEnergyManagerStatics_Ptr is access all IBackgroundEnergyManagerStatics;
 
    type IForegroundEnergyManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IForegroundEnergyManagerStatics is access all IForegroundEnergyManagerStatics_Interface'Class;
+   type IForegroundEnergyManagerStatics_Ptr is access all IForegroundEnergyManagerStatics;
 
    type IPowerManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPowerManagerStatics is access all IPowerManagerStatics_Interface'Class;
+   type IPowerManagerStatics_Ptr is access all IPowerManagerStatics;
 
    -----------------------------------------------------------------------------
    -- Enum declarations

@@ -55,9 +55,11 @@ package WinRt.Windows.Graphics.Imaging is
 
    type IBitmapDecoderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapDecoderStatics is access all IBitmapDecoderStatics_Interface'Class;
+   type IBitmapDecoderStatics_Ptr is access all IBitmapDecoderStatics;
 
    type IBitmapDecoderStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapDecoderStatics2 is access all IBitmapDecoderStatics2_Interface'Class;
+   type IBitmapDecoderStatics2_Ptr is access all IBitmapDecoderStatics2;
 
    type IBitmapEncoder_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapEncoder is access all IBitmapEncoder_Interface'Class;
@@ -65,12 +67,15 @@ package WinRt.Windows.Graphics.Imaging is
 
    type IBitmapEncoderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapEncoderStatics is access all IBitmapEncoderStatics_Interface'Class;
+   type IBitmapEncoderStatics_Ptr is access all IBitmapEncoderStatics;
 
    type IBitmapEncoderStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapEncoderStatics2 is access all IBitmapEncoderStatics2_Interface'Class;
+   type IBitmapEncoderStatics2_Ptr is access all IBitmapEncoderStatics2;
 
    type IBitmapEncoderWithSoftwareBitmap_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapEncoderWithSoftwareBitmap is access all IBitmapEncoderWithSoftwareBitmap_Interface'Class;
+   type IBitmapEncoderWithSoftwareBitmap_Ptr is access all IBitmapEncoderWithSoftwareBitmap;
 
    type IBitmapFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapFrame is access all IBitmapFrame_Interface'Class;
@@ -78,6 +83,7 @@ package WinRt.Windows.Graphics.Imaging is
 
    type IBitmapFrameWithSoftwareBitmap_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapFrameWithSoftwareBitmap is access all IBitmapFrameWithSoftwareBitmap_Interface'Class;
+   type IBitmapFrameWithSoftwareBitmap_Ptr is access all IBitmapFrameWithSoftwareBitmap;
 
    type IBitmapProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapProperties is access all IBitmapProperties_Interface'Class;
@@ -97,6 +103,7 @@ package WinRt.Windows.Graphics.Imaging is
 
    type IBitmapTypedValueFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapTypedValueFactory is access all IBitmapTypedValueFactory_Interface'Class;
+   type IBitmapTypedValueFactory_Ptr is access all IBitmapTypedValueFactory;
 
    type IPixelDataProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IPixelDataProvider is access all IPixelDataProvider_Interface'Class;
@@ -108,9 +115,11 @@ package WinRt.Windows.Graphics.Imaging is
 
    type ISoftwareBitmapFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISoftwareBitmapFactory is access all ISoftwareBitmapFactory_Interface'Class;
+   type ISoftwareBitmapFactory_Ptr is access all ISoftwareBitmapFactory;
 
    type ISoftwareBitmapStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISoftwareBitmapStatics is access all ISoftwareBitmapStatics_Interface'Class;
+   type ISoftwareBitmapStatics_Ptr is access all ISoftwareBitmapStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1573,9 +1582,6 @@ package WinRt.Windows.Graphics.Imaging is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BitmapEncoder
 
-   function get_HeifEncoderId
-   return WinRt.Guid;
-
    function get_BmpEncoderId
    return WinRt.Guid;
 
@@ -1624,6 +1630,9 @@ package WinRt.Windows.Graphics.Imaging is
       bitmapDecoder_p : Windows.Graphics.Imaging.BitmapDecoder'Class
    )
    return WinRt.Windows.Graphics.Imaging.BitmapEncoder;
+
+   function get_HeifEncoderId
+   return WinRt.Guid;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BitmapEncoder

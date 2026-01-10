@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-limited with WinRt.Windows.ApplicationModel.DataTransfer;
 with WinRt.Windows.Foundation;
 limited with WinRt.Windows.Storage.Streams;
 limited with WinRt.Windows.UI;
@@ -48,6 +47,7 @@ package WinRt.Windows.Web.UI is
 
    type IWebViewControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewControl2 is access all IWebViewControl2_Interface'Class;
+   type IWebViewControl2_Ptr is access all IWebViewControl2;
 
    type IWebViewControlContentLoadingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewControlContentLoadingEventArgs is access all IWebViewControlContentLoadingEventArgs_Interface'Class;
@@ -79,6 +79,7 @@ package WinRt.Windows.Web.UI is
 
    type IWebViewControlNewWindowRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewControlNewWindowRequestedEventArgs2 is access all IWebViewControlNewWindowRequestedEventArgs2_Interface'Class;
+   type IWebViewControlNewWindowRequestedEventArgs2_Ptr is access all IWebViewControlNewWindowRequestedEventArgs2;
 
    type IWebViewControlPermissionRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewControlPermissionRequest is access all IWebViewControlPermissionRequest_Interface'Class;

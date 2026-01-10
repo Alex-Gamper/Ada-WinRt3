@@ -40,9 +40,11 @@ package WinRt.Windows.Devices.Gpio.Provider is
 
    type IGpioControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IGpioControllerProvider is access all IGpioControllerProvider_Interface'Class;
+   type IGpioControllerProvider_Ptr is access all IGpioControllerProvider;
 
    type IGpioPinProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IGpioPinProvider is access all IGpioPinProvider_Interface'Class;
+   type IGpioPinProvider_Ptr is access all IGpioPinProvider;
 
    type IGpioPinProviderValueChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IGpioPinProviderValueChangedEventArgs is access all IGpioPinProviderValueChangedEventArgs_Interface'Class;
@@ -50,9 +52,11 @@ package WinRt.Windows.Devices.Gpio.Provider is
 
    type IGpioPinProviderValueChangedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGpioPinProviderValueChangedEventArgsFactory is access all IGpioPinProviderValueChangedEventArgsFactory_Interface'Class;
+   type IGpioPinProviderValueChangedEventArgsFactory_Ptr is access all IGpioPinProviderValueChangedEventArgsFactory;
 
    type IGpioProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IGpioProvider is access all IGpioProvider_Interface'Class;
+   type IGpioProvider_Ptr is access all IGpioProvider;
 
    -----------------------------------------------------------------------------
    -- Class declarations

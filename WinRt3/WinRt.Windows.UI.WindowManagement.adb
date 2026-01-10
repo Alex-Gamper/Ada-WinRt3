@@ -2227,6 +2227,33 @@ package body WinRt.Windows.UI.WindowManagement is
    end;
 
    -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package body WindowServices is
+
+      function FindAllTopLevelWindowIds
+      return WinRt.GenericObject is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.WindowServices");
+         m_Factory        : access WinRt.Windows.UI.WindowManagement.IWindowServicesStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased GenericObject;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowServicesStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FindAllTopLevelWindowIds (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+   end WindowServices;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for WindowingEnvironment
 
    procedure Initialize (this : in out WindowingEnvironment) is

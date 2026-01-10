@@ -53,13 +53,27 @@ package WinRt.Windows.ApplicationModel is
 
    type IAppInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppInfo2 is access all IAppInfo2_Interface'Class;
+   type IAppInfo2_Ptr is access all IAppInfo2;
+
+   type IAppInfo3_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppInfo3 is access all IAppInfo3_Interface'Class;
+   type IAppInfo3_Ptr is access all IAppInfo3;
+
+   type IAppInfo4_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppInfo4 is access all IAppInfo4_Interface'Class;
+   type IAppInfo4_Ptr is access all IAppInfo4;
 
    type IAppInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppInfoStatics is access all IAppInfoStatics_Interface'Class;
+   type IAppInfoStatics_Ptr is access all IAppInfoStatics;
 
    type IAppInstallerInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IAppInstallerInfo is access all IAppInstallerInfo_Interface'Class;
    type IAppInstallerInfo_Ptr is access all IAppInstallerInfo;
+
+   type IAppInstallerInfo2_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppInstallerInfo2 is access all IAppInstallerInfo2_Interface'Class;
+   type IAppInstallerInfo2_Ptr is access all IAppInstallerInfo2;
 
    type IAppInstance_Interface is interface and WinRt.IInspectable_Interface;
    type IAppInstance is access all IAppInstance_Interface'Class;
@@ -67,22 +81,39 @@ package WinRt.Windows.ApplicationModel is
 
    type IAppInstanceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppInstanceStatics is access all IAppInstanceStatics_Interface'Class;
-
-   type ICameraApplicationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICameraApplicationManagerStatics is access all ICameraApplicationManagerStatics_Interface'Class;
+   type IAppInstanceStatics_Ptr is access all IAppInstanceStatics;
 
    type IDesignModeStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDesignModeStatics is access all IDesignModeStatics_Interface'Class;
+   type IDesignModeStatics_Ptr is access all IDesignModeStatics;
 
    type IDesignModeStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IDesignModeStatics2 is access all IDesignModeStatics2_Interface'Class;
+   type IDesignModeStatics2_Ptr is access all IDesignModeStatics2;
 
    type IEnteredBackgroundEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IEnteredBackgroundEventArgs is access all IEnteredBackgroundEventArgs_Interface'Class;
    type IEnteredBackgroundEventArgs_Ptr is access all IEnteredBackgroundEventArgs;
 
+   type IFindRelatedPackagesOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IFindRelatedPackagesOptions is access all IFindRelatedPackagesOptions_Interface'Class;
+   type IFindRelatedPackagesOptions_Ptr is access all IFindRelatedPackagesOptions;
+
+   type IFindRelatedPackagesOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IFindRelatedPackagesOptionsFactory is access all IFindRelatedPackagesOptionsFactory_Interface'Class;
+   type IFindRelatedPackagesOptionsFactory_Ptr is access all IFindRelatedPackagesOptionsFactory;
+
+   type IFullTrustProcessLaunchResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IFullTrustProcessLaunchResult is access all IFullTrustProcessLaunchResult_Interface'Class;
+   type IFullTrustProcessLaunchResult_Ptr is access all IFullTrustProcessLaunchResult;
+
    type IFullTrustProcessLauncherStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFullTrustProcessLauncherStatics is access all IFullTrustProcessLauncherStatics_Interface'Class;
+   type IFullTrustProcessLauncherStatics_Ptr is access all IFullTrustProcessLauncherStatics;
+
+   type IFullTrustProcessLauncherStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type IFullTrustProcessLauncherStatics2 is access all IFullTrustProcessLauncherStatics2_Interface'Class;
+   type IFullTrustProcessLauncherStatics2_Ptr is access all IFullTrustProcessLauncherStatics2;
 
    type ILeavingBackgroundEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ILeavingBackgroundEventArgs is access all ILeavingBackgroundEventArgs_Interface'Class;
@@ -94,6 +125,7 @@ package WinRt.Windows.ApplicationModel is
 
    type ILimitedAccessFeaturesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILimitedAccessFeaturesStatics is access all ILimitedAccessFeaturesStatics_Interface'Class;
+   type ILimitedAccessFeaturesStatics_Ptr is access all ILimitedAccessFeaturesStatics;
 
    type IPackage_Interface is interface and WinRt.IInspectable_Interface;
    type IPackage is access all IPackage_Interface'Class;
@@ -101,24 +133,35 @@ package WinRt.Windows.ApplicationModel is
 
    type IPackage2_Interface is interface and WinRt.IInspectable_Interface;
    type IPackage2 is access all IPackage2_Interface'Class;
+   type IPackage2_Ptr is access all IPackage2;
 
    type IPackage3_Interface is interface and WinRt.IInspectable_Interface;
    type IPackage3 is access all IPackage3_Interface'Class;
+   type IPackage3_Ptr is access all IPackage3;
 
    type IPackage4_Interface is interface and WinRt.IInspectable_Interface;
    type IPackage4 is access all IPackage4_Interface'Class;
+   type IPackage4_Ptr is access all IPackage4;
 
    type IPackage5_Interface is interface and WinRt.IInspectable_Interface;
    type IPackage5 is access all IPackage5_Interface'Class;
+   type IPackage5_Ptr is access all IPackage5;
 
    type IPackage6_Interface is interface and WinRt.IInspectable_Interface;
    type IPackage6 is access all IPackage6_Interface'Class;
+   type IPackage6_Ptr is access all IPackage6;
 
    type IPackage7_Interface is interface and WinRt.IInspectable_Interface;
    type IPackage7 is access all IPackage7_Interface'Class;
+   type IPackage7_Ptr is access all IPackage7;
 
    type IPackage8_Interface is interface and WinRt.IInspectable_Interface;
    type IPackage8 is access all IPackage8_Interface'Class;
+   type IPackage8_Ptr is access all IPackage8;
+
+   type IPackage9_Interface is interface and WinRt.IInspectable_Interface;
+   type IPackage9 is access all IPackage9_Interface'Class;
+   type IPackage9_Ptr is access all IPackage9;
 
    type IPackageCatalog_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageCatalog is access all IPackageCatalog_Interface'Class;
@@ -126,12 +169,15 @@ package WinRt.Windows.ApplicationModel is
 
    type IPackageCatalog2_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageCatalog2 is access all IPackageCatalog2_Interface'Class;
+   type IPackageCatalog2_Ptr is access all IPackageCatalog2;
 
    type IPackageCatalog3_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageCatalog3 is access all IPackageCatalog3_Interface'Class;
+   type IPackageCatalog3_Ptr is access all IPackageCatalog3;
 
    type IPackageCatalog4_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageCatalog4 is access all IPackageCatalog4_Interface'Class;
+   type IPackageCatalog4_Ptr is access all IPackageCatalog4;
 
    type IPackageCatalogAddOptionalPackageResult_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageCatalogAddOptionalPackageResult is access all IPackageCatalogAddOptionalPackageResult_Interface'Class;
@@ -151,6 +197,11 @@ package WinRt.Windows.ApplicationModel is
 
    type IPackageCatalogStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageCatalogStatics is access all IPackageCatalogStatics_Interface'Class;
+   type IPackageCatalogStatics_Ptr is access all IPackageCatalogStatics;
+
+   type IPackageCatalogStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPackageCatalogStatics2 is access all IPackageCatalogStatics2_Interface'Class;
+   type IPackageCatalogStatics2_Ptr is access all IPackageCatalogStatics2;
 
    type IPackageContentGroup_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageContentGroup is access all IPackageContentGroup_Interface'Class;
@@ -162,6 +213,7 @@ package WinRt.Windows.ApplicationModel is
 
    type IPackageContentGroupStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageContentGroupStatics is access all IPackageContentGroupStatics_Interface'Class;
+   type IPackageContentGroupStatics_Ptr is access all IPackageContentGroupStatics;
 
    type IPackageId_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageId is access all IPackageId_Interface'Class;
@@ -169,6 +221,7 @@ package WinRt.Windows.ApplicationModel is
 
    type IPackageIdWithMetadata_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageIdWithMetadata is access all IPackageIdWithMetadata_Interface'Class;
+   type IPackageIdWithMetadata_Ptr is access all IPackageIdWithMetadata;
 
    type IPackageInstallingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageInstallingEventArgs is access all IPackageInstallingEventArgs_Interface'Class;
@@ -180,6 +233,7 @@ package WinRt.Windows.ApplicationModel is
 
    type IPackageStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageStatics is access all IPackageStatics_Interface'Class;
+   type IPackageStatics_Ptr is access all IPackageStatics;
 
    type IPackageStatus_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageStatus is access all IPackageStatus_Interface'Class;
@@ -187,6 +241,7 @@ package WinRt.Windows.ApplicationModel is
 
    type IPackageStatus2_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageStatus2 is access all IPackageStatus2_Interface'Class;
+   type IPackageStatus2_Ptr is access all IPackageStatus2;
 
    type IPackageStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageStatusChangedEventArgs is access all IPackageStatusChangedEventArgs_Interface'Class;
@@ -206,6 +261,7 @@ package WinRt.Windows.ApplicationModel is
 
    type IPackageWithMetadata_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageWithMetadata is access all IPackageWithMetadata_Interface'Class;
+   type IPackageWithMetadata_Ptr is access all IPackageWithMetadata;
 
    type IStartupTask_Interface is interface and WinRt.IInspectable_Interface;
    type IStartupTask is access all IStartupTask_Interface'Class;
@@ -213,6 +269,7 @@ package WinRt.Windows.ApplicationModel is
 
    type IStartupTaskStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStartupTaskStatics is access all IStartupTaskStatics_Interface'Class;
+   type IStartupTaskStatics_Ptr is access all IStartupTaskStatics;
 
    type ISuspendingDeferral_Interface is interface and WinRt.IInspectable_Interface;
    type ISuspendingDeferral is access all ISuspendingDeferral_Interface'Class;
@@ -259,6 +316,18 @@ package WinRt.Windows.ApplicationModel is
          m_IEnteredBackgroundEventArgs : access Windows.ApplicationModel.IEnteredBackgroundEventArgs;
       end record;
    type EnteredBackgroundEventArgs_Ptr is access all EnteredBackgroundEventArgs;
+
+   type FindRelatedPackagesOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IFindRelatedPackagesOptions : access Windows.ApplicationModel.IFindRelatedPackagesOptions;
+      end record;
+   type FindRelatedPackagesOptions_Ptr is access all FindRelatedPackagesOptions;
+
+   type FullTrustProcessLaunchResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IFullTrustProcessLaunchResult : access Windows.ApplicationModel.IFullTrustProcessLaunchResult;
+      end record;
+   type FullTrustProcessLaunchResult_Ptr is access all FullTrustProcessLaunchResult;
 
    type LeavingBackgroundEventArgs is new Ada.Finalization.Limited_Controlled with
       record
@@ -408,6 +477,42 @@ package WinRt.Windows.ApplicationModel is
    );
    type AddResourcePackageOptions_Ptr is access all AddResourcePackageOptions;
 
+   type AppExecutionContext is (
+      Unknown_e,
+      Host_e,
+      Guest_e
+   );
+   for AppExecutionContext use (
+      Unknown_e => 0,
+      Host_e => 1,
+      Guest_e => 2
+   );
+   type AppExecutionContext_Ptr is access all AppExecutionContext;
+
+   type AppInstallerPolicySource is (
+      Default_e,
+      System_e
+   );
+   for AppInstallerPolicySource use (
+      Default_e => 0,
+      System_e => 1
+   );
+   type AppInstallerPolicySource_Ptr is access all AppInstallerPolicySource;
+
+   type FullTrustLaunchResult is (
+      Success_e,
+      AccessDenied_e,
+      FileNotFound_e,
+      Unknown_e
+   );
+   for FullTrustLaunchResult use (
+      Success_e => 0,
+      AccessDenied_e => 1,
+      FileNotFound_e => 2,
+      Unknown_e => 3
+   );
+   type FullTrustLaunchResult_Ptr is access all FullTrustLaunchResult;
+
    type LimitedAccessFeatureStatus is (
       Unavailable_e,
       Available_e,
@@ -435,6 +540,18 @@ package WinRt.Windows.ApplicationModel is
       Staged_e => 3
    );
    type PackageContentGroupState_Ptr is access all PackageContentGroupState;
+
+   type PackageRelationship is (
+      Dependencies_e,
+      Dependents_e,
+      All_e
+   );
+   for PackageRelationship use (
+      Dependencies_e => 0,
+      Dependents_e => 1,
+      All_e => 2
+   );
+   type PackageRelationship_Ptr is access all PackageRelationship;
 
    type PackageSignatureKind is (
       None_e,
@@ -516,12 +633,20 @@ package WinRt.Windows.ApplicationModel is
    -----------------------------------------------------------------------------
 
    package IReference_DateTime is new WinRt.Windows.Foundation.IReference (WinRt.Windows.Foundation.DateTime);
-   IID_IReference_DateTime : aliased WinRt.IID := (427744076, 1891, 21939, (175, 100, 205, 236, 214, 145, 74, 118 ));
+   IID_IReference_DateTime : aliased WinRt.IID := (3008334764, 39397, 23371, (160, 216, 115, 50, 25, 182, 0, 168 ));
    function QInterface_IReference_DateTime is new Generic_QueryInterface (GenericObject_Interface, IReference_DateTime.Kind, IID_IReference_DateTime'Access);
+
+   package IVectorView_IUriRuntimeClass is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Foundation.IUriRuntimeClass);
+   IID_IVectorView_IUriRuntimeClass : aliased WinRt.IID := (3008334764, 39397, 23371, (160, 216, 115, 50, 25, 182, 0, 168 ));
+   function QInterface_IVectorView_IUriRuntimeClass is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUriRuntimeClass.Kind, IID_IVectorView_IUriRuntimeClass'Access);
 
    package IVectorView_IPackage is new WinRt.Windows.Foundation.Collections.IVectorView (IPackage);
    IID_IVectorView_IPackage : aliased WinRt.IID := (2459893342, 26304, 23845, (150, 122, 200, 221, 165, 127, 66, 241 ));
    function QInterface_IVectorView_IPackage is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPackage.Kind, IID_IVectorView_IPackage'Access);
+
+   package IVector_IPackage is new WinRt.Windows.Foundation.Collections.IVector (IPackage);
+   IID_IVector_IPackage : aliased WinRt.IID := (2063866332, 7529, 20496, (143, 111, 81, 194, 58, 137, 117, 110 ));
+   function QInterface_IVector_IPackage is new Generic_QueryInterface (GenericObject_Interface, IVector_IPackage.Kind, IID_IVector_IPackage'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -600,6 +725,31 @@ package WinRt.Windows.ApplicationModel is
       IID_IAppInfo2 : aliased WinRt.IID := (3192594266, 8344, 17179, (189, 37, 179, 8, 120, 116, 141, 71 ));
 
    -----------------------------------------------------------------------------
+   -- type IAppInfo3 is interface and WinRt.IInspectable;
+
+      function get_ExecutionContext
+      (
+         this : access IAppInfo3_Interface;
+         RetVal : access Windows.ApplicationModel.AppExecutionContext
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppInfo3 : aliased WinRt.IID := (161975878, 37796, 18142, (147, 151, 8, 67, 181, 113, 21, 234 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAppInfo4 is interface and WinRt.IInspectable;
+
+      function get_SupportedFileExtensions
+      (
+         this : access IAppInfo4_Interface;
+         RetValSize : access WinRt.UInt32;
+         RetVal : access WinRt.HString_Ptr
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppInfo4 : aliased WinRt.IID := (791985643, 5641, 17748, (159, 51, 18, 225, 232, 3, 224, 212 ));
+
+   -----------------------------------------------------------------------------
    -- type IAppInfoStatics is interface and WinRt.IInspectable;
 
       function get_Current
@@ -639,6 +789,116 @@ package WinRt.Windows.ApplicationModel is
       return WinRt.Hresult is abstract;
 
       IID_IAppInstallerInfo : aliased WinRt.IID := (699083456, 54518, 17059, (173, 205, 214, 88, 60, 101, 149, 8 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAppInstallerInfo2 is interface and WinRt.IInspectable;
+
+      function get_OnLaunch
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_HoursBetweenUpdateChecks
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ShowPrompt
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UpdateBlocksActivation
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AutomaticBackgroundTask
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ForceUpdateFromAnyVersion
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsAutoRepairEnabled
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Version
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access Windows.ApplicationModel.PackageVersion
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_LastChecked
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access Windows.Foundation.DateTime
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PausedUntil
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UpdateUris
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RepairUris
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DependencyPackageUris
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OptionalPackageUris
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PolicySource
+      (
+         this : access IAppInstallerInfo2_Interface;
+         RetVal : access Windows.ApplicationModel.AppInstallerPolicySource
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppInstallerInfo2 : aliased WinRt.IID := (3524203400, 33366, 22908, (133, 17, 200, 78, 197, 13, 94, 43 ));
 
    -----------------------------------------------------------------------------
    -- type IAppInstance is interface and WinRt.IInspectable;
@@ -706,17 +966,6 @@ package WinRt.Windows.ApplicationModel is
       IID_IAppInstanceStatics : aliased WinRt.IID := (2635196287, 40614, 18351, (166, 236, 70, 120, 76, 91, 162, 84 ));
 
    -----------------------------------------------------------------------------
-   -- type ICameraApplicationManagerStatics is interface and WinRt.IInspectable;
-
-      function ShowInstalledApplicationsUI
-      (
-         this : access ICameraApplicationManagerStatics_Interface
-      )
-      return WinRt.Hresult is abstract;
-
-      IID_ICameraApplicationManagerStatics : aliased WinRt.IID := (2509888974, 39891, 17244, (128, 84, 193, 173, 213, 0, 40, 254 ));
-
-   -----------------------------------------------------------------------------
    -- type IDesignModeStatics is interface and WinRt.IInspectable;
 
       function get_DesignModeEnabled
@@ -751,6 +1000,113 @@ package WinRt.Windows.ApplicationModel is
       return WinRt.Hresult is abstract;
 
       IID_IEnteredBackgroundEventArgs : aliased WinRt.IID := (4146257090, 38951, 16445, (170, 237, 236, 202, 154, 193, 115, 152 ));
+
+   -----------------------------------------------------------------------------
+   -- type IFindRelatedPackagesOptions is interface and WinRt.IInspectable;
+
+      function get_Relationship
+      (
+         this : access IFindRelatedPackagesOptions_Interface;
+         RetVal : access Windows.ApplicationModel.PackageRelationship
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Relationship
+      (
+         this : access IFindRelatedPackagesOptions_Interface;
+         value : Windows.ApplicationModel.PackageRelationship
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IncludeFrameworks
+      (
+         this : access IFindRelatedPackagesOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IncludeFrameworks
+      (
+         this : access IFindRelatedPackagesOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IncludeHostRuntimes
+      (
+         this : access IFindRelatedPackagesOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IncludeHostRuntimes
+      (
+         this : access IFindRelatedPackagesOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IncludeOptionals
+      (
+         this : access IFindRelatedPackagesOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IncludeOptionals
+      (
+         this : access IFindRelatedPackagesOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IncludeResources
+      (
+         this : access IFindRelatedPackagesOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IncludeResources
+      (
+         this : access IFindRelatedPackagesOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IFindRelatedPackagesOptions : aliased WinRt.IID := (1105034986, 45877, 21023, (185, 108, 94, 160, 127, 91, 115, 41 ));
+
+   -----------------------------------------------------------------------------
+   -- type IFindRelatedPackagesOptionsFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IFindRelatedPackagesOptionsFactory_Interface;
+         Relationship : Windows.ApplicationModel.PackageRelationship;
+         RetVal : access Windows.ApplicationModel.IFindRelatedPackagesOptions
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IFindRelatedPackagesOptionsFactory : aliased WinRt.IID := (3620827732, 42237, 21956, (152, 207, 242, 113, 11, 125, 139, 226 ));
+
+   -----------------------------------------------------------------------------
+   -- type IFullTrustProcessLaunchResult is interface and WinRt.IInspectable;
+
+      function get_LaunchResult
+      (
+         this : access IFullTrustProcessLaunchResult_Interface;
+         RetVal : access Windows.ApplicationModel.FullTrustLaunchResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IFullTrustProcessLaunchResult_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IFullTrustProcessLaunchResult : aliased WinRt.IID := (2300041352, 60923, 20831, (142, 34, 94, 188, 235, 105, 223, 217 ));
 
    -----------------------------------------------------------------------------
    -- type IFullTrustProcessLauncherStatics is interface and WinRt.IInspectable;
@@ -788,6 +1144,28 @@ package WinRt.Windows.ApplicationModel is
       return WinRt.Hresult is abstract;
 
       IID_IFullTrustProcessLauncherStatics : aliased WinRt.IID := (3615785855, 4352, 15467, (164, 85, 246, 38, 44, 195, 49, 182 ));
+
+   -----------------------------------------------------------------------------
+   -- type IFullTrustProcessLauncherStatics2 is interface and WinRt.IInspectable;
+
+      function LaunchFullTrustProcessForCurrentAppWithArgumentsAsync
+      (
+         this : access IFullTrustProcessLauncherStatics2_Interface;
+         commandLine : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function LaunchFullTrustProcessForAppWithArgumentsAsync
+      (
+         this : access IFullTrustProcessLauncherStatics2_Interface;
+         fullTrustPackageRelativeAppId : WinRt.HString;
+         commandLine : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IFullTrustProcessLauncherStatics2 : aliased WinRt.IID := (2341394223, 46684, 22223, (161, 167, 43, 247, 124, 188, 110, 168 ));
 
    -----------------------------------------------------------------------------
    -- type ILeavingBackgroundEventArgs is interface and WinRt.IInspectable;
@@ -1155,6 +1533,26 @@ package WinRt.Windows.ApplicationModel is
       IID_IPackage8 : aliased WinRt.IID := (743985019, 52778, 19430, (160, 147, 119, 207, 187, 42, 126, 161 ));
 
    -----------------------------------------------------------------------------
+   -- type IPackage9 is interface and WinRt.IInspectable;
+
+      function FindRelatedPackages
+      (
+         this : access IPackage9_Interface;
+         options : Windows.ApplicationModel.IFindRelatedPackagesOptions;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SourceUriSchemeName
+      (
+         this : access IPackage9_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPackage9 : aliased WinRt.IID := (3584762447, 55265, 18924, (144, 206, 114, 12, 219, 208, 46, 156 ));
+
+   -----------------------------------------------------------------------------
    -- type IPackageCatalog is interface and WinRt.IInspectable;
 
       function add_PackageStaging
@@ -1399,6 +1797,19 @@ package WinRt.Windows.ApplicationModel is
       return WinRt.Hresult is abstract;
 
       IID_IPackageCatalogStatics : aliased WinRt.IID := (2710345366, 58971, 17972, (186, 33, 94, 99, 235, 114, 68, 167 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPackageCatalogStatics2 is interface and WinRt.IInspectable;
+
+      function OpenForPackage
+      (
+         this : access IPackageCatalogStatics2_Interface;
+         package_x_p : Windows.ApplicationModel.IPackage;
+         RetVal : access Windows.ApplicationModel.IPackageCatalog
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPackageCatalogStatics2 : aliased WinRt.IID := (1276232025, 39464, 22924, (177, 133, 85, 225, 137, 155, 43, 228 ));
 
    -----------------------------------------------------------------------------
    -- type IPackageContentGroup is interface and WinRt.IInspectable;
@@ -2100,6 +2511,18 @@ package WinRt.Windows.ApplicationModel is
    )
    return WinRt.Windows.ApplicationModel.Package_x'Class;
 
+   function get_ExecutionContext
+   (
+      this : in out AppInfo
+   )
+   return WinRt.Windows.ApplicationModel.AppExecutionContext;
+
+   function get_SupportedFileExtensions
+   (
+      this : in out AppInfo
+   )
+   return WinRt.WString_Array;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AppInstallerInfo
 
@@ -2114,6 +2537,96 @@ package WinRt.Windows.ApplicationModel is
       this : in out AppInstallerInfo
    )
    return WinRt.Windows.Foundation.Uri'Class;
+
+   function get_OnLaunch
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Boolean;
+
+   function get_HoursBetweenUpdateChecks
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.UInt32;
+
+   function get_ShowPrompt
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Boolean;
+
+   function get_UpdateBlocksActivation
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Boolean;
+
+   function get_AutomaticBackgroundTask
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Boolean;
+
+   function get_ForceUpdateFromAnyVersion
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Boolean;
+
+   function get_IsAutoRepairEnabled
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Boolean;
+
+   function get_Version
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Windows.ApplicationModel.PackageVersion;
+
+   function get_LastChecked
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Windows.Foundation.DateTime;
+
+   function get_PausedUntil
+   (
+      this : in out AppInstallerInfo
+   )
+   return IReference_DateTime.Kind;
+
+   function get_UpdateUris
+   (
+      this : in out AppInstallerInfo
+   )
+   return IVectorView_IUriRuntimeClass.Kind;
+
+   function get_RepairUris
+   (
+      this : in out AppInstallerInfo
+   )
+   return IVectorView_IUriRuntimeClass.Kind;
+
+   function get_DependencyPackageUris
+   (
+      this : in out AppInstallerInfo
+   )
+   return IVectorView_IUriRuntimeClass.Kind;
+
+   function get_OptionalPackageUris
+   (
+      this : in out AppInstallerInfo
+   )
+   return IVectorView_IUriRuntimeClass.Kind;
+
+   function get_PolicySource
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Windows.ApplicationModel.AppInstallerPolicySource;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AppInstance
@@ -2163,20 +2676,12 @@ package WinRt.Windows.ApplicationModel is
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
-   package CameraApplicationManager is
-
-      procedure ShowInstalledApplicationsUI;
-
-   end CameraApplicationManager;
-
-   -----------------------------------------------------------------------------
-   -- Static RuntimeClass
    package DesignMode is
 
-      function get_DesignMode2Enabled
+      function get_DesignModeEnabled
       return WinRt.Boolean;
 
-      function get_DesignModeEnabled
+      function get_DesignMode2Enabled
       return WinRt.Boolean;
 
    end DesignMode;
@@ -2195,6 +2700,105 @@ package WinRt.Windows.ApplicationModel is
       this : in out EnteredBackgroundEventArgs
    )
    return WinRt.Windows.Foundation.Deferral'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for FindRelatedPackagesOptions
+
+   overriding procedure Initialize (this : in out FindRelatedPackagesOptions);
+   overriding procedure Finalize (this : in out FindRelatedPackagesOptions);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for FindRelatedPackagesOptions
+
+   function Constructor
+   (
+      Relationship : Windows.ApplicationModel.PackageRelationship
+   )
+   return FindRelatedPackagesOptions;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for FindRelatedPackagesOptions
+
+   function get_Relationship
+   (
+      this : in out FindRelatedPackagesOptions
+   )
+   return WinRt.Windows.ApplicationModel.PackageRelationship;
+
+   procedure put_Relationship
+   (
+      this : in out FindRelatedPackagesOptions;
+      value : Windows.ApplicationModel.PackageRelationship
+   );
+
+   function get_IncludeFrameworks
+   (
+      this : in out FindRelatedPackagesOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_IncludeFrameworks
+   (
+      this : in out FindRelatedPackagesOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_IncludeHostRuntimes
+   (
+      this : in out FindRelatedPackagesOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_IncludeHostRuntimes
+   (
+      this : in out FindRelatedPackagesOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_IncludeOptionals
+   (
+      this : in out FindRelatedPackagesOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_IncludeOptionals
+   (
+      this : in out FindRelatedPackagesOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_IncludeResources
+   (
+      this : in out FindRelatedPackagesOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_IncludeResources
+   (
+      this : in out FindRelatedPackagesOptions;
+      value : WinRt.Boolean
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for FullTrustProcessLaunchResult
+
+   overriding procedure Initialize (this : in out FullTrustProcessLaunchResult);
+   overriding procedure Finalize (this : in out FullTrustProcessLaunchResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for FullTrustProcessLaunchResult
+
+   function get_LaunchResult
+   (
+      this : in out FullTrustProcessLaunchResult
+   )
+   return WinRt.Windows.ApplicationModel.FullTrustLaunchResult;
+
+   function get_ExtendedError
+   (
+      this : in out FullTrustProcessLaunchResult
+   )
+   return WinRt.Windows.Foundation.HResult;
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
@@ -2217,6 +2821,19 @@ package WinRt.Windows.ApplicationModel is
          fullTrustPackageRelativeAppId : WinRt.WString;
          parameterGroupId : WinRt.WString
       );
+
+      function LaunchFullTrustProcessForCurrentAppWithArgumentsAsync
+      (
+         commandLine : WinRt.WString
+      )
+      return WinRt.Windows.ApplicationModel.FullTrustProcessLaunchResult;
+
+      function LaunchFullTrustProcessForAppWithArgumentsAsync
+      (
+         fullTrustPackageRelativeAppId : WinRt.WString;
+         commandLine : WinRt.WString
+      )
+      return WinRt.Windows.ApplicationModel.FullTrustProcessLaunchResult;
 
    end FullTrustProcessLauncher;
 
@@ -2543,6 +3160,19 @@ package WinRt.Windows.ApplicationModel is
    )
    return WinRt.Boolean;
 
+   function FindRelatedPackages
+   (
+      this : in out Package_x;
+      options : Windows.ApplicationModel.FindRelatedPackagesOptions'Class
+   )
+   return IVector_IPackage.Kind;
+
+   function get_SourceUriSchemeName
+   (
+      this : in out Package_x
+   )
+   return WinRt.WString;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PackageCatalog
 
@@ -2556,6 +3186,12 @@ package WinRt.Windows.ApplicationModel is
    return WinRt.Windows.ApplicationModel.PackageCatalog;
 
    function OpenForCurrentUser
+   return WinRt.Windows.ApplicationModel.PackageCatalog;
+
+   function OpenForPackage
+   (
+      package_x_p : Windows.ApplicationModel.Package_x'Class
+   )
    return WinRt.Windows.ApplicationModel.PackageCatalog;
 
    -----------------------------------------------------------------------------

@@ -48,6 +48,7 @@ package WinRt.Windows.Globalization.Fonts is
 
    type ILanguageFontGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILanguageFontGroupFactory is access all ILanguageFontGroupFactory_Interface'Class;
+   type ILanguageFontGroupFactory_Ptr is access all ILanguageFontGroupFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations

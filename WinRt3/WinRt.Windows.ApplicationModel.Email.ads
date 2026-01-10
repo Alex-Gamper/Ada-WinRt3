@@ -48,12 +48,15 @@ package WinRt.Windows.ApplicationModel.Email is
 
    type IEmailAttachment2_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailAttachment2 is access all IEmailAttachment2_Interface'Class;
+   type IEmailAttachment2_Ptr is access all IEmailAttachment2;
 
    type IEmailAttachmentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailAttachmentFactory is access all IEmailAttachmentFactory_Interface'Class;
+   type IEmailAttachmentFactory_Ptr is access all IEmailAttachmentFactory;
 
    type IEmailAttachmentFactory2_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailAttachmentFactory2 is access all IEmailAttachmentFactory2_Interface'Class;
+   type IEmailAttachmentFactory2_Ptr is access all IEmailAttachmentFactory2;
 
    type IEmailConversation_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailConversation is access all IEmailConversation_Interface'Class;
@@ -77,6 +80,7 @@ package WinRt.Windows.ApplicationModel.Email is
 
    type IEmailIrmInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailIrmInfoFactory is access all IEmailIrmInfoFactory_Interface'Class;
+   type IEmailIrmInfoFactory_Ptr is access all IEmailIrmInfoFactory;
 
    type IEmailIrmTemplate_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailIrmTemplate is access all IEmailIrmTemplate_Interface'Class;
@@ -84,6 +88,7 @@ package WinRt.Windows.ApplicationModel.Email is
 
    type IEmailIrmTemplateFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailIrmTemplateFactory is access all IEmailIrmTemplateFactory_Interface'Class;
+   type IEmailIrmTemplateFactory_Ptr is access all IEmailIrmTemplateFactory;
 
    type IEmailItemCounts_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailItemCounts is access all IEmailItemCounts_Interface'Class;
@@ -95,15 +100,19 @@ package WinRt.Windows.ApplicationModel.Email is
 
    type IEmailMailbox2_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMailbox2 is access all IEmailMailbox2_Interface'Class;
+   type IEmailMailbox2_Ptr is access all IEmailMailbox2;
 
    type IEmailMailbox3_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMailbox3 is access all IEmailMailbox3_Interface'Class;
+   type IEmailMailbox3_Ptr is access all IEmailMailbox3;
 
    type IEmailMailbox4_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMailbox4 is access all IEmailMailbox4_Interface'Class;
+   type IEmailMailbox4_Ptr is access all IEmailMailbox4;
 
    type IEmailMailbox5_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMailbox5 is access all IEmailMailbox5_Interface'Class;
+   type IEmailMailbox5_Ptr is access all IEmailMailbox5;
 
    type IEmailMailboxAction_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMailboxAction is access all IEmailMailboxAction_Interface'Class;
@@ -123,9 +132,11 @@ package WinRt.Windows.ApplicationModel.Email is
 
    type IEmailMailboxCapabilities2_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMailboxCapabilities2 is access all IEmailMailboxCapabilities2_Interface'Class;
+   type IEmailMailboxCapabilities2_Ptr is access all IEmailMailboxCapabilities2;
 
    type IEmailMailboxCapabilities3_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMailboxCapabilities3 is access all IEmailMailboxCapabilities3_Interface'Class;
+   type IEmailMailboxCapabilities3_Ptr is access all IEmailMailboxCapabilities3;
 
    type IEmailMailboxChange_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMailboxChange is access all IEmailMailboxChange_Interface'Class;
@@ -157,9 +168,11 @@ package WinRt.Windows.ApplicationModel.Email is
 
    type IEmailMailboxPolicies2_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMailboxPolicies2 is access all IEmailMailboxPolicies2_Interface'Class;
+   type IEmailMailboxPolicies2_Ptr is access all IEmailMailboxPolicies2;
 
    type IEmailMailboxPolicies3_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMailboxPolicies3 is access all IEmailMailboxPolicies3_Interface'Class;
+   type IEmailMailboxPolicies3_Ptr is access all IEmailMailboxPolicies3;
 
    type IEmailMailboxSyncManager_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMailboxSyncManager is access all IEmailMailboxSyncManager_Interface'Class;
@@ -167,6 +180,7 @@ package WinRt.Windows.ApplicationModel.Email is
 
    type IEmailMailboxSyncManager2_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMailboxSyncManager2 is access all IEmailMailboxSyncManager2_Interface'Class;
+   type IEmailMailboxSyncManager2_Ptr is access all IEmailMailboxSyncManager2;
 
    type IEmailManagerForUser_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailManagerForUser is access all IEmailManagerForUser_Interface'Class;
@@ -174,12 +188,15 @@ package WinRt.Windows.ApplicationModel.Email is
 
    type IEmailManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailManagerStatics is access all IEmailManagerStatics_Interface'Class;
+   type IEmailManagerStatics_Ptr is access all IEmailManagerStatics;
 
    type IEmailManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailManagerStatics2 is access all IEmailManagerStatics2_Interface'Class;
+   type IEmailManagerStatics2_Ptr is access all IEmailManagerStatics2;
 
    type IEmailManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailManagerStatics3 is access all IEmailManagerStatics3_Interface'Class;
+   type IEmailManagerStatics3_Ptr is access all IEmailManagerStatics3;
 
    type IEmailMeetingInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMeetingInfo is access all IEmailMeetingInfo_Interface'Class;
@@ -187,6 +204,7 @@ package WinRt.Windows.ApplicationModel.Email is
 
    type IEmailMeetingInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMeetingInfo2 is access all IEmailMeetingInfo2_Interface'Class;
+   type IEmailMeetingInfo2_Ptr is access all IEmailMeetingInfo2;
 
    type IEmailMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMessage is access all IEmailMessage_Interface'Class;
@@ -194,12 +212,15 @@ package WinRt.Windows.ApplicationModel.Email is
 
    type IEmailMessage2_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMessage2 is access all IEmailMessage2_Interface'Class;
+   type IEmailMessage2_Ptr is access all IEmailMessage2;
 
    type IEmailMessage3_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMessage3 is access all IEmailMessage3_Interface'Class;
+   type IEmailMessage3_Ptr is access all IEmailMessage3;
 
    type IEmailMessage4_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMessage4 is access all IEmailMessage4_Interface'Class;
+   type IEmailMessage4_Ptr is access all IEmailMessage4;
 
    type IEmailMessageBatch_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailMessageBatch is access all IEmailMessageBatch_Interface'Class;
@@ -215,6 +236,7 @@ package WinRt.Windows.ApplicationModel.Email is
 
    type IEmailQueryOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailQueryOptionsFactory is access all IEmailQueryOptionsFactory_Interface'Class;
+   type IEmailQueryOptionsFactory_Ptr is access all IEmailQueryOptionsFactory;
 
    type IEmailQueryTextSearch_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailQueryTextSearch is access all IEmailQueryTextSearch_Interface'Class;
@@ -226,6 +248,7 @@ package WinRt.Windows.ApplicationModel.Email is
 
    type IEmailRecipientFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailRecipientFactory is access all IEmailRecipientFactory_Interface'Class;
+   type IEmailRecipientFactory_Ptr is access all IEmailRecipientFactory;
 
    type IEmailRecipientResolutionResult_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailRecipientResolutionResult is access all IEmailRecipientResolutionResult_Interface'Class;
@@ -233,6 +256,7 @@ package WinRt.Windows.ApplicationModel.Email is
 
    type IEmailRecipientResolutionResult2_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailRecipientResolutionResult2 is access all IEmailRecipientResolutionResult2_Interface'Class;
+   type IEmailRecipientResolutionResult2_Ptr is access all IEmailRecipientResolutionResult2;
 
    type IEmailStore_Interface is interface and WinRt.IInspectable_Interface;
    type IEmailStore is access all IEmailStore_Interface'Class;
@@ -3951,20 +3975,20 @@ package WinRt.Windows.ApplicationModel.Email is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for EmailAttachment
 
+   function Constructor
+   (
+      fileName : WinRt.WString;
+      data : Windows.Storage.Streams.IRandomAccessStreamReference;
+      mimeType : WinRt.WString
+   )
+   return EmailAttachment;
+
    function Constructor return EmailAttachment;
 
    function Constructor
    (
       fileName : WinRt.WString;
       data : Windows.Storage.Streams.IRandomAccessStreamReference
-   )
-   return EmailAttachment;
-
-   function Constructor
-   (
-      fileName : WinRt.WString;
-      data : Windows.Storage.Streams.IRandomAccessStreamReference;
-      mimeType : WinRt.WString
    )
    return EmailAttachment;
 
@@ -4389,14 +4413,14 @@ package WinRt.Windows.ApplicationModel.Email is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for EmailIrmInfo
 
+   function Constructor return EmailIrmInfo;
+
    function Constructor
    (
       expiration : Windows.Foundation.DateTime;
       irmTemplate : Windows.ApplicationModel.Email.EmailIrmTemplate'Class
    )
    return EmailIrmInfo;
-
-   function Constructor return EmailIrmInfo;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for EmailIrmInfo
@@ -4554,8 +4578,6 @@ package WinRt.Windows.ApplicationModel.Email is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for EmailIrmTemplate
 
-   function Constructor return EmailIrmTemplate;
-
    function Constructor
    (
       id : WinRt.WString;
@@ -4563,6 +4585,8 @@ package WinRt.Windows.ApplicationModel.Email is
       description : WinRt.WString
    )
    return EmailIrmTemplate;
+
+   function Constructor return EmailIrmTemplate;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for EmailIrmTemplate
@@ -5650,11 +5674,6 @@ package WinRt.Windows.ApplicationModel.Email is
    -- Static RuntimeClass
    package EmailManager is
 
-      procedure ShowComposeNewEmailAsync
-      (
-         message : Windows.ApplicationModel.Email.EmailMessage'Class
-      );
-
       function RequestStoreAsync
       (
          accessType : Windows.ApplicationModel.Email.EmailStoreAccessType
@@ -5666,6 +5685,11 @@ package WinRt.Windows.ApplicationModel.Email is
          user : Windows.System.User'Class
       )
       return WinRt.Windows.ApplicationModel.Email.EmailManagerForUser;
+
+      procedure ShowComposeNewEmailAsync
+      (
+         message : Windows.ApplicationModel.Email.EmailMessage'Class
+      );
 
    end EmailManager;
 
@@ -6294,6 +6318,8 @@ package WinRt.Windows.ApplicationModel.Email is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for EmailQueryOptions
 
+   function Constructor return EmailQueryOptions;
+
    function Constructor
    (
       text : WinRt.WString
@@ -6306,8 +6332,6 @@ package WinRt.Windows.ApplicationModel.Email is
       fields : Windows.ApplicationModel.Email.EmailQuerySearchFields
    )
    return EmailQueryOptions;
-
-   function Constructor return EmailQueryOptions;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for EmailQueryOptions
@@ -6414,6 +6438,8 @@ package WinRt.Windows.ApplicationModel.Email is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for EmailRecipient
 
+   function Constructor return EmailRecipient;
+
    function Constructor
    (
       address_x : WinRt.WString
@@ -6426,8 +6452,6 @@ package WinRt.Windows.ApplicationModel.Email is
       name : WinRt.WString
    )
    return EmailRecipient;
-
-   function Constructor return EmailRecipient;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for EmailRecipient

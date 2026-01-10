@@ -44,18 +44,23 @@ package WinRt.Windows.ApplicationModel.Calls.Provider is
 
    type IPhoneCallOrigin2_Interface is interface and WinRt.IInspectable_Interface;
    type IPhoneCallOrigin2 is access all IPhoneCallOrigin2_Interface'Class;
+   type IPhoneCallOrigin2_Ptr is access all IPhoneCallOrigin2;
 
    type IPhoneCallOrigin3_Interface is interface and WinRt.IInspectable_Interface;
    type IPhoneCallOrigin3 is access all IPhoneCallOrigin3_Interface'Class;
+   type IPhoneCallOrigin3_Ptr is access all IPhoneCallOrigin3;
 
    type IPhoneCallOriginManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPhoneCallOriginManagerStatics is access all IPhoneCallOriginManagerStatics_Interface'Class;
+   type IPhoneCallOriginManagerStatics_Ptr is access all IPhoneCallOriginManagerStatics;
 
    type IPhoneCallOriginManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IPhoneCallOriginManagerStatics2 is access all IPhoneCallOriginManagerStatics2_Interface'Class;
+   type IPhoneCallOriginManagerStatics2_Ptr is access all IPhoneCallOriginManagerStatics2;
 
    type IPhoneCallOriginManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IPhoneCallOriginManagerStatics3 is access all IPhoneCallOriginManagerStatics3_Interface'Class;
+   type IPhoneCallOriginManagerStatics3_Ptr is access all IPhoneCallOriginManagerStatics3;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -288,6 +293,9 @@ package WinRt.Windows.ApplicationModel.Calls.Provider is
    -- Static RuntimeClass
    package PhoneCallOriginManager is
 
+      function RequestSetAsActiveCallOriginAppAsync
+      return WinRt.Boolean;
+
       function get_IsSupported
       return WinRt.Boolean;
 
@@ -301,9 +309,6 @@ package WinRt.Windows.ApplicationModel.Calls.Provider is
          requestId : WinRt.Guid;
          callOrigin : Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin'Class
       );
-
-      function RequestSetAsActiveCallOriginAppAsync
-      return WinRt.Boolean;
 
    end PhoneCallOriginManager;
 

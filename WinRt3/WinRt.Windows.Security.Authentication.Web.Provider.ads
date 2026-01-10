@@ -50,21 +50,27 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
 
    type IWebAccountClientViewFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountClientViewFactory is access all IWebAccountClientViewFactory_Interface'Class;
+   type IWebAccountClientViewFactory_Ptr is access all IWebAccountClientViewFactory;
 
    type IWebAccountManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountManagerStatics is access all IWebAccountManagerStatics_Interface'Class;
+   type IWebAccountManagerStatics_Ptr is access all IWebAccountManagerStatics;
 
    type IWebAccountManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountManagerStatics2 is access all IWebAccountManagerStatics2_Interface'Class;
+   type IWebAccountManagerStatics2_Ptr is access all IWebAccountManagerStatics2;
 
    type IWebAccountManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountManagerStatics3 is access all IWebAccountManagerStatics3_Interface'Class;
+   type IWebAccountManagerStatics3_Ptr is access all IWebAccountManagerStatics3;
 
    type IWebAccountManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountManagerStatics4 is access all IWebAccountManagerStatics4_Interface'Class;
+   type IWebAccountManagerStatics4_Ptr is access all IWebAccountManagerStatics4;
 
    type IWebAccountMapManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountMapManagerStatics is access all IWebAccountMapManagerStatics_Interface'Class;
+   type IWebAccountMapManagerStatics_Ptr is access all IWebAccountMapManagerStatics;
 
    type IWebAccountProviderAddAccountOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProviderAddAccountOperation is access all IWebAccountProviderAddAccountOperation_Interface'Class;
@@ -72,6 +78,7 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
 
    type IWebAccountProviderBaseReportOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProviderBaseReportOperation is access all IWebAccountProviderBaseReportOperation_Interface'Class;
+   type IWebAccountProviderBaseReportOperation_Ptr is access all IWebAccountProviderBaseReportOperation;
 
    type IWebAccountProviderDeleteAccountOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProviderDeleteAccountOperation is access all IWebAccountProviderDeleteAccountOperation_Interface'Class;
@@ -83,6 +90,7 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
 
    type IWebAccountProviderOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProviderOperation is access all IWebAccountProviderOperation_Interface'Class;
+   type IWebAccountProviderOperation_Ptr is access all IWebAccountProviderOperation;
 
    type IWebAccountProviderRetrieveCookiesOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProviderRetrieveCookiesOperation is access all IWebAccountProviderRetrieveCookiesOperation_Interface'Class;
@@ -94,6 +102,7 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
 
    type IWebAccountProviderSilentReportOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProviderSilentReportOperation is access all IWebAccountProviderSilentReportOperation_Interface'Class;
+   type IWebAccountProviderSilentReportOperation_Ptr is access all IWebAccountProviderSilentReportOperation;
 
    type IWebAccountProviderTokenObjects_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProviderTokenObjects is access all IWebAccountProviderTokenObjects_Interface'Class;
@@ -101,6 +110,7 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
 
    type IWebAccountProviderTokenObjects2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProviderTokenObjects2 is access all IWebAccountProviderTokenObjects2_Interface'Class;
+   type IWebAccountProviderTokenObjects2_Ptr is access all IWebAccountProviderTokenObjects2;
 
    type IWebAccountProviderTokenOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProviderTokenOperation is access all IWebAccountProviderTokenOperation_Interface'Class;
@@ -108,9 +118,11 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
 
    type IWebAccountProviderUIReportOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProviderUIReportOperation is access all IWebAccountProviderUIReportOperation_Interface'Class;
+   type IWebAccountProviderUIReportOperation_Ptr is access all IWebAccountProviderUIReportOperation;
 
    type IWebAccountScopeManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountScopeManagerStatics is access all IWebAccountScopeManagerStatics_Interface'Class;
+   type IWebAccountScopeManagerStatics_Ptr is access all IWebAccountScopeManagerStatics;
 
    type IWebProviderTokenRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IWebProviderTokenRequest is access all IWebProviderTokenRequest_Interface'Class;
@@ -118,9 +130,11 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
 
    type IWebProviderTokenRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebProviderTokenRequest2 is access all IWebProviderTokenRequest2_Interface'Class;
+   type IWebProviderTokenRequest2_Ptr is access all IWebProviderTokenRequest2;
 
    type IWebProviderTokenRequest3_Interface is interface and WinRt.IInspectable_Interface;
    type IWebProviderTokenRequest3 is access all IWebProviderTokenRequest3_Interface'Class;
+   type IWebProviderTokenRequest3_Ptr is access all IWebProviderTokenRequest3;
 
    type IWebProviderTokenResponse_Interface is interface and WinRt.IInspectable_Interface;
    type IWebProviderTokenResponse is access all IWebProviderTokenResponse_Interface'Class;
@@ -128,6 +142,7 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
 
    type IWebProviderTokenResponseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWebProviderTokenResponseFactory is access all IWebProviderTokenResponseFactory_Interface'Class;
+   type IWebProviderTokenResponseFactory_Ptr is access all IWebProviderTokenResponseFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -949,6 +964,76 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
    -- Static RuntimeClass
    package WebAccountManager is
 
+      function FindAllProviderWebAccountsForUserAsync
+      (
+         user : Windows.System.User'Class
+      )
+      return WinRt.GenericObject;
+
+      function AddWebAccountForUserAsync
+      (
+         user : Windows.System.User'Class;
+         webAccountId : WinRt.WString;
+         webAccountUserName : WinRt.WString;
+         props : GenericObject
+      )
+      return WinRt.Windows.Security.Credentials.WebAccount;
+
+      function AddWebAccountForUserAsync
+      (
+         user : Windows.System.User'Class;
+         webAccountId : WinRt.WString;
+         webAccountUserName : WinRt.WString;
+         props : GenericObject;
+         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope
+      )
+      return WinRt.Windows.Security.Credentials.WebAccount;
+
+      function AddWebAccountForUserAsync
+      (
+         user : Windows.System.User'Class;
+         webAccountId : WinRt.WString;
+         webAccountUserName : WinRt.WString;
+         props : GenericObject;
+         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope;
+         perUserWebAccountId : WinRt.WString
+      )
+      return WinRt.Windows.Security.Credentials.WebAccount;
+
+      procedure InvalidateAppCacheForAllAccountsAsync;
+
+      procedure InvalidateAppCacheForAccountAsync
+      (
+         webAccount : Windows.Security.Credentials.WebAccount'Class
+      );
+
+      function AddWebAccountAsync
+      (
+         webAccountId : WinRt.WString;
+         webAccountUserName : WinRt.WString;
+         props : GenericObject;
+         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope;
+         perUserWebAccountId : WinRt.WString
+      )
+      return WinRt.Windows.Security.Credentials.WebAccount;
+
+      procedure SetPerAppToPerUserAccountAsync
+      (
+         perAppAccount : Windows.Security.Credentials.WebAccount'Class;
+         perUserWebAccountId : WinRt.WString
+      );
+
+      function GetPerUserFromPerAppAccountAsync
+      (
+         perAppAccount : Windows.Security.Credentials.WebAccount'Class
+      )
+      return WinRt.Windows.Security.Credentials.WebAccount;
+
+      procedure ClearPerUserFromPerAppAccountAsync
+      (
+         perAppAccount : Windows.Security.Credentials.WebAccount'Class
+      );
+
       procedure UpdateWebAccountPropertiesAsync
       (
          webAccount : Windows.Security.Credentials.WebAccount'Class;
@@ -1007,80 +1092,10 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
          webAccount : Windows.Security.Credentials.WebAccount'Class
       );
 
-      function AddWebAccountAsync
-      (
-         webAccountId : WinRt.WString;
-         webAccountUserName : WinRt.WString;
-         props : GenericObject;
-         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope;
-         perUserWebAccountId : WinRt.WString
-      )
-      return WinRt.Windows.Security.Credentials.WebAccount;
-
-      procedure SetPerAppToPerUserAccountAsync
-      (
-         perAppAccount : Windows.Security.Credentials.WebAccount'Class;
-         perUserWebAccountId : WinRt.WString
-      );
-
-      function GetPerUserFromPerAppAccountAsync
-      (
-         perAppAccount : Windows.Security.Credentials.WebAccount'Class
-      )
-      return WinRt.Windows.Security.Credentials.WebAccount;
-
-      procedure ClearPerUserFromPerAppAccountAsync
-      (
-         perAppAccount : Windows.Security.Credentials.WebAccount'Class
-      );
-
       procedure PullCookiesAsync
       (
          uriString : WinRt.WString;
          callerPFN : WinRt.WString
-      );
-
-      function FindAllProviderWebAccountsForUserAsync
-      (
-         user : Windows.System.User'Class
-      )
-      return WinRt.GenericObject;
-
-      function AddWebAccountForUserAsync
-      (
-         user : Windows.System.User'Class;
-         webAccountId : WinRt.WString;
-         webAccountUserName : WinRt.WString;
-         props : GenericObject
-      )
-      return WinRt.Windows.Security.Credentials.WebAccount;
-
-      function AddWebAccountForUserAsync
-      (
-         user : Windows.System.User'Class;
-         webAccountId : WinRt.WString;
-         webAccountUserName : WinRt.WString;
-         props : GenericObject;
-         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope
-      )
-      return WinRt.Windows.Security.Credentials.WebAccount;
-
-      function AddWebAccountForUserAsync
-      (
-         user : Windows.System.User'Class;
-         webAccountId : WinRt.WString;
-         webAccountUserName : WinRt.WString;
-         props : GenericObject;
-         scope : Windows.Security.Authentication.Web.Provider.WebAccountScope;
-         perUserWebAccountId : WinRt.WString
-      )
-      return WinRt.Windows.Security.Credentials.WebAccount;
-
-      procedure InvalidateAppCacheForAllAccountsAsync;
-
-      procedure InvalidateAppCacheForAccountAsync
-      (
-         webAccount : Windows.Security.Credentials.WebAccount'Class
       );
 
       function AddWebAccountAsync

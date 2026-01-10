@@ -42,27 +42,35 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
 
    type IAnnotationProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IAnnotationProvider is access all IAnnotationProvider_Interface'Class;
+   type IAnnotationProvider_Ptr is access all IAnnotationProvider;
 
    type ICustomNavigationProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ICustomNavigationProvider is access all ICustomNavigationProvider_Interface'Class;
+   type ICustomNavigationProvider_Ptr is access all ICustomNavigationProvider;
 
    type IDockProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IDockProvider is access all IDockProvider_Interface'Class;
+   type IDockProvider_Ptr is access all IDockProvider;
 
    type IDragProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IDragProvider is access all IDragProvider_Interface'Class;
+   type IDragProvider_Ptr is access all IDragProvider;
 
    type IDropTargetProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IDropTargetProvider is access all IDropTargetProvider_Interface'Class;
+   type IDropTargetProvider_Ptr is access all IDropTargetProvider;
 
    type IExpandCollapseProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IExpandCollapseProvider is access all IExpandCollapseProvider_Interface'Class;
+   type IExpandCollapseProvider_Ptr is access all IExpandCollapseProvider;
 
    type IGridItemProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IGridItemProvider is access all IGridItemProvider_Interface'Class;
+   type IGridItemProvider_Ptr is access all IGridItemProvider;
 
    type IGridProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IGridProvider is access all IGridProvider_Interface'Class;
+   type IGridProvider_Ptr is access all IGridProvider;
 
    type IIRawElementProviderSimple_Interface is interface and WinRt.IInspectable_Interface;
    type IIRawElementProviderSimple is access all IIRawElementProviderSimple_Interface'Class;
@@ -70,85 +78,112 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
 
    type IInvokeProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IInvokeProvider is access all IInvokeProvider_Interface'Class;
+   type IInvokeProvider_Ptr is access all IInvokeProvider;
 
    type IItemContainerProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IItemContainerProvider is access all IItemContainerProvider_Interface'Class;
+   type IItemContainerProvider_Ptr is access all IItemContainerProvider;
 
    type IMultipleViewProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IMultipleViewProvider is access all IMultipleViewProvider_Interface'Class;
+   type IMultipleViewProvider_Ptr is access all IMultipleViewProvider;
 
    type IObjectModelProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IObjectModelProvider is access all IObjectModelProvider_Interface'Class;
+   type IObjectModelProvider_Ptr is access all IObjectModelProvider;
 
    type IRangeValueProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IRangeValueProvider is access all IRangeValueProvider_Interface'Class;
+   type IRangeValueProvider_Ptr is access all IRangeValueProvider;
 
    type IScrollItemProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollItemProvider is access all IScrollItemProvider_Interface'Class;
+   type IScrollItemProvider_Ptr is access all IScrollItemProvider;
 
    type IScrollProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollProvider is access all IScrollProvider_Interface'Class;
+   type IScrollProvider_Ptr is access all IScrollProvider;
 
    type ISelectionItemProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectionItemProvider is access all ISelectionItemProvider_Interface'Class;
+   type ISelectionItemProvider_Ptr is access all ISelectionItemProvider;
 
    type ISelectionProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectionProvider is access all ISelectionProvider_Interface'Class;
+   type ISelectionProvider_Ptr is access all ISelectionProvider;
 
    type ISpreadsheetItemProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ISpreadsheetItemProvider is access all ISpreadsheetItemProvider_Interface'Class;
+   type ISpreadsheetItemProvider_Ptr is access all ISpreadsheetItemProvider;
 
    type ISpreadsheetProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ISpreadsheetProvider is access all ISpreadsheetProvider_Interface'Class;
+   type ISpreadsheetProvider_Ptr is access all ISpreadsheetProvider;
 
    type IStylesProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IStylesProvider is access all IStylesProvider_Interface'Class;
+   type IStylesProvider_Ptr is access all IStylesProvider;
 
    type ISynchronizedInputProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ISynchronizedInputProvider is access all ISynchronizedInputProvider_Interface'Class;
+   type ISynchronizedInputProvider_Ptr is access all ISynchronizedInputProvider;
 
    type ITableItemProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ITableItemProvider is access all ITableItemProvider_Interface'Class;
+   type ITableItemProvider_Ptr is access all ITableItemProvider;
 
    type ITableProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ITableProvider is access all ITableProvider_Interface'Class;
+   type ITableProvider_Ptr is access all ITableProvider;
 
    type ITextChildProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ITextChildProvider is access all ITextChildProvider_Interface'Class;
+   type ITextChildProvider_Ptr is access all ITextChildProvider;
 
    type ITextEditProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ITextEditProvider is access all ITextEditProvider_Interface'Class;
+   type ITextEditProvider_Ptr is access all ITextEditProvider;
 
    type ITextProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ITextProvider is access all ITextProvider_Interface'Class;
+   type ITextProvider_Ptr is access all ITextProvider;
 
    type ITextProvider2_Interface is interface and WinRt.IInspectable_Interface;
    type ITextProvider2 is access all ITextProvider2_Interface'Class;
+   type ITextProvider2_Ptr is access all ITextProvider2;
 
    type ITextRangeProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ITextRangeProvider is access all ITextRangeProvider_Interface'Class;
+   type ITextRangeProvider_Ptr is access all ITextRangeProvider;
    type ITextRangeProvider_Array is array (Natural range <>) of ITextRangeProvider;
 
    type ITextRangeProvider2_Interface is interface and WinRt.IInspectable_Interface;
    type ITextRangeProvider2 is access all ITextRangeProvider2_Interface'Class;
+   type ITextRangeProvider2_Ptr is access all ITextRangeProvider2;
 
    type IToggleProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleProvider is access all IToggleProvider_Interface'Class;
+   type IToggleProvider_Ptr is access all IToggleProvider;
 
    type ITransformProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ITransformProvider is access all ITransformProvider_Interface'Class;
+   type ITransformProvider_Ptr is access all ITransformProvider;
 
    type ITransformProvider2_Interface is interface and WinRt.IInspectable_Interface;
    type ITransformProvider2 is access all ITransformProvider2_Interface'Class;
+   type ITransformProvider2_Ptr is access all ITransformProvider2;
 
    type IValueProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IValueProvider is access all IValueProvider_Interface'Class;
+   type IValueProvider_Ptr is access all IValueProvider;
 
    type IVirtualizedItemProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IVirtualizedItemProvider is access all IVirtualizedItemProvider_Interface'Class;
+   type IVirtualizedItemProvider_Ptr is access all IVirtualizedItemProvider;
 
    type IWindowProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowProvider is access all IWindowProvider_Interface'Class;
+   type IWindowProvider_Ptr is access all IWindowProvider;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -159,6 +194,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
          m_IIRawElementProviderSimple : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       end record;
    type IRawElementProviderSimple_Ptr is access all IRawElementProviderSimple;
+   type IRawElementProviderSimple_Array is array (Natural range <>) of IRawElementProviderSimple;
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -265,7 +301,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access IDragProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -647,7 +683,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ISelectionProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -667,7 +703,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ISpreadsheetItemProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -773,7 +809,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITableItemProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -781,7 +817,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITableItemProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -801,7 +837,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITableProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -809,7 +845,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITableProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -874,7 +910,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITextProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
+         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -882,7 +918,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITextProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
+         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1068,7 +1104,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITextRangeProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Ptr
+         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 

@@ -66,6 +66,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
 
    type IUserDataTaskManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataTaskManagerStatics is access all IUserDataTaskManagerStatics_Interface'Class;
+   type IUserDataTaskManagerStatics_Ptr is access all IUserDataTaskManagerStatics;
 
    type IUserDataTaskQueryOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataTaskQueryOptions is access all IUserDataTaskQueryOptions_Interface'Class;

@@ -48,6 +48,7 @@ package WinRt.Windows.Media.Capture.Core is
 
    type IVariablePhotoSequenceCapture2_Interface is interface and WinRt.IInspectable_Interface;
    type IVariablePhotoSequenceCapture2 is access all IVariablePhotoSequenceCapture2_Interface'Class;
+   type IVariablePhotoSequenceCapture2_Ptr is access all IVariablePhotoSequenceCapture2;
 
    -----------------------------------------------------------------------------
    -- Class declarations

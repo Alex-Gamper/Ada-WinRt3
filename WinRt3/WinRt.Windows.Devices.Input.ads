@@ -27,6 +27,7 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+limited with WinRt.Windows.Devices.Haptics;
 with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
 with Ada.Finalization;
@@ -53,6 +54,7 @@ package WinRt.Windows.Devices.Input is
 
    type IMouseDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMouseDeviceStatics is access all IMouseDeviceStatics_Interface'Class;
+   type IMouseDeviceStatics_Ptr is access all IMouseDeviceStatics;
 
    type IMouseEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMouseEventArgs is access all IMouseEventArgs_Interface'Class;
@@ -64,13 +66,19 @@ package WinRt.Windows.Devices.Input is
 
    type IPenButtonListenerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPenButtonListenerStatics is access all IPenButtonListenerStatics_Interface'Class;
+   type IPenButtonListenerStatics_Ptr is access all IPenButtonListenerStatics;
 
    type IPenDevice_Interface is interface and WinRt.IInspectable_Interface;
    type IPenDevice is access all IPenDevice_Interface'Class;
    type IPenDevice_Ptr is access all IPenDevice;
 
+   type IPenDevice2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPenDevice2 is access all IPenDevice2_Interface'Class;
+   type IPenDevice2_Ptr is access all IPenDevice2;
+
    type IPenDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPenDeviceStatics is access all IPenDeviceStatics_Interface'Class;
+   type IPenDeviceStatics_Ptr is access all IPenDeviceStatics;
 
    type IPenDockListener_Interface is interface and WinRt.IInspectable_Interface;
    type IPenDockListener is access all IPenDockListener_Interface'Class;
@@ -78,6 +86,7 @@ package WinRt.Windows.Devices.Input is
 
    type IPenDockListenerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPenDockListenerStatics is access all IPenDockListenerStatics_Interface'Class;
+   type IPenDockListenerStatics_Ptr is access all IPenDockListenerStatics;
 
    type IPenDockedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPenDockedEventArgs is access all IPenDockedEventArgs_Interface'Class;
@@ -105,9 +114,11 @@ package WinRt.Windows.Devices.Input is
 
    type IPointerDevice2_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerDevice2 is access all IPointerDevice2_Interface'Class;
+   type IPointerDevice2_Ptr is access all IPointerDevice2;
 
    type IPointerDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerDeviceStatics is access all IPointerDeviceStatics_Interface'Class;
+   type IPointerDeviceStatics_Ptr is access all IPointerDeviceStatics;
 
    type ITouchCapabilities_Interface is interface and WinRt.IInspectable_Interface;
    type ITouchCapabilities is access all ITouchCapabilities_Interface'Class;
@@ -208,12 +219,14 @@ package WinRt.Windows.Devices.Input is
    type PointerDeviceType is (
       Touch_e,
       Pen_e,
-      Mouse_e
+      Mouse_e,
+      Touchpad_e
    );
    for PointerDeviceType use (
       Touch_e => 0,
       Pen_e => 1,
-      Mouse_e => 2
+      Mouse_e => 2,
+      Touchpad_e => 3
    );
    type PointerDeviceType_Ptr is access all PointerDeviceType;
 
@@ -442,6 +455,18 @@ package WinRt.Windows.Devices.Input is
       return WinRt.Hresult is abstract;
 
       IID_IPenDevice : aliased WinRt.IID := (830828218, 42808, 23180, (184, 246, 249, 126, 246, 141, 24, 239 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPenDevice2 is interface and WinRt.IInspectable;
+
+      function get_SimpleHapticsController
+      (
+         this : access IPenDevice2_Interface;
+         RetVal : access Windows.Devices.Haptics.ISimpleHapticsController
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPenDevice2 : aliased WinRt.IID := (34067239, 32696, 21862, (140, 52, 248, 52, 32, 55, 183, 249 ));
 
    -----------------------------------------------------------------------------
    -- type IPenDeviceStatics is interface and WinRt.IInspectable;
@@ -855,6 +880,12 @@ package WinRt.Windows.Devices.Input is
       this : in out PenDevice
    )
    return WinRt.Guid;
+
+   function get_SimpleHapticsController
+   (
+      this : in out PenDevice
+   )
+   return WinRt.Windows.Devices.Haptics.SimpleHapticsController'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PenDockListener

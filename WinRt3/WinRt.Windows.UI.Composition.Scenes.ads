@@ -52,9 +52,11 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    type ISceneComponentCollection_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneComponentCollection is access all ISceneComponentCollection_Interface'Class;
+   type ISceneComponentCollection_Ptr is access all ISceneComponentCollection;
 
    type ISceneComponentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneComponentFactory is access all ISceneComponentFactory_Interface'Class;
+   type ISceneComponentFactory_Ptr is access all ISceneComponentFactory;
 
    type ISceneMaterial_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneMaterial is access all ISceneMaterial_Interface'Class;
@@ -62,6 +64,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    type ISceneMaterialFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneMaterialFactory is access all ISceneMaterialFactory_Interface'Class;
+   type ISceneMaterialFactory_Ptr is access all ISceneMaterialFactory;
 
    type ISceneMaterialInput_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneMaterialInput is access all ISceneMaterialInput_Interface'Class;
@@ -69,6 +72,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    type ISceneMaterialInputFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneMaterialInputFactory is access all ISceneMaterialInputFactory_Interface'Class;
+   type ISceneMaterialInputFactory_Ptr is access all ISceneMaterialInputFactory;
 
    type ISceneMesh_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneMesh is access all ISceneMesh_Interface'Class;
@@ -84,9 +88,11 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    type ISceneMeshRendererComponentStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneMeshRendererComponentStatics is access all ISceneMeshRendererComponentStatics_Interface'Class;
+   type ISceneMeshRendererComponentStatics_Ptr is access all ISceneMeshRendererComponentStatics;
 
    type ISceneMeshStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneMeshStatics is access all ISceneMeshStatics_Interface'Class;
+   type ISceneMeshStatics_Ptr is access all ISceneMeshStatics;
 
    type ISceneMetallicRoughnessMaterial_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneMetallicRoughnessMaterial is access all ISceneMetallicRoughnessMaterial_Interface'Class;
@@ -94,6 +100,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    type ISceneMetallicRoughnessMaterialStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneMetallicRoughnessMaterialStatics is access all ISceneMetallicRoughnessMaterialStatics_Interface'Class;
+   type ISceneMetallicRoughnessMaterialStatics_Ptr is access all ISceneMetallicRoughnessMaterialStatics;
 
    type ISceneModelTransform_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneModelTransform is access all ISceneModelTransform_Interface'Class;
@@ -106,9 +113,11 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    type ISceneNodeCollection_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneNodeCollection is access all ISceneNodeCollection_Interface'Class;
+   type ISceneNodeCollection_Ptr is access all ISceneNodeCollection;
 
    type ISceneNodeStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneNodeStatics is access all ISceneNodeStatics_Interface'Class;
+   type ISceneNodeStatics_Ptr is access all ISceneNodeStatics;
 
    type ISceneObject_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneObject is access all ISceneObject_Interface'Class;
@@ -116,6 +125,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    type ISceneObjectFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneObjectFactory is access all ISceneObjectFactory_Interface'Class;
+   type ISceneObjectFactory_Ptr is access all ISceneObjectFactory;
 
    type IScenePbrMaterial_Interface is interface and WinRt.IInspectable_Interface;
    type IScenePbrMaterial is access all IScenePbrMaterial_Interface'Class;
@@ -123,6 +133,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    type IScenePbrMaterialFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IScenePbrMaterialFactory is access all IScenePbrMaterialFactory_Interface'Class;
+   type IScenePbrMaterialFactory_Ptr is access all IScenePbrMaterialFactory;
 
    type ISceneRendererComponent_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneRendererComponent is access all ISceneRendererComponent_Interface'Class;
@@ -130,6 +141,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    type ISceneRendererComponentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneRendererComponentFactory is access all ISceneRendererComponentFactory_Interface'Class;
+   type ISceneRendererComponentFactory_Ptr is access all ISceneRendererComponentFactory;
 
    type ISceneSurfaceMaterialInput_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneSurfaceMaterialInput is access all ISceneSurfaceMaterialInput_Interface'Class;
@@ -137,6 +149,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    type ISceneSurfaceMaterialInputStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneSurfaceMaterialInputStatics is access all ISceneSurfaceMaterialInputStatics_Interface'Class;
+   type ISceneSurfaceMaterialInputStatics_Ptr is access all ISceneSurfaceMaterialInputStatics;
 
    type ISceneVisual_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneVisual is access all ISceneVisual_Interface'Class;
@@ -144,6 +157,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    type ISceneVisualStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneVisualStatics is access all ISceneVisualStatics_Interface'Class;
+   type ISceneVisualStatics_Ptr is access all ISceneVisualStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

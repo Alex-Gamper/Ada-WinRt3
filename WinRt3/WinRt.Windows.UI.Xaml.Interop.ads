@@ -50,21 +50,27 @@ package WinRt.Windows.UI.Xaml.Interop is
 
    type IBindableIterable_Interface is interface and WinRt.IInspectable_Interface;
    type IBindableIterable is access all IBindableIterable_Interface'Class;
+   type IBindableIterable_Ptr is access all IBindableIterable;
 
    type IBindableIterator_Interface is interface and WinRt.IInspectable_Interface;
    type IBindableIterator is access all IBindableIterator_Interface'Class;
+   type IBindableIterator_Ptr is access all IBindableIterator;
 
    type IBindableObservableVector_Interface is interface and WinRt.IInspectable_Interface;
    type IBindableObservableVector is access all IBindableObservableVector_Interface'Class;
+   type IBindableObservableVector_Ptr is access all IBindableObservableVector;
 
    type IBindableVector_Interface is interface and WinRt.IInspectable_Interface;
    type IBindableVector is access all IBindableVector_Interface'Class;
+   type IBindableVector_Ptr is access all IBindableVector;
 
    type IBindableVectorView_Interface is interface and WinRt.IInspectable_Interface;
    type IBindableVectorView is access all IBindableVectorView_Interface'Class;
+   type IBindableVectorView_Ptr is access all IBindableVectorView;
 
    type INotifyCollectionChanged_Interface is interface and WinRt.IInspectable_Interface;
    type INotifyCollectionChanged is access all INotifyCollectionChanged_Interface'Class;
+   type INotifyCollectionChanged_Ptr is access all INotifyCollectionChanged;
 
    type INotifyCollectionChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type INotifyCollectionChangedEventArgs is access all INotifyCollectionChangedEventArgs_Interface'Class;
@@ -72,6 +78,7 @@ package WinRt.Windows.UI.Xaml.Interop is
 
    type INotifyCollectionChangedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INotifyCollectionChangedEventArgsFactory is access all INotifyCollectionChangedEventArgsFactory_Interface'Class;
+   type INotifyCollectionChangedEventArgsFactory_Ptr is access all INotifyCollectionChangedEventArgsFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations

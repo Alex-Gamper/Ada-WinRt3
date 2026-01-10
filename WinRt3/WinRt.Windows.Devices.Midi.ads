@@ -46,6 +46,7 @@ package WinRt.Windows.Devices.Midi is
 
    type IMidiChannelPressureMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiChannelPressureMessageFactory is access all IMidiChannelPressureMessageFactory_Interface'Class;
+   type IMidiChannelPressureMessageFactory_Ptr is access all IMidiChannelPressureMessageFactory;
 
    type IMidiControlChangeMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiControlChangeMessage is access all IMidiControlChangeMessage_Interface'Class;
@@ -53,6 +54,7 @@ package WinRt.Windows.Devices.Midi is
 
    type IMidiControlChangeMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiControlChangeMessageFactory is access all IMidiControlChangeMessageFactory_Interface'Class;
+   type IMidiControlChangeMessageFactory_Ptr is access all IMidiControlChangeMessageFactory;
 
    type IMidiInPort_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiInPort is access all IMidiInPort_Interface'Class;
@@ -60,6 +62,7 @@ package WinRt.Windows.Devices.Midi is
 
    type IMidiInPortStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiInPortStatics is access all IMidiInPortStatics_Interface'Class;
+   type IMidiInPortStatics_Ptr is access all IMidiInPortStatics;
 
    type IMidiMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiMessage is access all IMidiMessage_Interface'Class;
@@ -75,6 +78,7 @@ package WinRt.Windows.Devices.Midi is
 
    type IMidiNoteOffMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiNoteOffMessageFactory is access all IMidiNoteOffMessageFactory_Interface'Class;
+   type IMidiNoteOffMessageFactory_Ptr is access all IMidiNoteOffMessageFactory;
 
    type IMidiNoteOnMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiNoteOnMessage is access all IMidiNoteOnMessage_Interface'Class;
@@ -82,6 +86,7 @@ package WinRt.Windows.Devices.Midi is
 
    type IMidiNoteOnMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiNoteOnMessageFactory is access all IMidiNoteOnMessageFactory_Interface'Class;
+   type IMidiNoteOnMessageFactory_Ptr is access all IMidiNoteOnMessageFactory;
 
    type IMidiOutPort_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiOutPort is access all IMidiOutPort_Interface'Class;
@@ -89,6 +94,7 @@ package WinRt.Windows.Devices.Midi is
 
    type IMidiOutPortStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiOutPortStatics is access all IMidiOutPortStatics_Interface'Class;
+   type IMidiOutPortStatics_Ptr is access all IMidiOutPortStatics;
 
    type IMidiPitchBendChangeMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiPitchBendChangeMessage is access all IMidiPitchBendChangeMessage_Interface'Class;
@@ -96,6 +102,7 @@ package WinRt.Windows.Devices.Midi is
 
    type IMidiPitchBendChangeMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiPitchBendChangeMessageFactory is access all IMidiPitchBendChangeMessageFactory_Interface'Class;
+   type IMidiPitchBendChangeMessageFactory_Ptr is access all IMidiPitchBendChangeMessageFactory;
 
    type IMidiPolyphonicKeyPressureMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiPolyphonicKeyPressureMessage is access all IMidiPolyphonicKeyPressureMessage_Interface'Class;
@@ -103,6 +110,7 @@ package WinRt.Windows.Devices.Midi is
 
    type IMidiPolyphonicKeyPressureMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiPolyphonicKeyPressureMessageFactory is access all IMidiPolyphonicKeyPressureMessageFactory_Interface'Class;
+   type IMidiPolyphonicKeyPressureMessageFactory_Ptr is access all IMidiPolyphonicKeyPressureMessageFactory;
 
    type IMidiProgramChangeMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiProgramChangeMessage is access all IMidiProgramChangeMessage_Interface'Class;
@@ -110,6 +118,7 @@ package WinRt.Windows.Devices.Midi is
 
    type IMidiProgramChangeMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiProgramChangeMessageFactory is access all IMidiProgramChangeMessageFactory_Interface'Class;
+   type IMidiProgramChangeMessageFactory_Ptr is access all IMidiProgramChangeMessageFactory;
 
    type IMidiSongPositionPointerMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiSongPositionPointerMessage is access all IMidiSongPositionPointerMessage_Interface'Class;
@@ -117,6 +126,7 @@ package WinRt.Windows.Devices.Midi is
 
    type IMidiSongPositionPointerMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiSongPositionPointerMessageFactory is access all IMidiSongPositionPointerMessageFactory_Interface'Class;
+   type IMidiSongPositionPointerMessageFactory_Ptr is access all IMidiSongPositionPointerMessageFactory;
 
    type IMidiSongSelectMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiSongSelectMessage is access all IMidiSongSelectMessage_Interface'Class;
@@ -124,6 +134,7 @@ package WinRt.Windows.Devices.Midi is
 
    type IMidiSongSelectMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiSongSelectMessageFactory is access all IMidiSongSelectMessageFactory_Interface'Class;
+   type IMidiSongSelectMessageFactory_Ptr is access all IMidiSongSelectMessageFactory;
 
    type IMidiSynthesizer_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiSynthesizer is access all IMidiSynthesizer_Interface'Class;
@@ -131,9 +142,11 @@ package WinRt.Windows.Devices.Midi is
 
    type IMidiSynthesizerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiSynthesizerStatics is access all IMidiSynthesizerStatics_Interface'Class;
+   type IMidiSynthesizerStatics_Ptr is access all IMidiSynthesizerStatics;
 
    type IMidiSystemExclusiveMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiSystemExclusiveMessageFactory is access all IMidiSystemExclusiveMessageFactory_Interface'Class;
+   type IMidiSystemExclusiveMessageFactory_Ptr is access all IMidiSystemExclusiveMessageFactory;
 
    type IMidiTimeCodeMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiTimeCodeMessage is access all IMidiTimeCodeMessage_Interface'Class;
@@ -141,6 +154,7 @@ package WinRt.Windows.Devices.Midi is
 
    type IMidiTimeCodeMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMidiTimeCodeMessageFactory is access all IMidiTimeCodeMessageFactory_Interface'Class;
+   type IMidiTimeCodeMessageFactory_Ptr is access all IMidiTimeCodeMessageFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -129,12 +129,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IAppBar2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBar2 is access all IAppBar2_Interface'Class;
+   type IAppBar2_Ptr is access all IAppBar2;
 
    type IAppBar3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBar3 is access all IAppBar3_Interface'Class;
+   type IAppBar3_Ptr is access all IAppBar3;
 
    type IAppBar4_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBar4 is access all IAppBar4_Interface'Class;
+   type IAppBar4_Ptr is access all IAppBar4;
 
    type IAppBarButton_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarButton is access all IAppBarButton_Interface'Class;
@@ -142,24 +145,31 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IAppBarButton3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarButton3 is access all IAppBarButton3_Interface'Class;
+   type IAppBarButton3_Ptr is access all IAppBarButton3;
 
    type IAppBarButton4_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarButton4 is access all IAppBarButton4_Interface'Class;
+   type IAppBarButton4_Ptr is access all IAppBarButton4;
 
    type IAppBarButton5_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarButton5 is access all IAppBarButton5_Interface'Class;
+   type IAppBarButton5_Ptr is access all IAppBarButton5;
 
    type IAppBarButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarButtonFactory is access all IAppBarButtonFactory_Interface'Class;
+   type IAppBarButtonFactory_Ptr is access all IAppBarButtonFactory;
 
    type IAppBarButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarButtonStatics is access all IAppBarButtonStatics_Interface'Class;
+   type IAppBarButtonStatics_Ptr is access all IAppBarButtonStatics;
 
    type IAppBarButtonStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarButtonStatics3 is access all IAppBarButtonStatics3_Interface'Class;
+   type IAppBarButtonStatics3_Ptr is access all IAppBarButtonStatics3;
 
    type IAppBarButtonStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarButtonStatics4 is access all IAppBarButtonStatics4_Interface'Class;
+   type IAppBarButtonStatics4_Ptr is access all IAppBarButtonStatics4;
 
    type IAppBarElementContainer_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarElementContainer is access all IAppBarElementContainer_Interface'Class;
@@ -167,18 +177,23 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IAppBarElementContainerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarElementContainerFactory is access all IAppBarElementContainerFactory_Interface'Class;
+   type IAppBarElementContainerFactory_Ptr is access all IAppBarElementContainerFactory;
 
    type IAppBarElementContainerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarElementContainerStatics is access all IAppBarElementContainerStatics_Interface'Class;
+   type IAppBarElementContainerStatics_Ptr is access all IAppBarElementContainerStatics;
 
    type IAppBarFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarFactory is access all IAppBarFactory_Interface'Class;
+   type IAppBarFactory_Ptr is access all IAppBarFactory;
 
    type IAppBarOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarOverrides is access all IAppBarOverrides_Interface'Class;
+   type IAppBarOverrides_Ptr is access all IAppBarOverrides;
 
    type IAppBarOverrides3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarOverrides3 is access all IAppBarOverrides3_Interface'Class;
+   type IAppBarOverrides3_Ptr is access all IAppBarOverrides3;
 
    type IAppBarSeparator_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarSeparator is access all IAppBarSeparator_Interface'Class;
@@ -186,21 +201,27 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IAppBarSeparatorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarSeparatorFactory is access all IAppBarSeparatorFactory_Interface'Class;
+   type IAppBarSeparatorFactory_Ptr is access all IAppBarSeparatorFactory;
 
    type IAppBarSeparatorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarSeparatorStatics is access all IAppBarSeparatorStatics_Interface'Class;
+   type IAppBarSeparatorStatics_Ptr is access all IAppBarSeparatorStatics;
 
    type IAppBarSeparatorStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarSeparatorStatics3 is access all IAppBarSeparatorStatics3_Interface'Class;
+   type IAppBarSeparatorStatics3_Ptr is access all IAppBarSeparatorStatics3;
 
    type IAppBarStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarStatics is access all IAppBarStatics_Interface'Class;
+   type IAppBarStatics_Ptr is access all IAppBarStatics;
 
    type IAppBarStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarStatics2 is access all IAppBarStatics2_Interface'Class;
+   type IAppBarStatics2_Ptr is access all IAppBarStatics2;
 
    type IAppBarStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarStatics4 is access all IAppBarStatics4_Interface'Class;
+   type IAppBarStatics4_Ptr is access all IAppBarStatics4;
 
    type IAppBarToggleButton_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarToggleButton is access all IAppBarToggleButton_Interface'Class;
@@ -208,24 +229,31 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IAppBarToggleButton3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarToggleButton3 is access all IAppBarToggleButton3_Interface'Class;
+   type IAppBarToggleButton3_Ptr is access all IAppBarToggleButton3;
 
    type IAppBarToggleButton4_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarToggleButton4 is access all IAppBarToggleButton4_Interface'Class;
+   type IAppBarToggleButton4_Ptr is access all IAppBarToggleButton4;
 
    type IAppBarToggleButton5_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarToggleButton5 is access all IAppBarToggleButton5_Interface'Class;
+   type IAppBarToggleButton5_Ptr is access all IAppBarToggleButton5;
 
    type IAppBarToggleButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarToggleButtonFactory is access all IAppBarToggleButtonFactory_Interface'Class;
+   type IAppBarToggleButtonFactory_Ptr is access all IAppBarToggleButtonFactory;
 
    type IAppBarToggleButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarToggleButtonStatics is access all IAppBarToggleButtonStatics_Interface'Class;
+   type IAppBarToggleButtonStatics_Ptr is access all IAppBarToggleButtonStatics;
 
    type IAppBarToggleButtonStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarToggleButtonStatics3 is access all IAppBarToggleButtonStatics3_Interface'Class;
+   type IAppBarToggleButtonStatics3_Ptr is access all IAppBarToggleButtonStatics3;
 
    type IAppBarToggleButtonStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarToggleButtonStatics4 is access all IAppBarToggleButtonStatics4_Interface'Class;
+   type IAppBarToggleButtonStatics4_Ptr is access all IAppBarToggleButtonStatics4;
 
    type IAutoSuggestBox_Interface is interface and WinRt.IInspectable_Interface;
    type IAutoSuggestBox is access all IAutoSuggestBox_Interface'Class;
@@ -233,12 +261,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IAutoSuggestBox2_Interface is interface and WinRt.IInspectable_Interface;
    type IAutoSuggestBox2 is access all IAutoSuggestBox2_Interface'Class;
+   type IAutoSuggestBox2_Ptr is access all IAutoSuggestBox2;
 
    type IAutoSuggestBox3_Interface is interface and WinRt.IInspectable_Interface;
    type IAutoSuggestBox3 is access all IAutoSuggestBox3_Interface'Class;
+   type IAutoSuggestBox3_Ptr is access all IAutoSuggestBox3;
 
    type IAutoSuggestBox4_Interface is interface and WinRt.IInspectable_Interface;
    type IAutoSuggestBox4 is access all IAutoSuggestBox4_Interface'Class;
+   type IAutoSuggestBox4_Ptr is access all IAutoSuggestBox4;
 
    type IAutoSuggestBoxQuerySubmittedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAutoSuggestBoxQuerySubmittedEventArgs is access all IAutoSuggestBoxQuerySubmittedEventArgs_Interface'Class;
@@ -246,15 +277,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IAutoSuggestBoxStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAutoSuggestBoxStatics is access all IAutoSuggestBoxStatics_Interface'Class;
+   type IAutoSuggestBoxStatics_Ptr is access all IAutoSuggestBoxStatics;
 
    type IAutoSuggestBoxStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAutoSuggestBoxStatics2 is access all IAutoSuggestBoxStatics2_Interface'Class;
+   type IAutoSuggestBoxStatics2_Ptr is access all IAutoSuggestBoxStatics2;
 
    type IAutoSuggestBoxStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IAutoSuggestBoxStatics3 is access all IAutoSuggestBoxStatics3_Interface'Class;
+   type IAutoSuggestBoxStatics3_Ptr is access all IAutoSuggestBoxStatics3;
 
    type IAutoSuggestBoxStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IAutoSuggestBoxStatics4 is access all IAutoSuggestBoxStatics4_Interface'Class;
+   type IAutoSuggestBoxStatics4_Ptr is access all IAutoSuggestBoxStatics4;
 
    type IAutoSuggestBoxSuggestionChosenEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAutoSuggestBoxSuggestionChosenEventArgs is access all IAutoSuggestBoxSuggestionChosenEventArgs_Interface'Class;
@@ -266,6 +301,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IAutoSuggestBoxTextChangedEventArgsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAutoSuggestBoxTextChangedEventArgsStatics is access all IAutoSuggestBoxTextChangedEventArgsStatics_Interface'Class;
+   type IAutoSuggestBoxTextChangedEventArgsStatics_Ptr is access all IAutoSuggestBoxTextChangedEventArgsStatics;
 
    type IBackClickEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBackClickEventArgs is access all IBackClickEventArgs_Interface'Class;
@@ -277,9 +313,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IBitmapIcon2_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapIcon2 is access all IBitmapIcon2_Interface'Class;
+   type IBitmapIcon2_Ptr is access all IBitmapIcon2;
 
    type IBitmapIconFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapIconFactory is access all IBitmapIconFactory_Interface'Class;
+   type IBitmapIconFactory_Ptr is access all IBitmapIconFactory;
 
    type IBitmapIconSource_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapIconSource is access all IBitmapIconSource_Interface'Class;
@@ -287,15 +325,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IBitmapIconSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapIconSourceFactory is access all IBitmapIconSourceFactory_Interface'Class;
+   type IBitmapIconSourceFactory_Ptr is access all IBitmapIconSourceFactory;
 
    type IBitmapIconSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapIconSourceStatics is access all IBitmapIconSourceStatics_Interface'Class;
+   type IBitmapIconSourceStatics_Ptr is access all IBitmapIconSourceStatics;
 
    type IBitmapIconStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapIconStatics is access all IBitmapIconStatics_Interface'Class;
+   type IBitmapIconStatics_Ptr is access all IBitmapIconStatics;
 
    type IBitmapIconStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapIconStatics2 is access all IBitmapIconStatics2_Interface'Class;
+   type IBitmapIconStatics2_Ptr is access all IBitmapIconStatics2;
 
    type IBorder_Interface is interface and WinRt.IInspectable_Interface;
    type IBorder is access all IBorder_Interface'Class;
@@ -303,12 +345,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IBorder2_Interface is interface and WinRt.IInspectable_Interface;
    type IBorder2 is access all IBorder2_Interface'Class;
+   type IBorder2_Ptr is access all IBorder2;
 
    type IBorderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBorderStatics is access all IBorderStatics_Interface'Class;
+   type IBorderStatics_Ptr is access all IBorderStatics;
 
    type IBorderStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBorderStatics2 is access all IBorderStatics2_Interface'Class;
+   type IBorderStatics2_Ptr is access all IBorderStatics2;
 
    type IButton_Interface is interface and WinRt.IInspectable_Interface;
    type IButton is access all IButton_Interface'Class;
@@ -316,12 +361,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IButtonFactory is access all IButtonFactory_Interface'Class;
+   type IButtonFactory_Ptr is access all IButtonFactory;
 
    type IButtonStaticsWithFlyout_Interface is interface and WinRt.IInspectable_Interface;
    type IButtonStaticsWithFlyout is access all IButtonStaticsWithFlyout_Interface'Class;
+   type IButtonStaticsWithFlyout_Ptr is access all IButtonStaticsWithFlyout;
 
    type IButtonWithFlyout_Interface is interface and WinRt.IInspectable_Interface;
    type IButtonWithFlyout is access all IButtonWithFlyout_Interface'Class;
+   type IButtonWithFlyout_Ptr is access all IButtonWithFlyout;
 
    type ICalendarDatePicker_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarDatePicker is access all ICalendarDatePicker_Interface'Class;
@@ -329,9 +377,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ICalendarDatePicker2_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarDatePicker2 is access all ICalendarDatePicker2_Interface'Class;
+   type ICalendarDatePicker2_Ptr is access all ICalendarDatePicker2;
 
    type ICalendarDatePicker3_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarDatePicker3 is access all ICalendarDatePicker3_Interface'Class;
+   type ICalendarDatePicker3_Ptr is access all ICalendarDatePicker3;
 
    type ICalendarDatePickerDateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarDatePickerDateChangedEventArgs is access all ICalendarDatePickerDateChangedEventArgs_Interface'Class;
@@ -339,19 +389,27 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ICalendarDatePickerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarDatePickerFactory is access all ICalendarDatePickerFactory_Interface'Class;
+   type ICalendarDatePickerFactory_Ptr is access all ICalendarDatePickerFactory;
 
    type ICalendarDatePickerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarDatePickerStatics is access all ICalendarDatePickerStatics_Interface'Class;
+   type ICalendarDatePickerStatics_Ptr is access all ICalendarDatePickerStatics;
 
    type ICalendarDatePickerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarDatePickerStatics2 is access all ICalendarDatePickerStatics2_Interface'Class;
+   type ICalendarDatePickerStatics2_Ptr is access all ICalendarDatePickerStatics2;
 
    type ICalendarDatePickerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarDatePickerStatics3 is access all ICalendarDatePickerStatics3_Interface'Class;
+   type ICalendarDatePickerStatics3_Ptr is access all ICalendarDatePickerStatics3;
 
    type ICalendarView_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarView is access all ICalendarView_Interface'Class;
    type ICalendarView_Ptr is access all ICalendarView;
+
+   type ICalendarView2_Interface is interface and WinRt.IInspectable_Interface;
+   type ICalendarView2 is access all ICalendarView2_Interface'Class;
+   type ICalendarView2_Ptr is access all ICalendarView2;
 
    type ICalendarViewDayItem_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarViewDayItem is access all ICalendarViewDayItem_Interface'Class;
@@ -363,12 +421,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ICalendarViewDayItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarViewDayItemFactory is access all ICalendarViewDayItemFactory_Interface'Class;
+   type ICalendarViewDayItemFactory_Ptr is access all ICalendarViewDayItemFactory;
 
    type ICalendarViewDayItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarViewDayItemStatics is access all ICalendarViewDayItemStatics_Interface'Class;
+   type ICalendarViewDayItemStatics_Ptr is access all ICalendarViewDayItemStatics;
 
    type ICalendarViewFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarViewFactory is access all ICalendarViewFactory_Interface'Class;
+   type ICalendarViewFactory_Ptr is access all ICalendarViewFactory;
 
    type ICalendarViewSelectedDatesChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarViewSelectedDatesChangedEventArgs is access all ICalendarViewSelectedDatesChangedEventArgs_Interface'Class;
@@ -376,6 +437,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ICalendarViewStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarViewStatics is access all ICalendarViewStatics_Interface'Class;
+   type ICalendarViewStatics_Ptr is access all ICalendarViewStatics;
+
+   type ICalendarViewStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type ICalendarViewStatics2 is access all ICalendarViewStatics2_Interface'Class;
+   type ICalendarViewStatics2_Ptr is access all ICalendarViewStatics2;
 
    type ICandidateWindowBoundsChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICandidateWindowBoundsChangedEventArgs is access all ICandidateWindowBoundsChangedEventArgs_Interface'Class;
@@ -387,9 +453,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ICanvasFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICanvasFactory is access all ICanvasFactory_Interface'Class;
+   type ICanvasFactory_Ptr is access all ICanvasFactory;
 
    type ICanvasStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICanvasStatics is access all ICanvasStatics_Interface'Class;
+   type ICanvasStatics_Ptr is access all ICanvasStatics;
 
    type ICaptureElement_Interface is interface and WinRt.IInspectable_Interface;
    type ICaptureElement is access all ICaptureElement_Interface'Class;
@@ -397,6 +465,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ICaptureElementStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICaptureElementStatics is access all ICaptureElementStatics_Interface'Class;
+   type ICaptureElementStatics_Ptr is access all ICaptureElementStatics;
 
    type ICheckBox_Interface is interface and WinRt.IInspectable_Interface;
    type ICheckBox is access all ICheckBox_Interface'Class;
@@ -404,6 +473,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ICheckBoxFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICheckBoxFactory is access all ICheckBoxFactory_Interface'Class;
+   type ICheckBoxFactory_Ptr is access all ICheckBoxFactory;
 
    type IChoosingGroupHeaderContainerEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IChoosingGroupHeaderContainerEventArgs is access all IChoosingGroupHeaderContainerEventArgs_Interface'Class;
@@ -427,9 +497,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IColorPickerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IColorPickerFactory is access all IColorPickerFactory_Interface'Class;
+   type IColorPickerFactory_Ptr is access all IColorPickerFactory;
 
    type IColorPickerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IColorPickerStatics is access all IColorPickerStatics_Interface'Class;
+   type IColorPickerStatics_Ptr is access all IColorPickerStatics;
 
    type IColumnDefinition_Interface is interface and WinRt.IInspectable_Interface;
    type IColumnDefinition is access all IColumnDefinition_Interface'Class;
@@ -438,6 +510,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IColumnDefinitionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IColumnDefinitionStatics is access all IColumnDefinitionStatics_Interface'Class;
+   type IColumnDefinitionStatics_Ptr is access all IColumnDefinitionStatics;
 
    type IComboBox_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBox is access all IComboBox_Interface'Class;
@@ -445,21 +518,27 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IComboBox2_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBox2 is access all IComboBox2_Interface'Class;
+   type IComboBox2_Ptr is access all IComboBox2;
 
    type IComboBox3_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBox3 is access all IComboBox3_Interface'Class;
+   type IComboBox3_Ptr is access all IComboBox3;
 
    type IComboBox4_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBox4 is access all IComboBox4_Interface'Class;
+   type IComboBox4_Ptr is access all IComboBox4;
 
    type IComboBox5_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBox5 is access all IComboBox5_Interface'Class;
+   type IComboBox5_Ptr is access all IComboBox5;
 
    type IComboBox6_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBox6 is access all IComboBox6_Interface'Class;
+   type IComboBox6_Ptr is access all IComboBox6;
 
    type IComboBoxFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBoxFactory is access all IComboBoxFactory_Interface'Class;
+   type IComboBoxFactory_Ptr is access all IComboBoxFactory;
 
    type IComboBoxItem_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBoxItem is access all IComboBoxItem_Interface'Class;
@@ -467,27 +546,35 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IComboBoxItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBoxItemFactory is access all IComboBoxItemFactory_Interface'Class;
+   type IComboBoxItemFactory_Ptr is access all IComboBoxItemFactory;
 
    type IComboBoxOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBoxOverrides is access all IComboBoxOverrides_Interface'Class;
+   type IComboBoxOverrides_Ptr is access all IComboBoxOverrides;
 
    type IComboBoxStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBoxStatics is access all IComboBoxStatics_Interface'Class;
+   type IComboBoxStatics_Ptr is access all IComboBoxStatics;
 
    type IComboBoxStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBoxStatics2 is access all IComboBoxStatics2_Interface'Class;
+   type IComboBoxStatics2_Ptr is access all IComboBoxStatics2;
 
    type IComboBoxStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBoxStatics3 is access all IComboBoxStatics3_Interface'Class;
+   type IComboBoxStatics3_Ptr is access all IComboBoxStatics3;
 
    type IComboBoxStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBoxStatics4 is access all IComboBoxStatics4_Interface'Class;
+   type IComboBoxStatics4_Ptr is access all IComboBoxStatics4;
 
    type IComboBoxStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBoxStatics5 is access all IComboBoxStatics5_Interface'Class;
+   type IComboBoxStatics5_Ptr is access all IComboBoxStatics5;
 
    type IComboBoxStatics6_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBoxStatics6 is access all IComboBoxStatics6_Interface'Class;
+   type IComboBoxStatics6_Ptr is access all IComboBoxStatics6;
 
    type IComboBoxTextSubmittedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBoxTextSubmittedEventArgs is access all IComboBoxTextSubmittedEventArgs_Interface'Class;
@@ -499,18 +586,23 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ICommandBar2_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBar2 is access all ICommandBar2_Interface'Class;
+   type ICommandBar2_Ptr is access all ICommandBar2;
 
    type ICommandBar3_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBar3 is access all ICommandBar3_Interface'Class;
+   type ICommandBar3_Ptr is access all ICommandBar3;
 
    type ICommandBarElement_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarElement is access all ICommandBarElement_Interface'Class;
+   type ICommandBarElement_Ptr is access all ICommandBarElement;
 
    type ICommandBarElement2_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarElement2 is access all ICommandBarElement2_Interface'Class;
+   type ICommandBarElement2_Ptr is access all ICommandBarElement2;
 
    type ICommandBarFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarFactory is access all ICommandBarFactory_Interface'Class;
+   type ICommandBarFactory_Ptr is access all ICommandBarFactory;
 
    type ICommandBarFlyout_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarFlyout is access all ICommandBarFlyout_Interface'Class;
@@ -518,6 +610,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ICommandBarFlyoutFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarFlyoutFactory is access all ICommandBarFlyoutFactory_Interface'Class;
+   type ICommandBarFlyoutFactory_Ptr is access all ICommandBarFlyoutFactory;
 
    type ICommandBarOverflowPresenter_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarOverflowPresenter is access all ICommandBarOverflowPresenter_Interface'Class;
@@ -525,15 +618,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ICommandBarOverflowPresenterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarOverflowPresenterFactory is access all ICommandBarOverflowPresenterFactory_Interface'Class;
+   type ICommandBarOverflowPresenterFactory_Ptr is access all ICommandBarOverflowPresenterFactory;
 
    type ICommandBarStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarStatics is access all ICommandBarStatics_Interface'Class;
+   type ICommandBarStatics_Ptr is access all ICommandBarStatics;
 
    type ICommandBarStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarStatics2 is access all ICommandBarStatics2_Interface'Class;
+   type ICommandBarStatics2_Ptr is access all ICommandBarStatics2;
 
    type ICommandBarStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarStatics3 is access all ICommandBarStatics3_Interface'Class;
+   type ICommandBarStatics3_Ptr is access all ICommandBarStatics3;
 
    type IContainerContentChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IContainerContentChangingEventArgs is access all IContainerContentChangingEventArgs_Interface'Class;
@@ -545,15 +642,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IContentControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IContentControl2 is access all IContentControl2_Interface'Class;
+   type IContentControl2_Ptr is access all IContentControl2;
 
    type IContentControlFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IContentControlFactory is access all IContentControlFactory_Interface'Class;
+   type IContentControlFactory_Ptr is access all IContentControlFactory;
 
    type IContentControlOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IContentControlOverrides is access all IContentControlOverrides_Interface'Class;
+   type IContentControlOverrides_Ptr is access all IContentControlOverrides;
 
    type IContentControlStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IContentControlStatics is access all IContentControlStatics_Interface'Class;
+   type IContentControlStatics_Ptr is access all IContentControlStatics;
 
    type IContentDialog_Interface is interface and WinRt.IInspectable_Interface;
    type IContentDialog is access all IContentDialog_Interface'Class;
@@ -561,9 +662,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IContentDialog2_Interface is interface and WinRt.IInspectable_Interface;
    type IContentDialog2 is access all IContentDialog2_Interface'Class;
+   type IContentDialog2_Ptr is access all IContentDialog2;
 
    type IContentDialog3_Interface is interface and WinRt.IInspectable_Interface;
    type IContentDialog3 is access all IContentDialog3_Interface'Class;
+   type IContentDialog3_Ptr is access all IContentDialog3;
 
    type IContentDialogButtonClickDeferral_Interface is interface and WinRt.IInspectable_Interface;
    type IContentDialogButtonClickDeferral is access all IContentDialogButtonClickDeferral_Interface'Class;
@@ -587,6 +690,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IContentDialogFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IContentDialogFactory is access all IContentDialogFactory_Interface'Class;
+   type IContentDialogFactory_Ptr is access all IContentDialogFactory;
 
    type IContentDialogOpenedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IContentDialogOpenedEventArgs is access all IContentDialogOpenedEventArgs_Interface'Class;
@@ -594,9 +698,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IContentDialogStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IContentDialogStatics is access all IContentDialogStatics_Interface'Class;
+   type IContentDialogStatics_Ptr is access all IContentDialogStatics;
 
    type IContentDialogStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IContentDialogStatics2 is access all IContentDialogStatics2_Interface'Class;
+   type IContentDialogStatics2_Ptr is access all IContentDialogStatics2;
 
    type IContentLinkChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IContentLinkChangedEventArgs is access all IContentLinkChangedEventArgs_Interface'Class;
@@ -608,36 +714,47 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IContentPresenter2_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPresenter2 is access all IContentPresenter2_Interface'Class;
+   type IContentPresenter2_Ptr is access all IContentPresenter2;
 
    type IContentPresenter3_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPresenter3 is access all IContentPresenter3_Interface'Class;
+   type IContentPresenter3_Ptr is access all IContentPresenter3;
 
    type IContentPresenter4_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPresenter4 is access all IContentPresenter4_Interface'Class;
+   type IContentPresenter4_Ptr is access all IContentPresenter4;
 
    type IContentPresenter5_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPresenter5 is access all IContentPresenter5_Interface'Class;
+   type IContentPresenter5_Ptr is access all IContentPresenter5;
 
    type IContentPresenterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPresenterFactory is access all IContentPresenterFactory_Interface'Class;
+   type IContentPresenterFactory_Ptr is access all IContentPresenterFactory;
 
    type IContentPresenterOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPresenterOverrides is access all IContentPresenterOverrides_Interface'Class;
+   type IContentPresenterOverrides_Ptr is access all IContentPresenterOverrides;
 
    type IContentPresenterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPresenterStatics is access all IContentPresenterStatics_Interface'Class;
+   type IContentPresenterStatics_Ptr is access all IContentPresenterStatics;
 
    type IContentPresenterStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPresenterStatics2 is access all IContentPresenterStatics2_Interface'Class;
+   type IContentPresenterStatics2_Ptr is access all IContentPresenterStatics2;
 
    type IContentPresenterStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPresenterStatics3 is access all IContentPresenterStatics3_Interface'Class;
+   type IContentPresenterStatics3_Ptr is access all IContentPresenterStatics3;
 
    type IContentPresenterStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPresenterStatics4 is access all IContentPresenterStatics4_Interface'Class;
+   type IContentPresenterStatics4_Ptr is access all IContentPresenterStatics4;
 
    type IContentPresenterStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPresenterStatics5 is access all IContentPresenterStatics5_Interface'Class;
+   type IContentPresenterStatics5_Ptr is access all IContentPresenterStatics5;
 
    type IContextMenuEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IContextMenuEventArgs is access all IContextMenuEventArgs_Interface'Class;
@@ -649,48 +766,63 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IControl2 is access all IControl2_Interface'Class;
+   type IControl2_Ptr is access all IControl2;
 
    type IControl3_Interface is interface and WinRt.IInspectable_Interface;
    type IControl3 is access all IControl3_Interface'Class;
+   type IControl3_Ptr is access all IControl3;
 
    type IControl4_Interface is interface and WinRt.IInspectable_Interface;
    type IControl4 is access all IControl4_Interface'Class;
+   type IControl4_Ptr is access all IControl4;
 
    type IControl5_Interface is interface and WinRt.IInspectable_Interface;
    type IControl5 is access all IControl5_Interface'Class;
+   type IControl5_Ptr is access all IControl5;
 
    type IControl7_Interface is interface and WinRt.IInspectable_Interface;
    type IControl7 is access all IControl7_Interface'Class;
+   type IControl7_Ptr is access all IControl7;
 
    type IControlFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IControlFactory is access all IControlFactory_Interface'Class;
+   type IControlFactory_Ptr is access all IControlFactory;
 
    type IControlOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IControlOverrides is access all IControlOverrides_Interface'Class;
+   type IControlOverrides_Ptr is access all IControlOverrides;
 
    type IControlOverrides6_Interface is interface and WinRt.IInspectable_Interface;
    type IControlOverrides6 is access all IControlOverrides6_Interface'Class;
+   type IControlOverrides6_Ptr is access all IControlOverrides6;
 
    type IControlProtected_Interface is interface and WinRt.IInspectable_Interface;
    type IControlProtected is access all IControlProtected_Interface'Class;
+   type IControlProtected_Ptr is access all IControlProtected;
 
    type IControlStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IControlStatics is access all IControlStatics_Interface'Class;
+   type IControlStatics_Ptr is access all IControlStatics;
 
    type IControlStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IControlStatics2 is access all IControlStatics2_Interface'Class;
+   type IControlStatics2_Ptr is access all IControlStatics2;
 
    type IControlStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IControlStatics3 is access all IControlStatics3_Interface'Class;
+   type IControlStatics3_Ptr is access all IControlStatics3;
 
    type IControlStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IControlStatics4 is access all IControlStatics4_Interface'Class;
+   type IControlStatics4_Ptr is access all IControlStatics4;
 
    type IControlStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IControlStatics5 is access all IControlStatics5_Interface'Class;
+   type IControlStatics5_Ptr is access all IControlStatics5;
 
    type IControlStatics7_Interface is interface and WinRt.IInspectable_Interface;
    type IControlStatics7 is access all IControlStatics7_Interface'Class;
+   type IControlStatics7_Ptr is access all IControlStatics7;
 
    type IControlTemplate_Interface is interface and WinRt.IInspectable_Interface;
    type IControlTemplate is access all IControlTemplate_Interface'Class;
@@ -702,15 +834,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IDataTemplateSelector2_Interface is interface and WinRt.IInspectable_Interface;
    type IDataTemplateSelector2 is access all IDataTemplateSelector2_Interface'Class;
+   type IDataTemplateSelector2_Ptr is access all IDataTemplateSelector2;
 
    type IDataTemplateSelectorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDataTemplateSelectorFactory is access all IDataTemplateSelectorFactory_Interface'Class;
+   type IDataTemplateSelectorFactory_Ptr is access all IDataTemplateSelectorFactory;
 
    type IDataTemplateSelectorOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IDataTemplateSelectorOverrides is access all IDataTemplateSelectorOverrides_Interface'Class;
+   type IDataTemplateSelectorOverrides_Ptr is access all IDataTemplateSelectorOverrides;
 
    type IDataTemplateSelectorOverrides2_Interface is interface and WinRt.IInspectable_Interface;
    type IDataTemplateSelectorOverrides2 is access all IDataTemplateSelectorOverrides2_Interface'Class;
+   type IDataTemplateSelectorOverrides2_Ptr is access all IDataTemplateSelectorOverrides2;
 
    type IDatePickedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickedEventArgs is access all IDatePickedEventArgs_Interface'Class;
@@ -722,12 +858,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IDatePicker2_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePicker2 is access all IDatePicker2_Interface'Class;
+   type IDatePicker2_Ptr is access all IDatePicker2;
 
    type IDatePicker3_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePicker3 is access all IDatePicker3_Interface'Class;
+   type IDatePicker3_Ptr is access all IDatePicker3;
 
    type IDatePickerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerFactory is access all IDatePickerFactory_Interface'Class;
+   type IDatePickerFactory_Ptr is access all IDatePickerFactory;
 
    type IDatePickerFlyout_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerFlyout is access all IDatePickerFlyout_Interface'Class;
@@ -735,6 +874,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IDatePickerFlyout2_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerFlyout2 is access all IDatePickerFlyout2_Interface'Class;
+   type IDatePickerFlyout2_Ptr is access all IDatePickerFlyout2;
 
    type IDatePickerFlyoutItem_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerFlyoutItem is access all IDatePickerFlyoutItem_Interface'Class;
@@ -742,6 +882,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IDatePickerFlyoutItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerFlyoutItemStatics is access all IDatePickerFlyoutItemStatics_Interface'Class;
+   type IDatePickerFlyoutItemStatics_Ptr is access all IDatePickerFlyoutItemStatics;
 
    type IDatePickerFlyoutPresenter_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerFlyoutPresenter is access all IDatePickerFlyoutPresenter_Interface'Class;
@@ -749,15 +890,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IDatePickerFlyoutPresenter2_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerFlyoutPresenter2 is access all IDatePickerFlyoutPresenter2_Interface'Class;
+   type IDatePickerFlyoutPresenter2_Ptr is access all IDatePickerFlyoutPresenter2;
 
    type IDatePickerFlyoutPresenterStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerFlyoutPresenterStatics2 is access all IDatePickerFlyoutPresenterStatics2_Interface'Class;
+   type IDatePickerFlyoutPresenterStatics2_Ptr is access all IDatePickerFlyoutPresenterStatics2;
 
    type IDatePickerFlyoutStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerFlyoutStatics is access all IDatePickerFlyoutStatics_Interface'Class;
+   type IDatePickerFlyoutStatics_Ptr is access all IDatePickerFlyoutStatics;
 
    type IDatePickerFlyoutStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerFlyoutStatics2 is access all IDatePickerFlyoutStatics2_Interface'Class;
+   type IDatePickerFlyoutStatics2_Ptr is access all IDatePickerFlyoutStatics2;
 
    type IDatePickerSelectedValueChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerSelectedValueChangedEventArgs is access all IDatePickerSelectedValueChangedEventArgs_Interface'Class;
@@ -765,12 +910,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IDatePickerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerStatics is access all IDatePickerStatics_Interface'Class;
+   type IDatePickerStatics_Ptr is access all IDatePickerStatics;
 
    type IDatePickerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerStatics2 is access all IDatePickerStatics2_Interface'Class;
+   type IDatePickerStatics2_Ptr is access all IDatePickerStatics2;
 
    type IDatePickerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerStatics3 is access all IDatePickerStatics3_Interface'Class;
+   type IDatePickerStatics3_Ptr is access all IDatePickerStatics3;
 
    type IDatePickerValueChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDatePickerValueChangedEventArgs is access all IDatePickerValueChangedEventArgs_Interface'Class;
@@ -794,9 +942,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IDropDownButtonAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDropDownButtonAutomationPeerFactory is access all IDropDownButtonAutomationPeerFactory_Interface'Class;
+   type IDropDownButtonAutomationPeerFactory_Ptr is access all IDropDownButtonAutomationPeerFactory;
 
    type IDropDownButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDropDownButtonFactory is access all IDropDownButtonFactory_Interface'Class;
+   type IDropDownButtonFactory_Ptr is access all IDropDownButtonFactory;
 
    type IDynamicOverflowItemsChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDynamicOverflowItemsChangingEventArgs is access all IDynamicOverflowItemsChangingEventArgs_Interface'Class;
@@ -808,9 +958,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IFlipView2_Interface is interface and WinRt.IInspectable_Interface;
    type IFlipView2 is access all IFlipView2_Interface'Class;
+   type IFlipView2_Ptr is access all IFlipView2;
 
    type IFlipViewFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFlipViewFactory is access all IFlipViewFactory_Interface'Class;
+   type IFlipViewFactory_Ptr is access all IFlipViewFactory;
 
    type IFlipViewItem_Interface is interface and WinRt.IInspectable_Interface;
    type IFlipViewItem is access all IFlipViewItem_Interface'Class;
@@ -818,9 +970,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IFlipViewItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFlipViewItemFactory is access all IFlipViewItemFactory_Interface'Class;
+   type IFlipViewItemFactory_Ptr is access all IFlipViewItemFactory;
 
    type IFlipViewStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IFlipViewStatics2 is access all IFlipViewStatics2_Interface'Class;
+   type IFlipViewStatics2_Ptr is access all IFlipViewStatics2;
 
    type IFlyout_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyout is access all IFlyout_Interface'Class;
@@ -828,6 +982,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IFlyoutFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutFactory is access all IFlyoutFactory_Interface'Class;
+   type IFlyoutFactory_Ptr is access all IFlyoutFactory;
 
    type IFlyoutPresenter_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutPresenter is access all IFlyoutPresenter_Interface'Class;
@@ -835,15 +990,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IFlyoutPresenter2_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutPresenter2 is access all IFlyoutPresenter2_Interface'Class;
+   type IFlyoutPresenter2_Ptr is access all IFlyoutPresenter2;
 
    type IFlyoutPresenterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutPresenterFactory is access all IFlyoutPresenterFactory_Interface'Class;
+   type IFlyoutPresenterFactory_Ptr is access all IFlyoutPresenterFactory;
 
    type IFlyoutPresenterStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutPresenterStatics2 is access all IFlyoutPresenterStatics2_Interface'Class;
+   type IFlyoutPresenterStatics2_Ptr is access all IFlyoutPresenterStatics2;
 
    type IFlyoutStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutStatics is access all IFlyoutStatics_Interface'Class;
+   type IFlyoutStatics_Ptr is access all IFlyoutStatics;
 
    type IFocusDisengagedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IFocusDisengagedEventArgs is access all IFocusDisengagedEventArgs_Interface'Class;
@@ -855,6 +1014,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IFocusEngagedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IFocusEngagedEventArgs2 is access all IFocusEngagedEventArgs2_Interface'Class;
+   type IFocusEngagedEventArgs2_Ptr is access all IFocusEngagedEventArgs2;
 
    type IFontIcon_Interface is interface and WinRt.IInspectable_Interface;
    type IFontIcon is access all IFontIcon_Interface'Class;
@@ -862,12 +1022,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IFontIcon2_Interface is interface and WinRt.IInspectable_Interface;
    type IFontIcon2 is access all IFontIcon2_Interface'Class;
+   type IFontIcon2_Ptr is access all IFontIcon2;
 
    type IFontIcon3_Interface is interface and WinRt.IInspectable_Interface;
    type IFontIcon3 is access all IFontIcon3_Interface'Class;
+   type IFontIcon3_Ptr is access all IFontIcon3;
 
    type IFontIconFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFontIconFactory is access all IFontIconFactory_Interface'Class;
+   type IFontIconFactory_Ptr is access all IFontIconFactory;
 
    type IFontIconSource_Interface is interface and WinRt.IInspectable_Interface;
    type IFontIconSource is access all IFontIconSource_Interface'Class;
@@ -875,18 +1038,23 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IFontIconSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFontIconSourceFactory is access all IFontIconSourceFactory_Interface'Class;
+   type IFontIconSourceFactory_Ptr is access all IFontIconSourceFactory;
 
    type IFontIconSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFontIconSourceStatics is access all IFontIconSourceStatics_Interface'Class;
+   type IFontIconSourceStatics_Ptr is access all IFontIconSourceStatics;
 
    type IFontIconStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFontIconStatics is access all IFontIconStatics_Interface'Class;
+   type IFontIconStatics_Ptr is access all IFontIconStatics;
 
    type IFontIconStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IFontIconStatics2 is access all IFontIconStatics2_Interface'Class;
+   type IFontIconStatics2_Ptr is access all IFontIconStatics2;
 
    type IFontIconStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IFontIconStatics3 is access all IFontIconStatics3_Interface'Class;
+   type IFontIconStatics3_Ptr is access all IFontIconStatics3;
 
    type IFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IFrame is access all IFrame_Interface'Class;
@@ -894,27 +1062,35 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IFrame2_Interface is interface and WinRt.IInspectable_Interface;
    type IFrame2 is access all IFrame2_Interface'Class;
+   type IFrame2_Ptr is access all IFrame2;
 
    type IFrame3_Interface is interface and WinRt.IInspectable_Interface;
    type IFrame3 is access all IFrame3_Interface'Class;
+   type IFrame3_Ptr is access all IFrame3;
 
    type IFrame4_Interface is interface and WinRt.IInspectable_Interface;
    type IFrame4 is access all IFrame4_Interface'Class;
+   type IFrame4_Ptr is access all IFrame4;
 
    type IFrame5_Interface is interface and WinRt.IInspectable_Interface;
    type IFrame5 is access all IFrame5_Interface'Class;
+   type IFrame5_Ptr is access all IFrame5;
 
    type IFrameFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameFactory is access all IFrameFactory_Interface'Class;
+   type IFrameFactory_Ptr is access all IFrameFactory;
 
    type IFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameStatics is access all IFrameStatics_Interface'Class;
+   type IFrameStatics_Ptr is access all IFrameStatics;
 
    type IFrameStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameStatics2 is access all IFrameStatics2_Interface'Class;
+   type IFrameStatics2_Ptr is access all IFrameStatics2;
 
    type IFrameStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameStatics5 is access all IFrameStatics5_Interface'Class;
+   type IFrameStatics5_Ptr is access all IFrameStatics5;
 
    type IGrid_Interface is interface and WinRt.IInspectable_Interface;
    type IGrid is access all IGrid_Interface'Class;
@@ -922,27 +1098,35 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IGrid2_Interface is interface and WinRt.IInspectable_Interface;
    type IGrid2 is access all IGrid2_Interface'Class;
+   type IGrid2_Ptr is access all IGrid2;
 
    type IGrid3_Interface is interface and WinRt.IInspectable_Interface;
    type IGrid3 is access all IGrid3_Interface'Class;
+   type IGrid3_Ptr is access all IGrid3;
 
    type IGrid4_Interface is interface and WinRt.IInspectable_Interface;
    type IGrid4 is access all IGrid4_Interface'Class;
+   type IGrid4_Ptr is access all IGrid4;
 
    type IGridFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGridFactory is access all IGridFactory_Interface'Class;
+   type IGridFactory_Ptr is access all IGridFactory;
 
    type IGridStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGridStatics is access all IGridStatics_Interface'Class;
+   type IGridStatics_Ptr is access all IGridStatics;
 
    type IGridStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IGridStatics2 is access all IGridStatics2_Interface'Class;
+   type IGridStatics2_Ptr is access all IGridStatics2;
 
    type IGridStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IGridStatics3 is access all IGridStatics3_Interface'Class;
+   type IGridStatics3_Ptr is access all IGridStatics3;
 
    type IGridStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IGridStatics4 is access all IGridStatics4_Interface'Class;
+   type IGridStatics4_Ptr is access all IGridStatics4;
 
    type IGridView_Interface is interface and WinRt.IInspectable_Interface;
    type IGridView is access all IGridView_Interface'Class;
@@ -950,6 +1134,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IGridViewFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGridViewFactory is access all IGridViewFactory_Interface'Class;
+   type IGridViewFactory_Ptr is access all IGridViewFactory;
 
    type IGridViewHeaderItem_Interface is interface and WinRt.IInspectable_Interface;
    type IGridViewHeaderItem is access all IGridViewHeaderItem_Interface'Class;
@@ -957,6 +1142,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IGridViewHeaderItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGridViewHeaderItemFactory is access all IGridViewHeaderItemFactory_Interface'Class;
+   type IGridViewHeaderItemFactory_Ptr is access all IGridViewHeaderItemFactory;
 
    type IGridViewItem_Interface is interface and WinRt.IInspectable_Interface;
    type IGridViewItem is access all IGridViewItem_Interface'Class;
@@ -964,6 +1150,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IGridViewItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGridViewItemFactory is access all IGridViewItemFactory_Interface'Class;
+   type IGridViewItemFactory_Ptr is access all IGridViewItemFactory;
 
    type IGroupItem_Interface is interface and WinRt.IInspectable_Interface;
    type IGroupItem is access all IGroupItem_Interface'Class;
@@ -971,6 +1158,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IGroupItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGroupItemFactory is access all IGroupItemFactory_Interface'Class;
+   type IGroupItemFactory_Ptr is access all IGroupItemFactory;
 
    type IGroupStyle_Interface is interface and WinRt.IInspectable_Interface;
    type IGroupStyle is access all IGroupStyle_Interface'Class;
@@ -978,9 +1166,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IGroupStyle2_Interface is interface and WinRt.IInspectable_Interface;
    type IGroupStyle2 is access all IGroupStyle2_Interface'Class;
+   type IGroupStyle2_Ptr is access all IGroupStyle2;
 
    type IGroupStyleFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGroupStyleFactory is access all IGroupStyleFactory_Interface'Class;
+   type IGroupStyleFactory_Ptr is access all IGroupStyleFactory;
 
    type IGroupStyleSelector_Interface is interface and WinRt.IInspectable_Interface;
    type IGroupStyleSelector is access all IGroupStyleSelector_Interface'Class;
@@ -988,9 +1178,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IGroupStyleSelectorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGroupStyleSelectorFactory is access all IGroupStyleSelectorFactory_Interface'Class;
+   type IGroupStyleSelectorFactory_Ptr is access all IGroupStyleSelectorFactory;
 
    type IGroupStyleSelectorOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IGroupStyleSelectorOverrides is access all IGroupStyleSelectorOverrides_Interface'Class;
+   type IGroupStyleSelectorOverrides_Ptr is access all IGroupStyleSelectorOverrides;
 
    type IHandwritingPanelClosedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IHandwritingPanelClosedEventArgs is access all IHandwritingPanelClosedEventArgs_Interface'Class;
@@ -1004,11 +1196,29 @@ package WinRt.Windows.UI.Xaml.Controls is
    type IHandwritingView is access all IHandwritingView_Interface'Class;
    type IHandwritingView_Ptr is access all IHandwritingView;
 
+   type IHandwritingView2_Interface is interface and WinRt.IInspectable_Interface;
+   type IHandwritingView2 is access all IHandwritingView2_Interface'Class;
+   type IHandwritingView2_Ptr is access all IHandwritingView2;
+
+   type IHandwritingViewCandidatesChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IHandwritingViewCandidatesChangedEventArgs is access all IHandwritingViewCandidatesChangedEventArgs_Interface'Class;
+   type IHandwritingViewCandidatesChangedEventArgs_Ptr is access all IHandwritingViewCandidatesChangedEventArgs;
+
    type IHandwritingViewFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHandwritingViewFactory is access all IHandwritingViewFactory_Interface'Class;
+   type IHandwritingViewFactory_Ptr is access all IHandwritingViewFactory;
 
    type IHandwritingViewStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHandwritingViewStatics is access all IHandwritingViewStatics_Interface'Class;
+   type IHandwritingViewStatics_Ptr is access all IHandwritingViewStatics;
+
+   type IHandwritingViewStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type IHandwritingViewStatics2 is access all IHandwritingViewStatics2_Interface'Class;
+   type IHandwritingViewStatics2_Ptr is access all IHandwritingViewStatics2;
+
+   type IHandwritingViewTextSubmittedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IHandwritingViewTextSubmittedEventArgs is access all IHandwritingViewTextSubmittedEventArgs_Interface'Class;
+   type IHandwritingViewTextSubmittedEventArgs_Ptr is access all IHandwritingViewTextSubmittedEventArgs;
 
    type IHub_Interface is interface and WinRt.IInspectable_Interface;
    type IHub is access all IHub_Interface'Class;
@@ -1016,6 +1226,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IHubFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHubFactory is access all IHubFactory_Interface'Class;
+   type IHubFactory_Ptr is access all IHubFactory;
 
    type IHubSection_Interface is interface and WinRt.IInspectable_Interface;
    type IHubSection is access all IHubSection_Interface'Class;
@@ -1024,6 +1235,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IHubSectionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHubSectionFactory is access all IHubSectionFactory_Interface'Class;
+   type IHubSectionFactory_Ptr is access all IHubSectionFactory;
 
    type IHubSectionHeaderClickEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IHubSectionHeaderClickEventArgs is access all IHubSectionHeaderClickEventArgs_Interface'Class;
@@ -1031,9 +1243,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IHubSectionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHubSectionStatics is access all IHubSectionStatics_Interface'Class;
+   type IHubSectionStatics_Ptr is access all IHubSectionStatics;
 
    type IHubStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHubStatics is access all IHubStatics_Interface'Class;
+   type IHubStatics_Ptr is access all IHubStatics;
 
    type IHyperlinkButton_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlinkButton is access all IHyperlinkButton_Interface'Class;
@@ -1041,9 +1255,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IHyperlinkButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlinkButtonFactory is access all IHyperlinkButtonFactory_Interface'Class;
+   type IHyperlinkButtonFactory_Ptr is access all IHyperlinkButtonFactory;
 
    type IHyperlinkButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlinkButtonStatics is access all IHyperlinkButtonStatics_Interface'Class;
+   type IHyperlinkButtonStatics_Ptr is access all IHyperlinkButtonStatics;
 
    type IIconElement_Interface is interface and WinRt.IInspectable_Interface;
    type IIconElement is access all IIconElement_Interface'Class;
@@ -1051,9 +1267,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IIconElementFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IIconElementFactory is access all IIconElementFactory_Interface'Class;
+   type IIconElementFactory_Ptr is access all IIconElementFactory;
 
    type IIconElementStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IIconElementStatics is access all IIconElementStatics_Interface'Class;
+   type IIconElementStatics_Ptr is access all IIconElementStatics;
 
    type IIconSource_Interface is interface and WinRt.IInspectable_Interface;
    type IIconSource is access all IIconSource_Interface'Class;
@@ -1065,15 +1283,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IIconSourceElementFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IIconSourceElementFactory is access all IIconSourceElementFactory_Interface'Class;
+   type IIconSourceElementFactory_Ptr is access all IIconSourceElementFactory;
 
    type IIconSourceElementStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IIconSourceElementStatics is access all IIconSourceElementStatics_Interface'Class;
+   type IIconSourceElementStatics_Ptr is access all IIconSourceElementStatics;
 
    type IIconSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IIconSourceFactory is access all IIconSourceFactory_Interface'Class;
+   type IIconSourceFactory_Ptr is access all IIconSourceFactory;
 
    type IIconSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IIconSourceStatics is access all IIconSourceStatics_Interface'Class;
+   type IIconSourceStatics_Ptr is access all IIconSourceStatics;
 
    type IImage_Interface is interface and WinRt.IInspectable_Interface;
    type IImage is access all IImage_Interface'Class;
@@ -1081,12 +1303,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IImage2_Interface is interface and WinRt.IInspectable_Interface;
    type IImage2 is access all IImage2_Interface'Class;
+   type IImage2_Ptr is access all IImage2;
 
    type IImage3_Interface is interface and WinRt.IInspectable_Interface;
    type IImage3 is access all IImage3_Interface'Class;
+   type IImage3_Ptr is access all IImage3;
 
    type IImageStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IImageStatics is access all IImageStatics_Interface'Class;
+   type IImageStatics_Ptr is access all IImageStatics;
 
    type IInkCanvas_Interface is interface and WinRt.IInspectable_Interface;
    type IInkCanvas is access all IInkCanvas_Interface'Class;
@@ -1094,6 +1319,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkCanvasFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkCanvasFactory is access all IInkCanvasFactory_Interface'Class;
+   type IInkCanvasFactory_Ptr is access all IInkCanvasFactory;
 
    type IInkToolbar_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbar is access all IInkToolbar_Interface'Class;
@@ -1101,9 +1327,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbar2_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbar2 is access all IInkToolbar2_Interface'Class;
+   type IInkToolbar2_Ptr is access all IInkToolbar2;
 
    type IInkToolbar3_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbar3 is access all IInkToolbar3_Interface'Class;
+   type IInkToolbar3_Ptr is access all IInkToolbar3;
 
    type IInkToolbarBallpointPenButton_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarBallpointPenButton is access all IInkToolbarBallpointPenButton_Interface'Class;
@@ -1111,6 +1339,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarBallpointPenButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarBallpointPenButtonFactory is access all IInkToolbarBallpointPenButtonFactory_Interface'Class;
+   type IInkToolbarBallpointPenButtonFactory_Ptr is access all IInkToolbarBallpointPenButtonFactory;
 
    type IInkToolbarCustomPen_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarCustomPen is access all IInkToolbarCustomPen_Interface'Class;
@@ -1122,15 +1351,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarCustomPenButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarCustomPenButtonFactory is access all IInkToolbarCustomPenButtonFactory_Interface'Class;
+   type IInkToolbarCustomPenButtonFactory_Ptr is access all IInkToolbarCustomPenButtonFactory;
 
    type IInkToolbarCustomPenButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarCustomPenButtonStatics is access all IInkToolbarCustomPenButtonStatics_Interface'Class;
+   type IInkToolbarCustomPenButtonStatics_Ptr is access all IInkToolbarCustomPenButtonStatics;
 
    type IInkToolbarCustomPenFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarCustomPenFactory is access all IInkToolbarCustomPenFactory_Interface'Class;
+   type IInkToolbarCustomPenFactory_Ptr is access all IInkToolbarCustomPenFactory;
 
    type IInkToolbarCustomPenOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarCustomPenOverrides is access all IInkToolbarCustomPenOverrides_Interface'Class;
+   type IInkToolbarCustomPenOverrides_Ptr is access all IInkToolbarCustomPenOverrides;
 
    type IInkToolbarCustomToggleButton_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarCustomToggleButton is access all IInkToolbarCustomToggleButton_Interface'Class;
@@ -1138,6 +1371,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarCustomToggleButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarCustomToggleButtonFactory is access all IInkToolbarCustomToggleButtonFactory_Interface'Class;
+   type IInkToolbarCustomToggleButtonFactory_Ptr is access all IInkToolbarCustomToggleButtonFactory;
 
    type IInkToolbarCustomToolButton_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarCustomToolButton is access all IInkToolbarCustomToolButton_Interface'Class;
@@ -1145,9 +1379,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarCustomToolButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarCustomToolButtonFactory is access all IInkToolbarCustomToolButtonFactory_Interface'Class;
+   type IInkToolbarCustomToolButtonFactory_Ptr is access all IInkToolbarCustomToolButtonFactory;
 
    type IInkToolbarCustomToolButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarCustomToolButtonStatics is access all IInkToolbarCustomToolButtonStatics_Interface'Class;
+   type IInkToolbarCustomToolButtonStatics_Ptr is access all IInkToolbarCustomToolButtonStatics;
 
    type IInkToolbarEraserButton_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarEraserButton is access all IInkToolbarEraserButton_Interface'Class;
@@ -1155,15 +1391,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarEraserButton2_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarEraserButton2 is access all IInkToolbarEraserButton2_Interface'Class;
+   type IInkToolbarEraserButton2_Ptr is access all IInkToolbarEraserButton2;
 
    type IInkToolbarEraserButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarEraserButtonFactory is access all IInkToolbarEraserButtonFactory_Interface'Class;
+   type IInkToolbarEraserButtonFactory_Ptr is access all IInkToolbarEraserButtonFactory;
 
    type IInkToolbarEraserButtonStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarEraserButtonStatics2 is access all IInkToolbarEraserButtonStatics2_Interface'Class;
+   type IInkToolbarEraserButtonStatics2_Ptr is access all IInkToolbarEraserButtonStatics2;
 
    type IInkToolbarFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarFactory is access all IInkToolbarFactory_Interface'Class;
+   type IInkToolbarFactory_Ptr is access all IInkToolbarFactory;
 
    type IInkToolbarFlyoutItem_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarFlyoutItem is access all IInkToolbarFlyoutItem_Interface'Class;
@@ -1171,9 +1411,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarFlyoutItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarFlyoutItemFactory is access all IInkToolbarFlyoutItemFactory_Interface'Class;
+   type IInkToolbarFlyoutItemFactory_Ptr is access all IInkToolbarFlyoutItemFactory;
 
    type IInkToolbarFlyoutItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarFlyoutItemStatics is access all IInkToolbarFlyoutItemStatics_Interface'Class;
+   type IInkToolbarFlyoutItemStatics_Ptr is access all IInkToolbarFlyoutItemStatics;
 
    type IInkToolbarHighlighterButton_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarHighlighterButton is access all IInkToolbarHighlighterButton_Interface'Class;
@@ -1181,6 +1423,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarHighlighterButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarHighlighterButtonFactory is access all IInkToolbarHighlighterButtonFactory_Interface'Class;
+   type IInkToolbarHighlighterButtonFactory_Ptr is access all IInkToolbarHighlighterButtonFactory;
 
    type IInkToolbarIsStencilButtonCheckedChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarIsStencilButtonCheckedChangedEventArgs is access all IInkToolbarIsStencilButtonCheckedChangedEventArgs_Interface'Class;
@@ -1192,9 +1435,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarMenuButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarMenuButtonFactory is access all IInkToolbarMenuButtonFactory_Interface'Class;
+   type IInkToolbarMenuButtonFactory_Ptr is access all IInkToolbarMenuButtonFactory;
 
    type IInkToolbarMenuButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarMenuButtonStatics is access all IInkToolbarMenuButtonStatics_Interface'Class;
+   type IInkToolbarMenuButtonStatics_Ptr is access all IInkToolbarMenuButtonStatics;
 
    type IInkToolbarPenButton_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarPenButton is access all IInkToolbarPenButton_Interface'Class;
@@ -1202,9 +1447,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarPenButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarPenButtonFactory is access all IInkToolbarPenButtonFactory_Interface'Class;
+   type IInkToolbarPenButtonFactory_Ptr is access all IInkToolbarPenButtonFactory;
 
    type IInkToolbarPenButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarPenButtonStatics is access all IInkToolbarPenButtonStatics_Interface'Class;
+   type IInkToolbarPenButtonStatics_Ptr is access all IInkToolbarPenButtonStatics;
 
    type IInkToolbarPenConfigurationControl_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarPenConfigurationControl is access all IInkToolbarPenConfigurationControl_Interface'Class;
@@ -1212,9 +1459,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarPenConfigurationControlFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarPenConfigurationControlFactory is access all IInkToolbarPenConfigurationControlFactory_Interface'Class;
+   type IInkToolbarPenConfigurationControlFactory_Ptr is access all IInkToolbarPenConfigurationControlFactory;
 
    type IInkToolbarPenConfigurationControlStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarPenConfigurationControlStatics is access all IInkToolbarPenConfigurationControlStatics_Interface'Class;
+   type IInkToolbarPenConfigurationControlStatics_Ptr is access all IInkToolbarPenConfigurationControlStatics;
 
    type IInkToolbarPencilButton_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarPencilButton is access all IInkToolbarPencilButton_Interface'Class;
@@ -1222,6 +1471,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarPencilButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarPencilButtonFactory is access all IInkToolbarPencilButtonFactory_Interface'Class;
+   type IInkToolbarPencilButtonFactory_Ptr is access all IInkToolbarPencilButtonFactory;
 
    type IInkToolbarRulerButton_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarRulerButton is access all IInkToolbarRulerButton_Interface'Class;
@@ -1229,18 +1479,23 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarRulerButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarRulerButtonFactory is access all IInkToolbarRulerButtonFactory_Interface'Class;
+   type IInkToolbarRulerButtonFactory_Ptr is access all IInkToolbarRulerButtonFactory;
 
    type IInkToolbarRulerButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarRulerButtonStatics is access all IInkToolbarRulerButtonStatics_Interface'Class;
+   type IInkToolbarRulerButtonStatics_Ptr is access all IInkToolbarRulerButtonStatics;
 
    type IInkToolbarStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarStatics is access all IInkToolbarStatics_Interface'Class;
+   type IInkToolbarStatics_Ptr is access all IInkToolbarStatics;
 
    type IInkToolbarStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarStatics2 is access all IInkToolbarStatics2_Interface'Class;
+   type IInkToolbarStatics2_Ptr is access all IInkToolbarStatics2;
 
    type IInkToolbarStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarStatics3 is access all IInkToolbarStatics3_Interface'Class;
+   type IInkToolbarStatics3_Ptr is access all IInkToolbarStatics3;
 
    type IInkToolbarStencilButton_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarStencilButton is access all IInkToolbarStencilButton_Interface'Class;
@@ -1248,9 +1503,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarStencilButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarStencilButtonFactory is access all IInkToolbarStencilButtonFactory_Interface'Class;
+   type IInkToolbarStencilButtonFactory_Ptr is access all IInkToolbarStencilButtonFactory;
 
    type IInkToolbarStencilButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarStencilButtonStatics is access all IInkToolbarStencilButtonStatics_Interface'Class;
+   type IInkToolbarStencilButtonStatics_Ptr is access all IInkToolbarStencilButtonStatics;
 
    type IInkToolbarToggleButton_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarToggleButton is access all IInkToolbarToggleButton_Interface'Class;
@@ -1258,6 +1515,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarToggleButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarToggleButtonFactory is access all IInkToolbarToggleButtonFactory_Interface'Class;
+   type IInkToolbarToggleButtonFactory_Ptr is access all IInkToolbarToggleButtonFactory;
 
    type IInkToolbarToolButton_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarToolButton is access all IInkToolbarToolButton_Interface'Class;
@@ -1265,12 +1523,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IInkToolbarToolButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarToolButtonFactory is access all IInkToolbarToolButtonFactory_Interface'Class;
+   type IInkToolbarToolButtonFactory_Ptr is access all IInkToolbarToolButtonFactory;
 
    type IInkToolbarToolButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInkToolbarToolButtonStatics is access all IInkToolbarToolButtonStatics_Interface'Class;
+   type IInkToolbarToolButtonStatics_Ptr is access all IInkToolbarToolButtonStatics;
 
    type IInsertionPanel_Interface is interface and WinRt.IInspectable_Interface;
    type IInsertionPanel is access all IInsertionPanel_Interface'Class;
+   type IInsertionPanel_Ptr is access all IInsertionPanel;
 
    type IIsTextTrimmedChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IIsTextTrimmedChangedEventArgs is access all IIsTextTrimmedChangedEventArgs_Interface'Class;
@@ -1286,6 +1547,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IItemContainerMapping_Interface is interface and WinRt.IInspectable_Interface;
    type IItemContainerMapping is access all IItemContainerMapping_Interface'Class;
+   type IItemContainerMapping_Ptr is access all IItemContainerMapping;
 
    type IItemsControl_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsControl is access all IItemsControl_Interface'Class;
@@ -1293,18 +1555,23 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IItemsControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsControl2 is access all IItemsControl2_Interface'Class;
+   type IItemsControl2_Ptr is access all IItemsControl2;
 
    type IItemsControl3_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsControl3 is access all IItemsControl3_Interface'Class;
+   type IItemsControl3_Ptr is access all IItemsControl3;
 
    type IItemsControlFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsControlFactory is access all IItemsControlFactory_Interface'Class;
+   type IItemsControlFactory_Ptr is access all IItemsControlFactory;
 
    type IItemsControlOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsControlOverrides is access all IItemsControlOverrides_Interface'Class;
+   type IItemsControlOverrides_Ptr is access all IItemsControlOverrides;
 
    type IItemsControlStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsControlStatics is access all IItemsControlStatics_Interface'Class;
+   type IItemsControlStatics_Ptr is access all IItemsControlStatics;
 
    type IItemsPanelTemplate_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsPanelTemplate is access all IItemsPanelTemplate_Interface'Class;
@@ -1320,12 +1587,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IItemsPresenter2_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsPresenter2 is access all IItemsPresenter2_Interface'Class;
+   type IItemsPresenter2_Ptr is access all IItemsPresenter2;
 
    type IItemsPresenterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsPresenterStatics is access all IItemsPresenterStatics_Interface'Class;
+   type IItemsPresenterStatics_Ptr is access all IItemsPresenterStatics;
 
    type IItemsPresenterStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsPresenterStatics2 is access all IItemsPresenterStatics2_Interface'Class;
+   type IItemsPresenterStatics2_Ptr is access all IItemsPresenterStatics2;
 
    type IItemsStackPanel_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsStackPanel is access all IItemsStackPanel_Interface'Class;
@@ -1333,12 +1603,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IItemsStackPanel2_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsStackPanel2 is access all IItemsStackPanel2_Interface'Class;
+   type IItemsStackPanel2_Ptr is access all IItemsStackPanel2;
 
    type IItemsStackPanelStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsStackPanelStatics is access all IItemsStackPanelStatics_Interface'Class;
+   type IItemsStackPanelStatics_Ptr is access all IItemsStackPanelStatics;
 
    type IItemsStackPanelStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsStackPanelStatics2 is access all IItemsStackPanelStatics2_Interface'Class;
+   type IItemsStackPanelStatics2_Ptr is access all IItemsStackPanelStatics2;
 
    type IItemsWrapGrid_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsWrapGrid is access all IItemsWrapGrid_Interface'Class;
@@ -1346,12 +1619,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IItemsWrapGrid2_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsWrapGrid2 is access all IItemsWrapGrid2_Interface'Class;
+   type IItemsWrapGrid2_Ptr is access all IItemsWrapGrid2;
 
    type IItemsWrapGridStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsWrapGridStatics is access all IItemsWrapGridStatics_Interface'Class;
+   type IItemsWrapGridStatics_Ptr is access all IItemsWrapGridStatics;
 
    type IItemsWrapGridStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IItemsWrapGridStatics2 is access all IItemsWrapGridStatics2_Interface'Class;
+   type IItemsWrapGridStatics2_Ptr is access all IItemsWrapGridStatics2;
 
    type IListBox_Interface is interface and WinRt.IInspectable_Interface;
    type IListBox is access all IListBox_Interface'Class;
@@ -1359,9 +1635,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IListBox2_Interface is interface and WinRt.IInspectable_Interface;
    type IListBox2 is access all IListBox2_Interface'Class;
+   type IListBox2_Ptr is access all IListBox2;
 
    type IListBoxFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IListBoxFactory is access all IListBoxFactory_Interface'Class;
+   type IListBoxFactory_Ptr is access all IListBoxFactory;
 
    type IListBoxItem_Interface is interface and WinRt.IInspectable_Interface;
    type IListBoxItem is access all IListBoxItem_Interface'Class;
@@ -1369,12 +1647,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IListBoxItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IListBoxItemFactory is access all IListBoxItemFactory_Interface'Class;
+   type IListBoxItemFactory_Ptr is access all IListBoxItemFactory;
 
    type IListBoxStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IListBoxStatics is access all IListBoxStatics_Interface'Class;
+   type IListBoxStatics_Ptr is access all IListBoxStatics;
 
    type IListBoxStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IListBoxStatics2 is access all IListBoxStatics2_Interface'Class;
+   type IListBoxStatics2_Ptr is access all IListBoxStatics2;
 
    type IListPickerFlyout_Interface is interface and WinRt.IInspectable_Interface;
    type IListPickerFlyout is access all IListPickerFlyout_Interface'Class;
@@ -1386,6 +1667,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IListPickerFlyoutStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IListPickerFlyoutStatics is access all IListPickerFlyoutStatics_Interface'Class;
+   type IListPickerFlyoutStatics_Ptr is access all IListPickerFlyoutStatics;
 
    type IListView_Interface is interface and WinRt.IInspectable_Interface;
    type IListView is access all IListView_Interface'Class;
@@ -1397,21 +1679,27 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IListViewBase2_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewBase2 is access all IListViewBase2_Interface'Class;
+   type IListViewBase2_Ptr is access all IListViewBase2;
 
    type IListViewBase3_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewBase3 is access all IListViewBase3_Interface'Class;
+   type IListViewBase3_Ptr is access all IListViewBase3;
 
    type IListViewBase4_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewBase4 is access all IListViewBase4_Interface'Class;
+   type IListViewBase4_Ptr is access all IListViewBase4;
 
    type IListViewBase5_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewBase5 is access all IListViewBase5_Interface'Class;
+   type IListViewBase5_Ptr is access all IListViewBase5;
 
    type IListViewBase6_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewBase6 is access all IListViewBase6_Interface'Class;
+   type IListViewBase6_Ptr is access all IListViewBase6;
 
    type IListViewBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewBaseFactory is access all IListViewBaseFactory_Interface'Class;
+   type IListViewBaseFactory_Ptr is access all IListViewBaseFactory;
 
    type IListViewBaseHeaderItem_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewBaseHeaderItem is access all IListViewBaseHeaderItem_Interface'Class;
@@ -1419,24 +1707,31 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IListViewBaseHeaderItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewBaseHeaderItemFactory is access all IListViewBaseHeaderItemFactory_Interface'Class;
+   type IListViewBaseHeaderItemFactory_Ptr is access all IListViewBaseHeaderItemFactory;
 
    type IListViewBaseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewBaseStatics is access all IListViewBaseStatics_Interface'Class;
+   type IListViewBaseStatics_Ptr is access all IListViewBaseStatics;
 
    type IListViewBaseStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewBaseStatics2 is access all IListViewBaseStatics2_Interface'Class;
+   type IListViewBaseStatics2_Ptr is access all IListViewBaseStatics2;
 
    type IListViewBaseStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewBaseStatics3 is access all IListViewBaseStatics3_Interface'Class;
+   type IListViewBaseStatics3_Ptr is access all IListViewBaseStatics3;
 
    type IListViewBaseStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewBaseStatics4 is access all IListViewBaseStatics4_Interface'Class;
+   type IListViewBaseStatics4_Ptr is access all IListViewBaseStatics4;
 
    type IListViewBaseStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewBaseStatics5 is access all IListViewBaseStatics5_Interface'Class;
+   type IListViewBaseStatics5_Ptr is access all IListViewBaseStatics5;
 
    type IListViewFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewFactory is access all IListViewFactory_Interface'Class;
+   type IListViewFactory_Ptr is access all IListViewFactory;
 
    type IListViewHeaderItem_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewHeaderItem is access all IListViewHeaderItem_Interface'Class;
@@ -1444,6 +1739,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IListViewHeaderItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewHeaderItemFactory is access all IListViewHeaderItemFactory_Interface'Class;
+   type IListViewHeaderItemFactory_Ptr is access all IListViewHeaderItemFactory;
 
    type IListViewItem_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewItem is access all IListViewItem_Interface'Class;
@@ -1451,6 +1747,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IListViewItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewItemFactory is access all IListViewItemFactory_Interface'Class;
+   type IListViewItemFactory_Ptr is access all IListViewItemFactory;
 
    type IListViewPersistenceHelper_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewPersistenceHelper is access all IListViewPersistenceHelper_Interface'Class;
@@ -1458,6 +1755,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IListViewPersistenceHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewPersistenceHelperStatics is access all IListViewPersistenceHelperStatics_Interface'Class;
+   type IListViewPersistenceHelperStatics_Ptr is access all IListViewPersistenceHelperStatics;
 
    type IMediaElement_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaElement is access all IMediaElement_Interface'Class;
@@ -1465,15 +1763,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMediaElement2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaElement2 is access all IMediaElement2_Interface'Class;
+   type IMediaElement2_Ptr is access all IMediaElement2;
 
    type IMediaElement3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaElement3 is access all IMediaElement3_Interface'Class;
+   type IMediaElement3_Ptr is access all IMediaElement3;
 
    type IMediaElementStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaElementStatics is access all IMediaElementStatics_Interface'Class;
+   type IMediaElementStatics_Ptr is access all IMediaElementStatics;
 
    type IMediaElementStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaElementStatics2 is access all IMediaElementStatics2_Interface'Class;
+   type IMediaElementStatics2_Ptr is access all IMediaElementStatics2;
 
    type IMediaPlayerElement_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayerElement is access all IMediaPlayerElement_Interface'Class;
@@ -1481,9 +1783,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMediaPlayerElementFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayerElementFactory is access all IMediaPlayerElementFactory_Interface'Class;
+   type IMediaPlayerElementFactory_Ptr is access all IMediaPlayerElementFactory;
 
    type IMediaPlayerElementStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayerElementStatics is access all IMediaPlayerElementStatics_Interface'Class;
+   type IMediaPlayerElementStatics_Ptr is access all IMediaPlayerElementStatics;
 
    type IMediaPlayerPresenter_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayerPresenter is access all IMediaPlayerPresenter_Interface'Class;
@@ -1491,9 +1795,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMediaPlayerPresenterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayerPresenterFactory is access all IMediaPlayerPresenterFactory_Interface'Class;
+   type IMediaPlayerPresenterFactory_Ptr is access all IMediaPlayerPresenterFactory;
 
    type IMediaPlayerPresenterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaPlayerPresenterStatics is access all IMediaPlayerPresenterStatics_Interface'Class;
+   type IMediaPlayerPresenterStatics_Ptr is access all IMediaPlayerPresenterStatics;
 
    type IMediaTransportControls_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTransportControls is access all IMediaTransportControls_Interface'Class;
@@ -1501,15 +1807,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMediaTransportControls2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTransportControls2 is access all IMediaTransportControls2_Interface'Class;
+   type IMediaTransportControls2_Ptr is access all IMediaTransportControls2;
 
    type IMediaTransportControls3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTransportControls3 is access all IMediaTransportControls3_Interface'Class;
+   type IMediaTransportControls3_Ptr is access all IMediaTransportControls3;
 
    type IMediaTransportControls4_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTransportControls4 is access all IMediaTransportControls4_Interface'Class;
+   type IMediaTransportControls4_Ptr is access all IMediaTransportControls4;
 
    type IMediaTransportControlsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTransportControlsFactory is access all IMediaTransportControlsFactory_Interface'Class;
+   type IMediaTransportControlsFactory_Ptr is access all IMediaTransportControlsFactory;
 
    type IMediaTransportControlsHelper_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTransportControlsHelper is access all IMediaTransportControlsHelper_Interface'Class;
@@ -1517,18 +1827,23 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMediaTransportControlsHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTransportControlsHelperStatics is access all IMediaTransportControlsHelperStatics_Interface'Class;
+   type IMediaTransportControlsHelperStatics_Ptr is access all IMediaTransportControlsHelperStatics;
 
    type IMediaTransportControlsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTransportControlsStatics is access all IMediaTransportControlsStatics_Interface'Class;
+   type IMediaTransportControlsStatics_Ptr is access all IMediaTransportControlsStatics;
 
    type IMediaTransportControlsStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTransportControlsStatics2 is access all IMediaTransportControlsStatics2_Interface'Class;
+   type IMediaTransportControlsStatics2_Ptr is access all IMediaTransportControlsStatics2;
 
    type IMediaTransportControlsStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTransportControlsStatics3 is access all IMediaTransportControlsStatics3_Interface'Class;
+   type IMediaTransportControlsStatics3_Ptr is access all IMediaTransportControlsStatics3;
 
    type IMediaTransportControlsStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTransportControlsStatics4 is access all IMediaTransportControlsStatics4_Interface'Class;
+   type IMediaTransportControlsStatics4_Ptr is access all IMediaTransportControlsStatics4;
 
    type IMenuBar_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuBar is access all IMenuBar_Interface'Class;
@@ -1536,6 +1851,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMenuBarFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuBarFactory is access all IMenuBarFactory_Interface'Class;
+   type IMenuBarFactory_Ptr is access all IMenuBarFactory;
 
    type IMenuBarItem_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuBarItem is access all IMenuBarItem_Interface'Class;
@@ -1543,6 +1859,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMenuBarItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuBarItemFactory is access all IMenuBarItemFactory_Interface'Class;
+   type IMenuBarItemFactory_Ptr is access all IMenuBarItemFactory;
 
    type IMenuBarItemFlyout_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuBarItemFlyout is access all IMenuBarItemFlyout_Interface'Class;
@@ -1550,12 +1867,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMenuBarItemFlyoutFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuBarItemFlyoutFactory is access all IMenuBarItemFlyoutFactory_Interface'Class;
+   type IMenuBarItemFlyoutFactory_Ptr is access all IMenuBarItemFlyoutFactory;
 
    type IMenuBarItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuBarItemStatics is access all IMenuBarItemStatics_Interface'Class;
+   type IMenuBarItemStatics_Ptr is access all IMenuBarItemStatics;
 
    type IMenuBarStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuBarStatics is access all IMenuBarStatics_Interface'Class;
+   type IMenuBarStatics_Ptr is access all IMenuBarStatics;
 
    type IMenuFlyout_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyout is access all IMenuFlyout_Interface'Class;
@@ -1563,9 +1883,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMenuFlyout2_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyout2 is access all IMenuFlyout2_Interface'Class;
+   type IMenuFlyout2_Ptr is access all IMenuFlyout2;
 
    type IMenuFlyoutFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutFactory is access all IMenuFlyoutFactory_Interface'Class;
+   type IMenuFlyoutFactory_Ptr is access all IMenuFlyoutFactory;
 
    type IMenuFlyoutItem_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutItem is access all IMenuFlyoutItem_Interface'Class;
@@ -1573,9 +1895,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMenuFlyoutItem2_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutItem2 is access all IMenuFlyoutItem2_Interface'Class;
+   type IMenuFlyoutItem2_Ptr is access all IMenuFlyoutItem2;
 
    type IMenuFlyoutItem3_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutItem3 is access all IMenuFlyoutItem3_Interface'Class;
+   type IMenuFlyoutItem3_Ptr is access all IMenuFlyoutItem3;
 
    type IMenuFlyoutItemBase_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutItemBase is access all IMenuFlyoutItemBase_Interface'Class;
@@ -1583,18 +1907,23 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMenuFlyoutItemBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutItemBaseFactory is access all IMenuFlyoutItemBaseFactory_Interface'Class;
+   type IMenuFlyoutItemBaseFactory_Ptr is access all IMenuFlyoutItemBaseFactory;
 
    type IMenuFlyoutItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutItemFactory is access all IMenuFlyoutItemFactory_Interface'Class;
+   type IMenuFlyoutItemFactory_Ptr is access all IMenuFlyoutItemFactory;
 
    type IMenuFlyoutItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutItemStatics is access all IMenuFlyoutItemStatics_Interface'Class;
+   type IMenuFlyoutItemStatics_Ptr is access all IMenuFlyoutItemStatics;
 
    type IMenuFlyoutItemStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutItemStatics2 is access all IMenuFlyoutItemStatics2_Interface'Class;
+   type IMenuFlyoutItemStatics2_Ptr is access all IMenuFlyoutItemStatics2;
 
    type IMenuFlyoutItemStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutItemStatics3 is access all IMenuFlyoutItemStatics3_Interface'Class;
+   type IMenuFlyoutItemStatics3_Ptr is access all IMenuFlyoutItemStatics3;
 
    type IMenuFlyoutPresenter_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutPresenter is access all IMenuFlyoutPresenter_Interface'Class;
@@ -1602,15 +1931,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMenuFlyoutPresenter2_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutPresenter2 is access all IMenuFlyoutPresenter2_Interface'Class;
+   type IMenuFlyoutPresenter2_Ptr is access all IMenuFlyoutPresenter2;
 
    type IMenuFlyoutPresenter3_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutPresenter3 is access all IMenuFlyoutPresenter3_Interface'Class;
+   type IMenuFlyoutPresenter3_Ptr is access all IMenuFlyoutPresenter3;
 
    type IMenuFlyoutPresenterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutPresenterFactory is access all IMenuFlyoutPresenterFactory_Interface'Class;
+   type IMenuFlyoutPresenterFactory_Ptr is access all IMenuFlyoutPresenterFactory;
 
    type IMenuFlyoutPresenterStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutPresenterStatics3 is access all IMenuFlyoutPresenterStatics3_Interface'Class;
+   type IMenuFlyoutPresenterStatics3_Ptr is access all IMenuFlyoutPresenterStatics3;
 
    type IMenuFlyoutSeparator_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutSeparator is access all IMenuFlyoutSeparator_Interface'Class;
@@ -1618,9 +1951,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMenuFlyoutSeparatorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutSeparatorFactory is access all IMenuFlyoutSeparatorFactory_Interface'Class;
+   type IMenuFlyoutSeparatorFactory_Ptr is access all IMenuFlyoutSeparatorFactory;
 
    type IMenuFlyoutStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutStatics is access all IMenuFlyoutStatics_Interface'Class;
+   type IMenuFlyoutStatics_Ptr is access all IMenuFlyoutStatics;
 
    type IMenuFlyoutSubItem_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutSubItem is access all IMenuFlyoutSubItem_Interface'Class;
@@ -1628,15 +1963,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IMenuFlyoutSubItem2_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutSubItem2 is access all IMenuFlyoutSubItem2_Interface'Class;
+   type IMenuFlyoutSubItem2_Ptr is access all IMenuFlyoutSubItem2;
 
    type IMenuFlyoutSubItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutSubItemStatics is access all IMenuFlyoutSubItemStatics_Interface'Class;
+   type IMenuFlyoutSubItemStatics_Ptr is access all IMenuFlyoutSubItemStatics;
 
    type IMenuFlyoutSubItemStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutSubItemStatics2 is access all IMenuFlyoutSubItemStatics2_Interface'Class;
+   type IMenuFlyoutSubItemStatics2_Ptr is access all IMenuFlyoutSubItemStatics2;
 
    type INavigate_Interface is interface and WinRt.IInspectable_Interface;
    type INavigate is access all INavigate_Interface'Class;
+   type INavigate_Ptr is access all INavigate;
 
    type INavigationView_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationView is access all INavigationView_Interface'Class;
@@ -1644,9 +1983,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type INavigationView2_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationView2 is access all INavigationView2_Interface'Class;
+   type INavigationView2_Ptr is access all INavigationView2;
 
    type INavigationView3_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationView3 is access all INavigationView3_Interface'Class;
+   type INavigationView3_Ptr is access all INavigationView3;
 
    type INavigationViewBackRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewBackRequestedEventArgs is access all INavigationViewBackRequestedEventArgs_Interface'Class;
@@ -1658,6 +1999,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type INavigationViewFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewFactory is access all INavigationViewFactory_Interface'Class;
+   type INavigationViewFactory_Ptr is access all INavigationViewFactory;
 
    type INavigationViewItem_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItem is access all INavigationViewItem_Interface'Class;
@@ -1665,6 +2007,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type INavigationViewItem2_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItem2 is access all INavigationViewItem2_Interface'Class;
+   type INavigationViewItem2_Ptr is access all INavigationViewItem2;
 
    type INavigationViewItemBase_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItemBase is access all INavigationViewItemBase_Interface'Class;
@@ -1672,9 +2015,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type INavigationViewItemBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItemBaseFactory is access all INavigationViewItemBaseFactory_Interface'Class;
+   type INavigationViewItemBaseFactory_Ptr is access all INavigationViewItemBaseFactory;
 
    type INavigationViewItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItemFactory is access all INavigationViewItemFactory_Interface'Class;
+   type INavigationViewItemFactory_Ptr is access all INavigationViewItemFactory;
 
    type INavigationViewItemHeader_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItemHeader is access all INavigationViewItemHeader_Interface'Class;
@@ -1682,6 +2027,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type INavigationViewItemHeaderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItemHeaderFactory is access all INavigationViewItemHeaderFactory_Interface'Class;
+   type INavigationViewItemHeaderFactory_Ptr is access all INavigationViewItemHeaderFactory;
 
    type INavigationViewItemInvokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItemInvokedEventArgs is access all INavigationViewItemInvokedEventArgs_Interface'Class;
@@ -1689,6 +2035,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type INavigationViewItemInvokedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItemInvokedEventArgs2 is access all INavigationViewItemInvokedEventArgs2_Interface'Class;
+   type INavigationViewItemInvokedEventArgs2_Ptr is access all INavigationViewItemInvokedEventArgs2;
 
    type INavigationViewItemSeparator_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItemSeparator is access all INavigationViewItemSeparator_Interface'Class;
@@ -1696,12 +2043,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type INavigationViewItemSeparatorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItemSeparatorFactory is access all INavigationViewItemSeparatorFactory_Interface'Class;
+   type INavigationViewItemSeparatorFactory_Ptr is access all INavigationViewItemSeparatorFactory;
 
    type INavigationViewItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItemStatics is access all INavigationViewItemStatics_Interface'Class;
+   type INavigationViewItemStatics_Ptr is access all INavigationViewItemStatics;
 
    type INavigationViewItemStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItemStatics2 is access all INavigationViewItemStatics2_Interface'Class;
+   type INavigationViewItemStatics2_Ptr is access all INavigationViewItemStatics2;
 
    type INavigationViewList_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewList is access all INavigationViewList_Interface'Class;
@@ -1709,6 +2059,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type INavigationViewListFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewListFactory is access all INavigationViewListFactory_Interface'Class;
+   type INavigationViewListFactory_Ptr is access all INavigationViewListFactory;
 
    type INavigationViewPaneClosingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewPaneClosingEventArgs is access all INavigationViewPaneClosingEventArgs_Interface'Class;
@@ -1720,15 +2071,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type INavigationViewSelectionChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewSelectionChangedEventArgs2 is access all INavigationViewSelectionChangedEventArgs2_Interface'Class;
+   type INavigationViewSelectionChangedEventArgs2_Ptr is access all INavigationViewSelectionChangedEventArgs2;
 
    type INavigationViewStatics_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewStatics is access all INavigationViewStatics_Interface'Class;
+   type INavigationViewStatics_Ptr is access all INavigationViewStatics;
 
    type INavigationViewStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewStatics2 is access all INavigationViewStatics2_Interface'Class;
+   type INavigationViewStatics2_Ptr is access all INavigationViewStatics2;
 
    type INavigationViewStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewStatics3 is access all INavigationViewStatics3_Interface'Class;
+   type INavigationViewStatics3_Ptr is access all INavigationViewStatics3;
 
    type INavigationViewTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewTemplateSettings is access all INavigationViewTemplateSettings_Interface'Class;
@@ -1736,9 +2091,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type INavigationViewTemplateSettingsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewTemplateSettingsFactory is access all INavigationViewTemplateSettingsFactory_Interface'Class;
+   type INavigationViewTemplateSettingsFactory_Ptr is access all INavigationViewTemplateSettingsFactory;
 
    type INavigationViewTemplateSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewTemplateSettingsStatics is access all INavigationViewTemplateSettingsStatics_Interface'Class;
+   type INavigationViewTemplateSettingsStatics_Ptr is access all INavigationViewTemplateSettingsStatics;
 
    type INotifyEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type INotifyEventArgs is access all INotifyEventArgs_Interface'Class;
@@ -1746,6 +2103,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type INotifyEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type INotifyEventArgs2 is access all INotifyEventArgs2_Interface'Class;
+   type INotifyEventArgs2_Ptr is access all INotifyEventArgs2;
 
    type IPage_Interface is interface and WinRt.IInspectable_Interface;
    type IPage is access all IPage_Interface'Class;
@@ -1753,12 +2111,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IPageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPageFactory is access all IPageFactory_Interface'Class;
+   type IPageFactory_Ptr is access all IPageFactory;
 
    type IPageOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IPageOverrides is access all IPageOverrides_Interface'Class;
+   type IPageOverrides_Ptr is access all IPageOverrides;
 
    type IPageStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPageStatics is access all IPageStatics_Interface'Class;
+   type IPageStatics_Ptr is access all IPageStatics;
 
    type IPanel_Interface is interface and WinRt.IInspectable_Interface;
    type IPanel is access all IPanel_Interface'Class;
@@ -1766,12 +2127,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IPanel2_Interface is interface and WinRt.IInspectable_Interface;
    type IPanel2 is access all IPanel2_Interface'Class;
+   type IPanel2_Ptr is access all IPanel2;
 
    type IPanelFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPanelFactory is access all IPanelFactory_Interface'Class;
+   type IPanelFactory_Ptr is access all IPanelFactory;
 
    type IPanelStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPanelStatics is access all IPanelStatics_Interface'Class;
+   type IPanelStatics_Ptr is access all IPanelStatics;
 
    type IParallaxView_Interface is interface and WinRt.IInspectable_Interface;
    type IParallaxView is access all IParallaxView_Interface'Class;
@@ -1779,9 +2143,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IParallaxViewFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IParallaxViewFactory is access all IParallaxViewFactory_Interface'Class;
+   type IParallaxViewFactory_Ptr is access all IParallaxViewFactory;
 
    type IParallaxViewStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IParallaxViewStatics is access all IParallaxViewStatics_Interface'Class;
+   type IParallaxViewStatics_Ptr is access all IParallaxViewStatics;
 
    type IPasswordBox_Interface is interface and WinRt.IInspectable_Interface;
    type IPasswordBox is access all IPasswordBox_Interface'Class;
@@ -1789,15 +2155,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IPasswordBox2_Interface is interface and WinRt.IInspectable_Interface;
    type IPasswordBox2 is access all IPasswordBox2_Interface'Class;
+   type IPasswordBox2_Ptr is access all IPasswordBox2;
 
    type IPasswordBox3_Interface is interface and WinRt.IInspectable_Interface;
    type IPasswordBox3 is access all IPasswordBox3_Interface'Class;
+   type IPasswordBox3_Ptr is access all IPasswordBox3;
 
    type IPasswordBox4_Interface is interface and WinRt.IInspectable_Interface;
    type IPasswordBox4 is access all IPasswordBox4_Interface'Class;
+   type IPasswordBox4_Ptr is access all IPasswordBox4;
 
    type IPasswordBox5_Interface is interface and WinRt.IInspectable_Interface;
    type IPasswordBox5 is access all IPasswordBox5_Interface'Class;
+   type IPasswordBox5_Ptr is access all IPasswordBox5;
 
    type IPasswordBoxPasswordChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPasswordBoxPasswordChangingEventArgs is access all IPasswordBoxPasswordChangingEventArgs_Interface'Class;
@@ -1805,15 +2175,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IPasswordBoxStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPasswordBoxStatics is access all IPasswordBoxStatics_Interface'Class;
+   type IPasswordBoxStatics_Ptr is access all IPasswordBoxStatics;
 
    type IPasswordBoxStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IPasswordBoxStatics2 is access all IPasswordBoxStatics2_Interface'Class;
+   type IPasswordBoxStatics2_Ptr is access all IPasswordBoxStatics2;
 
    type IPasswordBoxStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IPasswordBoxStatics3 is access all IPasswordBoxStatics3_Interface'Class;
+   type IPasswordBoxStatics3_Ptr is access all IPasswordBoxStatics3;
 
    type IPasswordBoxStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IPasswordBoxStatics5 is access all IPasswordBoxStatics5_Interface'Class;
+   type IPasswordBoxStatics5_Ptr is access all IPasswordBoxStatics5;
 
    type IPathIcon_Interface is interface and WinRt.IInspectable_Interface;
    type IPathIcon is access all IPathIcon_Interface'Class;
@@ -1821,6 +2195,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IPathIconFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPathIconFactory is access all IPathIconFactory_Interface'Class;
+   type IPathIconFactory_Ptr is access all IPathIconFactory;
 
    type IPathIconSource_Interface is interface and WinRt.IInspectable_Interface;
    type IPathIconSource is access all IPathIconSource_Interface'Class;
@@ -1828,12 +2203,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IPathIconSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPathIconSourceFactory is access all IPathIconSourceFactory_Interface'Class;
+   type IPathIconSourceFactory_Ptr is access all IPathIconSourceFactory;
 
    type IPathIconSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPathIconSourceStatics is access all IPathIconSourceStatics_Interface'Class;
+   type IPathIconSourceStatics_Ptr is access all IPathIconSourceStatics;
 
    type IPathIconStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPathIconStatics is access all IPathIconStatics_Interface'Class;
+   type IPathIconStatics_Ptr is access all IPathIconStatics;
 
    type IPersonPicture_Interface is interface and WinRt.IInspectable_Interface;
    type IPersonPicture is access all IPersonPicture_Interface'Class;
@@ -1841,9 +2219,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IPersonPictureFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPersonPictureFactory is access all IPersonPictureFactory_Interface'Class;
+   type IPersonPictureFactory_Ptr is access all IPersonPictureFactory;
 
    type IPersonPictureStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPersonPictureStatics is access all IPersonPictureStatics_Interface'Class;
+   type IPersonPictureStatics_Ptr is access all IPersonPictureStatics;
 
    type IPickerConfirmedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPickerConfirmedEventArgs is access all IPickerConfirmedEventArgs_Interface'Class;
@@ -1859,6 +2239,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IPickerFlyoutStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPickerFlyoutStatics is access all IPickerFlyoutStatics_Interface'Class;
+   type IPickerFlyoutStatics_Ptr is access all IPickerFlyoutStatics;
 
    type IPivot_Interface is interface and WinRt.IInspectable_Interface;
    type IPivot is access all IPivot_Interface'Class;
@@ -1866,12 +2247,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IPivot2_Interface is interface and WinRt.IInspectable_Interface;
    type IPivot2 is access all IPivot2_Interface'Class;
+   type IPivot2_Ptr is access all IPivot2;
 
    type IPivot3_Interface is interface and WinRt.IInspectable_Interface;
    type IPivot3 is access all IPivot3_Interface'Class;
+   type IPivot3_Ptr is access all IPivot3;
 
    type IPivotFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPivotFactory is access all IPivotFactory_Interface'Class;
+   type IPivotFactory_Ptr is access all IPivotFactory;
 
    type IPivotItem_Interface is interface and WinRt.IInspectable_Interface;
    type IPivotItem is access all IPivotItem_Interface'Class;
@@ -1883,18 +2267,23 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IPivotItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPivotItemFactory is access all IPivotItemFactory_Interface'Class;
+   type IPivotItemFactory_Ptr is access all IPivotItemFactory;
 
    type IPivotItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPivotItemStatics is access all IPivotItemStatics_Interface'Class;
+   type IPivotItemStatics_Ptr is access all IPivotItemStatics;
 
    type IPivotStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPivotStatics is access all IPivotStatics_Interface'Class;
+   type IPivotStatics_Ptr is access all IPivotStatics;
 
    type IPivotStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IPivotStatics2 is access all IPivotStatics2_Interface'Class;
+   type IPivotStatics2_Ptr is access all IPivotStatics2;
 
    type IPivotStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IPivotStatics3 is access all IPivotStatics3_Interface'Class;
+   type IPivotStatics3_Ptr is access all IPivotStatics3;
 
    type IProgressBar_Interface is interface and WinRt.IInspectable_Interface;
    type IProgressBar is access all IProgressBar_Interface'Class;
@@ -1902,9 +2291,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IProgressBarFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IProgressBarFactory is access all IProgressBarFactory_Interface'Class;
+   type IProgressBarFactory_Ptr is access all IProgressBarFactory;
 
    type IProgressBarStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IProgressBarStatics is access all IProgressBarStatics_Interface'Class;
+   type IProgressBarStatics_Ptr is access all IProgressBarStatics;
 
    type IProgressRing_Interface is interface and WinRt.IInspectable_Interface;
    type IProgressRing is access all IProgressRing_Interface'Class;
@@ -1912,6 +2303,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IProgressRingStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IProgressRingStatics is access all IProgressRingStatics_Interface'Class;
+   type IProgressRingStatics_Ptr is access all IProgressRingStatics;
 
    type IRadioButton_Interface is interface and WinRt.IInspectable_Interface;
    type IRadioButton is access all IRadioButton_Interface'Class;
@@ -1919,9 +2311,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRadioButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRadioButtonFactory is access all IRadioButtonFactory_Interface'Class;
+   type IRadioButtonFactory_Ptr is access all IRadioButtonFactory;
 
    type IRadioButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRadioButtonStatics is access all IRadioButtonStatics_Interface'Class;
+   type IRadioButtonStatics_Ptr is access all IRadioButtonStatics;
 
    type IRatingControl_Interface is interface and WinRt.IInspectable_Interface;
    type IRatingControl is access all IRatingControl_Interface'Class;
@@ -1929,9 +2323,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRatingControlFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRatingControlFactory is access all IRatingControlFactory_Interface'Class;
+   type IRatingControlFactory_Ptr is access all IRatingControlFactory;
 
    type IRatingControlStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRatingControlStatics is access all IRatingControlStatics_Interface'Class;
+   type IRatingControlStatics_Ptr is access all IRatingControlStatics;
 
    type IRatingItemFontInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IRatingItemFontInfo is access all IRatingItemFontInfo_Interface'Class;
@@ -1939,9 +2335,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRatingItemFontInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRatingItemFontInfoFactory is access all IRatingItemFontInfoFactory_Interface'Class;
+   type IRatingItemFontInfoFactory_Ptr is access all IRatingItemFontInfoFactory;
 
    type IRatingItemFontInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRatingItemFontInfoStatics is access all IRatingItemFontInfoStatics_Interface'Class;
+   type IRatingItemFontInfoStatics_Ptr is access all IRatingItemFontInfoStatics;
 
    type IRatingItemImageInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IRatingItemImageInfo is access all IRatingItemImageInfo_Interface'Class;
@@ -1949,9 +2347,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRatingItemImageInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRatingItemImageInfoFactory is access all IRatingItemImageInfoFactory_Interface'Class;
+   type IRatingItemImageInfoFactory_Ptr is access all IRatingItemImageInfoFactory;
 
    type IRatingItemImageInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRatingItemImageInfoStatics is access all IRatingItemImageInfoStatics_Interface'Class;
+   type IRatingItemImageInfoStatics_Ptr is access all IRatingItemImageInfoStatics;
 
    type IRatingItemInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IRatingItemInfo is access all IRatingItemInfo_Interface'Class;
@@ -1959,6 +2359,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRatingItemInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRatingItemInfoFactory is access all IRatingItemInfoFactory_Interface'Class;
+   type IRatingItemInfoFactory_Ptr is access all IRatingItemInfoFactory;
 
    type IRefreshContainer_Interface is interface and WinRt.IInspectable_Interface;
    type IRefreshContainer is access all IRefreshContainer_Interface'Class;
@@ -1966,9 +2367,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRefreshContainerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRefreshContainerFactory is access all IRefreshContainerFactory_Interface'Class;
+   type IRefreshContainerFactory_Ptr is access all IRefreshContainerFactory;
 
    type IRefreshContainerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRefreshContainerStatics is access all IRefreshContainerStatics_Interface'Class;
+   type IRefreshContainerStatics_Ptr is access all IRefreshContainerStatics;
 
    type IRefreshInteractionRatioChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IRefreshInteractionRatioChangedEventArgs is access all IRefreshInteractionRatioChangedEventArgs_Interface'Class;
@@ -1988,9 +2391,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRefreshVisualizerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRefreshVisualizerFactory is access all IRefreshVisualizerFactory_Interface'Class;
+   type IRefreshVisualizerFactory_Ptr is access all IRefreshVisualizerFactory;
 
    type IRefreshVisualizerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRefreshVisualizerStatics is access all IRefreshVisualizerStatics_Interface'Class;
+   type IRefreshVisualizerStatics_Ptr is access all IRefreshVisualizerStatics;
 
    type IRelativePanel_Interface is interface and WinRt.IInspectable_Interface;
    type IRelativePanel is access all IRelativePanel_Interface'Class;
@@ -1998,15 +2403,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRelativePanel2_Interface is interface and WinRt.IInspectable_Interface;
    type IRelativePanel2 is access all IRelativePanel2_Interface'Class;
+   type IRelativePanel2_Ptr is access all IRelativePanel2;
 
    type IRelativePanelFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRelativePanelFactory is access all IRelativePanelFactory_Interface'Class;
+   type IRelativePanelFactory_Ptr is access all IRelativePanelFactory;
 
    type IRelativePanelStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRelativePanelStatics is access all IRelativePanelStatics_Interface'Class;
+   type IRelativePanelStatics_Ptr is access all IRelativePanelStatics;
 
    type IRelativePanelStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IRelativePanelStatics2 is access all IRelativePanelStatics2_Interface'Class;
+   type IRelativePanelStatics2_Ptr is access all IRelativePanelStatics2;
 
    type IRichEditBox_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBox is access all IRichEditBox_Interface'Class;
@@ -2014,27 +2423,35 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRichEditBox2_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBox2 is access all IRichEditBox2_Interface'Class;
+   type IRichEditBox2_Ptr is access all IRichEditBox2;
 
    type IRichEditBox3_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBox3 is access all IRichEditBox3_Interface'Class;
+   type IRichEditBox3_Ptr is access all IRichEditBox3;
 
    type IRichEditBox4_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBox4 is access all IRichEditBox4_Interface'Class;
+   type IRichEditBox4_Ptr is access all IRichEditBox4;
 
    type IRichEditBox5_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBox5 is access all IRichEditBox5_Interface'Class;
+   type IRichEditBox5_Ptr is access all IRichEditBox5;
 
    type IRichEditBox6_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBox6 is access all IRichEditBox6_Interface'Class;
+   type IRichEditBox6_Ptr is access all IRichEditBox6;
 
    type IRichEditBox7_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBox7 is access all IRichEditBox7_Interface'Class;
+   type IRichEditBox7_Ptr is access all IRichEditBox7;
 
    type IRichEditBox8_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBox8 is access all IRichEditBox8_Interface'Class;
+   type IRichEditBox8_Ptr is access all IRichEditBox8;
 
    type IRichEditBoxFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBoxFactory is access all IRichEditBoxFactory_Interface'Class;
+   type IRichEditBoxFactory_Ptr is access all IRichEditBoxFactory;
 
    type IRichEditBoxSelectionChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBoxSelectionChangingEventArgs is access all IRichEditBoxSelectionChangingEventArgs_Interface'Class;
@@ -2042,27 +2459,35 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRichEditBoxStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBoxStatics is access all IRichEditBoxStatics_Interface'Class;
+   type IRichEditBoxStatics_Ptr is access all IRichEditBoxStatics;
 
    type IRichEditBoxStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBoxStatics2 is access all IRichEditBoxStatics2_Interface'Class;
+   type IRichEditBoxStatics2_Ptr is access all IRichEditBoxStatics2;
 
    type IRichEditBoxStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBoxStatics3 is access all IRichEditBoxStatics3_Interface'Class;
+   type IRichEditBoxStatics3_Ptr is access all IRichEditBoxStatics3;
 
    type IRichEditBoxStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBoxStatics4 is access all IRichEditBoxStatics4_Interface'Class;
+   type IRichEditBoxStatics4_Ptr is access all IRichEditBoxStatics4;
 
    type IRichEditBoxStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBoxStatics5 is access all IRichEditBoxStatics5_Interface'Class;
+   type IRichEditBoxStatics5_Ptr is access all IRichEditBoxStatics5;
 
    type IRichEditBoxStatics6_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBoxStatics6 is access all IRichEditBoxStatics6_Interface'Class;
+   type IRichEditBoxStatics6_Ptr is access all IRichEditBoxStatics6;
 
    type IRichEditBoxStatics7_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBoxStatics7 is access all IRichEditBoxStatics7_Interface'Class;
+   type IRichEditBoxStatics7_Ptr is access all IRichEditBoxStatics7;
 
    type IRichEditBoxStatics8_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBoxStatics8 is access all IRichEditBoxStatics8_Interface'Class;
+   type IRichEditBoxStatics8_Ptr is access all IRichEditBoxStatics8;
 
    type IRichEditBoxTextChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBoxTextChangingEventArgs is access all IRichEditBoxTextChangingEventArgs_Interface'Class;
@@ -2070,6 +2495,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRichEditBoxTextChangingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditBoxTextChangingEventArgs2 is access all IRichEditBoxTextChangingEventArgs2_Interface'Class;
+   type IRichEditBoxTextChangingEventArgs2_Ptr is access all IRichEditBoxTextChangingEventArgs2;
 
    type IRichTextBlock_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlock is access all IRichTextBlock_Interface'Class;
@@ -2077,18 +2503,23 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRichTextBlock2_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlock2 is access all IRichTextBlock2_Interface'Class;
+   type IRichTextBlock2_Ptr is access all IRichTextBlock2;
 
    type IRichTextBlock3_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlock3 is access all IRichTextBlock3_Interface'Class;
+   type IRichTextBlock3_Ptr is access all IRichTextBlock3;
 
    type IRichTextBlock4_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlock4 is access all IRichTextBlock4_Interface'Class;
+   type IRichTextBlock4_Ptr is access all IRichTextBlock4;
 
    type IRichTextBlock5_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlock5 is access all IRichTextBlock5_Interface'Class;
+   type IRichTextBlock5_Ptr is access all IRichTextBlock5;
 
    type IRichTextBlock6_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlock6 is access all IRichTextBlock6_Interface'Class;
+   type IRichTextBlock6_Ptr is access all IRichTextBlock6;
 
    type IRichTextBlockOverflow_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlockOverflow is access all IRichTextBlockOverflow_Interface'Class;
@@ -2096,36 +2527,47 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRichTextBlockOverflow2_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlockOverflow2 is access all IRichTextBlockOverflow2_Interface'Class;
+   type IRichTextBlockOverflow2_Ptr is access all IRichTextBlockOverflow2;
 
    type IRichTextBlockOverflow3_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlockOverflow3 is access all IRichTextBlockOverflow3_Interface'Class;
+   type IRichTextBlockOverflow3_Ptr is access all IRichTextBlockOverflow3;
 
    type IRichTextBlockOverflowStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlockOverflowStatics is access all IRichTextBlockOverflowStatics_Interface'Class;
+   type IRichTextBlockOverflowStatics_Ptr is access all IRichTextBlockOverflowStatics;
 
    type IRichTextBlockOverflowStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlockOverflowStatics2 is access all IRichTextBlockOverflowStatics2_Interface'Class;
+   type IRichTextBlockOverflowStatics2_Ptr is access all IRichTextBlockOverflowStatics2;
 
    type IRichTextBlockOverflowStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlockOverflowStatics3 is access all IRichTextBlockOverflowStatics3_Interface'Class;
+   type IRichTextBlockOverflowStatics3_Ptr is access all IRichTextBlockOverflowStatics3;
 
    type IRichTextBlockStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlockStatics is access all IRichTextBlockStatics_Interface'Class;
+   type IRichTextBlockStatics_Ptr is access all IRichTextBlockStatics;
 
    type IRichTextBlockStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlockStatics2 is access all IRichTextBlockStatics2_Interface'Class;
+   type IRichTextBlockStatics2_Ptr is access all IRichTextBlockStatics2;
 
    type IRichTextBlockStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlockStatics3 is access all IRichTextBlockStatics3_Interface'Class;
+   type IRichTextBlockStatics3_Ptr is access all IRichTextBlockStatics3;
 
    type IRichTextBlockStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlockStatics4 is access all IRichTextBlockStatics4_Interface'Class;
+   type IRichTextBlockStatics4_Ptr is access all IRichTextBlockStatics4;
 
    type IRichTextBlockStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlockStatics5 is access all IRichTextBlockStatics5_Interface'Class;
+   type IRichTextBlockStatics5_Ptr is access all IRichTextBlockStatics5;
 
    type IRichTextBlockStatics6_Interface is interface and WinRt.IInspectable_Interface;
    type IRichTextBlockStatics6 is access all IRichTextBlockStatics6_Interface'Class;
+   type IRichTextBlockStatics6_Ptr is access all IRichTextBlockStatics6;
 
    type IRowDefinition_Interface is interface and WinRt.IInspectable_Interface;
    type IRowDefinition is access all IRowDefinition_Interface'Class;
@@ -2134,9 +2576,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IRowDefinitionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRowDefinitionStatics is access all IRowDefinitionStatics_Interface'Class;
+   type IRowDefinitionStatics_Ptr is access all IRowDefinitionStatics;
 
    type IScrollAnchorProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollAnchorProvider is access all IScrollAnchorProvider_Interface'Class;
+   type IScrollAnchorProvider_Ptr is access all IScrollAnchorProvider;
 
    type IScrollContentPresenter_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollContentPresenter is access all IScrollContentPresenter_Interface'Class;
@@ -2144,9 +2588,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IScrollContentPresenter2_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollContentPresenter2 is access all IScrollContentPresenter2_Interface'Class;
+   type IScrollContentPresenter2_Ptr is access all IScrollContentPresenter2;
 
    type IScrollContentPresenterStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollContentPresenterStatics2 is access all IScrollContentPresenterStatics2_Interface'Class;
+   type IScrollContentPresenterStatics2_Ptr is access all IScrollContentPresenterStatics2;
 
    type IScrollViewer_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollViewer is access all IScrollViewer_Interface'Class;
@@ -2154,21 +2600,27 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IScrollViewer2_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollViewer2 is access all IScrollViewer2_Interface'Class;
+   type IScrollViewer2_Ptr is access all IScrollViewer2;
 
    type IScrollViewer3_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollViewer3 is access all IScrollViewer3_Interface'Class;
+   type IScrollViewer3_Ptr is access all IScrollViewer3;
 
    type IScrollViewer4_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollViewer4 is access all IScrollViewer4_Interface'Class;
+   type IScrollViewer4_Ptr is access all IScrollViewer4;
 
    type IScrollViewerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollViewerStatics is access all IScrollViewerStatics_Interface'Class;
+   type IScrollViewerStatics_Ptr is access all IScrollViewerStatics;
 
    type IScrollViewerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollViewerStatics2 is access all IScrollViewerStatics2_Interface'Class;
+   type IScrollViewerStatics2_Ptr is access all IScrollViewerStatics2;
 
    type IScrollViewerStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollViewerStatics4 is access all IScrollViewerStatics4_Interface'Class;
+   type IScrollViewerStatics4_Ptr is access all IScrollViewerStatics4;
 
    type IScrollViewerView_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollViewerView is access all IScrollViewerView_Interface'Class;
@@ -2188,6 +2640,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISearchBoxFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISearchBoxFactory is access all ISearchBoxFactory_Interface'Class;
+   type ISearchBoxFactory_Ptr is access all ISearchBoxFactory;
 
    type ISearchBoxQueryChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISearchBoxQueryChangedEventArgs is access all ISearchBoxQueryChangedEventArgs_Interface'Class;
@@ -2203,6 +2656,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISearchBoxStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISearchBoxStatics is access all ISearchBoxStatics_Interface'Class;
+   type ISearchBoxStatics_Ptr is access all ISearchBoxStatics;
 
    type ISearchBoxSuggestionsRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISearchBoxSuggestionsRequestedEventArgs is access all ISearchBoxSuggestionsRequestedEventArgs_Interface'Class;
@@ -2214,6 +2668,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISectionsInViewChangedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISectionsInViewChangedEventArgsFactory is access all ISectionsInViewChangedEventArgsFactory_Interface'Class;
+   type ISectionsInViewChangedEventArgsFactory_Ptr is access all ISectionsInViewChangedEventArgsFactory;
 
    type ISelectionChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectionChangedEventArgs is access all ISelectionChangedEventArgs_Interface'Class;
@@ -2221,6 +2676,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISelectionChangedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectionChangedEventArgsFactory is access all ISelectionChangedEventArgsFactory_Interface'Class;
+   type ISelectionChangedEventArgsFactory_Ptr is access all ISelectionChangedEventArgsFactory;
 
    type ISemanticZoom_Interface is interface and WinRt.IInspectable_Interface;
    type ISemanticZoom is access all ISemanticZoom_Interface'Class;
@@ -2228,6 +2684,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISemanticZoomInformation_Interface is interface and WinRt.IInspectable_Interface;
    type ISemanticZoomInformation is access all ISemanticZoomInformation_Interface'Class;
+   type ISemanticZoomInformation_Ptr is access all ISemanticZoomInformation;
 
    type ISemanticZoomLocation_Interface is interface and WinRt.IInspectable_Interface;
    type ISemanticZoomLocation is access all ISemanticZoomLocation_Interface'Class;
@@ -2235,6 +2692,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISemanticZoomStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISemanticZoomStatics is access all ISemanticZoomStatics_Interface'Class;
+   type ISemanticZoomStatics_Ptr is access all ISemanticZoomStatics;
 
    type ISemanticZoomViewChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISemanticZoomViewChangedEventArgs is access all ISemanticZoomViewChangedEventArgs_Interface'Class;
@@ -2246,9 +2704,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISettingsFlyoutFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISettingsFlyoutFactory is access all ISettingsFlyoutFactory_Interface'Class;
+   type ISettingsFlyoutFactory_Ptr is access all ISettingsFlyoutFactory;
 
    type ISettingsFlyoutStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISettingsFlyoutStatics is access all ISettingsFlyoutStatics_Interface'Class;
+   type ISettingsFlyoutStatics_Ptr is access all ISettingsFlyoutStatics;
 
    type ISlider_Interface is interface and WinRt.IInspectable_Interface;
    type ISlider is access all ISlider_Interface'Class;
@@ -2256,15 +2716,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISlider2_Interface is interface and WinRt.IInspectable_Interface;
    type ISlider2 is access all ISlider2_Interface'Class;
+   type ISlider2_Ptr is access all ISlider2;
 
    type ISliderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISliderFactory is access all ISliderFactory_Interface'Class;
+   type ISliderFactory_Ptr is access all ISliderFactory;
 
    type ISliderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISliderStatics is access all ISliderStatics_Interface'Class;
+   type ISliderStatics_Ptr is access all ISliderStatics;
 
    type ISliderStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ISliderStatics2 is access all ISliderStatics2_Interface'Class;
+   type ISliderStatics2_Ptr is access all ISliderStatics2;
 
    type ISplitButton_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitButton is access all ISplitButton_Interface'Class;
@@ -2276,6 +2740,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISplitButtonAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitButtonAutomationPeerFactory is access all ISplitButtonAutomationPeerFactory_Interface'Class;
+   type ISplitButtonAutomationPeerFactory_Ptr is access all ISplitButtonAutomationPeerFactory;
 
    type ISplitButtonClickEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitButtonClickEventArgs is access all ISplitButtonClickEventArgs_Interface'Class;
@@ -2283,9 +2748,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISplitButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitButtonFactory is access all ISplitButtonFactory_Interface'Class;
+   type ISplitButtonFactory_Ptr is access all ISplitButtonFactory;
 
    type ISplitButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitButtonStatics is access all ISplitButtonStatics_Interface'Class;
+   type ISplitButtonStatics_Ptr is access all ISplitButtonStatics;
 
    type ISplitView_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitView is access all ISplitView_Interface'Class;
@@ -2293,12 +2760,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISplitView2_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitView2 is access all ISplitView2_Interface'Class;
+   type ISplitView2_Ptr is access all ISplitView2;
 
    type ISplitView3_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitView3 is access all ISplitView3_Interface'Class;
+   type ISplitView3_Ptr is access all ISplitView3;
 
    type ISplitViewFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitViewFactory is access all ISplitViewFactory_Interface'Class;
+   type ISplitViewFactory_Ptr is access all ISplitViewFactory;
 
    type ISplitViewPaneClosingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitViewPaneClosingEventArgs is access all ISplitViewPaneClosingEventArgs_Interface'Class;
@@ -2306,9 +2776,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISplitViewStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitViewStatics is access all ISplitViewStatics_Interface'Class;
+   type ISplitViewStatics_Ptr is access all ISplitViewStatics;
 
    type ISplitViewStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ISplitViewStatics2 is access all ISplitViewStatics2_Interface'Class;
+   type ISplitViewStatics2_Ptr is access all ISplitViewStatics2;
 
    type IStackPanel_Interface is interface and WinRt.IInspectable_Interface;
    type IStackPanel is access all IStackPanel_Interface'Class;
@@ -2316,27 +2788,35 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IStackPanel2_Interface is interface and WinRt.IInspectable_Interface;
    type IStackPanel2 is access all IStackPanel2_Interface'Class;
+   type IStackPanel2_Ptr is access all IStackPanel2;
 
    type IStackPanel4_Interface is interface and WinRt.IInspectable_Interface;
    type IStackPanel4 is access all IStackPanel4_Interface'Class;
+   type IStackPanel4_Ptr is access all IStackPanel4;
 
    type IStackPanel5_Interface is interface and WinRt.IInspectable_Interface;
    type IStackPanel5 is access all IStackPanel5_Interface'Class;
+   type IStackPanel5_Ptr is access all IStackPanel5;
 
    type IStackPanelFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IStackPanelFactory is access all IStackPanelFactory_Interface'Class;
+   type IStackPanelFactory_Ptr is access all IStackPanelFactory;
 
    type IStackPanelStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStackPanelStatics is access all IStackPanelStatics_Interface'Class;
+   type IStackPanelStatics_Ptr is access all IStackPanelStatics;
 
    type IStackPanelStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IStackPanelStatics2 is access all IStackPanelStatics2_Interface'Class;
+   type IStackPanelStatics2_Ptr is access all IStackPanelStatics2;
 
    type IStackPanelStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IStackPanelStatics4 is access all IStackPanelStatics4_Interface'Class;
+   type IStackPanelStatics4_Ptr is access all IStackPanelStatics4;
 
    type IStackPanelStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IStackPanelStatics5 is access all IStackPanelStatics5_Interface'Class;
+   type IStackPanelStatics5_Ptr is access all IStackPanelStatics5;
 
    type IStyleSelector_Interface is interface and WinRt.IInspectable_Interface;
    type IStyleSelector is access all IStyleSelector_Interface'Class;
@@ -2344,9 +2824,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IStyleSelectorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IStyleSelectorFactory is access all IStyleSelectorFactory_Interface'Class;
+   type IStyleSelectorFactory_Ptr is access all IStyleSelectorFactory;
 
    type IStyleSelectorOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IStyleSelectorOverrides is access all IStyleSelectorOverrides_Interface'Class;
+   type IStyleSelectorOverrides_Ptr is access all IStyleSelectorOverrides;
 
    type ISwapChainBackgroundPanel_Interface is interface and WinRt.IInspectable_Interface;
    type ISwapChainBackgroundPanel is access all ISwapChainBackgroundPanel_Interface'Class;
@@ -2354,9 +2836,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISwapChainBackgroundPanel2_Interface is interface and WinRt.IInspectable_Interface;
    type ISwapChainBackgroundPanel2 is access all ISwapChainBackgroundPanel2_Interface'Class;
+   type ISwapChainBackgroundPanel2_Ptr is access all ISwapChainBackgroundPanel2;
 
    type ISwapChainBackgroundPanelFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISwapChainBackgroundPanelFactory is access all ISwapChainBackgroundPanelFactory_Interface'Class;
+   type ISwapChainBackgroundPanelFactory_Ptr is access all ISwapChainBackgroundPanelFactory;
 
    type ISwapChainPanel_Interface is interface and WinRt.IInspectable_Interface;
    type ISwapChainPanel is access all ISwapChainPanel_Interface'Class;
@@ -2364,9 +2848,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISwapChainPanelFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISwapChainPanelFactory is access all ISwapChainPanelFactory_Interface'Class;
+   type ISwapChainPanelFactory_Ptr is access all ISwapChainPanelFactory;
 
    type ISwapChainPanelStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISwapChainPanelStatics is access all ISwapChainPanelStatics_Interface'Class;
+   type ISwapChainPanelStatics_Ptr is access all ISwapChainPanelStatics;
 
    type ISwipeControl_Interface is interface and WinRt.IInspectable_Interface;
    type ISwipeControl is access all ISwipeControl_Interface'Class;
@@ -2374,9 +2860,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISwipeControlFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISwipeControlFactory is access all ISwipeControlFactory_Interface'Class;
+   type ISwipeControlFactory_Ptr is access all ISwipeControlFactory;
 
    type ISwipeControlStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISwipeControlStatics is access all ISwipeControlStatics_Interface'Class;
+   type ISwipeControlStatics_Ptr is access all ISwipeControlStatics;
 
    type ISwipeItem_Interface is interface and WinRt.IInspectable_Interface;
    type ISwipeItem is access all ISwipeItem_Interface'Class;
@@ -2385,6 +2873,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISwipeItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISwipeItemFactory is access all ISwipeItemFactory_Interface'Class;
+   type ISwipeItemFactory_Ptr is access all ISwipeItemFactory;
 
    type ISwipeItemInvokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISwipeItemInvokedEventArgs is access all ISwipeItemInvokedEventArgs_Interface'Class;
@@ -2392,6 +2881,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISwipeItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISwipeItemStatics is access all ISwipeItemStatics_Interface'Class;
+   type ISwipeItemStatics_Ptr is access all ISwipeItemStatics;
 
    type ISwipeItems_Interface is interface and WinRt.IInspectable_Interface;
    type ISwipeItems is access all ISwipeItems_Interface'Class;
@@ -2399,9 +2889,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISwipeItemsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISwipeItemsFactory is access all ISwipeItemsFactory_Interface'Class;
+   type ISwipeItemsFactory_Ptr is access all ISwipeItemsFactory;
 
    type ISwipeItemsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISwipeItemsStatics is access all ISwipeItemsStatics_Interface'Class;
+   type ISwipeItemsStatics_Ptr is access all ISwipeItemsStatics;
 
    type ISymbolIcon_Interface is interface and WinRt.IInspectable_Interface;
    type ISymbolIcon is access all ISymbolIcon_Interface'Class;
@@ -2409,6 +2901,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISymbolIconFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISymbolIconFactory is access all ISymbolIconFactory_Interface'Class;
+   type ISymbolIconFactory_Ptr is access all ISymbolIconFactory;
 
    type ISymbolIconSource_Interface is interface and WinRt.IInspectable_Interface;
    type ISymbolIconSource is access all ISymbolIconSource_Interface'Class;
@@ -2416,12 +2909,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ISymbolIconSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISymbolIconSourceFactory is access all ISymbolIconSourceFactory_Interface'Class;
+   type ISymbolIconSourceFactory_Ptr is access all ISymbolIconSourceFactory;
 
    type ISymbolIconSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISymbolIconSourceStatics is access all ISymbolIconSourceStatics_Interface'Class;
+   type ISymbolIconSourceStatics_Ptr is access all ISymbolIconSourceStatics;
 
    type ISymbolIconStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISymbolIconStatics is access all ISymbolIconStatics_Interface'Class;
+   type ISymbolIconStatics_Ptr is access all ISymbolIconStatics;
 
    type ITextBlock_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBlock is access all ITextBlock_Interface'Class;
@@ -2429,39 +2925,51 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITextBlock2_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBlock2 is access all ITextBlock2_Interface'Class;
+   type ITextBlock2_Ptr is access all ITextBlock2;
 
    type ITextBlock3_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBlock3 is access all ITextBlock3_Interface'Class;
+   type ITextBlock3_Ptr is access all ITextBlock3;
 
    type ITextBlock4_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBlock4 is access all ITextBlock4_Interface'Class;
+   type ITextBlock4_Ptr is access all ITextBlock4;
 
    type ITextBlock5_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBlock5 is access all ITextBlock5_Interface'Class;
+   type ITextBlock5_Ptr is access all ITextBlock5;
 
    type ITextBlock6_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBlock6 is access all ITextBlock6_Interface'Class;
+   type ITextBlock6_Ptr is access all ITextBlock6;
 
    type ITextBlock7_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBlock7 is access all ITextBlock7_Interface'Class;
+   type ITextBlock7_Ptr is access all ITextBlock7;
 
    type ITextBlockStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBlockStatics is access all ITextBlockStatics_Interface'Class;
+   type ITextBlockStatics_Ptr is access all ITextBlockStatics;
 
    type ITextBlockStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBlockStatics2 is access all ITextBlockStatics2_Interface'Class;
+   type ITextBlockStatics2_Ptr is access all ITextBlockStatics2;
 
    type ITextBlockStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBlockStatics3 is access all ITextBlockStatics3_Interface'Class;
+   type ITextBlockStatics3_Ptr is access all ITextBlockStatics3;
 
    type ITextBlockStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBlockStatics5 is access all ITextBlockStatics5_Interface'Class;
+   type ITextBlockStatics5_Ptr is access all ITextBlockStatics5;
 
    type ITextBlockStatics6_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBlockStatics6 is access all ITextBlockStatics6_Interface'Class;
+   type ITextBlockStatics6_Ptr is access all ITextBlockStatics6;
 
    type ITextBlockStatics7_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBlockStatics7 is access all ITextBlockStatics7_Interface'Class;
+   type ITextBlockStatics7_Ptr is access all ITextBlockStatics7;
 
    type ITextBox_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBox is access all ITextBox_Interface'Class;
@@ -2469,24 +2977,31 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITextBox2_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBox2 is access all ITextBox2_Interface'Class;
+   type ITextBox2_Ptr is access all ITextBox2;
 
    type ITextBox3_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBox3 is access all ITextBox3_Interface'Class;
+   type ITextBox3_Ptr is access all ITextBox3;
 
    type ITextBox4_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBox4 is access all ITextBox4_Interface'Class;
+   type ITextBox4_Ptr is access all ITextBox4;
 
    type ITextBox5_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBox5 is access all ITextBox5_Interface'Class;
+   type ITextBox5_Ptr is access all ITextBox5;
 
    type ITextBox6_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBox6 is access all ITextBox6_Interface'Class;
+   type ITextBox6_Ptr is access all ITextBox6;
 
    type ITextBox7_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBox7 is access all ITextBox7_Interface'Class;
+   type ITextBox7_Ptr is access all ITextBox7;
 
    type ITextBox8_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBox8 is access all ITextBox8_Interface'Class;
+   type ITextBox8_Ptr is access all ITextBox8;
 
    type ITextBoxBeforeTextChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBoxBeforeTextChangingEventArgs is access all ITextBoxBeforeTextChangingEventArgs_Interface'Class;
@@ -2494,6 +3009,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITextBoxFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBoxFactory is access all ITextBoxFactory_Interface'Class;
+   type ITextBoxFactory_Ptr is access all ITextBoxFactory;
 
    type ITextBoxSelectionChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBoxSelectionChangingEventArgs is access all ITextBoxSelectionChangingEventArgs_Interface'Class;
@@ -2501,24 +3017,31 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITextBoxStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBoxStatics is access all ITextBoxStatics_Interface'Class;
+   type ITextBoxStatics_Ptr is access all ITextBoxStatics;
 
    type ITextBoxStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBoxStatics2 is access all ITextBoxStatics2_Interface'Class;
+   type ITextBoxStatics2_Ptr is access all ITextBoxStatics2;
 
    type ITextBoxStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBoxStatics3 is access all ITextBoxStatics3_Interface'Class;
+   type ITextBoxStatics3_Ptr is access all ITextBoxStatics3;
 
    type ITextBoxStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBoxStatics5 is access all ITextBoxStatics5_Interface'Class;
+   type ITextBoxStatics5_Ptr is access all ITextBoxStatics5;
 
    type ITextBoxStatics6_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBoxStatics6 is access all ITextBoxStatics6_Interface'Class;
+   type ITextBoxStatics6_Ptr is access all ITextBoxStatics6;
 
    type ITextBoxStatics7_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBoxStatics7 is access all ITextBoxStatics7_Interface'Class;
+   type ITextBoxStatics7_Ptr is access all ITextBoxStatics7;
 
    type ITextBoxStatics8_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBoxStatics8 is access all ITextBoxStatics8_Interface'Class;
+   type ITextBoxStatics8_Ptr is access all ITextBoxStatics8;
 
    type ITextBoxTextChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBoxTextChangingEventArgs is access all ITextBoxTextChangingEventArgs_Interface'Class;
@@ -2526,6 +3049,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITextBoxTextChangingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type ITextBoxTextChangingEventArgs2 is access all ITextBoxTextChangingEventArgs2_Interface'Class;
+   type ITextBoxTextChangingEventArgs2_Ptr is access all ITextBoxTextChangingEventArgs2;
 
    type ITextChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITextChangedEventArgs is access all ITextChangedEventArgs_Interface'Class;
@@ -2537,6 +3061,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITextCommandBarFlyoutFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITextCommandBarFlyoutFactory is access all ITextCommandBarFlyoutFactory_Interface'Class;
+   type ITextCommandBarFlyoutFactory_Ptr is access all ITextCommandBarFlyoutFactory;
 
    type ITextCompositionChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITextCompositionChangedEventArgs is access all ITextCompositionChangedEventArgs_Interface'Class;
@@ -2572,12 +3097,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITimePicker2_Interface is interface and WinRt.IInspectable_Interface;
    type ITimePicker2 is access all ITimePicker2_Interface'Class;
+   type ITimePicker2_Ptr is access all ITimePicker2;
 
    type ITimePicker3_Interface is interface and WinRt.IInspectable_Interface;
    type ITimePicker3 is access all ITimePicker3_Interface'Class;
+   type ITimePicker3_Ptr is access all ITimePicker3;
 
    type ITimePickerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITimePickerFactory is access all ITimePickerFactory_Interface'Class;
+   type ITimePickerFactory_Ptr is access all ITimePickerFactory;
 
    type ITimePickerFlyout_Interface is interface and WinRt.IInspectable_Interface;
    type ITimePickerFlyout is access all ITimePickerFlyout_Interface'Class;
@@ -2589,12 +3117,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITimePickerFlyoutPresenter2_Interface is interface and WinRt.IInspectable_Interface;
    type ITimePickerFlyoutPresenter2 is access all ITimePickerFlyoutPresenter2_Interface'Class;
+   type ITimePickerFlyoutPresenter2_Ptr is access all ITimePickerFlyoutPresenter2;
 
    type ITimePickerFlyoutPresenterStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITimePickerFlyoutPresenterStatics2 is access all ITimePickerFlyoutPresenterStatics2_Interface'Class;
+   type ITimePickerFlyoutPresenterStatics2_Ptr is access all ITimePickerFlyoutPresenterStatics2;
 
    type ITimePickerFlyoutStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITimePickerFlyoutStatics is access all ITimePickerFlyoutStatics_Interface'Class;
+   type ITimePickerFlyoutStatics_Ptr is access all ITimePickerFlyoutStatics;
 
    type ITimePickerSelectedValueChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITimePickerSelectedValueChangedEventArgs is access all ITimePickerSelectedValueChangedEventArgs_Interface'Class;
@@ -2602,12 +3133,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITimePickerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITimePickerStatics is access all ITimePickerStatics_Interface'Class;
+   type ITimePickerStatics_Ptr is access all ITimePickerStatics;
 
    type ITimePickerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITimePickerStatics2 is access all ITimePickerStatics2_Interface'Class;
+   type ITimePickerStatics2_Ptr is access all ITimePickerStatics2;
 
    type ITimePickerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type ITimePickerStatics3 is access all ITimePickerStatics3_Interface'Class;
+   type ITimePickerStatics3_Ptr is access all ITimePickerStatics3;
 
    type ITimePickerValueChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITimePickerValueChangedEventArgs is access all ITimePickerValueChangedEventArgs_Interface'Class;
@@ -2619,9 +3153,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IToggleMenuFlyoutItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleMenuFlyoutItemFactory is access all IToggleMenuFlyoutItemFactory_Interface'Class;
+   type IToggleMenuFlyoutItemFactory_Ptr is access all IToggleMenuFlyoutItemFactory;
 
    type IToggleMenuFlyoutItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleMenuFlyoutItemStatics is access all IToggleMenuFlyoutItemStatics_Interface'Class;
+   type IToggleMenuFlyoutItemStatics_Ptr is access all IToggleMenuFlyoutItemStatics;
 
    type IToggleSplitButton_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleSplitButton is access all IToggleSplitButton_Interface'Class;
@@ -2633,9 +3169,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IToggleSplitButtonAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleSplitButtonAutomationPeerFactory is access all IToggleSplitButtonAutomationPeerFactory_Interface'Class;
+   type IToggleSplitButtonAutomationPeerFactory_Ptr is access all IToggleSplitButtonAutomationPeerFactory;
 
    type IToggleSplitButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleSplitButtonFactory is access all IToggleSplitButtonFactory_Interface'Class;
+   type IToggleSplitButtonFactory_Ptr is access all IToggleSplitButtonFactory;
 
    type IToggleSplitButtonIsCheckedChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleSplitButtonIsCheckedChangedEventArgs is access all IToggleSplitButtonIsCheckedChangedEventArgs_Interface'Class;
@@ -2647,9 +3185,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IToggleSwitchOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleSwitchOverrides is access all IToggleSwitchOverrides_Interface'Class;
+   type IToggleSwitchOverrides_Ptr is access all IToggleSwitchOverrides;
 
    type IToggleSwitchStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleSwitchStatics is access all IToggleSwitchStatics_Interface'Class;
+   type IToggleSwitchStatics_Ptr is access all IToggleSwitchStatics;
 
    type IToolTip_Interface is interface and WinRt.IInspectable_Interface;
    type IToolTip is access all IToolTip_Interface'Class;
@@ -2657,9 +3197,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IToolTip2_Interface is interface and WinRt.IInspectable_Interface;
    type IToolTip2 is access all IToolTip2_Interface'Class;
+   type IToolTip2_Ptr is access all IToolTip2;
 
    type IToolTipFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IToolTipFactory is access all IToolTipFactory_Interface'Class;
+   type IToolTipFactory_Ptr is access all IToolTipFactory;
 
    type IToolTipService_Interface is interface and WinRt.IInspectable_Interface;
    type IToolTipService is access all IToolTipService_Interface'Class;
@@ -2667,12 +3209,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IToolTipServiceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IToolTipServiceStatics is access all IToolTipServiceStatics_Interface'Class;
+   type IToolTipServiceStatics_Ptr is access all IToolTipServiceStatics;
 
    type IToolTipStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IToolTipStatics is access all IToolTipStatics_Interface'Class;
+   type IToolTipStatics_Ptr is access all IToolTipStatics;
 
    type IToolTipStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IToolTipStatics2 is access all IToolTipStatics2_Interface'Class;
+   type IToolTipStatics2_Ptr is access all IToolTipStatics2;
 
    type ITreeView_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeView is access all ITreeView_Interface'Class;
@@ -2680,6 +3225,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITreeView2_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeView2 is access all ITreeView2_Interface'Class;
+   type ITreeView2_Ptr is access all ITreeView2;
 
    type ITreeViewCollapsedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewCollapsedEventArgs is access all ITreeViewCollapsedEventArgs_Interface'Class;
@@ -2687,6 +3233,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITreeViewCollapsedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewCollapsedEventArgs2 is access all ITreeViewCollapsedEventArgs2_Interface'Class;
+   type ITreeViewCollapsedEventArgs2_Ptr is access all ITreeViewCollapsedEventArgs2;
 
    type ITreeViewDragItemsCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewDragItemsCompletedEventArgs is access all ITreeViewDragItemsCompletedEventArgs_Interface'Class;
@@ -2702,9 +3249,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITreeViewExpandingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewExpandingEventArgs2 is access all ITreeViewExpandingEventArgs2_Interface'Class;
+   type ITreeViewExpandingEventArgs2_Ptr is access all ITreeViewExpandingEventArgs2;
 
    type ITreeViewFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewFactory is access all ITreeViewFactory_Interface'Class;
+   type ITreeViewFactory_Ptr is access all ITreeViewFactory;
 
    type ITreeViewItem_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewItem is access all ITreeViewItem_Interface'Class;
@@ -2712,9 +3261,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITreeViewItem2_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewItem2 is access all ITreeViewItem2_Interface'Class;
+   type ITreeViewItem2_Ptr is access all ITreeViewItem2;
 
    type ITreeViewItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewItemFactory is access all ITreeViewItemFactory_Interface'Class;
+   type ITreeViewItemFactory_Ptr is access all ITreeViewItemFactory;
 
    type ITreeViewItemInvokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewItemInvokedEventArgs is access all ITreeViewItemInvokedEventArgs_Interface'Class;
@@ -2722,9 +3273,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITreeViewItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewItemStatics is access all ITreeViewItemStatics_Interface'Class;
+   type ITreeViewItemStatics_Ptr is access all ITreeViewItemStatics;
 
    type ITreeViewItemStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewItemStatics2 is access all ITreeViewItemStatics2_Interface'Class;
+   type ITreeViewItemStatics2_Ptr is access all ITreeViewItemStatics2;
 
    type ITreeViewItemTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewItemTemplateSettings is access all ITreeViewItemTemplateSettings_Interface'Class;
@@ -2732,9 +3285,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITreeViewItemTemplateSettingsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewItemTemplateSettingsFactory is access all ITreeViewItemTemplateSettingsFactory_Interface'Class;
+   type ITreeViewItemTemplateSettingsFactory_Ptr is access all ITreeViewItemTemplateSettingsFactory;
 
    type ITreeViewItemTemplateSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewItemTemplateSettingsStatics is access all ITreeViewItemTemplateSettingsStatics_Interface'Class;
+   type ITreeViewItemTemplateSettingsStatics_Ptr is access all ITreeViewItemTemplateSettingsStatics;
 
    type ITreeViewList_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewList is access all ITreeViewList_Interface'Class;
@@ -2742,6 +3297,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITreeViewListFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewListFactory is access all ITreeViewListFactory_Interface'Class;
+   type ITreeViewListFactory_Ptr is access all ITreeViewListFactory;
 
    type ITreeViewNode_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewNode is access all ITreeViewNode_Interface'Class;
@@ -2749,15 +3305,19 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITreeViewNodeFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewNodeFactory is access all ITreeViewNodeFactory_Interface'Class;
+   type ITreeViewNodeFactory_Ptr is access all ITreeViewNodeFactory;
 
    type ITreeViewNodeStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewNodeStatics is access all ITreeViewNodeStatics_Interface'Class;
+   type ITreeViewNodeStatics_Ptr is access all ITreeViewNodeStatics;
 
    type ITreeViewStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewStatics is access all ITreeViewStatics_Interface'Class;
+   type ITreeViewStatics_Ptr is access all ITreeViewStatics;
 
    type ITreeViewStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITreeViewStatics2 is access all ITreeViewStatics2_Interface'Class;
+   type ITreeViewStatics2_Ptr is access all ITreeViewStatics2;
 
    type ITwoPaneView_Interface is interface and WinRt.IInspectable_Interface;
    type ITwoPaneView is access all ITwoPaneView_Interface'Class;
@@ -2765,12 +3325,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type ITwoPaneViewFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITwoPaneViewFactory is access all ITwoPaneViewFactory_Interface'Class;
+   type ITwoPaneViewFactory_Ptr is access all ITwoPaneViewFactory;
 
    type ITwoPaneViewStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITwoPaneViewStatics is access all ITwoPaneViewStatics_Interface'Class;
+   type ITwoPaneViewStatics_Ptr is access all ITwoPaneViewStatics;
 
    type IUIElementCollection_Interface is interface and WinRt.IInspectable_Interface;
    type IUIElementCollection is access all IUIElementCollection_Interface'Class;
+   type IUIElementCollection_Ptr is access all IUIElementCollection;
 
    type IUserControl_Interface is interface and WinRt.IInspectable_Interface;
    type IUserControl is access all IUserControl_Interface'Class;
@@ -2778,9 +3341,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IUserControlFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IUserControlFactory is access all IUserControlFactory_Interface'Class;
+   type IUserControlFactory_Ptr is access all IUserControlFactory;
 
    type IUserControlStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserControlStatics is access all IUserControlStatics_Interface'Class;
+   type IUserControlStatics_Ptr is access all IUserControlStatics;
 
    type IVariableSizedWrapGrid_Interface is interface and WinRt.IInspectable_Interface;
    type IVariableSizedWrapGrid is access all IVariableSizedWrapGrid_Interface'Class;
@@ -2788,6 +3353,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IVariableSizedWrapGridStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IVariableSizedWrapGridStatics is access all IVariableSizedWrapGridStatics_Interface'Class;
+   type IVariableSizedWrapGridStatics_Ptr is access all IVariableSizedWrapGridStatics;
 
    type IViewbox_Interface is interface and WinRt.IInspectable_Interface;
    type IViewbox is access all IViewbox_Interface'Class;
@@ -2795,6 +3361,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IViewboxStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IViewboxStatics is access all IViewboxStatics_Interface'Class;
+   type IViewboxStatics_Ptr is access all IViewboxStatics;
 
    type IVirtualizingPanel_Interface is interface and WinRt.IInspectable_Interface;
    type IVirtualizingPanel is access all IVirtualizingPanel_Interface'Class;
@@ -2802,12 +3369,15 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IVirtualizingPanelFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVirtualizingPanelFactory is access all IVirtualizingPanelFactory_Interface'Class;
+   type IVirtualizingPanelFactory_Ptr is access all IVirtualizingPanelFactory;
 
    type IVirtualizingPanelOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IVirtualizingPanelOverrides is access all IVirtualizingPanelOverrides_Interface'Class;
+   type IVirtualizingPanelOverrides_Ptr is access all IVirtualizingPanelOverrides;
 
    type IVirtualizingPanelProtected_Interface is interface and WinRt.IInspectable_Interface;
    type IVirtualizingPanelProtected is access all IVirtualizingPanelProtected_Interface'Class;
+   type IVirtualizingPanelProtected_Ptr is access all IVirtualizingPanelProtected;
 
    type IVirtualizingStackPanel_Interface is interface and WinRt.IInspectable_Interface;
    type IVirtualizingStackPanel is access all IVirtualizingStackPanel_Interface'Class;
@@ -2815,9 +3385,11 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IVirtualizingStackPanelOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IVirtualizingStackPanelOverrides is access all IVirtualizingStackPanelOverrides_Interface'Class;
+   type IVirtualizingStackPanelOverrides_Ptr is access all IVirtualizingStackPanelOverrides;
 
    type IVirtualizingStackPanelStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IVirtualizingStackPanelStatics is access all IVirtualizingStackPanelStatics_Interface'Class;
+   type IVirtualizingStackPanelStatics_Ptr is access all IVirtualizingStackPanelStatics;
 
    type IWebView_Interface is interface and WinRt.IInspectable_Interface;
    type IWebView is access all IWebView_Interface'Class;
@@ -2825,21 +3397,27 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IWebView2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebView2 is access all IWebView2_Interface'Class;
+   type IWebView2_Ptr is access all IWebView2;
 
    type IWebView3_Interface is interface and WinRt.IInspectable_Interface;
    type IWebView3 is access all IWebView3_Interface'Class;
+   type IWebView3_Ptr is access all IWebView3;
 
    type IWebView4_Interface is interface and WinRt.IInspectable_Interface;
    type IWebView4 is access all IWebView4_Interface'Class;
+   type IWebView4_Ptr is access all IWebView4;
 
    type IWebView5_Interface is interface and WinRt.IInspectable_Interface;
    type IWebView5 is access all IWebView5_Interface'Class;
+   type IWebView5_Ptr is access all IWebView5;
 
    type IWebView6_Interface is interface and WinRt.IInspectable_Interface;
    type IWebView6 is access all IWebView6_Interface'Class;
+   type IWebView6_Ptr is access all IWebView6;
 
    type IWebView7_Interface is interface and WinRt.IInspectable_Interface;
    type IWebView7 is access all IWebView7_Interface'Class;
+   type IWebView7_Ptr is access all IWebView7;
 
    type IWebViewBrush_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewBrush is access all IWebViewBrush_Interface'Class;
@@ -2847,6 +3425,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IWebViewBrushStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewBrushStatics is access all IWebViewBrushStatics_Interface'Class;
+   type IWebViewBrushStatics_Ptr is access all IWebViewBrushStatics;
 
    type IWebViewContentLoadingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewContentLoadingEventArgs is access all IWebViewContentLoadingEventArgs_Interface'Class;
@@ -2862,6 +3441,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IWebViewFactory4_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewFactory4 is access all IWebViewFactory4_Interface'Class;
+   type IWebViewFactory4_Ptr is access all IWebViewFactory4;
 
    type IWebViewLongRunningScriptDetectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewLongRunningScriptDetectedEventArgs is access all IWebViewLongRunningScriptDetectedEventArgs_Interface'Class;
@@ -2901,18 +3481,23 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IWebViewStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewStatics is access all IWebViewStatics_Interface'Class;
+   type IWebViewStatics_Ptr is access all IWebViewStatics;
 
    type IWebViewStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewStatics2 is access all IWebViewStatics2_Interface'Class;
+   type IWebViewStatics2_Ptr is access all IWebViewStatics2;
 
    type IWebViewStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewStatics3 is access all IWebViewStatics3_Interface'Class;
+   type IWebViewStatics3_Ptr is access all IWebViewStatics3;
 
    type IWebViewStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewStatics4 is access all IWebViewStatics4_Interface'Class;
+   type IWebViewStatics4_Ptr is access all IWebViewStatics4;
 
    type IWebViewStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewStatics5 is access all IWebViewStatics5_Interface'Class;
+   type IWebViewStatics5_Ptr is access all IWebViewStatics5;
 
    type IWebViewUnsupportedUriSchemeIdentifiedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewUnsupportedUriSchemeIdentifiedEventArgs is access all IWebViewUnsupportedUriSchemeIdentifiedEventArgs_Interface'Class;
@@ -2924,6 +3509,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IWebViewUnviewableContentIdentifiedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewUnviewableContentIdentifiedEventArgs2 is access all IWebViewUnviewableContentIdentifiedEventArgs2_Interface'Class;
+   type IWebViewUnviewableContentIdentifiedEventArgs2_Ptr is access all IWebViewUnviewableContentIdentifiedEventArgs2;
 
    type IWebViewWebResourceRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IWebViewWebResourceRequestedEventArgs is access all IWebViewWebResourceRequestedEventArgs_Interface'Class;
@@ -2935,6 +3521,7 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    type IWrapGridStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWrapGridStatics is access all IWrapGridStatics_Interface'Class;
+   type IWrapGridStatics_Ptr is access all IWrapGridStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -3479,6 +4066,18 @@ package WinRt.Windows.UI.Xaml.Controls is
          m_IHandwritingView : access Windows.UI.Xaml.Controls.IHandwritingView;
       end record;
    type HandwritingView_Ptr is access all HandwritingView;
+
+   type HandwritingViewCandidatesChangedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IHandwritingViewCandidatesChangedEventArgs : access Windows.UI.Xaml.Controls.IHandwritingViewCandidatesChangedEventArgs;
+      end record;
+   type HandwritingViewCandidatesChangedEventArgs_Ptr is access all HandwritingViewCandidatesChangedEventArgs;
+
+   type HandwritingViewTextSubmittedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IHandwritingViewTextSubmittedEventArgs : access Windows.UI.Xaml.Controls.IHandwritingViewTextSubmittedEventArgs;
+      end record;
+   type HandwritingViewTextSubmittedEventArgs_Ptr is access all HandwritingViewTextSubmittedEventArgs;
 
    type Hub is new Ada.Finalization.Limited_Controlled with
       record
@@ -6139,6 +6738,10 @@ package WinRt.Windows.UI.Xaml.Controls is
    package IVector_IInspectable is new WinRt.Windows.Foundation.Collections.IVector (WinRt.IInspectable);
    IID_IVector_IInspectable : aliased WinRt.IID := (3660450288, 64379, 23059, (178, 144, 94, 100, 177, 55, 33, 212 ));
    function QInterface_IVector_IInspectable is new Generic_QueryInterface (GenericObject_Interface, IVector_IInspectable.Kind, IID_IVector_IInspectable'Access);
+
+   package IVectorView_HString is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.HString);
+   IID_IVectorView_HString : aliased WinRt.IID := (1706129494, 13985, 23647, (163, 86, 113, 164, 197, 221, 224, 254 ));
+   function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
    package IVector_IHubSection is new WinRt.Windows.Foundation.Collections.IVector (IHubSection);
    IID_IVector_IHubSection : aliased WinRt.IID := (54185841, 40059, 21740, (150, 218, 141, 29, 116, 233, 87, 144 ));
@@ -8952,6 +9555,347 @@ package WinRt.Windows.UI.Xaml.Controls is
       IID_ICalendarView : aliased WinRt.IID := (3445854723, 57269, 17170, (172, 7, 192, 57, 24, 36, 96, 123 ));
 
    -----------------------------------------------------------------------------
+   -- type ICalendarView2 is interface and WinRt.IInspectable;
+
+      function get_SelectedDisabledBorderBrush
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectedDisabledBorderBrush
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodaySelectedInnerBorderBrush
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TodaySelectedInnerBorderBrush
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_BlackoutStrikethroughBrush
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_BlackoutStrikethroughBrush
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_BlackoutBackground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_BlackoutBackground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CalendarItemHoverBackground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CalendarItemHoverBackground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CalendarItemPressedBackground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CalendarItemPressedBackground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CalendarItemDisabledBackground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CalendarItemDisabledBackground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodayBackground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TodayBackground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodayBlackoutBackground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TodayBlackoutBackground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodayHoverBackground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TodayHoverBackground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodayPressedBackground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TodayPressedBackground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodayDisabledBackground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TodayDisabledBackground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodayBlackoutForeground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TodayBlackoutForeground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedHoverForeground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectedHoverForeground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedPressedForeground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectedPressedForeground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedDisabledForeground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectedDisabledForeground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OutOfScopeHoverForeground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_OutOfScopeHoverForeground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OutOfScopePressedForeground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_OutOfScopePressedForeground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DisabledForeground
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_DisabledForeground
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DayItemMargin
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Thickness
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_DayItemMargin
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Thickness
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MonthYearItemMargin
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Thickness
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_MonthYearItemMargin
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Thickness
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_FirstOfMonthLabelMargin
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Thickness
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_FirstOfMonthLabelMargin
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Thickness
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_FirstOfYearDecadeLabelMargin
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.Thickness
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_FirstOfYearDecadeLabelMargin
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.Thickness
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CalendarItemCornerRadius
+      (
+         this : access ICalendarView2_Interface;
+         RetVal : access Windows.UI.Xaml.CornerRadius
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CalendarItemCornerRadius
+      (
+         this : access ICalendarView2_Interface;
+         value : Windows.UI.Xaml.CornerRadius
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICalendarView2 : aliased WinRt.IID := (4116362826, 21764, 23966, (157, 32, 47, 253, 184, 143, 197, 107 ));
+
+   -----------------------------------------------------------------------------
    -- type ICalendarViewDayItem is interface and WinRt.IInspectable;
 
       function get_IsBlackout
@@ -9452,6 +10396,179 @@ package WinRt.Windows.UI.Xaml.Controls is
       return WinRt.Hresult is abstract;
 
       IID_ICalendarViewStatics : aliased WinRt.IID := (1918955972, 12125, 16829, (153, 187, 69, 113, 178, 11, 121, 168 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICalendarViewStatics2 is interface and WinRt.IInspectable;
+
+      function get_SelectedDisabledBorderBrushProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodaySelectedInnerBorderBrushProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_BlackoutStrikethroughBrushProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_BlackoutBackgroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CalendarItemHoverBackgroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CalendarItemPressedBackgroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CalendarItemDisabledBackgroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodayBackgroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodayBlackoutBackgroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodayHoverBackgroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodayPressedBackgroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodayDisabledBackgroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TodayBlackoutForegroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedHoverForegroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedPressedForegroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedDisabledForegroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OutOfScopeHoverForegroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OutOfScopePressedForegroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DisabledForegroundProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DayItemMarginProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MonthYearItemMarginProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_FirstOfMonthLabelMarginProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_FirstOfYearDecadeLabelMarginProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CalendarItemCornerRadiusProperty
+      (
+         this : access ICalendarViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICalendarViewStatics2 : aliased WinRt.IID := (4070461476, 47355, 20680, (138, 56, 212, 67, 171, 179, 112, 9 ));
 
    -----------------------------------------------------------------------------
    -- type ICandidateWindowBoundsChangedEventArgs is interface and WinRt.IInspectable;
@@ -16224,6 +17341,111 @@ package WinRt.Windows.UI.Xaml.Controls is
       IID_IHandwritingView : aliased WinRt.IID := (3292660903, 12768, 17596, (163, 139, 75, 238, 100, 236, 217, 159 ));
 
    -----------------------------------------------------------------------------
+   -- type IHandwritingView2 is interface and WinRt.IInspectable;
+
+      function get_IsSwitchToKeyboardEnabled
+      (
+         this : access IHandwritingView2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsSwitchToKeyboardEnabled
+      (
+         this : access IHandwritingView2_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsCommandBarOpen
+      (
+         this : access IHandwritingView2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsCommandBarOpen
+      (
+         this : access IHandwritingView2_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_InputDeviceTypes
+      (
+         this : access IHandwritingView2_Interface;
+         RetVal : access Windows.UI.Core.CoreInputDeviceTypes
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_InputDeviceTypes
+      (
+         this : access IHandwritingView2_Interface;
+         value : Windows.UI.Core.CoreInputDeviceTypes
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_CandidatesChanged
+      (
+         this : access IHandwritingView2_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_CandidatesChanged
+      (
+         this : access IHandwritingView2_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_TextSubmitted
+      (
+         this : access IHandwritingView2_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_TextSubmitted
+      (
+         this : access IHandwritingView2_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetCandidates
+      (
+         this : access IHandwritingView2_Interface;
+         candidatesSessionId : WinRt.UInt32;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function SelectCandidate
+      (
+         this : access IHandwritingView2_Interface;
+         candidatesSessionId : WinRt.UInt32;
+         selectedCandidateIndex : WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHandwritingView2 : aliased WinRt.IID := (1271896347, 3553, 23710, (137, 112, 55, 185, 135, 143, 225, 113 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHandwritingViewCandidatesChangedEventArgs is interface and WinRt.IInspectable;
+
+      function get_CandidatesSessionId
+      (
+         this : access IHandwritingViewCandidatesChangedEventArgs_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHandwritingViewCandidatesChangedEventArgs : aliased WinRt.IID := (1868522456, 22193, 22213, (164, 22, 193, 156, 22, 191, 120, 132 ));
+
+   -----------------------------------------------------------------------------
    -- type IHandwritingViewFactory is interface and WinRt.IInspectable;
 
       function CreateInstance
@@ -16269,6 +17491,30 @@ package WinRt.Windows.UI.Xaml.Controls is
       return WinRt.Hresult is abstract;
 
       IID_IHandwritingViewStatics : aliased WinRt.IID := (3145526992, 52319, 16388, (184, 200, 20, 46, 25, 95, 6, 24 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHandwritingViewStatics2 is interface and WinRt.IInspectable;
+
+      function get_IsSwitchToKeyboardEnabledProperty
+      (
+         this : access IHandwritingViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsCommandBarOpenProperty
+      (
+         this : access IHandwritingViewStatics2_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHandwritingViewStatics2 : aliased WinRt.IID := (751850212, 55043, 20867, (161, 190, 126, 40, 93, 249, 120, 217 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHandwritingViewTextSubmittedEventArgs is interface and WinRt.IInspectable;
+
+      IID_IHandwritingViewTextSubmittedEventArgs : aliased WinRt.IID := (1437339463, 62948, 21978, (184, 163, 212, 24, 183, 86, 66, 145 ));
 
    -----------------------------------------------------------------------------
    -- type IHub is interface and WinRt.IInspectable;
@@ -39273,6 +40519,48 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Control
 
+   function get_UseSystemFocusVisualsProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsTemplateFocusTargetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetIsTemplateFocusTarget
+   (
+      element : Windows.UI.Xaml.FrameworkElement'Class
+   )
+   return WinRt.Boolean;
+
+   procedure SetIsTemplateFocusTarget
+   (
+      element : Windows.UI.Xaml.FrameworkElement'Class;
+      value : WinRt.Boolean
+   );
+
+   function get_IsFocusEngagementEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsFocusEngagedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RequiresPointerProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_XYFocusLeftProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_XYFocusRightProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_XYFocusUpProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_XYFocusDownProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ElementSoundModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_FontSizeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -39333,6 +40621,15 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_FocusStateProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_BackgroundSizingProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CornerRadiusProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsTextScaleFactorEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_DefaultStyleResourceUriProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -39350,57 +40647,6 @@ package WinRt.Windows.UI.Xaml.Controls is
       element : Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
-
-   function get_BackgroundSizingProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CornerRadiusProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_UseSystemFocusVisualsProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsTemplateFocusTargetProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetIsTemplateFocusTarget
-   (
-      element : Windows.UI.Xaml.FrameworkElement'Class
-   )
-   return WinRt.Boolean;
-
-   procedure SetIsTemplateFocusTarget
-   (
-      element : Windows.UI.Xaml.FrameworkElement'Class;
-      value : WinRt.Boolean
-   );
-
-   function get_IsTextScaleFactorEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsFocusEngagementEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsFocusEngagedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RequiresPointerProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_XYFocusLeftProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_XYFocusRightProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_XYFocusUpProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_XYFocusDownProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ElementSoundModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for Control
@@ -40155,16 +41401,16 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AppBar
 
-   function get_IsOpenProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsStickyProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_LightDismissOverlayModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_ClosedDisplayModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsOpenProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsStickyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -40356,18 +41602,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AppBarButton
 
-   function get_LabelPositionProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsInOverflowProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_DynamicOverflowOrderProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_KeyboardAcceleratorTextOverrideProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_LabelProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -40375,6 +41609,18 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsCompactProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_KeyboardAcceleratorTextOverrideProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LabelPositionProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsInOverflowProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_DynamicOverflowOrderProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -40605,18 +41851,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AppBarToggleButton
 
-   function get_LabelProperty_AppBarToggleButton
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IconProperty_AppBarToggleButton
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsCompactProperty_AppBarToggleButton
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_KeyboardAcceleratorTextOverrideProperty_AppBarToggleButton
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_LabelPositionProperty_AppBarToggleButton
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -40624,6 +41858,18 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_DynamicOverflowOrderProperty_AppBarToggleButton
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_KeyboardAcceleratorTextOverrideProperty_AppBarToggleButton
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LabelProperty_AppBarToggleButton
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IconProperty_AppBarToggleButton
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsCompactProperty_AppBarToggleButton
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -41035,9 +42281,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_DescriptionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_LightDismissOverlayModeProperty_AutoSuggestBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_MaxSuggestionListHeightProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -41066,6 +42309,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_QueryIconProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LightDismissOverlayModeProperty_AutoSuggestBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -41413,10 +42659,10 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BitmapIcon
 
-   function get_UriSourceProperty
+   function get_ShowAsMonochromeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_ShowAsMonochromeProperty
+   function get_UriSourceProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -41693,6 +42939,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for CalendarDatePicker
 
+   function get_LightDismissOverlayModeProperty_CalendarDatePicker
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_DescriptionProperty_CalendarDatePicker
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -41742,9 +42991,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsGroupLabelVisibleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_LightDismissOverlayModeProperty_CalendarDatePicker
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -42070,6 +43316,78 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for CalendarView
+
+   function get_SelectedDisabledBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TodaySelectedInnerBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_BlackoutStrikethroughBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_BlackoutBackgroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CalendarItemHoverBackgroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CalendarItemPressedBackgroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CalendarItemDisabledBackgroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TodayBackgroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TodayBlackoutBackgroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TodayHoverBackgroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TodayPressedBackgroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TodayDisabledBackgroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TodayBlackoutForegroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectedHoverForegroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectedPressedForegroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectedDisabledForegroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_OutOfScopeHoverForegroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_OutOfScopePressedForegroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_DisabledForegroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_DayItemMarginProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_MonthYearItemMarginProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FirstOfMonthLabelMarginProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FirstOfYearDecadeLabelMarginProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CalendarItemCornerRadiusProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_CalendarIdentifierProperty_CalendarView
    return WinRt.Windows.UI.Xaml.DependencyProperty;
@@ -42864,6 +44182,294 @@ package WinRt.Windows.UI.Xaml.Controls is
       this : in out CalendarView;
       columns : WinRt.Int32;
       rows : WinRt.Int32
+   );
+
+   function get_SelectedDisabledBorderBrush
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_SelectedDisabledBorderBrush
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_TodaySelectedInnerBorderBrush
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_TodaySelectedInnerBorderBrush
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_BlackoutStrikethroughBrush
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_BlackoutStrikethroughBrush
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_BlackoutBackground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_BlackoutBackground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CalendarItemHoverBackground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CalendarItemHoverBackground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CalendarItemPressedBackground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CalendarItemPressedBackground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CalendarItemDisabledBackground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CalendarItemDisabledBackground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_TodayBackground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_TodayBackground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_TodayBlackoutBackground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_TodayBlackoutBackground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_TodayHoverBackground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_TodayHoverBackground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_TodayPressedBackground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_TodayPressedBackground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_TodayDisabledBackground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_TodayDisabledBackground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_TodayBlackoutForeground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_TodayBlackoutForeground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_SelectedHoverForeground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_SelectedHoverForeground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_SelectedPressedForeground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_SelectedPressedForeground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_SelectedDisabledForeground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_SelectedDisabledForeground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_OutOfScopeHoverForeground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_OutOfScopeHoverForeground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_OutOfScopePressedForeground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_OutOfScopePressedForeground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_DisabledForeground
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_DisabledForeground
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_DayItemMargin
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Thickness;
+
+   procedure put_DayItemMargin
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Thickness
+   );
+
+   function get_MonthYearItemMargin
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Thickness;
+
+   procedure put_MonthYearItemMargin
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Thickness
+   );
+
+   function get_FirstOfMonthLabelMargin
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Thickness;
+
+   procedure put_FirstOfMonthLabelMargin
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Thickness
+   );
+
+   function get_FirstOfYearDecadeLabelMargin
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.Thickness;
+
+   procedure put_FirstOfYearDecadeLabelMargin
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.Thickness
+   );
+
+   function get_CalendarItemCornerRadius
+   (
+      this : in out CalendarView
+   )
+   return WinRt.Windows.UI.Xaml.CornerRadius;
+
+   procedure put_CalendarItemCornerRadius
+   (
+      this : in out CalendarView;
+      value : Windows.UI.Xaml.CornerRadius
    );
 
    -----------------------------------------------------------------------------
@@ -43849,21 +45455,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ComboBox
 
-   function get_IsDropDownOpenProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_MaxDropDownHeightProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_LightDismissOverlayModeProperty_ComboBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsTextSearchEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PlaceholderForegroundProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_IsEditableProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -43876,7 +45467,22 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_DescriptionProperty_ComboBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_PlaceholderForegroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsDropDownOpenProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_MaxDropDownHeightProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_SelectionChangedTriggerProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LightDismissOverlayModeProperty_ComboBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsTextSearchEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_HeaderProperty_ComboBox
@@ -44187,15 +45793,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for CommandBar
 
-   function get_PrimaryCommandsProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SecondaryCommandsProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CommandBarOverflowPresenterStyleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_DefaultLabelPositionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -44203,6 +45800,15 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsDynamicOverflowEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CommandBarOverflowPresenterStyleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PrimaryCommandsProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SecondaryCommandsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -44952,46 +46558,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ContentPresenter
 
-   function get_OpticalMarginAlignmentProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextLineBoundsProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_BackgroundSizingProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ContentProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ContentTemplateProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ContentTemplateSelectorProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ContentTransitionsProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FontSizeProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FontFamilyProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FontWeightProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FontStyleProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FontStretchProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CharacterSpacingProperty_ContentPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ForegroundProperty_ContentPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_TextWrappingProperty
@@ -45027,7 +46594,46 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_VerticalContentAlignmentProperty_ContentPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_ContentProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ContentTemplateProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ContentTemplateSelectorProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ContentTransitionsProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FontSizeProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FontFamilyProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FontWeightProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FontStyleProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FontStretchProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CharacterSpacingProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ForegroundProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_IsTextScaleFactorEnabledProperty_ContentPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_OpticalMarginAlignmentProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TextLineBoundsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -45537,6 +47143,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DatePicker
 
+   function get_LightDismissOverlayModeProperty_DatePicker
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_HeaderProperty_DatePicker
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -45577,9 +47186,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_SelectedDateProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_LightDismissOverlayModeProperty_DatePicker
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -45805,15 +47411,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DatePickerFlyout
 
-   function get_DayFormatProperty_DatePickerFlyout
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_MonthFormatProperty_DatePickerFlyout
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_YearFormatProperty_DatePickerFlyout
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_CalendarIdentifierProperty_DatePickerFlyout
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -45833,6 +47430,15 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_MaxYearProperty_DatePickerFlyout
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_DayFormatProperty_DatePickerFlyout
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_MonthFormatProperty_DatePickerFlyout
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_YearFormatProperty_DatePickerFlyout
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -46444,10 +48050,10 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for FontIcon
 
-   function get_MirroredWhenRightToLeftProperty
+   function get_IsTextScaleFactorEnabledProperty_FontIcon
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_IsTextScaleFactorEnabledProperty_FontIcon
+   function get_MirroredWhenRightToLeftProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_GlyphProperty
@@ -46698,6 +48304,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Frame
 
+   function get_IsNavigationStackEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_BackStackProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -46720,9 +48329,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_BackStackDepthProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsNavigationStackEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -46939,6 +48545,12 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Grid
 
+   function get_RowSpacingProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ColumnSpacingProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_RowProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -47012,12 +48624,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_BackgroundSizingProperty_Grid
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RowSpacingProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ColumnSpacingProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -47138,9 +48744,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ListViewBase
 
-   function get_SingleSelectionFollowsFocusProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_ShowsScrollingPlaceholdersProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -47151,6 +48754,12 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_FooterTransitionsProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SingleSelectionFollowsFocusProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsMultiSelectCheckBoxEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_SelectionModeProperty_ListViewBase
@@ -47196,9 +48805,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_ReorderModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsMultiSelectCheckBoxEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -47938,6 +49544,12 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for HandwritingView
 
+   function get_IsSwitchToKeyboardEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsCommandBarOpenProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_PlacementTargetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -48032,6 +49644,106 @@ package WinRt.Windows.UI.Xaml.Controls is
       this : in out HandwritingView
    )
    return WinRt.Boolean;
+
+   function get_IsSwitchToKeyboardEnabled
+   (
+      this : in out HandwritingView
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsSwitchToKeyboardEnabled
+   (
+      this : in out HandwritingView;
+      value : WinRt.Boolean
+   );
+
+   function get_IsCommandBarOpen
+   (
+      this : in out HandwritingView
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsCommandBarOpen
+   (
+      this : in out HandwritingView;
+      value : WinRt.Boolean
+   );
+
+   function get_InputDeviceTypes
+   (
+      this : in out HandwritingView
+   )
+   return WinRt.Windows.UI.Core.CoreInputDeviceTypes;
+
+   procedure put_InputDeviceTypes
+   (
+      this : in out HandwritingView;
+      value : Windows.UI.Core.CoreInputDeviceTypes
+   );
+
+   function add_CandidatesChanged
+   (
+      this : in out HandwritingView;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_CandidatesChanged
+   (
+      this : in out HandwritingView;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_TextSubmitted
+   (
+      this : in out HandwritingView;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_TextSubmitted
+   (
+      this : in out HandwritingView;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function GetCandidates
+   (
+      this : in out HandwritingView;
+      candidatesSessionId : WinRt.UInt32
+   )
+   return IVectorView_HString.Kind;
+
+   procedure SelectCandidate
+   (
+      this : in out HandwritingView;
+      candidatesSessionId : WinRt.UInt32;
+      selectedCandidateIndex : WinRt.UInt32
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HandwritingViewCandidatesChangedEventArgs
+
+   overriding procedure Initialize (this : in out HandwritingViewCandidatesChangedEventArgs);
+   overriding procedure Finalize (this : in out HandwritingViewCandidatesChangedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HandwritingViewCandidatesChangedEventArgs
+
+   function get_CandidatesSessionId
+   (
+      this : in out HandwritingViewCandidatesChangedEventArgs
+   )
+   return WinRt.UInt32;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HandwritingViewTextSubmittedEventArgs
+
+   overriding procedure Initialize (this : in out HandwritingViewTextSubmittedEventArgs);
+   overriding procedure Finalize (this : in out HandwritingViewTextSubmittedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HandwritingViewTextSubmittedEventArgs
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Hub
@@ -48677,6 +50389,15 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for InkToolbar
 
+   function get_IsStencilButtonCheckedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ButtonFlyoutPlacementProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_OrientationProperty_InkToolbar
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_TargetInkPresenterProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -48696,15 +50417,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_TargetInkCanvasProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsStencilButtonCheckedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ButtonFlyoutPlacementProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_OrientationProperty_InkToolbar
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -49925,6 +51637,15 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ItemsPresenter
 
+   function get_FooterProperty_ItemsPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FooterTemplateProperty_ItemsPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FooterTransitionsProperty_ItemsPresenter
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_HeaderProperty_ItemsPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -49935,15 +51656,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_PaddingProperty_ItemsPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FooterProperty_ItemsPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FooterTemplateProperty_ItemsPresenter
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FooterTransitionsProperty_ItemsPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -50236,9 +51948,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ItemsWrapGrid
 
-   function get_AreStickyGroupHeadersEnabledProperty_ItemsWrapGrid
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_GroupPaddingProperty_ItemsWrapGrid
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -50258,6 +51967,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_CacheLengthProperty_ItemsWrapGrid
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AreStickyGroupHeadersEnabledProperty_ItemsWrapGrid
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -50752,18 +52464,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MediaElement
 
-   function get_AreTransportControlsEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_StretchProperty_MediaElement
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsFullWindowProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PlayToPreferredSourceUriProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_PosterSourceProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -50861,6 +52561,18 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_ActualStereo3DVideoPackingModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AreTransportControlsEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_StretchProperty_MediaElement
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsFullWindowProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PlayToPreferredSourceUriProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -51675,15 +53387,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MediaTransportControls
 
-   function get_ShowAndHideAutomaticallyProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsRepeatEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsRepeatButtonVisibleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_IsCompactOverlayButtonVisibleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -51739,6 +53442,15 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsCompactProperty_MediaTransportControls
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ShowAndHideAutomaticallyProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsRepeatEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsRepeatButtonVisibleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsSkipForwardButtonVisibleProperty
@@ -52340,12 +54052,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MenuFlyoutItem
 
-   function get_KeyboardAcceleratorTextOverrideProperty_MenuFlyoutItem
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IconProperty_MenuFlyoutItem
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_TextProperty_MenuFlyoutItem
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -52353,6 +54059,12 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_CommandParameterProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IconProperty_MenuFlyoutItem
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_KeyboardAcceleratorTextOverrideProperty_MenuFlyoutItem
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -52513,10 +54225,10 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MenuFlyoutSubItem
 
-   function get_IconProperty_MenuFlyoutSubItem
+   function get_TextProperty_MenuFlyoutSubItem
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_TextProperty_MenuFlyoutSubItem
+   function get_IconProperty_MenuFlyoutSubItem
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -52570,42 +54282,6 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for NavigationView
-
-   function get_IsBackButtonVisibleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsBackEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PaneTitleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PaneDisplayModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PaneHeaderProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PaneCustomContentProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ContentOverlayProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsPaneVisibleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SelectionFollowsFocusProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TemplateSettingsProperty_NavigationView
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ShoulderNavigationEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_OverflowLabelModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsPaneOpenProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
@@ -52671,6 +54347,42 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_MenuItemContainerStyleSelectorProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PaneDisplayModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PaneHeaderProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PaneCustomContentProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ContentOverlayProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsPaneVisibleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionFollowsFocusProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TemplateSettingsProperty_NavigationView
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ShoulderNavigationEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_OverflowLabelModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsBackButtonVisibleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsBackEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PaneTitleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -53914,21 +55626,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for PasswordBox
 
-   function get_HeaderProperty_PasswordBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_HeaderTemplateProperty_PasswordBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PlaceholderTextProperty_PasswordBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SelectionHighlightColorProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PreventKeyboardDisplayOnProgrammaticFocusProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_CanPasteClipboardContentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -53945,6 +55642,21 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_InputScopeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HeaderProperty_PasswordBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HeaderTemplateProperty_PasswordBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PlaceholderTextProperty_PasswordBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionHighlightColorProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PreventKeyboardDisplayOnProgrammaticFocusProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_PasswordProperty
@@ -54568,18 +56280,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Pivot
 
-   function get_LeftHeaderProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_LeftHeaderTemplateProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RightHeaderProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RightHeaderTemplateProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_TitleProperty_Pivot
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -54617,6 +56317,18 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsHeaderItemsCarouselEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LeftHeaderProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LeftHeaderTemplateProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RightHeaderProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RightHeaderTemplateProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -54969,6 +56681,12 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Slider
 
+   function get_HeaderProperty_Slider
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HeaderTemplateProperty_Slider
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_IntermediateValueProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -54994,12 +56712,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_ThumbToolTipValueConverterProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_HeaderProperty_Slider
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_HeaderTemplateProperty_Slider
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -55881,9 +57593,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RelativePanel
 
-   function get_BackgroundSizingProperty_RelativePanel
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_LeftOfProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -56136,6 +57845,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_PaddingProperty_RelativePanel
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_BackgroundSizingProperty_RelativePanel
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for RelativePanel
 
@@ -56218,49 +57930,13 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RichEditBox
 
-   function get_SelectionHighlightColorWhenNotFocusedProperty
+   function get_DesiredCandidateWindowAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_MaxLengthProperty_RichEditBox
+   function get_TextReadingOrderProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_HeaderProperty_RichEditBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_HeaderTemplateProperty_RichEditBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PlaceholderTextProperty_RichEditBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SelectionHighlightColorProperty_RichEditBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PreventKeyboardDisplayOnProgrammaticFocusProperty_RichEditBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsColorFontEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsReadOnlyProperty_RichEditBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AcceptsReturnProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextAlignmentProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextWrappingProperty_RichEditBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsSpellCheckEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsTextPredictionEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_InputScopeProperty_RichEditBox
+   function get_ClipboardCopyFormatProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_ContentLinkForegroundColorProperty
@@ -56287,6 +57963,24 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_DisabledFormattingAcceleratorsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_HeaderProperty_RichEditBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HeaderTemplateProperty_RichEditBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PlaceholderTextProperty_RichEditBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionHighlightColorProperty_RichEditBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PreventKeyboardDisplayOnProgrammaticFocusProperty_RichEditBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsColorFontEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_SelectionFlyoutProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -56296,13 +57990,31 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_DescriptionProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_DesiredCandidateWindowAlignmentProperty
+   function get_IsReadOnlyProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_TextReadingOrderProperty_RichEditBox
+   function get_AcceptsReturnProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_ClipboardCopyFormatProperty
+   function get_TextAlignmentProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TextWrappingProperty_RichEditBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsSpellCheckEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsTextPredictionEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_InputScopeProperty_RichEditBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionHighlightColorWhenNotFocusedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_MaxLengthProperty_RichEditBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -56912,16 +58624,22 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RichTextBlock
 
-   function get_SelectionFlyoutProperty_RichTextBlock
+   function get_MaxLinesProperty_RichTextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_IsTextTrimmedProperty
+   function get_TextLineBoundsProperty_RichTextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_HorizontalTextAlignmentProperty_RichTextBlock
+   function get_SelectionHighlightColorProperty_RichTextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_IsTextScaleFactorEnabledProperty_RichTextBlock
+   function get_OpticalMarginAlignmentProperty_RichTextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsColorFontEnabledProperty_RichTextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TextReadingOrderProperty_RichTextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_FontSizeProperty_RichTextBlock
@@ -56978,25 +58696,19 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_TextIndentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_MaxLinesProperty_RichTextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextLineBoundsProperty_RichTextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SelectionHighlightColorProperty_RichTextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_OpticalMarginAlignmentProperty_RichTextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsColorFontEnabledProperty_RichTextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextReadingOrderProperty_RichTextBlock
+   function get_IsTextScaleFactorEnabledProperty_RichTextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_TextDecorationsProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionFlyoutProperty_RichTextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsTextTrimmedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HorizontalTextAlignmentProperty_RichTextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -57458,9 +59170,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RichTextBlockOverflow
 
-   function get_MaxLinesProperty_RichTextBlockOverflow
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_IsTextTrimmedProperty_RichTextBlockOverflow
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -57471,6 +59180,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_HasOverflowContentProperty_RichTextBlockOverflow
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_MaxLinesProperty_RichTextBlockOverflow
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -57974,15 +59686,6 @@ package WinRt.Windows.UI.Xaml.Controls is
       canContentRenderOutsideBounds : WinRt.Boolean
    );
 
-   function get_TopLeftHeaderProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_LeftHeaderProperty_ScrollViewer
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TopHeaderProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_HorizontalSnapPointsAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -58249,6 +59952,15 @@ package WinRt.Windows.UI.Xaml.Controls is
       element : Windows.UI.Xaml.DependencyObject'Class;
       bringIntoViewOnFocusChange : WinRt.Boolean
    );
+
+   function get_TopLeftHeaderProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_LeftHeaderProperty_ScrollViewer
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TopHeaderProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ScrollViewer
@@ -59934,12 +61646,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for StackPanel
 
-   function get_BackgroundSizingProperty_StackPanel
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SpacingProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_AreScrollSnapPointsRegularProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -59956,6 +61662,12 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_PaddingProperty_StackPanel
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SpacingProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_BackgroundSizingProperty_StackPanel
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -60694,31 +62406,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TextBlock
 
-   function get_SelectionHighlightColorProperty_TextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_MaxLinesProperty_TextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextLineBoundsProperty_TextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_OpticalMarginAlignmentProperty_TextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsColorFontEnabledProperty_TextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextReadingOrderProperty_TextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_SelectionFlyoutProperty_TextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsTextTrimmedProperty_TextBlock
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_HorizontalTextAlignmentProperty_TextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsTextScaleFactorEnabledProperty_TextBlock
@@ -60772,7 +62460,31 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_SelectedTextProperty_TextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_IsTextTrimmedProperty_TextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HorizontalTextAlignmentProperty_TextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_TextDecorationsProperty_TextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionHighlightColorProperty_TextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_MaxLinesProperty_TextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TextLineBoundsProperty_TextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_OpticalMarginAlignmentProperty_TextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsColorFontEnabledProperty_TextBlock
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TextReadingOrderProperty_TextBlock
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -61220,22 +62932,10 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TextBox
 
-   function get_HeaderProperty_TextBox
+   function get_HandwritingViewProperty_TextBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_HeaderTemplateProperty_TextBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PlaceholderTextProperty_TextBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SelectionHighlightColorProperty_TextBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PreventKeyboardDisplayOnProgrammaticFocusProperty_TextBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsColorFontEnabledProperty_TextBox
+   function get_IsHandwritingViewEnabledProperty_TextBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_CanPasteClipboardContentProperty_TextBox
@@ -61254,6 +62954,27 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_DescriptionProperty_TextBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HeaderProperty_TextBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_HeaderTemplateProperty_TextBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PlaceholderTextProperty_TextBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionHighlightColorProperty_TextBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PreventKeyboardDisplayOnProgrammaticFocusProperty_TextBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsColorFontEnabledProperty_TextBox
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionHighlightColorWhenNotFocusedProperty_TextBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_TextProperty_TextBox
@@ -61283,12 +63004,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_InputScopeProperty_TextBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_HandwritingViewProperty_TextBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsHandwritingViewEnabledProperty_TextBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_DesiredCandidateWindowAlignmentProperty_TextBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -61302,9 +63017,6 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_PlaceholderForegroundProperty_TextBox
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SelectionHighlightColorWhenNotFocusedProperty_TextBox
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -62169,10 +63881,10 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TimePicker
 
-   function get_LightDismissOverlayModeProperty_TimePicker
+   function get_SelectedTimeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_SelectedTimeProperty
+   function get_LightDismissOverlayModeProperty_TimePicker
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_HeaderProperty_TimePicker
@@ -64274,21 +65986,6 @@ package WinRt.Windows.UI.Xaml.Controls is
 
    procedure ClearTemporaryWebDataAsync;
 
-   function get_ContainsFullScreenElementProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CanGoBackProperty_WebView
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CanGoForwardProperty_WebView
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_DocumentTitleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_DefaultBackgroundColorProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_AnyScriptNotifyUri
    return IVector_IUriRuntimeClass.Kind;
 
@@ -64301,6 +65998,9 @@ package WinRt.Windows.UI.Xaml.Controls is
    function get_DataTransferPackageProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
+   function get_ContainsFullScreenElementProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_XYFocusLeftProperty_WebView
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -64311,6 +66011,18 @@ package WinRt.Windows.UI.Xaml.Controls is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_XYFocusDownProperty_WebView
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CanGoBackProperty_WebView
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CanGoForwardProperty_WebView
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_DocumentTitleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_DefaultBackgroundColorProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------

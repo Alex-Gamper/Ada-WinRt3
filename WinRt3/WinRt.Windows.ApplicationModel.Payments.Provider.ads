@@ -48,6 +48,7 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
 
    type IPaymentAppManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentAppManagerStatics is access all IPaymentAppManagerStatics_Interface'Class;
+   type IPaymentAppManagerStatics_Ptr is access all IPaymentAppManagerStatics;
 
    type IPaymentTransaction_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentTransaction is access all IPaymentTransaction_Interface'Class;
@@ -59,6 +60,7 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
 
    type IPaymentTransactionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentTransactionStatics is access all IPaymentTransactionStatics_Interface'Class;
+   type IPaymentTransactionStatics_Ptr is access all IPaymentTransactionStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -49,6 +49,7 @@ package WinRt.Windows.UI.Input is
 
    type IAttachableInputObjectFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAttachableInputObjectFactory is access all IAttachableInputObjectFactory_Interface'Class;
+   type IAttachableInputObjectFactory_Ptr is access all IAttachableInputObjectFactory;
 
    type ICrossSlidingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICrossSlidingEventArgs is access all ICrossSlidingEventArgs_Interface'Class;
@@ -56,6 +57,7 @@ package WinRt.Windows.UI.Input is
 
    type ICrossSlidingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type ICrossSlidingEventArgs2 is access all ICrossSlidingEventArgs2_Interface'Class;
+   type ICrossSlidingEventArgs2_Ptr is access all ICrossSlidingEventArgs2;
 
    type IDraggingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDraggingEventArgs is access all IDraggingEventArgs_Interface'Class;
@@ -63,6 +65,7 @@ package WinRt.Windows.UI.Input is
 
    type IDraggingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IDraggingEventArgs2 is access all IDraggingEventArgs2_Interface'Class;
+   type IDraggingEventArgs2_Ptr is access all IDraggingEventArgs2;
 
    type IEdgeGesture_Interface is interface and WinRt.IInspectable_Interface;
    type IEdgeGesture is access all IEdgeGesture_Interface'Class;
@@ -74,6 +77,7 @@ package WinRt.Windows.UI.Input is
 
    type IEdgeGestureStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IEdgeGestureStatics is access all IEdgeGestureStatics_Interface'Class;
+   type IEdgeGestureStatics_Ptr is access all IEdgeGestureStatics;
 
    type IGestureRecognizer_Interface is interface and WinRt.IInspectable_Interface;
    type IGestureRecognizer is access all IGestureRecognizer_Interface'Class;
@@ -81,6 +85,7 @@ package WinRt.Windows.UI.Input is
 
    type IGestureRecognizer2_Interface is interface and WinRt.IInspectable_Interface;
    type IGestureRecognizer2 is access all IGestureRecognizer2_Interface'Class;
+   type IGestureRecognizer2_Ptr is access all IGestureRecognizer2;
 
    type IHoldingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IHoldingEventArgs is access all IHoldingEventArgs_Interface'Class;
@@ -88,6 +93,7 @@ package WinRt.Windows.UI.Input is
 
    type IHoldingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IHoldingEventArgs2 is access all IHoldingEventArgs2_Interface'Class;
+   type IHoldingEventArgs2_Ptr is access all IHoldingEventArgs2;
 
    type IInputActivationListener_Interface is interface and WinRt.IInspectable_Interface;
    type IInputActivationListener is access all IInputActivationListener_Interface'Class;
@@ -103,6 +109,7 @@ package WinRt.Windows.UI.Input is
 
    type IKeyboardDeliveryInterceptorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyboardDeliveryInterceptorStatics is access all IKeyboardDeliveryInterceptorStatics_Interface'Class;
+   type IKeyboardDeliveryInterceptorStatics_Ptr is access all IKeyboardDeliveryInterceptorStatics;
 
    type IManipulationCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IManipulationCompletedEventArgs is access all IManipulationCompletedEventArgs_Interface'Class;
@@ -110,6 +117,7 @@ package WinRt.Windows.UI.Input is
 
    type IManipulationCompletedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IManipulationCompletedEventArgs2 is access all IManipulationCompletedEventArgs2_Interface'Class;
+   type IManipulationCompletedEventArgs2_Ptr is access all IManipulationCompletedEventArgs2;
 
    type IManipulationInertiaStartingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IManipulationInertiaStartingEventArgs is access all IManipulationInertiaStartingEventArgs_Interface'Class;
@@ -117,6 +125,7 @@ package WinRt.Windows.UI.Input is
 
    type IManipulationInertiaStartingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IManipulationInertiaStartingEventArgs2 is access all IManipulationInertiaStartingEventArgs2_Interface'Class;
+   type IManipulationInertiaStartingEventArgs2_Ptr is access all IManipulationInertiaStartingEventArgs2;
 
    type IManipulationStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IManipulationStartedEventArgs is access all IManipulationStartedEventArgs_Interface'Class;
@@ -124,6 +133,7 @@ package WinRt.Windows.UI.Input is
 
    type IManipulationStartedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IManipulationStartedEventArgs2 is access all IManipulationStartedEventArgs2_Interface'Class;
+   type IManipulationStartedEventArgs2_Ptr is access all IManipulationStartedEventArgs2;
 
    type IManipulationUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IManipulationUpdatedEventArgs is access all IManipulationUpdatedEventArgs_Interface'Class;
@@ -131,14 +141,23 @@ package WinRt.Windows.UI.Input is
 
    type IManipulationUpdatedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IManipulationUpdatedEventArgs2 is access all IManipulationUpdatedEventArgs2_Interface'Class;
+   type IManipulationUpdatedEventArgs2_Ptr is access all IManipulationUpdatedEventArgs2;
 
    type IMouseWheelParameters_Interface is interface and WinRt.IInspectable_Interface;
    type IMouseWheelParameters is access all IMouseWheelParameters_Interface'Class;
    type IMouseWheelParameters_Ptr is access all IMouseWheelParameters;
 
+   type IPhysicalGestureRecognizer_Interface is interface and WinRt.IInspectable_Interface;
+   type IPhysicalGestureRecognizer is access all IPhysicalGestureRecognizer_Interface'Class;
+   type IPhysicalGestureRecognizer_Ptr is access all IPhysicalGestureRecognizer;
+
    type IPointerPoint_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerPoint is access all IPointerPoint_Interface'Class;
    type IPointerPoint_Ptr is access all IPointerPoint;
+
+   type IPointerPointPhysicalPosition_Interface is interface and WinRt.IInspectable_Interface;
+   type IPointerPointPhysicalPosition is access all IPointerPointPhysicalPosition_Interface'Class;
+   type IPointerPointPhysicalPosition_Ptr is access all IPointerPointPhysicalPosition;
 
    type IPointerPointProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerPointProperties is access all IPointerPointProperties_Interface'Class;
@@ -146,12 +165,15 @@ package WinRt.Windows.UI.Input is
 
    type IPointerPointProperties2_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerPointProperties2 is access all IPointerPointProperties2_Interface'Class;
+   type IPointerPointProperties2_Ptr is access all IPointerPointProperties2;
 
    type IPointerPointStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerPointStatics is access all IPointerPointStatics_Interface'Class;
+   type IPointerPointStatics_Ptr is access all IPointerPointStatics;
 
    type IPointerPointTransform_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerPointTransform is access all IPointerPointTransform_Interface'Class;
+   type IPointerPointTransform_Ptr is access all IPointerPointTransform;
 
    type IPointerVisualizationSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerVisualizationSettings is access all IPointerVisualizationSettings_Interface'Class;
@@ -159,6 +181,7 @@ package WinRt.Windows.UI.Input is
 
    type IPointerVisualizationSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerVisualizationSettingsStatics is access all IPointerVisualizationSettingsStatics_Interface'Class;
+   type IPointerVisualizationSettingsStatics_Ptr is access all IPointerVisualizationSettingsStatics;
 
    type IRadialController_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialController is access all IRadialController_Interface'Class;
@@ -166,6 +189,7 @@ package WinRt.Windows.UI.Input is
 
    type IRadialController2_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialController2 is access all IRadialController2_Interface'Class;
+   type IRadialController2_Ptr is access all IRadialController2;
 
    type IRadialControllerButtonClickedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerButtonClickedEventArgs is access all IRadialControllerButtonClickedEventArgs_Interface'Class;
@@ -173,6 +197,7 @@ package WinRt.Windows.UI.Input is
 
    type IRadialControllerButtonClickedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerButtonClickedEventArgs2 is access all IRadialControllerButtonClickedEventArgs2_Interface'Class;
+   type IRadialControllerButtonClickedEventArgs2_Ptr is access all IRadialControllerButtonClickedEventArgs2;
 
    type IRadialControllerButtonHoldingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerButtonHoldingEventArgs is access all IRadialControllerButtonHoldingEventArgs_Interface'Class;
@@ -192,12 +217,15 @@ package WinRt.Windows.UI.Input is
 
    type IRadialControllerConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerConfiguration2 is access all IRadialControllerConfiguration2_Interface'Class;
+   type IRadialControllerConfiguration2_Ptr is access all IRadialControllerConfiguration2;
 
    type IRadialControllerConfigurationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerConfigurationStatics is access all IRadialControllerConfigurationStatics_Interface'Class;
+   type IRadialControllerConfigurationStatics_Ptr is access all IRadialControllerConfigurationStatics;
 
    type IRadialControllerConfigurationStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerConfigurationStatics2 is access all IRadialControllerConfigurationStatics2_Interface'Class;
+   type IRadialControllerConfigurationStatics2_Ptr is access all IRadialControllerConfigurationStatics2;
 
    type IRadialControllerControlAcquiredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerControlAcquiredEventArgs is access all IRadialControllerControlAcquiredEventArgs_Interface'Class;
@@ -205,6 +233,7 @@ package WinRt.Windows.UI.Input is
 
    type IRadialControllerControlAcquiredEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerControlAcquiredEventArgs2 is access all IRadialControllerControlAcquiredEventArgs2_Interface'Class;
+   type IRadialControllerControlAcquiredEventArgs2_Ptr is access all IRadialControllerControlAcquiredEventArgs2;
 
    type IRadialControllerMenu_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerMenu is access all IRadialControllerMenu_Interface'Class;
@@ -216,9 +245,11 @@ package WinRt.Windows.UI.Input is
 
    type IRadialControllerMenuItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerMenuItemStatics is access all IRadialControllerMenuItemStatics_Interface'Class;
+   type IRadialControllerMenuItemStatics_Ptr is access all IRadialControllerMenuItemStatics;
 
    type IRadialControllerMenuItemStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerMenuItemStatics2 is access all IRadialControllerMenuItemStatics2_Interface'Class;
+   type IRadialControllerMenuItemStatics2_Ptr is access all IRadialControllerMenuItemStatics2;
 
    type IRadialControllerRotationChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerRotationChangedEventArgs is access all IRadialControllerRotationChangedEventArgs_Interface'Class;
@@ -226,6 +257,7 @@ package WinRt.Windows.UI.Input is
 
    type IRadialControllerRotationChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerRotationChangedEventArgs2 is access all IRadialControllerRotationChangedEventArgs2_Interface'Class;
+   type IRadialControllerRotationChangedEventArgs2_Ptr is access all IRadialControllerRotationChangedEventArgs2;
 
    type IRadialControllerScreenContact_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerScreenContact is access all IRadialControllerScreenContact_Interface'Class;
@@ -237,6 +269,7 @@ package WinRt.Windows.UI.Input is
 
    type IRadialControllerScreenContactContinuedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerScreenContactContinuedEventArgs2 is access all IRadialControllerScreenContactContinuedEventArgs2_Interface'Class;
+   type IRadialControllerScreenContactContinuedEventArgs2_Ptr is access all IRadialControllerScreenContactContinuedEventArgs2;
 
    type IRadialControllerScreenContactEndedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerScreenContactEndedEventArgs is access all IRadialControllerScreenContactEndedEventArgs_Interface'Class;
@@ -248,9 +281,11 @@ package WinRt.Windows.UI.Input is
 
    type IRadialControllerScreenContactStartedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerScreenContactStartedEventArgs2 is access all IRadialControllerScreenContactStartedEventArgs2_Interface'Class;
+   type IRadialControllerScreenContactStartedEventArgs2_Ptr is access all IRadialControllerScreenContactStartedEventArgs2;
 
    type IRadialControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRadialControllerStatics is access all IRadialControllerStatics_Interface'Class;
+   type IRadialControllerStatics_Ptr is access all IRadialControllerStatics;
 
    type IRightTappedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IRightTappedEventArgs is access all IRightTappedEventArgs_Interface'Class;
@@ -258,6 +293,7 @@ package WinRt.Windows.UI.Input is
 
    type IRightTappedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IRightTappedEventArgs2 is access all IRightTappedEventArgs2_Interface'Class;
+   type IRightTappedEventArgs2_Ptr is access all IRightTappedEventArgs2;
 
    type ISystemButtonEventController_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemButtonEventController is access all ISystemButtonEventController_Interface'Class;
@@ -265,6 +301,7 @@ package WinRt.Windows.UI.Input is
 
    type ISystemButtonEventControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemButtonEventControllerStatics is access all ISystemButtonEventControllerStatics_Interface'Class;
+   type ISystemButtonEventControllerStatics_Ptr is access all ISystemButtonEventControllerStatics;
 
    type ISystemFunctionButtonEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemFunctionButtonEventArgs is access all ISystemFunctionButtonEventArgs_Interface'Class;
@@ -284,6 +321,19 @@ package WinRt.Windows.UI.Input is
 
    type ITappedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type ITappedEventArgs2 is access all ITappedEventArgs2_Interface'Class;
+   type ITappedEventArgs2_Ptr is access all ITappedEventArgs2;
+
+   type ITouchpadGesturesController_Interface is interface and WinRt.IInspectable_Interface;
+   type ITouchpadGesturesController is access all ITouchpadGesturesController_Interface'Class;
+   type ITouchpadGesturesController_Ptr is access all ITouchpadGesturesController;
+
+   type ITouchpadGesturesControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type ITouchpadGesturesControllerStatics is access all ITouchpadGesturesControllerStatics_Interface'Class;
+   type ITouchpadGesturesControllerStatics_Ptr is access all ITouchpadGesturesControllerStatics;
+
+   type ITouchpadGlobalActionEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type ITouchpadGlobalActionEventArgs is access all ITouchpadGlobalActionEventArgs_Interface'Class;
+   type ITouchpadGlobalActionEventArgs_Ptr is access all ITouchpadGlobalActionEventArgs;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -378,6 +428,12 @@ package WinRt.Windows.UI.Input is
          m_IMouseWheelParameters : access Windows.UI.Input.IMouseWheelParameters;
       end record;
    type MouseWheelParameters_Ptr is access all MouseWheelParameters;
+
+   type PhysicalGestureRecognizer is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPhysicalGestureRecognizer : access Windows.UI.Input.IPhysicalGestureRecognizer;
+      end record;
+   type PhysicalGestureRecognizer_Ptr is access all PhysicalGestureRecognizer;
 
    type PointerPoint is new Ada.Finalization.Limited_Controlled with
       record
@@ -516,6 +572,18 @@ package WinRt.Windows.UI.Input is
          m_ITappedEventArgs : access Windows.UI.Input.ITappedEventArgs;
       end record;
    type TappedEventArgs_Ptr is access all TappedEventArgs;
+
+   type TouchpadGesturesController is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ITouchpadGesturesController : access Windows.UI.Input.ITouchpadGesturesController;
+      end record;
+   type TouchpadGesturesController_Ptr is access all TouchpadGesturesController;
+
+   type TouchpadGlobalActionEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ITouchpadGlobalActionEventArgs : access Windows.UI.Input.ITouchpadGlobalActionEventArgs;
+      end record;
+   type TouchpadGlobalActionEventArgs_Ptr is access all TouchpadGlobalActionEventArgs;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -714,6 +782,50 @@ package WinRt.Windows.UI.Input is
       NextPreviousTrack_e => 4
    );
    type RadialControllerSystemMenuItemKind_Ptr is access all RadialControllerSystemMenuItemKind;
+
+   type TouchpadGlobalAction is (
+      ThreeFingerTap_e,
+      FourFingerTap_e,
+      FiveFingerTap_e,
+      ThreeFingerPressDown_e,
+      FourFingerPressDown_e,
+      FiveFingerPressDown_e,
+      ThreeFingerPressUp_e,
+      FourFingerPressUp_e,
+      FiveFingerPressUp_e
+   );
+   for TouchpadGlobalAction use (
+      ThreeFingerTap_e => 0,
+      FourFingerTap_e => 1,
+      FiveFingerTap_e => 2,
+      ThreeFingerPressDown_e => 3,
+      FourFingerPressDown_e => 4,
+      FiveFingerPressDown_e => 5,
+      ThreeFingerPressUp_e => 6,
+      FourFingerPressUp_e => 7,
+      FiveFingerPressUp_e => 8
+   );
+   type TouchpadGlobalAction_Ptr is access all TouchpadGlobalAction;
+
+   type TouchpadGlobalGestureKinds is (
+      None_e,
+      ThreeFingerManipulations_e,
+      FourFingerManipulations_e,
+      FiveFingerManipulations_e,
+      ThreeFingerActions_e,
+      FourFingerActions_e,
+      FiveFingerActions_e
+   );
+   for TouchpadGlobalGestureKinds use (
+      None_e => 0,
+      ThreeFingerManipulations_e => 1,
+      FourFingerManipulations_e => 2,
+      FiveFingerManipulations_e => 4,
+      ThreeFingerActions_e => 8,
+      FourFingerActions_e => 16,
+      FiveFingerActions_e => 32
+   );
+   type TouchpadGlobalGestureKinds_Ptr is access all TouchpadGlobalGestureKinds;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1864,6 +1976,246 @@ package WinRt.Windows.UI.Input is
       IID_IMouseWheelParameters : aliased WinRt.IID := (3939551812, 40429, 16439, (129, 73, 94, 76, 194, 86, 68, 104 ));
 
    -----------------------------------------------------------------------------
+   -- type IPhysicalGestureRecognizer is interface and WinRt.IInspectable;
+
+      function get_IsActive
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_GestureSettings
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         RetVal : access Windows.UI.Input.GestureSettings
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_GestureSettings
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         value : Windows.UI.Input.GestureSettings
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TapMinContactCount
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TapMinContactCount
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         value : WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TapMaxContactCount
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TapMaxContactCount
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         value : WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_HoldMinContactCount
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_HoldMinContactCount
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         value : WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_HoldMaxContactCount
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_HoldMaxContactCount
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         value : WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_HoldRadius
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         RetVal : access WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_HoldRadius
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         value : WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_HoldStartDelay
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         RetVal : access Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_HoldStartDelay
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         value : Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TranslationMinContactCount
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TranslationMinContactCount
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         value : WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TranslationMaxContactCount
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TranslationMaxContactCount
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         value : WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function ProcessDownEvent
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         value : Windows.UI.Input.IPointerPoint
+      )
+      return WinRt.Hresult is abstract;
+
+      function ProcessMoveEvents
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function ProcessUpEvent
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         value : Windows.UI.Input.IPointerPoint
+      )
+      return WinRt.Hresult is abstract;
+
+      function CompleteGesture
+      (
+         this : access IPhysicalGestureRecognizer_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_ManipulationStarted
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_ManipulationStarted
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_ManipulationUpdated
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_ManipulationUpdated
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_ManipulationCompleted
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_ManipulationCompleted
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_Tapped
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_Tapped
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_Holding
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_Holding
+      (
+         this : access IPhysicalGestureRecognizer_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPhysicalGestureRecognizer : aliased WinRt.IID := (2040700749, 12966, 23205, (169, 153, 66, 176, 180, 32, 198, 109 ));
+
+   -----------------------------------------------------------------------------
    -- type IPointerPoint is interface and WinRt.IInspectable;
 
       function get_PointerDevice
@@ -1923,6 +2275,25 @@ package WinRt.Windows.UI.Input is
       return WinRt.Hresult is abstract;
 
       IID_IPointerPoint : aliased WinRt.IID := (3918868861, 29334, 17113, (130, 51, 197, 190, 115, 183, 74, 74 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPointerPointPhysicalPosition is interface and WinRt.IInspectable;
+
+      function get_IsPhysicalPositionSupported
+      (
+         this : access IPointerPointPhysicalPosition_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PhysicalPosition
+      (
+         this : access IPointerPointPhysicalPosition_Interface;
+         RetVal : access Windows.Foundation.Point
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPointerPointPhysicalPosition : aliased WinRt.IID := (3245475, 42471, 18521, (156, 11, 137, 52, 2, 4, 128, 108 ));
 
    -----------------------------------------------------------------------------
    -- type IPointerPointProperties is interface and WinRt.IInspectable;
@@ -3171,6 +3542,137 @@ package WinRt.Windows.UI.Input is
       IID_ITappedEventArgs2 : aliased WinRt.IID := (692291826, 6014, 20949, (190, 86, 238, 8, 102, 250, 150, 140 ));
 
    -----------------------------------------------------------------------------
+   -- type ITouchpadGesturesController is interface and WinRt.IInspectable;
+
+      function get_Enabled
+      (
+         this : access ITouchpadGesturesController_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Enabled
+      (
+         this : access ITouchpadGesturesController_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SupportedGestures
+      (
+         this : access ITouchpadGesturesController_Interface;
+         RetVal : access Windows.UI.Input.TouchpadGlobalGestureKinds
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SupportedGestures
+      (
+         this : access ITouchpadGesturesController_Interface;
+         value : Windows.UI.Input.TouchpadGlobalGestureKinds
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_PointerPressed
+      (
+         this : access ITouchpadGesturesController_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_PointerPressed
+      (
+         this : access ITouchpadGesturesController_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_PointerMoved
+      (
+         this : access ITouchpadGesturesController_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_PointerMoved
+      (
+         this : access ITouchpadGesturesController_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_PointerReleased
+      (
+         this : access ITouchpadGesturesController_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_PointerReleased
+      (
+         this : access ITouchpadGesturesController_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_GlobalActionPerformed
+      (
+         this : access ITouchpadGesturesController_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_GlobalActionPerformed
+      (
+         this : access ITouchpadGesturesController_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITouchpadGesturesController : aliased WinRt.IID := (683752669, 57448, 21663, (137, 198, 26, 68, 12, 111, 195, 39 ));
+
+   -----------------------------------------------------------------------------
+   -- type ITouchpadGesturesControllerStatics is interface and WinRt.IInspectable;
+
+      function IsSupported
+      (
+         this : access ITouchpadGesturesControllerStatics_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateForProcess
+      (
+         this : access ITouchpadGesturesControllerStatics_Interface;
+         RetVal : access Windows.UI.Input.ITouchpadGesturesController
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITouchpadGesturesControllerStatics : aliased WinRt.IID := (545190257, 6771, 20941, (166, 148, 136, 64, 224, 157, 186, 250 ));
+
+   -----------------------------------------------------------------------------
+   -- type ITouchpadGlobalActionEventArgs is interface and WinRt.IInspectable;
+
+      function get_Action
+      (
+         this : access ITouchpadGlobalActionEventArgs_Interface;
+         RetVal : access Windows.UI.Input.TouchpadGlobalAction
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PointerDevice
+      (
+         this : access ITouchpadGlobalActionEventArgs_Interface;
+         RetVal : access Windows.Devices.Input.IPointerDevice
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITouchpadGlobalActionEventArgs : aliased WinRt.IID := (1859834374, 58595, 24377, (157, 19, 133, 117, 232, 226, 161, 43 ));
+
+   -----------------------------------------------------------------------------
    -- Class method declarations
    -----------------------------------------------------------------------------
 
@@ -4161,6 +4663,222 @@ package WinRt.Windows.UI.Input is
    );
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PhysicalGestureRecognizer
+
+   overriding procedure Initialize (this : in out PhysicalGestureRecognizer);
+   overriding procedure Finalize (this : in out PhysicalGestureRecognizer);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for PhysicalGestureRecognizer
+
+   function Constructor return PhysicalGestureRecognizer;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PhysicalGestureRecognizer
+
+   function get_IsActive
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.Boolean;
+
+   function get_GestureSettings
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.Windows.UI.Input.GestureSettings;
+
+   procedure put_GestureSettings
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : Windows.UI.Input.GestureSettings
+   );
+
+   function get_TapMinContactCount
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.UInt32;
+
+   procedure put_TapMinContactCount
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.UInt32
+   );
+
+   function get_TapMaxContactCount
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.UInt32;
+
+   procedure put_TapMaxContactCount
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.UInt32
+   );
+
+   function get_HoldMinContactCount
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.UInt32;
+
+   procedure put_HoldMinContactCount
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.UInt32
+   );
+
+   function get_HoldMaxContactCount
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.UInt32;
+
+   procedure put_HoldMaxContactCount
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.UInt32
+   );
+
+   function get_HoldRadius
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.Single;
+
+   procedure put_HoldRadius
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.Single
+   );
+
+   function get_HoldStartDelay
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.Windows.Foundation.TimeSpan;
+
+   procedure put_HoldStartDelay
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : Windows.Foundation.TimeSpan
+   );
+
+   function get_TranslationMinContactCount
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.UInt32;
+
+   procedure put_TranslationMinContactCount
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.UInt32
+   );
+
+   function get_TranslationMaxContactCount
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.UInt32;
+
+   procedure put_TranslationMaxContactCount
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.UInt32
+   );
+
+   procedure ProcessDownEvent
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : Windows.UI.Input.PointerPoint'Class
+   );
+
+   procedure ProcessMoveEvents
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : GenericObject
+   );
+
+   procedure ProcessUpEvent
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : Windows.UI.Input.PointerPoint'Class
+   );
+
+   procedure CompleteGesture
+   (
+      this : in out PhysicalGestureRecognizer
+   );
+
+   function add_ManipulationStarted
+   (
+      this : in out PhysicalGestureRecognizer;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ManipulationStarted
+   (
+      this : in out PhysicalGestureRecognizer;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_ManipulationUpdated
+   (
+      this : in out PhysicalGestureRecognizer;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ManipulationUpdated
+   (
+      this : in out PhysicalGestureRecognizer;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_ManipulationCompleted
+   (
+      this : in out PhysicalGestureRecognizer;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ManipulationCompleted
+   (
+      this : in out PhysicalGestureRecognizer;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_Tapped
+   (
+      this : in out PhysicalGestureRecognizer;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_Tapped
+   (
+      this : in out PhysicalGestureRecognizer;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_Holding
+   (
+      this : in out PhysicalGestureRecognizer;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_Holding
+   (
+      this : in out PhysicalGestureRecognizer;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PointerPoint
 
    overriding procedure Initialize (this : in out PointerPoint);
@@ -4245,6 +4963,18 @@ package WinRt.Windows.UI.Input is
       this : in out PointerPoint
    )
    return WinRt.Windows.UI.Input.PointerPointProperties'Class;
+
+   function get_IsPhysicalPositionSupported
+   (
+      this : in out PointerPoint
+   )
+   return WinRt.Boolean;
+
+   function get_PhysicalPosition
+   (
+      this : in out PointerPoint
+   )
+   return WinRt.Windows.Foundation.Point;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PointerPointProperties
@@ -4719,6 +5449,9 @@ package WinRt.Windows.UI.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RadialControllerConfiguration
 
+   function GetForCurrentView
+   return WinRt.Windows.UI.Input.RadialControllerConfiguration;
+
    procedure put_AppController
    (
       value : Windows.UI.Input.RadialController'Class
@@ -4734,9 +5467,6 @@ package WinRt.Windows.UI.Input is
 
    function get_IsAppControllerEnabled
    return WinRt.Boolean;
-
-   function GetForCurrentView
-   return WinRt.Windows.UI.Input.RadialControllerConfiguration;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for RadialControllerConfiguration
@@ -5280,5 +6010,120 @@ package WinRt.Windows.UI.Input is
       this : in out TappedEventArgs
    )
    return WinRt.UInt32;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for TouchpadGesturesController
+
+   overriding procedure Initialize (this : in out TouchpadGesturesController);
+   overriding procedure Finalize (this : in out TouchpadGesturesController);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for TouchpadGesturesController
+
+   function IsSupported_TouchpadGesturesController
+   return WinRt.Boolean;
+
+   function CreateForProcess
+   return WinRt.Windows.UI.Input.TouchpadGesturesController;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for TouchpadGesturesController
+
+   function get_Enabled
+   (
+      this : in out TouchpadGesturesController
+   )
+   return WinRt.Boolean;
+
+   procedure put_Enabled
+   (
+      this : in out TouchpadGesturesController;
+      value : WinRt.Boolean
+   );
+
+   function get_SupportedGestures
+   (
+      this : in out TouchpadGesturesController
+   )
+   return WinRt.Windows.UI.Input.TouchpadGlobalGestureKinds;
+
+   procedure put_SupportedGestures
+   (
+      this : in out TouchpadGesturesController;
+      value : Windows.UI.Input.TouchpadGlobalGestureKinds
+   );
+
+   function add_PointerPressed
+   (
+      this : in out TouchpadGesturesController;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_PointerPressed
+   (
+      this : in out TouchpadGesturesController;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_PointerMoved
+   (
+      this : in out TouchpadGesturesController;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_PointerMoved
+   (
+      this : in out TouchpadGesturesController;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_PointerReleased
+   (
+      this : in out TouchpadGesturesController;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_PointerReleased
+   (
+      this : in out TouchpadGesturesController;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_GlobalActionPerformed
+   (
+      this : in out TouchpadGesturesController;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_GlobalActionPerformed
+   (
+      this : in out TouchpadGesturesController;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for TouchpadGlobalActionEventArgs
+
+   overriding procedure Initialize (this : in out TouchpadGlobalActionEventArgs);
+   overriding procedure Finalize (this : in out TouchpadGlobalActionEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for TouchpadGlobalActionEventArgs
+
+   function get_Action
+   (
+      this : in out TouchpadGlobalActionEventArgs
+   )
+   return WinRt.Windows.UI.Input.TouchpadGlobalAction;
+
+   function get_PointerDevice
+   (
+      this : in out TouchpadGlobalActionEventArgs
+   )
+   return WinRt.Windows.Devices.Input.PointerDevice'Class;
 
 end WinRt.Windows.UI.Input;

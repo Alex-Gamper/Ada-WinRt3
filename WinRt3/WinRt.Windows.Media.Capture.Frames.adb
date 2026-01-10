@@ -2201,6 +2201,27 @@ package body WinRt.Windows.Media.Capture.Frames is
       return m_ComRetVal;
    end;
 
+   function get_IsShareable
+   (
+      this : in out MediaFrameSourceInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceInfo4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceInfo_Interface, WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceInfo4, WinRt.Windows.Media.Capture.Frames.IID_IMediaFrameSourceInfo4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IMediaFrameSourceInfo.all);
+      Hr := m_Interface.get_IsShareable (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MultiSourceMediaFrameArrivedEventArgs
 

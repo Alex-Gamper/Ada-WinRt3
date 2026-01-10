@@ -591,6 +591,30 @@ package body WinRt.Windows.Devices.Gpio is
    -----------------------------------------------------------------------------
    -- Static Interfaces for GpioController
 
+   function GetDefault
+   return WinRt.Windows.Devices.Gpio.GpioController is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.GpioController");
+      m_Factory        : access WinRt.Windows.Devices.Gpio.IGpioControllerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Gpio.IGpioController;
+   begin
+      return RetVal : WinRt.Windows.Devices.Gpio.GpioController do
+         Hr := RoGetActivationFactory (m_hString, IID_IGpioControllerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IGpioController := new Windows.Devices.Gpio.IGpioController;
+            Retval.m_IGpioController.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function GetControllersAsync
    (
       provider : Windows.Devices.Gpio.Provider.IGpioProvider
@@ -726,30 +750,6 @@ package body WinRt.Windows.Devices.Gpio is
                   end if;
                end if;
             end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetDefault
-   return WinRt.Windows.Devices.Gpio.GpioController is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.GpioController");
-      m_Factory        : access WinRt.Windows.Devices.Gpio.IGpioControllerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.IGpioController;
-   begin
-      return RetVal : WinRt.Windows.Devices.Gpio.GpioController do
-         Hr := RoGetActivationFactory (m_hString, IID_IGpioControllerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IGpioController := new Windows.Devices.Gpio.IGpioController;
-            Retval.m_IGpioController.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

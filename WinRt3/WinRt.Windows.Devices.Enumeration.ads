@@ -50,13 +50,23 @@ package WinRt.Windows.Devices.Enumeration is
 
    type IDeviceAccessChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceAccessChangedEventArgs2 is access all IDeviceAccessChangedEventArgs2_Interface'Class;
+   type IDeviceAccessChangedEventArgs2_Ptr is access all IDeviceAccessChangedEventArgs2;
+
+   type IDeviceAccessChangedEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
+   type IDeviceAccessChangedEventArgs3 is access all IDeviceAccessChangedEventArgs3_Interface'Class;
+   type IDeviceAccessChangedEventArgs3_Ptr is access all IDeviceAccessChangedEventArgs3;
 
    type IDeviceAccessInformation_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceAccessInformation is access all IDeviceAccessInformation_Interface'Class;
    type IDeviceAccessInformation_Ptr is access all IDeviceAccessInformation;
 
+   type IDeviceAccessInformation2_Interface is interface and WinRt.IInspectable_Interface;
+   type IDeviceAccessInformation2 is access all IDeviceAccessInformation2_Interface'Class;
+   type IDeviceAccessInformation2_Ptr is access all IDeviceAccessInformation2;
+
    type IDeviceAccessInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceAccessInformationStatics is access all IDeviceAccessInformationStatics_Interface'Class;
+   type IDeviceAccessInformationStatics_Ptr is access all IDeviceAccessInformationStatics;
 
    type IDeviceConnectionChangeTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceConnectionChangeTriggerDetails is access all IDeviceConnectionChangeTriggerDetails_Interface'Class;
@@ -66,6 +76,10 @@ package WinRt.Windows.Devices.Enumeration is
    type IDeviceDisconnectButtonClickedEventArgs is access all IDeviceDisconnectButtonClickedEventArgs_Interface'Class;
    type IDeviceDisconnectButtonClickedEventArgs_Ptr is access all IDeviceDisconnectButtonClickedEventArgs;
 
+   type IDeviceEnumerationSettings_Interface is interface and WinRt.IInspectable_Interface;
+   type IDeviceEnumerationSettings is access all IDeviceEnumerationSettings_Interface'Class;
+   type IDeviceEnumerationSettings_Ptr is access all IDeviceEnumerationSettings;
+
    type IDeviceInformation_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceInformation is access all IDeviceInformation_Interface'Class;
    type IDeviceInformation_Ptr is access all IDeviceInformation;
@@ -73,10 +87,15 @@ package WinRt.Windows.Devices.Enumeration is
 
    type IDeviceInformation2_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceInformation2 is access all IDeviceInformation2_Interface'Class;
+   type IDeviceInformation2_Ptr is access all IDeviceInformation2;
 
    type IDeviceInformationCustomPairing_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceInformationCustomPairing is access all IDeviceInformationCustomPairing_Interface'Class;
    type IDeviceInformationCustomPairing_Ptr is access all IDeviceInformationCustomPairing;
+
+   type IDeviceInformationCustomPairing2_Interface is interface and WinRt.IInspectable_Interface;
+   type IDeviceInformationCustomPairing2 is access all IDeviceInformationCustomPairing2_Interface'Class;
+   type IDeviceInformationCustomPairing2_Ptr is access all IDeviceInformationCustomPairing2;
 
    type IDeviceInformationPairing_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceInformationPairing is access all IDeviceInformationPairing_Interface'Class;
@@ -84,18 +103,27 @@ package WinRt.Windows.Devices.Enumeration is
 
    type IDeviceInformationPairing2_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceInformationPairing2 is access all IDeviceInformationPairing2_Interface'Class;
+   type IDeviceInformationPairing2_Ptr is access all IDeviceInformationPairing2;
 
    type IDeviceInformationPairingStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceInformationPairingStatics is access all IDeviceInformationPairingStatics_Interface'Class;
+   type IDeviceInformationPairingStatics_Ptr is access all IDeviceInformationPairingStatics;
 
    type IDeviceInformationPairingStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceInformationPairingStatics2 is access all IDeviceInformationPairingStatics2_Interface'Class;
+   type IDeviceInformationPairingStatics2_Ptr is access all IDeviceInformationPairingStatics2;
 
    type IDeviceInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceInformationStatics is access all IDeviceInformationStatics_Interface'Class;
+   type IDeviceInformationStatics_Ptr is access all IDeviceInformationStatics;
 
    type IDeviceInformationStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceInformationStatics2 is access all IDeviceInformationStatics2_Interface'Class;
+   type IDeviceInformationStatics2_Ptr is access all IDeviceInformationStatics2;
+
+   type IDeviceInformationStatics3_Interface is interface and WinRt.IInspectable_Interface;
+   type IDeviceInformationStatics3 is access all IDeviceInformationStatics3_Interface'Class;
+   type IDeviceInformationStatics3_Ptr is access all IDeviceInformationStatics3;
 
    type IDeviceInformationUpdate_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceInformationUpdate is access all IDeviceInformationUpdate_Interface'Class;
@@ -103,6 +131,7 @@ package WinRt.Windows.Devices.Enumeration is
 
    type IDeviceInformationUpdate2_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceInformationUpdate2 is access all IDeviceInformationUpdate2_Interface'Class;
+   type IDeviceInformationUpdate2_Ptr is access all IDeviceInformationUpdate2;
 
    type IDevicePairingRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDevicePairingRequestedEventArgs is access all IDevicePairingRequestedEventArgs_Interface'Class;
@@ -110,13 +139,23 @@ package WinRt.Windows.Devices.Enumeration is
 
    type IDevicePairingRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IDevicePairingRequestedEventArgs2 is access all IDevicePairingRequestedEventArgs2_Interface'Class;
+   type IDevicePairingRequestedEventArgs2_Ptr is access all IDevicePairingRequestedEventArgs2;
+
+   type IDevicePairingRequestedEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
+   type IDevicePairingRequestedEventArgs3 is access all IDevicePairingRequestedEventArgs3_Interface'Class;
+   type IDevicePairingRequestedEventArgs3_Ptr is access all IDevicePairingRequestedEventArgs3;
 
    type IDevicePairingResult_Interface is interface and WinRt.IInspectable_Interface;
    type IDevicePairingResult is access all IDevicePairingResult_Interface'Class;
    type IDevicePairingResult_Ptr is access all IDevicePairingResult;
 
+   type IDevicePairingSetMembersRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IDevicePairingSetMembersRequestedEventArgs is access all IDevicePairingSetMembersRequestedEventArgs_Interface'Class;
+   type IDevicePairingSetMembersRequestedEventArgs_Ptr is access all IDevicePairingSetMembersRequestedEventArgs;
+
    type IDevicePairingSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IDevicePairingSettings is access all IDevicePairingSettings_Interface'Class;
+   type IDevicePairingSettings_Ptr is access all IDevicePairingSettings;
 
    type IDevicePicker_Interface is interface and WinRt.IInspectable_Interface;
    type IDevicePicker is access all IDevicePicker_Interface'Class;
@@ -144,6 +183,7 @@ package WinRt.Windows.Devices.Enumeration is
 
    type IDeviceWatcher2_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceWatcher2 is access all IDeviceWatcher2_Interface'Class;
+   type IDeviceWatcher2_Ptr is access all IDeviceWatcher2;
 
    type IDeviceWatcherEvent_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceWatcherEvent is access all IDeviceWatcherEvent_Interface'Class;
@@ -159,6 +199,7 @@ package WinRt.Windows.Devices.Enumeration is
 
    type IEnclosureLocation2_Interface is interface and WinRt.IInspectable_Interface;
    type IEnclosureLocation2 is access all IEnclosureLocation2_Interface'Class;
+   type IEnclosureLocation2_Ptr is access all IEnclosureLocation2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -229,6 +270,12 @@ package WinRt.Windows.Devices.Enumeration is
          m_IDevicePairingResult : access Windows.Devices.Enumeration.IDevicePairingResult;
       end record;
    type DevicePairingResult_Ptr is access all DevicePairingResult;
+
+   type DevicePairingSetMembersRequestedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IDevicePairingSetMembersRequestedEventArgs : access Windows.Devices.Enumeration.IDevicePairingSetMembersRequestedEventArgs;
+      end record;
+   type DevicePairingSetMembersRequestedEventArgs_Ptr is access all DevicePairingSetMembersRequestedEventArgs;
 
    type DevicePicker is new Ada.Finalization.Limited_Controlled with
       record
@@ -337,7 +384,8 @@ package WinRt.Windows.Devices.Enumeration is
       AssociationEndpoint_e,
       AssociationEndpointContainer_e,
       AssociationEndpointService_e,
-      DevicePanel_e
+      DevicePanel_e,
+      AssociationEndpointProtocol_e
    );
    for DeviceInformationKind use (
       Unknown_e => 0,
@@ -348,9 +396,28 @@ package WinRt.Windows.Devices.Enumeration is
       AssociationEndpoint_e => 5,
       AssociationEndpointContainer_e => 6,
       AssociationEndpointService_e => 7,
-      DevicePanel_e => 8
+      DevicePanel_e => 8,
+      AssociationEndpointProtocol_e => 9
    );
    type DeviceInformationKind_Ptr is access all DeviceInformationKind;
+
+   type DevicePairingAddPairingSetMemberStatus is (
+      AddedToSet_e,
+      CouldNotBeAddedToSet_e,
+      SetDiscoveryNotAttemptedByProtocol_e,
+      SetDiscoveryCompletedByProtocol_e,
+      SetDiscoveryPartiallyCompletedByProtocol_e,
+      Failed_e
+   );
+   for DevicePairingAddPairingSetMemberStatus use (
+      AddedToSet_e => 0,
+      CouldNotBeAddedToSet_e => 1,
+      SetDiscoveryNotAttemptedByProtocol_e => 2,
+      SetDiscoveryCompletedByProtocol_e => 3,
+      SetDiscoveryPartiallyCompletedByProtocol_e => 4,
+      Failed_e => 5
+   );
+   type DevicePairingAddPairingSetMemberStatus_Ptr is access all DevicePairingAddPairingSetMemberStatus;
 
    type DevicePairingKinds is (
       None_e,
@@ -358,7 +425,8 @@ package WinRt.Windows.Devices.Enumeration is
       DisplayPin_e,
       ProvidePin_e,
       ConfirmPinMatch_e,
-      ProvidePasswordCredential_e
+      ProvidePasswordCredential_e,
+      ProvideAddress_e
    );
    for DevicePairingKinds use (
       None_e => 0,
@@ -366,7 +434,8 @@ package WinRt.Windows.Devices.Enumeration is
       DisplayPin_e => 2,
       ProvidePin_e => 4,
       ConfirmPinMatch_e => 8,
-      ProvidePasswordCredential_e => 16
+      ProvidePasswordCredential_e => 16,
+      ProvideAddress_e => 32
    );
    type DevicePairingKinds_Ptr is access all DevicePairingKinds;
 
@@ -518,6 +587,10 @@ package WinRt.Windows.Devices.Enumeration is
    IID_IMapView_HString_IInspectable : aliased WinRt.IID := (1036119860, 39839, 22649, (171, 140, 126, 227, 155, 86, 70, 208 ));
    function QInterface_IMapView_HString_IInspectable is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_IInspectable.Kind, IID_IMapView_HString_IInspectable'Access);
 
+   package IVectorView_IDeviceInformation is new WinRt.Windows.Foundation.Collections.IVectorView (IDeviceInformation);
+   IID_IVectorView_IDeviceInformation : aliased WinRt.IID := (3272165545, 45636, 20994, (143, 171, 234, 6, 106, 142, 123, 157 ));
+   function QInterface_IVectorView_IDeviceInformation is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IDeviceInformation.Kind, IID_IVectorView_IDeviceInformation'Access);
+
    package IVector_HString is new WinRt.Windows.Foundation.Collections.IVector (WinRt.HString);
    IID_IVector_HString : aliased WinRt.IID := (2548211948, 11830, 23533, (172, 29, 85, 73, 13, 35, 0, 130 ));
    function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
@@ -559,6 +632,18 @@ package WinRt.Windows.Devices.Enumeration is
       IID_IDeviceAccessChangedEventArgs2 : aliased WinRt.IID := (2186424930, 37707, 19248, (161, 120, 173, 195, 159, 47, 43, 227 ));
 
    -----------------------------------------------------------------------------
+   -- type IDeviceAccessChangedEventArgs3 is interface and WinRt.IInspectable;
+
+      function get_UserPromptRequired
+      (
+         this : access IDeviceAccessChangedEventArgs3_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDeviceAccessChangedEventArgs3 : aliased WinRt.IID := (1971366008, 32729, 23767, (133, 96, 60, 100, 75, 155, 16, 219 ));
+
+   -----------------------------------------------------------------------------
    -- type IDeviceAccessInformation is interface and WinRt.IInspectable;
 
       function add_AccessChanged
@@ -584,6 +669,18 @@ package WinRt.Windows.Devices.Enumeration is
       return WinRt.Hresult is abstract;
 
       IID_IDeviceAccessInformation : aliased WinRt.IID := (195730035, 28133, 18709, (141, 221, 154, 5, 84, 166, 245, 69 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDeviceAccessInformation2 is interface and WinRt.IInspectable;
+
+      function get_UserPromptRequired
+      (
+         this : access IDeviceAccessInformation2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDeviceAccessInformation2 : aliased WinRt.IID := (3803832310, 59535, 23818, (156, 30, 215, 136, 128, 141, 244, 123 ));
 
    -----------------------------------------------------------------------------
    -- type IDeviceAccessInformationStatics is interface and WinRt.IInspectable;
@@ -637,6 +734,11 @@ package WinRt.Windows.Devices.Enumeration is
       return WinRt.Hresult is abstract;
 
       IID_IDeviceDisconnectButtonClickedEventArgs : aliased WinRt.IID := (2386867565, 63746, 18944, (181, 54, 243, 121, 146, 230, 162, 167 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDeviceEnumerationSettings is interface and WinRt.IInspectable;
+
+      IID_IDeviceEnumerationSettings : aliased WinRt.IID := (4151381862, 40947, 16840, (133, 235, 135, 248, 17, 72, 163, 15 ));
 
    -----------------------------------------------------------------------------
    -- type IDeviceInformation is interface and WinRt.IInspectable;
@@ -771,6 +873,33 @@ package WinRt.Windows.Devices.Enumeration is
       return WinRt.Hresult is abstract;
 
       IID_IDeviceInformationCustomPairing : aliased WinRt.IID := (2232650754, 20198, 18708, (131, 112, 16, 122, 57, 20, 76, 14 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDeviceInformationCustomPairing2 is interface and WinRt.IInspectable;
+
+      function AddPairingSetMember
+      (
+         this : access IDeviceInformationCustomPairing2_Interface;
+         device : Windows.Devices.Enumeration.IDeviceInformation
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_PairingSetMembersRequested
+      (
+         this : access IDeviceInformationCustomPairing2_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_PairingSetMembersRequested
+      (
+         this : access IDeviceInformationCustomPairing2_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDeviceInformationCustomPairing2 : aliased WinRt.IID := (247309922, 59030, 24489, (143, 114, 128, 207, 235, 205, 133, 29 ));
 
    -----------------------------------------------------------------------------
    -- type IDeviceInformationPairing is interface and WinRt.IInspectable;
@@ -998,6 +1127,44 @@ package WinRt.Windows.Devices.Enumeration is
       IID_IDeviceInformationStatics2 : aliased WinRt.IID := (1228623668, 43087, 17917, (145, 103, 21, 209, 203, 27, 209, 249 ));
 
    -----------------------------------------------------------------------------
+   -- type IDeviceInformationStatics3 is interface and WinRt.IInspectable;
+
+      function CreateFromIdAsync
+      (
+         this : access IDeviceInformationStatics3_Interface;
+         deviceId : WinRt.HString;
+         additionalProperties : GenericObject;
+         kind : Windows.Devices.Enumeration.DeviceInformationKind;
+         settings : Windows.Devices.Enumeration.IDeviceEnumerationSettings;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function FindAllAsync
+      (
+         this : access IDeviceInformationStatics3_Interface;
+         aqsFilter : WinRt.HString;
+         additionalProperties : GenericObject;
+         kind : Windows.Devices.Enumeration.DeviceInformationKind;
+         settings : Windows.Devices.Enumeration.IDeviceEnumerationSettings;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateWatcher
+      (
+         this : access IDeviceInformationStatics3_Interface;
+         aqsFilter : WinRt.HString;
+         additionalProperties : GenericObject;
+         kind : Windows.Devices.Enumeration.DeviceInformationKind;
+         settings : Windows.Devices.Enumeration.IDeviceEnumerationSettings;
+         RetVal : access Windows.Devices.Enumeration.IDeviceWatcher
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDeviceInformationStatics3 : aliased WinRt.IID := (636510841, 37732, 23148, (138, 84, 93, 74, 109, 61, 146, 42 ));
+
+   -----------------------------------------------------------------------------
    -- type IDeviceInformationUpdate is interface and WinRt.IInspectable;
 
       function get_Id
@@ -1087,6 +1254,18 @@ package WinRt.Windows.Devices.Enumeration is
       IID_IDevicePairingRequestedEventArgs2 : aliased WinRt.IID := (3359068889, 58579, 19888, (163, 96, 161, 5, 228, 55, 219, 220 ));
 
    -----------------------------------------------------------------------------
+   -- type IDevicePairingRequestedEventArgs3 is interface and WinRt.IInspectable;
+
+      function AcceptWithAddress
+      (
+         this : access IDevicePairingRequestedEventArgs3_Interface;
+         address_x : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDevicePairingRequestedEventArgs3 : aliased WinRt.IID := (425613880, 17372, 22063, (186, 190, 239, 200, 177, 16, 8, 139 ));
+
+   -----------------------------------------------------------------------------
    -- type IDevicePairingResult is interface and WinRt.IInspectable;
 
       function get_Status
@@ -1104,6 +1283,32 @@ package WinRt.Windows.Devices.Enumeration is
       return WinRt.Hresult is abstract;
 
       IID_IDevicePairingResult : aliased WinRt.IID := (120259263, 56725, 16421, (155, 55, 222, 81, 173, 186, 55, 183 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDevicePairingSetMembersRequestedEventArgs is interface and WinRt.IInspectable;
+
+      function get_Status
+      (
+         this : access IDevicePairingSetMembersRequestedEventArgs_Interface;
+         RetVal : access Windows.Devices.Enumeration.DevicePairingAddPairingSetMemberStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ParentDeviceInformation
+      (
+         this : access IDevicePairingSetMembersRequestedEventArgs_Interface;
+         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PairingSetMembers
+      (
+         this : access IDevicePairingSetMembersRequestedEventArgs_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDevicePairingSetMembersRequestedEventArgs : aliased WinRt.IID := (2142514431, 60588, 20498, (141, 125, 161, 137, 70, 128, 163, 73 ));
 
    -----------------------------------------------------------------------------
    -- type IDevicePairingSettings is interface and WinRt.IInspectable;
@@ -1587,6 +1792,12 @@ package WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.WString;
 
+   function get_UserPromptRequired
+   (
+      this : in out DeviceAccessChangedEventArgs
+   )
+   return WinRt.Boolean;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DeviceAccessInformation
 
@@ -1636,6 +1847,12 @@ package WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceAccessStatus;
 
+   function get_UserPromptRequired
+   (
+      this : in out DeviceAccessInformation
+   )
+   return WinRt.Boolean;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DeviceConnectionChangeTriggerDetails
 
@@ -1674,6 +1891,33 @@ package WinRt.Windows.Devices.Enumeration is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for DeviceInformation
+
+   function CreateFromIdAsync
+   (
+      deviceId : WinRt.WString;
+      additionalProperties : GenericObject;
+      kind : Windows.Devices.Enumeration.DeviceInformationKind;
+      settings : Windows.Devices.Enumeration.IDeviceEnumerationSettings
+   )
+   return WinRt.Windows.Devices.Enumeration.DeviceInformation;
+
+   function FindAllAsync
+   (
+      aqsFilter : WinRt.WString;
+      additionalProperties : GenericObject;
+      kind : Windows.Devices.Enumeration.DeviceInformationKind;
+      settings : Windows.Devices.Enumeration.IDeviceEnumerationSettings
+   )
+   return WinRt.Windows.Devices.Enumeration.DeviceInformationCollection;
+
+   function CreateWatcher
+   (
+      aqsFilter : WinRt.WString;
+      additionalProperties : GenericObject;
+      kind : Windows.Devices.Enumeration.DeviceInformationKind;
+      settings : Windows.Devices.Enumeration.IDeviceEnumerationSettings
+   )
+   return WinRt.Windows.Devices.Enumeration.DeviceWatcher;
 
    function GetAqsFilterFromDeviceClass
    (
@@ -1923,6 +2167,25 @@ package WinRt.Windows.Devices.Enumeration is
       token : Windows.Foundation.EventRegistrationToken
    );
 
+   procedure AddPairingSetMember
+   (
+      this : in out DeviceInformationCustomPairing;
+      device : Windows.Devices.Enumeration.DeviceInformation'Class
+   );
+
+   function add_PairingSetMembersRequested
+   (
+      this : in out DeviceInformationCustomPairing;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_PairingSetMembersRequested
+   (
+      this : in out DeviceInformationCustomPairing;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DeviceInformationPairing
 
@@ -1932,16 +2195,16 @@ package WinRt.Windows.Devices.Enumeration is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DeviceInformationPairing
 
+   function TryRegisterForAllInboundPairingRequests
+   (
+      pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds
+   )
+   return WinRt.Boolean;
+
    function TryRegisterForAllInboundPairingRequestsWithProtectionLevel
    (
       pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds;
       minProtectionLevel : Windows.Devices.Enumeration.DevicePairingProtectionLevel
-   )
-   return WinRt.Boolean;
-
-   function TryRegisterForAllInboundPairingRequests
-   (
-      pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds
    )
    return WinRt.Boolean;
 
@@ -2076,6 +2339,12 @@ package WinRt.Windows.Devices.Enumeration is
       passwordCredential : Windows.Security.Credentials.PasswordCredential'Class
    );
 
+   procedure AcceptWithAddress
+   (
+      this : in out DevicePairingRequestedEventArgs;
+      address_x : WinRt.WString
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DevicePairingResult
 
@@ -2096,6 +2365,33 @@ package WinRt.Windows.Devices.Enumeration is
       this : in out DevicePairingResult
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DevicePairingSetMembersRequestedEventArgs
+
+   overriding procedure Initialize (this : in out DevicePairingSetMembersRequestedEventArgs);
+   overriding procedure Finalize (this : in out DevicePairingSetMembersRequestedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DevicePairingSetMembersRequestedEventArgs
+
+   function get_Status
+   (
+      this : in out DevicePairingSetMembersRequestedEventArgs
+   )
+   return WinRt.Windows.Devices.Enumeration.DevicePairingAddPairingSetMemberStatus;
+
+   function get_ParentDeviceInformation
+   (
+      this : in out DevicePairingSetMembersRequestedEventArgs
+   )
+   return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class;
+
+   function get_PairingSetMembers
+   (
+      this : in out DevicePairingSetMembersRequestedEventArgs
+   )
+   return IVectorView_IDeviceInformation.Kind;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DevicePicker

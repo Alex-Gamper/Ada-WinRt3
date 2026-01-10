@@ -60,6 +60,7 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
 
    type ISpatialSurfaceMeshOptionsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialSurfaceMeshOptionsStatics is access all ISpatialSurfaceMeshOptionsStatics_Interface'Class;
+   type ISpatialSurfaceMeshOptionsStatics_Ptr is access all ISpatialSurfaceMeshOptionsStatics;
 
    type ISpatialSurfaceObserver_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialSurfaceObserver is access all ISpatialSurfaceObserver_Interface'Class;
@@ -67,9 +68,11 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
 
    type ISpatialSurfaceObserverStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialSurfaceObserverStatics is access all ISpatialSurfaceObserverStatics_Interface'Class;
+   type ISpatialSurfaceObserverStatics_Ptr is access all ISpatialSurfaceObserverStatics;
 
    type ISpatialSurfaceObserverStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialSurfaceObserverStatics2 is access all ISpatialSurfaceObserverStatics2_Interface'Class;
+   type ISpatialSurfaceObserverStatics2_Ptr is access all ISpatialSurfaceObserverStatics2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -610,11 +613,11 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SpatialSurfaceObserver
 
-   function RequestAccessAsync
-   return WinRt.Windows.Perception.Spatial.SpatialPerceptionAccessStatus;
-
    function IsSupported
    return WinRt.Boolean;
+
+   function RequestAccessAsync
+   return WinRt.Windows.Perception.Spatial.SpatialPerceptionAccessStatus;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SpatialSurfaceObserver

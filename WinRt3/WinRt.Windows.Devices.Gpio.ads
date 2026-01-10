@@ -46,6 +46,7 @@ package WinRt.Windows.Devices.Gpio is
 
    type IGpioChangeCounterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGpioChangeCounterFactory is access all IGpioChangeCounterFactory_Interface'Class;
+   type IGpioChangeCounterFactory_Ptr is access all IGpioChangeCounterFactory;
 
    type IGpioChangeReader_Interface is interface and WinRt.IInspectable_Interface;
    type IGpioChangeReader is access all IGpioChangeReader_Interface'Class;
@@ -53,6 +54,7 @@ package WinRt.Windows.Devices.Gpio is
 
    type IGpioChangeReaderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGpioChangeReaderFactory is access all IGpioChangeReaderFactory_Interface'Class;
+   type IGpioChangeReaderFactory_Ptr is access all IGpioChangeReaderFactory;
 
    type IGpioController_Interface is interface and WinRt.IInspectable_Interface;
    type IGpioController is access all IGpioController_Interface'Class;
@@ -60,9 +62,11 @@ package WinRt.Windows.Devices.Gpio is
 
    type IGpioControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGpioControllerStatics is access all IGpioControllerStatics_Interface'Class;
+   type IGpioControllerStatics_Ptr is access all IGpioControllerStatics;
 
    type IGpioControllerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IGpioControllerStatics2 is access all IGpioControllerStatics2_Interface'Class;
+   type IGpioControllerStatics2_Ptr is access all IGpioControllerStatics2;
 
    type IGpioPin_Interface is interface and WinRt.IInspectable_Interface;
    type IGpioPin is access all IGpioPin_Interface'Class;
@@ -761,6 +765,9 @@ package WinRt.Windows.Devices.Gpio is
    -----------------------------------------------------------------------------
    -- Static Interfaces for GpioController
 
+   function GetDefault
+   return WinRt.Windows.Devices.Gpio.GpioController;
+
    function GetControllersAsync
    (
       provider : Windows.Devices.Gpio.Provider.IGpioProvider
@@ -768,9 +775,6 @@ package WinRt.Windows.Devices.Gpio is
    return WinRt.GenericObject;
 
    function GetDefaultAsync
-   return WinRt.Windows.Devices.Gpio.GpioController;
-
-   function GetDefault
    return WinRt.Windows.Devices.Gpio.GpioController;
 
    -----------------------------------------------------------------------------

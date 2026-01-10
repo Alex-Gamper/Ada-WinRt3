@@ -52,6 +52,7 @@ package WinRt.Windows.UI.Popups is
 
    type IMessageDialogFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMessageDialogFactory is access all IMessageDialogFactory_Interface'Class;
+   type IMessageDialogFactory_Ptr is access all IMessageDialogFactory;
 
    type IPopupMenu_Interface is interface and WinRt.IInspectable_Interface;
    type IPopupMenu is access all IPopupMenu_Interface'Class;
@@ -63,6 +64,7 @@ package WinRt.Windows.UI.Popups is
 
    type IUICommandFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IUICommandFactory is access all IUICommandFactory_Interface'Class;
+   type IUICommandFactory_Ptr is access all IUICommandFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -526,8 +528,6 @@ package WinRt.Windows.UI.Popups is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for UICommand
 
-   function Constructor return UICommand;
-
    function Constructor
    (
       label : WinRt.WString
@@ -548,6 +548,8 @@ package WinRt.Windows.UI.Popups is
       commandId : WinRt.IInspectable
    )
    return UICommand;
+
+   function Constructor return UICommand;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for UICommand

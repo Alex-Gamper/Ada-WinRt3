@@ -43,6 +43,7 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
 
    type ICompositeTransform3DStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositeTransform3DStatics is access all ICompositeTransform3DStatics_Interface'Class;
+   type ICompositeTransform3DStatics_Ptr is access all ICompositeTransform3DStatics;
 
    type IMatrix3DHelper_Interface is interface and WinRt.IInspectable_Interface;
    type IMatrix3DHelper is access all IMatrix3DHelper_Interface'Class;
@@ -50,6 +51,7 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
 
    type IMatrix3DHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMatrix3DHelperStatics is access all IMatrix3DHelperStatics_Interface'Class;
+   type IMatrix3DHelperStatics_Ptr is access all IMatrix3DHelperStatics;
 
    type IPerspectiveTransform3D_Interface is interface and WinRt.IInspectable_Interface;
    type IPerspectiveTransform3D is access all IPerspectiveTransform3D_Interface'Class;
@@ -57,6 +59,7 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
 
    type IPerspectiveTransform3DStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPerspectiveTransform3DStatics is access all IPerspectiveTransform3DStatics_Interface'Class;
+   type IPerspectiveTransform3DStatics_Ptr is access all IPerspectiveTransform3DStatics;
 
    type ITransform3D_Interface is interface and WinRt.IInspectable_Interface;
    type ITransform3D is access all ITransform3D_Interface'Class;
@@ -64,6 +67,7 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
 
    type ITransform3DFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITransform3DFactory is access all ITransform3DFactory_Interface'Class;
+   type ITransform3DFactory_Ptr is access all ITransform3DFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations

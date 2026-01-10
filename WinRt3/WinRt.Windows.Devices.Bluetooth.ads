@@ -50,12 +50,19 @@ package WinRt.Windows.Devices.Bluetooth is
 
    type IBluetoothAdapter2_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothAdapter2 is access all IBluetoothAdapter2_Interface'Class;
+   type IBluetoothAdapter2_Ptr is access all IBluetoothAdapter2;
 
    type IBluetoothAdapter3_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothAdapter3 is access all IBluetoothAdapter3_Interface'Class;
+   type IBluetoothAdapter3_Ptr is access all IBluetoothAdapter3;
+
+   type IBluetoothAdapter4_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothAdapter4 is access all IBluetoothAdapter4_Interface'Class;
+   type IBluetoothAdapter4_Ptr is access all IBluetoothAdapter4;
 
    type IBluetoothAdapterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothAdapterStatics is access all IBluetoothAdapterStatics_Interface'Class;
+   type IBluetoothAdapterStatics_Ptr is access all IBluetoothAdapterStatics;
 
    type IBluetoothClassOfDevice_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothClassOfDevice is access all IBluetoothClassOfDevice_Interface'Class;
@@ -63,6 +70,7 @@ package WinRt.Windows.Devices.Bluetooth is
 
    type IBluetoothClassOfDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothClassOfDeviceStatics is access all IBluetoothClassOfDeviceStatics_Interface'Class;
+   type IBluetoothClassOfDeviceStatics_Ptr is access all IBluetoothClassOfDeviceStatics;
 
    type IBluetoothDevice_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothDevice is access all IBluetoothDevice_Interface'Class;
@@ -70,15 +78,19 @@ package WinRt.Windows.Devices.Bluetooth is
 
    type IBluetoothDevice2_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothDevice2 is access all IBluetoothDevice2_Interface'Class;
+   type IBluetoothDevice2_Ptr is access all IBluetoothDevice2;
 
    type IBluetoothDevice3_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothDevice3 is access all IBluetoothDevice3_Interface'Class;
+   type IBluetoothDevice3_Ptr is access all IBluetoothDevice3;
 
    type IBluetoothDevice4_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothDevice4 is access all IBluetoothDevice4_Interface'Class;
+   type IBluetoothDevice4_Ptr is access all IBluetoothDevice4;
 
    type IBluetoothDevice5_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothDevice5 is access all IBluetoothDevice5_Interface'Class;
+   type IBluetoothDevice5_Ptr is access all IBluetoothDevice5;
 
    type IBluetoothDeviceId_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothDeviceId is access all IBluetoothDeviceId_Interface'Class;
@@ -86,12 +98,15 @@ package WinRt.Windows.Devices.Bluetooth is
 
    type IBluetoothDeviceIdStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothDeviceIdStatics is access all IBluetoothDeviceIdStatics_Interface'Class;
+   type IBluetoothDeviceIdStatics_Ptr is access all IBluetoothDeviceIdStatics;
 
    type IBluetoothDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothDeviceStatics is access all IBluetoothDeviceStatics_Interface'Class;
+   type IBluetoothDeviceStatics_Ptr is access all IBluetoothDeviceStatics;
 
    type IBluetoothDeviceStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothDeviceStatics2 is access all IBluetoothDeviceStatics2_Interface'Class;
+   type IBluetoothDeviceStatics2_Ptr is access all IBluetoothDeviceStatics2;
 
    type IBluetoothLEAppearance_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAppearance is access all IBluetoothLEAppearance_Interface'Class;
@@ -99,12 +114,27 @@ package WinRt.Windows.Devices.Bluetooth is
 
    type IBluetoothLEAppearanceCategoriesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAppearanceCategoriesStatics is access all IBluetoothLEAppearanceCategoriesStatics_Interface'Class;
+   type IBluetoothLEAppearanceCategoriesStatics_Ptr is access all IBluetoothLEAppearanceCategoriesStatics;
 
    type IBluetoothLEAppearanceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAppearanceStatics is access all IBluetoothLEAppearanceStatics_Interface'Class;
+   type IBluetoothLEAppearanceStatics_Ptr is access all IBluetoothLEAppearanceStatics;
 
    type IBluetoothLEAppearanceSubcategoriesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAppearanceSubcategoriesStatics is access all IBluetoothLEAppearanceSubcategoriesStatics_Interface'Class;
+   type IBluetoothLEAppearanceSubcategoriesStatics_Ptr is access all IBluetoothLEAppearanceSubcategoriesStatics;
+
+   type IBluetoothLEConnectionParameters_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEConnectionParameters is access all IBluetoothLEConnectionParameters_Interface'Class;
+   type IBluetoothLEConnectionParameters_Ptr is access all IBluetoothLEConnectionParameters;
+
+   type IBluetoothLEConnectionPhy_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEConnectionPhy is access all IBluetoothLEConnectionPhy_Interface'Class;
+   type IBluetoothLEConnectionPhy_Ptr is access all IBluetoothLEConnectionPhy;
+
+   type IBluetoothLEConnectionPhyInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEConnectionPhyInfo is access all IBluetoothLEConnectionPhyInfo_Interface'Class;
+   type IBluetoothLEConnectionPhyInfo_Ptr is access all IBluetoothLEConnectionPhyInfo;
 
    type IBluetoothLEDevice_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEDevice is access all IBluetoothLEDevice_Interface'Class;
@@ -112,21 +142,43 @@ package WinRt.Windows.Devices.Bluetooth is
 
    type IBluetoothLEDevice2_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEDevice2 is access all IBluetoothLEDevice2_Interface'Class;
+   type IBluetoothLEDevice2_Ptr is access all IBluetoothLEDevice2;
 
    type IBluetoothLEDevice3_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEDevice3 is access all IBluetoothLEDevice3_Interface'Class;
+   type IBluetoothLEDevice3_Ptr is access all IBluetoothLEDevice3;
 
    type IBluetoothLEDevice4_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEDevice4 is access all IBluetoothLEDevice4_Interface'Class;
+   type IBluetoothLEDevice4_Ptr is access all IBluetoothLEDevice4;
 
    type IBluetoothLEDevice5_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEDevice5 is access all IBluetoothLEDevice5_Interface'Class;
+   type IBluetoothLEDevice5_Ptr is access all IBluetoothLEDevice5;
+
+   type IBluetoothLEDevice6_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEDevice6 is access all IBluetoothLEDevice6_Interface'Class;
+   type IBluetoothLEDevice6_Ptr is access all IBluetoothLEDevice6;
 
    type IBluetoothLEDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEDeviceStatics is access all IBluetoothLEDeviceStatics_Interface'Class;
+   type IBluetoothLEDeviceStatics_Ptr is access all IBluetoothLEDeviceStatics;
 
    type IBluetoothLEDeviceStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEDeviceStatics2 is access all IBluetoothLEDeviceStatics2_Interface'Class;
+   type IBluetoothLEDeviceStatics2_Ptr is access all IBluetoothLEDeviceStatics2;
+
+   type IBluetoothLEPreferredConnectionParameters_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEPreferredConnectionParameters is access all IBluetoothLEPreferredConnectionParameters_Interface'Class;
+   type IBluetoothLEPreferredConnectionParameters_Ptr is access all IBluetoothLEPreferredConnectionParameters;
+
+   type IBluetoothLEPreferredConnectionParametersRequest_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEPreferredConnectionParametersRequest is access all IBluetoothLEPreferredConnectionParametersRequest_Interface'Class;
+   type IBluetoothLEPreferredConnectionParametersRequest_Ptr is access all IBluetoothLEPreferredConnectionParametersRequest;
+
+   type IBluetoothLEPreferredConnectionParametersStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEPreferredConnectionParametersStatics is access all IBluetoothLEPreferredConnectionParametersStatics_Interface'Class;
+   type IBluetoothLEPreferredConnectionParametersStatics_Ptr is access all IBluetoothLEPreferredConnectionParametersStatics;
 
    type IBluetoothSignalStrengthFilter_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothSignalStrengthFilter is access all IBluetoothSignalStrengthFilter_Interface'Class;
@@ -134,6 +186,7 @@ package WinRt.Windows.Devices.Bluetooth is
 
    type IBluetoothUuidHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothUuidHelperStatics is access all IBluetoothUuidHelperStatics_Interface'Class;
+   type IBluetoothUuidHelperStatics_Ptr is access all IBluetoothUuidHelperStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -169,11 +222,41 @@ package WinRt.Windows.Devices.Bluetooth is
       end record;
    type BluetoothLEAppearance_Ptr is access all BluetoothLEAppearance;
 
+   type BluetoothLEConnectionParameters is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IBluetoothLEConnectionParameters : access Windows.Devices.Bluetooth.IBluetoothLEConnectionParameters;
+      end record;
+   type BluetoothLEConnectionParameters_Ptr is access all BluetoothLEConnectionParameters;
+
+   type BluetoothLEConnectionPhy is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IBluetoothLEConnectionPhy : access Windows.Devices.Bluetooth.IBluetoothLEConnectionPhy;
+      end record;
+   type BluetoothLEConnectionPhy_Ptr is access all BluetoothLEConnectionPhy;
+
+   type BluetoothLEConnectionPhyInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IBluetoothLEConnectionPhyInfo : access Windows.Devices.Bluetooth.IBluetoothLEConnectionPhyInfo;
+      end record;
+   type BluetoothLEConnectionPhyInfo_Ptr is access all BluetoothLEConnectionPhyInfo;
+
    type BluetoothLEDevice is new Ada.Finalization.Limited_Controlled with
       record
          m_IBluetoothLEDevice : access Windows.Devices.Bluetooth.IBluetoothLEDevice;
       end record;
    type BluetoothLEDevice_Ptr is access all BluetoothLEDevice;
+
+   type BluetoothLEPreferredConnectionParameters is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IBluetoothLEPreferredConnectionParameters : access Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters;
+      end record;
+   type BluetoothLEPreferredConnectionParameters_Ptr is access all BluetoothLEPreferredConnectionParameters;
+
+   type BluetoothLEPreferredConnectionParametersRequest is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IBluetoothLEPreferredConnectionParametersRequest : access Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParametersRequest;
+      end record;
+   type BluetoothLEPreferredConnectionParametersRequest_Ptr is access all BluetoothLEPreferredConnectionParametersRequest;
 
    type BluetoothSignalStrengthFilter is new Ada.Finalization.Limited_Controlled with
       record
@@ -242,6 +325,20 @@ package WinRt.Windows.Devices.Bluetooth is
       TransportNotSupported_e => 9
    );
    type BluetoothError_Ptr is access all BluetoothError;
+
+   type BluetoothLEPreferredConnectionParametersRequestStatus is (
+      Unspecified_e,
+      Success_e,
+      DeviceNotAvailable_e,
+      AccessDenied_e
+   );
+   for BluetoothLEPreferredConnectionParametersRequestStatus use (
+      Unspecified_e => 0,
+      Success_e => 1,
+      DeviceNotAvailable_e => 2,
+      AccessDenied_e => 3
+   );
+   type BluetoothLEPreferredConnectionParametersRequestStatus_Ptr is access all BluetoothLEPreferredConnectionParametersRequestStatus;
 
    type BluetoothMajorClass is (
       Miscellaneous_e,
@@ -461,6 +558,25 @@ package WinRt.Windows.Devices.Bluetooth is
       return WinRt.Hresult is abstract;
 
       IID_IBluetoothAdapter3 : aliased WinRt.IID := (2407933152, 52137, 21009, (159, 137, 58, 172, 98, 180, 198, 184 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBluetoothAdapter4 is interface and WinRt.IInspectable;
+
+      function get_IsLowEnergyUncoded2MPhySupported
+      (
+         this : access IBluetoothAdapter4_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsLowEnergyCodedPhySupported
+      (
+         this : access IBluetoothAdapter4_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothAdapter4 : aliased WinRt.IID := (4168479713, 28058, 23902, (174, 229, 161, 114, 72, 229, 246, 221 ));
 
    -----------------------------------------------------------------------------
    -- type IBluetoothAdapterStatics is interface and WinRt.IInspectable;
@@ -1267,6 +1383,77 @@ package WinRt.Windows.Devices.Bluetooth is
       IID_IBluetoothLEAppearanceSubcategoriesStatics : aliased WinRt.IID := (3850085894, 8516, 16730, (131, 18, 113, 204, 242, 145, 248, 209 ));
 
    -----------------------------------------------------------------------------
+   -- type IBluetoothLEConnectionParameters is interface and WinRt.IInspectable;
+
+      function get_LinkTimeout
+      (
+         this : access IBluetoothLEConnectionParameters_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ConnectionLatency
+      (
+         this : access IBluetoothLEConnectionParameters_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ConnectionInterval
+      (
+         this : access IBluetoothLEConnectionParameters_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEConnectionParameters : aliased WinRt.IID := (868943729, 36265, 20623, (163, 102, 28, 163, 136, 201, 41, 171 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBluetoothLEConnectionPhy is interface and WinRt.IInspectable;
+
+      function get_TransmitInfo
+      (
+         this : access IBluetoothLEConnectionPhy_Interface;
+         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEConnectionPhyInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ReceiveInfo
+      (
+         this : access IBluetoothLEConnectionPhy_Interface;
+         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEConnectionPhyInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEConnectionPhy : aliased WinRt.IID := (2015256136, 25118, 23166, (139, 230, 27, 149, 97, 255, 99, 201 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBluetoothLEConnectionPhyInfo is interface and WinRt.IInspectable;
+
+      function get_IsUncoded1MPhy
+      (
+         this : access IBluetoothLEConnectionPhyInfo_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsUncoded2MPhy
+      (
+         this : access IBluetoothLEConnectionPhyInfo_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsCodedPhy
+      (
+         this : access IBluetoothLEConnectionPhyInfo_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEConnectionPhyInfo : aliased WinRt.IID := (2584742877, 24622, 23591, (161, 174, 178, 48, 1, 90, 99, 148 ));
+
+   -----------------------------------------------------------------------------
    -- type IBluetoothLEDevice is interface and WinRt.IInspectable;
 
       function get_DeviceId
@@ -1461,6 +1648,63 @@ package WinRt.Windows.Devices.Bluetooth is
       IID_IBluetoothLEDevice5 : aliased WinRt.IID := (2640974432, 21127, 17806, (149, 186, 23, 200, 183, 187, 50, 110 ));
 
    -----------------------------------------------------------------------------
+   -- type IBluetoothLEDevice6 is interface and WinRt.IInspectable;
+
+      function GetConnectionParameters
+      (
+         this : access IBluetoothLEDevice6_Interface;
+         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEConnectionParameters
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetConnectionPhy
+      (
+         this : access IBluetoothLEDevice6_Interface;
+         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEConnectionPhy
+      )
+      return WinRt.Hresult is abstract;
+
+      function RequestPreferredConnectionParameters
+      (
+         this : access IBluetoothLEDevice6_Interface;
+         preferredConnectionParameters : Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters;
+         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParametersRequest
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_ConnectionParametersChanged
+      (
+         this : access IBluetoothLEDevice6_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_ConnectionParametersChanged
+      (
+         this : access IBluetoothLEDevice6_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_ConnectionPhyChanged
+      (
+         this : access IBluetoothLEDevice6_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_ConnectionPhyChanged
+      (
+         this : access IBluetoothLEDevice6_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEDevice6 : aliased WinRt.IID := (3396440303, 3246, 22332, (161, 202, 225, 252, 91, 252, 57, 226 ));
+
+   -----------------------------------------------------------------------------
    -- type IBluetoothLEDeviceStatics is interface and WinRt.IInspectable;
 
       function FromIdAsync
@@ -1550,6 +1794,77 @@ package WinRt.Windows.Devices.Bluetooth is
       return WinRt.Hresult is abstract;
 
       IID_IBluetoothLEDeviceStatics2 : aliased WinRt.IID := (1595064427, 15276, 17384, (173, 22, 86, 50, 113, 189, 65, 194 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBluetoothLEPreferredConnectionParameters is interface and WinRt.IInspectable;
+
+      function get_LinkTimeout
+      (
+         this : access IBluetoothLEPreferredConnectionParameters_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ConnectionLatency
+      (
+         this : access IBluetoothLEPreferredConnectionParameters_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MinConnectionInterval
+      (
+         this : access IBluetoothLEPreferredConnectionParameters_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MaxConnectionInterval
+      (
+         this : access IBluetoothLEPreferredConnectionParameters_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEPreferredConnectionParameters : aliased WinRt.IID := (4076094276, 29554, 24443, (155, 52, 41, 201, 68, 245, 167, 21 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBluetoothLEPreferredConnectionParametersRequest is interface and WinRt.IInspectable;
+
+      function get_Status
+      (
+         this : access IBluetoothLEPreferredConnectionParametersRequest_Interface;
+         RetVal : access Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParametersRequestStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEPreferredConnectionParametersRequest : aliased WinRt.IID := (2318881398, 42280, 21094, (182, 97, 204, 230, 165, 255, 151, 57 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBluetoothLEPreferredConnectionParametersStatics is interface and WinRt.IInspectable;
+
+      function get_Balanced
+      (
+         this : access IBluetoothLEPreferredConnectionParametersStatics_Interface;
+         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ThroughputOptimized
+      (
+         this : access IBluetoothLEPreferredConnectionParametersStatics_Interface;
+         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PowerOptimized
+      (
+         this : access IBluetoothLEPreferredConnectionParametersStatics_Interface;
+         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEPreferredConnectionParametersStatics : aliased WinRt.IID := (238980828, 10065, 21930, (168, 56, 143, 174, 238, 129, 141, 114 ));
 
    -----------------------------------------------------------------------------
    -- type IBluetoothSignalStrengthFilter is interface and WinRt.IInspectable;
@@ -1733,6 +2048,18 @@ package WinRt.Windows.Devices.Bluetooth is
    )
    return WinRt.UInt32;
 
+   function get_IsLowEnergyUncoded2MPhySupported
+   (
+      this : in out BluetoothAdapter
+   )
+   return WinRt.Boolean;
+
+   function get_IsLowEnergyCodedPhySupported
+   (
+      this : in out BluetoothAdapter
+   )
+   return WinRt.Boolean;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BluetoothClassOfDevice
 
@@ -1792,6 +2119,27 @@ package WinRt.Windows.Devices.Bluetooth is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BluetoothDevice
 
+   function FromIdAsync_BluetoothDevice
+   (
+      deviceId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothDevice;
+
+   function FromHostNameAsync
+   (
+      hostName : Windows.Networking.HostName'Class
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothDevice;
+
+   function FromBluetoothAddressAsync
+   (
+      address_x : WinRt.UInt64
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothDevice;
+
+   function GetDeviceSelector_BluetoothDevice
+   return WinRt.WString;
+
    function GetDeviceSelectorFromPairingState
    (
       pairingState : WinRt.Boolean
@@ -1820,27 +2168,6 @@ package WinRt.Windows.Devices.Bluetooth is
    (
       classOfDevice : Windows.Devices.Bluetooth.BluetoothClassOfDevice'Class
    )
-   return WinRt.WString;
-
-   function FromIdAsync_BluetoothDevice
-   (
-      deviceId : WinRt.WString
-   )
-   return WinRt.Windows.Devices.Bluetooth.BluetoothDevice;
-
-   function FromHostNameAsync
-   (
-      hostName : Windows.Networking.HostName'Class
-   )
-   return WinRt.Windows.Devices.Bluetooth.BluetoothDevice;
-
-   function FromBluetoothAddressAsync
-   (
-      address_x : WinRt.UInt64
-   )
-   return WinRt.Windows.Devices.Bluetooth.BluetoothDevice;
-
-   function GetDeviceSelector_BluetoothDevice
    return WinRt.WString;
 
    -----------------------------------------------------------------------------
@@ -1933,11 +2260,6 @@ package WinRt.Windows.Devices.Bluetooth is
       token : Windows.Foundation.EventRegistrationToken
    );
 
-   procedure Close
-   (
-      this : in out BluetoothDevice
-   );
-
    function get_DeviceInformation
    (
       this : in out BluetoothDevice
@@ -1995,6 +2317,11 @@ package WinRt.Windows.Devices.Bluetooth is
       this : in out BluetoothDevice
    )
    return WinRt.Boolean;
+
+   procedure Close
+   (
+      this : in out BluetoothDevice
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BluetoothDeviceId
@@ -2238,6 +2565,81 @@ package WinRt.Windows.Devices.Bluetooth is
    end BluetoothLEAppearanceSubcategories;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BluetoothLEConnectionParameters
+
+   overriding procedure Initialize (this : in out BluetoothLEConnectionParameters);
+   overriding procedure Finalize (this : in out BluetoothLEConnectionParameters);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BluetoothLEConnectionParameters
+
+   function get_LinkTimeout
+   (
+      this : in out BluetoothLEConnectionParameters
+   )
+   return WinRt.UInt16;
+
+   function get_ConnectionLatency
+   (
+      this : in out BluetoothLEConnectionParameters
+   )
+   return WinRt.UInt16;
+
+   function get_ConnectionInterval
+   (
+      this : in out BluetoothLEConnectionParameters
+   )
+   return WinRt.UInt16;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BluetoothLEConnectionPhy
+
+   overriding procedure Initialize (this : in out BluetoothLEConnectionPhy);
+   overriding procedure Finalize (this : in out BluetoothLEConnectionPhy);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BluetoothLEConnectionPhy
+
+   function get_TransmitInfo
+   (
+      this : in out BluetoothLEConnectionPhy
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEConnectionPhyInfo'Class;
+
+   function get_ReceiveInfo
+   (
+      this : in out BluetoothLEConnectionPhy
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEConnectionPhyInfo'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BluetoothLEConnectionPhyInfo
+
+   overriding procedure Initialize (this : in out BluetoothLEConnectionPhyInfo);
+   overriding procedure Finalize (this : in out BluetoothLEConnectionPhyInfo);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BluetoothLEConnectionPhyInfo
+
+   function get_IsUncoded1MPhy
+   (
+      this : in out BluetoothLEConnectionPhyInfo
+   )
+   return WinRt.Boolean;
+
+   function get_IsUncoded2MPhy
+   (
+      this : in out BluetoothLEConnectionPhyInfo
+   )
+   return WinRt.Boolean;
+
+   function get_IsCodedPhy
+   (
+      this : in out BluetoothLEConnectionPhyInfo
+   )
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BluetoothLEDevice
 
    overriding procedure Initialize (this : in out BluetoothLEDevice);
@@ -2245,6 +2647,21 @@ package WinRt.Windows.Devices.Bluetooth is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for BluetoothLEDevice
+
+   function FromIdAsync_BluetoothLEDevice
+   (
+      deviceId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice;
+
+   function FromBluetoothAddressAsync_BluetoothLEDevice
+   (
+      bluetoothAddress : WinRt.UInt64
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice;
+
+   function GetDeviceSelector_BluetoothLEDevice
+   return WinRt.WString;
 
    function GetDeviceSelectorFromPairingState_BluetoothLEDevice
    (
@@ -2289,21 +2706,6 @@ package WinRt.Windows.Devices.Bluetooth is
       bluetoothAddressType : Windows.Devices.Bluetooth.BluetoothAddressType
    )
    return WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice;
-
-   function FromIdAsync_BluetoothLEDevice
-   (
-      deviceId : WinRt.WString
-   )
-   return WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice;
-
-   function FromBluetoothAddressAsync_BluetoothLEDevice
-   (
-      bluetoothAddress : WinRt.UInt64
-   )
-   return WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice;
-
-   function GetDeviceSelector_BluetoothLEDevice
-   return WinRt.WString;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BluetoothLEDevice
@@ -2384,11 +2786,6 @@ package WinRt.Windows.Devices.Bluetooth is
       token : Windows.Foundation.EventRegistrationToken
    );
 
-   procedure Close
-   (
-      this : in out BluetoothLEDevice
-   );
-
    function get_DeviceInformation
    (
       this : in out BluetoothLEDevice
@@ -2458,6 +2855,121 @@ package WinRt.Windows.Devices.Bluetooth is
       this : in out BluetoothLEDevice
    )
    return WinRt.Boolean;
+
+   function GetConnectionParameters
+   (
+      this : in out BluetoothLEDevice
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEConnectionParameters'Class;
+
+   function GetConnectionPhy
+   (
+      this : in out BluetoothLEDevice
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEConnectionPhy'Class;
+
+   function RequestPreferredConnectionParameters
+   (
+      this : in out BluetoothLEDevice;
+      preferredConnectionParameters : Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters'Class
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParametersRequest'Class;
+
+   function add_ConnectionParametersChanged
+   (
+      this : in out BluetoothLEDevice;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ConnectionParametersChanged
+   (
+      this : in out BluetoothLEDevice;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_ConnectionPhyChanged
+   (
+      this : in out BluetoothLEDevice;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ConnectionPhyChanged
+   (
+      this : in out BluetoothLEDevice;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   procedure Close
+   (
+      this : in out BluetoothLEDevice
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BluetoothLEPreferredConnectionParameters
+
+   overriding procedure Initialize (this : in out BluetoothLEPreferredConnectionParameters);
+   overriding procedure Finalize (this : in out BluetoothLEPreferredConnectionParameters);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for BluetoothLEPreferredConnectionParameters
+
+   function get_Balanced
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters;
+
+   function get_ThroughputOptimized
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters;
+
+   function get_PowerOptimized
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BluetoothLEPreferredConnectionParameters
+
+   function get_LinkTimeout
+   (
+      this : in out BluetoothLEPreferredConnectionParameters
+   )
+   return WinRt.UInt16;
+
+   function get_ConnectionLatency
+   (
+      this : in out BluetoothLEPreferredConnectionParameters
+   )
+   return WinRt.UInt16;
+
+   function get_MinConnectionInterval
+   (
+      this : in out BluetoothLEPreferredConnectionParameters
+   )
+   return WinRt.UInt16;
+
+   function get_MaxConnectionInterval
+   (
+      this : in out BluetoothLEPreferredConnectionParameters
+   )
+   return WinRt.UInt16;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BluetoothLEPreferredConnectionParametersRequest
+
+   overriding procedure Initialize (this : in out BluetoothLEPreferredConnectionParametersRequest);
+   overriding procedure Finalize (this : in out BluetoothLEPreferredConnectionParametersRequest);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BluetoothLEPreferredConnectionParametersRequest
+
+   function get_Status
+   (
+      this : in out BluetoothLEPreferredConnectionParametersRequest
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParametersRequestStatus;
+
+   procedure Close
+   (
+      this : in out BluetoothLEPreferredConnectionParametersRequest
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BluetoothSignalStrengthFilter

@@ -51,6 +51,7 @@ package WinRt.Windows.UI.Composition is
 
    type IAmbientLight2_Interface is interface and WinRt.IInspectable_Interface;
    type IAmbientLight2 is access all IAmbientLight2_Interface'Class;
+   type IAmbientLight2_Ptr is access all IAmbientLight2;
 
    type IAnimationController_Interface is interface and WinRt.IInspectable_Interface;
    type IAnimationController is access all IAnimationController_Interface'Class;
@@ -58,17 +59,31 @@ package WinRt.Windows.UI.Composition is
 
    type IAnimationControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAnimationControllerStatics is access all IAnimationControllerStatics_Interface'Class;
+   type IAnimationControllerStatics_Ptr is access all IAnimationControllerStatics;
 
    type IAnimationObject_Interface is interface and WinRt.IInspectable_Interface;
    type IAnimationObject is access all IAnimationObject_Interface'Class;
+   type IAnimationObject_Ptr is access all IAnimationObject;
 
    type IAnimationPropertyInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IAnimationPropertyInfo is access all IAnimationPropertyInfo_Interface'Class;
    type IAnimationPropertyInfo_Ptr is access all IAnimationPropertyInfo;
 
+   type IAnimationPropertyInfo2_Interface is interface and WinRt.IInspectable_Interface;
+   type IAnimationPropertyInfo2 is access all IAnimationPropertyInfo2_Interface'Class;
+   type IAnimationPropertyInfo2_Ptr is access all IAnimationPropertyInfo2;
+
+   type IBackEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
+   type IBackEasingFunction is access all IBackEasingFunction_Interface'Class;
+   type IBackEasingFunction_Ptr is access all IBackEasingFunction;
+
    type IBooleanKeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IBooleanKeyFrameAnimation is access all IBooleanKeyFrameAnimation_Interface'Class;
    type IBooleanKeyFrameAnimation_Ptr is access all IBooleanKeyFrameAnimation;
+
+   type IBounceEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
+   type IBounceEasingFunction is access all IBounceEasingFunction_Interface'Class;
+   type IBounceEasingFunction_Ptr is access all IBounceEasingFunction;
 
    type IBounceScalarNaturalMotionAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IBounceScalarNaturalMotionAnimation is access all IBounceScalarNaturalMotionAnimation_Interface'Class;
@@ -82,6 +97,10 @@ package WinRt.Windows.UI.Composition is
    type IBounceVector3NaturalMotionAnimation is access all IBounceVector3NaturalMotionAnimation_Interface'Class;
    type IBounceVector3NaturalMotionAnimation_Ptr is access all IBounceVector3NaturalMotionAnimation;
 
+   type ICircleEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
+   type ICircleEasingFunction is access all ICircleEasingFunction_Interface'Class;
+   type ICircleEasingFunction_Ptr is access all ICircleEasingFunction;
+
    type IColorKeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IColorKeyFrameAnimation is access all IColorKeyFrameAnimation_Interface'Class;
    type IColorKeyFrameAnimation_Ptr is access all IColorKeyFrameAnimation;
@@ -92,18 +111,23 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionAnimation2_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionAnimation2 is access all ICompositionAnimation2_Interface'Class;
+   type ICompositionAnimation2_Ptr is access all ICompositionAnimation2;
 
    type ICompositionAnimation3_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionAnimation3 is access all ICompositionAnimation3_Interface'Class;
+   type ICompositionAnimation3_Ptr is access all ICompositionAnimation3;
 
    type ICompositionAnimation4_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionAnimation4 is access all ICompositionAnimation4_Interface'Class;
+   type ICompositionAnimation4_Ptr is access all ICompositionAnimation4;
 
    type ICompositionAnimationBase_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionAnimationBase is access all ICompositionAnimationBase_Interface'Class;
+   type ICompositionAnimationBase_Ptr is access all ICompositionAnimationBase;
 
    type ICompositionAnimationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionAnimationFactory is access all ICompositionAnimationFactory_Interface'Class;
+   type ICompositionAnimationFactory_Ptr is access all ICompositionAnimationFactory;
 
    type ICompositionAnimationGroup_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionAnimationGroup is access all ICompositionAnimationGroup_Interface'Class;
@@ -123,6 +147,7 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionBrushFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionBrushFactory is access all ICompositionBrushFactory_Interface'Class;
+   type ICompositionBrushFactory_Ptr is access all ICompositionBrushFactory;
 
    type ICompositionCapabilities_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionCapabilities is access all ICompositionCapabilities_Interface'Class;
@@ -130,6 +155,7 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionCapabilitiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionCapabilitiesStatics is access all ICompositionCapabilitiesStatics_Interface'Class;
+   type ICompositionCapabilitiesStatics_Ptr is access all ICompositionCapabilitiesStatics;
 
    type ICompositionClip_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionClip is access all ICompositionClip_Interface'Class;
@@ -137,9 +163,11 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionClip2_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionClip2 is access all ICompositionClip2_Interface'Class;
+   type ICompositionClip2_Ptr is access all ICompositionClip2;
 
    type ICompositionClipFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionClipFactory is access all ICompositionClipFactory_Interface'Class;
+   type ICompositionClipFactory_Ptr is access all ICompositionClipFactory;
 
    type ICompositionColorBrush_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionColorBrush is access all ICompositionColorBrush_Interface'Class;
@@ -168,9 +196,11 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionDrawingSurface2_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionDrawingSurface2 is access all ICompositionDrawingSurface2_Interface'Class;
+   type ICompositionDrawingSurface2_Ptr is access all ICompositionDrawingSurface2;
 
    type ICompositionDrawingSurfaceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionDrawingSurfaceFactory is access all ICompositionDrawingSurfaceFactory_Interface'Class;
+   type ICompositionDrawingSurfaceFactory_Ptr is access all ICompositionDrawingSurfaceFactory;
 
    type ICompositionEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionEasingFunction is access all ICompositionEasingFunction_Interface'Class;
@@ -178,6 +208,11 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionEasingFunctionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionEasingFunctionFactory is access all ICompositionEasingFunctionFactory_Interface'Class;
+   type ICompositionEasingFunctionFactory_Ptr is access all ICompositionEasingFunctionFactory;
+
+   type ICompositionEasingFunctionStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type ICompositionEasingFunctionStatics is access all ICompositionEasingFunctionStatics_Interface'Class;
+   type ICompositionEasingFunctionStatics_Ptr is access all ICompositionEasingFunctionStatics;
 
    type ICompositionEffectBrush_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionEffectBrush is access all ICompositionEffectBrush_Interface'Class;
@@ -193,6 +228,7 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionEffectSourceParameterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionEffectSourceParameterFactory is access all ICompositionEffectSourceParameterFactory_Interface'Class;
+   type ICompositionEffectSourceParameterFactory_Ptr is access all ICompositionEffectSourceParameterFactory;
 
    type ICompositionEllipseGeometry_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionEllipseGeometry is access all ICompositionEllipseGeometry_Interface'Class;
@@ -208,6 +244,7 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionGeometryFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionGeometryFactory is access all ICompositionGeometryFactory_Interface'Class;
+   type ICompositionGeometryFactory_Ptr is access all ICompositionGeometryFactory;
 
    type ICompositionGradientBrush_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionGradientBrush is access all ICompositionGradientBrush_Interface'Class;
@@ -215,9 +252,11 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionGradientBrush2_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionGradientBrush2 is access all ICompositionGradientBrush2_Interface'Class;
+   type ICompositionGradientBrush2_Ptr is access all ICompositionGradientBrush2;
 
    type ICompositionGradientBrushFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionGradientBrushFactory is access all ICompositionGradientBrushFactory_Interface'Class;
+   type ICompositionGradientBrushFactory_Ptr is access all ICompositionGradientBrushFactory;
 
    type ICompositionGraphicsDevice_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionGraphicsDevice is access all ICompositionGraphicsDevice_Interface'Class;
@@ -225,9 +264,15 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionGraphicsDevice2_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionGraphicsDevice2 is access all ICompositionGraphicsDevice2_Interface'Class;
+   type ICompositionGraphicsDevice2_Ptr is access all ICompositionGraphicsDevice2;
 
    type ICompositionGraphicsDevice3_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionGraphicsDevice3 is access all ICompositionGraphicsDevice3_Interface'Class;
+   type ICompositionGraphicsDevice3_Ptr is access all ICompositionGraphicsDevice3;
+
+   type ICompositionGraphicsDevice4_Interface is interface and WinRt.IInspectable_Interface;
+   type ICompositionGraphicsDevice4 is access all ICompositionGraphicsDevice4_Interface'Class;
+   type ICompositionGraphicsDevice4_Ptr is access all ICompositionGraphicsDevice4;
 
    type ICompositionLight_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionLight is access all ICompositionLight_Interface'Class;
@@ -235,12 +280,15 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionLight2_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionLight2 is access all ICompositionLight2_Interface'Class;
+   type ICompositionLight2_Ptr is access all ICompositionLight2;
 
    type ICompositionLight3_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionLight3 is access all ICompositionLight3_Interface'Class;
+   type ICompositionLight3_Ptr is access all ICompositionLight3;
 
    type ICompositionLightFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionLightFactory is access all ICompositionLightFactory_Interface'Class;
+   type ICompositionLightFactory_Ptr is access all ICompositionLightFactory;
 
    type ICompositionLineGeometry_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionLineGeometry is access all ICompositionLineGeometry_Interface'Class;
@@ -268,18 +316,27 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionObject2_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionObject2 is access all ICompositionObject2_Interface'Class;
+   type ICompositionObject2_Ptr is access all ICompositionObject2;
 
    type ICompositionObject3_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionObject3 is access all ICompositionObject3_Interface'Class;
+   type ICompositionObject3_Ptr is access all ICompositionObject3;
 
    type ICompositionObject4_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionObject4 is access all ICompositionObject4_Interface'Class;
+   type ICompositionObject4_Ptr is access all ICompositionObject4;
+
+   type ICompositionObject5_Interface is interface and WinRt.IInspectable_Interface;
+   type ICompositionObject5 is access all ICompositionObject5_Interface'Class;
+   type ICompositionObject5_Ptr is access all ICompositionObject5;
 
    type ICompositionObjectFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionObjectFactory is access all ICompositionObjectFactory_Interface'Class;
+   type ICompositionObjectFactory_Ptr is access all ICompositionObjectFactory;
 
    type ICompositionObjectStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionObjectStatics is access all ICompositionObjectStatics_Interface'Class;
+   type ICompositionObjectStatics_Ptr is access all ICompositionObjectStatics;
 
    type ICompositionPath_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionPath is access all ICompositionPath_Interface'Class;
@@ -287,6 +344,7 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionPathFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionPathFactory is access all ICompositionPathFactory_Interface'Class;
+   type ICompositionPathFactory_Ptr is access all ICompositionPathFactory;
 
    type ICompositionPathGeometry_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionPathGeometry is access all ICompositionPathGeometry_Interface'Class;
@@ -306,6 +364,7 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionProjectedShadowCasterCollectionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionProjectedShadowCasterCollectionStatics is access all ICompositionProjectedShadowCasterCollectionStatics_Interface'Class;
+   type ICompositionProjectedShadowCasterCollectionStatics_Ptr is access all ICompositionProjectedShadowCasterCollectionStatics;
 
    type ICompositionProjectedShadowReceiver_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionProjectedShadowReceiver is access all ICompositionProjectedShadowReceiver_Interface'Class;
@@ -321,6 +380,7 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionPropertySet2_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionPropertySet2 is access all ICompositionPropertySet2_Interface'Class;
+   type ICompositionPropertySet2_Ptr is access all ICompositionPropertySet2;
 
    type ICompositionRadialGradientBrush_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionRadialGradientBrush is access all ICompositionRadialGradientBrush_Interface'Class;
@@ -344,6 +404,7 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionShadowFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionShadowFactory is access all ICompositionShadowFactory_Interface'Class;
+   type ICompositionShadowFactory_Ptr is access all ICompositionShadowFactory;
 
    type ICompositionShape_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionShape is access all ICompositionShape_Interface'Class;
@@ -352,13 +413,19 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionShapeFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionShapeFactory is access all ICompositionShapeFactory_Interface'Class;
+   type ICompositionShapeFactory_Ptr is access all ICompositionShapeFactory;
 
    type ICompositionSpriteShape_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionSpriteShape is access all ICompositionSpriteShape_Interface'Class;
    type ICompositionSpriteShape_Ptr is access all ICompositionSpriteShape;
 
+   type ICompositionSupportsSystemBackdrop_Interface is interface and WinRt.IInspectable_Interface;
+   type ICompositionSupportsSystemBackdrop is access all ICompositionSupportsSystemBackdrop_Interface'Class;
+   type ICompositionSupportsSystemBackdrop_Ptr is access all ICompositionSupportsSystemBackdrop;
+
    type ICompositionSurface_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionSurface is access all ICompositionSurface_Interface'Class;
+   type ICompositionSurface_Ptr is access all ICompositionSurface;
 
    type ICompositionSurfaceBrush_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionSurfaceBrush is access all ICompositionSurfaceBrush_Interface'Class;
@@ -366,9 +433,15 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionSurfaceBrush2_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionSurfaceBrush2 is access all ICompositionSurfaceBrush2_Interface'Class;
+   type ICompositionSurfaceBrush2_Ptr is access all ICompositionSurfaceBrush2;
 
    type ICompositionSurfaceBrush3_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionSurfaceBrush3 is access all ICompositionSurfaceBrush3_Interface'Class;
+   type ICompositionSurfaceBrush3_Ptr is access all ICompositionSurfaceBrush3;
+
+   type ICompositionSurfaceFacade_Interface is interface and WinRt.IInspectable_Interface;
+   type ICompositionSurfaceFacade is access all ICompositionSurfaceFacade_Interface'Class;
+   type ICompositionSurfaceFacade_Ptr is access all ICompositionSurfaceFacade;
 
    type ICompositionTarget_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionTarget is access all ICompositionTarget_Interface'Class;
@@ -376,6 +449,15 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionTargetFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionTargetFactory is access all ICompositionTargetFactory_Interface'Class;
+   type ICompositionTargetFactory_Ptr is access all ICompositionTargetFactory;
+
+   type ICompositionTexture_Interface is interface and WinRt.IInspectable_Interface;
+   type ICompositionTexture is access all ICompositionTexture_Interface'Class;
+   type ICompositionTexture_Ptr is access all ICompositionTexture;
+
+   type ICompositionTextureFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type ICompositionTextureFactory is access all ICompositionTextureFactory_Interface'Class;
+   type ICompositionTextureFactory_Ptr is access all ICompositionTextureFactory;
 
    type ICompositionTransform_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionTransform is access all ICompositionTransform_Interface'Class;
@@ -383,6 +465,7 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionTransformFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionTransformFactory is access all ICompositionTransformFactory_Interface'Class;
+   type ICompositionTransformFactory_Ptr is access all ICompositionTransformFactory;
 
    type ICompositionViewBox_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionViewBox is access all ICompositionViewBox_Interface'Class;
@@ -394,6 +477,7 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositionVirtualDrawingSurfaceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionVirtualDrawingSurfaceFactory is access all ICompositionVirtualDrawingSurfaceFactory_Interface'Class;
+   type ICompositionVirtualDrawingSurfaceFactory_Ptr is access all ICompositionVirtualDrawingSurfaceFactory;
 
    type ICompositionVisualSurface_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionVisualSurface is access all ICompositionVisualSurface_Interface'Class;
@@ -405,30 +489,51 @@ package WinRt.Windows.UI.Composition is
 
    type ICompositor2_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositor2 is access all ICompositor2_Interface'Class;
+   type ICompositor2_Ptr is access all ICompositor2;
 
    type ICompositor3_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositor3 is access all ICompositor3_Interface'Class;
+   type ICompositor3_Ptr is access all ICompositor3;
 
    type ICompositor4_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositor4 is access all ICompositor4_Interface'Class;
+   type ICompositor4_Ptr is access all ICompositor4;
 
    type ICompositor5_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositor5 is access all ICompositor5_Interface'Class;
+   type ICompositor5_Ptr is access all ICompositor5;
 
    type ICompositor6_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositor6 is access all ICompositor6_Interface'Class;
+   type ICompositor6_Ptr is access all ICompositor6;
+
+   type ICompositor7_Interface is interface and WinRt.IInspectable_Interface;
+   type ICompositor7 is access all ICompositor7_Interface'Class;
+   type ICompositor7_Ptr is access all ICompositor7;
+
+   type ICompositor8_Interface is interface and WinRt.IInspectable_Interface;
+   type ICompositor8 is access all ICompositor8_Interface'Class;
+   type ICompositor8_Ptr is access all ICompositor8;
 
    type ICompositorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositorStatics is access all ICompositorStatics_Interface'Class;
+   type ICompositorStatics_Ptr is access all ICompositorStatics;
+
+   type ICompositorWithBlurredWallpaperBackdropBrush_Interface is interface and WinRt.IInspectable_Interface;
+   type ICompositorWithBlurredWallpaperBackdropBrush is access all ICompositorWithBlurredWallpaperBackdropBrush_Interface'Class;
+   type ICompositorWithBlurredWallpaperBackdropBrush_Ptr is access all ICompositorWithBlurredWallpaperBackdropBrush;
 
    type ICompositorWithProjectedShadow_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositorWithProjectedShadow is access all ICompositorWithProjectedShadow_Interface'Class;
+   type ICompositorWithProjectedShadow_Ptr is access all ICompositorWithProjectedShadow;
 
    type ICompositorWithRadialGradient_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositorWithRadialGradient is access all ICompositorWithRadialGradient_Interface'Class;
+   type ICompositorWithRadialGradient_Ptr is access all ICompositorWithRadialGradient;
 
    type ICompositorWithVisualSurface_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositorWithVisualSurface is access all ICompositorWithVisualSurface_Interface'Class;
+   type ICompositorWithVisualSurface_Ptr is access all ICompositorWithVisualSurface;
 
    type IContainerVisual_Interface is interface and WinRt.IInspectable_Interface;
    type IContainerVisual is access all IContainerVisual_Interface'Class;
@@ -436,10 +541,19 @@ package WinRt.Windows.UI.Composition is
 
    type IContainerVisualFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IContainerVisualFactory is access all IContainerVisualFactory_Interface'Class;
+   type IContainerVisualFactory_Ptr is access all IContainerVisualFactory;
 
    type ICubicBezierEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
    type ICubicBezierEasingFunction is access all ICubicBezierEasingFunction_Interface'Class;
    type ICubicBezierEasingFunction_Ptr is access all ICubicBezierEasingFunction;
+
+   type IDelegatedInkTrailVisual_Interface is interface and WinRt.IInspectable_Interface;
+   type IDelegatedInkTrailVisual is access all IDelegatedInkTrailVisual_Interface'Class;
+   type IDelegatedInkTrailVisual_Ptr is access all IDelegatedInkTrailVisual;
+
+   type IDelegatedInkTrailVisualStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IDelegatedInkTrailVisualStatics is access all IDelegatedInkTrailVisualStatics_Interface'Class;
+   type IDelegatedInkTrailVisualStatics_Ptr is access all IDelegatedInkTrailVisualStatics;
 
    type IDistantLight_Interface is interface and WinRt.IInspectable_Interface;
    type IDistantLight is access all IDistantLight_Interface'Class;
@@ -447,6 +561,7 @@ package WinRt.Windows.UI.Composition is
 
    type IDistantLight2_Interface is interface and WinRt.IInspectable_Interface;
    type IDistantLight2 is access all IDistantLight2_Interface'Class;
+   type IDistantLight2_Ptr is access all IDistantLight2;
 
    type IDropShadow_Interface is interface and WinRt.IInspectable_Interface;
    type IDropShadow is access all IDropShadow_Interface'Class;
@@ -454,6 +569,15 @@ package WinRt.Windows.UI.Composition is
 
    type IDropShadow2_Interface is interface and WinRt.IInspectable_Interface;
    type IDropShadow2 is access all IDropShadow2_Interface'Class;
+   type IDropShadow2_Ptr is access all IDropShadow2;
+
+   type IElasticEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
+   type IElasticEasingFunction is access all IElasticEasingFunction_Interface'Class;
+   type IElasticEasingFunction_Ptr is access all IElasticEasingFunction;
+
+   type IExponentialEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
+   type IExponentialEasingFunction is access all IExponentialEasingFunction_Interface'Class;
+   type IExponentialEasingFunction_Ptr is access all IExponentialEasingFunction;
 
    type IExpressionAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IExpressionAnimation is access all IExpressionAnimation_Interface'Class;
@@ -473,12 +597,15 @@ package WinRt.Windows.UI.Composition is
 
    type IKeyFrameAnimation2_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyFrameAnimation2 is access all IKeyFrameAnimation2_Interface'Class;
+   type IKeyFrameAnimation2_Ptr is access all IKeyFrameAnimation2;
 
    type IKeyFrameAnimation3_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyFrameAnimation3 is access all IKeyFrameAnimation3_Interface'Class;
+   type IKeyFrameAnimation3_Ptr is access all IKeyFrameAnimation3;
 
    type IKeyFrameAnimationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyFrameAnimationFactory is access all IKeyFrameAnimationFactory_Interface'Class;
+   type IKeyFrameAnimationFactory_Ptr is access all IKeyFrameAnimationFactory;
 
    type ILayerVisual_Interface is interface and WinRt.IInspectable_Interface;
    type ILayerVisual is access all ILayerVisual_Interface'Class;
@@ -486,6 +613,7 @@ package WinRt.Windows.UI.Composition is
 
    type ILayerVisual2_Interface is interface and WinRt.IInspectable_Interface;
    type ILayerVisual2 is access all ILayerVisual2_Interface'Class;
+   type ILayerVisual2_Ptr is access all ILayerVisual2;
 
    type ILinearEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
    type ILinearEasingFunction is access all ILinearEasingFunction_Interface'Class;
@@ -497,6 +625,7 @@ package WinRt.Windows.UI.Composition is
 
    type INaturalMotionAnimationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INaturalMotionAnimationFactory is access all INaturalMotionAnimationFactory_Interface'Class;
+   type INaturalMotionAnimationFactory_Ptr is access all INaturalMotionAnimationFactory;
 
    type IPathKeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IPathKeyFrameAnimation is access all IPathKeyFrameAnimation_Interface'Class;
@@ -508,13 +637,23 @@ package WinRt.Windows.UI.Composition is
 
    type IPointLight2_Interface is interface and WinRt.IInspectable_Interface;
    type IPointLight2 is access all IPointLight2_Interface'Class;
+   type IPointLight2_Ptr is access all IPointLight2;
 
    type IPointLight3_Interface is interface and WinRt.IInspectable_Interface;
    type IPointLight3 is access all IPointLight3_Interface'Class;
+   type IPointLight3_Ptr is access all IPointLight3;
+
+   type IPowerEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
+   type IPowerEasingFunction is access all IPowerEasingFunction_Interface'Class;
+   type IPowerEasingFunction_Ptr is access all IPowerEasingFunction;
 
    type IQuaternionKeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IQuaternionKeyFrameAnimation is access all IQuaternionKeyFrameAnimation_Interface'Class;
    type IQuaternionKeyFrameAnimation_Ptr is access all IQuaternionKeyFrameAnimation;
+
+   type IRectangleClip_Interface is interface and WinRt.IInspectable_Interface;
+   type IRectangleClip is access all IRectangleClip_Interface'Class;
+   type IRectangleClip_Ptr is access all IRectangleClip;
 
    type IRedirectVisual_Interface is interface and WinRt.IInspectable_Interface;
    type IRedirectVisual is access all IRedirectVisual_Interface'Class;
@@ -534,10 +673,15 @@ package WinRt.Windows.UI.Composition is
 
    type IScalarNaturalMotionAnimationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IScalarNaturalMotionAnimationFactory is access all IScalarNaturalMotionAnimationFactory_Interface'Class;
+   type IScalarNaturalMotionAnimationFactory_Ptr is access all IScalarNaturalMotionAnimationFactory;
 
    type IShapeVisual_Interface is interface and WinRt.IInspectable_Interface;
    type IShapeVisual is access all IShapeVisual_Interface'Class;
    type IShapeVisual_Ptr is access all IShapeVisual;
+
+   type ISineEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
+   type ISineEasingFunction is access all ISineEasingFunction_Interface'Class;
+   type ISineEasingFunction_Ptr is access all ISineEasingFunction;
 
    type ISpotLight_Interface is interface and WinRt.IInspectable_Interface;
    type ISpotLight is access all ISpotLight_Interface'Class;
@@ -545,9 +689,11 @@ package WinRt.Windows.UI.Composition is
 
    type ISpotLight2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpotLight2 is access all ISpotLight2_Interface'Class;
+   type ISpotLight2_Ptr is access all ISpotLight2;
 
    type ISpotLight3_Interface is interface and WinRt.IInspectable_Interface;
    type ISpotLight3 is access all ISpotLight3_Interface'Class;
+   type ISpotLight3_Ptr is access all ISpotLight3;
 
    type ISpringScalarNaturalMotionAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type ISpringScalarNaturalMotionAnimation is access all ISpringScalarNaturalMotionAnimation_Interface'Class;
@@ -567,6 +713,7 @@ package WinRt.Windows.UI.Composition is
 
    type ISpriteVisual2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpriteVisual2 is access all ISpriteVisual2_Interface'Class;
+   type ISpriteVisual2_Ptr is access all ISpriteVisual2;
 
    type IStepEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
    type IStepEasingFunction is access all IStepEasingFunction_Interface'Class;
@@ -582,6 +729,7 @@ package WinRt.Windows.UI.Composition is
 
    type IVector2NaturalMotionAnimationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVector2NaturalMotionAnimationFactory is access all IVector2NaturalMotionAnimationFactory_Interface'Class;
+   type IVector2NaturalMotionAnimationFactory_Ptr is access all IVector2NaturalMotionAnimationFactory;
 
    type IVector3KeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IVector3KeyFrameAnimation is access all IVector3KeyFrameAnimation_Interface'Class;
@@ -593,6 +741,7 @@ package WinRt.Windows.UI.Composition is
 
    type IVector3NaturalMotionAnimationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVector3NaturalMotionAnimationFactory is access all IVector3NaturalMotionAnimationFactory_Interface'Class;
+   type IVector3NaturalMotionAnimationFactory_Ptr is access all IVector3NaturalMotionAnimationFactory;
 
    type IVector4KeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IVector4KeyFrameAnimation is access all IVector4KeyFrameAnimation_Interface'Class;
@@ -604,9 +753,15 @@ package WinRt.Windows.UI.Composition is
 
    type IVisual2_Interface is interface and WinRt.IInspectable_Interface;
    type IVisual2 is access all IVisual2_Interface'Class;
+   type IVisual2_Ptr is access all IVisual2;
 
    type IVisual3_Interface is interface and WinRt.IInspectable_Interface;
    type IVisual3 is access all IVisual3_Interface'Class;
+   type IVisual3_Ptr is access all IVisual3;
+
+   type IVisual4_Interface is interface and WinRt.IInspectable_Interface;
+   type IVisual4 is access all IVisual4_Interface'Class;
+   type IVisual4_Ptr is access all IVisual4;
 
    type IVisualCollection_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualCollection is access all IVisualCollection_Interface'Class;
@@ -614,9 +769,15 @@ package WinRt.Windows.UI.Composition is
 
    type IVisualElement_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualElement is access all IVisualElement_Interface'Class;
+   type IVisualElement_Ptr is access all IVisualElement;
+
+   type IVisualElement2_Interface is interface and WinRt.IInspectable_Interface;
+   type IVisualElement2 is access all IVisualElement2_Interface'Class;
+   type IVisualElement2_Ptr is access all IVisualElement2;
 
    type IVisualFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualFactory is access all IVisualFactory_Interface'Class;
+   type IVisualFactory_Ptr is access all IVisualFactory;
 
    type IVisualUnorderedCollection_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualUnorderedCollection is access all IVisualUnorderedCollection_Interface'Class;
@@ -656,6 +817,18 @@ package WinRt.Windows.UI.Composition is
       end record;
    type AnimationPropertyInfo_Ptr is access all AnimationPropertyInfo;
 
+   type CompositionEasingFunction is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ICompositionEasingFunction : access Windows.UI.Composition.ICompositionEasingFunction;
+      end record;
+   type CompositionEasingFunction_Ptr is access all CompositionEasingFunction;
+
+   type BackEasingFunction is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IBackEasingFunction : access Windows.UI.Composition.IBackEasingFunction;
+      end record;
+   type BackEasingFunction_Ptr is access all BackEasingFunction;
+
    type CompositionAnimation is new Ada.Finalization.Limited_Controlled with
       record
          m_ICompositionAnimation : access Windows.UI.Composition.ICompositionAnimation;
@@ -673,6 +846,12 @@ package WinRt.Windows.UI.Composition is
          m_IBooleanKeyFrameAnimation : access Windows.UI.Composition.IBooleanKeyFrameAnimation;
       end record;
    type BooleanKeyFrameAnimation_Ptr is access all BooleanKeyFrameAnimation;
+
+   type BounceEasingFunction is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IBounceEasingFunction : access Windows.UI.Composition.IBounceEasingFunction;
+      end record;
+   type BounceEasingFunction_Ptr is access all BounceEasingFunction;
 
    type NaturalMotionAnimation is new Ada.Finalization.Limited_Controlled with
       record
@@ -715,6 +894,12 @@ package WinRt.Windows.UI.Composition is
          m_IBounceVector3NaturalMotionAnimation : access Windows.UI.Composition.IBounceVector3NaturalMotionAnimation;
       end record;
    type BounceVector3NaturalMotionAnimation_Ptr is access all BounceVector3NaturalMotionAnimation;
+
+   type CircleEasingFunction is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ICircleEasingFunction : access Windows.UI.Composition.ICircleEasingFunction;
+      end record;
+   type CircleEasingFunction_Ptr is access all CircleEasingFunction;
 
    type ColorKeyFrameAnimation is new Ada.Finalization.Limited_Controlled with
       record
@@ -799,12 +984,6 @@ package WinRt.Windows.UI.Composition is
          m_ICompositionDrawingSurface : access Windows.UI.Composition.ICompositionDrawingSurface;
       end record;
    type CompositionDrawingSurface_Ptr is access all CompositionDrawingSurface;
-
-   type CompositionEasingFunction is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ICompositionEasingFunction : access Windows.UI.Composition.ICompositionEasingFunction;
-      end record;
-   type CompositionEasingFunction_Ptr is access all CompositionEasingFunction;
 
    type CompositionEffectBrush is new Ada.Finalization.Limited_Controlled with
       record
@@ -992,6 +1171,12 @@ package WinRt.Windows.UI.Composition is
       end record;
    type CompositionTarget_Ptr is access all CompositionTarget;
 
+   type CompositionTexture is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ICompositionTexture : access Windows.UI.Composition.ICompositionTexture;
+      end record;
+   type CompositionTexture_Ptr is access all CompositionTexture;
+
    type CompositionTransform is new Ada.Finalization.Limited_Controlled with
       record
          m_ICompositionTransform : access Windows.UI.Composition.ICompositionTransform;
@@ -1040,6 +1225,12 @@ package WinRt.Windows.UI.Composition is
       end record;
    type CubicBezierEasingFunction_Ptr is access all CubicBezierEasingFunction;
 
+   type DelegatedInkTrailVisual is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IDelegatedInkTrailVisual : access Windows.UI.Composition.IDelegatedInkTrailVisual;
+      end record;
+   type DelegatedInkTrailVisual_Ptr is access all DelegatedInkTrailVisual;
+
    type DistantLight is new Ada.Finalization.Limited_Controlled with
       record
          m_IDistantLight : access Windows.UI.Composition.IDistantLight;
@@ -1051,6 +1242,18 @@ package WinRt.Windows.UI.Composition is
          m_IDropShadow : access Windows.UI.Composition.IDropShadow;
       end record;
    type DropShadow_Ptr is access all DropShadow;
+
+   type ElasticEasingFunction is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IElasticEasingFunction : access Windows.UI.Composition.IElasticEasingFunction;
+      end record;
+   type ElasticEasingFunction_Ptr is access all ElasticEasingFunction;
+
+   type ExponentialEasingFunction is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IExponentialEasingFunction : access Windows.UI.Composition.IExponentialEasingFunction;
+      end record;
+   type ExponentialEasingFunction_Ptr is access all ExponentialEasingFunction;
 
    type ExpressionAnimation is new Ada.Finalization.Limited_Controlled with
       record
@@ -1100,11 +1303,23 @@ package WinRt.Windows.UI.Composition is
       end record;
    type PointLight_Ptr is access all PointLight;
 
+   type PowerEasingFunction is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPowerEasingFunction : access Windows.UI.Composition.IPowerEasingFunction;
+      end record;
+   type PowerEasingFunction_Ptr is access all PowerEasingFunction;
+
    type QuaternionKeyFrameAnimation is new Ada.Finalization.Limited_Controlled with
       record
          m_IQuaternionKeyFrameAnimation : access Windows.UI.Composition.IQuaternionKeyFrameAnimation;
       end record;
    type QuaternionKeyFrameAnimation_Ptr is access all QuaternionKeyFrameAnimation;
+
+   type RectangleClip is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IRectangleClip : access Windows.UI.Composition.IRectangleClip;
+      end record;
+   type RectangleClip_Ptr is access all RectangleClip;
 
    type RedirectVisual is new Ada.Finalization.Limited_Controlled with
       record
@@ -1129,6 +1344,12 @@ package WinRt.Windows.UI.Composition is
          m_IShapeVisual : access Windows.UI.Composition.IShapeVisual;
       end record;
    type ShapeVisual_Ptr is access all ShapeVisual;
+
+   type SineEasingFunction is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ISineEasingFunction : access Windows.UI.Composition.ISineEasingFunction;
+      end record;
+   type SineEasingFunction_Ptr is access all SineEasingFunction;
 
    type SpotLight is new Ada.Finalization.Limited_Controlled with
       record
@@ -1376,6 +1597,18 @@ package WinRt.Windows.UI.Composition is
    );
    type CompositionDropShadowSourcePolicy_Ptr is access all CompositionDropShadowSourcePolicy;
 
+   type CompositionEasingFunctionMode is (
+      In_e,
+      Out_e,
+      InOut_e
+   );
+   for CompositionEasingFunctionMode use (
+      In_e => 0,
+      Out_e => 1,
+      InOut_e => 2
+   );
+   type CompositionEasingFunctionMode_Ptr is access all CompositionEasingFunctionMode;
+
    type CompositionEffectFactoryLoadStatus is (
       Other_e,
       Success_e,
@@ -1465,6 +1698,17 @@ package WinRt.Windows.UI.Composition is
       MiterOrBevel_e => 3
    );
    type CompositionStrokeLineJoin_Ptr is access all CompositionStrokeLineJoin;
+
+   -----------------------------------------------------------------------------
+   -- Record declarations
+   -----------------------------------------------------------------------------
+
+   type InkTrailPoint is record
+      Point : WinRt.Windows.Foundation.Point;
+      Radius : WinRt.Single;
+   end record with Convention => C_Pass_By_Copy;
+   type InkTrailPoint_Ptr is access all InkTrailPoint;
+   type InkTrailPoint_Array is array (Natural range <>) of aliased InkTrailPoint;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations
@@ -1635,6 +1879,44 @@ package WinRt.Windows.UI.Composition is
       IID_IAnimationPropertyInfo : aliased WinRt.IID := (4101074693, 60791, 20028, (179, 40, 92, 57, 133, 179, 115, 143 ));
 
    -----------------------------------------------------------------------------
+   -- type IAnimationPropertyInfo2 is interface and WinRt.IInspectable;
+
+      function GetResolvedCompositionObject
+      (
+         this : access IAnimationPropertyInfo2_Interface;
+         RetVal : access Windows.UI.Composition.ICompositionObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetResolvedCompositionObjectProperty
+      (
+         this : access IAnimationPropertyInfo2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAnimationPropertyInfo2 : aliased WinRt.IID := (1494687924, 29810, 21016, (139, 57, 223, 254, 97, 90, 230, 218 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBackEasingFunction is interface and WinRt.IInspectable;
+
+      function get_Mode
+      (
+         this : access IBackEasingFunction_Interface;
+         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Amplitude
+      (
+         this : access IBackEasingFunction_Interface;
+         RetVal : access WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBackEasingFunction : aliased WinRt.IID := (3092647332, 24124, 21597, (178, 99, 121, 135, 162, 189, 39, 203 ));
+
+   -----------------------------------------------------------------------------
    -- type IBooleanKeyFrameAnimation is interface and WinRt.IInspectable;
 
       function InsertKeyFrame
@@ -1646,6 +1928,32 @@ package WinRt.Windows.UI.Composition is
       return WinRt.Hresult is abstract;
 
       IID_IBooleanKeyFrameAnimation : aliased WinRt.IID := (2514631176, 53748, 18802, (151, 112, 62, 254, 104, 216, 46, 20 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBounceEasingFunction is interface and WinRt.IInspectable;
+
+      function get_Mode
+      (
+         this : access IBounceEasingFunction_Interface;
+         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Bounces
+      (
+         this : access IBounceEasingFunction_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Bounciness
+      (
+         this : access IBounceEasingFunction_Interface;
+         RetVal : access WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBounceEasingFunction : aliased WinRt.IID := (3892163659, 43733, 20852, (148, 33, 238, 248, 183, 90, 106, 67 ));
 
    -----------------------------------------------------------------------------
    -- type IBounceScalarNaturalMotionAnimation is interface and WinRt.IInspectable;
@@ -1745,6 +2053,18 @@ package WinRt.Windows.UI.Composition is
       return WinRt.Hresult is abstract;
 
       IID_IBounceVector3NaturalMotionAnimation : aliased WinRt.IID := (1205517361, 4307, 17688, (134, 241, 9, 202, 247, 66, 209, 19 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICircleEasingFunction is interface and WinRt.IInspectable;
+
+      function get_Mode
+      (
+         this : access ICircleEasingFunction_Interface;
+         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICircleEasingFunction : aliased WinRt.IID := (503783978, 28546, 23080, (135, 72, 46, 146, 252, 70, 238, 43 ));
 
    -----------------------------------------------------------------------------
    -- type IColorKeyFrameAnimation is interface and WinRt.IInspectable;
@@ -2341,6 +2661,116 @@ package WinRt.Windows.UI.Composition is
       IID_ICompositionEasingFunctionFactory : aliased WinRt.IID := (1619265396, 15776, 18761, (130, 0, 114, 6, 192, 1, 144, 160 ));
 
    -----------------------------------------------------------------------------
+   -- type ICompositionEasingFunctionStatics is interface and WinRt.IInspectable;
+
+      function CreateCubicBezierEasingFunction
+      (
+         this : access ICompositionEasingFunctionStatics_Interface;
+         owner : Windows.UI.Composition.ICompositor;
+         controlPoint1 : Windows.Foundation.Numerics.Vector2;
+         controlPoint2 : Windows.Foundation.Numerics.Vector2;
+         RetVal : access Windows.UI.Composition.ICubicBezierEasingFunction
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateLinearEasingFunction
+      (
+         this : access ICompositionEasingFunctionStatics_Interface;
+         owner : Windows.UI.Composition.ICompositor;
+         RetVal : access Windows.UI.Composition.ILinearEasingFunction
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateStepEasingFunction
+      (
+         this : access ICompositionEasingFunctionStatics_Interface;
+         owner : Windows.UI.Composition.ICompositor;
+         RetVal : access Windows.UI.Composition.IStepEasingFunction
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateStepEasingFunction
+      (
+         this : access ICompositionEasingFunctionStatics_Interface;
+         owner : Windows.UI.Composition.ICompositor;
+         stepCount : WinRt.Int32;
+         RetVal : access Windows.UI.Composition.IStepEasingFunction
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateBackEasingFunction
+      (
+         this : access ICompositionEasingFunctionStatics_Interface;
+         owner : Windows.UI.Composition.ICompositor;
+         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+         amplitude : WinRt.Single;
+         RetVal : access Windows.UI.Composition.IBackEasingFunction
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateBounceEasingFunction
+      (
+         this : access ICompositionEasingFunctionStatics_Interface;
+         owner : Windows.UI.Composition.ICompositor;
+         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+         bounces : WinRt.Int32;
+         bounciness : WinRt.Single;
+         RetVal : access Windows.UI.Composition.IBounceEasingFunction
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateCircleEasingFunction
+      (
+         this : access ICompositionEasingFunctionStatics_Interface;
+         owner : Windows.UI.Composition.ICompositor;
+         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+         RetVal : access Windows.UI.Composition.ICircleEasingFunction
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateElasticEasingFunction
+      (
+         this : access ICompositionEasingFunctionStatics_Interface;
+         owner : Windows.UI.Composition.ICompositor;
+         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+         oscillations : WinRt.Int32;
+         springiness : WinRt.Single;
+         RetVal : access Windows.UI.Composition.IElasticEasingFunction
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateExponentialEasingFunction
+      (
+         this : access ICompositionEasingFunctionStatics_Interface;
+         owner : Windows.UI.Composition.ICompositor;
+         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+         exponent : WinRt.Single;
+         RetVal : access Windows.UI.Composition.IExponentialEasingFunction
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreatePowerEasingFunction
+      (
+         this : access ICompositionEasingFunctionStatics_Interface;
+         owner : Windows.UI.Composition.ICompositor;
+         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+         power : WinRt.Single;
+         RetVal : access Windows.UI.Composition.IPowerEasingFunction
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateSineEasingFunction
+      (
+         this : access ICompositionEasingFunctionStatics_Interface;
+         owner : Windows.UI.Composition.ICompositor;
+         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+         RetVal : access Windows.UI.Composition.ISineEasingFunction
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICompositionEasingFunctionStatics : aliased WinRt.IID := (396846774, 10550, 21482, (181, 175, 198, 66, 244, 166, 16, 131 ));
+
+   -----------------------------------------------------------------------------
    -- type ICompositionEffectBrush is interface and WinRt.IInspectable;
 
       function GetSourceParameter
@@ -2767,6 +3197,23 @@ package WinRt.Windows.UI.Composition is
       return WinRt.Hresult is abstract;
 
       IID_ICompositionGraphicsDevice3 : aliased WinRt.IID := (938898708, 54255, 18897, (182, 157, 13, 142, 171, 235, 54, 38 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICompositionGraphicsDevice4 is interface and WinRt.IInspectable;
+
+      function CaptureAsync
+      (
+         this : access ICompositionGraphicsDevice4_Interface;
+         captureVisual : Windows.UI.Composition.IVisual;
+         size : Windows.Graphics.SizeInt32;
+         pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
+         alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode;
+         sdrBoost : WinRt.Single;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICompositionGraphicsDevice4 : aliased WinRt.IID := (1517535225, 43391, 19701, (186, 70, 152, 239, 53, 142, 113, 177 ));
 
    -----------------------------------------------------------------------------
    -- type ICompositionLight is interface and WinRt.IInspectable;
@@ -3247,6 +3694,20 @@ package WinRt.Windows.UI.Composition is
       return WinRt.Hresult is abstract;
 
       IID_ICompositionObject4 : aliased WinRt.IID := (196311116, 13419, 19068, (150, 107, 115, 16, 150, 101, 83, 213 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICompositionObject5 is interface and WinRt.IInspectable;
+
+      function StartAnimation
+      (
+         this : access ICompositionObject5_Interface;
+         propertyName : WinRt.HString;
+         animation : Windows.UI.Composition.ICompositionAnimation;
+         animationController_p : Windows.UI.Composition.IAnimationController
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICompositionObject5 : aliased WinRt.IID := (494876955, 41264, 21093, (166, 43, 96, 184, 230, 104, 150, 90 ));
 
    -----------------------------------------------------------------------------
    -- type ICompositionObjectFactory is interface and WinRt.IInspectable;
@@ -4151,6 +4612,25 @@ package WinRt.Windows.UI.Composition is
       IID_ICompositionSpriteShape : aliased WinRt.IID := (1075536315, 7, 17251, (177, 243, 107, 204, 0, 63, 184, 62 ));
 
    -----------------------------------------------------------------------------
+   -- type ICompositionSupportsSystemBackdrop is interface and WinRt.IInspectable;
+
+      function get_SystemBackdrop
+      (
+         this : access ICompositionSupportsSystemBackdrop_Interface;
+         RetVal : access Windows.UI.Composition.ICompositionBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SystemBackdrop
+      (
+         this : access ICompositionSupportsSystemBackdrop_Interface;
+         value : Windows.UI.Composition.ICompositionBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICompositionSupportsSystemBackdrop : aliased WinRt.IID := (964538340, 46786, 23481, (149, 29, 245, 112, 125, 232, 183, 188 ));
+
+   -----------------------------------------------------------------------------
    -- type ICompositionSurface is interface and WinRt.IInspectable;
 
       IID_ICompositionSurface : aliased WinRt.IID := (354898957, 17095, 18342, (164, 8, 102, 143, 121, 169, 13, 251 ));
@@ -4353,6 +4833,18 @@ package WinRt.Windows.UI.Composition is
       IID_ICompositionSurfaceBrush3 : aliased WinRt.IID := (1426829961, 8160, 17125, (129, 149, 30, 239, 168, 127, 240, 142 ));
 
    -----------------------------------------------------------------------------
+   -- type ICompositionSurfaceFacade is interface and WinRt.IInspectable;
+
+      function GetRealSurface
+      (
+         this : access ICompositionSurfaceFacade_Interface;
+         RetVal : access Windows.UI.Composition.ICompositionSurface
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICompositionSurfaceFacade : aliased WinRt.IID := (3759547080, 9010, 21959, (136, 104, 167, 49, 44, 92, 34, 157 ));
+
+   -----------------------------------------------------------------------------
    -- type ICompositionTarget is interface and WinRt.IInspectable;
 
       function get_Root
@@ -4375,6 +4867,58 @@ package WinRt.Windows.UI.Composition is
    -- type ICompositionTargetFactory is interface and WinRt.IInspectable;
 
       IID_ICompositionTargetFactory : aliased WinRt.IID := (2479725867, 34070, 19220, (168, 206, 244, 158, 33, 25, 236, 66 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICompositionTexture is interface and WinRt.IInspectable;
+
+      function get_SourceRect
+      (
+         this : access ICompositionTexture_Interface;
+         RetVal : access Windows.Graphics.RectInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SourceRect
+      (
+         this : access ICompositionTexture_Interface;
+         value : Windows.Graphics.RectInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AlphaMode
+      (
+         this : access ICompositionTexture_Interface;
+         RetVal : access Windows.Graphics.DirectX.DirectXAlphaMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AlphaMode
+      (
+         this : access ICompositionTexture_Interface;
+         value : Windows.Graphics.DirectX.DirectXAlphaMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ColorSpace
+      (
+         this : access ICompositionTexture_Interface;
+         RetVal : access Windows.Graphics.DirectX.DirectXColorSpace
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ColorSpace
+      (
+         this : access ICompositionTexture_Interface;
+         value : Windows.Graphics.DirectX.DirectXColorSpace
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICompositionTexture : aliased WinRt.IID := (880608160, 7178, 19467, (178, 50, 133, 112, 178, 177, 164, 234 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICompositionTextureFactory is interface and WinRt.IInspectable;
+
+      IID_ICompositionTextureFactory : aliased WinRt.IID := (165237309, 18204, 23221, (176, 83, 181, 104, 238, 70, 235, 251 ));
 
    -----------------------------------------------------------------------------
    -- type ICompositionTransform is interface and WinRt.IInspectable;
@@ -5061,6 +5605,70 @@ package WinRt.Windows.UI.Composition is
       IID_ICompositor6 : aliased WinRt.IID := (2050536125, 52936, 20203, (131, 15, 216, 208, 122, 237, 235, 195 ));
 
    -----------------------------------------------------------------------------
+   -- type ICompositor7 is interface and WinRt.IInspectable;
+
+      function get_DispatcherQueue
+      (
+         this : access ICompositor7_Interface;
+         RetVal : access Windows.System.IDispatcherQueue
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateAnimationPropertyInfo
+      (
+         this : access ICompositor7_Interface;
+         RetVal : access Windows.UI.Composition.IAnimationPropertyInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateRectangleClip
+      (
+         this : access ICompositor7_Interface;
+         RetVal : access Windows.UI.Composition.IRectangleClip
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateRectangleClip
+      (
+         this : access ICompositor7_Interface;
+         left : WinRt.Single;
+         top : WinRt.Single;
+         right : WinRt.Single;
+         bottom : WinRt.Single;
+         RetVal : access Windows.UI.Composition.IRectangleClip
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateRectangleClip
+      (
+         this : access ICompositor7_Interface;
+         left : WinRt.Single;
+         top : WinRt.Single;
+         right : WinRt.Single;
+         bottom : WinRt.Single;
+         topLeftRadius : Windows.Foundation.Numerics.Vector2;
+         topRightRadius : Windows.Foundation.Numerics.Vector2;
+         bottomRightRadius : Windows.Foundation.Numerics.Vector2;
+         bottomLeftRadius : Windows.Foundation.Numerics.Vector2;
+         RetVal : access Windows.UI.Composition.IRectangleClip
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICompositor7 : aliased WinRt.IID := (3544727469, 39442, 21434, (191, 200, 136, 183, 255, 121, 119, 198 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICompositor8 is interface and WinRt.IInspectable;
+
+      function CreateAnimationController
+      (
+         this : access ICompositor8_Interface;
+         RetVal : access Windows.UI.Composition.IAnimationController
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICompositor8 : aliased WinRt.IID := (2584469218, 65147, 24418, (163, 102, 156, 248, 239, 254, 33, 18 ));
+
+   -----------------------------------------------------------------------------
    -- type ICompositorStatics is interface and WinRt.IInspectable;
 
       function get_MaxGlobalPlaybackRate
@@ -5078,6 +5686,18 @@ package WinRt.Windows.UI.Composition is
       return WinRt.Hresult is abstract;
 
       IID_ICompositorStatics : aliased WinRt.IID := (135117118, 4638, 19863, (139, 116, 29, 252, 249, 25, 135, 234 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICompositorWithBlurredWallpaperBackdropBrush is interface and WinRt.IInspectable;
+
+      function TryCreateBlurredWallpaperBackdropBrush
+      (
+         this : access ICompositorWithBlurredWallpaperBackdropBrush_Interface;
+         RetVal : access Windows.UI.Composition.ICompositionBackdropBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICompositorWithBlurredWallpaperBackdropBrush : aliased WinRt.IID := (227520912, 61730, 23437, (159, 221, 84, 59, 13, 142, 183, 243 ));
 
    -----------------------------------------------------------------------------
    -- type ICompositorWithProjectedShadow is interface and WinRt.IInspectable;
@@ -5164,6 +5784,67 @@ package WinRt.Windows.UI.Composition is
       return WinRt.Hresult is abstract;
 
       IID_ICubicBezierEasingFunction : aliased WinRt.IID := (842335846, 49640, 17657, (150, 184, 201, 138, 207, 10, 230, 152 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDelegatedInkTrailVisual is interface and WinRt.IInspectable;
+
+      function AddTrailPoints
+      (
+         this : access IDelegatedInkTrailVisual_Interface;
+         inkPointsSize : WinRt.UInt32;
+         inkPoints : Windows.UI.Composition.InkTrailPoint_Ptr;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function AddTrailPointsWithPrediction
+      (
+         this : access IDelegatedInkTrailVisual_Interface;
+         inkPointsSize : WinRt.UInt32;
+         inkPoints : Windows.UI.Composition.InkTrailPoint_Ptr;
+         predictedInkPointsSize : WinRt.UInt32;
+         predictedInkPoints : Windows.UI.Composition.InkTrailPoint_Ptr;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function RemoveTrailPoints
+      (
+         this : access IDelegatedInkTrailVisual_Interface;
+         generationId : WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function StartNewTrail
+      (
+         this : access IDelegatedInkTrailVisual_Interface;
+         color : Windows.UI.Color
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDelegatedInkTrailVisual : aliased WinRt.IID := (2238603441, 57771, 23331, (142, 61, 213, 19, 242, 33, 201, 152 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDelegatedInkTrailVisualStatics is interface and WinRt.IInspectable;
+
+      function Create
+      (
+         this : access IDelegatedInkTrailVisualStatics_Interface;
+         compositor_p : Windows.UI.Composition.ICompositor;
+         RetVal : access Windows.UI.Composition.IDelegatedInkTrailVisual
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateForSwapChain
+      (
+         this : access IDelegatedInkTrailVisualStatics_Interface;
+         compositor_p : Windows.UI.Composition.ICompositor;
+         swapChain : Windows.UI.Composition.ICompositionSurface;
+         RetVal : access Windows.UI.Composition.IDelegatedInkTrailVisual
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDelegatedInkTrailVisualStatics : aliased WinRt.IID := (229600213, 17094, 21852, (146, 103, 224, 172, 102, 58, 248, 54 ));
 
    -----------------------------------------------------------------------------
    -- type IDistantLight is interface and WinRt.IInspectable;
@@ -5324,6 +6005,51 @@ package WinRt.Windows.UI.Composition is
       return WinRt.Hresult is abstract;
 
       IID_IDropShadow2 : aliased WinRt.IID := (1816271036, 5561, 19501, (141, 74, 7, 103, 223, 17, 151, 122 ));
+
+   -----------------------------------------------------------------------------
+   -- type IElasticEasingFunction is interface and WinRt.IInspectable;
+
+      function get_Mode
+      (
+         this : access IElasticEasingFunction_Interface;
+         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Oscillations
+      (
+         this : access IElasticEasingFunction_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Springiness
+      (
+         this : access IElasticEasingFunction_Interface;
+         RetVal : access WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IElasticEasingFunction : aliased WinRt.IID := (1725850245, 1358, 21908, (132, 117, 194, 44, 181, 31, 27, 213 ));
+
+   -----------------------------------------------------------------------------
+   -- type IExponentialEasingFunction is interface and WinRt.IInspectable;
+
+      function get_Mode
+      (
+         this : access IExponentialEasingFunction_Interface;
+         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Exponent
+      (
+         this : access IExponentialEasingFunction_Interface;
+         RetVal : access WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IExponentialEasingFunction : aliased WinRt.IID := (1870469713, 39122, 22072, (163, 74, 0, 72, 101, 84, 199, 80 ));
 
    -----------------------------------------------------------------------------
    -- type IExpressionAnimation is interface and WinRt.IInspectable;
@@ -5811,6 +6537,25 @@ package WinRt.Windows.UI.Composition is
       IID_IPointLight3 : aliased WinRt.IID := (1275757415, 54505, 18058, (135, 174, 123, 164, 58, 178, 148, 133 ));
 
    -----------------------------------------------------------------------------
+   -- type IPowerEasingFunction is interface and WinRt.IInspectable;
+
+      function get_Mode
+      (
+         this : access IPowerEasingFunction_Interface;
+         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Power
+      (
+         this : access IPowerEasingFunction_Interface;
+         RetVal : access WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPowerEasingFunction : aliased WinRt.IID := (3288290262, 5003, 22549, (137, 26, 183, 246, 21, 204, 197, 99 ));
+
+   -----------------------------------------------------------------------------
    -- type IQuaternionKeyFrameAnimation is interface and WinRt.IInspectable;
 
       function InsertKeyFrame
@@ -5831,6 +6576,123 @@ package WinRt.Windows.UI.Composition is
       return WinRt.Hresult is abstract;
 
       IID_IQuaternionKeyFrameAnimation : aliased WinRt.IID := (1078876213, 60662, 16960, (133, 32, 103, 18, 121, 207, 54, 188 ));
+
+   -----------------------------------------------------------------------------
+   -- type IRectangleClip is interface and WinRt.IInspectable;
+
+      function get_Bottom
+      (
+         this : access IRectangleClip_Interface;
+         RetVal : access WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Bottom
+      (
+         this : access IRectangleClip_Interface;
+         value : WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_BottomLeftRadius
+      (
+         this : access IRectangleClip_Interface;
+         RetVal : access Windows.Foundation.Numerics.Vector2
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_BottomLeftRadius
+      (
+         this : access IRectangleClip_Interface;
+         value : Windows.Foundation.Numerics.Vector2
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_BottomRightRadius
+      (
+         this : access IRectangleClip_Interface;
+         RetVal : access Windows.Foundation.Numerics.Vector2
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_BottomRightRadius
+      (
+         this : access IRectangleClip_Interface;
+         value : Windows.Foundation.Numerics.Vector2
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Left
+      (
+         this : access IRectangleClip_Interface;
+         RetVal : access WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Left
+      (
+         this : access IRectangleClip_Interface;
+         value : WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Right
+      (
+         this : access IRectangleClip_Interface;
+         RetVal : access WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Right
+      (
+         this : access IRectangleClip_Interface;
+         value : WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Top
+      (
+         this : access IRectangleClip_Interface;
+         RetVal : access WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Top
+      (
+         this : access IRectangleClip_Interface;
+         value : WinRt.Single
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TopLeftRadius
+      (
+         this : access IRectangleClip_Interface;
+         RetVal : access Windows.Foundation.Numerics.Vector2
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TopLeftRadius
+      (
+         this : access IRectangleClip_Interface;
+         value : Windows.Foundation.Numerics.Vector2
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TopRightRadius
+      (
+         this : access IRectangleClip_Interface;
+         RetVal : access Windows.Foundation.Numerics.Vector2
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TopRightRadius
+      (
+         this : access IRectangleClip_Interface;
+         value : Windows.Foundation.Numerics.Vector2
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IRectangleClip : aliased WinRt.IID := (3018282142, 180, 23379, (139, 232, 53, 63, 108, 67, 49, 1 ));
 
    -----------------------------------------------------------------------------
    -- type IRedirectVisual is interface and WinRt.IInspectable;
@@ -5962,6 +6824,18 @@ package WinRt.Windows.UI.Composition is
       return WinRt.Hresult is abstract;
 
       IID_IShapeVisual : aliased WinRt.IID := (4072477635, 47742, 19215, (145, 38, 255, 183, 83, 107, 129, 118 ));
+
+   -----------------------------------------------------------------------------
+   -- type ISineEasingFunction is interface and WinRt.IInspectable;
+
+      function get_Mode
+      (
+         this : access ISineEasingFunction_Interface;
+         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ISineEasingFunction : aliased WinRt.IID := (4055177407, 38243, 21620, (189, 19, 68, 178, 223, 75, 29, 88 ));
 
    -----------------------------------------------------------------------------
    -- type ISpotLight is interface and WinRt.IInspectable;
@@ -6887,6 +7761,25 @@ package WinRt.Windows.UI.Composition is
       IID_IVisual3 : aliased WinRt.IID := (817780749, 62646, 19127, (128, 221, 55, 56, 203, 172, 159, 44 ));
 
    -----------------------------------------------------------------------------
+   -- type IVisual4 is interface and WinRt.IInspectable;
+
+      function get_IsPixelSnappingEnabled
+      (
+         this : access IVisual4_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsPixelSnappingEnabled
+      (
+         this : access IVisual4_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVisual4 : aliased WinRt.IID := (2490810129, 57931, 23545, (158, 190, 98, 116, 16, 155, 39, 17 ));
+
+   -----------------------------------------------------------------------------
    -- type IVisualCollection is interface and WinRt.IInspectable;
 
       function get_Count
@@ -6945,6 +7838,18 @@ package WinRt.Windows.UI.Composition is
    -- type IVisualElement is interface and WinRt.IInspectable;
 
       IID_IVisualElement : aliased WinRt.IID := (31868434, 7554, 17140, (142, 63, 167, 34, 222, 211, 63, 199 ));
+
+   -----------------------------------------------------------------------------
+   -- type IVisualElement2 is interface and WinRt.IInspectable;
+
+      function GetVisualInternal
+      (
+         this : access IVisualElement2_Interface;
+         RetVal : access Windows.UI.Composition.IVisual
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVisualElement2 : aliased WinRt.IID := (2570774688, 24663, 24128, (145, 140, 224, 110, 11, 126, 124, 100 ));
 
    -----------------------------------------------------------------------------
    -- type IVisualFactory is interface and WinRt.IInspectable;
@@ -7094,6 +7999,14 @@ package WinRt.Windows.UI.Composition is
       propertyName : WinRt.WString
    )
    return WinRt.Windows.UI.Composition.AnimationController'Class;
+
+   procedure StartAnimation
+   (
+      this : in out CompositionObject;
+      propertyName : WinRt.WString;
+      animation : Windows.UI.Composition.CompositionAnimation'Class;
+      animationController_p : Windows.UI.Composition.AnimationController'Class
+   );
 
    procedure Close
    (
@@ -7260,6 +8173,137 @@ package WinRt.Windows.UI.Composition is
       this : in out AnimationPropertyInfo;
       value : Windows.UI.Composition.AnimationPropertyAccessMode
    );
+
+   function GetResolvedCompositionObject
+   (
+      this : in out AnimationPropertyInfo
+   )
+   return WinRt.Windows.UI.Composition.CompositionObject'Class;
+
+   function GetResolvedCompositionObjectProperty
+   (
+      this : in out AnimationPropertyInfo
+   )
+   return WinRt.WString;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CompositionEasingFunction
+
+   overriding procedure Initialize (this : in out CompositionEasingFunction);
+   overriding procedure Finalize (this : in out CompositionEasingFunction);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for CompositionEasingFunction
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for CompositionEasingFunction
+
+   function CreateCubicBezierEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      controlPoint1 : Windows.Foundation.Numerics.Vector2;
+      controlPoint2 : Windows.Foundation.Numerics.Vector2
+   )
+   return WinRt.Windows.UI.Composition.CubicBezierEasingFunction;
+
+   function CreateLinearEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class
+   )
+   return WinRt.Windows.UI.Composition.LinearEasingFunction;
+
+   function CreateStepEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class
+   )
+   return WinRt.Windows.UI.Composition.StepEasingFunction;
+
+   function CreateStepEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      stepCount : WinRt.Int32
+   )
+   return WinRt.Windows.UI.Composition.StepEasingFunction;
+
+   function CreateBackEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      amplitude : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.BackEasingFunction;
+
+   function CreateBounceEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      bounces : WinRt.Int32;
+      bounciness : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.BounceEasingFunction;
+
+   function CreateCircleEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode
+   )
+   return WinRt.Windows.UI.Composition.CircleEasingFunction;
+
+   function CreateElasticEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      oscillations : WinRt.Int32;
+      springiness : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.ElasticEasingFunction;
+
+   function CreateExponentialEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      exponent : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.ExponentialEasingFunction;
+
+   function CreatePowerEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      power : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.PowerEasingFunction;
+
+   function CreateSineEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode
+   )
+   return WinRt.Windows.UI.Composition.SineEasingFunction;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CompositionEasingFunction
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BackEasingFunction
+
+   overriding procedure Initialize (this : in out BackEasingFunction);
+   overriding procedure Finalize (this : in out BackEasingFunction);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BackEasingFunction
+
+   function get_Mode
+   (
+      this : in out BackEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
+
+   function get_Amplitude
+   (
+      this : in out BackEasingFunction
+   )
+   return WinRt.Single;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CompositionAnimation
@@ -7511,6 +8555,33 @@ package WinRt.Windows.UI.Composition is
       normalizedProgressKey : WinRt.Single;
       value : WinRt.Boolean
    );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BounceEasingFunction
+
+   overriding procedure Initialize (this : in out BounceEasingFunction);
+   overriding procedure Finalize (this : in out BounceEasingFunction);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BounceEasingFunction
+
+   function get_Mode
+   (
+      this : in out BounceEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
+
+   function get_Bounces
+   (
+      this : in out BounceEasingFunction
+   )
+   return WinRt.Int32;
+
+   function get_Bounciness
+   (
+      this : in out BounceEasingFunction
+   )
+   return WinRt.Single;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for NaturalMotionAnimation
@@ -7802,6 +8873,21 @@ package WinRt.Windows.UI.Composition is
       this : in out BounceVector3NaturalMotionAnimation;
       value : WinRt.Single
    );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CircleEasingFunction
+
+   overriding procedure Initialize (this : in out CircleEasingFunction);
+   overriding procedure Finalize (this : in out CircleEasingFunction);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CircleEasingFunction
+
+   function get_Mode
+   (
+      this : in out CircleEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ColorKeyFrameAnimation
@@ -8396,18 +9482,6 @@ package WinRt.Windows.UI.Composition is
    );
 
    -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for CompositionEasingFunction
-
-   overriding procedure Initialize (this : in out CompositionEasingFunction);
-   overriding procedure Finalize (this : in out CompositionEasingFunction);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for CompositionEasingFunction
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for CompositionEasingFunction
-
-   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CompositionEffectBrush
 
    overriding procedure Initialize (this : in out CompositionEffectBrush);
@@ -8795,6 +9869,17 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionGraphicsDevice
    );
+
+   function CaptureAsync
+   (
+      this : in out CompositionGraphicsDevice;
+      captureVisual : Windows.UI.Composition.Visual'Class;
+      size : Windows.Graphics.SizeInt32;
+      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
+      alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode;
+      sdrBoost : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.ICompositionSurface;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CompositionLineGeometry
@@ -10213,6 +11298,54 @@ package WinRt.Windows.UI.Composition is
    );
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CompositionTexture
+
+   overriding procedure Initialize (this : in out CompositionTexture);
+   overriding procedure Finalize (this : in out CompositionTexture);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for CompositionTexture
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CompositionTexture
+
+   function get_SourceRect
+   (
+      this : in out CompositionTexture
+   )
+   return WinRt.Windows.Graphics.RectInt32;
+
+   procedure put_SourceRect
+   (
+      this : in out CompositionTexture;
+      value : Windows.Graphics.RectInt32
+   );
+
+   function get_AlphaMode
+   (
+      this : in out CompositionTexture
+   )
+   return WinRt.Windows.Graphics.DirectX.DirectXAlphaMode;
+
+   procedure put_AlphaMode
+   (
+      this : in out CompositionTexture;
+      value : Windows.Graphics.DirectX.DirectXAlphaMode
+   );
+
+   function get_ColorSpace
+   (
+      this : in out CompositionTexture
+   )
+   return WinRt.Windows.Graphics.DirectX.DirectXColorSpace;
+
+   procedure put_ColorSpace
+   (
+      this : in out CompositionTexture;
+      value : Windows.Graphics.DirectX.DirectXColorSpace
+   );
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CompositionTransform
 
    overriding procedure Initialize (this : in out CompositionTransform);
@@ -10843,6 +11976,60 @@ package WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionVisualSurface'Class;
 
+   function get_DispatcherQueue
+   (
+      this : in out Compositor
+   )
+   return WinRt.Windows.System.DispatcherQueue'Class;
+
+   function CreateAnimationPropertyInfo
+   (
+      this : in out Compositor
+   )
+   return WinRt.Windows.UI.Composition.AnimationPropertyInfo'Class;
+
+   function CreateRectangleClip
+   (
+      this : in out Compositor
+   )
+   return WinRt.Windows.UI.Composition.RectangleClip'Class;
+
+   function CreateRectangleClip
+   (
+      this : in out Compositor;
+      left : WinRt.Single;
+      top : WinRt.Single;
+      right : WinRt.Single;
+      bottom : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.RectangleClip'Class;
+
+   function CreateRectangleClip
+   (
+      this : in out Compositor;
+      left : WinRt.Single;
+      top : WinRt.Single;
+      right : WinRt.Single;
+      bottom : WinRt.Single;
+      topLeftRadius : Windows.Foundation.Numerics.Vector2;
+      topRightRadius : Windows.Foundation.Numerics.Vector2;
+      bottomRightRadius : Windows.Foundation.Numerics.Vector2;
+      bottomLeftRadius : Windows.Foundation.Numerics.Vector2
+   )
+   return WinRt.Windows.UI.Composition.RectangleClip'Class;
+
+   function TryCreateBlurredWallpaperBackdropBrush
+   (
+      this : in out Compositor
+   )
+   return WinRt.Windows.UI.Composition.CompositionBackdropBrush'Class;
+
+   function CreateAnimationController
+   (
+      this : in out Compositor
+   )
+   return WinRt.Windows.UI.Composition.AnimationController'Class;
+
    procedure Close
    (
       this : in out Compositor
@@ -11106,6 +12293,18 @@ package WinRt.Windows.UI.Composition is
       value : WinRt.Boolean
    );
 
+   function get_IsPixelSnappingEnabled
+   (
+      this : in out Visual
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsPixelSnappingEnabled
+   (
+      this : in out Visual;
+      value : WinRt.Boolean
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ContainerVisual
 
@@ -11144,6 +12343,58 @@ package WinRt.Windows.UI.Composition is
       this : in out CubicBezierEasingFunction
    )
    return WinRt.Windows.Foundation.Numerics.Vector2;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DelegatedInkTrailVisual
+
+   overriding procedure Initialize (this : in out DelegatedInkTrailVisual);
+   overriding procedure Finalize (this : in out DelegatedInkTrailVisual);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for DelegatedInkTrailVisual
+
+   function Create
+   (
+      compositor_p : Windows.UI.Composition.Compositor'Class
+   )
+   return WinRt.Windows.UI.Composition.DelegatedInkTrailVisual;
+
+   function CreateForSwapChain
+   (
+      compositor_p : Windows.UI.Composition.Compositor'Class;
+      swapChain : Windows.UI.Composition.ICompositionSurface
+   )
+   return WinRt.Windows.UI.Composition.DelegatedInkTrailVisual;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DelegatedInkTrailVisual
+
+   function AddTrailPoints
+   (
+      this : in out DelegatedInkTrailVisual;
+      inkPoints : Windows.UI.Composition.InkTrailPoint_Array
+   )
+   return WinRt.UInt32;
+
+   function AddTrailPointsWithPrediction
+   (
+      this : in out DelegatedInkTrailVisual;
+      inkPoints : Windows.UI.Composition.InkTrailPoint_Array;
+      predictedInkPoints : Windows.UI.Composition.InkTrailPoint_Array
+   )
+   return WinRt.UInt32;
+
+   procedure RemoveTrailPoints
+   (
+      this : in out DelegatedInkTrailVisual;
+      generationId : WinRt.UInt32
+   );
+
+   procedure StartNewTrail
+   (
+      this : in out DelegatedInkTrailVisual;
+      color : Windows.UI.Color
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DistantLight
@@ -11282,6 +12533,54 @@ package WinRt.Windows.UI.Composition is
       this : in out DropShadow;
       value : Windows.UI.Composition.CompositionDropShadowSourcePolicy
    );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for ElasticEasingFunction
+
+   overriding procedure Initialize (this : in out ElasticEasingFunction);
+   overriding procedure Finalize (this : in out ElasticEasingFunction);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for ElasticEasingFunction
+
+   function get_Mode
+   (
+      this : in out ElasticEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
+
+   function get_Oscillations
+   (
+      this : in out ElasticEasingFunction
+   )
+   return WinRt.Int32;
+
+   function get_Springiness
+   (
+      this : in out ElasticEasingFunction
+   )
+   return WinRt.Single;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for ExponentialEasingFunction
+
+   overriding procedure Initialize (this : in out ExponentialEasingFunction);
+   overriding procedure Finalize (this : in out ExponentialEasingFunction);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for ExponentialEasingFunction
+
+   function get_Mode
+   (
+      this : in out ExponentialEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
+
+   function get_Exponent
+   (
+      this : in out ExponentialEasingFunction
+   )
+   return WinRt.Single;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ExpressionAnimation
@@ -11655,6 +12954,27 @@ package WinRt.Windows.UI.Composition is
    );
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PowerEasingFunction
+
+   overriding procedure Initialize (this : in out PowerEasingFunction);
+   overriding procedure Finalize (this : in out PowerEasingFunction);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PowerEasingFunction
+
+   function get_Mode
+   (
+      this : in out PowerEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
+
+   function get_Power
+   (
+      this : in out PowerEasingFunction
+   )
+   return WinRt.Single;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for QuaternionKeyFrameAnimation
 
    overriding procedure Initialize (this : in out QuaternionKeyFrameAnimation);
@@ -11676,6 +12996,111 @@ package WinRt.Windows.UI.Composition is
       normalizedProgressKey : WinRt.Single;
       value : Windows.Foundation.Numerics.Quaternion;
       easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for RectangleClip
+
+   overriding procedure Initialize (this : in out RectangleClip);
+   overriding procedure Finalize (this : in out RectangleClip);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for RectangleClip
+
+   function get_Bottom
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Single;
+
+   procedure put_Bottom
+   (
+      this : in out RectangleClip;
+      value : WinRt.Single
+   );
+
+   function get_BottomLeftRadius
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Windows.Foundation.Numerics.Vector2;
+
+   procedure put_BottomLeftRadius
+   (
+      this : in out RectangleClip;
+      value : Windows.Foundation.Numerics.Vector2
+   );
+
+   function get_BottomRightRadius
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Windows.Foundation.Numerics.Vector2;
+
+   procedure put_BottomRightRadius
+   (
+      this : in out RectangleClip;
+      value : Windows.Foundation.Numerics.Vector2
+   );
+
+   function get_Left
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Single;
+
+   procedure put_Left
+   (
+      this : in out RectangleClip;
+      value : WinRt.Single
+   );
+
+   function get_Right
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Single;
+
+   procedure put_Right
+   (
+      this : in out RectangleClip;
+      value : WinRt.Single
+   );
+
+   function get_Top
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Single;
+
+   procedure put_Top
+   (
+      this : in out RectangleClip;
+      value : WinRt.Single
+   );
+
+   function get_TopLeftRadius
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Windows.Foundation.Numerics.Vector2;
+
+   procedure put_TopLeftRadius
+   (
+      this : in out RectangleClip;
+      value : Windows.Foundation.Numerics.Vector2
+   );
+
+   function get_TopRightRadius
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Windows.Foundation.Numerics.Vector2;
+
+   procedure put_TopRightRadius
+   (
+      this : in out RectangleClip;
+      value : Windows.Foundation.Numerics.Vector2
    );
 
    -----------------------------------------------------------------------------
@@ -11764,6 +13189,21 @@ package WinRt.Windows.UI.Composition is
       this : in out ShapeVisual;
       value : Windows.UI.Composition.CompositionViewBox'Class
    );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for SineEasingFunction
+
+   overriding procedure Initialize (this : in out SineEasingFunction);
+   overriding procedure Finalize (this : in out SineEasingFunction);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for SineEasingFunction
+
+   function get_Mode
+   (
+      this : in out SineEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for SpotLight

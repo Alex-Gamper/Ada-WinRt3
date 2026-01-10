@@ -51,6 +51,7 @@ package WinRt.Windows.Media.Import is
 
    type IPhotoImportFindItemsResult2_Interface is interface and WinRt.IInspectable_Interface;
    type IPhotoImportFindItemsResult2 is access all IPhotoImportFindItemsResult2_Interface'Class;
+   type IPhotoImportFindItemsResult2_Ptr is access all IPhotoImportFindItemsResult2;
 
    type IPhotoImportImportItemsResult_Interface is interface and WinRt.IInspectable_Interface;
    type IPhotoImportImportItemsResult is access all IPhotoImportImportItemsResult_Interface'Class;
@@ -62,6 +63,7 @@ package WinRt.Windows.Media.Import is
 
    type IPhotoImportItem2_Interface is interface and WinRt.IInspectable_Interface;
    type IPhotoImportItem2 is access all IPhotoImportItem2_Interface'Class;
+   type IPhotoImportItem2_Ptr is access all IPhotoImportItem2;
 
    type IPhotoImportItemImportedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPhotoImportItemImportedEventArgs is access all IPhotoImportItemImportedEventArgs_Interface'Class;
@@ -69,6 +71,7 @@ package WinRt.Windows.Media.Import is
 
    type IPhotoImportManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPhotoImportManagerStatics is access all IPhotoImportManagerStatics_Interface'Class;
+   type IPhotoImportManagerStatics_Ptr is access all IPhotoImportManagerStatics;
 
    type IPhotoImportOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IPhotoImportOperation is access all IPhotoImportOperation_Interface'Class;
@@ -84,6 +87,7 @@ package WinRt.Windows.Media.Import is
 
    type IPhotoImportSession2_Interface is interface and WinRt.IInspectable_Interface;
    type IPhotoImportSession2 is access all IPhotoImportSession2_Interface'Class;
+   type IPhotoImportSession2_Ptr is access all IPhotoImportSession2;
 
    type IPhotoImportSidecar_Interface is interface and WinRt.IInspectable_Interface;
    type IPhotoImportSidecar is access all IPhotoImportSidecar_Interface'Class;
@@ -95,6 +99,7 @@ package WinRt.Windows.Media.Import is
 
    type IPhotoImportSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPhotoImportSourceStatics is access all IPhotoImportSourceStatics_Interface'Class;
+   type IPhotoImportSourceStatics_Ptr is access all IPhotoImportSourceStatics;
 
    type IPhotoImportStorageMedium_Interface is interface and WinRt.IInspectable_Interface;
    type IPhotoImportStorageMedium is access all IPhotoImportStorageMedium_Interface'Class;

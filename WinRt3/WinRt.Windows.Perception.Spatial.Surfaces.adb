@@ -763,6 +763,27 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SpatialSurfaceObserver
 
+   function IsSupported
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceObserver");
+      m_Factory        : access WinRt.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceObserverStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_ISpatialSurfaceObserverStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.IsSupported (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
    function RequestAccessAsync
    return WinRt.Windows.Perception.Spatial.SpatialPerceptionAccessStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -828,27 +849,6 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
-   end;
-
-   function IsSupported
-   return WinRt.Boolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceObserver");
-      m_Factory        : access WinRt.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceObserverStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Boolean;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_ISpatialSurfaceObserverStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

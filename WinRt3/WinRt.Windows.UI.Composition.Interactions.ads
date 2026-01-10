@@ -47,9 +47,11 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type ICompositionConditionalValueStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionConditionalValueStatics is access all ICompositionConditionalValueStatics_Interface'Class;
+   type ICompositionConditionalValueStatics_Ptr is access all ICompositionConditionalValueStatics;
 
    type ICompositionInteractionSource_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionInteractionSource is access all ICompositionInteractionSource_Interface'Class;
+   type ICompositionInteractionSource_Ptr is access all ICompositionInteractionSource;
 
    type ICompositionInteractionSourceCollection_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionInteractionSourceCollection is access all ICompositionInteractionSourceCollection_Interface'Class;
@@ -65,15 +67,19 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type IInteractionTracker2_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTracker2 is access all IInteractionTracker2_Interface'Class;
+   type IInteractionTracker2_Ptr is access all IInteractionTracker2;
 
    type IInteractionTracker3_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTracker3 is access all IInteractionTracker3_Interface'Class;
+   type IInteractionTracker3_Ptr is access all IInteractionTracker3;
 
    type IInteractionTracker4_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTracker4 is access all IInteractionTracker4_Interface'Class;
+   type IInteractionTracker4_Ptr is access all IInteractionTracker4;
 
    type IInteractionTracker5_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTracker5 is access all IInteractionTracker5_Interface'Class;
+   type IInteractionTracker5_Ptr is access all IInteractionTracker5;
 
    type IInteractionTrackerCustomAnimationStateEnteredArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerCustomAnimationStateEnteredArgs is access all IInteractionTrackerCustomAnimationStateEnteredArgs_Interface'Class;
@@ -81,6 +87,7 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type IInteractionTrackerCustomAnimationStateEnteredArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerCustomAnimationStateEnteredArgs2 is access all IInteractionTrackerCustomAnimationStateEnteredArgs2_Interface'Class;
+   type IInteractionTrackerCustomAnimationStateEnteredArgs2_Ptr is access all IInteractionTrackerCustomAnimationStateEnteredArgs2;
 
    type IInteractionTrackerIdleStateEnteredArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerIdleStateEnteredArgs is access all IInteractionTrackerIdleStateEnteredArgs_Interface'Class;
@@ -88,6 +95,7 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type IInteractionTrackerIdleStateEnteredArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerIdleStateEnteredArgs2 is access all IInteractionTrackerIdleStateEnteredArgs2_Interface'Class;
+   type IInteractionTrackerIdleStateEnteredArgs2_Ptr is access all IInteractionTrackerIdleStateEnteredArgs2;
 
    type IInteractionTrackerInertiaModifier_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerInertiaModifier is access all IInteractionTrackerInertiaModifier_Interface'Class;
@@ -95,6 +103,7 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type IInteractionTrackerInertiaModifierFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerInertiaModifierFactory is access all IInteractionTrackerInertiaModifierFactory_Interface'Class;
+   type IInteractionTrackerInertiaModifierFactory_Ptr is access all IInteractionTrackerInertiaModifierFactory;
 
    type IInteractionTrackerInertiaMotion_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerInertiaMotion is access all IInteractionTrackerInertiaMotion_Interface'Class;
@@ -102,6 +111,7 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type IInteractionTrackerInertiaMotionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerInertiaMotionStatics is access all IInteractionTrackerInertiaMotionStatics_Interface'Class;
+   type IInteractionTrackerInertiaMotionStatics_Ptr is access all IInteractionTrackerInertiaMotionStatics;
 
    type IInteractionTrackerInertiaNaturalMotion_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerInertiaNaturalMotion is access all IInteractionTrackerInertiaNaturalMotion_Interface'Class;
@@ -109,6 +119,7 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type IInteractionTrackerInertiaNaturalMotionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerInertiaNaturalMotionStatics is access all IInteractionTrackerInertiaNaturalMotionStatics_Interface'Class;
+   type IInteractionTrackerInertiaNaturalMotionStatics_Ptr is access all IInteractionTrackerInertiaNaturalMotionStatics;
 
    type IInteractionTrackerInertiaRestingValue_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerInertiaRestingValue is access all IInteractionTrackerInertiaRestingValue_Interface'Class;
@@ -116,6 +127,7 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type IInteractionTrackerInertiaRestingValueStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerInertiaRestingValueStatics is access all IInteractionTrackerInertiaRestingValueStatics_Interface'Class;
+   type IInteractionTrackerInertiaRestingValueStatics_Ptr is access all IInteractionTrackerInertiaRestingValueStatics;
 
    type IInteractionTrackerInertiaStateEnteredArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerInertiaStateEnteredArgs is access all IInteractionTrackerInertiaStateEnteredArgs_Interface'Class;
@@ -123,9 +135,11 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type IInteractionTrackerInertiaStateEnteredArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerInertiaStateEnteredArgs2 is access all IInteractionTrackerInertiaStateEnteredArgs2_Interface'Class;
+   type IInteractionTrackerInertiaStateEnteredArgs2_Ptr is access all IInteractionTrackerInertiaStateEnteredArgs2;
 
    type IInteractionTrackerInertiaStateEnteredArgs3_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerInertiaStateEnteredArgs3 is access all IInteractionTrackerInertiaStateEnteredArgs3_Interface'Class;
+   type IInteractionTrackerInertiaStateEnteredArgs3_Ptr is access all IInteractionTrackerInertiaStateEnteredArgs3;
 
    type IInteractionTrackerInteractingStateEnteredArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerInteractingStateEnteredArgs is access all IInteractionTrackerInteractingStateEnteredArgs_Interface'Class;
@@ -133,9 +147,11 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type IInteractionTrackerInteractingStateEnteredArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerInteractingStateEnteredArgs2 is access all IInteractionTrackerInteractingStateEnteredArgs2_Interface'Class;
+   type IInteractionTrackerInteractingStateEnteredArgs2_Ptr is access all IInteractionTrackerInteractingStateEnteredArgs2;
 
    type IInteractionTrackerOwner_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerOwner is access all IInteractionTrackerOwner_Interface'Class;
+   type IInteractionTrackerOwner_Ptr is access all IInteractionTrackerOwner;
 
    type IInteractionTrackerRequestIgnoredArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerRequestIgnoredArgs is access all IInteractionTrackerRequestIgnoredArgs_Interface'Class;
@@ -143,9 +159,11 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type IInteractionTrackerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerStatics is access all IInteractionTrackerStatics_Interface'Class;
+   type IInteractionTrackerStatics_Ptr is access all IInteractionTrackerStatics;
 
    type IInteractionTrackerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerStatics2 is access all IInteractionTrackerStatics2_Interface'Class;
+   type IInteractionTrackerStatics2_Ptr is access all IInteractionTrackerStatics2;
 
    type IInteractionTrackerValuesChangedArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerValuesChangedArgs is access all IInteractionTrackerValuesChangedArgs_Interface'Class;
@@ -157,6 +175,7 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type IInteractionTrackerVector2InertiaModifierFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerVector2InertiaModifierFactory is access all IInteractionTrackerVector2InertiaModifierFactory_Interface'Class;
+   type IInteractionTrackerVector2InertiaModifierFactory_Ptr is access all IInteractionTrackerVector2InertiaModifierFactory;
 
    type IInteractionTrackerVector2InertiaNaturalMotion_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerVector2InertiaNaturalMotion is access all IInteractionTrackerVector2InertiaNaturalMotion_Interface'Class;
@@ -164,6 +183,7 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type IInteractionTrackerVector2InertiaNaturalMotionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractionTrackerVector2InertiaNaturalMotionStatics is access all IInteractionTrackerVector2InertiaNaturalMotionStatics_Interface'Class;
+   type IInteractionTrackerVector2InertiaNaturalMotionStatics_Ptr is access all IInteractionTrackerVector2InertiaNaturalMotionStatics;
 
    type IVisualInteractionSource_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualInteractionSource is access all IVisualInteractionSource_Interface'Class;
@@ -171,18 +191,23 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    type IVisualInteractionSource2_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualInteractionSource2 is access all IVisualInteractionSource2_Interface'Class;
+   type IVisualInteractionSource2_Ptr is access all IVisualInteractionSource2;
 
    type IVisualInteractionSource3_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualInteractionSource3 is access all IVisualInteractionSource3_Interface'Class;
+   type IVisualInteractionSource3_Ptr is access all IVisualInteractionSource3;
 
    type IVisualInteractionSourceObjectFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualInteractionSourceObjectFactory is access all IVisualInteractionSourceObjectFactory_Interface'Class;
+   type IVisualInteractionSourceObjectFactory_Ptr is access all IVisualInteractionSourceObjectFactory;
 
    type IVisualInteractionSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualInteractionSourceStatics is access all IVisualInteractionSourceStatics_Interface'Class;
+   type IVisualInteractionSourceStatics_Ptr is access all IVisualInteractionSourceStatics;
 
    type IVisualInteractionSourceStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IVisualInteractionSourceStatics2 is access all IVisualInteractionSourceStatics2_Interface'Class;
+   type IVisualInteractionSourceStatics2_Ptr is access all IVisualInteractionSourceStatics2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1745,6 +1770,19 @@ package WinRt.Windows.UI.Composition.Interactions is
    -----------------------------------------------------------------------------
    -- Static Interfaces for InteractionTracker
 
+   function Create
+   (
+      compositor : Windows.UI.Composition.Compositor'Class
+   )
+   return WinRt.Windows.UI.Composition.Interactions.InteractionTracker;
+
+   function CreateWithOwner
+   (
+      compositor : Windows.UI.Composition.Compositor'Class;
+      owner : Windows.UI.Composition.Interactions.IInteractionTrackerOwner
+   )
+   return WinRt.Windows.UI.Composition.Interactions.InteractionTracker;
+
    procedure SetBindingMode
    (
       boundTracker1 : Windows.UI.Composition.Interactions.InteractionTracker'Class;
@@ -1758,19 +1796,6 @@ package WinRt.Windows.UI.Composition.Interactions is
       boundTracker2 : Windows.UI.Composition.Interactions.InteractionTracker'Class
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionBindingAxisModes;
-
-   function Create
-   (
-      compositor : Windows.UI.Composition.Compositor'Class
-   )
-   return WinRt.Windows.UI.Composition.Interactions.InteractionTracker;
-
-   function CreateWithOwner
-   (
-      compositor : Windows.UI.Composition.Compositor'Class;
-      owner : Windows.UI.Composition.Interactions.IInteractionTrackerOwner
-   )
-   return WinRt.Windows.UI.Composition.Interactions.InteractionTracker;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for InteractionTracker
@@ -2406,15 +2431,15 @@ package WinRt.Windows.UI.Composition.Interactions is
    -----------------------------------------------------------------------------
    -- Static Interfaces for VisualInteractionSource
 
-   function Create
-   (
-      source : Windows.UI.Composition.Visual'Class
-   )
-   return WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource;
-
    function CreateFromIVisualElement
    (
       source : Windows.UI.Composition.IVisualElement
+   )
+   return WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource;
+
+   function Create
+   (
+      source : Windows.UI.Composition.Visual'Class
    )
    return WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource;
 

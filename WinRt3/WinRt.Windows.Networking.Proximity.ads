@@ -62,9 +62,11 @@ package WinRt.Windows.Networking.Proximity is
 
    type IPeerFinderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPeerFinderStatics is access all IPeerFinderStatics_Interface'Class;
+   type IPeerFinderStatics_Ptr is access all IPeerFinderStatics;
 
    type IPeerFinderStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IPeerFinderStatics2 is access all IPeerFinderStatics2_Interface'Class;
+   type IPeerFinderStatics2_Ptr is access all IPeerFinderStatics2;
 
    type IPeerInformation_Interface is interface and WinRt.IInspectable_Interface;
    type IPeerInformation is access all IPeerInformation_Interface'Class;
@@ -72,9 +74,11 @@ package WinRt.Windows.Networking.Proximity is
 
    type IPeerInformation3_Interface is interface and WinRt.IInspectable_Interface;
    type IPeerInformation3 is access all IPeerInformation3_Interface'Class;
+   type IPeerInformation3_Ptr is access all IPeerInformation3;
 
    type IPeerInformationWithHostAndService_Interface is interface and WinRt.IInspectable_Interface;
    type IPeerInformationWithHostAndService is access all IPeerInformationWithHostAndService_Interface'Class;
+   type IPeerInformationWithHostAndService_Ptr is access all IPeerInformationWithHostAndService;
 
    type IPeerWatcher_Interface is interface and WinRt.IInspectable_Interface;
    type IPeerWatcher is access all IPeerWatcher_Interface'Class;
@@ -86,6 +90,7 @@ package WinRt.Windows.Networking.Proximity is
 
    type IProximityDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IProximityDeviceStatics is access all IProximityDeviceStatics_Interface'Class;
+   type IProximityDeviceStatics_Ptr is access all IProximityDeviceStatics;
 
    type IProximityMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IProximityMessage is access all IProximityMessage_Interface'Class;

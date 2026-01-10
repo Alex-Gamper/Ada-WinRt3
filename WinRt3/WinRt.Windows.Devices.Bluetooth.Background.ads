@@ -50,6 +50,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
 
    type IBluetoothLEAdvertisementPublisherTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementPublisherTriggerDetails2 is access all IBluetoothLEAdvertisementPublisherTriggerDetails2_Interface'Class;
+   type IBluetoothLEAdvertisementPublisherTriggerDetails2_Ptr is access all IBluetoothLEAdvertisementPublisherTriggerDetails2;
 
    type IBluetoothLEAdvertisementWatcherTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementWatcherTriggerDetails is access all IBluetoothLEAdvertisementWatcherTriggerDetails_Interface'Class;
@@ -61,13 +62,19 @@ package WinRt.Windows.Devices.Bluetooth.Background is
 
    type IGattCharacteristicNotificationTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattCharacteristicNotificationTriggerDetails2 is access all IGattCharacteristicNotificationTriggerDetails2_Interface'Class;
+   type IGattCharacteristicNotificationTriggerDetails2_Ptr is access all IGattCharacteristicNotificationTriggerDetails2;
 
    type IGattServiceProviderConnection_Interface is interface and WinRt.IInspectable_Interface;
    type IGattServiceProviderConnection is access all IGattServiceProviderConnection_Interface'Class;
    type IGattServiceProviderConnection_Ptr is access all IGattServiceProviderConnection;
 
+   type IGattServiceProviderConnection2_Interface is interface and WinRt.IInspectable_Interface;
+   type IGattServiceProviderConnection2 is access all IGattServiceProviderConnection2_Interface'Class;
+   type IGattServiceProviderConnection2_Ptr is access all IGattServiceProviderConnection2;
+
    type IGattServiceProviderConnectionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGattServiceProviderConnectionStatics is access all IGattServiceProviderConnectionStatics_Interface'Class;
+   type IGattServiceProviderConnectionStatics_Ptr is access all IGattServiceProviderConnectionStatics;
 
    type IGattServiceProviderTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IGattServiceProviderTriggerDetails is access all IGattServiceProviderTriggerDetails_Interface'Class;
@@ -291,6 +298,18 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       return WinRt.Hresult is abstract;
 
       IID_IGattServiceProviderConnection : aliased WinRt.IID := (2141305273, 12051, 16565, (149, 130, 142, 183, 142, 152, 239, 19 ));
+
+   -----------------------------------------------------------------------------
+   -- type IGattServiceProviderConnection2 is interface and WinRt.IInspectable;
+
+      function UpdateAdvertisingParameters
+      (
+         this : access IGattServiceProviderConnection2_Interface;
+         parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IGattServiceProviderConnection2 : aliased WinRt.IID := (2429627360, 60352, 18511, (174, 10, 126, 184, 182, 38, 107, 172 ));
 
    -----------------------------------------------------------------------------
    -- type IGattServiceProviderConnectionStatics is interface and WinRt.IInspectable;
@@ -535,6 +554,12 @@ package WinRt.Windows.Devices.Bluetooth.Background is
    procedure Start
    (
       this : in out GattServiceProviderConnection
+   );
+
+   procedure UpdateAdvertisingParameters
+   (
+      this : in out GattServiceProviderConnection;
+      parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
    );
 
    -----------------------------------------------------------------------------

@@ -55,6 +55,7 @@ package WinRt.Windows.Media is
 
    type IAudioFrameFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioFrameFactory is access all IAudioFrameFactory_Interface'Class;
+   type IAudioFrameFactory_Ptr is access all IAudioFrameFactory;
 
    type IAutoRepeatModeChangeRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAutoRepeatModeChangeRequestedEventArgs is access all IAutoRepeatModeChangeRequestedEventArgs_Interface'Class;
@@ -66,9 +67,11 @@ package WinRt.Windows.Media is
 
    type IMediaControl_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaControl is access all IMediaControl_Interface'Class;
+   type IMediaControl_Ptr is access all IMediaControl;
 
    type IMediaExtension_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaExtension is access all IMediaExtension_Interface'Class;
+   type IMediaExtension_Ptr is access all IMediaExtension;
 
    type IMediaExtensionManager_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaExtensionManager is access all IMediaExtensionManager_Interface'Class;
@@ -76,18 +79,23 @@ package WinRt.Windows.Media is
 
    type IMediaExtensionManager2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaExtensionManager2 is access all IMediaExtensionManager2_Interface'Class;
+   type IMediaExtensionManager2_Ptr is access all IMediaExtensionManager2;
 
    type IMediaFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrame is access all IMediaFrame_Interface'Class;
+   type IMediaFrame_Ptr is access all IMediaFrame;
 
    type IMediaMarker_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaMarker is access all IMediaMarker_Interface'Class;
+   type IMediaMarker_Ptr is access all IMediaMarker;
 
    type IMediaMarkerTypesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaMarkerTypesStatics is access all IMediaMarkerTypesStatics_Interface'Class;
+   type IMediaMarkerTypesStatics_Ptr is access all IMediaMarkerTypesStatics;
 
    type IMediaMarkers_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaMarkers is access all IMediaMarkers_Interface'Class;
+   type IMediaMarkers_Ptr is access all IMediaMarkers;
 
    type IMediaProcessingTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaProcessingTriggerDetails is access all IMediaProcessingTriggerDetails_Interface'Class;
@@ -99,6 +107,7 @@ package WinRt.Windows.Media is
 
    type IMediaTimelineController2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTimelineController2 is access all IMediaTimelineController2_Interface'Class;
+   type IMediaTimelineController2_Ptr is access all IMediaTimelineController2;
 
    type IMediaTimelineControllerFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTimelineControllerFailedEventArgs is access all IMediaTimelineControllerFailedEventArgs_Interface'Class;
@@ -110,9 +119,11 @@ package WinRt.Windows.Media is
 
    type IMusicDisplayProperties2_Interface is interface and WinRt.IInspectable_Interface;
    type IMusicDisplayProperties2 is access all IMusicDisplayProperties2_Interface'Class;
+   type IMusicDisplayProperties2_Ptr is access all IMusicDisplayProperties2;
 
    type IMusicDisplayProperties3_Interface is interface and WinRt.IInspectable_Interface;
    type IMusicDisplayProperties3 is access all IMusicDisplayProperties3_Interface'Class;
+   type IMusicDisplayProperties3_Ptr is access all IMusicDisplayProperties3;
 
    type IPlaybackPositionChangeRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPlaybackPositionChangeRequestedEventArgs is access all IPlaybackPositionChangeRequestedEventArgs_Interface'Class;
@@ -132,6 +143,7 @@ package WinRt.Windows.Media is
 
    type ISystemMediaTransportControls2_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemMediaTransportControls2 is access all ISystemMediaTransportControls2_Interface'Class;
+   type ISystemMediaTransportControls2_Ptr is access all ISystemMediaTransportControls2;
 
    type ISystemMediaTransportControlsButtonPressedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemMediaTransportControlsButtonPressedEventArgs is access all ISystemMediaTransportControlsButtonPressedEventArgs_Interface'Class;
@@ -147,6 +159,7 @@ package WinRt.Windows.Media is
 
    type ISystemMediaTransportControlsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemMediaTransportControlsStatics is access all ISystemMediaTransportControlsStatics_Interface'Class;
+   type ISystemMediaTransportControlsStatics_Ptr is access all ISystemMediaTransportControlsStatics;
 
    type ISystemMediaTransportControlsTimelineProperties_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemMediaTransportControlsTimelineProperties is access all ISystemMediaTransportControlsTimelineProperties_Interface'Class;
@@ -158,9 +171,11 @@ package WinRt.Windows.Media is
 
    type IVideoDisplayProperties2_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoDisplayProperties2 is access all IVideoDisplayProperties2_Interface'Class;
+   type IVideoDisplayProperties2_Ptr is access all IVideoDisplayProperties2;
 
    type IVideoEffectsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoEffectsStatics is access all IVideoEffectsStatics_Interface'Class;
+   type IVideoEffectsStatics_Ptr is access all IVideoEffectsStatics;
 
    type IVideoFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoFrame is access all IVideoFrame_Interface'Class;
@@ -168,12 +183,15 @@ package WinRt.Windows.Media is
 
    type IVideoFrame2_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoFrame2 is access all IVideoFrame2_Interface'Class;
+   type IVideoFrame2_Ptr is access all IVideoFrame2;
 
    type IVideoFrameFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoFrameFactory is access all IVideoFrameFactory_Interface'Class;
+   type IVideoFrameFactory_Ptr is access all IVideoFrameFactory;
 
    type IVideoFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoFrameStatics is access all IVideoFrameStatics_Interface'Class;
+   type IVideoFrameStatics_Ptr is access all IVideoFrameStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

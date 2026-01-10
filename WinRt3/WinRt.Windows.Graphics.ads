@@ -38,6 +38,7 @@ package WinRt.Windows.Graphics is
 
    type IGeometrySource2D_Interface is interface and WinRt.IInspectable_Interface;
    type IGeometrySource2D is access all IGeometrySource2D_Interface'Class;
+   type IGeometrySource2D_Ptr is access all IGeometrySource2D;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -48,6 +49,12 @@ package WinRt.Windows.Graphics is
       HighPart : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
    type DisplayAdapterId_Ptr is access all DisplayAdapterId;
+
+   type DisplayId is record
+      Value : WinRt.UInt64;
+   end record with Convention => C_Pass_By_Copy;
+   type DisplayId_Ptr is access all DisplayId;
+   type DisplayId_Array is array (Natural range <>) of aliased DisplayId;
 
    type PointInt32 is record
       X : WinRt.Int32;

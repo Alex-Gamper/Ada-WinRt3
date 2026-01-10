@@ -41,9 +41,11 @@ package WinRt.Windows.Security.Cryptography.Core is
 
    type IAsymmetricAlgorithmNamesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAsymmetricAlgorithmNamesStatics is access all IAsymmetricAlgorithmNamesStatics_Interface'Class;
+   type IAsymmetricAlgorithmNamesStatics_Ptr is access all IAsymmetricAlgorithmNamesStatics;
 
    type IAsymmetricAlgorithmNamesStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAsymmetricAlgorithmNamesStatics2 is access all IAsymmetricAlgorithmNamesStatics2_Interface'Class;
+   type IAsymmetricAlgorithmNamesStatics2_Ptr is access all IAsymmetricAlgorithmNamesStatics2;
 
    type IAsymmetricKeyAlgorithmProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IAsymmetricKeyAlgorithmProvider is access all IAsymmetricKeyAlgorithmProvider_Interface'Class;
@@ -51,15 +53,19 @@ package WinRt.Windows.Security.Cryptography.Core is
 
    type IAsymmetricKeyAlgorithmProvider2_Interface is interface and WinRt.IInspectable_Interface;
    type IAsymmetricKeyAlgorithmProvider2 is access all IAsymmetricKeyAlgorithmProvider2_Interface'Class;
+   type IAsymmetricKeyAlgorithmProvider2_Ptr is access all IAsymmetricKeyAlgorithmProvider2;
 
    type IAsymmetricKeyAlgorithmProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAsymmetricKeyAlgorithmProviderStatics is access all IAsymmetricKeyAlgorithmProviderStatics_Interface'Class;
+   type IAsymmetricKeyAlgorithmProviderStatics_Ptr is access all IAsymmetricKeyAlgorithmProviderStatics;
 
    type ICryptographicEngineStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICryptographicEngineStatics is access all ICryptographicEngineStatics_Interface'Class;
+   type ICryptographicEngineStatics_Ptr is access all ICryptographicEngineStatics;
 
    type ICryptographicEngineStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ICryptographicEngineStatics2 is access all ICryptographicEngineStatics2_Interface'Class;
+   type ICryptographicEngineStatics2_Ptr is access all ICryptographicEngineStatics2;
 
    type ICryptographicKey_Interface is interface and WinRt.IInspectable_Interface;
    type ICryptographicKey is access all ICryptographicKey_Interface'Class;
@@ -67,6 +73,7 @@ package WinRt.Windows.Security.Cryptography.Core is
 
    type IEccCurveNamesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IEccCurveNamesStatics is access all IEccCurveNamesStatics_Interface'Class;
+   type IEccCurveNamesStatics_Ptr is access all IEccCurveNamesStatics;
 
    type IEncryptedAndAuthenticatedData_Interface is interface and WinRt.IInspectable_Interface;
    type IEncryptedAndAuthenticatedData is access all IEncryptedAndAuthenticatedData_Interface'Class;
@@ -74,6 +81,7 @@ package WinRt.Windows.Security.Cryptography.Core is
 
    type IHashAlgorithmNamesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHashAlgorithmNamesStatics is access all IHashAlgorithmNamesStatics_Interface'Class;
+   type IHashAlgorithmNamesStatics_Ptr is access all IHashAlgorithmNamesStatics;
 
    type IHashAlgorithmProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IHashAlgorithmProvider is access all IHashAlgorithmProvider_Interface'Class;
@@ -81,6 +89,7 @@ package WinRt.Windows.Security.Cryptography.Core is
 
    type IHashAlgorithmProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHashAlgorithmProviderStatics is access all IHashAlgorithmProviderStatics_Interface'Class;
+   type IHashAlgorithmProviderStatics_Ptr is access all IHashAlgorithmProviderStatics;
 
    type IHashComputation_Interface is interface and WinRt.IInspectable_Interface;
    type IHashComputation is access all IHashComputation_Interface'Class;
@@ -88,9 +97,11 @@ package WinRt.Windows.Security.Cryptography.Core is
 
    type IKeyDerivationAlgorithmNamesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyDerivationAlgorithmNamesStatics is access all IKeyDerivationAlgorithmNamesStatics_Interface'Class;
+   type IKeyDerivationAlgorithmNamesStatics_Ptr is access all IKeyDerivationAlgorithmNamesStatics;
 
    type IKeyDerivationAlgorithmNamesStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyDerivationAlgorithmNamesStatics2 is access all IKeyDerivationAlgorithmNamesStatics2_Interface'Class;
+   type IKeyDerivationAlgorithmNamesStatics2_Ptr is access all IKeyDerivationAlgorithmNamesStatics2;
 
    type IKeyDerivationAlgorithmProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyDerivationAlgorithmProvider is access all IKeyDerivationAlgorithmProvider_Interface'Class;
@@ -98,6 +109,7 @@ package WinRt.Windows.Security.Cryptography.Core is
 
    type IKeyDerivationAlgorithmProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyDerivationAlgorithmProviderStatics is access all IKeyDerivationAlgorithmProviderStatics_Interface'Class;
+   type IKeyDerivationAlgorithmProviderStatics_Ptr is access all IKeyDerivationAlgorithmProviderStatics;
 
    type IKeyDerivationParameters_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyDerivationParameters is access all IKeyDerivationParameters_Interface'Class;
@@ -105,15 +117,19 @@ package WinRt.Windows.Security.Cryptography.Core is
 
    type IKeyDerivationParameters2_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyDerivationParameters2 is access all IKeyDerivationParameters2_Interface'Class;
+   type IKeyDerivationParameters2_Ptr is access all IKeyDerivationParameters2;
 
    type IKeyDerivationParametersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyDerivationParametersStatics is access all IKeyDerivationParametersStatics_Interface'Class;
+   type IKeyDerivationParametersStatics_Ptr is access all IKeyDerivationParametersStatics;
 
    type IKeyDerivationParametersStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyDerivationParametersStatics2 is access all IKeyDerivationParametersStatics2_Interface'Class;
+   type IKeyDerivationParametersStatics2_Ptr is access all IKeyDerivationParametersStatics2;
 
    type IMacAlgorithmNamesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMacAlgorithmNamesStatics is access all IMacAlgorithmNamesStatics_Interface'Class;
+   type IMacAlgorithmNamesStatics_Ptr is access all IMacAlgorithmNamesStatics;
 
    type IMacAlgorithmProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IMacAlgorithmProvider is access all IMacAlgorithmProvider_Interface'Class;
@@ -121,15 +137,19 @@ package WinRt.Windows.Security.Cryptography.Core is
 
    type IMacAlgorithmProvider2_Interface is interface and WinRt.IInspectable_Interface;
    type IMacAlgorithmProvider2 is access all IMacAlgorithmProvider2_Interface'Class;
+   type IMacAlgorithmProvider2_Ptr is access all IMacAlgorithmProvider2;
 
    type IMacAlgorithmProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMacAlgorithmProviderStatics is access all IMacAlgorithmProviderStatics_Interface'Class;
+   type IMacAlgorithmProviderStatics_Ptr is access all IMacAlgorithmProviderStatics;
 
    type IPersistedKeyProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPersistedKeyProviderStatics is access all IPersistedKeyProviderStatics_Interface'Class;
+   type IPersistedKeyProviderStatics_Ptr is access all IPersistedKeyProviderStatics;
 
    type ISymmetricAlgorithmNamesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISymmetricAlgorithmNamesStatics is access all ISymmetricAlgorithmNamesStatics_Interface'Class;
+   type ISymmetricAlgorithmNamesStatics_Ptr is access all ISymmetricAlgorithmNamesStatics;
 
    type ISymmetricKeyAlgorithmProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ISymmetricKeyAlgorithmProvider is access all ISymmetricKeyAlgorithmProvider_Interface'Class;
@@ -137,6 +157,7 @@ package WinRt.Windows.Security.Cryptography.Core is
 
    type ISymmetricKeyAlgorithmProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISymmetricKeyAlgorithmProviderStatics is access all ISymmetricKeyAlgorithmProviderStatics_Interface'Class;
+   type ISymmetricKeyAlgorithmProviderStatics_Ptr is access all ISymmetricKeyAlgorithmProviderStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1716,15 +1737,6 @@ package WinRt.Windows.Security.Cryptography.Core is
    -- Static RuntimeClass
    package AsymmetricAlgorithmNames is
 
-      function get_EcdsaSha256
-      return WinRt.WString;
-
-      function get_EcdsaSha384
-      return WinRt.WString;
-
-      function get_EcdsaSha512
-      return WinRt.WString;
-
       function get_RsaPkcs1
       return WinRt.WString;
 
@@ -1777,6 +1789,15 @@ package WinRt.Windows.Security.Cryptography.Core is
       return WinRt.WString;
 
       function get_RsaSignPssSha512
+      return WinRt.WString;
+
+      function get_EcdsaSha256
+      return WinRt.WString;
+
+      function get_EcdsaSha384
+      return WinRt.WString;
+
+      function get_EcdsaSha512
       return WinRt.WString;
 
    end AsymmetricAlgorithmNames;
@@ -2354,6 +2375,12 @@ package WinRt.Windows.Security.Cryptography.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for KeyDerivationParameters
 
+   function BuildForCapi1Kdf
+   (
+      capi1KdfTargetAlgorithm : Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
+   )
+   return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters;
+
    function BuildForPbkdf2
    (
       pbkdf2Salt : Windows.Storage.Streams.IBuffer;
@@ -2375,12 +2402,6 @@ package WinRt.Windows.Security.Cryptography.Core is
       partyVInfo : Windows.Storage.Streams.IBuffer;
       suppPubInfo : Windows.Storage.Streams.IBuffer;
       suppPrivInfo : Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters;
-
-   function BuildForCapi1Kdf
-   (
-      capi1KdfTargetAlgorithm : Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters;
 

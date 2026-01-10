@@ -41,6 +41,31 @@ package body WinRt.Windows.Gaming.Input.Custom is
    -- Static RuntimeClass
    package body GameControllerFactoryManager is
 
+      function TryGetFactoryControllerFromGameController
+      (
+         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         gameController : Windows.Gaming.Input.IGameController
+      )
+      return WinRt.Windows.Gaming.Input.IGameController is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.Custom.GameControllerFactoryManager");
+         m_Factory        : access WinRt.Windows.Gaming.Input.Custom.IGameControllerFactoryManagerStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Gaming.Input.IGameController;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGameControllerFactoryManagerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.TryGetFactoryControllerFromGameController (factory, gameController, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
       procedure RegisterCustomFactoryForGipInterface
       (
          factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
@@ -107,31 +132,6 @@ package body WinRt.Windows.Gaming.Input.Custom is
             end if;
          end if;
          tmp := WindowsDeleteString (m_hString);
-      end;
-
-      function TryGetFactoryControllerFromGameController
-      (
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
-         gameController : Windows.Gaming.Input.IGameController
-      )
-      return WinRt.Windows.Gaming.Input.IGameController is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.Custom.GameControllerFactoryManager");
-         m_Factory        : access WinRt.Windows.Gaming.Input.Custom.IGameControllerFactoryManagerStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Gaming.Input.IGameController;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IGameControllerFactoryManagerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.TryGetFactoryControllerFromGameController (factory, gameController, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
       end;
 
    end GameControllerFactoryManager;

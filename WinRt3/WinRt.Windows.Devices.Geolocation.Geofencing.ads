@@ -45,6 +45,7 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
 
    type IGeofenceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGeofenceFactory is access all IGeofenceFactory_Interface'Class;
+   type IGeofenceFactory_Ptr is access all IGeofenceFactory;
 
    type IGeofenceMonitor_Interface is interface and WinRt.IInspectable_Interface;
    type IGeofenceMonitor is access all IGeofenceMonitor_Interface'Class;
@@ -52,6 +53,7 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
 
    type IGeofenceMonitorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGeofenceMonitorStatics is access all IGeofenceMonitorStatics_Interface'Class;
+   type IGeofenceMonitorStatics_Ptr is access all IGeofenceMonitorStatics;
 
    type IGeofenceStateChangeReport_Interface is interface and WinRt.IInspectable_Interface;
    type IGeofenceStateChangeReport is access all IGeofenceStateChangeReport_Interface'Class;

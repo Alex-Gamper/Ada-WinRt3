@@ -73,9 +73,11 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IActivitySensorTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IActivitySensorTriggerFactory is access all IActivitySensorTriggerFactory_Interface'Class;
+   type IActivitySensorTriggerFactory_Ptr is access all IActivitySensorTriggerFactory;
 
    type IAlarmApplicationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAlarmApplicationManagerStatics is access all IAlarmApplicationManagerStatics_Interface'Class;
+   type IAlarmApplicationManagerStatics_Ptr is access all IAlarmApplicationManagerStatics;
 
    type IAppBroadcastTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastTrigger is access all IAppBroadcastTrigger_Interface'Class;
@@ -83,6 +85,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IAppBroadcastTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastTriggerFactory is access all IAppBroadcastTriggerFactory_Interface'Class;
+   type IAppBroadcastTriggerFactory_Ptr is access all IAppBroadcastTriggerFactory;
 
    type IAppBroadcastTriggerProviderInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastTriggerProviderInfo is access all IAppBroadcastTriggerProviderInfo_Interface'Class;
@@ -102,12 +105,19 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IBackgroundCondition_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundCondition is access all IBackgroundCondition_Interface'Class;
+   type IBackgroundCondition_Ptr is access all IBackgroundCondition;
 
    type IBackgroundExecutionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundExecutionManagerStatics is access all IBackgroundExecutionManagerStatics_Interface'Class;
+   type IBackgroundExecutionManagerStatics_Ptr is access all IBackgroundExecutionManagerStatics;
 
    type IBackgroundExecutionManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundExecutionManagerStatics2 is access all IBackgroundExecutionManagerStatics2_Interface'Class;
+   type IBackgroundExecutionManagerStatics2_Ptr is access all IBackgroundExecutionManagerStatics2;
+
+   type IBackgroundExecutionManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
+   type IBackgroundExecutionManagerStatics3 is access all IBackgroundExecutionManagerStatics3_Interface'Class;
+   type IBackgroundExecutionManagerStatics3_Ptr is access all IBackgroundExecutionManagerStatics3;
 
    type IBackgroundTask_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTask is access all IBackgroundTask_Interface'Class;
@@ -119,15 +129,27 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IBackgroundTaskBuilder2_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskBuilder2 is access all IBackgroundTaskBuilder2_Interface'Class;
+   type IBackgroundTaskBuilder2_Ptr is access all IBackgroundTaskBuilder2;
 
    type IBackgroundTaskBuilder3_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskBuilder3 is access all IBackgroundTaskBuilder3_Interface'Class;
+   type IBackgroundTaskBuilder3_Ptr is access all IBackgroundTaskBuilder3;
 
    type IBackgroundTaskBuilder4_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskBuilder4 is access all IBackgroundTaskBuilder4_Interface'Class;
+   type IBackgroundTaskBuilder4_Ptr is access all IBackgroundTaskBuilder4;
 
    type IBackgroundTaskBuilder5_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskBuilder5 is access all IBackgroundTaskBuilder5_Interface'Class;
+   type IBackgroundTaskBuilder5_Ptr is access all IBackgroundTaskBuilder5;
+
+   type IBackgroundTaskBuilder6_Interface is interface and WinRt.IInspectable_Interface;
+   type IBackgroundTaskBuilder6 is access all IBackgroundTaskBuilder6_Interface'Class;
+   type IBackgroundTaskBuilder6_Ptr is access all IBackgroundTaskBuilder6;
+
+   type IBackgroundTaskBuilderStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IBackgroundTaskBuilderStatics is access all IBackgroundTaskBuilderStatics_Interface'Class;
+   type IBackgroundTaskBuilderStatics_Ptr is access all IBackgroundTaskBuilderStatics;
 
    type IBackgroundTaskCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskCompletedEventArgs is access all IBackgroundTaskCompletedEventArgs_Interface'Class;
@@ -139,12 +161,15 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IBackgroundTaskInstance_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskInstance is access all IBackgroundTaskInstance_Interface'Class;
+   type IBackgroundTaskInstance_Ptr is access all IBackgroundTaskInstance;
 
    type IBackgroundTaskInstance2_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskInstance2 is access all IBackgroundTaskInstance2_Interface'Class;
+   type IBackgroundTaskInstance2_Ptr is access all IBackgroundTaskInstance2;
 
    type IBackgroundTaskInstance4_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskInstance4 is access all IBackgroundTaskInstance4_Interface'Class;
+   type IBackgroundTaskInstance4_Ptr is access all IBackgroundTaskInstance4;
 
    type IBackgroundTaskProgressEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskProgressEventArgs is access all IBackgroundTaskProgressEventArgs_Interface'Class;
@@ -156,9 +181,15 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IBackgroundTaskRegistration2_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskRegistration2 is access all IBackgroundTaskRegistration2_Interface'Class;
+   type IBackgroundTaskRegistration2_Ptr is access all IBackgroundTaskRegistration2;
 
    type IBackgroundTaskRegistration3_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskRegistration3 is access all IBackgroundTaskRegistration3_Interface'Class;
+   type IBackgroundTaskRegistration3_Ptr is access all IBackgroundTaskRegistration3;
+
+   type IBackgroundTaskRegistration4_Interface is interface and WinRt.IInspectable_Interface;
+   type IBackgroundTaskRegistration4 is access all IBackgroundTaskRegistration4_Interface'Class;
+   type IBackgroundTaskRegistration4_Ptr is access all IBackgroundTaskRegistration4;
 
    type IBackgroundTaskRegistrationGroup_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskRegistrationGroup is access all IBackgroundTaskRegistrationGroup_Interface'Class;
@@ -166,12 +197,15 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IBackgroundTaskRegistrationGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskRegistrationGroupFactory is access all IBackgroundTaskRegistrationGroupFactory_Interface'Class;
+   type IBackgroundTaskRegistrationGroupFactory_Ptr is access all IBackgroundTaskRegistrationGroupFactory;
 
    type IBackgroundTaskRegistrationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskRegistrationStatics is access all IBackgroundTaskRegistrationStatics_Interface'Class;
+   type IBackgroundTaskRegistrationStatics_Ptr is access all IBackgroundTaskRegistrationStatics;
 
    type IBackgroundTaskRegistrationStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTaskRegistrationStatics2 is access all IBackgroundTaskRegistrationStatics2_Interface'Class;
+   type IBackgroundTaskRegistrationStatics2_Ptr is access all IBackgroundTaskRegistrationStatics2;
 
    type IBackgroundTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundTrigger is access all IBackgroundTrigger_Interface'Class;
@@ -179,6 +213,11 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IBackgroundWorkCostStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundWorkCostStatics is access all IBackgroundWorkCostStatics_Interface'Class;
+   type IBackgroundWorkCostStatics_Ptr is access all IBackgroundWorkCostStatics;
+
+   type IBackgroundWorkCostStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type IBackgroundWorkCostStatics2 is access all IBackgroundWorkCostStatics2_Interface'Class;
+   type IBackgroundWorkCostStatics2_Ptr is access all IBackgroundWorkCostStatics2;
 
    type IBluetoothLEAdvertisementPublisherTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementPublisherTrigger is access all IBluetoothLEAdvertisementPublisherTrigger_Interface'Class;
@@ -186,6 +225,11 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IBluetoothLEAdvertisementPublisherTrigger2_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementPublisherTrigger2 is access all IBluetoothLEAdvertisementPublisherTrigger2_Interface'Class;
+   type IBluetoothLEAdvertisementPublisherTrigger2_Ptr is access all IBluetoothLEAdvertisementPublisherTrigger2;
+
+   type IBluetoothLEAdvertisementPublisherTrigger3_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEAdvertisementPublisherTrigger3 is access all IBluetoothLEAdvertisementPublisherTrigger3_Interface'Class;
+   type IBluetoothLEAdvertisementPublisherTrigger3_Ptr is access all IBluetoothLEAdvertisementPublisherTrigger3;
 
    type IBluetoothLEAdvertisementWatcherTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementWatcherTrigger is access all IBluetoothLEAdvertisementWatcherTrigger_Interface'Class;
@@ -193,6 +237,11 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IBluetoothLEAdvertisementWatcherTrigger2_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementWatcherTrigger2 is access all IBluetoothLEAdvertisementWatcherTrigger2_Interface'Class;
+   type IBluetoothLEAdvertisementWatcherTrigger2_Ptr is access all IBluetoothLEAdvertisementWatcherTrigger2;
+
+   type IBluetoothLEAdvertisementWatcherTrigger3_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEAdvertisementWatcherTrigger3 is access all IBluetoothLEAdvertisementWatcherTrigger3_Interface'Class;
+   type IBluetoothLEAdvertisementWatcherTrigger3_Ptr is access all IBluetoothLEAdvertisementWatcherTrigger3;
 
    type ICachedFileUpdaterTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type ICachedFileUpdaterTrigger is access all ICachedFileUpdaterTrigger_Interface'Class;
@@ -224,6 +273,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IContentPrefetchTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IContentPrefetchTriggerFactory is access all IContentPrefetchTriggerFactory_Interface'Class;
+   type IContentPrefetchTriggerFactory_Ptr is access all IContentPrefetchTriggerFactory;
 
    type ICustomSystemEventTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type ICustomSystemEventTrigger is access all ICustomSystemEventTrigger_Interface'Class;
@@ -231,6 +281,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type ICustomSystemEventTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICustomSystemEventTriggerFactory is access all ICustomSystemEventTriggerFactory_Interface'Class;
+   type ICustomSystemEventTriggerFactory_Ptr is access all ICustomSystemEventTriggerFactory;
 
    type IDeviceConnectionChangeTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceConnectionChangeTrigger is access all IDeviceConnectionChangeTrigger_Interface'Class;
@@ -238,6 +289,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IDeviceConnectionChangeTriggerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceConnectionChangeTriggerStatics is access all IDeviceConnectionChangeTriggerStatics_Interface'Class;
+   type IDeviceConnectionChangeTriggerStatics_Ptr is access all IDeviceConnectionChangeTriggerStatics;
 
    type IDeviceManufacturerNotificationTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceManufacturerNotificationTrigger is access all IDeviceManufacturerNotificationTrigger_Interface'Class;
@@ -245,6 +297,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IDeviceManufacturerNotificationTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceManufacturerNotificationTriggerFactory is access all IDeviceManufacturerNotificationTriggerFactory_Interface'Class;
+   type IDeviceManufacturerNotificationTriggerFactory_Ptr is access all IDeviceManufacturerNotificationTriggerFactory;
 
    type IDeviceServicingTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceServicingTrigger is access all IDeviceServicingTrigger_Interface'Class;
@@ -268,12 +321,15 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IGattCharacteristicNotificationTrigger2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattCharacteristicNotificationTrigger2 is access all IGattCharacteristicNotificationTrigger2_Interface'Class;
+   type IGattCharacteristicNotificationTrigger2_Ptr is access all IGattCharacteristicNotificationTrigger2;
 
    type IGattCharacteristicNotificationTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGattCharacteristicNotificationTriggerFactory is access all IGattCharacteristicNotificationTriggerFactory_Interface'Class;
+   type IGattCharacteristicNotificationTriggerFactory_Ptr is access all IGattCharacteristicNotificationTriggerFactory;
 
    type IGattCharacteristicNotificationTriggerFactory2_Interface is interface and WinRt.IInspectable_Interface;
    type IGattCharacteristicNotificationTriggerFactory2 is access all IGattCharacteristicNotificationTriggerFactory2_Interface'Class;
+   type IGattCharacteristicNotificationTriggerFactory2_Ptr is access all IGattCharacteristicNotificationTriggerFactory2;
 
    type IGattServiceProviderTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IGattServiceProviderTrigger is access all IGattServiceProviderTrigger_Interface'Class;
@@ -285,6 +341,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IGattServiceProviderTriggerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGattServiceProviderTriggerStatics is access all IGattServiceProviderTriggerStatics_Interface'Class;
+   type IGattServiceProviderTriggerStatics_Ptr is access all IGattServiceProviderTriggerStatics;
 
    type IGeovisitTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IGeovisitTrigger is access all IGeovisitTrigger_Interface'Class;
@@ -296,6 +353,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type ILocationTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILocationTriggerFactory is access all ILocationTriggerFactory_Interface'Class;
+   type ILocationTriggerFactory_Ptr is access all ILocationTriggerFactory;
 
    type IMaintenanceTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IMaintenanceTrigger is access all IMaintenanceTrigger_Interface'Class;
@@ -303,6 +361,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IMaintenanceTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMaintenanceTriggerFactory is access all IMaintenanceTriggerFactory_Interface'Class;
+   type IMaintenanceTriggerFactory_Ptr is access all IMaintenanceTriggerFactory;
 
    type IMediaProcessingTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaProcessingTrigger is access all IMediaProcessingTrigger_Interface'Class;
@@ -318,6 +377,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type INetworkOperatorNotificationTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkOperatorNotificationTriggerFactory is access all INetworkOperatorNotificationTriggerFactory_Interface'Class;
+   type INetworkOperatorNotificationTriggerFactory_Ptr is access all INetworkOperatorNotificationTriggerFactory;
 
    type IPhoneTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IPhoneTrigger is access all IPhoneTrigger_Interface'Class;
@@ -325,9 +385,11 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IPhoneTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPhoneTriggerFactory is access all IPhoneTriggerFactory_Interface'Class;
+   type IPhoneTriggerFactory_Ptr is access all IPhoneTriggerFactory;
 
    type IPushNotificationTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPushNotificationTriggerFactory is access all IPushNotificationTriggerFactory_Interface'Class;
+   type IPushNotificationTriggerFactory_Ptr is access all IPushNotificationTriggerFactory;
 
    type IRcsEndUserMessageAvailableTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IRcsEndUserMessageAvailableTrigger is access all IRcsEndUserMessageAvailableTrigger_Interface'Class;
@@ -347,6 +409,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type ISensorDataThresholdTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISensorDataThresholdTriggerFactory is access all ISensorDataThresholdTriggerFactory_Interface'Class;
+   type ISensorDataThresholdTriggerFactory_Ptr is access all ISensorDataThresholdTriggerFactory;
 
    type ISmartCardTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardTrigger is access all ISmartCardTrigger_Interface'Class;
@@ -354,15 +417,19 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type ISmartCardTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardTriggerFactory is access all ISmartCardTriggerFactory_Interface'Class;
+   type ISmartCardTriggerFactory_Ptr is access all ISmartCardTriggerFactory;
 
    type ISmsMessageReceivedTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsMessageReceivedTriggerFactory is access all ISmsMessageReceivedTriggerFactory_Interface'Class;
+   type ISmsMessageReceivedTriggerFactory_Ptr is access all ISmsMessageReceivedTriggerFactory;
 
    type ISocketActivityTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type ISocketActivityTrigger is access all ISocketActivityTrigger_Interface'Class;
+   type ISocketActivityTrigger_Ptr is access all ISocketActivityTrigger;
 
    type IStorageLibraryChangeTrackerTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageLibraryChangeTrackerTriggerFactory is access all IStorageLibraryChangeTrackerTriggerFactory_Interface'Class;
+   type IStorageLibraryChangeTrackerTriggerFactory_Ptr is access all IStorageLibraryChangeTrackerTriggerFactory;
 
    type IStorageLibraryContentChangedTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageLibraryContentChangedTrigger is access all IStorageLibraryContentChangedTrigger_Interface'Class;
@@ -370,6 +437,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type IStorageLibraryContentChangedTriggerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageLibraryContentChangedTriggerStatics is access all IStorageLibraryContentChangedTriggerStatics_Interface'Class;
+   type IStorageLibraryContentChangedTriggerStatics_Ptr is access all IStorageLibraryContentChangedTriggerStatics;
 
    type ISystemCondition_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemCondition is access all ISystemCondition_Interface'Class;
@@ -377,6 +445,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type ISystemConditionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemConditionFactory is access all ISystemConditionFactory_Interface'Class;
+   type ISystemConditionFactory_Ptr is access all ISystemConditionFactory;
 
    type ISystemTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemTrigger is access all ISystemTrigger_Interface'Class;
@@ -384,6 +453,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type ISystemTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemTriggerFactory is access all ISystemTriggerFactory_Interface'Class;
+   type ISystemTriggerFactory_Ptr is access all ISystemTriggerFactory;
 
    type ITimeTrigger_Interface is interface and WinRt.IInspectable_Interface;
    type ITimeTrigger is access all ITimeTrigger_Interface'Class;
@@ -391,15 +461,19 @@ package WinRt.Windows.ApplicationModel.Background is
 
    type ITimeTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITimeTriggerFactory is access all ITimeTriggerFactory_Interface'Class;
+   type ITimeTriggerFactory_Ptr is access all ITimeTriggerFactory;
 
    type IToastNotificationActionTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationActionTriggerFactory is access all IToastNotificationActionTriggerFactory_Interface'Class;
+   type IToastNotificationActionTriggerFactory_Ptr is access all IToastNotificationActionTriggerFactory;
 
    type IToastNotificationHistoryChangedTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IToastNotificationHistoryChangedTriggerFactory is access all IToastNotificationHistoryChangedTriggerFactory_Interface'Class;
+   type IToastNotificationHistoryChangedTriggerFactory_Ptr is access all IToastNotificationHistoryChangedTriggerFactory;
 
    type IUserNotificationChangedTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IUserNotificationChangedTriggerFactory is access all IUserNotificationChangedTriggerFactory_Interface'Class;
+   type IUserNotificationChangedTriggerFactory_Ptr is access all IUserNotificationChangedTriggerFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -783,6 +857,18 @@ package WinRt.Windows.ApplicationModel.Background is
       end record;
    type UserNotificationChangedTrigger_Ptr is access all UserNotificationChangedTrigger;
 
+   type WiFiOnDemandHotspotConnectTrigger is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IBackgroundTrigger : access Windows.ApplicationModel.Background.IBackgroundTrigger;
+      end record;
+   type WiFiOnDemandHotspotConnectTrigger_Ptr is access all WiFiOnDemandHotspotConnectTrigger;
+
+   type WiFiOnDemandHotspotUpdateMetadataTrigger is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IBackgroundTrigger : access Windows.ApplicationModel.Background.IBackgroundTrigger;
+      end record;
+   type WiFiOnDemandHotspotUpdateMetadataTrigger_Ptr is access all WiFiOnDemandHotspotUpdateMetadataTrigger;
+
    -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
@@ -924,6 +1010,20 @@ package WinRt.Windows.ApplicationModel.Background is
       LowBattery_e => 3
    );
    type DeviceTriggerResult_Ptr is access all DeviceTriggerResult;
+
+   type EnergyUseLevel is (
+      Unknown_e,
+      UnderHalfOfBudget_e,
+      OverHalfOfBudget_e,
+      OverBudget_e
+   );
+   for EnergyUseLevel use (
+      Unknown_e => 0,
+      UnderHalfOfBudget_e => 1,
+      OverHalfOfBudget_e => 2,
+      OverBudget_e => 3
+   );
+   type EnergyUseLevel_Ptr is access all EnergyUseLevel;
 
    type LocationTriggerType is (
       Geofence_e
@@ -1359,6 +1459,35 @@ package WinRt.Windows.ApplicationModel.Background is
       IID_IBackgroundExecutionManagerStatics2 : aliased WinRt.IID := (1184572655, 39867, 19992, (153, 154, 253, 101, 18, 147, 27, 233 ));
 
    -----------------------------------------------------------------------------
+   -- type IBackgroundExecutionManagerStatics3 is interface and WinRt.IInspectable;
+
+      function RequestAccessKindForModernStandbyAsync
+      (
+         this : access IBackgroundExecutionManagerStatics3_Interface;
+         requestedAccess : Windows.ApplicationModel.Background.BackgroundAccessRequestKind;
+         reason : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetAccessStatusForModernStandby
+      (
+         this : access IBackgroundExecutionManagerStatics3_Interface;
+         RetVal : access Windows.ApplicationModel.Background.BackgroundAccessStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetAccessStatusForModernStandby
+      (
+         this : access IBackgroundExecutionManagerStatics3_Interface;
+         applicationId : WinRt.HString;
+         RetVal : access Windows.ApplicationModel.Background.BackgroundAccessStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBackgroundExecutionManagerStatics3 : aliased WinRt.IID := (2561004534, 23077, 23404, (145, 146, 215, 122, 67, 223, 237, 196 ));
+
+   -----------------------------------------------------------------------------
    -- type IBackgroundTask is interface and WinRt.IInspectable;
 
       function Run
@@ -1492,6 +1621,52 @@ package WinRt.Windows.ApplicationModel.Background is
       return WinRt.Hresult is abstract;
 
       IID_IBackgroundTaskBuilder5 : aliased WinRt.IID := (124847094, 39413, 19188, (188, 173, 71, 49, 208, 51, 13, 67 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBackgroundTaskBuilder6 is interface and WinRt.IInspectable;
+
+      function get_AllowRunningTaskInStandby
+      (
+         this : access IBackgroundTaskBuilder6_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AllowRunningTaskInStandby
+      (
+         this : access IBackgroundTaskBuilder6_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function Validate
+      (
+         this : access IBackgroundTaskBuilder6_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function Register
+      (
+         this : access IBackgroundTaskBuilder6_Interface;
+         taskName : WinRt.HString;
+         RetVal : access Windows.ApplicationModel.Background.IBackgroundTaskRegistration
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBackgroundTaskBuilder6 : aliased WinRt.IID := (2159311639, 60555, 22099, (133, 11, 117, 8, 160, 31, 82, 231 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBackgroundTaskBuilderStatics is interface and WinRt.IInspectable;
+
+      function get_IsRunningTaskInStandbySupported
+      (
+         this : access IBackgroundTaskBuilderStatics_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBackgroundTaskBuilderStatics : aliased WinRt.IID := (3521859654, 1778, 21940, (155, 183, 166, 69, 126, 191, 51, 0 ));
 
    -----------------------------------------------------------------------------
    -- type IBackgroundTaskCompletedEventArgs is interface and WinRt.IInspectable;
@@ -1716,6 +1891,25 @@ package WinRt.Windows.ApplicationModel.Background is
       IID_IBackgroundTaskRegistration3 : aliased WinRt.IID := (4264788373, 37923, 19851, (131, 13, 177, 221, 44, 123, 173, 213 ));
 
    -----------------------------------------------------------------------------
+   -- type IBackgroundTaskRegistration4 is interface and WinRt.IInspectable;
+
+      function get_TaskLastThrottledInStandbyTimestamp
+      (
+         this : access IBackgroundTaskRegistration4_Interface;
+         RetVal : access Windows.Foundation.DateTime
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AppEnergyUsePredictionContribution
+      (
+         this : access IBackgroundTaskRegistration4_Interface;
+         RetVal : access WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBackgroundTaskRegistration4 : aliased WinRt.IID := (379324873, 45278, 21878, (160, 91, 160, 32, 103, 152, 152, 121 ));
+
+   -----------------------------------------------------------------------------
    -- type IBackgroundTaskRegistrationGroup is interface and WinRt.IInspectable;
 
       function get_Id
@@ -1828,6 +2022,32 @@ package WinRt.Windows.ApplicationModel.Background is
       IID_IBackgroundWorkCostStatics : aliased WinRt.IID := (3342902882, 49936, 19330, (179, 227, 59, 207, 185, 228, 199, 125 ));
 
    -----------------------------------------------------------------------------
+   -- type IBackgroundWorkCostStatics2 is interface and WinRt.IInspectable;
+
+      function get_AppEnergyUseLevel
+      (
+         this : access IBackgroundWorkCostStatics2_Interface;
+         RetVal : access Windows.ApplicationModel.Background.EnergyUseLevel
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AppEnergyUsePrediction
+      (
+         this : access IBackgroundWorkCostStatics2_Interface;
+         RetVal : access Windows.ApplicationModel.Background.EnergyUseLevel
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AppLastThrottledInStandbyTimestamp
+      (
+         this : access IBackgroundWorkCostStatics2_Interface;
+         RetVal : access Windows.Foundation.DateTime
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBackgroundWorkCostStatics2 : aliased WinRt.IID := (3630745974, 33270, 22472, (171, 43, 64, 11, 116, 158, 33, 214 ));
+
+   -----------------------------------------------------------------------------
    -- type IBluetoothLEAdvertisementPublisherTrigger is interface and WinRt.IInspectable;
 
       function get_Advertisement
@@ -1899,6 +2119,39 @@ package WinRt.Windows.ApplicationModel.Background is
       return WinRt.Hresult is abstract;
 
       IID_IBluetoothLEAdvertisementPublisherTrigger2 : aliased WinRt.IID := (2854801508, 14580, 22909, (181, 151, 78, 85, 88, 140, 101, 3 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBluetoothLEAdvertisementPublisherTrigger3 is interface and WinRt.IInspectable;
+
+      function get_PrimaryPhy
+      (
+         this : access IBluetoothLEAdvertisementPublisherTrigger3_Interface;
+         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PrimaryPhy
+      (
+         this : access IBluetoothLEAdvertisementPublisherTrigger3_Interface;
+         value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SecondaryPhy
+      (
+         this : access IBluetoothLEAdvertisementPublisherTrigger3_Interface;
+         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SecondaryPhy
+      (
+         this : access IBluetoothLEAdvertisementPublisherTrigger3_Interface;
+         value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEAdvertisementPublisherTrigger3 : aliased WinRt.IID := (1682021635, 54788, 23516, (183, 210, 167, 254, 37, 197, 84, 96 ));
 
    -----------------------------------------------------------------------------
    -- type IBluetoothLEAdvertisementWatcherTrigger is interface and WinRt.IInspectable;
@@ -1979,6 +2232,53 @@ package WinRt.Windows.ApplicationModel.Background is
       return WinRt.Hresult is abstract;
 
       IID_IBluetoothLEAdvertisementWatcherTrigger2 : aliased WinRt.IID := (968189849, 60217, 23222, (153, 50, 170, 158, 69, 73, 96, 77 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBluetoothLEAdvertisementWatcherTrigger3 is interface and WinRt.IInspectable;
+
+      function get_UseUncoded1MPhy
+      (
+         this : access IBluetoothLEAdvertisementWatcherTrigger3_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_UseUncoded1MPhy
+      (
+         this : access IBluetoothLEAdvertisementWatcherTrigger3_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UseCodedPhy
+      (
+         this : access IBluetoothLEAdvertisementWatcherTrigger3_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_UseCodedPhy
+      (
+         this : access IBluetoothLEAdvertisementWatcherTrigger3_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ScanParameters
+      (
+         this : access IBluetoothLEAdvertisementWatcherTrigger3_Interface;
+         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ScanParameters
+      (
+         this : access IBluetoothLEAdvertisementWatcherTrigger3_Interface;
+         value : Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEAdvertisementWatcherTrigger3 : aliased WinRt.IID := (3662676250, 33377, 22176, (172, 123, 168, 222, 22, 36, 8, 139 ));
 
    -----------------------------------------------------------------------------
    -- type ICachedFileUpdaterTrigger is interface and WinRt.IInspectable;
@@ -3051,6 +3351,13 @@ package WinRt.Windows.ApplicationModel.Background is
    -- Static RuntimeClass
    package BackgroundExecutionManager is
 
+      function RequestAccessKindAsync
+      (
+         requestedAccess : Windows.ApplicationModel.Background.BackgroundAccessRequestKind;
+         reason : WinRt.WString
+      )
+      return WinRt.Boolean;
+
       function RequestAccessAsync_BackgroundExecutionManager
       return WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus;
 
@@ -3076,12 +3383,21 @@ package WinRt.Windows.ApplicationModel.Background is
       )
       return WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus;
 
-      function RequestAccessKindAsync
+      function RequestAccessKindForModernStandbyAsync
       (
          requestedAccess : Windows.ApplicationModel.Background.BackgroundAccessRequestKind;
          reason : WinRt.WString
       )
       return WinRt.Boolean;
+
+      function GetAccessStatusForModernStandby
+      return WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus;
+
+      function GetAccessStatusForModernStandby
+      (
+         applicationId : WinRt.WString
+      )
+      return WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus;
 
    end BackgroundExecutionManager;
 
@@ -3095,6 +3411,12 @@ package WinRt.Windows.ApplicationModel.Background is
    -- RuntimeClass Constructors for BackgroundTaskBuilder
 
    function Constructor return BackgroundTaskBuilder;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for BackgroundTaskBuilder
+
+   function get_IsRunningTaskInStandbySupported
+   return WinRt.Boolean;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BackgroundTaskBuilder
@@ -3183,6 +3505,31 @@ package WinRt.Windows.ApplicationModel.Background is
       TaskEntryPoint : WinRt.Guid
    );
 
+   function get_AllowRunningTaskInStandby
+   (
+      this : in out BackgroundTaskBuilder
+   )
+   return WinRt.Boolean;
+
+   procedure put_AllowRunningTaskInStandby
+   (
+      this : in out BackgroundTaskBuilder;
+      value : WinRt.Boolean
+   );
+
+   function Validate
+   (
+      this : in out BackgroundTaskBuilder
+   )
+   return WinRt.Boolean;
+
+   function Register
+   (
+      this : in out BackgroundTaskBuilder;
+      taskName : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistration'Class;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BackgroundTaskCompletedEventArgs
 
@@ -3247,9 +3594,6 @@ package WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BackgroundTaskRegistration
 
-   function get_AllTasks
-   return WinRt.GenericObject;
-
    function get_AllTaskGroups
    return WinRt.GenericObject;
 
@@ -3258,6 +3602,9 @@ package WinRt.Windows.ApplicationModel.Background is
       groupId : WinRt.WString
    )
    return WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup;
+
+   function get_AllTasks
+   return WinRt.GenericObject;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BackgroundTaskRegistration
@@ -3317,6 +3664,18 @@ package WinRt.Windows.ApplicationModel.Background is
       this : in out BackgroundTaskRegistration
    )
    return WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup'Class;
+
+   function get_TaskLastThrottledInStandbyTimestamp
+   (
+      this : in out BackgroundTaskRegistration
+   )
+   return WinRt.Windows.Foundation.DateTime;
+
+   function get_AppEnergyUsePredictionContribution
+   (
+      this : in out BackgroundTaskRegistration
+   )
+   return WinRt.Double;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BackgroundTaskRegistrationGroup
@@ -3380,6 +3739,15 @@ package WinRt.Windows.ApplicationModel.Background is
 
       function get_CurrentBackgroundWorkCost
       return WinRt.Windows.ApplicationModel.Background.BackgroundWorkCostValue;
+
+      function get_AppEnergyUseLevel
+      return WinRt.Windows.ApplicationModel.Background.EnergyUseLevel;
+
+      function get_AppEnergyUsePrediction
+      return WinRt.Windows.ApplicationModel.Background.EnergyUseLevel;
+
+      function get_AppLastThrottledInStandbyTimestamp
+      return WinRt.Windows.Foundation.DateTime;
 
    end BackgroundWorkCost;
 
@@ -3449,6 +3817,30 @@ package WinRt.Windows.ApplicationModel.Background is
    (
       this : in out BluetoothLEAdvertisementPublisherTrigger;
       value : WinRt.Boolean
+   );
+
+   function get_PrimaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisherTrigger
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType;
+
+   procedure put_PrimaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisherTrigger;
+      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+   );
+
+   function get_SecondaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisherTrigger
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType;
+
+   procedure put_SecondaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisherTrigger;
+      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
    );
 
    -----------------------------------------------------------------------------
@@ -3523,6 +3915,42 @@ package WinRt.Windows.ApplicationModel.Background is
    (
       this : in out BluetoothLEAdvertisementWatcherTrigger;
       value : WinRt.Boolean
+   );
+
+   function get_UseUncoded1MPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcherTrigger
+   )
+   return WinRt.Boolean;
+
+   procedure put_UseUncoded1MPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcherTrigger;
+      value : WinRt.Boolean
+   );
+
+   function get_UseCodedPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcherTrigger
+   )
+   return WinRt.Boolean;
+
+   procedure put_UseCodedPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcherTrigger;
+      value : WinRt.Boolean
+   );
+
+   function get_ScanParameters
+   (
+      this : in out BluetoothLEAdvertisementWatcherTrigger
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters'Class;
+
+   procedure put_ScanParameters
+   (
+      this : in out BluetoothLEAdvertisementWatcherTrigger;
+      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters'Class
    );
 
    -----------------------------------------------------------------------------
@@ -3631,13 +4059,13 @@ package WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ContentPrefetchTrigger
 
+   function Constructor return ContentPrefetchTrigger;
+
    function Constructor
    (
       waitInterval : Windows.Foundation.TimeSpan
    )
    return ContentPrefetchTrigger;
-
-   function Constructor return ContentPrefetchTrigger;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ContentPrefetchTrigger
@@ -4234,13 +4662,13 @@ package WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PushNotificationTrigger
 
-   function Constructor return PushNotificationTrigger;
-
    function Constructor
    (
       applicationId : WinRt.WString
    )
    return PushNotificationTrigger;
+
+   function Constructor return PushNotificationTrigger;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for PushNotificationTrigger
@@ -4566,13 +4994,13 @@ package WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ToastNotificationActionTrigger
 
+   function Constructor return ToastNotificationActionTrigger;
+
    function Constructor
    (
       applicationId : WinRt.WString
    )
    return ToastNotificationActionTrigger;
-
-   function Constructor return ToastNotificationActionTrigger;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ToastNotificationActionTrigger
@@ -4614,5 +5042,33 @@ package WinRt.Windows.ApplicationModel.Background is
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for UserNotificationChangedTrigger
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WiFiOnDemandHotspotConnectTrigger
+
+   overriding procedure Initialize (this : in out WiFiOnDemandHotspotConnectTrigger);
+   overriding procedure Finalize (this : in out WiFiOnDemandHotspotConnectTrigger);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WiFiOnDemandHotspotConnectTrigger
+
+   function Constructor return WiFiOnDemandHotspotConnectTrigger;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WiFiOnDemandHotspotConnectTrigger
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WiFiOnDemandHotspotUpdateMetadataTrigger
+
+   overriding procedure Initialize (this : in out WiFiOnDemandHotspotUpdateMetadataTrigger);
+   overriding procedure Finalize (this : in out WiFiOnDemandHotspotUpdateMetadataTrigger);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WiFiOnDemandHotspotUpdateMetadataTrigger
+
+   function Constructor return WiFiOnDemandHotspotUpdateMetadataTrigger;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WiFiOnDemandHotspotUpdateMetadataTrigger
 
 end WinRt.Windows.ApplicationModel.Background;

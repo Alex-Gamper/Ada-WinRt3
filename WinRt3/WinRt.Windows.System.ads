@@ -63,15 +63,19 @@ package WinRt.Windows.System is
 
    type IAppDiagnosticInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppDiagnosticInfo2 is access all IAppDiagnosticInfo2_Interface'Class;
+   type IAppDiagnosticInfo2_Ptr is access all IAppDiagnosticInfo2;
 
    type IAppDiagnosticInfo3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppDiagnosticInfo3 is access all IAppDiagnosticInfo3_Interface'Class;
+   type IAppDiagnosticInfo3_Ptr is access all IAppDiagnosticInfo3;
 
    type IAppDiagnosticInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppDiagnosticInfoStatics is access all IAppDiagnosticInfoStatics_Interface'Class;
+   type IAppDiagnosticInfoStatics_Ptr is access all IAppDiagnosticInfoStatics;
 
    type IAppDiagnosticInfoStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppDiagnosticInfoStatics2 is access all IAppDiagnosticInfoStatics2_Interface'Class;
+   type IAppDiagnosticInfoStatics2_Ptr is access all IAppDiagnosticInfoStatics2;
 
    type IAppDiagnosticInfoWatcher_Interface is interface and WinRt.IInspectable_Interface;
    type IAppDiagnosticInfoWatcher is access all IAppDiagnosticInfoWatcher_Interface'Class;
@@ -91,6 +95,7 @@ package WinRt.Windows.System is
 
    type IAppMemoryReport2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppMemoryReport2 is access all IAppMemoryReport2_Interface'Class;
+   type IAppMemoryReport2_Ptr is access all IAppMemoryReport2;
 
    type IAppMemoryUsageLimitChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAppMemoryUsageLimitChangingEventArgs is access all IAppMemoryUsageLimitChangingEventArgs_Interface'Class;
@@ -106,6 +111,7 @@ package WinRt.Windows.System is
 
    type IAppResourceGroupInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppResourceGroupInfo2 is access all IAppResourceGroupInfo2_Interface'Class;
+   type IAppResourceGroupInfo2_Ptr is access all IAppResourceGroupInfo2;
 
    type IAppResourceGroupInfoWatcher_Interface is interface and WinRt.IInspectable_Interface;
    type IAppResourceGroupInfoWatcher is access all IAppResourceGroupInfoWatcher_Interface'Class;
@@ -131,22 +137,41 @@ package WinRt.Windows.System is
    type IAppUriHandlerHost is access all IAppUriHandlerHost_Interface'Class;
    type IAppUriHandlerHost_Ptr is access all IAppUriHandlerHost;
 
+   type IAppUriHandlerHost2_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppUriHandlerHost2 is access all IAppUriHandlerHost2_Interface'Class;
+   type IAppUriHandlerHost2_Ptr is access all IAppUriHandlerHost2;
+
    type IAppUriHandlerHostFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAppUriHandlerHostFactory is access all IAppUriHandlerHostFactory_Interface'Class;
+   type IAppUriHandlerHostFactory_Ptr is access all IAppUriHandlerHostFactory;
 
    type IAppUriHandlerRegistration_Interface is interface and WinRt.IInspectable_Interface;
    type IAppUriHandlerRegistration is access all IAppUriHandlerRegistration_Interface'Class;
    type IAppUriHandlerRegistration_Ptr is access all IAppUriHandlerRegistration;
 
+   type IAppUriHandlerRegistration2_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppUriHandlerRegistration2 is access all IAppUriHandlerRegistration2_Interface'Class;
+   type IAppUriHandlerRegistration2_Ptr is access all IAppUriHandlerRegistration2;
+
    type IAppUriHandlerRegistrationManager_Interface is interface and WinRt.IInspectable_Interface;
    type IAppUriHandlerRegistrationManager is access all IAppUriHandlerRegistrationManager_Interface'Class;
    type IAppUriHandlerRegistrationManager_Ptr is access all IAppUriHandlerRegistrationManager;
 
+   type IAppUriHandlerRegistrationManager2_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppUriHandlerRegistrationManager2 is access all IAppUriHandlerRegistrationManager2_Interface'Class;
+   type IAppUriHandlerRegistrationManager2_Ptr is access all IAppUriHandlerRegistrationManager2;
+
    type IAppUriHandlerRegistrationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppUriHandlerRegistrationManagerStatics is access all IAppUriHandlerRegistrationManagerStatics_Interface'Class;
+   type IAppUriHandlerRegistrationManagerStatics_Ptr is access all IAppUriHandlerRegistrationManagerStatics;
+
+   type IAppUriHandlerRegistrationManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppUriHandlerRegistrationManagerStatics2 is access all IAppUriHandlerRegistrationManagerStatics2_Interface'Class;
+   type IAppUriHandlerRegistrationManagerStatics2_Ptr is access all IAppUriHandlerRegistrationManagerStatics2;
 
    type IDateTimeSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDateTimeSettingsStatics is access all IDateTimeSettingsStatics_Interface'Class;
+   type IDateTimeSettingsStatics_Ptr is access all IDateTimeSettingsStatics;
 
    type IDispatcherQueue_Interface is interface and WinRt.IInspectable_Interface;
    type IDispatcherQueue is access all IDispatcherQueue_Interface'Class;
@@ -154,6 +179,7 @@ package WinRt.Windows.System is
 
    type IDispatcherQueue2_Interface is interface and WinRt.IInspectable_Interface;
    type IDispatcherQueue2 is access all IDispatcherQueue2_Interface'Class;
+   type IDispatcherQueue2_Ptr is access all IDispatcherQueue2;
 
    type IDispatcherQueueController_Interface is interface and WinRt.IInspectable_Interface;
    type IDispatcherQueueController is access all IDispatcherQueueController_Interface'Class;
@@ -161,6 +187,7 @@ package WinRt.Windows.System is
 
    type IDispatcherQueueControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDispatcherQueueControllerStatics is access all IDispatcherQueueControllerStatics_Interface'Class;
+   type IDispatcherQueueControllerStatics_Ptr is access all IDispatcherQueueControllerStatics;
 
    type IDispatcherQueueShutdownStartingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDispatcherQueueShutdownStartingEventArgs is access all IDispatcherQueueShutdownStartingEventArgs_Interface'Class;
@@ -168,6 +195,7 @@ package WinRt.Windows.System is
 
    type IDispatcherQueueStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDispatcherQueueStatics is access all IDispatcherQueueStatics_Interface'Class;
+   type IDispatcherQueueStatics_Ptr is access all IDispatcherQueueStatics;
 
    type IDispatcherQueueTimer_Interface is interface and WinRt.IInspectable_Interface;
    type IDispatcherQueueTimer is access all IDispatcherQueueTimer_Interface'Class;
@@ -179,6 +207,11 @@ package WinRt.Windows.System is
 
    type IKnownUserPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownUserPropertiesStatics is access all IKnownUserPropertiesStatics_Interface'Class;
+   type IKnownUserPropertiesStatics_Ptr is access all IKnownUserPropertiesStatics;
+
+   type IKnownUserPropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type IKnownUserPropertiesStatics2 is access all IKnownUserPropertiesStatics2_Interface'Class;
+   type IKnownUserPropertiesStatics2_Ptr is access all IKnownUserPropertiesStatics2;
 
    type ILaunchUriResult_Interface is interface and WinRt.IInspectable_Interface;
    type ILaunchUriResult is access all ILaunchUriResult_Interface'Class;
@@ -190,27 +223,35 @@ package WinRt.Windows.System is
 
    type ILauncherOptions2_Interface is interface and WinRt.IInspectable_Interface;
    type ILauncherOptions2 is access all ILauncherOptions2_Interface'Class;
+   type ILauncherOptions2_Ptr is access all ILauncherOptions2;
 
    type ILauncherOptions3_Interface is interface and WinRt.IInspectable_Interface;
    type ILauncherOptions3 is access all ILauncherOptions3_Interface'Class;
+   type ILauncherOptions3_Ptr is access all ILauncherOptions3;
 
    type ILauncherOptions4_Interface is interface and WinRt.IInspectable_Interface;
    type ILauncherOptions4 is access all ILauncherOptions4_Interface'Class;
+   type ILauncherOptions4_Ptr is access all ILauncherOptions4;
 
    type ILauncherStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILauncherStatics is access all ILauncherStatics_Interface'Class;
+   type ILauncherStatics_Ptr is access all ILauncherStatics;
 
    type ILauncherStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ILauncherStatics2 is access all ILauncherStatics2_Interface'Class;
+   type ILauncherStatics2_Ptr is access all ILauncherStatics2;
 
    type ILauncherStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type ILauncherStatics3 is access all ILauncherStatics3_Interface'Class;
+   type ILauncherStatics3_Ptr is access all ILauncherStatics3;
 
    type ILauncherStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type ILauncherStatics4 is access all ILauncherStatics4_Interface'Class;
+   type ILauncherStatics4_Ptr is access all ILauncherStatics4;
 
    type ILauncherStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type ILauncherStatics5 is access all ILauncherStatics5_Interface'Class;
+   type ILauncherStatics5_Ptr is access all ILauncherStatics5;
 
    type ILauncherUIOptions_Interface is interface and WinRt.IInspectable_Interface;
    type ILauncherUIOptions is access all ILauncherUIOptions_Interface'Class;
@@ -218,18 +259,23 @@ package WinRt.Windows.System is
 
    type ILauncherViewOptions_Interface is interface and WinRt.IInspectable_Interface;
    type ILauncherViewOptions is access all ILauncherViewOptions_Interface'Class;
+   type ILauncherViewOptions_Ptr is access all ILauncherViewOptions;
 
    type IMemoryManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMemoryManagerStatics is access all IMemoryManagerStatics_Interface'Class;
+   type IMemoryManagerStatics_Ptr is access all IMemoryManagerStatics;
 
    type IMemoryManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMemoryManagerStatics2 is access all IMemoryManagerStatics2_Interface'Class;
+   type IMemoryManagerStatics2_Ptr is access all IMemoryManagerStatics2;
 
    type IMemoryManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IMemoryManagerStatics3 is access all IMemoryManagerStatics3_Interface'Class;
+   type IMemoryManagerStatics3_Ptr is access all IMemoryManagerStatics3;
 
    type IMemoryManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IMemoryManagerStatics4 is access all IMemoryManagerStatics4_Interface'Class;
+   type IMemoryManagerStatics4_Ptr is access all IMemoryManagerStatics4;
 
    type IProcessLauncherOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IProcessLauncherOptions is access all IProcessLauncherOptions_Interface'Class;
@@ -241,6 +287,7 @@ package WinRt.Windows.System is
 
    type IProcessLauncherStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IProcessLauncherStatics is access all IProcessLauncherStatics_Interface'Class;
+   type IProcessLauncherStatics_Ptr is access all IProcessLauncherStatics;
 
    type IProcessMemoryReport_Interface is interface and WinRt.IInspectable_Interface;
    type IProcessMemoryReport is access all IProcessMemoryReport_Interface'Class;
@@ -256,22 +303,31 @@ package WinRt.Windows.System is
 
    type IRemoteLauncherStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRemoteLauncherStatics is access all IRemoteLauncherStatics_Interface'Class;
+   type IRemoteLauncherStatics_Ptr is access all IRemoteLauncherStatics;
 
    type IShutdownManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IShutdownManagerStatics is access all IShutdownManagerStatics_Interface'Class;
+   type IShutdownManagerStatics_Ptr is access all IShutdownManagerStatics;
 
    type IShutdownManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IShutdownManagerStatics2 is access all IShutdownManagerStatics2_Interface'Class;
+   type IShutdownManagerStatics2_Ptr is access all IShutdownManagerStatics2;
 
    type ITimeZoneSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITimeZoneSettingsStatics is access all ITimeZoneSettingsStatics_Interface'Class;
+   type ITimeZoneSettingsStatics_Ptr is access all ITimeZoneSettingsStatics;
 
    type ITimeZoneSettingsStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITimeZoneSettingsStatics2 is access all ITimeZoneSettingsStatics2_Interface'Class;
+   type ITimeZoneSettingsStatics2_Ptr is access all ITimeZoneSettingsStatics2;
 
    type IUser_Interface is interface and WinRt.IInspectable_Interface;
    type IUser is access all IUser_Interface'Class;
    type IUser_Ptr is access all IUser;
+
+   type IUser2_Interface is interface and WinRt.IInspectable_Interface;
+   type IUser2 is access all IUser2_Interface'Class;
+   type IUser2_Ptr is access all IUser2;
 
    type IUserAuthenticationStatusChangeDeferral_Interface is interface and WinRt.IInspectable_Interface;
    type IUserAuthenticationStatusChangeDeferral is access all IUserAuthenticationStatusChangeDeferral_Interface'Class;
@@ -287,6 +343,7 @@ package WinRt.Windows.System is
 
    type IUserChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IUserChangedEventArgs2 is access all IUserChangedEventArgs2_Interface'Class;
+   type IUserChangedEventArgs2_Ptr is access all IUserChangedEventArgs2;
 
    type IUserDeviceAssociationChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDeviceAssociationChangedEventArgs is access all IUserDeviceAssociationChangedEventArgs_Interface'Class;
@@ -294,6 +351,7 @@ package WinRt.Windows.System is
 
    type IUserDeviceAssociationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDeviceAssociationStatics is access all IUserDeviceAssociationStatics_Interface'Class;
+   type IUserDeviceAssociationStatics_Ptr is access all IUserDeviceAssociationStatics;
 
    type IUserPicker_Interface is interface and WinRt.IInspectable_Interface;
    type IUserPicker is access all IUserPicker_Interface'Class;
@@ -301,9 +359,15 @@ package WinRt.Windows.System is
 
    type IUserPickerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserPickerStatics is access all IUserPickerStatics_Interface'Class;
+   type IUserPickerStatics_Ptr is access all IUserPickerStatics;
 
    type IUserStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserStatics is access all IUserStatics_Interface'Class;
+   type IUserStatics_Ptr is access all IUserStatics;
+
+   type IUserStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type IUserStatics2 is access all IUserStatics2_Interface'Class;
+   type IUserStatics2_Ptr is access all IUserStatics2;
 
    type IUserWatcher_Interface is interface and WinRt.IInspectable_Interface;
    type IUserWatcher is access all IUserWatcher_Interface'Class;
@@ -773,6 +837,34 @@ package WinRt.Windows.System is
    );
    type ShutdownKind_Ptr is access all ShutdownKind;
 
+   type UserAgeConsentGroup is (
+      Child_e,
+      Minor_e,
+      Adult_e
+   );
+   for UserAgeConsentGroup use (
+      Child_e => 0,
+      Minor_e => 1,
+      Adult_e => 2
+   );
+   type UserAgeConsentGroup_Ptr is access all UserAgeConsentGroup;
+
+   type UserAgeConsentResult is (
+      NotEnforced_e,
+      Included_e,
+      NotIncluded_e,
+      Unknown_e,
+      Ambiguous_e
+   );
+   for UserAgeConsentResult use (
+      NotEnforced_e => 0,
+      Included_e => 1,
+      NotIncluded_e => 2,
+      Unknown_e => 3,
+      Ambiguous_e => 4
+   );
+   type UserAgeConsentResult_Ptr is access all UserAgeConsentResult;
+
    type UserAuthenticationStatus is (
       Unauthenticated_e,
       LocallyAuthenticated_e,
@@ -803,13 +895,15 @@ package WinRt.Windows.System is
       LocalUser_e,
       RemoteUser_e,
       LocalGuest_e,
-      RemoteGuest_e
+      RemoteGuest_e,
+      SystemManaged_e
    );
    for UserType use (
       LocalUser_e => 0,
       RemoteUser_e => 1,
       LocalGuest_e => 2,
-      RemoteGuest_e => 3
+      RemoteGuest_e => 3,
+      SystemManaged_e => 4
    );
    type UserType_Ptr is access all UserType;
 
@@ -1240,6 +1334,10 @@ package WinRt.Windows.System is
    package IVectorView_IAppDiagnosticInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IAppDiagnosticInfo);
    IID_IVectorView_IAppDiagnosticInfo : aliased WinRt.IID := (2672773095, 39709, 22128, (144, 238, 56, 76, 49, 154, 159, 110 ));
    function QInterface_IVectorView_IAppDiagnosticInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAppDiagnosticInfo.Kind, IID_IVectorView_IAppDiagnosticInfo'Access);
+
+   package IVector_IAppUriHandlerHost is new WinRt.Windows.Foundation.Collections.IVector (IAppUriHandlerHost);
+   IID_IVector_IAppUriHandlerHost : aliased WinRt.IID := (211119675, 42533, 21154, (173, 194, 170, 212, 21, 129, 229, 198 ));
+   function QInterface_IVector_IAppUriHandlerHost is new Generic_QueryInterface (GenericObject_Interface, IVector_IAppUriHandlerHost.Kind, IID_IVector_IAppUriHandlerHost'Access);
 
    package IReference_Point is new WinRt.Windows.Foundation.IReference (WinRt.Windows.Foundation.Point);
    IID_IReference_Point : aliased WinRt.IID := (1760961375, 53095, 23038, (160, 40, 19, 217, 76, 67, 15, 135 ));
@@ -1864,6 +1962,25 @@ package WinRt.Windows.System is
       IID_IAppUriHandlerHost : aliased WinRt.IID := (1565575877, 37586, 21513, (181, 111, 127, 115, 225, 14, 164, 195 ));
 
    -----------------------------------------------------------------------------
+   -- type IAppUriHandlerHost2 is interface and WinRt.IInspectable;
+
+      function get_IsEnabled
+      (
+         this : access IAppUriHandlerHost2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsEnabled
+      (
+         this : access IAppUriHandlerHost2_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppUriHandlerHost2 : aliased WinRt.IID := (973860501, 10724, 20927, (128, 149, 163, 192, 104, 227, 199, 42 ));
+
+   -----------------------------------------------------------------------------
    -- type IAppUriHandlerHostFactory is interface and WinRt.IInspectable;
 
       function CreateInstance
@@ -1911,6 +2028,32 @@ package WinRt.Windows.System is
       IID_IAppUriHandlerRegistration : aliased WinRt.IID := (1869852337, 17769, 23615, (155, 160, 153, 18, 62, 234, 50, 195 ));
 
    -----------------------------------------------------------------------------
+   -- type IAppUriHandlerRegistration2 is interface and WinRt.IInspectable;
+
+      function GetAllHosts
+      (
+         this : access IAppUriHandlerRegistration2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function UpdateHosts
+      (
+         this : access IAppUriHandlerRegistration2_Interface;
+         hosts : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PackageFamilyName
+      (
+         this : access IAppUriHandlerRegistration2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppUriHandlerRegistration2 : aliased WinRt.IID := (3578637463, 52025, 24351, (136, 62, 1, 133, 55, 48, 189, 109 ));
+
+   -----------------------------------------------------------------------------
    -- type IAppUriHandlerRegistrationManager is interface and WinRt.IInspectable;
 
       function get_User
@@ -1931,6 +2074,18 @@ package WinRt.Windows.System is
       IID_IAppUriHandlerRegistrationManager : aliased WinRt.IID := (3861682770, 44180, 22352, (172, 27, 108, 251, 111, 37, 2, 99 ));
 
    -----------------------------------------------------------------------------
+   -- type IAppUriHandlerRegistrationManager2 is interface and WinRt.IInspectable;
+
+      function get_PackageFamilyName
+      (
+         this : access IAppUriHandlerRegistrationManager2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppUriHandlerRegistrationManager2 : aliased WinRt.IID := (3185560305, 46362, 24169, (174, 253, 112, 136, 217, 242, 177, 35 ));
+
+   -----------------------------------------------------------------------------
    -- type IAppUriHandlerRegistrationManagerStatics is interface and WinRt.IInspectable;
 
       function GetDefault
@@ -1949,6 +2104,28 @@ package WinRt.Windows.System is
       return WinRt.Hresult is abstract;
 
       IID_IAppUriHandlerRegistrationManagerStatics : aliased WinRt.IID := (3587104159, 22313, 23414, (161, 212, 2, 133, 242, 149, 193, 36 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAppUriHandlerRegistrationManagerStatics2 is interface and WinRt.IInspectable;
+
+      function GetForPackage
+      (
+         this : access IAppUriHandlerRegistrationManagerStatics2_Interface;
+         packageFamilyName : WinRt.HString;
+         RetVal : access Windows.System.IAppUriHandlerRegistrationManager
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetForPackageForUser
+      (
+         this : access IAppUriHandlerRegistrationManagerStatics2_Interface;
+         packageFamilyName : WinRt.HString;
+         user_p : Windows.System.IUser;
+         RetVal : access Windows.System.IAppUriHandlerRegistrationManager
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppUriHandlerRegistrationManagerStatics2 : aliased WinRt.IID := (351765369, 26768, 20608, (144, 167, 152, 130, 74, 127, 7, 158 ));
 
    -----------------------------------------------------------------------------
    -- type IDateTimeSettingsStatics is interface and WinRt.IInspectable;
@@ -2234,6 +2411,18 @@ package WinRt.Windows.System is
       return WinRt.Hresult is abstract;
 
       IID_IKnownUserPropertiesStatics : aliased WinRt.IID := (2002096410, 28869, 18661, (182, 55, 91, 163, 68, 30, 78, 228 ));
+
+   -----------------------------------------------------------------------------
+   -- type IKnownUserPropertiesStatics2 is interface and WinRt.IInspectable;
+
+      function get_AgeEnforcementRegion
+      (
+         this : access IKnownUserPropertiesStatics2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IKnownUserPropertiesStatics2 : aliased WinRt.IID := (1531250562, 63008, 22398, (177, 179, 221, 86, 100, 77, 121, 177 ));
 
    -----------------------------------------------------------------------------
    -- type ILaunchUriResult is interface and WinRt.IInspectable;
@@ -3213,6 +3402,19 @@ package WinRt.Windows.System is
       IID_IUser : aliased WinRt.IID := (3751421638, 59206, 19405, (181, 212, 18, 1, 3, 196, 32, 155 ));
 
    -----------------------------------------------------------------------------
+   -- type IUser2 is interface and WinRt.IInspectable;
+
+      function CheckUserAgeConsentGroupAsync
+      (
+         this : access IUser2_Interface;
+         consentGroup : Windows.System.UserAgeConsentGroup;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IUser2 : aliased WinRt.IID := (2562348584, 42723, 20878, (137, 217, 211, 178, 177, 153, 26, 16 ));
+
+   -----------------------------------------------------------------------------
    -- type IUserAuthenticationStatusChangeDeferral is interface and WinRt.IInspectable;
 
       function Complete
@@ -3429,6 +3631,18 @@ package WinRt.Windows.System is
       return WinRt.Hresult is abstract;
 
       IID_IUserStatics : aliased WinRt.IID := (358527547, 9258, 17888, (162, 233, 49, 113, 252, 106, 127, 221 ));
+
+   -----------------------------------------------------------------------------
+   -- type IUserStatics2 is interface and WinRt.IInspectable;
+
+      function GetDefault
+      (
+         this : access IUserStatics2_Interface;
+         RetVal : access Windows.System.IUser
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IUserStatics2 : aliased WinRt.IID := (1956871697, 11957, 17543, (176, 213, 44, 103, 144, 224, 19, 233 ));
 
    -----------------------------------------------------------------------------
    -- type IUserWatcher is interface and WinRt.IInspectable;
@@ -4125,6 +4339,18 @@ package WinRt.Windows.System is
       value : WinRt.WString
    );
 
+   function get_IsEnabled
+   (
+      this : in out AppUriHandlerHost
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsEnabled
+   (
+      this : in out AppUriHandlerHost;
+      value : WinRt.Boolean
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AppUriHandlerRegistration
 
@@ -4158,6 +4384,24 @@ package WinRt.Windows.System is
       hosts : GenericObject
    );
 
+   function GetAllHosts
+   (
+      this : in out AppUriHandlerRegistration
+   )
+   return IVector_IAppUriHandlerHost.Kind;
+
+   procedure UpdateHosts
+   (
+      this : in out AppUriHandlerRegistration;
+      hosts : GenericObject
+   );
+
+   function get_PackageFamilyName
+   (
+      this : in out AppUriHandlerRegistration
+   )
+   return WinRt.WString;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AppUriHandlerRegistrationManager
 
@@ -4172,6 +4416,19 @@ package WinRt.Windows.System is
 
    function GetForUser
    (
+      user_p : Windows.System.User'Class
+   )
+   return WinRt.Windows.System.AppUriHandlerRegistrationManager;
+
+   function GetForPackage
+   (
+      packageFamilyName : WinRt.WString
+   )
+   return WinRt.Windows.System.AppUriHandlerRegistrationManager;
+
+   function GetForPackageForUser
+   (
+      packageFamilyName : WinRt.WString;
       user_p : Windows.System.User'Class
    )
    return WinRt.Windows.System.AppUriHandlerRegistrationManager;
@@ -4191,6 +4448,12 @@ package WinRt.Windows.System is
       name : WinRt.WString
    )
    return WinRt.Windows.System.AppUriHandlerRegistration'Class;
+
+   function get_PackageFamilyName
+   (
+      this : in out AppUriHandlerRegistrationManager
+   )
+   return WinRt.WString;
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
@@ -4410,6 +4673,9 @@ package WinRt.Windows.System is
    -- Static RuntimeClass
    package KnownUserProperties is
 
+      function get_AgeEnforcementRegion
+      return WinRt.WString;
+
       function get_DisplayName
       return WinRt.WString;
 
@@ -4534,6 +4800,60 @@ package WinRt.Windows.System is
       )
       return WinRt.GenericObject;
 
+      function LaunchFileAsync
+      (
+         file : Windows.Storage.IStorageFile
+      )
+      return WinRt.Boolean;
+
+      function LaunchFileAsync
+      (
+         file : Windows.Storage.IStorageFile;
+         options : Windows.System.LauncherOptions'Class
+      )
+      return WinRt.Boolean;
+
+      function LaunchUriAsync
+      (
+         uri : Windows.Foundation.Uri'Class
+      )
+      return WinRt.Boolean;
+
+      function LaunchUriAsync
+      (
+         uri : Windows.Foundation.Uri'Class;
+         options : Windows.System.LauncherOptions'Class
+      )
+      return WinRt.Boolean;
+
+      function LaunchFolderPathAsync
+      (
+         path : WinRt.WString
+      )
+      return WinRt.Boolean;
+
+      function LaunchFolderPathAsync
+      (
+         path : WinRt.WString;
+         options : Windows.System.FolderLauncherOptions'Class
+      )
+      return WinRt.Boolean;
+
+      function LaunchFolderPathForUserAsync
+      (
+         user_p : Windows.System.User'Class;
+         path : WinRt.WString
+      )
+      return WinRt.Boolean;
+
+      function LaunchFolderPathForUserAsync
+      (
+         user_p : Windows.System.User'Class;
+         path : WinRt.WString;
+         options : Windows.System.FolderLauncherOptions'Class
+      )
+      return WinRt.Boolean;
+
       function QueryAppUriSupportAsync
       (
          uri : Windows.Foundation.Uri'Class
@@ -4593,60 +4913,6 @@ package WinRt.Windows.System is
          inputData : Windows.Foundation.Collections.ValueSet'Class
       )
       return WinRt.Windows.System.LaunchUriResult;
-
-      function LaunchFileAsync
-      (
-         file : Windows.Storage.IStorageFile
-      )
-      return WinRt.Boolean;
-
-      function LaunchFileAsync
-      (
-         file : Windows.Storage.IStorageFile;
-         options : Windows.System.LauncherOptions'Class
-      )
-      return WinRt.Boolean;
-
-      function LaunchUriAsync
-      (
-         uri : Windows.Foundation.Uri'Class
-      )
-      return WinRt.Boolean;
-
-      function LaunchUriAsync
-      (
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class
-      )
-      return WinRt.Boolean;
-
-      function LaunchFolderPathAsync
-      (
-         path : WinRt.WString
-      )
-      return WinRt.Boolean;
-
-      function LaunchFolderPathAsync
-      (
-         path : WinRt.WString;
-         options : Windows.System.FolderLauncherOptions'Class
-      )
-      return WinRt.Boolean;
-
-      function LaunchFolderPathForUserAsync
-      (
-         user_p : Windows.System.User'Class;
-         path : WinRt.WString
-      )
-      return WinRt.Boolean;
-
-      function LaunchFolderPathForUserAsync
-      (
-         user_p : Windows.System.User'Class;
-         path : WinRt.WString;
-         options : Windows.System.FolderLauncherOptions'Class
-      )
-      return WinRt.Boolean;
 
       function LaunchFolderAsync
       (
@@ -4864,20 +5130,17 @@ package WinRt.Windows.System is
    -- Static RuntimeClass
    package MemoryManager is
 
-      function get_ExpectedAppMemoryUsageLimit
-      return WinRt.UInt64;
+      function TrySetAppMemoryUsageLimit
+      (
+         value : WinRt.UInt64
+      )
+      return WinRt.Boolean;
 
       function GetAppMemoryReport
       return WinRt.Windows.System.AppMemoryReport;
 
       function GetProcessMemoryReport
       return WinRt.Windows.System.ProcessMemoryReport;
-
-      function TrySetAppMemoryUsageLimit
-      (
-         value : WinRt.UInt64
-      )
-      return WinRt.Boolean;
 
       function get_AppMemoryUsage
       return WinRt.UInt64;
@@ -4920,6 +5183,9 @@ package WinRt.Windows.System is
       (
          token : Windows.Foundation.EventRegistrationToken
       );
+
+      function get_ExpectedAppMemoryUsageLimit
+      return WinRt.UInt64;
 
    end MemoryManager;
 
@@ -5154,12 +5420,6 @@ package WinRt.Windows.System is
    -- Static RuntimeClass
    package TimeZoneSettings is
 
-      function AutoUpdateTimeZoneAsync
-      (
-         timeout : Windows.Foundation.TimeSpan
-      )
-      return WinRt.Windows.System.AutoUpdateTimeZoneStatus;
-
       function get_CurrentTimeZoneDisplayName
       return WinRt.WString;
 
@@ -5173,6 +5433,12 @@ package WinRt.Windows.System is
       (
          timeZoneDisplayName : WinRt.WString
       );
+
+      function AutoUpdateTimeZoneAsync
+      (
+         timeout : Windows.Foundation.TimeSpan
+      )
+      return WinRt.Windows.System.AutoUpdateTimeZoneStatus;
 
    end TimeZoneSettings;
 
@@ -5208,6 +5474,9 @@ package WinRt.Windows.System is
    (
       nonRoamableId : WinRt.WString
    )
+   return WinRt.Windows.System.User;
+
+   function GetDefault
    return WinRt.Windows.System.User;
 
    -----------------------------------------------------------------------------
@@ -5251,6 +5520,13 @@ package WinRt.Windows.System is
       desiredSize : Windows.System.UserPictureSize
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+
+   function CheckUserAgeConsentGroupAsync
+   (
+      this : in out User;
+      consentGroup : Windows.System.UserAgeConsentGroup
+   )
+   return WinRt.Windows.System.UserAgeConsentResult;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for UserAuthenticationStatusChangeDeferral

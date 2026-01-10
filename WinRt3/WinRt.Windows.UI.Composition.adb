@@ -41,6 +41,9 @@ package body WinRt.Windows.UI.Composition is
    package IIterable_ICompositionAnimation is new WinRt.Windows.Foundation.Collections.IIterable (ICompositionAnimation);
    package IIterable_ICompositionColorGradientStop is new WinRt.Windows.Foundation.Collections.IIterable (ICompositionColorGradientStop);
    package IVector_ICompositionColorGradientStop is new WinRt.Windows.Foundation.Collections.IVector (ICompositionColorGradientStop);
+   package IAsyncOperation_ICompositionSurface is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.UI.Composition.ICompositionSurface);
+   package AsyncOperationCompletedHandler_ICompositionSurface is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.UI.Composition.ICompositionSurface);
+
    package IIterable_ICompositionProjectedShadowCaster is new WinRt.Windows.Foundation.Collections.IIterable (ICompositionProjectedShadowCaster);
    package IIterable_ICompositionProjectedShadowReceiver is new WinRt.Windows.Foundation.Collections.IIterable (ICompositionProjectedShadowReceiver);
    package IVector_ICompositionShape is new WinRt.Windows.Foundation.Collections.IVector (ICompositionShape);
@@ -396,6 +399,29 @@ package body WinRt.Windows.UI.Composition is
          Retval.m_IAnimationController.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_propertyName);
       end return;
+   end;
+
+   procedure StartAnimation
+   (
+      this : in out CompositionObject;
+      propertyName : WinRt.WString;
+      animation : Windows.UI.Composition.CompositionAnimation'Class;
+      animationController_p : Windows.UI.Composition.AnimationController'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Composition.ICompositionObject5 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.UI.Composition.ICompositionObject5, WinRt.Windows.UI.Composition.IID_ICompositionObject5'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICompositionObject.all);
+      Hr := m_Interface.StartAnimation (HStr_propertyName, animation.m_ICompositionAnimation.all, animationController_p.m_IAnimationController.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    procedure Close
@@ -888,6 +914,454 @@ package body WinRt.Windows.UI.Composition is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   function GetResolvedCompositionObject
+   (
+      this : in out AnimationPropertyInfo
+   )
+   return WinRt.Windows.UI.Composition.CompositionObject'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Composition.IAnimationPropertyInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionObject;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IAnimationPropertyInfo_Interface, WinRt.Windows.UI.Composition.IAnimationPropertyInfo2, WinRt.Windows.UI.Composition.IID_IAnimationPropertyInfo2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.CompositionObject do
+         m_Interface := QInterface (this.m_IAnimationPropertyInfo.all);
+         Hr := m_Interface.GetResolvedCompositionObject (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICompositionObject := new Windows.UI.Composition.ICompositionObject;
+         Retval.m_ICompositionObject.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetResolvedCompositionObjectProperty
+   (
+      this : in out AnimationPropertyInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Composition.IAnimationPropertyInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IAnimationPropertyInfo_Interface, WinRt.Windows.UI.Composition.IAnimationPropertyInfo2, WinRt.Windows.UI.Composition.IID_IAnimationPropertyInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAnimationPropertyInfo.all);
+      Hr := m_Interface.GetResolvedCompositionObjectProperty (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CompositionEasingFunction
+
+   procedure Initialize (this : in out CompositionEasingFunction) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out CompositionEasingFunction) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ICompositionEasingFunction, ICompositionEasingFunction_Ptr);
+   begin
+      if this.m_ICompositionEasingFunction /= null then
+         if this.m_ICompositionEasingFunction.all /= null then
+            temp := this.m_ICompositionEasingFunction.all.Release;
+            Free (this.m_ICompositionEasingFunction);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for CompositionEasingFunction
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for CompositionEasingFunction
+
+   function CreateCubicBezierEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      controlPoint1 : Windows.Foundation.Numerics.Vector2;
+      controlPoint2 : Windows.Foundation.Numerics.Vector2
+   )
+   return WinRt.Windows.UI.Composition.CubicBezierEasingFunction is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
+      m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.ICubicBezierEasingFunction;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.CubicBezierEasingFunction do
+         Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateCubicBezierEasingFunction (owner.m_ICompositor.all, controlPoint1, controlPoint2, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ICubicBezierEasingFunction := new Windows.UI.Composition.ICubicBezierEasingFunction;
+            Retval.m_ICubicBezierEasingFunction.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateLinearEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class
+   )
+   return WinRt.Windows.UI.Composition.LinearEasingFunction is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
+      m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.ILinearEasingFunction;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.LinearEasingFunction do
+         Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateLinearEasingFunction (owner.m_ICompositor.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ILinearEasingFunction := new Windows.UI.Composition.ILinearEasingFunction;
+            Retval.m_ILinearEasingFunction.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateStepEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class
+   )
+   return WinRt.Windows.UI.Composition.StepEasingFunction is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
+      m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IStepEasingFunction;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.StepEasingFunction do
+         Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateStepEasingFunction (owner.m_ICompositor.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IStepEasingFunction := new Windows.UI.Composition.IStepEasingFunction;
+            Retval.m_IStepEasingFunction.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateStepEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      stepCount : WinRt.Int32
+   )
+   return WinRt.Windows.UI.Composition.StepEasingFunction is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
+      m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IStepEasingFunction;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.StepEasingFunction do
+         Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateStepEasingFunction (owner.m_ICompositor.all, stepCount, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IStepEasingFunction := new Windows.UI.Composition.IStepEasingFunction;
+            Retval.m_IStepEasingFunction.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateBackEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      amplitude : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.BackEasingFunction is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
+      m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IBackEasingFunction;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.BackEasingFunction do
+         Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateBackEasingFunction (owner.m_ICompositor.all, mode, amplitude, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IBackEasingFunction := new Windows.UI.Composition.IBackEasingFunction;
+            Retval.m_IBackEasingFunction.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateBounceEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      bounces : WinRt.Int32;
+      bounciness : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.BounceEasingFunction is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
+      m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IBounceEasingFunction;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.BounceEasingFunction do
+         Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateBounceEasingFunction (owner.m_ICompositor.all, mode, bounces, bounciness, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IBounceEasingFunction := new Windows.UI.Composition.IBounceEasingFunction;
+            Retval.m_IBounceEasingFunction.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateCircleEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode
+   )
+   return WinRt.Windows.UI.Composition.CircleEasingFunction is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
+      m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.ICircleEasingFunction;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.CircleEasingFunction do
+         Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateCircleEasingFunction (owner.m_ICompositor.all, mode, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ICircleEasingFunction := new Windows.UI.Composition.ICircleEasingFunction;
+            Retval.m_ICircleEasingFunction.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateElasticEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      oscillations : WinRt.Int32;
+      springiness : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.ElasticEasingFunction is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
+      m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IElasticEasingFunction;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.ElasticEasingFunction do
+         Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateElasticEasingFunction (owner.m_ICompositor.all, mode, oscillations, springiness, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IElasticEasingFunction := new Windows.UI.Composition.IElasticEasingFunction;
+            Retval.m_IElasticEasingFunction.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateExponentialEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      exponent : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.ExponentialEasingFunction is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
+      m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IExponentialEasingFunction;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.ExponentialEasingFunction do
+         Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateExponentialEasingFunction (owner.m_ICompositor.all, mode, exponent, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IExponentialEasingFunction := new Windows.UI.Composition.IExponentialEasingFunction;
+            Retval.m_IExponentialEasingFunction.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreatePowerEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      power : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.PowerEasingFunction is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
+      m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IPowerEasingFunction;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.PowerEasingFunction do
+         Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreatePowerEasingFunction (owner.m_ICompositor.all, mode, power, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IPowerEasingFunction := new Windows.UI.Composition.IPowerEasingFunction;
+            Retval.m_IPowerEasingFunction.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateSineEasingFunction
+   (
+      owner : Windows.UI.Composition.Compositor'Class;
+      mode : Windows.UI.Composition.CompositionEasingFunctionMode
+   )
+   return WinRt.Windows.UI.Composition.SineEasingFunction is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
+      m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.ISineEasingFunction;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.SineEasingFunction do
+         Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateSineEasingFunction (owner.m_ICompositor.all, mode, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ISineEasingFunction := new Windows.UI.Composition.ISineEasingFunction;
+            Retval.m_ISineEasingFunction.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CompositionEasingFunction
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BackEasingFunction
+
+   procedure Initialize (this : in out BackEasingFunction) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out BackEasingFunction) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IBackEasingFunction, IBackEasingFunction_Ptr);
+   begin
+      if this.m_IBackEasingFunction /= null then
+         if this.m_IBackEasingFunction.all /= null then
+            temp := this.m_IBackEasingFunction.all.Release;
+            Free (this.m_IBackEasingFunction);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BackEasingFunction
+
+   function get_Mode
+   (
+      this : in out BackEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+   begin
+      Hr := this.m_IBackEasingFunction.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Amplitude
+   (
+      this : in out BackEasingFunction
+   )
+   return WinRt.Single is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Single;
+   begin
+      Hr := this.m_IBackEasingFunction.all.get_Amplitude (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -1579,6 +2053,80 @@ package body WinRt.Windows.UI.Composition is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BounceEasingFunction
+
+   procedure Initialize (this : in out BounceEasingFunction) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out BounceEasingFunction) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IBounceEasingFunction, IBounceEasingFunction_Ptr);
+   begin
+      if this.m_IBounceEasingFunction /= null then
+         if this.m_IBounceEasingFunction.all /= null then
+            temp := this.m_IBounceEasingFunction.all.Release;
+            Free (this.m_IBounceEasingFunction);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BounceEasingFunction
+
+   function get_Mode
+   (
+      this : in out BounceEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+   begin
+      Hr := this.m_IBounceEasingFunction.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Bounces
+   (
+      this : in out BounceEasingFunction
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IBounceEasingFunction.all.get_Bounces (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Bounciness
+   (
+      this : in out BounceEasingFunction
+   )
+   return WinRt.Single is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Single;
+   begin
+      Hr := this.m_IBounceEasingFunction.all.get_Bounciness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -2346,6 +2894,46 @@ package body WinRt.Windows.UI.Composition is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CircleEasingFunction
+
+   procedure Initialize (this : in out CircleEasingFunction) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out CircleEasingFunction) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ICircleEasingFunction, ICircleEasingFunction_Ptr);
+   begin
+      if this.m_ICircleEasingFunction /= null then
+         if this.m_ICircleEasingFunction.all /= null then
+            temp := this.m_ICircleEasingFunction.all.Release;
+            Free (this.m_ICircleEasingFunction);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CircleEasingFunction
+
+   function get_Mode
+   (
+      this : in out CircleEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+   begin
+      Hr := this.m_ICircleEasingFunction.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -4045,32 +4633,6 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for CompositionEasingFunction
-
-   procedure Initialize (this : in out CompositionEasingFunction) is
-   begin
-      null;
-   end;
-
-   procedure Finalize (this : in out CompositionEasingFunction) is
-      temp : WinRt.UInt32 := 0;
-      procedure Free is new Ada.Unchecked_Deallocation (ICompositionEasingFunction, ICompositionEasingFunction_Ptr);
-   begin
-      if this.m_ICompositionEasingFunction /= null then
-         if this.m_ICompositionEasingFunction.all /= null then
-            temp := this.m_ICompositionEasingFunction.all.Release;
-            Free (this.m_ICompositionEasingFunction);
-         end if;
-      end if;
-   end;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for CompositionEasingFunction
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for CompositionEasingFunction
-
-   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CompositionEffectBrush
 
    procedure Initialize (this : in out CompositionEffectBrush) is
@@ -5135,6 +5697,78 @@ package body WinRt.Windows.UI.Composition is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   function CaptureAsync
+   (
+      this : in out CompositionGraphicsDevice;
+      captureVisual : Windows.UI.Composition.Visual'Class;
+      size : Windows.Graphics.SizeInt32;
+      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
+      alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode;
+      sdrBoost : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.ICompositionSurface is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Composition.ICompositionGraphicsDevice4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_ICompositionSurface.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_ICompositionSurface.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.UI.Composition.ICompositionSurface;
+      m_IID            : aliased WinRt.IID := (1717648605, 20598, 20694, (171, 50, 186, 118, 223, 73, 196, 16 )); -- Windows.UI.Composition.ICompositionSurface;
+      m_HandlerIID     : aliased WinRt.IID := (3673518830, 858, 22860, (176, 19, 132, 189, 97, 136, 83, 204 ));
+      m_Handler        : AsyncOperationCompletedHandler_ICompositionSurface.Kind := new AsyncOperationCompletedHandler_ICompositionSurface.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_ICompositionSurface.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_ICompositionSurface.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ICompositionSurface.Kind_Delegate, AsyncOperationCompletedHandler_ICompositionSurface.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionGraphicsDevice_Interface, WinRt.Windows.UI.Composition.ICompositionGraphicsDevice4, WinRt.Windows.UI.Composition.IID_ICompositionGraphicsDevice4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICompositionGraphicsDevice.all);
+      Hr := m_Interface.CaptureAsync (captureVisual.m_IVisual.all, size, pixelFormat, alphaMode, sdrBoost, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -9109,6 +9743,128 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CompositionTexture
+
+   procedure Initialize (this : in out CompositionTexture) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out CompositionTexture) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ICompositionTexture, ICompositionTexture_Ptr);
+   begin
+      if this.m_ICompositionTexture /= null then
+         if this.m_ICompositionTexture.all /= null then
+            temp := this.m_ICompositionTexture.all.Release;
+            Free (this.m_ICompositionTexture);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for CompositionTexture
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CompositionTexture
+
+   function get_SourceRect
+   (
+      this : in out CompositionTexture
+   )
+   return WinRt.Windows.Graphics.RectInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.RectInt32;
+   begin
+      Hr := this.m_ICompositionTexture.all.get_SourceRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_SourceRect
+   (
+      this : in out CompositionTexture;
+      value : Windows.Graphics.RectInt32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ICompositionTexture.all.put_SourceRect (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_AlphaMode
+   (
+      this : in out CompositionTexture
+   )
+   return WinRt.Windows.Graphics.DirectX.DirectXAlphaMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXAlphaMode;
+   begin
+      Hr := this.m_ICompositionTexture.all.get_AlphaMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_AlphaMode
+   (
+      this : in out CompositionTexture;
+      value : Windows.Graphics.DirectX.DirectXAlphaMode
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ICompositionTexture.all.put_AlphaMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ColorSpace
+   (
+      this : in out CompositionTexture
+   )
+   return WinRt.Windows.Graphics.DirectX.DirectXColorSpace is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXColorSpace;
+   begin
+      Hr := this.m_ICompositionTexture.all.get_ColorSpace (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_ColorSpace
+   (
+      this : in out CompositionTexture;
+      value : Windows.Graphics.DirectX.DirectXColorSpace
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ICompositionTexture.all.put_ColorSpace (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CompositionTransform
 
    procedure Initialize (this : in out CompositionTransform) is
@@ -11282,6 +12038,186 @@ package body WinRt.Windows.UI.Composition is
       end return;
    end;
 
+   function get_DispatcherQueue
+   (
+      this : in out Compositor
+   )
+   return WinRt.Windows.System.DispatcherQueue'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Composition.ICompositor7 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.System.IDispatcherQueue;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor7, WinRt.Windows.UI.Composition.IID_ICompositor7'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.System.DispatcherQueue do
+         m_Interface := QInterface (this.m_ICompositor.all);
+         Hr := m_Interface.get_DispatcherQueue (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDispatcherQueue := new Windows.System.IDispatcherQueue;
+         Retval.m_IDispatcherQueue.all := m_ComRetVal;
+      end return;
+   end;
+
+   function CreateAnimationPropertyInfo
+   (
+      this : in out Compositor
+   )
+   return WinRt.Windows.UI.Composition.AnimationPropertyInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Composition.ICompositor7 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IAnimationPropertyInfo;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor7, WinRt.Windows.UI.Composition.IID_ICompositor7'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.AnimationPropertyInfo do
+         m_Interface := QInterface (this.m_ICompositor.all);
+         Hr := m_Interface.CreateAnimationPropertyInfo (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IAnimationPropertyInfo := new Windows.UI.Composition.IAnimationPropertyInfo;
+         Retval.m_IAnimationPropertyInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function CreateRectangleClip
+   (
+      this : in out Compositor
+   )
+   return WinRt.Windows.UI.Composition.RectangleClip'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Composition.ICompositor7 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IRectangleClip;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor7, WinRt.Windows.UI.Composition.IID_ICompositor7'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.RectangleClip do
+         m_Interface := QInterface (this.m_ICompositor.all);
+         Hr := m_Interface.CreateRectangleClip (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IRectangleClip := new Windows.UI.Composition.IRectangleClip;
+         Retval.m_IRectangleClip.all := m_ComRetVal;
+      end return;
+   end;
+
+   function CreateRectangleClip
+   (
+      this : in out Compositor;
+      left : WinRt.Single;
+      top : WinRt.Single;
+      right : WinRt.Single;
+      bottom : WinRt.Single
+   )
+   return WinRt.Windows.UI.Composition.RectangleClip'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Composition.ICompositor7 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IRectangleClip;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor7, WinRt.Windows.UI.Composition.IID_ICompositor7'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.RectangleClip do
+         m_Interface := QInterface (this.m_ICompositor.all);
+         Hr := m_Interface.CreateRectangleClip (left, top, right, bottom, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IRectangleClip := new Windows.UI.Composition.IRectangleClip;
+         Retval.m_IRectangleClip.all := m_ComRetVal;
+      end return;
+   end;
+
+   function CreateRectangleClip
+   (
+      this : in out Compositor;
+      left : WinRt.Single;
+      top : WinRt.Single;
+      right : WinRt.Single;
+      bottom : WinRt.Single;
+      topLeftRadius : Windows.Foundation.Numerics.Vector2;
+      topRightRadius : Windows.Foundation.Numerics.Vector2;
+      bottomRightRadius : Windows.Foundation.Numerics.Vector2;
+      bottomLeftRadius : Windows.Foundation.Numerics.Vector2
+   )
+   return WinRt.Windows.UI.Composition.RectangleClip'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Composition.ICompositor7 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IRectangleClip;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor7, WinRt.Windows.UI.Composition.IID_ICompositor7'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.RectangleClip do
+         m_Interface := QInterface (this.m_ICompositor.all);
+         Hr := m_Interface.CreateRectangleClip (left, top, right, bottom, topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IRectangleClip := new Windows.UI.Composition.IRectangleClip;
+         Retval.m_IRectangleClip.all := m_ComRetVal;
+      end return;
+   end;
+
+   function TryCreateBlurredWallpaperBackdropBrush
+   (
+      this : in out Compositor
+   )
+   return WinRt.Windows.UI.Composition.CompositionBackdropBrush'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Composition.ICompositorWithBlurredWallpaperBackdropBrush := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBackdropBrush;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositorWithBlurredWallpaperBackdropBrush, WinRt.Windows.UI.Composition.IID_ICompositorWithBlurredWallpaperBackdropBrush'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.CompositionBackdropBrush do
+         m_Interface := QInterface (this.m_ICompositor.all);
+         Hr := m_Interface.TryCreateBlurredWallpaperBackdropBrush (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICompositionBackdropBrush := new Windows.UI.Composition.ICompositionBackdropBrush;
+         Retval.m_ICompositionBackdropBrush.all := m_ComRetVal;
+      end return;
+   end;
+
+   function CreateAnimationController
+   (
+      this : in out Compositor
+   )
+   return WinRt.Windows.UI.Composition.AnimationController'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Composition.ICompositor8 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IAnimationController;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor8, WinRt.Windows.UI.Composition.IID_ICompositor8'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.AnimationController do
+         m_Interface := QInterface (this.m_ICompositor.all);
+         Hr := m_Interface.CreateAnimationController (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IAnimationController := new Windows.UI.Composition.IAnimationController;
+         Retval.m_IAnimationController.all := m_ComRetVal;
+      end return;
+   end;
+
    procedure Close
    (
       this : in out Compositor
@@ -12024,6 +12960,46 @@ package body WinRt.Windows.UI.Composition is
       end if;
    end;
 
+   function get_IsPixelSnappingEnabled
+   (
+      this : in out Visual
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Composition.IVisual4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisual_Interface, WinRt.Windows.UI.Composition.IVisual4, WinRt.Windows.UI.Composition.IID_IVisual4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVisual.all);
+      Hr := m_Interface.get_IsPixelSnappingEnabled (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsPixelSnappingEnabled
+   (
+      this : in out Visual;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Composition.IVisual4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisual_Interface, WinRt.Windows.UI.Composition.IVisual4, WinRt.Windows.UI.Composition.IID_IVisual4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVisual.all);
+      Hr := m_Interface.put_IsPixelSnappingEnabled (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ContainerVisual
 
@@ -12125,6 +13101,157 @@ package body WinRt.Windows.UI.Composition is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DelegatedInkTrailVisual
+
+   procedure Initialize (this : in out DelegatedInkTrailVisual) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out DelegatedInkTrailVisual) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IDelegatedInkTrailVisual, IDelegatedInkTrailVisual_Ptr);
+   begin
+      if this.m_IDelegatedInkTrailVisual /= null then
+         if this.m_IDelegatedInkTrailVisual.all /= null then
+            temp := this.m_IDelegatedInkTrailVisual.all.Release;
+            Free (this.m_IDelegatedInkTrailVisual);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for DelegatedInkTrailVisual
+
+   function Create
+   (
+      compositor_p : Windows.UI.Composition.Compositor'Class
+   )
+   return WinRt.Windows.UI.Composition.DelegatedInkTrailVisual is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.DelegatedInkTrailVisual");
+      m_Factory        : access WinRt.Windows.UI.Composition.IDelegatedInkTrailVisualStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IDelegatedInkTrailVisual;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.DelegatedInkTrailVisual do
+         Hr := RoGetActivationFactory (m_hString, IID_IDelegatedInkTrailVisualStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.Create (compositor_p.m_ICompositor.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDelegatedInkTrailVisual := new Windows.UI.Composition.IDelegatedInkTrailVisual;
+            Retval.m_IDelegatedInkTrailVisual.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateForSwapChain
+   (
+      compositor_p : Windows.UI.Composition.Compositor'Class;
+      swapChain : Windows.UI.Composition.ICompositionSurface
+   )
+   return WinRt.Windows.UI.Composition.DelegatedInkTrailVisual is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.DelegatedInkTrailVisual");
+      m_Factory        : access WinRt.Windows.UI.Composition.IDelegatedInkTrailVisualStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.IDelegatedInkTrailVisual;
+   begin
+      return RetVal : WinRt.Windows.UI.Composition.DelegatedInkTrailVisual do
+         Hr := RoGetActivationFactory (m_hString, IID_IDelegatedInkTrailVisualStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateForSwapChain (compositor_p.m_ICompositor.all, swapChain, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDelegatedInkTrailVisual := new Windows.UI.Composition.IDelegatedInkTrailVisual;
+            Retval.m_IDelegatedInkTrailVisual.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DelegatedInkTrailVisual
+
+   function AddTrailPoints
+   (
+      this : in out DelegatedInkTrailVisual;
+      inkPoints : Windows.UI.Composition.InkTrailPoint_Array
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+      function Convert_inkPoints is new Ada.Unchecked_Conversion (Address, WinRt.Windows.UI.Composition.InkTrailPoint_Ptr);
+   begin
+      Hr := this.m_IDelegatedInkTrailVisual.all.AddTrailPoints (WinRt.UInt32(inkPoints'Length), Convert_inkPoints (inkPoints (inkPoints'First)'Address), m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function AddTrailPointsWithPrediction
+   (
+      this : in out DelegatedInkTrailVisual;
+      inkPoints : Windows.UI.Composition.InkTrailPoint_Array;
+      predictedInkPoints : Windows.UI.Composition.InkTrailPoint_Array
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+      function Convert_inkPoints is new Ada.Unchecked_Conversion (Address, WinRt.Windows.UI.Composition.InkTrailPoint_Ptr);
+      function Convert_predictedInkPoints is new Ada.Unchecked_Conversion (Address, WinRt.Windows.UI.Composition.InkTrailPoint_Ptr);
+   begin
+      Hr := this.m_IDelegatedInkTrailVisual.all.AddTrailPointsWithPrediction (WinRt.UInt32(inkPoints'Length), Convert_inkPoints (inkPoints (inkPoints'First)'Address), WinRt.UInt32(predictedInkPoints'Length), Convert_predictedInkPoints (predictedInkPoints (predictedInkPoints'First)'Address), m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure RemoveTrailPoints
+   (
+      this : in out DelegatedInkTrailVisual;
+      generationId : WinRt.UInt32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IDelegatedInkTrailVisual.all.RemoveTrailPoints (generationId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure StartNewTrail
+   (
+      this : in out DelegatedInkTrailVisual;
+      color : Windows.UI.Color
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IDelegatedInkTrailVisual.all.StartNewTrail (color);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -12513,6 +13640,137 @@ package body WinRt.Windows.UI.Composition is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for ElasticEasingFunction
+
+   procedure Initialize (this : in out ElasticEasingFunction) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out ElasticEasingFunction) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IElasticEasingFunction, IElasticEasingFunction_Ptr);
+   begin
+      if this.m_IElasticEasingFunction /= null then
+         if this.m_IElasticEasingFunction.all /= null then
+            temp := this.m_IElasticEasingFunction.all.Release;
+            Free (this.m_IElasticEasingFunction);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for ElasticEasingFunction
+
+   function get_Mode
+   (
+      this : in out ElasticEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+   begin
+      Hr := this.m_IElasticEasingFunction.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Oscillations
+   (
+      this : in out ElasticEasingFunction
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IElasticEasingFunction.all.get_Oscillations (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Springiness
+   (
+      this : in out ElasticEasingFunction
+   )
+   return WinRt.Single is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Single;
+   begin
+      Hr := this.m_IElasticEasingFunction.all.get_Springiness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for ExponentialEasingFunction
+
+   procedure Initialize (this : in out ExponentialEasingFunction) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out ExponentialEasingFunction) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IExponentialEasingFunction, IExponentialEasingFunction_Ptr);
+   begin
+      if this.m_IExponentialEasingFunction /= null then
+         if this.m_IExponentialEasingFunction.all /= null then
+            temp := this.m_IExponentialEasingFunction.all.Release;
+            Free (this.m_IExponentialEasingFunction);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for ExponentialEasingFunction
+
+   function get_Mode
+   (
+      this : in out ExponentialEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+   begin
+      Hr := this.m_IExponentialEasingFunction.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Exponent
+   (
+      this : in out ExponentialEasingFunction
+   )
+   return WinRt.Single is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Single;
+   begin
+      Hr := this.m_IExponentialEasingFunction.all.get_Exponent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -13613,6 +14871,63 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PowerEasingFunction
+
+   procedure Initialize (this : in out PowerEasingFunction) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PowerEasingFunction) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPowerEasingFunction, IPowerEasingFunction_Ptr);
+   begin
+      if this.m_IPowerEasingFunction /= null then
+         if this.m_IPowerEasingFunction.all /= null then
+            temp := this.m_IPowerEasingFunction.all.Release;
+            Free (this.m_IPowerEasingFunction);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PowerEasingFunction
+
+   function get_Mode
+   (
+      this : in out PowerEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+   begin
+      Hr := this.m_IPowerEasingFunction.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Power
+   (
+      this : in out PowerEasingFunction
+   )
+   return WinRt.Single is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Single;
+   begin
+      Hr := this.m_IPowerEasingFunction.all.get_Power (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for QuaternionKeyFrameAnimation
 
    procedure Initialize (this : in out QuaternionKeyFrameAnimation) is
@@ -13663,6 +14978,285 @@ package body WinRt.Windows.UI.Composition is
       temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IQuaternionKeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value, easingFunction.m_ICompositionEasingFunction.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for RectangleClip
+
+   procedure Initialize (this : in out RectangleClip) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out RectangleClip) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IRectangleClip, IRectangleClip_Ptr);
+   begin
+      if this.m_IRectangleClip /= null then
+         if this.m_IRectangleClip.all /= null then
+            temp := this.m_IRectangleClip.all.Release;
+            Free (this.m_IRectangleClip);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for RectangleClip
+
+   function get_Bottom
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Single is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Single;
+   begin
+      Hr := this.m_IRectangleClip.all.get_Bottom (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Bottom
+   (
+      this : in out RectangleClip;
+      value : WinRt.Single
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IRectangleClip.all.put_Bottom (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_BottomLeftRadius
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Windows.Foundation.Numerics.Vector2 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+   begin
+      Hr := this.m_IRectangleClip.all.get_BottomLeftRadius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_BottomLeftRadius
+   (
+      this : in out RectangleClip;
+      value : Windows.Foundation.Numerics.Vector2
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IRectangleClip.all.put_BottomLeftRadius (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_BottomRightRadius
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Windows.Foundation.Numerics.Vector2 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+   begin
+      Hr := this.m_IRectangleClip.all.get_BottomRightRadius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_BottomRightRadius
+   (
+      this : in out RectangleClip;
+      value : Windows.Foundation.Numerics.Vector2
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IRectangleClip.all.put_BottomRightRadius (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Left
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Single is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Single;
+   begin
+      Hr := this.m_IRectangleClip.all.get_Left (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Left
+   (
+      this : in out RectangleClip;
+      value : WinRt.Single
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IRectangleClip.all.put_Left (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Right
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Single is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Single;
+   begin
+      Hr := this.m_IRectangleClip.all.get_Right (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Right
+   (
+      this : in out RectangleClip;
+      value : WinRt.Single
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IRectangleClip.all.put_Right (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Top
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Single is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Single;
+   begin
+      Hr := this.m_IRectangleClip.all.get_Top (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Top
+   (
+      this : in out RectangleClip;
+      value : WinRt.Single
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IRectangleClip.all.put_Top (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_TopLeftRadius
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Windows.Foundation.Numerics.Vector2 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+   begin
+      Hr := this.m_IRectangleClip.all.get_TopLeftRadius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_TopLeftRadius
+   (
+      this : in out RectangleClip;
+      value : Windows.Foundation.Numerics.Vector2
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IRectangleClip.all.put_TopLeftRadius (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_TopRightRadius
+   (
+      this : in out RectangleClip
+   )
+   return WinRt.Windows.Foundation.Numerics.Vector2 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+   begin
+      Hr := this.m_IRectangleClip.all.get_TopRightRadius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_TopRightRadius
+   (
+      this : in out RectangleClip;
+      value : Windows.Foundation.Numerics.Vector2
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IRectangleClip.all.put_TopRightRadius (value);
       if Hr /= S_OK then
          raise Program_Error;
       end if;
@@ -13901,6 +15495,46 @@ package body WinRt.Windows.UI.Composition is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for SineEasingFunction
+
+   procedure Initialize (this : in out SineEasingFunction) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out SineEasingFunction) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ISineEasingFunction, ISineEasingFunction_Ptr);
+   begin
+      if this.m_ISineEasingFunction /= null then
+         if this.m_ISineEasingFunction.all /= null then
+            temp := this.m_ISineEasingFunction.all.Release;
+            Free (this.m_ISineEasingFunction);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for SineEasingFunction
+
+   function get_Mode
+   (
+      this : in out SineEasingFunction
+   )
+   return WinRt.Windows.UI.Composition.CompositionEasingFunctionMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+   begin
+      Hr := this.m_ISineEasingFunction.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

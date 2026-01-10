@@ -59,6 +59,7 @@ package WinRt.Windows.Data.Xml.Dom is
 
    type IXmlCharacterData_Interface is interface and WinRt.IInspectable_Interface;
    type IXmlCharacterData is access all IXmlCharacterData_Interface'Class;
+   type IXmlCharacterData_Ptr is access all IXmlCharacterData;
 
    type IXmlComment_Interface is interface and WinRt.IInspectable_Interface;
    type IXmlComment is access all IXmlComment_Interface'Class;
@@ -74,12 +75,15 @@ package WinRt.Windows.Data.Xml.Dom is
 
    type IXmlDocumentIO_Interface is interface and WinRt.IInspectable_Interface;
    type IXmlDocumentIO is access all IXmlDocumentIO_Interface'Class;
+   type IXmlDocumentIO_Ptr is access all IXmlDocumentIO;
 
    type IXmlDocumentIO2_Interface is interface and WinRt.IInspectable_Interface;
    type IXmlDocumentIO2 is access all IXmlDocumentIO2_Interface'Class;
+   type IXmlDocumentIO2_Ptr is access all IXmlDocumentIO2;
 
    type IXmlDocumentStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IXmlDocumentStatics is access all IXmlDocumentStatics_Interface'Class;
+   type IXmlDocumentStatics_Ptr is access all IXmlDocumentStatics;
 
    type IXmlDocumentType_Interface is interface and WinRt.IInspectable_Interface;
    type IXmlDocumentType is access all IXmlDocumentType_Interface'Class;
@@ -107,6 +111,7 @@ package WinRt.Windows.Data.Xml.Dom is
 
    type IXmlNode_Interface is interface and WinRt.IInspectable_Interface;
    type IXmlNode is access all IXmlNode_Interface'Class;
+   type IXmlNode_Ptr is access all IXmlNode;
    type IXmlNode_Array is array (Natural range <>) of IXmlNode;
 
    type IXmlNodeList_Interface is interface and WinRt.IInspectable_Interface;
@@ -115,9 +120,11 @@ package WinRt.Windows.Data.Xml.Dom is
 
    type IXmlNodeSelector_Interface is interface and WinRt.IInspectable_Interface;
    type IXmlNodeSelector is access all IXmlNodeSelector_Interface'Class;
+   type IXmlNodeSelector_Ptr is access all IXmlNodeSelector;
 
    type IXmlNodeSerializer_Interface is interface and WinRt.IInspectable_Interface;
    type IXmlNodeSerializer is access all IXmlNodeSerializer_Interface'Class;
+   type IXmlNodeSerializer_Ptr is access all IXmlNodeSerializer;
 
    type IXmlProcessingInstruction_Interface is interface and WinRt.IInspectable_Interface;
    type IXmlProcessingInstruction is access all IXmlProcessingInstruction_Interface'Class;

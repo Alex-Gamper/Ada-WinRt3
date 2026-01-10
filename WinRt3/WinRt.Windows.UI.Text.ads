@@ -49,15 +49,19 @@ package WinRt.Windows.UI.Text is
 
    type IFontWeightsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFontWeightsStatics is access all IFontWeightsStatics_Interface'Class;
+   type IFontWeightsStatics_Ptr is access all IFontWeightsStatics;
 
    type IRichEditTextRange_Interface is interface and WinRt.IInspectable_Interface;
    type IRichEditTextRange is access all IRichEditTextRange_Interface'Class;
+   type IRichEditTextRange_Ptr is access all IRichEditTextRange;
 
    type ITextCharacterFormat_Interface is interface and WinRt.IInspectable_Interface;
    type ITextCharacterFormat is access all ITextCharacterFormat_Interface'Class;
+   type ITextCharacterFormat_Ptr is access all ITextCharacterFormat;
 
    type ITextConstantsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITextConstantsStatics is access all ITextConstantsStatics_Interface'Class;
+   type ITextConstantsStatics_Ptr is access all ITextConstantsStatics;
 
    type ITextDocument_Interface is interface and WinRt.IInspectable_Interface;
    type ITextDocument is access all ITextDocument_Interface'Class;
@@ -65,15 +69,19 @@ package WinRt.Windows.UI.Text is
 
    type ITextDocument2_Interface is interface and WinRt.IInspectable_Interface;
    type ITextDocument2 is access all ITextDocument2_Interface'Class;
+   type ITextDocument2_Ptr is access all ITextDocument2;
 
    type ITextDocument3_Interface is interface and WinRt.IInspectable_Interface;
    type ITextDocument3 is access all ITextDocument3_Interface'Class;
+   type ITextDocument3_Ptr is access all ITextDocument3;
 
    type ITextDocument4_Interface is interface and WinRt.IInspectable_Interface;
    type ITextDocument4 is access all ITextDocument4_Interface'Class;
+   type ITextDocument4_Ptr is access all ITextDocument4;
 
    type ITextParagraphFormat_Interface is interface and WinRt.IInspectable_Interface;
    type ITextParagraphFormat is access all ITextParagraphFormat_Interface'Class;
+   type ITextParagraphFormat_Ptr is access all ITextParagraphFormat;
 
    type ITextRange_Interface is interface and WinRt.IInspectable_Interface;
    type ITextRange is access all ITextRange_Interface'Class;
@@ -81,6 +89,7 @@ package WinRt.Windows.UI.Text is
 
    type ITextSelection_Interface is interface and WinRt.IInspectable_Interface;
    type ITextSelection is access all ITextSelection_Interface'Class;
+   type ITextSelection_Ptr is access all ITextSelection;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -39,6 +39,7 @@ package WinRt.Windows.System.Diagnostics.Telemetry is
 
    type IPlatformTelemetryClientStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPlatformTelemetryClientStatics is access all IPlatformTelemetryClientStatics_Interface'Class;
+   type IPlatformTelemetryClientStatics_Ptr is access all IPlatformTelemetryClientStatics;
 
    type IPlatformTelemetryRegistrationResult_Interface is interface and WinRt.IInspectable_Interface;
    type IPlatformTelemetryRegistrationResult is access all IPlatformTelemetryRegistrationResult_Interface'Class;

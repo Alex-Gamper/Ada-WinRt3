@@ -41,9 +41,11 @@ package WinRt.Windows.Security.Authentication.Web is
 
    type IWebAuthenticationBrokerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAuthenticationBrokerStatics is access all IWebAuthenticationBrokerStatics_Interface'Class;
+   type IWebAuthenticationBrokerStatics_Ptr is access all IWebAuthenticationBrokerStatics;
 
    type IWebAuthenticationBrokerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAuthenticationBrokerStatics2 is access all IWebAuthenticationBrokerStatics2_Interface'Class;
+   type IWebAuthenticationBrokerStatics2_Ptr is access all IWebAuthenticationBrokerStatics2;
 
    type IWebAuthenticationResult_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAuthenticationResult is access all IWebAuthenticationResult_Interface'Class;
@@ -219,24 +221,6 @@ package WinRt.Windows.Security.Authentication.Web is
    -- Static RuntimeClass
    package WebAuthenticationBroker is
 
-      function AuthenticateAsync
-      (
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions;
-         requestUri : Windows.Foundation.Uri'Class;
-         callbackUri : Windows.Foundation.Uri'Class
-      )
-      return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult;
-
-      function AuthenticateAsync
-      (
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions;
-         requestUri : Windows.Foundation.Uri'Class
-      )
-      return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult;
-
-      function GetCurrentApplicationCallbackUri
-      return WinRt.Windows.Foundation.Uri;
-
       procedure AuthenticateAndContinue
       (
          requestUri : Windows.Foundation.Uri'Class
@@ -268,6 +252,24 @@ package WinRt.Windows.Security.Authentication.Web is
          options : Windows.Security.Authentication.Web.WebAuthenticationOptions
       )
       return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult;
+
+      function AuthenticateAsync
+      (
+         options : Windows.Security.Authentication.Web.WebAuthenticationOptions;
+         requestUri : Windows.Foundation.Uri'Class;
+         callbackUri : Windows.Foundation.Uri'Class
+      )
+      return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult;
+
+      function AuthenticateAsync
+      (
+         options : Windows.Security.Authentication.Web.WebAuthenticationOptions;
+         requestUri : Windows.Foundation.Uri'Class
+      )
+      return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult;
+
+      function GetCurrentApplicationCallbackUri
+      return WinRt.Windows.Foundation.Uri;
 
    end WebAuthenticationBroker;
 

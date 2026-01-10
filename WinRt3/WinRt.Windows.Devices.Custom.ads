@@ -44,6 +44,7 @@ package WinRt.Windows.Devices.Custom is
 
    type ICustomDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICustomDeviceStatics is access all ICustomDeviceStatics_Interface'Class;
+   type ICustomDeviceStatics_Ptr is access all ICustomDeviceStatics;
 
    type IIOControlCode_Interface is interface and WinRt.IInspectable_Interface;
    type IIOControlCode is access all IIOControlCode_Interface'Class;
@@ -51,9 +52,11 @@ package WinRt.Windows.Devices.Custom is
 
    type IIOControlCodeFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IIOControlCodeFactory is access all IIOControlCodeFactory_Interface'Class;
+   type IIOControlCodeFactory_Ptr is access all IIOControlCodeFactory;
 
    type IKnownDeviceTypesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownDeviceTypesStatics is access all IKnownDeviceTypesStatics_Interface'Class;
+   type IKnownDeviceTypesStatics_Ptr is access all IKnownDeviceTypesStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -46,6 +46,7 @@ package WinRt.Windows.Web.Http is
 
    type IHttpBufferContentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpBufferContentFactory is access all IHttpBufferContentFactory_Interface'Class;
+   type IHttpBufferContentFactory_Ptr is access all IHttpBufferContentFactory;
 
    type IHttpClient_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpClient is access all IHttpClient_Interface'Class;
@@ -53,9 +54,15 @@ package WinRt.Windows.Web.Http is
 
    type IHttpClient2_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpClient2 is access all IHttpClient2_Interface'Class;
+   type IHttpClient2_Ptr is access all IHttpClient2;
+
+   type IHttpClient3_Interface is interface and WinRt.IInspectable_Interface;
+   type IHttpClient3 is access all IHttpClient3_Interface'Class;
+   type IHttpClient3_Ptr is access all IHttpClient3;
 
    type IHttpClientFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpClientFactory is access all IHttpClientFactory_Interface'Class;
+   type IHttpClientFactory_Ptr is access all IHttpClientFactory;
 
    type IHttpContent_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpContent is access all IHttpContent_Interface'Class;
@@ -68,6 +75,7 @@ package WinRt.Windows.Web.Http is
 
    type IHttpCookieFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpCookieFactory is access all IHttpCookieFactory_Interface'Class;
+   type IHttpCookieFactory_Ptr is access all IHttpCookieFactory;
 
    type IHttpCookieManager_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpCookieManager is access all IHttpCookieManager_Interface'Class;
@@ -75,6 +83,7 @@ package WinRt.Windows.Web.Http is
 
    type IHttpFormUrlEncodedContentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpFormUrlEncodedContentFactory is access all IHttpFormUrlEncodedContentFactory_Interface'Class;
+   type IHttpFormUrlEncodedContentFactory_Ptr is access all IHttpFormUrlEncodedContentFactory;
 
    type IHttpGetBufferResult_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpGetBufferResult is access all IHttpGetBufferResult_Interface'Class;
@@ -95,28 +104,39 @@ package WinRt.Windows.Web.Http is
 
    type IHttpMethodFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpMethodFactory is access all IHttpMethodFactory_Interface'Class;
+   type IHttpMethodFactory_Ptr is access all IHttpMethodFactory;
 
    type IHttpMethodStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpMethodStatics is access all IHttpMethodStatics_Interface'Class;
+   type IHttpMethodStatics_Ptr is access all IHttpMethodStatics;
 
    type IHttpMultipartContent_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpMultipartContent is access all IHttpMultipartContent_Interface'Class;
+   type IHttpMultipartContent_Ptr is access all IHttpMultipartContent;
 
    type IHttpMultipartContentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpMultipartContentFactory is access all IHttpMultipartContentFactory_Interface'Class;
+   type IHttpMultipartContentFactory_Ptr is access all IHttpMultipartContentFactory;
 
    type IHttpMultipartFormDataContent_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpMultipartFormDataContent is access all IHttpMultipartFormDataContent_Interface'Class;
+   type IHttpMultipartFormDataContent_Ptr is access all IHttpMultipartFormDataContent;
 
    type IHttpMultipartFormDataContentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpMultipartFormDataContentFactory is access all IHttpMultipartFormDataContentFactory_Interface'Class;
+   type IHttpMultipartFormDataContentFactory_Ptr is access all IHttpMultipartFormDataContentFactory;
 
    type IHttpRequestMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpRequestMessage is access all IHttpRequestMessage_Interface'Class;
    type IHttpRequestMessage_Ptr is access all IHttpRequestMessage;
 
+   type IHttpRequestMessage2_Interface is interface and WinRt.IInspectable_Interface;
+   type IHttpRequestMessage2 is access all IHttpRequestMessage2_Interface'Class;
+   type IHttpRequestMessage2_Ptr is access all IHttpRequestMessage2;
+
    type IHttpRequestMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpRequestMessageFactory is access all IHttpRequestMessageFactory_Interface'Class;
+   type IHttpRequestMessageFactory_Ptr is access all IHttpRequestMessageFactory;
 
    type IHttpRequestResult_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpRequestResult is access all IHttpRequestResult_Interface'Class;
@@ -128,12 +148,15 @@ package WinRt.Windows.Web.Http is
 
    type IHttpResponseMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpResponseMessageFactory is access all IHttpResponseMessageFactory_Interface'Class;
+   type IHttpResponseMessageFactory_Ptr is access all IHttpResponseMessageFactory;
 
    type IHttpStreamContentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpStreamContentFactory is access all IHttpStreamContentFactory_Interface'Class;
+   type IHttpStreamContentFactory_Ptr is access all IHttpStreamContentFactory;
 
    type IHttpStringContentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpStringContentFactory is access all IHttpStringContentFactory_Interface'Class;
+   type IHttpStringContentFactory_Ptr is access all IHttpStringContentFactory;
 
    type IHttpTransportInformation_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpTransportInformation is access all IHttpTransportInformation_Interface'Class;
@@ -676,6 +699,25 @@ package WinRt.Windows.Web.Http is
       return WinRt.Hresult is abstract;
 
       IID_IHttpClient2 : aliased WinRt.IID := (3453498184, 59575, 19692, (177, 176, 220, 69, 95, 231, 44, 146 ));
+
+   -----------------------------------------------------------------------------
+   -- type IHttpClient3 is interface and WinRt.IInspectable;
+
+      function get_DefaultPrivacyAnnotation
+      (
+         this : access IHttpClient3_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_DefaultPrivacyAnnotation
+      (
+         this : access IHttpClient3_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHttpClient3 : aliased WinRt.IID := (292748545, 39065, 16788, (150, 63, 143, 157, 114, 167, 236, 21 ));
 
    -----------------------------------------------------------------------------
    -- type IHttpClientFactory is interface and WinRt.IInspectable;
@@ -1237,6 +1279,25 @@ package WinRt.Windows.Web.Http is
       IID_IHttpRequestMessage : aliased WinRt.IID := (4118162236, 29908, 18449, (181, 220, 159, 139, 78, 47, 154, 191 ));
 
    -----------------------------------------------------------------------------
+   -- type IHttpRequestMessage2 is interface and WinRt.IInspectable;
+
+      function get_PrivacyAnnotation
+      (
+         this : access IHttpRequestMessage2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PrivacyAnnotation
+      (
+         this : access IHttpRequestMessage2_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IHttpRequestMessage2 : aliased WinRt.IID := (3284534409, 25282, 19007, (149, 84, 34, 110, 124, 96, 189, 150 ));
+
+   -----------------------------------------------------------------------------
    -- type IHttpRequestMessageFactory is interface and WinRt.IInspectable;
 
       function Create
@@ -1743,6 +1804,18 @@ package WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class;
 
+   function get_DefaultPrivacyAnnotation
+   (
+      this : in out HttpClient
+   )
+   return WinRt.WString;
+
+   procedure put_DefaultPrivacyAnnotation
+   (
+      this : in out HttpClient;
+      value : WinRt.WString
+   );
+
    procedure Close
    (
       this : in out HttpClient
@@ -2215,8 +2288,6 @@ package WinRt.Windows.Web.Http is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for HttpMultipartContent
 
-   function Constructor return HttpMultipartContent;
-
    function Constructor
    (
       subtype_x : WinRt.WString
@@ -2229,6 +2300,8 @@ package WinRt.Windows.Web.Http is
       boundary : WinRt.WString
    )
    return HttpMultipartContent;
+
+   function Constructor return HttpMultipartContent;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for HttpMultipartContent
@@ -2478,6 +2551,18 @@ package WinRt.Windows.Web.Http is
       this : in out HttpRequestMessage
    )
    return WinRt.Windows.Web.Http.HttpTransportInformation'Class;
+
+   function get_PrivacyAnnotation
+   (
+      this : in out HttpRequestMessage
+   )
+   return WinRt.WString;
+
+   procedure put_PrivacyAnnotation
+   (
+      this : in out HttpRequestMessage;
+      value : WinRt.WString
+   );
 
    procedure Close
    (

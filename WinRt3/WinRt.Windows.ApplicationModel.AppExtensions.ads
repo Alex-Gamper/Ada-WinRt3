@@ -44,12 +44,25 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
    type IAppExtension is access all IAppExtension_Interface'Class;
    type IAppExtension_Ptr is access all IAppExtension;
 
+   type IAppExtension2_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppExtension2 is access all IAppExtension2_Interface'Class;
+   type IAppExtension2_Ptr is access all IAppExtension2;
+
+   type IAppExtension3_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppExtension3 is access all IAppExtension3_Interface'Class;
+   type IAppExtension3_Ptr is access all IAppExtension3;
+
    type IAppExtensionCatalog_Interface is interface and WinRt.IInspectable_Interface;
    type IAppExtensionCatalog is access all IAppExtensionCatalog_Interface'Class;
    type IAppExtensionCatalog_Ptr is access all IAppExtensionCatalog;
 
+   type IAppExtensionCatalog2_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppExtensionCatalog2 is access all IAppExtensionCatalog2_Interface'Class;
+   type IAppExtensionCatalog2_Ptr is access all IAppExtensionCatalog2;
+
    type IAppExtensionCatalogStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppExtensionCatalogStatics is access all IAppExtensionCatalogStatics_Interface'Class;
+   type IAppExtensionCatalogStatics_Ptr is access all IAppExtensionCatalogStatics;
 
    type IAppExtensionPackageInstalledEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAppExtensionPackageInstalledEventArgs is access all IAppExtensionPackageInstalledEventArgs_Interface'Class;
@@ -122,7 +135,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
    -----------------------------------------------------------------------------
 
    package IVectorView_IAppExtension is new WinRt.Windows.Foundation.Collections.IVectorView (IAppExtension);
-   IID_IVectorView_IAppExtension : aliased WinRt.IID := (1521216662, 19847, 24306, (185, 182, 29, 6, 111, 84, 23, 237 ));
+   IID_IVectorView_IAppExtension : aliased WinRt.IID := (157630513, 6737, 22481, (129, 31, 49, 253, 80, 2, 32, 241 ));
    function QInterface_IVectorView_IAppExtension is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAppExtension.Kind, IID_IVectorView_IAppExtension'Access);
 
    -----------------------------------------------------------------------------
@@ -182,6 +195,44 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       return WinRt.Hresult is abstract;
 
       IID_IAppExtension : aliased WinRt.IID := (2219872300, 5613, 20399, (147, 234, 34, 55, 187, 248, 203, 214 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAppExtension2 is interface and WinRt.IInspectable;
+
+      function get_AppUserModelId
+      (
+         this : access IAppExtension2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppExtension2 : aliased WinRt.IID := (2872776176, 5369, 19359, (148, 25, 163, 73, 162, 66, 239, 56 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAppExtension3 is interface and WinRt.IInspectable;
+
+      function GetExtensionProperties
+      (
+         this : access IAppExtension3_Interface;
+         RetVal : access Windows.Foundation.Collections.IPropertySet
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetPublicPath
+      (
+         this : access IAppExtension3_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetPublicFolder
+      (
+         this : access IAppExtension3_Interface;
+         RetVal : access Windows.Storage.IStorageFolder
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppExtension3 : aliased WinRt.IID := (1495515393, 43576, 16393, (132, 217, 91, 84, 160, 223, 48, 174 ));
 
    -----------------------------------------------------------------------------
    -- type IAppExtensionCatalog is interface and WinRt.IInspectable;
@@ -277,6 +328,18 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       return WinRt.Hresult is abstract;
 
       IID_IAppExtensionCatalog : aliased WinRt.IID := (2542215218, 33830, 19153, (144, 132, 146, 232, 140, 45, 162, 0 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAppExtensionCatalog2 is interface and WinRt.IInspectable;
+
+      function FindAll
+      (
+         this : access IAppExtensionCatalog2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppExtensionCatalog2 : aliased WinRt.IID := (1342533306, 22710, 16711, (181, 165, 143, 236, 166, 223, 180, 157 ));
 
    -----------------------------------------------------------------------------
    -- type IAppExtensionCatalogStatics is interface and WinRt.IInspectable;
@@ -455,6 +518,30 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.Storage.StorageFolder'Class;
 
+   function get_AppUserModelId
+   (
+      this : in out AppExtension
+   )
+   return WinRt.WString;
+
+   function GetExtensionProperties
+   (
+      this : in out AppExtension
+   )
+   return WinRt.Windows.Foundation.Collections.IPropertySet;
+
+   function GetPublicPath
+   (
+      this : in out AppExtension
+   )
+   return WinRt.WString;
+
+   function GetPublicFolder
+   (
+      this : in out AppExtension
+   )
+   return WinRt.Windows.Storage.StorageFolder'Class;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AppExtensionCatalog
 
@@ -550,6 +637,12 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       this : in out AppExtensionCatalog;
       token : Windows.Foundation.EventRegistrationToken
    );
+
+   function FindAll
+   (
+      this : in out AppExtensionCatalog
+   )
+   return IVectorView_IAppExtension.Kind;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AppExtensionPackageInstalledEventArgs

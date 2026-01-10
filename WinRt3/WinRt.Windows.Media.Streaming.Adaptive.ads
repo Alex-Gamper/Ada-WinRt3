@@ -48,9 +48,11 @@ package WinRt.Windows.Media.Streaming.Adaptive is
 
    type IAdaptiveMediaSource2_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSource2 is access all IAdaptiveMediaSource2_Interface'Class;
+   type IAdaptiveMediaSource2_Ptr is access all IAdaptiveMediaSource2;
 
    type IAdaptiveMediaSource3_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSource3 is access all IAdaptiveMediaSource3_Interface'Class;
+   type IAdaptiveMediaSource3_Ptr is access all IAdaptiveMediaSource3;
 
    type IAdaptiveMediaSourceAdvancedSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceAdvancedSettings is access all IAdaptiveMediaSourceAdvancedSettings_Interface'Class;
@@ -66,6 +68,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
 
    type IAdaptiveMediaSourceCreationResult2_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceCreationResult2 is access all IAdaptiveMediaSourceCreationResult2_Interface'Class;
+   type IAdaptiveMediaSourceCreationResult2_Ptr is access all IAdaptiveMediaSourceCreationResult2;
 
    type IAdaptiveMediaSourceDiagnosticAvailableEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDiagnosticAvailableEventArgs is access all IAdaptiveMediaSourceDiagnosticAvailableEventArgs_Interface'Class;
@@ -73,9 +76,11 @@ package WinRt.Windows.Media.Streaming.Adaptive is
 
    type IAdaptiveMediaSourceDiagnosticAvailableEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDiagnosticAvailableEventArgs2 is access all IAdaptiveMediaSourceDiagnosticAvailableEventArgs2_Interface'Class;
+   type IAdaptiveMediaSourceDiagnosticAvailableEventArgs2_Ptr is access all IAdaptiveMediaSourceDiagnosticAvailableEventArgs2;
 
    type IAdaptiveMediaSourceDiagnosticAvailableEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDiagnosticAvailableEventArgs3 is access all IAdaptiveMediaSourceDiagnosticAvailableEventArgs3_Interface'Class;
+   type IAdaptiveMediaSourceDiagnosticAvailableEventArgs3_Ptr is access all IAdaptiveMediaSourceDiagnosticAvailableEventArgs3;
 
    type IAdaptiveMediaSourceDiagnostics_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDiagnostics is access all IAdaptiveMediaSourceDiagnostics_Interface'Class;
@@ -87,6 +92,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
 
    type IAdaptiveMediaSourceDownloadBitrateChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDownloadBitrateChangedEventArgs2 is access all IAdaptiveMediaSourceDownloadBitrateChangedEventArgs2_Interface'Class;
+   type IAdaptiveMediaSourceDownloadBitrateChangedEventArgs2_Ptr is access all IAdaptiveMediaSourceDownloadBitrateChangedEventArgs2;
 
    type IAdaptiveMediaSourceDownloadCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDownloadCompletedEventArgs is access all IAdaptiveMediaSourceDownloadCompletedEventArgs_Interface'Class;
@@ -94,9 +100,11 @@ package WinRt.Windows.Media.Streaming.Adaptive is
 
    type IAdaptiveMediaSourceDownloadCompletedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDownloadCompletedEventArgs2 is access all IAdaptiveMediaSourceDownloadCompletedEventArgs2_Interface'Class;
+   type IAdaptiveMediaSourceDownloadCompletedEventArgs2_Ptr is access all IAdaptiveMediaSourceDownloadCompletedEventArgs2;
 
    type IAdaptiveMediaSourceDownloadCompletedEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDownloadCompletedEventArgs3 is access all IAdaptiveMediaSourceDownloadCompletedEventArgs3_Interface'Class;
+   type IAdaptiveMediaSourceDownloadCompletedEventArgs3_Ptr is access all IAdaptiveMediaSourceDownloadCompletedEventArgs3;
 
    type IAdaptiveMediaSourceDownloadFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDownloadFailedEventArgs is access all IAdaptiveMediaSourceDownloadFailedEventArgs_Interface'Class;
@@ -104,9 +112,11 @@ package WinRt.Windows.Media.Streaming.Adaptive is
 
    type IAdaptiveMediaSourceDownloadFailedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDownloadFailedEventArgs2 is access all IAdaptiveMediaSourceDownloadFailedEventArgs2_Interface'Class;
+   type IAdaptiveMediaSourceDownloadFailedEventArgs2_Ptr is access all IAdaptiveMediaSourceDownloadFailedEventArgs2;
 
    type IAdaptiveMediaSourceDownloadFailedEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDownloadFailedEventArgs3 is access all IAdaptiveMediaSourceDownloadFailedEventArgs3_Interface'Class;
+   type IAdaptiveMediaSourceDownloadFailedEventArgs3_Ptr is access all IAdaptiveMediaSourceDownloadFailedEventArgs3;
 
    type IAdaptiveMediaSourceDownloadRequestedDeferral_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDownloadRequestedDeferral is access all IAdaptiveMediaSourceDownloadRequestedDeferral_Interface'Class;
@@ -118,9 +128,11 @@ package WinRt.Windows.Media.Streaming.Adaptive is
 
    type IAdaptiveMediaSourceDownloadRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDownloadRequestedEventArgs2 is access all IAdaptiveMediaSourceDownloadRequestedEventArgs2_Interface'Class;
+   type IAdaptiveMediaSourceDownloadRequestedEventArgs2_Ptr is access all IAdaptiveMediaSourceDownloadRequestedEventArgs2;
 
    type IAdaptiveMediaSourceDownloadRequestedEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDownloadRequestedEventArgs3 is access all IAdaptiveMediaSourceDownloadRequestedEventArgs3_Interface'Class;
+   type IAdaptiveMediaSourceDownloadRequestedEventArgs3_Ptr is access all IAdaptiveMediaSourceDownloadRequestedEventArgs3;
 
    type IAdaptiveMediaSourceDownloadResult_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDownloadResult is access all IAdaptiveMediaSourceDownloadResult_Interface'Class;
@@ -128,6 +140,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
 
    type IAdaptiveMediaSourceDownloadResult2_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDownloadResult2 is access all IAdaptiveMediaSourceDownloadResult2_Interface'Class;
+   type IAdaptiveMediaSourceDownloadResult2_Ptr is access all IAdaptiveMediaSourceDownloadResult2;
 
    type IAdaptiveMediaSourceDownloadStatistics_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceDownloadStatistics is access all IAdaptiveMediaSourceDownloadStatistics_Interface'Class;
@@ -139,6 +152,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
 
    type IAdaptiveMediaSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAdaptiveMediaSourceStatics is access all IAdaptiveMediaSourceStatics_Interface'Class;
+   type IAdaptiveMediaSourceStatics_Ptr is access all IAdaptiveMediaSourceStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

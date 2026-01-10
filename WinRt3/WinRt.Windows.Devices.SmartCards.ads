@@ -58,6 +58,7 @@ package WinRt.Windows.Devices.SmartCards is
 
    type IKnownSmartCardAppletIds_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownSmartCardAppletIds is access all IKnownSmartCardAppletIds_Interface'Class;
+   type IKnownSmartCardAppletIds_Ptr is access all IKnownSmartCardAppletIds;
 
    type ISmartCard_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCard is access all ISmartCard_Interface'Class;
@@ -69,9 +70,11 @@ package WinRt.Windows.Devices.SmartCards is
 
    type ISmartCardAppletIdGroup2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardAppletIdGroup2 is access all ISmartCardAppletIdGroup2_Interface'Class;
+   type ISmartCardAppletIdGroup2_Ptr is access all ISmartCardAppletIdGroup2;
 
    type ISmartCardAppletIdGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardAppletIdGroupFactory is access all ISmartCardAppletIdGroupFactory_Interface'Class;
+   type ISmartCardAppletIdGroupFactory_Ptr is access all ISmartCardAppletIdGroupFactory;
 
    type ISmartCardAppletIdGroupRegistration_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardAppletIdGroupRegistration is access all ISmartCardAppletIdGroupRegistration_Interface'Class;
@@ -79,9 +82,11 @@ package WinRt.Windows.Devices.SmartCards is
 
    type ISmartCardAppletIdGroupRegistration2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardAppletIdGroupRegistration2 is access all ISmartCardAppletIdGroupRegistration2_Interface'Class;
+   type ISmartCardAppletIdGroupRegistration2_Ptr is access all ISmartCardAppletIdGroupRegistration2;
 
    type ISmartCardAppletIdGroupStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardAppletIdGroupStatics is access all ISmartCardAppletIdGroupStatics_Interface'Class;
+   type ISmartCardAppletIdGroupStatics_Ptr is access all ISmartCardAppletIdGroupStatics;
 
    type ISmartCardAutomaticResponseApdu_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardAutomaticResponseApdu is access all ISmartCardAutomaticResponseApdu_Interface'Class;
@@ -89,12 +94,15 @@ package WinRt.Windows.Devices.SmartCards is
 
    type ISmartCardAutomaticResponseApdu2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardAutomaticResponseApdu2 is access all ISmartCardAutomaticResponseApdu2_Interface'Class;
+   type ISmartCardAutomaticResponseApdu2_Ptr is access all ISmartCardAutomaticResponseApdu2;
 
    type ISmartCardAutomaticResponseApdu3_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardAutomaticResponseApdu3 is access all ISmartCardAutomaticResponseApdu3_Interface'Class;
+   type ISmartCardAutomaticResponseApdu3_Ptr is access all ISmartCardAutomaticResponseApdu3;
 
    type ISmartCardAutomaticResponseApduFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardAutomaticResponseApduFactory is access all ISmartCardAutomaticResponseApduFactory_Interface'Class;
+   type ISmartCardAutomaticResponseApduFactory_Ptr is access all ISmartCardAutomaticResponseApduFactory;
 
    type ISmartCardChallengeContext_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardChallengeContext is access all ISmartCardChallengeContext_Interface'Class;
@@ -102,6 +110,7 @@ package WinRt.Windows.Devices.SmartCards is
 
    type ISmartCardConnect_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardConnect is access all ISmartCardConnect_Interface'Class;
+   type ISmartCardConnect_Ptr is access all ISmartCardConnect;
 
    type ISmartCardConnection_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardConnection is access all ISmartCardConnection_Interface'Class;
@@ -113,12 +122,15 @@ package WinRt.Windows.Devices.SmartCards is
 
    type ISmartCardCryptogramGenerator2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardCryptogramGenerator2 is access all ISmartCardCryptogramGenerator2_Interface'Class;
+   type ISmartCardCryptogramGenerator2_Ptr is access all ISmartCardCryptogramGenerator2;
 
    type ISmartCardCryptogramGeneratorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardCryptogramGeneratorStatics is access all ISmartCardCryptogramGeneratorStatics_Interface'Class;
+   type ISmartCardCryptogramGeneratorStatics_Ptr is access all ISmartCardCryptogramGeneratorStatics;
 
    type ISmartCardCryptogramGeneratorStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardCryptogramGeneratorStatics2 is access all ISmartCardCryptogramGeneratorStatics2_Interface'Class;
+   type ISmartCardCryptogramGeneratorStatics2_Ptr is access all ISmartCardCryptogramGeneratorStatics2;
 
    type ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult is access all ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult_Interface'Class;
@@ -158,6 +170,7 @@ package WinRt.Windows.Devices.SmartCards is
 
    type ISmartCardCryptogramStorageKeyInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardCryptogramStorageKeyInfo2 is access all ISmartCardCryptogramStorageKeyInfo2_Interface'Class;
+   type ISmartCardCryptogramStorageKeyInfo2_Ptr is access all ISmartCardCryptogramStorageKeyInfo2;
 
    type ISmartCardEmulator_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardEmulator is access all ISmartCardEmulator_Interface'Class;
@@ -165,6 +178,7 @@ package WinRt.Windows.Devices.SmartCards is
 
    type ISmartCardEmulator2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardEmulator2 is access all ISmartCardEmulator2_Interface'Class;
+   type ISmartCardEmulator2_Ptr is access all ISmartCardEmulator2;
 
    type ISmartCardEmulatorApduReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardEmulatorApduReceivedEventArgs is access all ISmartCardEmulatorApduReceivedEventArgs_Interface'Class;
@@ -172,9 +186,11 @@ package WinRt.Windows.Devices.SmartCards is
 
    type ISmartCardEmulatorApduReceivedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardEmulatorApduReceivedEventArgs2 is access all ISmartCardEmulatorApduReceivedEventArgs2_Interface'Class;
+   type ISmartCardEmulatorApduReceivedEventArgs2_Ptr is access all ISmartCardEmulatorApduReceivedEventArgs2;
 
    type ISmartCardEmulatorApduReceivedEventArgsWithCryptograms_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardEmulatorApduReceivedEventArgsWithCryptograms is access all ISmartCardEmulatorApduReceivedEventArgsWithCryptograms_Interface'Class;
+   type ISmartCardEmulatorApduReceivedEventArgsWithCryptograms_Ptr is access all ISmartCardEmulatorApduReceivedEventArgsWithCryptograms;
 
    type ISmartCardEmulatorConnectionDeactivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardEmulatorConnectionDeactivatedEventArgs is access all ISmartCardEmulatorConnectionDeactivatedEventArgs_Interface'Class;
@@ -186,12 +202,15 @@ package WinRt.Windows.Devices.SmartCards is
 
    type ISmartCardEmulatorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardEmulatorStatics is access all ISmartCardEmulatorStatics_Interface'Class;
+   type ISmartCardEmulatorStatics_Ptr is access all ISmartCardEmulatorStatics;
 
    type ISmartCardEmulatorStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardEmulatorStatics2 is access all ISmartCardEmulatorStatics2_Interface'Class;
+   type ISmartCardEmulatorStatics2_Ptr is access all ISmartCardEmulatorStatics2;
 
    type ISmartCardEmulatorStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardEmulatorStatics3 is access all ISmartCardEmulatorStatics3_Interface'Class;
+   type ISmartCardEmulatorStatics3_Ptr is access all ISmartCardEmulatorStatics3;
 
    type ISmartCardPinPolicy_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardPinPolicy is access all ISmartCardPinPolicy_Interface'Class;
@@ -211,12 +230,15 @@ package WinRt.Windows.Devices.SmartCards is
 
    type ISmartCardProvisioning2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardProvisioning2 is access all ISmartCardProvisioning2_Interface'Class;
+   type ISmartCardProvisioning2_Ptr is access all ISmartCardProvisioning2;
 
    type ISmartCardProvisioningStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardProvisioningStatics is access all ISmartCardProvisioningStatics_Interface'Class;
+   type ISmartCardProvisioningStatics_Ptr is access all ISmartCardProvisioningStatics;
 
    type ISmartCardProvisioningStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardProvisioningStatics2 is access all ISmartCardProvisioningStatics2_Interface'Class;
+   type ISmartCardProvisioningStatics2_Ptr is access all ISmartCardProvisioningStatics2;
 
    type ISmartCardReader_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardReader is access all ISmartCardReader_Interface'Class;
@@ -224,6 +246,7 @@ package WinRt.Windows.Devices.SmartCards is
 
    type ISmartCardReaderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardReaderStatics is access all ISmartCardReaderStatics_Interface'Class;
+   type ISmartCardReaderStatics_Ptr is access all ISmartCardReaderStatics;
 
    type ISmartCardTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardTriggerDetails is access all ISmartCardTriggerDetails_Interface'Class;
@@ -231,9 +254,11 @@ package WinRt.Windows.Devices.SmartCards is
 
    type ISmartCardTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardTriggerDetails2 is access all ISmartCardTriggerDetails2_Interface'Class;
+   type ISmartCardTriggerDetails2_Ptr is access all ISmartCardTriggerDetails2;
 
    type ISmartCardTriggerDetails3_Interface is interface and WinRt.IInspectable_Interface;
    type ISmartCardTriggerDetails3 is access all ISmartCardTriggerDetails3_Interface'Class;
+   type ISmartCardTriggerDetails3_Ptr is access all ISmartCardTriggerDetails3;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -2654,6 +2679,8 @@ package WinRt.Windows.Devices.SmartCards is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SmartCardAppletIdGroup
 
+   function Constructor return SmartCardAppletIdGroup;
+
    function Constructor
    (
       displayName : WinRt.WString;
@@ -2662,8 +2689,6 @@ package WinRt.Windows.Devices.SmartCards is
       emulationType : Windows.Devices.SmartCards.SmartCardEmulationType
    )
    return SmartCardAppletIdGroup;
-
-   function Constructor return SmartCardAppletIdGroup;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for SmartCardAppletIdGroup
@@ -3577,9 +3602,6 @@ package WinRt.Windows.Devices.SmartCards is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SmartCardEmulator
 
-   function IsSupported_SmartCardEmulator
-   return WinRt.Boolean;
-
    function GetAppletIdGroupRegistrationsAsync
    return WinRt.GenericObject;
 
@@ -3599,6 +3621,9 @@ package WinRt.Windows.Devices.SmartCards is
 
    function GetDefaultAsync
    return WinRt.Windows.Devices.SmartCards.SmartCardEmulator;
+
+   function IsSupported_SmartCardEmulator
+   return WinRt.Boolean;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SmartCardEmulator
@@ -3895,23 +3920,6 @@ package WinRt.Windows.Devices.SmartCards is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SmartCardProvisioning
 
-   function RequestAttestedVirtualSmartCardCreationAsync
-   (
-      friendlyName : WinRt.WString;
-      administrativeKey : Windows.Storage.Streams.IBuffer;
-      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class
-   )
-   return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning;
-
-   function RequestAttestedVirtualSmartCardCreationAsync
-   (
-      friendlyName : WinRt.WString;
-      administrativeKey : Windows.Storage.Streams.IBuffer;
-      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class;
-      cardId : WinRt.Guid
-   )
-   return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning;
-
    function FromSmartCardAsync
    (
       card : Windows.Devices.SmartCards.SmartCard'Class
@@ -3940,6 +3948,23 @@ package WinRt.Windows.Devices.SmartCards is
       card : Windows.Devices.SmartCards.SmartCard'Class
    )
    return WinRt.Boolean;
+
+   function RequestAttestedVirtualSmartCardCreationAsync
+   (
+      friendlyName : WinRt.WString;
+      administrativeKey : Windows.Storage.Streams.IBuffer;
+      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class
+   )
+   return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning;
+
+   function RequestAttestedVirtualSmartCardCreationAsync
+   (
+      friendlyName : WinRt.WString;
+      administrativeKey : Windows.Storage.Streams.IBuffer;
+      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class;
+      cardId : WinRt.Guid
+   )
+   return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SmartCardProvisioning

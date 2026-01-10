@@ -402,33 +402,6 @@ package body WinRt.Windows.Storage.Pickers is
    -----------------------------------------------------------------------------
    -- Static Interfaces for FileOpenPicker
 
-   function CreateForUser
-   (
-      user : Windows.System.User'Class
-   )
-   return WinRt.Windows.Storage.Pickers.FileOpenPicker is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Pickers.FileOpenPicker");
-      m_Factory        : access WinRt.Windows.Storage.Pickers.IFileOpenPickerStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.IFileOpenPicker;
-   begin
-      return RetVal : WinRt.Windows.Storage.Pickers.FileOpenPicker do
-         Hr := RoGetActivationFactory (m_hString, IID_IFileOpenPickerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateForUser (user.m_IUser.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IFileOpenPicker := new Windows.Storage.Pickers.IFileOpenPicker;
-            Retval.m_IFileOpenPicker.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function ResumePickSingleFileAsync
    return WinRt.Windows.Storage.StorageFile is
       Hr               : WinRt.HResult := S_OK;
@@ -494,6 +467,33 @@ package body WinRt.Windows.Storage.Pickers is
                   end if;
                end if;
             end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateForUser
+   (
+      user : Windows.System.User'Class
+   )
+   return WinRt.Windows.Storage.Pickers.FileOpenPicker is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Pickers.FileOpenPicker");
+      m_Factory        : access WinRt.Windows.Storage.Pickers.IFileOpenPickerStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.Pickers.IFileOpenPicker;
+   begin
+      return RetVal : WinRt.Windows.Storage.Pickers.FileOpenPicker do
+         Hr := RoGetActivationFactory (m_hString, IID_IFileOpenPickerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateForUser (user.m_IUser.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IFileOpenPicker := new Windows.Storage.Pickers.IFileOpenPicker;
+            Retval.m_IFileOpenPicker.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

@@ -49,9 +49,11 @@ package WinRt.Windows.Devices.Adc is
 
    type IAdcControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAdcControllerStatics is access all IAdcControllerStatics_Interface'Class;
+   type IAdcControllerStatics_Ptr is access all IAdcControllerStatics;
 
    type IAdcControllerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAdcControllerStatics2 is access all IAdcControllerStatics2_Interface'Class;
+   type IAdcControllerStatics2_Ptr is access all IAdcControllerStatics2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -246,14 +248,14 @@ package WinRt.Windows.Devices.Adc is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AdcController
 
-   function GetDefaultAsync
-   return WinRt.Windows.Devices.Adc.AdcController;
-
    function GetControllersAsync
    (
       provider : Windows.Devices.Adc.Provider.IAdcProvider
    )
    return WinRt.GenericObject;
+
+   function GetDefaultAsync
+   return WinRt.Windows.Devices.Adc.AdcController;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for AdcController

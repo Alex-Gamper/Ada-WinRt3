@@ -46,6 +46,7 @@ package WinRt.Windows.Media.AppRecording is
 
    type IAppRecordingManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppRecordingManagerStatics is access all IAppRecordingManagerStatics_Interface'Class;
+   type IAppRecordingManagerStatics_Ptr is access all IAppRecordingManagerStatics;
 
    type IAppRecordingResult_Interface is interface and WinRt.IInspectable_Interface;
    type IAppRecordingResult is access all IAppRecordingResult_Interface'Class;

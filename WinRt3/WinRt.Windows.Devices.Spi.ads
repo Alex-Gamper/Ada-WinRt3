@@ -50,6 +50,7 @@ package WinRt.Windows.Devices.Spi is
 
    type ISpiConnectionSettingsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISpiConnectionSettingsFactory is access all ISpiConnectionSettingsFactory_Interface'Class;
+   type ISpiConnectionSettingsFactory_Ptr is access all ISpiConnectionSettingsFactory;
 
    type ISpiController_Interface is interface and WinRt.IInspectable_Interface;
    type ISpiController is access all ISpiController_Interface'Class;
@@ -57,6 +58,7 @@ package WinRt.Windows.Devices.Spi is
 
    type ISpiControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISpiControllerStatics is access all ISpiControllerStatics_Interface'Class;
+   type ISpiControllerStatics_Ptr is access all ISpiControllerStatics;
 
    type ISpiDevice_Interface is interface and WinRt.IInspectable_Interface;
    type ISpiDevice is access all ISpiDevice_Interface'Class;
@@ -64,6 +66,7 @@ package WinRt.Windows.Devices.Spi is
 
    type ISpiDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISpiDeviceStatics is access all ISpiDeviceStatics_Interface'Class;
+   type ISpiDeviceStatics_Ptr is access all ISpiDeviceStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

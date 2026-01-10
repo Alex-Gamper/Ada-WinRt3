@@ -52,6 +52,7 @@ package WinRt.Windows.Services.Store is
 
    type IStoreAppLicense2_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreAppLicense2 is access all IStoreAppLicense2_Interface'Class;
+   type IStoreAppLicense2_Ptr is access all IStoreAppLicense2;
 
    type IStoreAvailability_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreAvailability is access all IStoreAvailability_Interface'Class;
@@ -75,15 +76,23 @@ package WinRt.Windows.Services.Store is
 
    type IStoreContext2_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreContext2 is access all IStoreContext2_Interface'Class;
+   type IStoreContext2_Ptr is access all IStoreContext2;
 
    type IStoreContext3_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreContext3 is access all IStoreContext3_Interface'Class;
+   type IStoreContext3_Ptr is access all IStoreContext3;
 
    type IStoreContext4_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreContext4 is access all IStoreContext4_Interface'Class;
+   type IStoreContext4_Ptr is access all IStoreContext4;
+
+   type IStoreContext5_Interface is interface and WinRt.IInspectable_Interface;
+   type IStoreContext5 is access all IStoreContext5_Interface'Class;
+   type IStoreContext5_Ptr is access all IStoreContext5;
 
    type IStoreContextStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreContextStatics is access all IStoreContextStatics_Interface'Class;
+   type IStoreContextStatics_Ptr is access all IStoreContextStatics;
 
    type IStoreImage_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreImage is access all IStoreImage_Interface'Class;
@@ -111,10 +120,15 @@ package WinRt.Windows.Services.Store is
 
    type IStorePackageUpdateResult2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorePackageUpdateResult2 is access all IStorePackageUpdateResult2_Interface'Class;
+   type IStorePackageUpdateResult2_Ptr is access all IStorePackageUpdateResult2;
 
    type IStorePrice_Interface is interface and WinRt.IInspectable_Interface;
    type IStorePrice is access all IStorePrice_Interface'Class;
    type IStorePrice_Ptr is access all IStorePrice;
+
+   type IStorePrice2_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorePrice2 is access all IStorePrice2_Interface'Class;
+   type IStorePrice2_Ptr is access all IStorePrice2;
 
    type IStoreProduct_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreProduct is access all IStoreProduct_Interface'Class;
@@ -142,6 +156,7 @@ package WinRt.Windows.Services.Store is
 
    type IStorePurchasePropertiesFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IStorePurchasePropertiesFactory is access all IStorePurchasePropertiesFactory_Interface'Class;
+   type IStorePurchasePropertiesFactory_Ptr is access all IStorePurchasePropertiesFactory;
 
    type IStorePurchaseResult_Interface is interface and WinRt.IInspectable_Interface;
    type IStorePurchaseResult is access all IStorePurchaseResult_Interface'Class;
@@ -153,6 +168,7 @@ package WinRt.Windows.Services.Store is
 
    type IStoreQueueItem2_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreQueueItem2 is access all IStoreQueueItem2_Interface'Class;
+   type IStoreQueueItem2_Ptr is access all IStoreQueueItem2;
 
    type IStoreQueueItemCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreQueueItemCompletedEventArgs is access all IStoreQueueItemCompletedEventArgs_Interface'Class;
@@ -168,6 +184,7 @@ package WinRt.Windows.Services.Store is
 
    type IStoreRequestHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreRequestHelperStatics is access all IStoreRequestHelperStatics_Interface'Class;
+   type IStoreRequestHelperStatics_Ptr is access all IStoreRequestHelperStatics;
 
    type IStoreSendRequestResult_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreSendRequestResult is access all IStoreSendRequestResult_Interface'Class;
@@ -175,6 +192,7 @@ package WinRt.Windows.Services.Store is
 
    type IStoreSendRequestResult2_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreSendRequestResult2 is access all IStoreSendRequestResult2_Interface'Class;
+   type IStoreSendRequestResult2_Ptr is access all IStoreSendRequestResult2;
 
    type IStoreSku_Interface is interface and WinRt.IInspectable_Interface;
    type IStoreSku is access all IStoreSku_Interface'Class;
@@ -1225,6 +1243,35 @@ package WinRt.Windows.Services.Store is
       IID_IStoreContext4 : aliased WinRt.IID := (2946264937, 48801, 19444, (142, 116, 174, 3, 226, 6, 198, 176 ));
 
    -----------------------------------------------------------------------------
+   -- type IStoreContext5 is interface and WinRt.IInspectable;
+
+      function GetUserPurchaseHistoryAsync
+      (
+         this : access IStoreContext5_Interface;
+         productKinds : GenericObject;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetAssociatedStoreProductsByInAppOfferTokenAsync
+      (
+         this : access IStoreContext5_Interface;
+         inAppOfferTokens : GenericObject;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function RequestPurchaseByInAppOfferTokenAsync
+      (
+         this : access IStoreContext5_Interface;
+         inAppOfferToken : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStoreContext5 : aliased WinRt.IID := (1843840299, 50234, 22867, (179, 154, 113, 100, 60, 87, 217, 110 ));
+
+   -----------------------------------------------------------------------------
    -- type IStoreContextStatics is interface and WinRt.IInspectable;
 
       function GetDefault
@@ -1479,6 +1526,32 @@ package WinRt.Windows.Services.Store is
       return WinRt.Hresult is abstract;
 
       IID_IStorePrice : aliased WinRt.IID := (1438291140, 5617, 16508, (143, 6, 0, 99, 128, 244, 223, 11 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorePrice2 is interface and WinRt.IInspectable;
+
+      function get_UnformattedBasePrice
+      (
+         this : access IStorePrice2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UnformattedPrice
+      (
+         this : access IStorePrice2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UnformattedRecurrencePrice
+      (
+         this : access IStorePrice2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorePrice2 : aliased WinRt.IID := (4145108796, 16614, 22081, (176, 99, 241, 223, 66, 178, 177, 42 ));
 
    -----------------------------------------------------------------------------
    -- type IStoreProduct is interface and WinRt.IInspectable;
@@ -2766,6 +2839,27 @@ package WinRt.Windows.Services.Store is
    )
    return WinRt.GenericObject;
 
+   function GetUserPurchaseHistoryAsync
+   (
+      this : in out StoreContext;
+      productKinds : GenericObject
+   )
+   return WinRt.Windows.Services.Store.StoreProductQueryResult'Class;
+
+   function GetAssociatedStoreProductsByInAppOfferTokenAsync
+   (
+      this : in out StoreContext;
+      inAppOfferTokens : GenericObject
+   )
+   return WinRt.Windows.Services.Store.StoreProductQueryResult'Class;
+
+   function RequestPurchaseByInAppOfferTokenAsync
+   (
+      this : in out StoreContext;
+      inAppOfferToken : WinRt.WString
+   )
+   return WinRt.Windows.Services.Store.StorePurchaseResult'Class;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StoreImage
 
@@ -3007,6 +3101,24 @@ package WinRt.Windows.Services.Store is
    )
    return WinRt.WString;
 
+   function get_UnformattedBasePrice
+   (
+      this : in out StorePrice
+   )
+   return WinRt.WString;
+
+   function get_UnformattedPrice
+   (
+      this : in out StorePrice
+   )
+   return WinRt.WString;
+
+   function get_UnformattedRecurrencePrice
+   (
+      this : in out StorePrice
+   )
+   return WinRt.WString;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StoreProduct
 
@@ -3229,13 +3341,13 @@ package WinRt.Windows.Services.Store is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for StorePurchaseProperties
 
+   function Constructor return StorePurchaseProperties;
+
    function Constructor
    (
       name : WinRt.WString
    )
    return StorePurchaseProperties;
-
-   function Constructor return StorePurchaseProperties;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for StorePurchaseProperties

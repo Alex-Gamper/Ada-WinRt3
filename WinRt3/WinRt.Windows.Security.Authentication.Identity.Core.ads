@@ -45,6 +45,7 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
 
    type IMicrosoftAccountMultiFactorAuthenticatorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMicrosoftAccountMultiFactorAuthenticatorStatics is access all IMicrosoftAccountMultiFactorAuthenticatorStatics_Interface'Class;
+   type IMicrosoftAccountMultiFactorAuthenticatorStatics_Ptr is access all IMicrosoftAccountMultiFactorAuthenticatorStatics;
 
    type IMicrosoftAccountMultiFactorGetSessionsResult_Interface is interface and WinRt.IInspectable_Interface;
    type IMicrosoftAccountMultiFactorGetSessionsResult is access all IMicrosoftAccountMultiFactorGetSessionsResult_Interface'Class;

@@ -28,6 +28,7 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.System.Power;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
@@ -49,6 +50,19 @@ package WinRt.Windows.Devices.Power is
 
    type IBatteryStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBatteryStatics is access all IBatteryStatics_Interface'Class;
+   type IBatteryStatics_Ptr is access all IBatteryStatics;
+
+   type IPowerGridData_Interface is interface and WinRt.IInspectable_Interface;
+   type IPowerGridData is access all IPowerGridData_Interface'Class;
+   type IPowerGridData_Ptr is access all IPowerGridData;
+
+   type IPowerGridForecast_Interface is interface and WinRt.IInspectable_Interface;
+   type IPowerGridForecast is access all IPowerGridForecast_Interface'Class;
+   type IPowerGridForecast_Ptr is access all IPowerGridForecast;
+
+   type IPowerGridForecastStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IPowerGridForecastStatics is access all IPowerGridForecastStatics_Interface'Class;
+   type IPowerGridForecastStatics_Ptr is access all IPowerGridForecastStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -66,6 +80,27 @@ package WinRt.Windows.Devices.Power is
       end record;
    type BatteryReport_Ptr is access all BatteryReport;
 
+   type PowerGridData is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPowerGridData : access Windows.Devices.Power.IPowerGridData;
+      end record;
+   type PowerGridData_Ptr is access all PowerGridData;
+
+   type PowerGridForecast is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPowerGridForecast : access Windows.Devices.Power.IPowerGridForecast;
+      end record;
+   type PowerGridForecast_Ptr is access all PowerGridForecast;
+
+   -----------------------------------------------------------------------------
+   -- Record declarations
+   -----------------------------------------------------------------------------
+
+   type PowerGridApiContract is record
+      null;
+   end record with Convention => C_Pass_By_Copy;
+   type PowerGridApiContract_Ptr is access all PowerGridApiContract;
+
    -----------------------------------------------------------------------------
    -- Generic package declarations
    -----------------------------------------------------------------------------
@@ -73,6 +108,10 @@ package WinRt.Windows.Devices.Power is
    package IReference_Int32 is new WinRt.Windows.Foundation.IReference (WinRt.Int32);
    IID_IReference_Int32 : aliased WinRt.IID := (2570502389, 173, 24055, (183, 116, 171, 117, 0, 54, 60, 7 ));
    function QInterface_IReference_Int32 is new Generic_QueryInterface (GenericObject_Interface, IReference_Int32.Kind, IID_IReference_Int32'Access);
+
+   package IVectorView_IPowerGridData is new WinRt.Windows.Foundation.Collections.IVectorView (IPowerGridData);
+   IID_IVectorView_IPowerGridData : aliased WinRt.IID := (4045074076, 21146, 22331, (155, 55, 31, 51, 54, 73, 33, 199 ));
+   function QInterface_IVectorView_IPowerGridData is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IPowerGridData.Kind, IID_IVectorView_IPowerGridData'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -180,6 +219,78 @@ package WinRt.Windows.Devices.Power is
       IID_IBatteryStatics : aliased WinRt.IID := (2043507382, 40542, 17490, (190, 166, 223, 205, 84, 30, 89, 127 ));
 
    -----------------------------------------------------------------------------
+   -- type IPowerGridData is interface and WinRt.IInspectable;
+
+      function get_Severity
+      (
+         this : access IPowerGridData_Interface;
+         RetVal : access WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsLowUserExperienceImpact
+      (
+         this : access IPowerGridData_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPowerGridData : aliased WinRt.IID := (3277912855, 64658, 24430, (153, 157, 22, 164, 207, 157, 108, 64 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPowerGridForecast is interface and WinRt.IInspectable;
+
+      function get_StartTime
+      (
+         this : access IPowerGridForecast_Interface;
+         RetVal : access Windows.Foundation.DateTime
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_BlockDuration
+      (
+         this : access IPowerGridForecast_Interface;
+         RetVal : access Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Forecast
+      (
+         this : access IPowerGridForecast_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPowerGridForecast : aliased WinRt.IID := (125717993, 60768, 22715, (168, 80, 0, 60, 106, 19, 134, 133 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPowerGridForecastStatics is interface and WinRt.IInspectable;
+
+      function GetForecast
+      (
+         this : access IPowerGridForecastStatics_Interface;
+         RetVal : access Windows.Devices.Power.IPowerGridForecast
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_ForecastUpdated
+      (
+         this : access IPowerGridForecastStatics_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_ForecastUpdated
+      (
+         this : access IPowerGridForecastStatics_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPowerGridForecastStatics : aliased WinRt.IID := (1534642182, 11854, 23500, (187, 52, 203, 129, 198, 15, 158, 18 ));
+
+   -----------------------------------------------------------------------------
    -- Class method declarations
    -----------------------------------------------------------------------------
 
@@ -270,5 +381,70 @@ package WinRt.Windows.Devices.Power is
       this : in out BatteryReport
    )
    return WinRt.Windows.System.Power.BatteryStatus;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PowerGridData
+
+   overriding procedure Initialize (this : in out PowerGridData);
+   overriding procedure Finalize (this : in out PowerGridData);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PowerGridData
+
+   function get_Severity
+   (
+      this : in out PowerGridData
+   )
+   return WinRt.Double;
+
+   function get_IsLowUserExperienceImpact
+   (
+      this : in out PowerGridData
+   )
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PowerGridForecast
+
+   overriding procedure Initialize (this : in out PowerGridForecast);
+   overriding procedure Finalize (this : in out PowerGridForecast);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for PowerGridForecast
+
+   function GetForecast
+   return WinRt.Windows.Devices.Power.PowerGridForecast;
+
+   function add_ForecastUpdated
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ForecastUpdated
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PowerGridForecast
+
+   function get_StartTime
+   (
+      this : in out PowerGridForecast
+   )
+   return WinRt.Windows.Foundation.DateTime;
+
+   function get_BlockDuration
+   (
+      this : in out PowerGridForecast
+   )
+   return WinRt.Windows.Foundation.TimeSpan;
+
+   function get_Forecast
+   (
+      this : in out PowerGridForecast
+   )
+   return IVectorView_IPowerGridData.Kind;
 
 end WinRt.Windows.Devices.Power;

@@ -59,6 +59,7 @@ package WinRt.Windows.Media.SpeechRecognition is
 
    type ISpeechRecognitionConstraint_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognitionConstraint is access all ISpeechRecognitionConstraint_Interface'Class;
+   type ISpeechRecognitionConstraint_Ptr is access all ISpeechRecognitionConstraint;
 
    type ISpeechRecognitionGrammarFileConstraint_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognitionGrammarFileConstraint is access all ISpeechRecognitionGrammarFileConstraint_Interface'Class;
@@ -66,6 +67,7 @@ package WinRt.Windows.Media.SpeechRecognition is
 
    type ISpeechRecognitionGrammarFileConstraintFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognitionGrammarFileConstraintFactory is access all ISpeechRecognitionGrammarFileConstraintFactory_Interface'Class;
+   type ISpeechRecognitionGrammarFileConstraintFactory_Ptr is access all ISpeechRecognitionGrammarFileConstraintFactory;
 
    type ISpeechRecognitionHypothesis_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognitionHypothesis is access all ISpeechRecognitionHypothesis_Interface'Class;
@@ -81,6 +83,7 @@ package WinRt.Windows.Media.SpeechRecognition is
 
    type ISpeechRecognitionListConstraintFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognitionListConstraintFactory is access all ISpeechRecognitionListConstraintFactory_Interface'Class;
+   type ISpeechRecognitionListConstraintFactory_Ptr is access all ISpeechRecognitionListConstraintFactory;
 
    type ISpeechRecognitionQualityDegradingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognitionQualityDegradingEventArgs is access all ISpeechRecognitionQualityDegradingEventArgs_Interface'Class;
@@ -92,6 +95,7 @@ package WinRt.Windows.Media.SpeechRecognition is
 
    type ISpeechRecognitionResult2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognitionResult2 is access all ISpeechRecognitionResult2_Interface'Class;
+   type ISpeechRecognitionResult2_Ptr is access all ISpeechRecognitionResult2;
 
    type ISpeechRecognitionSemanticInterpretation_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognitionSemanticInterpretation is access all ISpeechRecognitionSemanticInterpretation_Interface'Class;
@@ -103,6 +107,7 @@ package WinRt.Windows.Media.SpeechRecognition is
 
    type ISpeechRecognitionTopicConstraintFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognitionTopicConstraintFactory is access all ISpeechRecognitionTopicConstraintFactory_Interface'Class;
+   type ISpeechRecognitionTopicConstraintFactory_Ptr is access all ISpeechRecognitionTopicConstraintFactory;
 
    type ISpeechRecognitionVoiceCommandDefinitionConstraint_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognitionVoiceCommandDefinitionConstraint is access all ISpeechRecognitionVoiceCommandDefinitionConstraint_Interface'Class;
@@ -114,9 +119,11 @@ package WinRt.Windows.Media.SpeechRecognition is
 
    type ISpeechRecognizer2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognizer2 is access all ISpeechRecognizer2_Interface'Class;
+   type ISpeechRecognizer2_Ptr is access all ISpeechRecognizer2;
 
    type ISpeechRecognizerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognizerFactory is access all ISpeechRecognizerFactory_Interface'Class;
+   type ISpeechRecognizerFactory_Ptr is access all ISpeechRecognizerFactory;
 
    type ISpeechRecognizerStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognizerStateChangedEventArgs is access all ISpeechRecognizerStateChangedEventArgs_Interface'Class;
@@ -124,9 +131,11 @@ package WinRt.Windows.Media.SpeechRecognition is
 
    type ISpeechRecognizerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognizerStatics is access all ISpeechRecognizerStatics_Interface'Class;
+   type ISpeechRecognizerStatics_Ptr is access all ISpeechRecognizerStatics;
 
    type ISpeechRecognizerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognizerStatics2 is access all ISpeechRecognizerStatics2_Interface'Class;
+   type ISpeechRecognizerStatics2_Ptr is access all ISpeechRecognizerStatics2;
 
    type ISpeechRecognizerTimeouts_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognizerTimeouts is access all ISpeechRecognizerTimeouts_Interface'Class;
@@ -135,13 +144,6 @@ package WinRt.Windows.Media.SpeechRecognition is
    type ISpeechRecognizerUIOptions_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechRecognizerUIOptions is access all ISpeechRecognizerUIOptions_Interface'Class;
    type ISpeechRecognizerUIOptions_Ptr is access all ISpeechRecognizerUIOptions;
-
-   type IVoiceCommandManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandManager is access all IVoiceCommandManager_Interface'Class;
-
-   type IVoiceCommandSet_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandSet is access all IVoiceCommandSet_Interface'Class;
-   type IVoiceCommandSet_Ptr is access all IVoiceCommandSet;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -248,12 +250,6 @@ package WinRt.Windows.Media.SpeechRecognition is
          m_ISpeechRecognizerUIOptions : access Windows.Media.SpeechRecognition.ISpeechRecognizerUIOptions;
       end record;
    type SpeechRecognizerUIOptions_Ptr is access all SpeechRecognizerUIOptions;
-
-   type VoiceCommandSet is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IVoiceCommandSet : access Windows.Media.SpeechRecognition.IVoiceCommandSet;
-      end record;
-   type VoiceCommandSet_Ptr is access all VoiceCommandSet;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -1137,54 +1133,6 @@ package WinRt.Windows.Media.SpeechRecognition is
       IID_ISpeechRecognizerUIOptions : aliased WinRt.IID := (2022233665, 47403, 17594, (162, 95, 209, 134, 70, 48, 100, 31 ));
 
    -----------------------------------------------------------------------------
-   -- type IVoiceCommandManager is interface and WinRt.IInspectable;
-
-      function InstallCommandSetsFromStorageFileAsync
-      (
-         this : access IVoiceCommandManager_Interface;
-         file : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Foundation.IAsyncAction
-      )
-      return WinRt.Hresult is abstract;
-
-      function get_InstalledCommandSets
-      (
-         this : access IVoiceCommandManager_Interface;
-         RetVal : access GenericObject
-      )
-      return WinRt.Hresult is abstract;
-
-      IID_IVoiceCommandManager : aliased WinRt.IID := (2855964117, 46823, 20194, (186, 169, 221, 107, 172, 237, 10, 43 ));
-
-   -----------------------------------------------------------------------------
-   -- type IVoiceCommandSet is interface and WinRt.IInspectable;
-
-      function get_Language
-      (
-         this : access IVoiceCommandSet_Interface;
-         RetVal : access WinRt.HString
-      )
-      return WinRt.Hresult is abstract;
-
-      function get_Name
-      (
-         this : access IVoiceCommandSet_Interface;
-         RetVal : access WinRt.HString
-      )
-      return WinRt.Hresult is abstract;
-
-      function SetPhraseListAsync
-      (
-         this : access IVoiceCommandSet_Interface;
-         phraseListName : WinRt.HString;
-         phraseList : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
-      )
-      return WinRt.Hresult is abstract;
-
-      IID_IVoiceCommandSet : aliased WinRt.IID := (200137333, 18150, 19217, (160, 136, 92, 104, 99, 40, 153, 181 ));
-
-   -----------------------------------------------------------------------------
    -- Class method declarations
    -----------------------------------------------------------------------------
 
@@ -1739,6 +1687,12 @@ package WinRt.Windows.Media.SpeechRecognition is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SpeechRecognizer
 
+   function TrySetSystemSpeechLanguageAsync
+   (
+      speechLanguage : Windows.Globalization.Language'Class
+   )
+   return WinRt.Boolean;
+
    function get_SystemSpeechLanguage
    return WinRt.Windows.Globalization.Language;
 
@@ -1747,12 +1701,6 @@ package WinRt.Windows.Media.SpeechRecognition is
 
    function get_SupportedGrammarLanguages
    return WinRt.GenericObject;
-
-   function TrySetSystemSpeechLanguageAsync
-   (
-      speechLanguage : Windows.Globalization.Language'Class
-   )
-   return WinRt.Boolean;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SpeechRecognizer
@@ -1975,48 +1923,6 @@ package WinRt.Windows.Media.SpeechRecognition is
    (
       this : in out SpeechRecognizerUIOptions;
       value : WinRt.Boolean
-   );
-
-   -----------------------------------------------------------------------------
-   -- Static RuntimeClass
-   package VoiceCommandManager is
-
-      procedure InstallCommandSetsFromStorageFileAsync
-      (
-         file : Windows.Storage.StorageFile'Class
-      );
-
-      function get_InstalledCommandSets
-      return WinRt.GenericObject;
-
-   end VoiceCommandManager;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for VoiceCommandSet
-
-   overriding procedure Initialize (this : in out VoiceCommandSet);
-   overriding procedure Finalize (this : in out VoiceCommandSet);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for VoiceCommandSet
-
-   function get_Language
-   (
-      this : in out VoiceCommandSet
-   )
-   return WinRt.WString;
-
-   function get_Name
-   (
-      this : in out VoiceCommandSet
-   )
-   return WinRt.WString;
-
-   procedure SetPhraseListAsync
-   (
-      this : in out VoiceCommandSet;
-      phraseListName : WinRt.WString;
-      phraseList : GenericObject
    );
 
 end WinRt.Windows.Media.SpeechRecognition;

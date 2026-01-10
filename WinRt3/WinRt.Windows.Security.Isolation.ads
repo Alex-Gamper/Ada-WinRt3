@@ -55,20 +55,39 @@ package WinRt.Windows.Security.Isolation is
 
    type IIsolatedWindowsEnvironment2_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsEnvironment2 is access all IIsolatedWindowsEnvironment2_Interface'Class;
+   type IIsolatedWindowsEnvironment2_Ptr is access all IIsolatedWindowsEnvironment2;
+
+   type IIsolatedWindowsEnvironment3_Interface is interface and WinRt.IInspectable_Interface;
+   type IIsolatedWindowsEnvironment3 is access all IIsolatedWindowsEnvironment3_Interface'Class;
+   type IIsolatedWindowsEnvironment3_Ptr is access all IIsolatedWindowsEnvironment3;
+
+   type IIsolatedWindowsEnvironment4_Interface is interface and WinRt.IInspectable_Interface;
+   type IIsolatedWindowsEnvironment4 is access all IIsolatedWindowsEnvironment4_Interface'Class;
+   type IIsolatedWindowsEnvironment4_Ptr is access all IIsolatedWindowsEnvironment4;
 
    type IIsolatedWindowsEnvironmentCreateResult_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsEnvironmentCreateResult is access all IIsolatedWindowsEnvironmentCreateResult_Interface'Class;
    type IIsolatedWindowsEnvironmentCreateResult_Ptr is access all IIsolatedWindowsEnvironmentCreateResult;
 
+   type IIsolatedWindowsEnvironmentCreateResult2_Interface is interface and WinRt.IInspectable_Interface;
+   type IIsolatedWindowsEnvironmentCreateResult2 is access all IIsolatedWindowsEnvironmentCreateResult2_Interface'Class;
+   type IIsolatedWindowsEnvironmentCreateResult2_Ptr is access all IIsolatedWindowsEnvironmentCreateResult2;
+
    type IIsolatedWindowsEnvironmentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsEnvironmentFactory is access all IIsolatedWindowsEnvironmentFactory_Interface'Class;
+   type IIsolatedWindowsEnvironmentFactory_Ptr is access all IIsolatedWindowsEnvironmentFactory;
 
    type IIsolatedWindowsEnvironmentFile_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsEnvironmentFile is access all IIsolatedWindowsEnvironmentFile_Interface'Class;
    type IIsolatedWindowsEnvironmentFile_Ptr is access all IIsolatedWindowsEnvironmentFile;
 
+   type IIsolatedWindowsEnvironmentFile2_Interface is interface and WinRt.IInspectable_Interface;
+   type IIsolatedWindowsEnvironmentFile2 is access all IIsolatedWindowsEnvironmentFile2_Interface'Class;
+   type IIsolatedWindowsEnvironmentFile2_Ptr is access all IIsolatedWindowsEnvironmentFile2;
+
    type IIsolatedWindowsEnvironmentHostStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsEnvironmentHostStatics is access all IIsolatedWindowsEnvironmentHostStatics_Interface'Class;
+   type IIsolatedWindowsEnvironmentHostStatics_Ptr is access all IIsolatedWindowsEnvironmentHostStatics;
 
    type IIsolatedWindowsEnvironmentLaunchFileResult_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsEnvironmentLaunchFileResult is access all IIsolatedWindowsEnvironmentLaunchFileResult_Interface'Class;
@@ -77,6 +96,14 @@ package WinRt.Windows.Security.Isolation is
    type IIsolatedWindowsEnvironmentOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsEnvironmentOptions is access all IIsolatedWindowsEnvironmentOptions_Interface'Class;
    type IIsolatedWindowsEnvironmentOptions_Ptr is access all IIsolatedWindowsEnvironmentOptions;
+
+   type IIsolatedWindowsEnvironmentOptions2_Interface is interface and WinRt.IInspectable_Interface;
+   type IIsolatedWindowsEnvironmentOptions2 is access all IIsolatedWindowsEnvironmentOptions2_Interface'Class;
+   type IIsolatedWindowsEnvironmentOptions2_Ptr is access all IIsolatedWindowsEnvironmentOptions2;
+
+   type IIsolatedWindowsEnvironmentOptions3_Interface is interface and WinRt.IInspectable_Interface;
+   type IIsolatedWindowsEnvironmentOptions3 is access all IIsolatedWindowsEnvironmentOptions3_Interface'Class;
+   type IIsolatedWindowsEnvironmentOptions3_Ptr is access all IIsolatedWindowsEnvironmentOptions3;
 
    type IIsolatedWindowsEnvironmentOwnerRegistrationData_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsEnvironmentOwnerRegistrationData is access all IIsolatedWindowsEnvironmentOwnerRegistrationData_Interface'Class;
@@ -88,6 +115,7 @@ package WinRt.Windows.Security.Isolation is
 
    type IIsolatedWindowsEnvironmentOwnerRegistrationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsEnvironmentOwnerRegistrationStatics is access all IIsolatedWindowsEnvironmentOwnerRegistrationStatics_Interface'Class;
+   type IIsolatedWindowsEnvironmentOwnerRegistrationStatics_Ptr is access all IIsolatedWindowsEnvironmentOwnerRegistrationStatics;
 
    type IIsolatedWindowsEnvironmentPostMessageResult_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsEnvironmentPostMessageResult is access all IIsolatedWindowsEnvironmentPostMessageResult_Interface'Class;
@@ -96,6 +124,14 @@ package WinRt.Windows.Security.Isolation is
    type IIsolatedWindowsEnvironmentProcess_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsEnvironmentProcess is access all IIsolatedWindowsEnvironmentProcess_Interface'Class;
    type IIsolatedWindowsEnvironmentProcess_Ptr is access all IIsolatedWindowsEnvironmentProcess;
+
+   type IIsolatedWindowsEnvironmentShareFileRequestOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IIsolatedWindowsEnvironmentShareFileRequestOptions is access all IIsolatedWindowsEnvironmentShareFileRequestOptions_Interface'Class;
+   type IIsolatedWindowsEnvironmentShareFileRequestOptions_Ptr is access all IIsolatedWindowsEnvironmentShareFileRequestOptions;
+
+   type IIsolatedWindowsEnvironmentShareFileResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IIsolatedWindowsEnvironmentShareFileResult is access all IIsolatedWindowsEnvironmentShareFileResult_Interface'Class;
+   type IIsolatedWindowsEnvironmentShareFileResult_Ptr is access all IIsolatedWindowsEnvironmentShareFileResult;
 
    type IIsolatedWindowsEnvironmentShareFolderRequestOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsEnvironmentShareFolderRequestOptions is access all IIsolatedWindowsEnvironmentShareFolderRequestOptions_Interface'Class;
@@ -113,11 +149,21 @@ package WinRt.Windows.Security.Isolation is
    type IIsolatedWindowsEnvironmentTelemetryParameters is access all IIsolatedWindowsEnvironmentTelemetryParameters_Interface'Class;
    type IIsolatedWindowsEnvironmentTelemetryParameters_Ptr is access all IIsolatedWindowsEnvironmentTelemetryParameters;
 
+   type IIsolatedWindowsEnvironmentUserInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IIsolatedWindowsEnvironmentUserInfo is access all IIsolatedWindowsEnvironmentUserInfo_Interface'Class;
+   type IIsolatedWindowsEnvironmentUserInfo_Ptr is access all IIsolatedWindowsEnvironmentUserInfo;
+
+   type IIsolatedWindowsEnvironmentUserInfo2_Interface is interface and WinRt.IInspectable_Interface;
+   type IIsolatedWindowsEnvironmentUserInfo2 is access all IIsolatedWindowsEnvironmentUserInfo2_Interface'Class;
+   type IIsolatedWindowsEnvironmentUserInfo2_Ptr is access all IIsolatedWindowsEnvironmentUserInfo2;
+
    type IIsolatedWindowsHostMessengerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsHostMessengerStatics is access all IIsolatedWindowsHostMessengerStatics_Interface'Class;
+   type IIsolatedWindowsHostMessengerStatics_Ptr is access all IIsolatedWindowsHostMessengerStatics;
 
    type IIsolatedWindowsHostMessengerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IIsolatedWindowsHostMessengerStatics2 is access all IIsolatedWindowsHostMessengerStatics2_Interface'Class;
+   type IIsolatedWindowsHostMessengerStatics2_Ptr is access all IIsolatedWindowsHostMessengerStatics2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -177,6 +223,18 @@ package WinRt.Windows.Security.Isolation is
       end record;
    type IsolatedWindowsEnvironmentProcess_Ptr is access all IsolatedWindowsEnvironmentProcess;
 
+   type IsolatedWindowsEnvironmentShareFileRequestOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IIsolatedWindowsEnvironmentShareFileRequestOptions : access Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileRequestOptions;
+      end record;
+   type IsolatedWindowsEnvironmentShareFileRequestOptions_Ptr is access all IsolatedWindowsEnvironmentShareFileRequestOptions;
+
+   type IsolatedWindowsEnvironmentShareFileResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IIsolatedWindowsEnvironmentShareFileResult : access Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileResult;
+      end record;
+   type IsolatedWindowsEnvironmentShareFileResult_Ptr is access all IsolatedWindowsEnvironmentShareFileResult;
+
    type IsolatedWindowsEnvironmentShareFolderRequestOptions is new Ada.Finalization.Limited_Controlled with
       record
          m_IIsolatedWindowsEnvironmentShareFolderRequestOptions : access Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFolderRequestOptions;
@@ -201,6 +259,12 @@ package WinRt.Windows.Security.Isolation is
       end record;
    type IsolatedWindowsEnvironmentTelemetryParameters_Ptr is access all IsolatedWindowsEnvironmentTelemetryParameters;
 
+   type IsolatedWindowsEnvironmentUserInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IIsolatedWindowsEnvironmentUserInfo : access Windows.Security.Isolation.IIsolatedWindowsEnvironmentUserInfo;
+      end record;
+   type IsolatedWindowsEnvironmentUserInfo_Ptr is access all IsolatedWindowsEnvironmentUserInfo;
+
    -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
@@ -218,12 +282,14 @@ package WinRt.Windows.Security.Isolation is
    type IsolatedWindowsEnvironmentAllowedClipboardFormats is (
       None_e,
       Text_e,
-      Image_e
+      Image_e,
+      Rtf_e
    );
    for IsolatedWindowsEnvironmentAllowedClipboardFormats use (
       None_e => 0,
       Text_e => 1,
-      Image_e => 2
+      Image_e => 2,
+      Rtf_e => 4
    );
    type IsolatedWindowsEnvironmentAllowedClipboardFormats_Ptr is access all IsolatedWindowsEnvironmentAllowedClipboardFormats;
 
@@ -267,6 +333,16 @@ package WinRt.Windows.Security.Isolation is
    );
    type IsolatedWindowsEnvironmentCreateStatus_Ptr is access all IsolatedWindowsEnvironmentCreateStatus;
 
+   type IsolatedWindowsEnvironmentCreationPriority is (
+      Low_e,
+      Normal_e
+   );
+   for IsolatedWindowsEnvironmentCreationPriority use (
+      Low_e => 0,
+      Normal_e => 1
+   );
+   type IsolatedWindowsEnvironmentCreationPriority_Ptr is access all IsolatedWindowsEnvironmentCreationPriority;
+
    type IsolatedWindowsEnvironmentHostError is (
       AdminPolicyIsDisabledOrNotPresent_e,
       FeatureNotInstalled_e,
@@ -288,14 +364,16 @@ package WinRt.Windows.Security.Isolation is
       UnknownFailure_e,
       EnvironmentUnavailable_e,
       FileNotFound_e,
-      TimedOut_e
+      TimedOut_e,
+      AlreadySharedWithConflictingOptions_e
    );
    for IsolatedWindowsEnvironmentLaunchFileStatus use (
       Success_e => 0,
       UnknownFailure_e => 1,
       EnvironmentUnavailable_e => 2,
       FileNotFound_e => 3,
-      TimedOut_e => 4
+      TimedOut_e => 4,
+      AlreadySharedWithConflictingOptions_e => 5
    );
    type IsolatedWindowsEnvironmentLaunchFileStatus_Ptr is access all IsolatedWindowsEnvironmentLaunchFileStatus;
 
@@ -342,14 +420,40 @@ package WinRt.Windows.Security.Isolation is
    type IsolatedWindowsEnvironmentProgressState is (
       Queued_e,
       Processing_e,
-      Completed_e
+      Completed_e,
+      Creating_e,
+      Retrying_e,
+      Starting_e,
+      Finalizing_e
    );
    for IsolatedWindowsEnvironmentProgressState use (
       Queued_e => 0,
       Processing_e => 1,
-      Completed_e => 2
+      Completed_e => 2,
+      Creating_e => 3,
+      Retrying_e => 4,
+      Starting_e => 5,
+      Finalizing_e => 6
    );
    type IsolatedWindowsEnvironmentProgressState_Ptr is access all IsolatedWindowsEnvironmentProgressState;
+
+   type IsolatedWindowsEnvironmentShareFileStatus is (
+      Success_e,
+      UnknownFailure_e,
+      EnvironmentUnavailable_e,
+      AlreadySharedWithConflictingOptions_e,
+      FileNotFound_e,
+      AccessDenied_e
+   );
+   for IsolatedWindowsEnvironmentShareFileStatus use (
+      Success_e => 0,
+      UnknownFailure_e => 1,
+      EnvironmentUnavailable_e => 2,
+      AlreadySharedWithConflictingOptions_e => 3,
+      FileNotFound_e => 4,
+      AccessDenied_e => 5
+   );
+   type IsolatedWindowsEnvironmentShareFileStatus_Ptr is access all IsolatedWindowsEnvironmentShareFileStatus;
 
    type IsolatedWindowsEnvironmentShareFolderStatus is (
       Success_e,
@@ -366,6 +470,24 @@ package WinRt.Windows.Security.Isolation is
       AccessDenied_e => 4
    );
    type IsolatedWindowsEnvironmentShareFolderStatus_Ptr is access all IsolatedWindowsEnvironmentShareFolderStatus;
+
+   type IsolatedWindowsEnvironmentSignInProgress is (
+      Connecting_e,
+      Connected_e,
+      Authenticating_e,
+      SettingUpAccount_e,
+      Finalizing_e,
+      Completed_e
+   );
+   for IsolatedWindowsEnvironmentSignInProgress use (
+      Connecting_e => 0,
+      Connected_e => 1,
+      Authenticating_e => 2,
+      SettingUpAccount_e => 3,
+      Finalizing_e => 4,
+      Completed_e => 5
+   );
+   type IsolatedWindowsEnvironmentSignInProgress_Ptr is access all IsolatedWindowsEnvironmentSignInProgress;
 
    type IsolatedWindowsEnvironmentStartProcessStatus is (
       Success_e,
@@ -562,6 +684,49 @@ package WinRt.Windows.Security.Isolation is
       IID_IIsolatedWindowsEnvironment2 : aliased WinRt.IID := (758538041, 35005, 19124, (147, 207, 126, 43, 206, 243, 55, 192 ));
 
    -----------------------------------------------------------------------------
+   -- type IIsolatedWindowsEnvironment3 is interface and WinRt.IInspectable;
+
+      function GetUserInfo
+      (
+         this : access IIsolatedWindowsEnvironment3_Interface;
+         RetVal : access Windows.Security.Isolation.IIsolatedWindowsEnvironmentUserInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function ShareFileAsync
+      (
+         this : access IIsolatedWindowsEnvironment3_Interface;
+         filePath : WinRt.HString;
+         options : Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileRequestOptions;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function ShareFileAsync
+      (
+         this : access IIsolatedWindowsEnvironment3_Interface;
+         filePath : WinRt.HString;
+         options : Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileRequestOptions;
+         telemetryParameters : Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIsolatedWindowsEnvironment3 : aliased WinRt.IID := (3414149074, 53358, 19494, (138, 218, 218, 205, 170, 173, 3, 245 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIsolatedWindowsEnvironment4 is interface and WinRt.IInspectable;
+
+      function ChangePriority
+      (
+         this : access IIsolatedWindowsEnvironment4_Interface;
+         Priority : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIsolatedWindowsEnvironment4 : aliased WinRt.IID := (300118042, 56734, 20251, (129, 44, 64, 32, 243, 7, 249, 60 ));
+
+   -----------------------------------------------------------------------------
    -- type IIsolatedWindowsEnvironmentCreateResult is interface and WinRt.IInspectable;
 
       function get_Status
@@ -586,6 +751,18 @@ package WinRt.Windows.Security.Isolation is
       return WinRt.Hresult is abstract;
 
       IID_IIsolatedWindowsEnvironmentCreateResult : aliased WinRt.IID := (4019871320, 56535, 17858, (156, 133, 171, 100, 42, 113, 94, 142 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIsolatedWindowsEnvironmentCreateResult2 is interface and WinRt.IInspectable;
+
+      function ChangeCreationPriority
+      (
+         this : access IIsolatedWindowsEnvironmentCreateResult2_Interface;
+         priority : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIsolatedWindowsEnvironmentCreateResult2 : aliased WinRt.IID := (2772949959, 25044, 20408, (171, 92, 237, 239, 163, 211, 136, 173 ));
 
    -----------------------------------------------------------------------------
    -- type IIsolatedWindowsEnvironmentFactory is interface and WinRt.IInspectable;
@@ -649,6 +826,25 @@ package WinRt.Windows.Security.Isolation is
       return WinRt.Hresult is abstract;
 
       IID_IIsolatedWindowsEnvironmentFile : aliased WinRt.IID := (1297801711, 671, 16641, (140, 53, 254, 145, 191, 156, 213, 240 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIsolatedWindowsEnvironmentFile2 is interface and WinRt.IInspectable;
+
+      function get_GuestPath
+      (
+         this : access IIsolatedWindowsEnvironmentFile2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsReadOnly
+      (
+         this : access IIsolatedWindowsEnvironmentFile2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIsolatedWindowsEnvironmentFile2 : aliased WinRt.IID := (1324060140, 44381, 19210, (183, 84, 243, 108, 61, 70, 214, 132 ));
 
    -----------------------------------------------------------------------------
    -- type IIsolatedWindowsEnvironmentHostStatics is interface and WinRt.IInspectable;
@@ -821,6 +1017,72 @@ package WinRt.Windows.Security.Isolation is
       IID_IIsolatedWindowsEnvironmentOptions : aliased WinRt.IID := (3072170231, 25072, 16392, (178, 7, 11, 249, 235, 45, 118, 242 ));
 
    -----------------------------------------------------------------------------
+   -- type IIsolatedWindowsEnvironmentOptions2 is interface and WinRt.IInspectable;
+
+      function get_WindowAnnotationOverride
+      (
+         this : access IIsolatedWindowsEnvironmentOptions2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_WindowAnnotationOverride
+      (
+         this : access IIsolatedWindowsEnvironmentOptions2_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIsolatedWindowsEnvironmentOptions2 : aliased WinRt.IID := (282577969, 35727, 19357, (178, 44, 97, 113, 3, 181, 91, 8 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIsolatedWindowsEnvironmentOptions3 is interface and WinRt.IInspectable;
+
+      function get_AllowedClipboardFormatsToEnvironment
+      (
+         this : access IIsolatedWindowsEnvironmentOptions3_Interface;
+         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AllowedClipboardFormatsToEnvironment
+      (
+         this : access IIsolatedWindowsEnvironmentOptions3_Interface;
+         value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AllowedClipboardFormatsToHost
+      (
+         this : access IIsolatedWindowsEnvironmentOptions3_Interface;
+         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AllowedClipboardFormatsToHost
+      (
+         this : access IIsolatedWindowsEnvironmentOptions3_Interface;
+         value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CreationPriority
+      (
+         this : access IIsolatedWindowsEnvironmentOptions3_Interface;
+         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CreationPriority
+      (
+         this : access IIsolatedWindowsEnvironmentOptions3_Interface;
+         value : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIsolatedWindowsEnvironmentOptions3 : aliased WinRt.IID := (2564139555, 5663, 19673, (138, 156, 38, 155, 48, 18, 43, 13 ));
+
+   -----------------------------------------------------------------------------
    -- type IIsolatedWindowsEnvironmentOwnerRegistrationData is interface and WinRt.IInspectable;
 
       function get_ShareableFolders
@@ -952,6 +1214,51 @@ package WinRt.Windows.Security.Isolation is
       IID_IIsolatedWindowsEnvironmentProcess : aliased WinRt.IID := (2824389615, 33138, 20240, (175, 147, 203, 230, 10, 248, 141, 9 ));
 
    -----------------------------------------------------------------------------
+   -- type IIsolatedWindowsEnvironmentShareFileRequestOptions is interface and WinRt.IInspectable;
+
+      function get_AllowWrite
+      (
+         this : access IIsolatedWindowsEnvironmentShareFileRequestOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AllowWrite
+      (
+         this : access IIsolatedWindowsEnvironmentShareFileRequestOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIsolatedWindowsEnvironmentShareFileRequestOptions : aliased WinRt.IID := (3373862616, 4048, 18758, (187, 136, 17, 122, 96, 115, 123, 97 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIsolatedWindowsEnvironmentShareFileResult is interface and WinRt.IInspectable;
+
+      function get_Status
+      (
+         this : access IIsolatedWindowsEnvironmentShareFileResult_Interface;
+         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IIsolatedWindowsEnvironmentShareFileResult_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_File
+      (
+         this : access IIsolatedWindowsEnvironmentShareFileResult_Interface;
+         RetVal : access Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIsolatedWindowsEnvironmentShareFileResult : aliased WinRt.IID := (2932329127, 39622, 19445, (139, 145, 92, 26, 223, 13, 125, 0 ));
+
+   -----------------------------------------------------------------------------
    -- type IIsolatedWindowsEnvironmentShareFolderRequestOptions is interface and WinRt.IInspectable;
 
       function get_AllowWrite
@@ -1033,6 +1340,44 @@ package WinRt.Windows.Security.Isolation is
       return WinRt.Hresult is abstract;
 
       IID_IIsolatedWindowsEnvironmentTelemetryParameters : aliased WinRt.IID := (3957013675, 31290, 17700, (160, 244, 249, 110, 40, 77, 51, 205 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIsolatedWindowsEnvironmentUserInfo is interface and WinRt.IInspectable;
+
+      function get_EnvironmentUserSid
+      (
+         this : access IIsolatedWindowsEnvironmentUserInfo_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_EnvironmentUserName
+      (
+         this : access IIsolatedWindowsEnvironmentUserInfo_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function TryWaitForSignInAsync
+      (
+         this : access IIsolatedWindowsEnvironmentUserInfo_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIsolatedWindowsEnvironmentUserInfo : aliased WinRt.IID := (2325509550, 27066, 16385, (150, 252, 25, 160, 39, 3, 179, 64 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIsolatedWindowsEnvironmentUserInfo2 is interface and WinRt.IInspectable;
+
+      function TryWaitForSignInWithProgressAsync
+      (
+         this : access IIsolatedWindowsEnvironmentUserInfo2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIsolatedWindowsEnvironmentUserInfo2 : aliased WinRt.IID := (2965231069, 37335, 18462, (148, 242, 42, 90, 107, 223, 147, 131 ));
 
    -----------------------------------------------------------------------------
    -- type IIsolatedWindowsHostMessengerStatics is interface and WinRt.IInspectable;
@@ -1218,6 +1563,35 @@ package WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentPostMessageResult'Class;
 
+   function GetUserInfo
+   (
+      this : in out IsolatedWindowsEnvironment
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentUserInfo'Class;
+
+   function ShareFileAsync
+   (
+      this : in out IsolatedWindowsEnvironment;
+      filePath : WinRt.WString;
+      options : Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileRequestOptions'Class
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileResult'Class;
+
+   function ShareFileAsync
+   (
+      this : in out IsolatedWindowsEnvironment;
+      filePath : WinRt.WString;
+      options : Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileRequestOptions'Class;
+      telemetryParameters : Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileResult'Class;
+
+   procedure ChangePriority
+   (
+      this : in out IsolatedWindowsEnvironment;
+      Priority : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for IsolatedWindowsEnvironmentCreateResult
 
@@ -1245,6 +1619,12 @@ package WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironment'Class;
 
+   procedure ChangeCreationPriority
+   (
+      this : in out IsolatedWindowsEnvironmentCreateResult;
+      priority : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for IsolatedWindowsEnvironmentFile
 
@@ -1270,6 +1650,18 @@ package WinRt.Windows.Security.Isolation is
    (
       this : in out IsolatedWindowsEnvironmentFile
    );
+
+   function get_GuestPath
+   (
+      this : in out IsolatedWindowsEnvironmentFile
+   )
+   return WinRt.WString;
+
+   function get_IsReadOnly
+   (
+      this : in out IsolatedWindowsEnvironmentFile
+   )
+   return WinRt.Boolean;
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
@@ -1427,6 +1819,54 @@ package WinRt.Windows.Security.Isolation is
       value : WinRt.Boolean
    );
 
+   function get_WindowAnnotationOverride
+   (
+      this : in out IsolatedWindowsEnvironmentOptions
+   )
+   return WinRt.WString;
+
+   procedure put_WindowAnnotationOverride
+   (
+      this : in out IsolatedWindowsEnvironmentOptions;
+      value : WinRt.WString
+   );
+
+   function get_AllowedClipboardFormatsToEnvironment
+   (
+      this : in out IsolatedWindowsEnvironmentOptions
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats;
+
+   procedure put_AllowedClipboardFormatsToEnvironment
+   (
+      this : in out IsolatedWindowsEnvironmentOptions;
+      value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+   );
+
+   function get_AllowedClipboardFormatsToHost
+   (
+      this : in out IsolatedWindowsEnvironmentOptions
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats;
+
+   procedure put_AllowedClipboardFormatsToHost
+   (
+      this : in out IsolatedWindowsEnvironmentOptions;
+      value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+   );
+
+   function get_CreationPriority
+   (
+      this : in out IsolatedWindowsEnvironmentOptions
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority;
+
+   procedure put_CreationPriority
+   (
+      this : in out IsolatedWindowsEnvironmentOptions;
+      value : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+   );
+
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package IsolatedWindowsEnvironmentOwnerRegistration is
@@ -1563,6 +2003,59 @@ package WinRt.Windows.Security.Isolation is
    );
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IsolatedWindowsEnvironmentShareFileRequestOptions
+
+   overriding procedure Initialize (this : in out IsolatedWindowsEnvironmentShareFileRequestOptions);
+   overriding procedure Finalize (this : in out IsolatedWindowsEnvironmentShareFileRequestOptions);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for IsolatedWindowsEnvironmentShareFileRequestOptions
+
+   function Constructor return IsolatedWindowsEnvironmentShareFileRequestOptions;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IsolatedWindowsEnvironmentShareFileRequestOptions
+
+   function get_AllowWrite
+   (
+      this : in out IsolatedWindowsEnvironmentShareFileRequestOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_AllowWrite
+   (
+      this : in out IsolatedWindowsEnvironmentShareFileRequestOptions;
+      value : WinRt.Boolean
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IsolatedWindowsEnvironmentShareFileResult
+
+   overriding procedure Initialize (this : in out IsolatedWindowsEnvironmentShareFileResult);
+   overriding procedure Finalize (this : in out IsolatedWindowsEnvironmentShareFileResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IsolatedWindowsEnvironmentShareFileResult
+
+   function get_Status
+   (
+      this : in out IsolatedWindowsEnvironmentShareFileResult
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileStatus;
+
+   function get_ExtendedError
+   (
+      this : in out IsolatedWindowsEnvironmentShareFileResult
+   )
+   return WinRt.Windows.Foundation.HResult;
+
+   function get_File
+   (
+      this : in out IsolatedWindowsEnvironmentShareFileResult
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentFile'Class;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for IsolatedWindowsEnvironmentShareFolderRequestOptions
 
    overriding procedure Initialize (this : in out IsolatedWindowsEnvironmentShareFolderRequestOptions);
@@ -1663,8 +2156,52 @@ package WinRt.Windows.Security.Isolation is
    );
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IsolatedWindowsEnvironmentUserInfo
+
+   overriding procedure Initialize (this : in out IsolatedWindowsEnvironmentUserInfo);
+   overriding procedure Finalize (this : in out IsolatedWindowsEnvironmentUserInfo);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IsolatedWindowsEnvironmentUserInfo
+
+   function get_EnvironmentUserSid
+   (
+      this : in out IsolatedWindowsEnvironmentUserInfo
+   )
+   return WinRt.WString;
+
+   function get_EnvironmentUserName
+   (
+      this : in out IsolatedWindowsEnvironmentUserInfo
+   )
+   return WinRt.WString;
+
+   function TryWaitForSignInAsync
+   (
+      this : in out IsolatedWindowsEnvironmentUserInfo
+   )
+   return WinRt.Boolean;
+
+   function TryWaitForSignInWithProgressAsync
+   (
+      this : in out IsolatedWindowsEnvironmentUserInfo
+   )
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package IsolatedWindowsHostMessenger is
+
+      procedure RegisterHostMessageReceiver
+      (
+         receiverId : WinRt.Guid;
+         hostMessageReceivedCallback : Windows.Security.Isolation.HostMessageReceivedCallback
+      );
+
+      procedure UnregisterHostMessageReceiver
+      (
+         receiverId : WinRt.Guid
+      );
 
       procedure PostMessageToReceiver
       (
@@ -1677,17 +2214,6 @@ package WinRt.Windows.Security.Isolation is
          filePath : WinRt.WString
       )
       return WinRt.Guid;
-
-      procedure RegisterHostMessageReceiver
-      (
-         receiverId : WinRt.Guid;
-         hostMessageReceivedCallback : Windows.Security.Isolation.HostMessageReceivedCallback
-      );
-
-      procedure UnregisterHostMessageReceiver
-      (
-         receiverId : WinRt.Guid
-      );
 
    end IsolatedWindowsHostMessenger;
 

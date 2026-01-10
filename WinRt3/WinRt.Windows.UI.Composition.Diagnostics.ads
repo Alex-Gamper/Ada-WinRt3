@@ -47,6 +47,7 @@ package WinRt.Windows.UI.Composition.Diagnostics is
 
    type ICompositionDebugSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICompositionDebugSettingsStatics is access all ICompositionDebugSettingsStatics_Interface'Class;
+   type ICompositionDebugSettingsStatics_Ptr is access all ICompositionDebugSettingsStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

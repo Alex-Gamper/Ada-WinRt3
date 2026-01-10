@@ -30,6 +30,7 @@
 limited with WinRt.Windows.Data.Xml.Dom;
 with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
+limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Graphics.Printing.PrintTicket is
@@ -67,6 +68,10 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
    type IWorkflowPrintTicket_Interface is interface and WinRt.IInspectable_Interface;
    type IWorkflowPrintTicket is access all IWorkflowPrintTicket_Interface'Class;
    type IWorkflowPrintTicket_Ptr is access all IWorkflowPrintTicket;
+
+   type IWorkflowPrintTicketFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWorkflowPrintTicketFactory is access all IWorkflowPrintTicketFactory_Interface'Class;
+   type IWorkflowPrintTicketFactory_Ptr is access all IWorkflowPrintTicketFactory;
 
    type IWorkflowPrintTicketValidationResult_Interface is interface and WinRt.IInspectable_Interface;
    type IWorkflowPrintTicketValidationResult is access all IWorkflowPrintTicketValidationResult_Interface'Class;
@@ -781,6 +786,20 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       IID_IWorkflowPrintTicket : aliased WinRt.IID := (1104487045, 13800, 17550, (168, 197, 228, 182, 162, 207, 130, 108 ));
 
    -----------------------------------------------------------------------------
+   -- type IWorkflowPrintTicketFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWorkflowPrintTicketFactory_Interface;
+         printerName : WinRt.HString;
+         printTicketStream : Windows.Storage.Streams.IInputStream;
+         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWorkflowPrintTicketFactory : aliased WinRt.IID := (2523730278, 55751, 22174, (183, 216, 242, 179, 65, 200, 249, 118 ));
+
+   -----------------------------------------------------------------------------
    -- type IWorkflowPrintTicketValidationResult is interface and WinRt.IInspectable;
 
       function get_Validated
@@ -1188,6 +1207,16 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
 
    overriding procedure Initialize (this : in out WorkflowPrintTicket);
    overriding procedure Finalize (this : in out WorkflowPrintTicket);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WorkflowPrintTicket
+
+   function Constructor
+   (
+      printerName : WinRt.WString;
+      printTicketStream : Windows.Storage.Streams.IInputStream
+   )
+   return WorkflowPrintTicket;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for WorkflowPrintTicket

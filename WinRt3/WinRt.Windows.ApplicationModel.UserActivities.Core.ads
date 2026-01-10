@@ -39,6 +39,7 @@ package WinRt.Windows.ApplicationModel.UserActivities.Core is
 
    type ICoreUserActivityManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreUserActivityManagerStatics is access all ICoreUserActivityManagerStatics_Interface'Class;
+   type ICoreUserActivityManagerStatics_Ptr is access all ICoreUserActivityManagerStatics;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

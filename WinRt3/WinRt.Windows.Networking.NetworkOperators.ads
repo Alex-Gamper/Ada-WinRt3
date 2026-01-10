@@ -49,6 +49,11 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type IESim2_Interface is interface and WinRt.IInspectable_Interface;
    type IESim2 is access all IESim2_Interface'Class;
+   type IESim2_Ptr is access all IESim2;
+
+   type IESim3_Interface is interface and WinRt.IInspectable_Interface;
+   type IESim3 is access all IESim3_Interface'Class;
+   type IESim3_Ptr is access all IESim3;
 
    type IESimAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IESimAddedEventArgs is access all IESimAddedEventArgs_Interface'Class;
@@ -68,6 +73,7 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type IESimManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IESimManagerStatics is access all IESimManagerStatics_Interface'Class;
+   type IESimManagerStatics_Ptr is access all IESimManagerStatics;
 
    type IESimOperationResult_Interface is interface and WinRt.IInspectable_Interface;
    type IESimOperationResult is access all IESimOperationResult_Interface'Class;
@@ -105,18 +111,17 @@ package WinRt.Windows.Networking.NetworkOperators is
    type IESimWatcher is access all IESimWatcher_Interface'Class;
    type IESimWatcher_Ptr is access all IESimWatcher;
 
-   type IFdnAccessManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFdnAccessManagerStatics is access all IFdnAccessManagerStatics_Interface'Class;
-
    type IHotspotAuthenticationContext_Interface is interface and WinRt.IInspectable_Interface;
    type IHotspotAuthenticationContext is access all IHotspotAuthenticationContext_Interface'Class;
    type IHotspotAuthenticationContext_Ptr is access all IHotspotAuthenticationContext;
 
    type IHotspotAuthenticationContext2_Interface is interface and WinRt.IInspectable_Interface;
    type IHotspotAuthenticationContext2 is access all IHotspotAuthenticationContext2_Interface'Class;
+   type IHotspotAuthenticationContext2_Ptr is access all IHotspotAuthenticationContext2;
 
    type IHotspotAuthenticationContextStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHotspotAuthenticationContextStatics is access all IHotspotAuthenticationContextStatics_Interface'Class;
+   type IHotspotAuthenticationContextStatics_Ptr is access all IHotspotAuthenticationContextStatics;
 
    type IHotspotAuthenticationEventDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IHotspotAuthenticationEventDetails is access all IHotspotAuthenticationEventDetails_Interface'Class;
@@ -128,15 +133,19 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type IKnownCSimFilePathsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownCSimFilePathsStatics is access all IKnownCSimFilePathsStatics_Interface'Class;
+   type IKnownCSimFilePathsStatics_Ptr is access all IKnownCSimFilePathsStatics;
 
    type IKnownRuimFilePathsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownRuimFilePathsStatics is access all IKnownRuimFilePathsStatics_Interface'Class;
+   type IKnownRuimFilePathsStatics_Ptr is access all IKnownRuimFilePathsStatics;
 
    type IKnownSimFilePathsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownSimFilePathsStatics is access all IKnownSimFilePathsStatics_Interface'Class;
+   type IKnownSimFilePathsStatics_Ptr is access all IKnownSimFilePathsStatics;
 
    type IKnownUSimFilePathsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownUSimFilePathsStatics is access all IKnownUSimFilePathsStatics_Interface'Class;
+   type IKnownUSimFilePathsStatics_Ptr is access all IKnownUSimFilePathsStatics;
 
    type IMobileBroadbandAccount_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandAccount is access all IMobileBroadbandAccount_Interface'Class;
@@ -144,9 +153,11 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type IMobileBroadbandAccount2_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandAccount2 is access all IMobileBroadbandAccount2_Interface'Class;
+   type IMobileBroadbandAccount2_Ptr is access all IMobileBroadbandAccount2;
 
    type IMobileBroadbandAccount3_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandAccount3 is access all IMobileBroadbandAccount3_Interface'Class;
+   type IMobileBroadbandAccount3_Ptr is access all IMobileBroadbandAccount3;
 
    type IMobileBroadbandAccountEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandAccountEventArgs is access all IMobileBroadbandAccountEventArgs_Interface'Class;
@@ -154,6 +165,7 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type IMobileBroadbandAccountStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandAccountStatics is access all IMobileBroadbandAccountStatics_Interface'Class;
+   type IMobileBroadbandAccountStatics_Ptr is access all IMobileBroadbandAccountStatics;
 
    type IMobileBroadbandAccountUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandAccountUpdatedEventArgs is access all IMobileBroadbandAccountUpdatedEventArgs_Interface'Class;
@@ -169,6 +181,7 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type IMobileBroadbandAntennaSarFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandAntennaSarFactory is access all IMobileBroadbandAntennaSarFactory_Interface'Class;
+   type IMobileBroadbandAntennaSarFactory_Ptr is access all IMobileBroadbandAntennaSarFactory;
 
    type IMobileBroadbandCellCdma_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandCellCdma is access all IMobileBroadbandCellCdma_Interface'Class;
@@ -182,6 +195,10 @@ package WinRt.Windows.Networking.NetworkOperators is
    type IMobileBroadbandCellLte is access all IMobileBroadbandCellLte_Interface'Class;
    type IMobileBroadbandCellLte_Ptr is access all IMobileBroadbandCellLte;
 
+   type IMobileBroadbandCellNR_Interface is interface and WinRt.IInspectable_Interface;
+   type IMobileBroadbandCellNR is access all IMobileBroadbandCellNR_Interface'Class;
+   type IMobileBroadbandCellNR_Ptr is access all IMobileBroadbandCellNR;
+
    type IMobileBroadbandCellTdscdma_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandCellTdscdma is access all IMobileBroadbandCellTdscdma_Interface'Class;
    type IMobileBroadbandCellTdscdma_Ptr is access all IMobileBroadbandCellTdscdma;
@@ -194,19 +211,37 @@ package WinRt.Windows.Networking.NetworkOperators is
    type IMobileBroadbandCellsInfo is access all IMobileBroadbandCellsInfo_Interface'Class;
    type IMobileBroadbandCellsInfo_Ptr is access all IMobileBroadbandCellsInfo;
 
+   type IMobileBroadbandCellsInfo2_Interface is interface and WinRt.IInspectable_Interface;
+   type IMobileBroadbandCellsInfo2 is access all IMobileBroadbandCellsInfo2_Interface'Class;
+   type IMobileBroadbandCellsInfo2_Ptr is access all IMobileBroadbandCellsInfo2;
+
+   type IMobileBroadbandCurrentSlotIndexChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IMobileBroadbandCurrentSlotIndexChangedEventArgs is access all IMobileBroadbandCurrentSlotIndexChangedEventArgs_Interface'Class;
+   type IMobileBroadbandCurrentSlotIndexChangedEventArgs_Ptr is access all IMobileBroadbandCurrentSlotIndexChangedEventArgs;
+
    type IMobileBroadbandDeviceInformation_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandDeviceInformation is access all IMobileBroadbandDeviceInformation_Interface'Class;
    type IMobileBroadbandDeviceInformation_Ptr is access all IMobileBroadbandDeviceInformation;
 
    type IMobileBroadbandDeviceInformation2_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandDeviceInformation2 is access all IMobileBroadbandDeviceInformation2_Interface'Class;
+   type IMobileBroadbandDeviceInformation2_Ptr is access all IMobileBroadbandDeviceInformation2;
 
    type IMobileBroadbandDeviceInformation3_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandDeviceInformation3 is access all IMobileBroadbandDeviceInformation3_Interface'Class;
+   type IMobileBroadbandDeviceInformation3_Ptr is access all IMobileBroadbandDeviceInformation3;
+
+   type IMobileBroadbandDeviceInformation4_Interface is interface and WinRt.IInspectable_Interface;
+   type IMobileBroadbandDeviceInformation4 is access all IMobileBroadbandDeviceInformation4_Interface'Class;
+   type IMobileBroadbandDeviceInformation4_Ptr is access all IMobileBroadbandDeviceInformation4;
 
    type IMobileBroadbandDeviceService_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandDeviceService is access all IMobileBroadbandDeviceService_Interface'Class;
    type IMobileBroadbandDeviceService_Ptr is access all IMobileBroadbandDeviceService;
+
+   type IMobileBroadbandDeviceServiceCommandEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IMobileBroadbandDeviceServiceCommandEventArgs is access all IMobileBroadbandDeviceServiceCommandEventArgs_Interface'Class;
+   type IMobileBroadbandDeviceServiceCommandEventArgs_Ptr is access all IMobileBroadbandDeviceServiceCommandEventArgs;
 
    type IMobileBroadbandDeviceServiceCommandResult_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandDeviceServiceCommandResult is access all IMobileBroadbandDeviceServiceCommandResult_Interface'Class;
@@ -215,6 +250,10 @@ package WinRt.Windows.Networking.NetworkOperators is
    type IMobileBroadbandDeviceServiceCommandSession_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandDeviceServiceCommandSession is access all IMobileBroadbandDeviceServiceCommandSession_Interface'Class;
    type IMobileBroadbandDeviceServiceCommandSession_Ptr is access all IMobileBroadbandDeviceServiceCommandSession;
+
+   type IMobileBroadbandDeviceServiceCommandSession2_Interface is interface and WinRt.IInspectable_Interface;
+   type IMobileBroadbandDeviceServiceCommandSession2 is access all IMobileBroadbandDeviceServiceCommandSession2_Interface'Class;
+   type IMobileBroadbandDeviceServiceCommandSession2_Ptr is access all IMobileBroadbandDeviceServiceCommandSession2;
 
    type IMobileBroadbandDeviceServiceDataReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandDeviceServiceDataReceivedEventArgs is access all IMobileBroadbandDeviceServiceDataReceivedEventArgs_Interface'Class;
@@ -232,15 +271,25 @@ package WinRt.Windows.Networking.NetworkOperators is
    type IMobileBroadbandDeviceServiceTriggerDetails is access all IMobileBroadbandDeviceServiceTriggerDetails_Interface'Class;
    type IMobileBroadbandDeviceServiceTriggerDetails_Ptr is access all IMobileBroadbandDeviceServiceTriggerDetails;
 
+   type IMobileBroadbandDeviceServiceTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
+   type IMobileBroadbandDeviceServiceTriggerDetails2 is access all IMobileBroadbandDeviceServiceTriggerDetails2_Interface'Class;
+   type IMobileBroadbandDeviceServiceTriggerDetails2_Ptr is access all IMobileBroadbandDeviceServiceTriggerDetails2;
+
    type IMobileBroadbandModem_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandModem is access all IMobileBroadbandModem_Interface'Class;
    type IMobileBroadbandModem_Ptr is access all IMobileBroadbandModem;
 
    type IMobileBroadbandModem2_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandModem2 is access all IMobileBroadbandModem2_Interface'Class;
+   type IMobileBroadbandModem2_Ptr is access all IMobileBroadbandModem2;
 
    type IMobileBroadbandModem3_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandModem3 is access all IMobileBroadbandModem3_Interface'Class;
+   type IMobileBroadbandModem3_Ptr is access all IMobileBroadbandModem3;
+
+   type IMobileBroadbandModem4_Interface is interface and WinRt.IInspectable_Interface;
+   type IMobileBroadbandModem4 is access all IMobileBroadbandModem4_Interface'Class;
+   type IMobileBroadbandModem4_Ptr is access all IMobileBroadbandModem4;
 
    type IMobileBroadbandModemConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandModemConfiguration is access all IMobileBroadbandModemConfiguration_Interface'Class;
@@ -248,6 +297,7 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type IMobileBroadbandModemConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandModemConfiguration2 is access all IMobileBroadbandModemConfiguration2_Interface'Class;
+   type IMobileBroadbandModemConfiguration2_Ptr is access all IMobileBroadbandModemConfiguration2;
 
    type IMobileBroadbandModemIsolation_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandModemIsolation is access all IMobileBroadbandModemIsolation_Interface'Class;
@@ -255,9 +305,11 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type IMobileBroadbandModemIsolationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandModemIsolationFactory is access all IMobileBroadbandModemIsolationFactory_Interface'Class;
+   type IMobileBroadbandModemIsolationFactory_Ptr is access all IMobileBroadbandModemIsolationFactory;
 
    type IMobileBroadbandModemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandModemStatics is access all IMobileBroadbandModemStatics_Interface'Class;
+   type IMobileBroadbandModemStatics_Ptr is access all IMobileBroadbandModemStatics;
 
    type IMobileBroadbandNetwork_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandNetwork is access all IMobileBroadbandNetwork_Interface'Class;
@@ -265,9 +317,11 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type IMobileBroadbandNetwork2_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandNetwork2 is access all IMobileBroadbandNetwork2_Interface'Class;
+   type IMobileBroadbandNetwork2_Ptr is access all IMobileBroadbandNetwork2;
 
    type IMobileBroadbandNetwork3_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandNetwork3 is access all IMobileBroadbandNetwork3_Interface'Class;
+   type IMobileBroadbandNetwork3_Ptr is access all IMobileBroadbandNetwork3;
 
    type IMobileBroadbandNetworkRegistrationStateChange_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandNetworkRegistrationStateChange is access all IMobileBroadbandNetworkRegistrationStateChange_Interface'Class;
@@ -317,6 +371,22 @@ package WinRt.Windows.Networking.NetworkOperators is
    type IMobileBroadbandSarManager is access all IMobileBroadbandSarManager_Interface'Class;
    type IMobileBroadbandSarManager_Ptr is access all IMobileBroadbandSarManager;
 
+   type IMobileBroadbandSlotInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IMobileBroadbandSlotInfo is access all IMobileBroadbandSlotInfo_Interface'Class;
+   type IMobileBroadbandSlotInfo_Ptr is access all IMobileBroadbandSlotInfo;
+
+   type IMobileBroadbandSlotInfo2_Interface is interface and WinRt.IInspectable_Interface;
+   type IMobileBroadbandSlotInfo2 is access all IMobileBroadbandSlotInfo2_Interface'Class;
+   type IMobileBroadbandSlotInfo2_Ptr is access all IMobileBroadbandSlotInfo2;
+
+   type IMobileBroadbandSlotInfoChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IMobileBroadbandSlotInfoChangedEventArgs is access all IMobileBroadbandSlotInfoChangedEventArgs_Interface'Class;
+   type IMobileBroadbandSlotInfoChangedEventArgs_Ptr is access all IMobileBroadbandSlotInfoChangedEventArgs;
+
+   type IMobileBroadbandSlotManager_Interface is interface and WinRt.IInspectable_Interface;
+   type IMobileBroadbandSlotManager is access all IMobileBroadbandSlotManager_Interface'Class;
+   type IMobileBroadbandSlotManager_Ptr is access all IMobileBroadbandSlotManager;
+
    type IMobileBroadbandTransmissionStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMobileBroadbandTransmissionStateChangedEventArgs is access all IMobileBroadbandTransmissionStateChangedEventArgs_Interface'Class;
    type IMobileBroadbandTransmissionStateChangedEventArgs_Ptr is access all IMobileBroadbandTransmissionStateChangedEventArgs;
@@ -355,6 +425,11 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type INetworkOperatorTetheringAccessPointConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkOperatorTetheringAccessPointConfiguration2 is access all INetworkOperatorTetheringAccessPointConfiguration2_Interface'Class;
+   type INetworkOperatorTetheringAccessPointConfiguration2_Ptr is access all INetworkOperatorTetheringAccessPointConfiguration2;
+
+   type INetworkOperatorTetheringAccessPointConfiguration3_Interface is interface and WinRt.IInspectable_Interface;
+   type INetworkOperatorTetheringAccessPointConfiguration3 is access all INetworkOperatorTetheringAccessPointConfiguration3_Interface'Class;
+   type INetworkOperatorTetheringAccessPointConfiguration3_Ptr is access all INetworkOperatorTetheringAccessPointConfiguration3;
 
    type INetworkOperatorTetheringClient_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkOperatorTetheringClient is access all INetworkOperatorTetheringClient_Interface'Class;
@@ -362,29 +437,43 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type INetworkOperatorTetheringClientManager_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkOperatorTetheringClientManager is access all INetworkOperatorTetheringClientManager_Interface'Class;
+   type INetworkOperatorTetheringClientManager_Ptr is access all INetworkOperatorTetheringClientManager;
 
    type INetworkOperatorTetheringEntitlementCheck_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkOperatorTetheringEntitlementCheck is access all INetworkOperatorTetheringEntitlementCheck_Interface'Class;
+   type INetworkOperatorTetheringEntitlementCheck_Ptr is access all INetworkOperatorTetheringEntitlementCheck;
 
    type INetworkOperatorTetheringManager_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkOperatorTetheringManager is access all INetworkOperatorTetheringManager_Interface'Class;
    type INetworkOperatorTetheringManager_Ptr is access all INetworkOperatorTetheringManager;
 
+   type INetworkOperatorTetheringManager2_Interface is interface and WinRt.IInspectable_Interface;
+   type INetworkOperatorTetheringManager2 is access all INetworkOperatorTetheringManager2_Interface'Class;
+   type INetworkOperatorTetheringManager2_Ptr is access all INetworkOperatorTetheringManager2;
+
    type INetworkOperatorTetheringManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkOperatorTetheringManagerStatics is access all INetworkOperatorTetheringManagerStatics_Interface'Class;
+   type INetworkOperatorTetheringManagerStatics_Ptr is access all INetworkOperatorTetheringManagerStatics;
 
    type INetworkOperatorTetheringManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkOperatorTetheringManagerStatics2 is access all INetworkOperatorTetheringManagerStatics2_Interface'Class;
+   type INetworkOperatorTetheringManagerStatics2_Ptr is access all INetworkOperatorTetheringManagerStatics2;
 
    type INetworkOperatorTetheringManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkOperatorTetheringManagerStatics3 is access all INetworkOperatorTetheringManagerStatics3_Interface'Class;
+   type INetworkOperatorTetheringManagerStatics3_Ptr is access all INetworkOperatorTetheringManagerStatics3;
 
    type INetworkOperatorTetheringManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkOperatorTetheringManagerStatics4 is access all INetworkOperatorTetheringManagerStatics4_Interface'Class;
+   type INetworkOperatorTetheringManagerStatics4_Ptr is access all INetworkOperatorTetheringManagerStatics4;
 
    type INetworkOperatorTetheringOperationResult_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkOperatorTetheringOperationResult is access all INetworkOperatorTetheringOperationResult_Interface'Class;
    type INetworkOperatorTetheringOperationResult_Ptr is access all INetworkOperatorTetheringOperationResult;
+
+   type INetworkOperatorTetheringSessionAccessPointConfiguration_Interface is interface and WinRt.IInspectable_Interface;
+   type INetworkOperatorTetheringSessionAccessPointConfiguration is access all INetworkOperatorTetheringSessionAccessPointConfiguration_Interface'Class;
+   type INetworkOperatorTetheringSessionAccessPointConfiguration_Ptr is access all INetworkOperatorTetheringSessionAccessPointConfiguration;
 
    type IProvisionFromXmlDocumentResults_Interface is interface and WinRt.IInspectable_Interface;
    type IProvisionFromXmlDocumentResults is access all IProvisionFromXmlDocumentResults_Interface'Class;
@@ -400,6 +489,7 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type IProvisioningAgentStaticMethods_Interface is interface and WinRt.IInspectable_Interface;
    type IProvisioningAgentStaticMethods is access all IProvisioningAgentStaticMethods_Interface'Class;
+   type IProvisioningAgentStaticMethods_Ptr is access all IProvisioningAgentStaticMethods;
 
    type ITetheringEntitlementCheckTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type ITetheringEntitlementCheckTriggerDetails is access all ITetheringEntitlementCheckTriggerDetails_Interface'Class;
@@ -411,6 +501,7 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type IUssdMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IUssdMessageFactory is access all IUssdMessageFactory_Interface'Class;
+   type IUssdMessageFactory_Ptr is access all IUssdMessageFactory;
 
    type IUssdReply_Interface is interface and WinRt.IInspectable_Interface;
    type IUssdReply is access all IUssdReply_Interface'Class;
@@ -422,6 +513,7 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    type IUssdSessionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUssdSessionStatics is access all IUssdSessionStatics_Interface'Class;
+   type IUssdSessionStatics_Ptr is access all IUssdSessionStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -577,6 +669,12 @@ package WinRt.Windows.Networking.NetworkOperators is
       end record;
    type MobileBroadbandCellLte_Ptr is access all MobileBroadbandCellLte;
 
+   type MobileBroadbandCellNR is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IMobileBroadbandCellNR : access Windows.Networking.NetworkOperators.IMobileBroadbandCellNR;
+      end record;
+   type MobileBroadbandCellNR_Ptr is access all MobileBroadbandCellNR;
+
    type MobileBroadbandCellTdscdma is new Ada.Finalization.Limited_Controlled with
       record
          m_IMobileBroadbandCellTdscdma : access Windows.Networking.NetworkOperators.IMobileBroadbandCellTdscdma;
@@ -595,6 +693,12 @@ package WinRt.Windows.Networking.NetworkOperators is
       end record;
    type MobileBroadbandCellsInfo_Ptr is access all MobileBroadbandCellsInfo;
 
+   type MobileBroadbandCurrentSlotIndexChangedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IMobileBroadbandCurrentSlotIndexChangedEventArgs : access Windows.Networking.NetworkOperators.IMobileBroadbandCurrentSlotIndexChangedEventArgs;
+      end record;
+   type MobileBroadbandCurrentSlotIndexChangedEventArgs_Ptr is access all MobileBroadbandCurrentSlotIndexChangedEventArgs;
+
    type MobileBroadbandDeviceInformation is new Ada.Finalization.Limited_Controlled with
       record
          m_IMobileBroadbandDeviceInformation : access Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation;
@@ -606,6 +710,12 @@ package WinRt.Windows.Networking.NetworkOperators is
          m_IMobileBroadbandDeviceService : access Windows.Networking.NetworkOperators.IMobileBroadbandDeviceService;
       end record;
    type MobileBroadbandDeviceService_Ptr is access all MobileBroadbandDeviceService;
+
+   type MobileBroadbandDeviceServiceCommandEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IMobileBroadbandDeviceServiceCommandEventArgs : access Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandEventArgs;
+      end record;
+   type MobileBroadbandDeviceServiceCommandEventArgs_Ptr is access all MobileBroadbandDeviceServiceCommandEventArgs;
 
    type MobileBroadbandDeviceServiceCommandResult is new Ada.Finalization.Limited_Controlled with
       record
@@ -739,6 +849,24 @@ package WinRt.Windows.Networking.NetworkOperators is
       end record;
    type MobileBroadbandSarManager_Ptr is access all MobileBroadbandSarManager;
 
+   type MobileBroadbandSlotInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IMobileBroadbandSlotInfo : access Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfo;
+      end record;
+   type MobileBroadbandSlotInfo_Ptr is access all MobileBroadbandSlotInfo;
+
+   type MobileBroadbandSlotInfoChangedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IMobileBroadbandSlotInfoChangedEventArgs : access Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfoChangedEventArgs;
+      end record;
+   type MobileBroadbandSlotInfoChangedEventArgs_Ptr is access all MobileBroadbandSlotInfoChangedEventArgs;
+
+   type MobileBroadbandSlotManager is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IMobileBroadbandSlotManager : access Windows.Networking.NetworkOperators.IMobileBroadbandSlotManager;
+      end record;
+   type MobileBroadbandSlotManager_Ptr is access all MobileBroadbandSlotManager;
+
    type MobileBroadbandTransmissionStateChangedEventArgs is new Ada.Finalization.Limited_Controlled with
       record
          m_IMobileBroadbandTransmissionStateChangedEventArgs : access Windows.Networking.NetworkOperators.IMobileBroadbandTransmissionStateChangedEventArgs;
@@ -811,6 +939,12 @@ package WinRt.Windows.Networking.NetworkOperators is
       end record;
    type NetworkOperatorTetheringOperationResult_Ptr is access all NetworkOperatorTetheringOperationResult;
 
+   type NetworkOperatorTetheringSessionAccessPointConfiguration is new Ada.Finalization.Limited_Controlled with
+      record
+         m_INetworkOperatorTetheringSessionAccessPointConfiguration : access Windows.Networking.NetworkOperators.INetworkOperatorTetheringSessionAccessPointConfiguration;
+      end record;
+   type NetworkOperatorTetheringSessionAccessPointConfiguration_Ptr is access all NetworkOperatorTetheringSessionAccessPointConfiguration;
+
    type ProvisionFromXmlDocumentResults is new Ada.Finalization.Limited_Controlled with
       record
          m_IProvisionFromXmlDocumentResults : access Windows.Networking.NetworkOperators.IProvisionFromXmlDocumentResults;
@@ -865,6 +999,8 @@ package WinRt.Windows.Networking.NetworkOperators is
       Hsdpa_e,
       Hsupa_e,
       LteAdvanced_e,
+      NewRadioNonStandalone_e,
+      NewRadioStandalone_e,
       Cdma1xRtt_e,
       Cdma1xEvdo_e,
       Cdma1xEvdoRevA_e,
@@ -882,6 +1018,8 @@ package WinRt.Windows.Networking.NetworkOperators is
       Hsdpa_e => 8,
       Hsupa_e => 16,
       LteAdvanced_e => 32,
+      NewRadioNonStandalone_e => 64,
+      NewRadioStandalone_e => 128,
       Cdma1xRtt_e => 65536,
       Cdma1xEvdo_e => 131072,
       Cdma1xEvdoRevA_e => 262144,
@@ -941,7 +1079,12 @@ package WinRt.Windows.Networking.NetworkOperators is
       ProfileNotReleasedByOperator_e,
       OperationProhibitedByProfileClass_e,
       ProfileNotPresent_e,
-      NoCorrespondingRequest_e
+      NoCorrespondingRequest_e,
+      TimeoutWaitingForResponse_e,
+      IccidAlreadyExists_e,
+      ProfileProcessingError_e,
+      ServerNotTrusted_e,
+      ProfileDownloadMaxRetriesExceeded_e
    );
    for ESimOperationStatus use (
       Success_e => 0,
@@ -967,7 +1110,12 @@ package WinRt.Windows.Networking.NetworkOperators is
       ProfileNotReleasedByOperator_e => 20,
       OperationProhibitedByProfileClass_e => 21,
       ProfileNotPresent_e => 22,
-      NoCorrespondingRequest_e => 23
+      NoCorrespondingRequest_e => 23,
+      TimeoutWaitingForResponse_e => 24,
+      IccidAlreadyExists_e => 25,
+      ProfileProcessingError_e => 26,
+      ServerNotTrusted_e => 27,
+      ProfileDownloadMaxRetriesExceeded_e => 28
    );
    type ESimOperationStatus_Ptr is access all ESimOperationStatus;
 
@@ -1177,6 +1325,32 @@ package WinRt.Windows.Networking.NetworkOperators is
    );
    type MobileBroadbandRadioState_Ptr is access all MobileBroadbandRadioState;
 
+   type MobileBroadbandSlotState is (
+      Unmanaged_e,
+      Unknown_e,
+      OffEmpty_e,
+      Off_e,
+      Empty_e,
+      NotReady_e,
+      Active_e,
+      Error_e,
+      ActiveEsim_e,
+      ActiveEsimNoProfile_e
+   );
+   for MobileBroadbandSlotState use (
+      Unmanaged_e => 0,
+      Unknown_e => 1,
+      OffEmpty_e => 2,
+      Off_e => 3,
+      Empty_e => 4,
+      NotReady_e => 5,
+      Active_e => 6,
+      Error_e => 7,
+      ActiveEsim_e => 8,
+      ActiveEsimNoProfile_e => 9
+   );
+   type MobileBroadbandSlotState_Ptr is access all MobileBroadbandSlotState;
+
    type MobileBroadbandUiccAppOperationStatus is (
       Success_e,
       InvalidUiccFilePath_e,
@@ -1314,7 +1488,10 @@ package WinRt.Windows.Networking.NetworkOperators is
       EntitlementCheckFailure_e,
       OperationInProgress_e,
       BluetoothDeviceOff_e,
-      NetworkLimitedConnectivity_e
+      NetworkLimitedConnectivity_e,
+      AlreadyOn_e,
+      RadioRestriction_e,
+      BandInterference_e
    );
    for TetheringOperationStatus use (
       Success_e => 0,
@@ -1325,7 +1502,10 @@ package WinRt.Windows.Networking.NetworkOperators is
       EntitlementCheckFailure_e => 5,
       OperationInProgress_e => 6,
       BluetoothDeviceOff_e => 7,
-      NetworkLimitedConnectivity_e => 8
+      NetworkLimitedConnectivity_e => 8,
+      AlreadyOn_e => 9,
+      RadioRestriction_e => 10,
+      BandInterference_e => 11
    );
    type TetheringOperationStatus_Ptr is access all TetheringOperationStatus;
 
@@ -1343,17 +1523,41 @@ package WinRt.Windows.Networking.NetworkOperators is
    );
    type TetheringOperationalState_Ptr is access all TetheringOperationalState;
 
+   type TetheringWiFiAuthenticationKind is (
+      Wpa2_e,
+      Wpa3TransitionMode_e,
+      Wpa3_e
+   );
+   for TetheringWiFiAuthenticationKind use (
+      Wpa2_e => 0,
+      Wpa3TransitionMode_e => 1,
+      Wpa3_e => 2
+   );
+   type TetheringWiFiAuthenticationKind_Ptr is access all TetheringWiFiAuthenticationKind;
+
    type TetheringWiFiBand is (
       Auto_e,
       TwoPointFourGigahertz_e,
-      FiveGigahertz_e
+      FiveGigahertz_e,
+      SixGigahertz_e
    );
    for TetheringWiFiBand use (
       Auto_e => 0,
       TwoPointFourGigahertz_e => 1,
-      FiveGigahertz_e => 2
+      FiveGigahertz_e => 2,
+      SixGigahertz_e => 3
    );
    type TetheringWiFiBand_Ptr is access all TetheringWiFiBand;
+
+   type TetheringWiFiPerformancePriority is (
+      Default_e,
+      TetheringOverStation_e
+   );
+   for TetheringWiFiPerformancePriority use (
+      Default_e => 0,
+      TetheringOverStation_e => 1
+   );
+   type TetheringWiFiPerformancePriority_Ptr is access all TetheringWiFiPerformancePriority;
 
    type UiccAccessCondition is (
       AlwaysAllowed_e,
@@ -1442,11 +1646,6 @@ package WinRt.Windows.Networking.NetworkOperators is
    end record with Convention => C_Pass_By_Copy;
    type LegacyNetworkOperatorsContract_Ptr is access all LegacyNetworkOperatorsContract;
 
-   type NetworkOperatorsFdnContract is record
-      null;
-   end record with Convention => C_Pass_By_Copy;
-   type NetworkOperatorsFdnContract_Ptr is access all NetworkOperatorsFdnContract;
-
    type ProfileUsage is record
       UsageInMegabytes : WinRt.UInt32;
       LastSyncTime : WinRt.Windows.Foundation.DateTime;
@@ -1477,6 +1676,10 @@ package WinRt.Windows.Networking.NetworkOperators is
    IID_IReference_TimeSpan : aliased WinRt.IID := (1469928872, 40017, 21310, (177, 36, 2, 220, 82, 4, 52, 154 ));
    function QInterface_IReference_TimeSpan is new Generic_QueryInterface (GenericObject_Interface, IReference_TimeSpan.Kind, IID_IReference_TimeSpan'Access);
 
+   package IReference_Int64 is new WinRt.Windows.Foundation.IReference (WinRt.Int64);
+   IID_IReference_Int64 : aliased WinRt.IID := (3044288652, 13615, 23840, (176, 206, 79, 170, 46, 214, 57, 207 ));
+   function QInterface_IReference_Int64 is new Generic_QueryInterface (GenericObject_Interface, IReference_Int64.Kind, IID_IReference_Int64'Access);
+
    package IVectorView_IMobileBroadbandCellCdma is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandCellCdma);
    IID_IVectorView_IMobileBroadbandCellCdma : aliased WinRt.IID := (2556275563, 36217, 23778, (128, 72, 189, 145, 142, 240, 178, 70 ));
    function QInterface_IVectorView_IMobileBroadbandCellCdma is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandCellCdma.Kind, IID_IVectorView_IMobileBroadbandCellCdma'Access);
@@ -1496,6 +1699,10 @@ package WinRt.Windows.Networking.NetworkOperators is
    package IVectorView_IMobileBroadbandCellUmts is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandCellUmts);
    IID_IVectorView_IMobileBroadbandCellUmts : aliased WinRt.IID := (2556275563, 36217, 23778, (128, 72, 189, 145, 142, 240, 178, 70 ));
    function QInterface_IVectorView_IMobileBroadbandCellUmts is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandCellUmts.Kind, IID_IVectorView_IMobileBroadbandCellUmts'Access);
+
+   package IVectorView_IMobileBroadbandCellNR is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandCellNR);
+   IID_IVectorView_IMobileBroadbandCellNR : aliased WinRt.IID := (1254283667, 28811, 23914, (167, 87, 211, 221, 251, 73, 76, 40 ));
+   function QInterface_IVectorView_IMobileBroadbandCellNR is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandCellNR.Kind, IID_IVectorView_IMobileBroadbandCellNR'Access);
 
    package IVectorView_HString is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.HString);
    IID_IVectorView_HString : aliased WinRt.IID := (973873512, 55562, 21352, (173, 5, 61, 228, 9, 236, 210, 142 ));
@@ -1532,6 +1739,10 @@ package WinRt.Windows.Networking.NetworkOperators is
    package IVectorView_IMobileBroadbandAntennaSar is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandAntennaSar);
    IID_IVectorView_IMobileBroadbandAntennaSar : aliased WinRt.IID := (3839953863, 35718, 22926, (152, 19, 83, 236, 155, 253, 207, 148 ));
    function QInterface_IVectorView_IMobileBroadbandAntennaSar is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandAntennaSar.Kind, IID_IVectorView_IMobileBroadbandAntennaSar'Access);
+
+   package IVectorView_IMobileBroadbandSlotInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IMobileBroadbandSlotInfo);
+   IID_IVectorView_IMobileBroadbandSlotInfo : aliased WinRt.IID := (1761508293, 42202, 21693, (130, 254, 242, 158, 104, 239, 98, 164 ));
+   function QInterface_IVectorView_IMobileBroadbandSlotInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IMobileBroadbandSlotInfo.Kind, IID_IVectorView_IMobileBroadbandSlotInfo'Access);
 
    package IVectorView_IHostName is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Networking.IHostName);
    IID_IVectorView_IHostName : aliased WinRt.IID := (4031967846, 48952, 24438, (128, 54, 132, 88, 110, 101, 99, 91 ));
@@ -1673,6 +1884,18 @@ package WinRt.Windows.Networking.NetworkOperators is
       return WinRt.Hresult is abstract;
 
       IID_IESim2 : aliased WinRt.IID := (3176124576, 50831, 22251, (185, 155, 143, 52, 184, 16, 2, 153 ));
+
+   -----------------------------------------------------------------------------
+   -- type IESim3 is interface and WinRt.IInspectable;
+
+      function get_SlotIndex
+      (
+         this : access IESim3_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IESim3 : aliased WinRt.IID := (4263436101, 440, 23857, (184, 211, 217, 203, 235, 178, 184, 49 ));
 
    -----------------------------------------------------------------------------
    -- type IESimAddedEventArgs is interface and WinRt.IInspectable;
@@ -2163,19 +2386,6 @@ package WinRt.Windows.Networking.NetworkOperators is
       return WinRt.Hresult is abstract;
 
       IID_IESimWatcher : aliased WinRt.IID := (3254275307, 41613, 20415, (151, 113, 110, 49, 184, 28, 207, 34 ));
-
-   -----------------------------------------------------------------------------
-   -- type IFdnAccessManagerStatics is interface and WinRt.IInspectable;
-
-      function RequestUnlockAsync
-      (
-         this : access IFdnAccessManagerStatics_Interface;
-         contactListId : WinRt.HString;
-         RetVal : access GenericObject
-      )
-      return WinRt.Hresult is abstract;
-
-      IID_IFdnAccessManagerStatics : aliased WinRt.IID := (4071244693, 61926, 17177, (170, 62, 71, 124, 166, 75, 43, 223 ));
 
    -----------------------------------------------------------------------------
    -- type IHotspotAuthenticationContext is interface and WinRt.IInspectable;
@@ -2880,6 +3090,74 @@ package WinRt.Windows.Networking.NetworkOperators is
       IID_IMobileBroadbandCellLte : aliased WinRt.IID := (2442643579, 11128, 17773, (139, 83, 170, 162, 93, 10, 247, 65 ));
 
    -----------------------------------------------------------------------------
+   -- type IMobileBroadbandCellNR is interface and WinRt.IInspectable;
+
+      function get_CellId
+      (
+         this : access IMobileBroadbandCellNR_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ChannelNumber
+      (
+         this : access IMobileBroadbandCellNR_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PhysicalCellId
+      (
+         this : access IMobileBroadbandCellNR_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProviderId
+      (
+         this : access IMobileBroadbandCellNR_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ReferenceSignalReceivedPowerInDBm
+      (
+         this : access IMobileBroadbandCellNR_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ReferenceSignalReceivedQualityInDBm
+      (
+         this : access IMobileBroadbandCellNR_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TimingAdvanceInNanoseconds
+      (
+         this : access IMobileBroadbandCellNR_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TrackingAreaCode
+      (
+         this : access IMobileBroadbandCellNR_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SignalToNoiseRatioInDB
+      (
+         this : access IMobileBroadbandCellNR_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMobileBroadbandCellNR : aliased WinRt.IID := (2705264107, 26364, 19275, (131, 169, 164, 135, 163, 165, 160, 166 ));
+
+   -----------------------------------------------------------------------------
    -- type IMobileBroadbandCellTdscdma is interface and WinRt.IInspectable;
 
       function get_CellId
@@ -3077,6 +3355,37 @@ package WinRt.Windows.Networking.NetworkOperators is
       IID_IMobileBroadbandCellsInfo : aliased WinRt.IID := (2309576234, 58482, 19877, (146, 156, 222, 97, 113, 29, 210, 97 ));
 
    -----------------------------------------------------------------------------
+   -- type IMobileBroadbandCellsInfo2 is interface and WinRt.IInspectable;
+
+      function get_NeighboringCellsNR
+      (
+         this : access IMobileBroadbandCellsInfo2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ServingCellsNR
+      (
+         this : access IMobileBroadbandCellsInfo2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMobileBroadbandCellsInfo2 : aliased WinRt.IID := (1713395986, 47263, 19986, (187, 182, 213, 207, 9, 168, 32, 202 ));
+
+   -----------------------------------------------------------------------------
+   -- type IMobileBroadbandCurrentSlotIndexChangedEventArgs is interface and WinRt.IInspectable;
+
+      function get_CurrentSlotIndex
+      (
+         this : access IMobileBroadbandCurrentSlotIndexChangedEventArgs_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMobileBroadbandCurrentSlotIndexChangedEventArgs : aliased WinRt.IID := (4145590660, 50032, 24532, (166, 112, 24, 70, 203, 155, 206, 71 ));
+
+   -----------------------------------------------------------------------------
    -- type IMobileBroadbandDeviceInformation is interface and WinRt.IInspectable;
 
       function get_NetworkDeviceStatus
@@ -3232,6 +3541,18 @@ package WinRt.Windows.Networking.NetworkOperators is
       IID_IMobileBroadbandDeviceInformation3 : aliased WinRt.IID := (3767252157, 23856, 19290, (146, 204, 213, 77, 248, 129, 212, 158 ));
 
    -----------------------------------------------------------------------------
+   -- type IMobileBroadbandDeviceInformation4 is interface and WinRt.IInspectable;
+
+      function get_SlotManager
+      (
+         this : access IMobileBroadbandDeviceInformation4_Interface;
+         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandSlotManager
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMobileBroadbandDeviceInformation4 : aliased WinRt.IID := (641675602, 31645, 22572, (177, 124, 248, 10, 96, 181, 0, 49 ));
+
+   -----------------------------------------------------------------------------
    -- type IMobileBroadbandDeviceService is interface and WinRt.IInspectable;
 
       function get_DeviceServiceId
@@ -3263,6 +3584,39 @@ package WinRt.Windows.Networking.NetworkOperators is
       return WinRt.Hresult is abstract;
 
       IID_IMobileBroadbandDeviceService : aliased WinRt.IID := (582883922, 48512, 16556, (142, 31, 46, 7, 131, 106, 61, 189 ));
+
+   -----------------------------------------------------------------------------
+   -- type IMobileBroadbandDeviceServiceCommandEventArgs is interface and WinRt.IInspectable;
+
+      function get_DeviceId
+      (
+         this : access IMobileBroadbandDeviceServiceCommandEventArgs_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DeviceServiceId
+      (
+         this : access IMobileBroadbandDeviceServiceCommandEventArgs_Interface;
+         RetVal : access WinRt.Guid
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_EventId
+      (
+         this : access IMobileBroadbandDeviceServiceCommandEventArgs_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ReceivedData
+      (
+         this : access IMobileBroadbandDeviceServiceCommandEventArgs_Interface;
+         RetVal : access Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMobileBroadbandDeviceServiceCommandEventArgs : aliased WinRt.IID := (686044047, 52388, 20551, (162, 12, 10, 109, 121, 172, 236, 186 ));
 
    -----------------------------------------------------------------------------
    -- type IMobileBroadbandDeviceServiceCommandResult is interface and WinRt.IInspectable;
@@ -3311,6 +3665,26 @@ package WinRt.Windows.Networking.NetworkOperators is
       return WinRt.Hresult is abstract;
 
       IID_IMobileBroadbandDeviceServiceCommandSession : aliased WinRt.IID := (4228483653, 37179, 18708, (182, 195, 174, 99, 4, 89, 62, 117 ));
+
+   -----------------------------------------------------------------------------
+   -- type IMobileBroadbandDeviceServiceCommandSession2 is interface and WinRt.IInspectable;
+
+      function add_CommandReceived
+      (
+         this : access IMobileBroadbandDeviceServiceCommandSession2_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_CommandReceived
+      (
+         this : access IMobileBroadbandDeviceServiceCommandSession2_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMobileBroadbandDeviceServiceCommandSession2 : aliased WinRt.IID := (4009773153, 9542, 22329, (134, 231, 15, 220, 14, 98, 65, 28 ));
 
    -----------------------------------------------------------------------------
    -- type IMobileBroadbandDeviceServiceDataReceivedEventArgs is interface and WinRt.IInspectable;
@@ -3409,6 +3783,18 @@ package WinRt.Windows.Networking.NetworkOperators is
       return WinRt.Hresult is abstract;
 
       IID_IMobileBroadbandDeviceServiceTriggerDetails : aliased WinRt.IID := (1241865072, 47534, 17496, (146, 65, 166, 165, 251, 241, 138, 12 ));
+
+   -----------------------------------------------------------------------------
+   -- type IMobileBroadbandDeviceServiceTriggerDetails2 is interface and WinRt.IInspectable;
+
+      function get_EventId
+      (
+         this : access IMobileBroadbandDeviceServiceTriggerDetails2_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMobileBroadbandDeviceServiceTriggerDetails2 : aliased WinRt.IID := (3627900694, 13162, 21823, (148, 187, 12, 209, 162, 255, 12, 129 ));
 
    -----------------------------------------------------------------------------
    -- type IMobileBroadbandModem is interface and WinRt.IInspectable;
@@ -3539,6 +3925,45 @@ package WinRt.Windows.Networking.NetworkOperators is
       return WinRt.Hresult is abstract;
 
       IID_IMobileBroadbandModem3 : aliased WinRt.IID := (3925788394, 12084, 17794, (145, 2, 195, 20, 210, 168, 126, 236 ));
+
+   -----------------------------------------------------------------------------
+   -- type IMobileBroadbandModem4 is interface and WinRt.IInspectable;
+
+      function SetIsPassthroughEnabledAsync
+      (
+         this : access IMobileBroadbandModem4_Interface;
+         value : WinRt.Boolean;
+         slotindex : WinRt.Int32;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetIsPassthroughEnabledAsync
+      (
+         this : access IMobileBroadbandModem4_Interface;
+         slotindex : WinRt.Int32;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetIsPassthroughEnabled
+      (
+         this : access IMobileBroadbandModem4_Interface;
+         value : WinRt.Boolean;
+         slotindex : WinRt.Int32;
+         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandModemStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetIsPassthroughEnabled
+      (
+         this : access IMobileBroadbandModem4_Interface;
+         slotindex : WinRt.Int32;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMobileBroadbandModem4 : aliased WinRt.IID := (1241749698, 37310, 16683, (181, 105, 88, 110, 159, 0, 48, 209 ));
 
    -----------------------------------------------------------------------------
    -- type IMobileBroadbandModemConfiguration is interface and WinRt.IInspectable;
@@ -4143,6 +4568,114 @@ package WinRt.Windows.Networking.NetworkOperators is
       IID_IMobileBroadbandSarManager : aliased WinRt.IID := (3853674547, 38526, 16585, (164, 133, 25, 192, 221, 32, 158, 34 ));
 
    -----------------------------------------------------------------------------
+   -- type IMobileBroadbandSlotInfo is interface and WinRt.IInspectable;
+
+      function get_Index
+      (
+         this : access IMobileBroadbandSlotInfo_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_State
+      (
+         this : access IMobileBroadbandSlotInfo_Interface;
+         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandSlotState
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMobileBroadbandSlotInfo : aliased WinRt.IID := (3174370098, 34862, 21546, (177, 125, 11, 177, 180, 155, 174, 158 ));
+
+   -----------------------------------------------------------------------------
+   -- type IMobileBroadbandSlotInfo2 is interface and WinRt.IInspectable;
+
+      function get_IccId
+      (
+         this : access IMobileBroadbandSlotInfo2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMobileBroadbandSlotInfo2 : aliased WinRt.IID := (960278585, 51780, 21068, (130, 45, 131, 163, 98, 15, 14, 252 ));
+
+   -----------------------------------------------------------------------------
+   -- type IMobileBroadbandSlotInfoChangedEventArgs is interface and WinRt.IInspectable;
+
+      function get_SlotInfo
+      (
+         this : access IMobileBroadbandSlotInfoChangedEventArgs_Interface;
+         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMobileBroadbandSlotInfoChangedEventArgs : aliased WinRt.IID := (827884447, 38156, 21710, (164, 141, 186, 69, 41, 180, 143, 15 ));
+
+   -----------------------------------------------------------------------------
+   -- type IMobileBroadbandSlotManager is interface and WinRt.IInspectable;
+
+      function get_SlotInfos
+      (
+         this : access IMobileBroadbandSlotManager_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CurrentSlotIndex
+      (
+         this : access IMobileBroadbandSlotManager_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetCurrentSlot
+      (
+         this : access IMobileBroadbandSlotManager_Interface;
+         slotIndex : WinRt.Int32;
+         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandModemStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetCurrentSlotAsync
+      (
+         this : access IMobileBroadbandSlotManager_Interface;
+         slotIndex : WinRt.Int32;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_SlotInfoChanged
+      (
+         this : access IMobileBroadbandSlotManager_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_SlotInfoChanged
+      (
+         this : access IMobileBroadbandSlotManager_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_CurrentSlotIndexChanged
+      (
+         this : access IMobileBroadbandSlotManager_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_CurrentSlotIndexChanged
+      (
+         this : access IMobileBroadbandSlotManager_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMobileBroadbandSlotManager : aliased WinRt.IID := (3953163478, 8217, 24449, (162, 148, 204, 54, 74, 17, 208, 178 ));
+
+   -----------------------------------------------------------------------------
    -- type IMobileBroadbandTransmissionStateChangedEventArgs is interface and WinRt.IInspectable;
 
       function get_IsTransmitting
@@ -4422,6 +4955,41 @@ package WinRt.Windows.Networking.NetworkOperators is
       IID_INetworkOperatorTetheringAccessPointConfiguration2 : aliased WinRt.IID := (2977993026, 29240, 22944, (146, 139, 116, 171, 70, 253, 100, 182 ));
 
    -----------------------------------------------------------------------------
+   -- type INetworkOperatorTetheringAccessPointConfiguration3 is interface and WinRt.IInspectable;
+
+      function IsAuthenticationKindSupported
+      (
+         this : access INetworkOperatorTetheringAccessPointConfiguration3_Interface;
+         authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsAuthenticationKindSupportedAsync
+      (
+         this : access INetworkOperatorTetheringAccessPointConfiguration3_Interface;
+         authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AuthenticationKind
+      (
+         this : access INetworkOperatorTetheringAccessPointConfiguration3_Interface;
+         RetVal : access Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AuthenticationKind
+      (
+         this : access INetworkOperatorTetheringAccessPointConfiguration3_Interface;
+         value : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_INetworkOperatorTetheringAccessPointConfiguration3 : aliased WinRt.IID := (2847604865, 40685, 23832, (182, 118, 36, 183, 74, 24, 43, 140 ));
+
+   -----------------------------------------------------------------------------
    -- type INetworkOperatorTetheringClient is interface and WinRt.IInspectable;
 
       function get_MacAddress
@@ -4519,6 +5087,19 @@ package WinRt.Windows.Networking.NetworkOperators is
       return WinRt.Hresult is abstract;
 
       IID_INetworkOperatorTetheringManager : aliased WinRt.IID := (3562704288, 3718, 19864, (139, 164, 221, 112, 212, 183, 100, 211 ));
+
+   -----------------------------------------------------------------------------
+   -- type INetworkOperatorTetheringManager2 is interface and WinRt.IInspectable;
+
+      function StartTetheringAsync
+      (
+         this : access INetworkOperatorTetheringManager2_Interface;
+         configuration : Windows.Networking.NetworkOperators.INetworkOperatorTetheringSessionAccessPointConfiguration;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_INetworkOperatorTetheringManager2 : aliased WinRt.IID := (2082098674, 46985, 20458, (188, 78, 31, 43, 158, 118, 193, 247 ));
 
    -----------------------------------------------------------------------------
    -- type INetworkOperatorTetheringManagerStatics is interface and WinRt.IInspectable;
@@ -4632,6 +5213,113 @@ package WinRt.Windows.Networking.NetworkOperators is
       return WinRt.Hresult is abstract;
 
       IID_INetworkOperatorTetheringOperationResult : aliased WinRt.IID := (3956409249, 442, 18285, (180, 179, 191, 61, 18, 200, 248, 12 ));
+
+   -----------------------------------------------------------------------------
+   -- type INetworkOperatorTetheringSessionAccessPointConfiguration is interface and WinRt.IInspectable;
+
+      function get_Ssid
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Ssid
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Passphrase
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Passphrase
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsBandSupported
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         band : Windows.Networking.NetworkOperators.TetheringWiFiBand;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsBandSupportedAsync
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         band : Windows.Networking.NetworkOperators.TetheringWiFiBand;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Band
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         RetVal : access Windows.Networking.NetworkOperators.TetheringWiFiBand
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Band
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         value : Windows.Networking.NetworkOperators.TetheringWiFiBand
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsAuthenticationKindSupported
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsAuthenticationKindSupportedAsync
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AuthenticationKind
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         RetVal : access Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AuthenticationKind
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         value : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PerformancePriority
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         RetVal : access Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PerformancePriority
+      (
+         this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
+         value : Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_INetworkOperatorTetheringSessionAccessPointConfiguration : aliased WinRt.IID := (197923076, 13495, 21010, (133, 140, 89, 217, 116, 4, 146, 10 ));
 
    -----------------------------------------------------------------------------
    -- type IProvisionFromXmlDocumentResults is interface and WinRt.IInspectable;
@@ -4967,6 +5655,12 @@ package WinRt.Windows.Networking.NetworkOperators is
       matchingId : WinRt.WString
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimDiscoverResult'Class;
+
+   function get_SlotIndex
+   (
+      this : in out ESim
+   )
+   return IReference_Int32.Kind;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ESimAddedEventArgs
@@ -5443,18 +6137,6 @@ package WinRt.Windows.Networking.NetworkOperators is
       this : in out ESimWatcher;
       token : Windows.Foundation.EventRegistrationToken
    );
-
-   -----------------------------------------------------------------------------
-   -- Static RuntimeClass
-   package FdnAccessManager is
-
-      function RequestUnlockAsync
-      (
-         contactListId : WinRt.WString
-      )
-      return WinRt.Boolean;
-
-   end FdnAccessManager;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for HotspotAuthenticationContext
@@ -6056,6 +6738,69 @@ package WinRt.Windows.Networking.NetworkOperators is
    return IReference_Int32.Kind;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for MobileBroadbandCellNR
+
+   overriding procedure Initialize (this : in out MobileBroadbandCellNR);
+   overriding procedure Finalize (this : in out MobileBroadbandCellNR);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for MobileBroadbandCellNR
+
+   function get_CellId
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Int64.Kind;
+
+   function get_ChannelNumber
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Int32.Kind;
+
+   function get_PhysicalCellId
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Int32.Kind;
+
+   function get_ProviderId
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return WinRt.WString;
+
+   function get_ReferenceSignalReceivedPowerInDBm
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Double.Kind;
+
+   function get_ReferenceSignalReceivedQualityInDBm
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Double.Kind;
+
+   function get_TimingAdvanceInNanoseconds
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Int32.Kind;
+
+   function get_TrackingAreaCode
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Int32.Kind;
+
+   function get_SignalToNoiseRatioInDB
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Double.Kind;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MobileBroadbandCellTdscdma
 
    overriding procedure Initialize (this : in out MobileBroadbandCellTdscdma);
@@ -6238,6 +6983,33 @@ package WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandCellUmts.Kind;
 
+   function get_NeighboringCellsNR
+   (
+      this : in out MobileBroadbandCellsInfo
+   )
+   return IVectorView_IMobileBroadbandCellNR.Kind;
+
+   function get_ServingCellsNR
+   (
+      this : in out MobileBroadbandCellsInfo
+   )
+   return IVectorView_IMobileBroadbandCellNR.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for MobileBroadbandCurrentSlotIndexChangedEventArgs
+
+   overriding procedure Initialize (this : in out MobileBroadbandCurrentSlotIndexChangedEventArgs);
+   overriding procedure Finalize (this : in out MobileBroadbandCurrentSlotIndexChangedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for MobileBroadbandCurrentSlotIndexChangedEventArgs
+
+   function get_CurrentSlotIndex
+   (
+      this : in out MobileBroadbandCurrentSlotIndexChangedEventArgs
+   )
+   return WinRt.Int32;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MobileBroadbandDeviceInformation
 
@@ -6367,6 +7139,12 @@ package WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString;
 
+   function get_SlotManager
+   (
+      this : in out MobileBroadbandDeviceInformation
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSlotManager'Class;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MobileBroadbandDeviceService
 
@@ -6399,6 +7177,39 @@ package WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandDeviceService
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceServiceCommandSession'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for MobileBroadbandDeviceServiceCommandEventArgs
+
+   overriding procedure Initialize (this : in out MobileBroadbandDeviceServiceCommandEventArgs);
+   overriding procedure Finalize (this : in out MobileBroadbandDeviceServiceCommandEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for MobileBroadbandDeviceServiceCommandEventArgs
+
+   function get_DeviceId
+   (
+      this : in out MobileBroadbandDeviceServiceCommandEventArgs
+   )
+   return WinRt.WString;
+
+   function get_DeviceServiceId
+   (
+      this : in out MobileBroadbandDeviceServiceCommandEventArgs
+   )
+   return WinRt.Guid;
+
+   function get_EventId
+   (
+      this : in out MobileBroadbandDeviceServiceCommandEventArgs
+   )
+   return WinRt.UInt32;
+
+   function get_ReceivedData
+   (
+      this : in out MobileBroadbandDeviceServiceCommandEventArgs
+   )
+   return WinRt.Windows.Storage.Streams.IBuffer;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MobileBroadbandDeviceServiceCommandResult
@@ -6449,6 +7260,19 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure CloseSession
    (
       this : in out MobileBroadbandDeviceServiceCommandSession
+   );
+
+   function add_CommandReceived
+   (
+      this : in out MobileBroadbandDeviceServiceCommandSession;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_CommandReceived
+   (
+      this : in out MobileBroadbandDeviceServiceCommandSession;
+      token : Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -6552,6 +7376,12 @@ package WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandDeviceServiceTriggerDetails
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
+
+   function get_EventId
+   (
+      this : in out MobileBroadbandDeviceServiceTriggerDetails
+   )
+   return WinRt.UInt32;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MobileBroadbandModem
@@ -6674,6 +7504,36 @@ package WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandModem;
       token : Windows.Foundation.EventRegistrationToken
    );
+
+   function SetIsPassthroughEnabledAsync
+   (
+      this : in out MobileBroadbandModem;
+      value : WinRt.Boolean;
+      slotindex : WinRt.Int32
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
+
+   function GetIsPassthroughEnabledAsync
+   (
+      this : in out MobileBroadbandModem;
+      slotindex : WinRt.Int32
+   )
+   return WinRt.Boolean;
+
+   function SetIsPassthroughEnabled
+   (
+      this : in out MobileBroadbandModem;
+      value : WinRt.Boolean;
+      slotindex : WinRt.Int32
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
+
+   function GetIsPassthroughEnabled
+   (
+      this : in out MobileBroadbandModem;
+      slotindex : WinRt.Int32
+   )
+   return WinRt.Boolean;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MobileBroadbandModemConfiguration
@@ -7219,6 +8079,109 @@ package WinRt.Windows.Networking.NetworkOperators is
    );
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for MobileBroadbandSlotInfo
+
+   overriding procedure Initialize (this : in out MobileBroadbandSlotInfo);
+   overriding procedure Finalize (this : in out MobileBroadbandSlotInfo);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for MobileBroadbandSlotInfo
+
+   function get_Index
+   (
+      this : in out MobileBroadbandSlotInfo
+   )
+   return WinRt.Int32;
+
+   function get_State
+   (
+      this : in out MobileBroadbandSlotInfo
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSlotState;
+
+   function get_IccId
+   (
+      this : in out MobileBroadbandSlotInfo
+   )
+   return WinRt.WString;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for MobileBroadbandSlotInfoChangedEventArgs
+
+   overriding procedure Initialize (this : in out MobileBroadbandSlotInfoChangedEventArgs);
+   overriding procedure Finalize (this : in out MobileBroadbandSlotInfoChangedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for MobileBroadbandSlotInfoChangedEventArgs
+
+   function get_SlotInfo
+   (
+      this : in out MobileBroadbandSlotInfoChangedEventArgs
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSlotInfo'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for MobileBroadbandSlotManager
+
+   overriding procedure Initialize (this : in out MobileBroadbandSlotManager);
+   overriding procedure Finalize (this : in out MobileBroadbandSlotManager);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for MobileBroadbandSlotManager
+
+   function get_SlotInfos
+   (
+      this : in out MobileBroadbandSlotManager
+   )
+   return IVectorView_IMobileBroadbandSlotInfo.Kind;
+
+   function get_CurrentSlotIndex
+   (
+      this : in out MobileBroadbandSlotManager
+   )
+   return WinRt.Int32;
+
+   function SetCurrentSlot
+   (
+      this : in out MobileBroadbandSlotManager;
+      slotIndex : WinRt.Int32
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
+
+   function SetCurrentSlotAsync
+   (
+      this : in out MobileBroadbandSlotManager;
+      slotIndex : WinRt.Int32
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
+
+   function add_SlotInfoChanged
+   (
+      this : in out MobileBroadbandSlotManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_SlotInfoChanged
+   (
+      this : in out MobileBroadbandSlotManager;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_CurrentSlotIndexChanged
+   (
+      this : in out MobileBroadbandSlotManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_CurrentSlotIndexChanged
+   (
+      this : in out MobileBroadbandSlotManager;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MobileBroadbandTransmissionStateChangedEventArgs
 
    overriding procedure Initialize (this : in out MobileBroadbandTransmissionStateChangedEventArgs);
@@ -7508,6 +8471,32 @@ package WinRt.Windows.Networking.NetworkOperators is
       value : Windows.Networking.NetworkOperators.TetheringWiFiBand
    );
 
+   function IsAuthenticationKindSupported
+   (
+      this : in out NetworkOperatorTetheringAccessPointConfiguration;
+      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+   )
+   return WinRt.Boolean;
+
+   function IsAuthenticationKindSupportedAsync
+   (
+      this : in out NetworkOperatorTetheringAccessPointConfiguration;
+      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+   )
+   return WinRt.Boolean;
+
+   function get_AuthenticationKind
+   (
+      this : in out NetworkOperatorTetheringAccessPointConfiguration
+   )
+   return WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+
+   procedure put_AuthenticationKind
+   (
+      this : in out NetworkOperatorTetheringAccessPointConfiguration;
+      value : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for NetworkOperatorTetheringClient
 
@@ -7538,6 +8527,18 @@ package WinRt.Windows.Networking.NetworkOperators is
    -----------------------------------------------------------------------------
    -- Static Interfaces for NetworkOperatorTetheringManager
 
+   function GetTetheringCapability
+   (
+      networkAccountId : WinRt.WString
+   )
+   return WinRt.Windows.Networking.NetworkOperators.TetheringCapability;
+
+   function CreateFromNetworkAccountId
+   (
+      networkAccountId : WinRt.WString
+   )
+   return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager;
+
    function IsNoConnectionsTimeoutEnabled
    return WinRt.Boolean;
 
@@ -7548,13 +8549,6 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure DisableNoConnectionsTimeout;
 
    procedure DisableNoConnectionsTimeoutAsync;
-
-   function CreateFromConnectionProfile
-   (
-      profile : Windows.Networking.Connectivity.ConnectionProfile'Class;
-      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
-   )
-   return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager;
 
    function GetTetheringCapabilityFromConnectionProfile
    (
@@ -7568,15 +8562,10 @@ package WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager;
 
-   function GetTetheringCapability
+   function CreateFromConnectionProfile
    (
-      networkAccountId : WinRt.WString
-   )
-   return WinRt.Windows.Networking.NetworkOperators.TetheringCapability;
-
-   function CreateFromNetworkAccountId
-   (
-      networkAccountId : WinRt.WString
+      profile : Windows.Networking.Connectivity.ConnectionProfile'Class;
+      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager;
 
@@ -7631,6 +8620,13 @@ package WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_INetworkOperatorTetheringClient.Kind;
 
+   function StartTetheringAsync
+   (
+      this : in out NetworkOperatorTetheringManager;
+      configuration : Windows.Networking.NetworkOperators.NetworkOperatorTetheringSessionAccessPointConfiguration'Class
+   )
+   return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringOperationResult'Class;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for NetworkOperatorTetheringOperationResult
 
@@ -7651,6 +8647,108 @@ package WinRt.Windows.Networking.NetworkOperators is
       this : in out NetworkOperatorTetheringOperationResult
    )
    return WinRt.WString;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for NetworkOperatorTetheringSessionAccessPointConfiguration
+
+   overriding procedure Initialize (this : in out NetworkOperatorTetheringSessionAccessPointConfiguration);
+   overriding procedure Finalize (this : in out NetworkOperatorTetheringSessionAccessPointConfiguration);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for NetworkOperatorTetheringSessionAccessPointConfiguration
+
+   function Constructor return NetworkOperatorTetheringSessionAccessPointConfiguration;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for NetworkOperatorTetheringSessionAccessPointConfiguration
+
+   function get_Ssid
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration
+   )
+   return WinRt.WString;
+
+   procedure put_Ssid
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      value : WinRt.WString
+   );
+
+   function get_Passphrase
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration
+   )
+   return WinRt.WString;
+
+   procedure put_Passphrase
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      value : WinRt.WString
+   );
+
+   function IsBandSupported
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      band : Windows.Networking.NetworkOperators.TetheringWiFiBand
+   )
+   return WinRt.Boolean;
+
+   function IsBandSupportedAsync
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      band : Windows.Networking.NetworkOperators.TetheringWiFiBand
+   )
+   return WinRt.Boolean;
+
+   function get_Band
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration
+   )
+   return WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand;
+
+   procedure put_Band
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      value : Windows.Networking.NetworkOperators.TetheringWiFiBand
+   );
+
+   function IsAuthenticationKindSupported
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+   )
+   return WinRt.Boolean;
+
+   function IsAuthenticationKindSupportedAsync
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+   )
+   return WinRt.Boolean;
+
+   function get_AuthenticationKind
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration
+   )
+   return WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+
+   procedure put_AuthenticationKind
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      value : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+   );
+
+   function get_PerformancePriority
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration
+   )
+   return WinRt.Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority;
+
+   procedure put_PerformancePriority
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      value : Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ProvisionFromXmlDocumentResults

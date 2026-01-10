@@ -52,6 +52,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
 
    type IDnssdServiceInstanceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDnssdServiceInstanceFactory is access all IDnssdServiceInstanceFactory_Interface'Class;
+   type IDnssdServiceInstanceFactory_Ptr is access all IDnssdServiceInstanceFactory;
 
    type IDnssdServiceWatcher_Interface is interface and WinRt.IInspectable_Interface;
    type IDnssdServiceWatcher is access all IDnssdServiceWatcher_Interface'Class;

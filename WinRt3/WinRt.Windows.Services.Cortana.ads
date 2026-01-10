@@ -51,6 +51,7 @@ package WinRt.Windows.Services.Cortana is
 
    type ICortanaActionableInsightsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICortanaActionableInsightsStatics is access all ICortanaActionableInsightsStatics_Interface'Class;
+   type ICortanaActionableInsightsStatics_Ptr is access all ICortanaActionableInsightsStatics;
 
    type ICortanaPermissionsManager_Interface is interface and WinRt.IInspectable_Interface;
    type ICortanaPermissionsManager is access all ICortanaPermissionsManager_Interface'Class;
@@ -58,6 +59,7 @@ package WinRt.Windows.Services.Cortana is
 
    type ICortanaPermissionsManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICortanaPermissionsManagerStatics is access all ICortanaPermissionsManagerStatics_Interface'Class;
+   type ICortanaPermissionsManagerStatics_Ptr is access all ICortanaPermissionsManagerStatics;
 
    type ICortanaSettings_Interface is interface and WinRt.IInspectable_Interface;
    type ICortanaSettings is access all ICortanaSettings_Interface'Class;
@@ -65,6 +67,7 @@ package WinRt.Windows.Services.Cortana is
 
    type ICortanaSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICortanaSettingsStatics is access all ICortanaSettingsStatics_Interface'Class;
+   type ICortanaSettingsStatics_Ptr is access all ICortanaSettingsStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

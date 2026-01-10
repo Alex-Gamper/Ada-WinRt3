@@ -63,6 +63,7 @@ package WinRt.Windows.Data.Text is
 
    type ISelectableWordsSegmenterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectableWordsSegmenterFactory is access all ISelectableWordsSegmenterFactory_Interface'Class;
+   type ISelectableWordsSegmenterFactory_Ptr is access all ISelectableWordsSegmenterFactory;
 
    type ISemanticTextQuery_Interface is interface and WinRt.IInspectable_Interface;
    type ISemanticTextQuery is access all ISemanticTextQuery_Interface'Class;
@@ -70,6 +71,7 @@ package WinRt.Windows.Data.Text is
 
    type ISemanticTextQueryFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISemanticTextQueryFactory is access all ISemanticTextQueryFactory_Interface'Class;
+   type ISemanticTextQueryFactory_Ptr is access all ISemanticTextQueryFactory;
 
    type ITextConversionGenerator_Interface is interface and WinRt.IInspectable_Interface;
    type ITextConversionGenerator is access all ITextConversionGenerator_Interface'Class;
@@ -77,6 +79,7 @@ package WinRt.Windows.Data.Text is
 
    type ITextConversionGeneratorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITextConversionGeneratorFactory is access all ITextConversionGeneratorFactory_Interface'Class;
+   type ITextConversionGeneratorFactory_Ptr is access all ITextConversionGeneratorFactory;
 
    type ITextPhoneme_Interface is interface and WinRt.IInspectable_Interface;
    type ITextPhoneme is access all ITextPhoneme_Interface'Class;
@@ -88,9 +91,11 @@ package WinRt.Windows.Data.Text is
 
    type ITextPredictionGenerator2_Interface is interface and WinRt.IInspectable_Interface;
    type ITextPredictionGenerator2 is access all ITextPredictionGenerator2_Interface'Class;
+   type ITextPredictionGenerator2_Ptr is access all ITextPredictionGenerator2;
 
    type ITextPredictionGeneratorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITextPredictionGeneratorFactory is access all ITextPredictionGeneratorFactory_Interface'Class;
+   type ITextPredictionGeneratorFactory_Ptr is access all ITextPredictionGeneratorFactory;
 
    type ITextReverseConversionGenerator_Interface is interface and WinRt.IInspectable_Interface;
    type ITextReverseConversionGenerator is access all ITextReverseConversionGenerator_Interface'Class;
@@ -98,12 +103,15 @@ package WinRt.Windows.Data.Text is
 
    type ITextReverseConversionGenerator2_Interface is interface and WinRt.IInspectable_Interface;
    type ITextReverseConversionGenerator2 is access all ITextReverseConversionGenerator2_Interface'Class;
+   type ITextReverseConversionGenerator2_Ptr is access all ITextReverseConversionGenerator2;
 
    type ITextReverseConversionGeneratorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITextReverseConversionGeneratorFactory is access all ITextReverseConversionGeneratorFactory_Interface'Class;
+   type ITextReverseConversionGeneratorFactory_Ptr is access all ITextReverseConversionGeneratorFactory;
 
    type IUnicodeCharactersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUnicodeCharactersStatics is access all IUnicodeCharactersStatics_Interface'Class;
+   type IUnicodeCharactersStatics_Ptr is access all IUnicodeCharactersStatics;
 
    type IWordSegment_Interface is interface and WinRt.IInspectable_Interface;
    type IWordSegment is access all IWordSegment_Interface'Class;
@@ -115,6 +123,7 @@ package WinRt.Windows.Data.Text is
 
    type IWordsSegmenterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWordsSegmenterFactory is access all IWordsSegmenterFactory_Interface'Class;
+   type IWordsSegmenterFactory_Ptr is access all IWordsSegmenterFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations

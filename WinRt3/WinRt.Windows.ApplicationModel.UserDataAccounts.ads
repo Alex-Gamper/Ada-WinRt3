@@ -47,12 +47,15 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
 
    type IUserDataAccount2_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataAccount2 is access all IUserDataAccount2_Interface'Class;
+   type IUserDataAccount2_Ptr is access all IUserDataAccount2;
 
    type IUserDataAccount3_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataAccount3 is access all IUserDataAccount3_Interface'Class;
+   type IUserDataAccount3_Ptr is access all IUserDataAccount3;
 
    type IUserDataAccount4_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataAccount4 is access all IUserDataAccount4_Interface'Class;
+   type IUserDataAccount4_Ptr is access all IUserDataAccount4;
 
    type IUserDataAccountManagerForUser_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataAccountManagerForUser is access all IUserDataAccountManagerForUser_Interface'Class;
@@ -60,9 +63,11 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
 
    type IUserDataAccountManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataAccountManagerStatics is access all IUserDataAccountManagerStatics_Interface'Class;
+   type IUserDataAccountManagerStatics_Ptr is access all IUserDataAccountManagerStatics;
 
    type IUserDataAccountManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataAccountManagerStatics2 is access all IUserDataAccountManagerStatics2_Interface'Class;
+   type IUserDataAccountManagerStatics2_Ptr is access all IUserDataAccountManagerStatics2;
 
    type IUserDataAccountStore_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataAccountStore is access all IUserDataAccountStore_Interface'Class;
@@ -70,9 +75,11 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
 
    type IUserDataAccountStore2_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataAccountStore2 is access all IUserDataAccountStore2_Interface'Class;
+   type IUserDataAccountStore2_Ptr is access all IUserDataAccountStore2;
 
    type IUserDataAccountStore3_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataAccountStore3 is access all IUserDataAccountStore3_Interface'Class;
+   type IUserDataAccountStore3_Ptr is access all IUserDataAccountStore3;
 
    type IUserDataAccountStoreChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataAccountStoreChangedEventArgs is access all IUserDataAccountStoreChangedEventArgs_Interface'Class;

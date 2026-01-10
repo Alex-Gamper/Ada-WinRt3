@@ -3081,6 +3081,30 @@ package body WinRt.Windows.Media.Playback is
 
    function Constructor
    (
+      source : Windows.Media.Core.MediaSource'Class
+   )
+   return MediaPlaybackItem is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.MediaPlaybackItem");
+      m_Factory    : access IMediaPlaybackItemFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Media.Playback.IMediaPlaybackItem;
+   begin
+      return RetVal : MediaPlaybackItem do
+         Hr := RoGetActivationFactory (m_hString, IID_IMediaPlaybackItemFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.Create (source.m_IMediaSource2.all, m_ComRetVal'Access);
+            Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+            Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
       source : Windows.Media.Core.MediaSource'Class;
       startTime : Windows.Foundation.TimeSpan
    )
@@ -3122,30 +3146,6 @@ package body WinRt.Windows.Media.Playback is
          Hr := RoGetActivationFactory (m_hString, IID_IMediaPlaybackItemFactory2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithStartTimeAndDurationLimit (source.m_IMediaSource2.all, startTime, durationLimit, m_ComRetVal'Access);
-            Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
-            Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
-            temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor
-   (
-      source : Windows.Media.Core.MediaSource'Class
-   )
-   return MediaPlaybackItem is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.MediaPlaybackItem");
-      m_Factory    : access IMediaPlaybackItemFactory_Interface'Class := null;
-      temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Playback.IMediaPlaybackItem;
-   begin
-      return RetVal : MediaPlaybackItem do
-         Hr := RoGetActivationFactory (m_hString, IID_IMediaPlaybackItemFactory'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.Create (source.m_IMediaSource2.all, m_ComRetVal'Access);
             Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
             Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
             temp := m_Factory.Release;

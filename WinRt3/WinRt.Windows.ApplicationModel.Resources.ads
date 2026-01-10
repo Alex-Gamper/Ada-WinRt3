@@ -45,18 +45,27 @@ package WinRt.Windows.ApplicationModel.Resources is
 
    type IResourceLoader2_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceLoader2 is access all IResourceLoader2_Interface'Class;
+   type IResourceLoader2_Ptr is access all IResourceLoader2;
 
    type IResourceLoaderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceLoaderFactory is access all IResourceLoaderFactory_Interface'Class;
+   type IResourceLoaderFactory_Ptr is access all IResourceLoaderFactory;
 
    type IResourceLoaderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceLoaderStatics is access all IResourceLoaderStatics_Interface'Class;
+   type IResourceLoaderStatics_Ptr is access all IResourceLoaderStatics;
 
    type IResourceLoaderStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceLoaderStatics2 is access all IResourceLoaderStatics2_Interface'Class;
+   type IResourceLoaderStatics2_Ptr is access all IResourceLoaderStatics2;
 
    type IResourceLoaderStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceLoaderStatics3 is access all IResourceLoaderStatics3_Interface'Class;
+   type IResourceLoaderStatics3_Ptr is access all IResourceLoaderStatics3;
+
+   type IResourceLoaderStatics4_Interface is interface and WinRt.IInspectable_Interface;
+   type IResourceLoaderStatics4 is access all IResourceLoaderStatics4_Interface'Class;
+   type IResourceLoaderStatics4_Ptr is access all IResourceLoaderStatics4;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -173,6 +182,19 @@ package WinRt.Windows.ApplicationModel.Resources is
       IID_IResourceLoaderStatics3 : aliased WinRt.IID := (1684053499, 25772, 18715, (129, 0, 14, 85, 141, 97, 193, 208 ));
 
    -----------------------------------------------------------------------------
+   -- type IResourceLoaderStatics4 is interface and WinRt.IInspectable;
+
+      function GetDefaultPriPath
+      (
+         this : access IResourceLoaderStatics4_Interface;
+         packageFullName : WinRt.HString;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IResourceLoaderStatics4 : aliased WinRt.IID := (2679335986, 27788, 17174, (150, 46, 144, 149, 57, 181, 194, 89 ));
+
+   -----------------------------------------------------------------------------
    -- Class method declarations
    -----------------------------------------------------------------------------
 
@@ -185,13 +207,13 @@ package WinRt.Windows.ApplicationModel.Resources is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ResourceLoader
 
+   function Constructor return ResourceLoader;
+
    function Constructor
    (
       name : WinRt.WString
    )
    return ResourceLoader;
-
-   function Constructor return ResourceLoader;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for ResourceLoader
@@ -214,17 +236,23 @@ package WinRt.Windows.ApplicationModel.Resources is
    )
    return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
 
-   function GetForUIContext
+   function GetDefaultPriPath
    (
-      context : Windows.UI.UIContext'Class
+      packageFullName : WinRt.WString
    )
-   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
+   return WinRt.WString;
 
    function GetStringForReference
    (
       uri : Windows.Foundation.Uri'Class
    )
    return WinRt.WString;
+
+   function GetForUIContext
+   (
+      context : Windows.UI.UIContext'Class
+   )
+   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ResourceLoader

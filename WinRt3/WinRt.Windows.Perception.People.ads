@@ -48,6 +48,7 @@ package WinRt.Windows.Perception.People is
 
    type IEyesPoseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IEyesPoseStatics is access all IEyesPoseStatics_Interface'Class;
+   type IEyesPoseStatics_Ptr is access all IEyesPoseStatics;
 
    type IHandMeshObserver_Interface is interface and WinRt.IInspectable_Interface;
    type IHandMeshObserver is access all IHandMeshObserver_Interface'Class;

@@ -50,15 +50,19 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    type IBlock2_Interface is interface and WinRt.IInspectable_Interface;
    type IBlock2 is access all IBlock2_Interface'Class;
+   type IBlock2_Ptr is access all IBlock2;
 
    type IBlockFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBlockFactory is access all IBlockFactory_Interface'Class;
+   type IBlockFactory_Ptr is access all IBlockFactory;
 
    type IBlockStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBlockStatics is access all IBlockStatics_Interface'Class;
+   type IBlockStatics_Ptr is access all IBlockStatics;
 
    type IBlockStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBlockStatics2 is access all IBlockStatics2_Interface'Class;
+   type IBlockStatics2_Ptr is access all IBlockStatics2;
 
    type IBold_Interface is interface and WinRt.IInspectable_Interface;
    type IBold is access all IBold_Interface'Class;
@@ -87,9 +91,11 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    type IContentLinkProviderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IContentLinkProviderFactory is access all IContentLinkProviderFactory_Interface'Class;
+   type IContentLinkProviderFactory_Ptr is access all IContentLinkProviderFactory;
 
    type IContentLinkStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IContentLinkStatics is access all IContentLinkStatics_Interface'Class;
+   type IContentLinkStatics_Ptr is access all IContentLinkStatics;
 
    type IGlyphs_Interface is interface and WinRt.IInspectable_Interface;
    type IGlyphs is access all IGlyphs_Interface'Class;
@@ -97,12 +103,15 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    type IGlyphs2_Interface is interface and WinRt.IInspectable_Interface;
    type IGlyphs2 is access all IGlyphs2_Interface'Class;
+   type IGlyphs2_Ptr is access all IGlyphs2;
 
    type IGlyphsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGlyphsStatics is access all IGlyphsStatics_Interface'Class;
+   type IGlyphsStatics_Ptr is access all IGlyphsStatics;
 
    type IGlyphsStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IGlyphsStatics2 is access all IGlyphsStatics2_Interface'Class;
+   type IGlyphsStatics2_Ptr is access all IGlyphsStatics2;
 
    type IHyperlink_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlink is access all IHyperlink_Interface'Class;
@@ -110,15 +119,19 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    type IHyperlink2_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlink2 is access all IHyperlink2_Interface'Class;
+   type IHyperlink2_Ptr is access all IHyperlink2;
 
    type IHyperlink3_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlink3 is access all IHyperlink3_Interface'Class;
+   type IHyperlink3_Ptr is access all IHyperlink3;
 
    type IHyperlink4_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlink4 is access all IHyperlink4_Interface'Class;
+   type IHyperlink4_Ptr is access all IHyperlink4;
 
    type IHyperlink5_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlink5 is access all IHyperlink5_Interface'Class;
+   type IHyperlink5_Ptr is access all IHyperlink5;
 
    type IHyperlinkClickEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlinkClickEventArgs is access all IHyperlinkClickEventArgs_Interface'Class;
@@ -126,18 +139,23 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    type IHyperlinkStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlinkStatics is access all IHyperlinkStatics_Interface'Class;
+   type IHyperlinkStatics_Ptr is access all IHyperlinkStatics;
 
    type IHyperlinkStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlinkStatics2 is access all IHyperlinkStatics2_Interface'Class;
+   type IHyperlinkStatics2_Ptr is access all IHyperlinkStatics2;
 
    type IHyperlinkStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlinkStatics3 is access all IHyperlinkStatics3_Interface'Class;
+   type IHyperlinkStatics3_Ptr is access all IHyperlinkStatics3;
 
    type IHyperlinkStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlinkStatics4 is access all IHyperlinkStatics4_Interface'Class;
+   type IHyperlinkStatics4_Ptr is access all IHyperlinkStatics4;
 
    type IHyperlinkStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IHyperlinkStatics5 is access all IHyperlinkStatics5_Interface'Class;
+   type IHyperlinkStatics5_Ptr is access all IHyperlinkStatics5;
 
    type IInline_Interface is interface and WinRt.IInspectable_Interface;
    type IInline is access all IInline_Interface'Class;
@@ -146,6 +164,7 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    type IInlineFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInlineFactory is access all IInlineFactory_Interface'Class;
+   type IInlineFactory_Ptr is access all IInlineFactory;
 
    type IInlineUIContainer_Interface is interface and WinRt.IInspectable_Interface;
    type IInlineUIContainer is access all IInlineUIContainer_Interface'Class;
@@ -165,6 +184,7 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    type IParagraphStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IParagraphStatics is access all IParagraphStatics_Interface'Class;
+   type IParagraphStatics_Ptr is access all IParagraphStatics;
 
    type IPlaceContentLinkProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IPlaceContentLinkProvider is access all IPlaceContentLinkProvider_Interface'Class;
@@ -176,6 +196,7 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    type IRunStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRunStatics is access all IRunStatics_Interface'Class;
+   type IRunStatics_Ptr is access all IRunStatics;
 
    type ISpan_Interface is interface and WinRt.IInspectable_Interface;
    type ISpan is access all ISpan_Interface'Class;
@@ -183,6 +204,7 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    type ISpanFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISpanFactory is access all ISpanFactory_Interface'Class;
+   type ISpanFactory_Ptr is access all ISpanFactory;
 
    type ITextElement_Interface is interface and WinRt.IInspectable_Interface;
    type ITextElement is access all ITextElement_Interface'Class;
@@ -190,33 +212,43 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    type ITextElement2_Interface is interface and WinRt.IInspectable_Interface;
    type ITextElement2 is access all ITextElement2_Interface'Class;
+   type ITextElement2_Ptr is access all ITextElement2;
 
    type ITextElement3_Interface is interface and WinRt.IInspectable_Interface;
    type ITextElement3 is access all ITextElement3_Interface'Class;
+   type ITextElement3_Ptr is access all ITextElement3;
 
    type ITextElement4_Interface is interface and WinRt.IInspectable_Interface;
    type ITextElement4 is access all ITextElement4_Interface'Class;
+   type ITextElement4_Ptr is access all ITextElement4;
 
    type ITextElement5_Interface is interface and WinRt.IInspectable_Interface;
    type ITextElement5 is access all ITextElement5_Interface'Class;
+   type ITextElement5_Ptr is access all ITextElement5;
 
    type ITextElementFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITextElementFactory is access all ITextElementFactory_Interface'Class;
+   type ITextElementFactory_Ptr is access all ITextElementFactory;
 
    type ITextElementOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type ITextElementOverrides is access all ITextElementOverrides_Interface'Class;
+   type ITextElementOverrides_Ptr is access all ITextElementOverrides;
 
    type ITextElementStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITextElementStatics is access all ITextElementStatics_Interface'Class;
+   type ITextElementStatics_Ptr is access all ITextElementStatics;
 
    type ITextElementStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITextElementStatics2 is access all ITextElementStatics2_Interface'Class;
+   type ITextElementStatics2_Ptr is access all ITextElementStatics2;
 
    type ITextElementStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type ITextElementStatics3 is access all ITextElementStatics3_Interface'Class;
+   type ITextElementStatics3_Ptr is access all ITextElementStatics3;
 
    type ITextElementStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type ITextElementStatics4 is access all ITextElementStatics4_Interface'Class;
+   type ITextElementStatics4_Ptr is access all ITextElementStatics4;
 
    type ITextHighlighter_Interface is interface and WinRt.IInspectable_Interface;
    type ITextHighlighter is access all ITextHighlighter_Interface'Class;
@@ -228,12 +260,15 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    type ITextHighlighterBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITextHighlighterBaseFactory is access all ITextHighlighterBaseFactory_Interface'Class;
+   type ITextHighlighterBaseFactory_Ptr is access all ITextHighlighterBaseFactory;
 
    type ITextHighlighterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITextHighlighterFactory is access all ITextHighlighterFactory_Interface'Class;
+   type ITextHighlighterFactory_Ptr is access all ITextHighlighterFactory;
 
    type ITextHighlighterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITextHighlighterStatics is access all ITextHighlighterStatics_Interface'Class;
+   type ITextHighlighterStatics_Ptr is access all ITextHighlighterStatics;
 
    type ITextPointer_Interface is interface and WinRt.IInspectable_Interface;
    type ITextPointer is access all ITextPointer_Interface'Class;
@@ -245,6 +280,7 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    type ITypographyStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITypographyStatics is access all ITypographyStatics_Interface'Class;
+   type ITypographyStatics_Ptr is access all ITypographyStatics;
 
    type IUnderline_Interface is interface and WinRt.IInspectable_Interface;
    type IUnderline is access all IUnderline_Interface'Class;
@@ -3507,6 +3543,27 @@ package WinRt.Windows.UI.Xaml.Documents is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TextElement
 
+   function get_TextDecorationsProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsAccessKeyScopeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AccessKeyScopeOwnerProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_KeyTipPlacementModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_KeyTipHorizontalOffsetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_KeyTipVerticalOffsetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsTextScaleFactorEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_FontSizeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -3531,9 +3588,6 @@ package WinRt.Windows.UI.Xaml.Documents is
    function get_LanguageProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_IsTextScaleFactorEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_AllowFocusOnInteractionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -3541,24 +3595,6 @@ package WinRt.Windows.UI.Xaml.Documents is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_ExitDisplayModeOnAccessKeyInvokedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TextDecorationsProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsAccessKeyScopeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AccessKeyScopeOwnerProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_KeyTipPlacementModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_KeyTipHorizontalOffsetProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_KeyTipVerticalOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -4580,6 +4616,12 @@ package WinRt.Windows.UI.Xaml.Documents is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Glyphs
 
+   function get_IsColorFontEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ColorFontPaletteIndexProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_UnicodeStringProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -4602,12 +4644,6 @@ package WinRt.Windows.UI.Xaml.Documents is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_FillProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsColorFontEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ColorFontPaletteIndexProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -4747,7 +4783,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Hyperlink
 
-   function get_NavigateUriProperty
+   function get_UnderlineStyleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_FocusStateProperty_Hyperlink
@@ -4763,9 +4799,6 @@ package WinRt.Windows.UI.Xaml.Documents is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_XYFocusRightNavigationStrategyProperty_Hyperlink
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_UnderlineStyleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_XYFocusLeftProperty_Hyperlink
@@ -4787,6 +4820,9 @@ package WinRt.Windows.UI.Xaml.Documents is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_TabIndexProperty_Hyperlink
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_NavigateUriProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------

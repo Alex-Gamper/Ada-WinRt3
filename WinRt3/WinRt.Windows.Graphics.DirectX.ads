@@ -227,7 +227,8 @@ package WinRt.Windows.Graphics.DirectX is
       V208_e,
       V408_e,
       SamplerFeedbackMinMipOpaque_e,
-      SamplerFeedbackMipRegionUsedOpaque_e
+      SamplerFeedbackMipRegionUsedOpaque_e,
+      A4B4G4R4_e
    );
    for DirectXPixelFormat use (
       Unknown_e => 0,
@@ -350,7 +351,8 @@ package WinRt.Windows.Graphics.DirectX is
       V208_e => 131,
       V408_e => 132,
       SamplerFeedbackMinMipOpaque_e => 189,
-      SamplerFeedbackMipRegionUsedOpaque_e => 190
+      SamplerFeedbackMipRegionUsedOpaque_e => 190,
+      A4B4G4R4_e => 191
    );
    type DirectXPixelFormat_Ptr is access all DirectXPixelFormat;
 

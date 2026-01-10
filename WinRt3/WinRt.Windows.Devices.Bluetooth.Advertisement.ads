@@ -50,6 +50,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
 
    type IBluetoothLEAdvertisementBytePatternFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementBytePatternFactory is access all IBluetoothLEAdvertisementBytePatternFactory_Interface'Class;
+   type IBluetoothLEAdvertisementBytePatternFactory_Ptr is access all IBluetoothLEAdvertisementBytePatternFactory;
 
    type IBluetoothLEAdvertisementDataSection_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementDataSection is access all IBluetoothLEAdvertisementDataSection_Interface'Class;
@@ -57,9 +58,11 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
 
    type IBluetoothLEAdvertisementDataSectionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementDataSectionFactory is access all IBluetoothLEAdvertisementDataSectionFactory_Interface'Class;
+   type IBluetoothLEAdvertisementDataSectionFactory_Ptr is access all IBluetoothLEAdvertisementDataSectionFactory;
 
    type IBluetoothLEAdvertisementDataTypesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementDataTypesStatics is access all IBluetoothLEAdvertisementDataTypesStatics_Interface'Class;
+   type IBluetoothLEAdvertisementDataTypesStatics_Ptr is access all IBluetoothLEAdvertisementDataTypesStatics;
 
    type IBluetoothLEAdvertisementFilter_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementFilter is access all IBluetoothLEAdvertisementFilter_Interface'Class;
@@ -71,9 +74,15 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
 
    type IBluetoothLEAdvertisementPublisher2_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementPublisher2 is access all IBluetoothLEAdvertisementPublisher2_Interface'Class;
+   type IBluetoothLEAdvertisementPublisher2_Ptr is access all IBluetoothLEAdvertisementPublisher2;
+
+   type IBluetoothLEAdvertisementPublisher3_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEAdvertisementPublisher3 is access all IBluetoothLEAdvertisementPublisher3_Interface'Class;
+   type IBluetoothLEAdvertisementPublisher3_Ptr is access all IBluetoothLEAdvertisementPublisher3;
 
    type IBluetoothLEAdvertisementPublisherFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementPublisherFactory is access all IBluetoothLEAdvertisementPublisherFactory_Interface'Class;
+   type IBluetoothLEAdvertisementPublisherFactory_Ptr is access all IBluetoothLEAdvertisementPublisherFactory;
 
    type IBluetoothLEAdvertisementPublisherStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementPublisherStatusChangedEventArgs is access all IBluetoothLEAdvertisementPublisherStatusChangedEventArgs_Interface'Class;
@@ -81,6 +90,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
 
    type IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2 is access all IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2_Interface'Class;
+   type IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2_Ptr is access all IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2;
 
    type IBluetoothLEAdvertisementReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementReceivedEventArgs is access all IBluetoothLEAdvertisementReceivedEventArgs_Interface'Class;
@@ -88,6 +98,19 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
 
    type IBluetoothLEAdvertisementReceivedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementReceivedEventArgs2 is access all IBluetoothLEAdvertisementReceivedEventArgs2_Interface'Class;
+   type IBluetoothLEAdvertisementReceivedEventArgs2_Ptr is access all IBluetoothLEAdvertisementReceivedEventArgs2;
+
+   type IBluetoothLEAdvertisementReceivedEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEAdvertisementReceivedEventArgs3 is access all IBluetoothLEAdvertisementReceivedEventArgs3_Interface'Class;
+   type IBluetoothLEAdvertisementReceivedEventArgs3_Ptr is access all IBluetoothLEAdvertisementReceivedEventArgs3;
+
+   type IBluetoothLEAdvertisementScanParameters_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEAdvertisementScanParameters is access all IBluetoothLEAdvertisementScanParameters_Interface'Class;
+   type IBluetoothLEAdvertisementScanParameters_Ptr is access all IBluetoothLEAdvertisementScanParameters;
+
+   type IBluetoothLEAdvertisementScanParametersStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEAdvertisementScanParametersStatics is access all IBluetoothLEAdvertisementScanParametersStatics_Interface'Class;
+   type IBluetoothLEAdvertisementScanParametersStatics_Ptr is access all IBluetoothLEAdvertisementScanParametersStatics;
 
    type IBluetoothLEAdvertisementWatcher_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementWatcher is access all IBluetoothLEAdvertisementWatcher_Interface'Class;
@@ -95,9 +118,15 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
 
    type IBluetoothLEAdvertisementWatcher2_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementWatcher2 is access all IBluetoothLEAdvertisementWatcher2_Interface'Class;
+   type IBluetoothLEAdvertisementWatcher2_Ptr is access all IBluetoothLEAdvertisementWatcher2;
+
+   type IBluetoothLEAdvertisementWatcher3_Interface is interface and WinRt.IInspectable_Interface;
+   type IBluetoothLEAdvertisementWatcher3 is access all IBluetoothLEAdvertisementWatcher3_Interface'Class;
+   type IBluetoothLEAdvertisementWatcher3_Ptr is access all IBluetoothLEAdvertisementWatcher3;
 
    type IBluetoothLEAdvertisementWatcherFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementWatcherFactory is access all IBluetoothLEAdvertisementWatcherFactory_Interface'Class;
+   type IBluetoothLEAdvertisementWatcherFactory_Ptr is access all IBluetoothLEAdvertisementWatcherFactory;
 
    type IBluetoothLEAdvertisementWatcherStoppedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEAdvertisementWatcherStoppedEventArgs is access all IBluetoothLEAdvertisementWatcherStoppedEventArgs_Interface'Class;
@@ -109,6 +138,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
 
    type IBluetoothLEManufacturerDataFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBluetoothLEManufacturerDataFactory is access all IBluetoothLEManufacturerDataFactory_Interface'Class;
+   type IBluetoothLEManufacturerDataFactory_Ptr is access all IBluetoothLEManufacturerDataFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -156,6 +186,12 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       end record;
    type BluetoothLEAdvertisementReceivedEventArgs_Ptr is access all BluetoothLEAdvertisementReceivedEventArgs;
 
+   type BluetoothLEAdvertisementScanParameters is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IBluetoothLEAdvertisementScanParameters : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters;
+      end record;
+   type BluetoothLEAdvertisementScanParameters_Ptr is access all BluetoothLEAdvertisementScanParameters;
+
    type BluetoothLEAdvertisementWatcher is new Ada.Finalization.Limited_Controlled with
       record
          m_IBluetoothLEAdvertisementWatcher : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher;
@@ -195,6 +231,20 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       DualModeHostCapable_e => 16
    );
    type BluetoothLEAdvertisementFlags_Ptr is access all BluetoothLEAdvertisementFlags;
+
+   type BluetoothLEAdvertisementPhyType is (
+      Unspecified_e,
+      Uncoded1MPhy_e,
+      Uncoded2MPhy_e,
+      CodedPhy_e
+   );
+   for BluetoothLEAdvertisementPhyType use (
+      Unspecified_e => 0,
+      Uncoded1MPhy_e => 1,
+      Uncoded2MPhy_e => 2,
+      CodedPhy_e => 3
+   );
+   type BluetoothLEAdvertisementPhyType_Ptr is access all BluetoothLEAdvertisementPhyType;
 
    type BluetoothLEAdvertisementPublisherStatus is (
       Created_e,
@@ -552,7 +602,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       )
       return WinRt.Hresult is abstract;
 
-      function get_SlaveConnectionIntervalRange
+      function get_PeripheralConnectionIntervalRange
       (
          this : access IBluetoothLEAdvertisementDataTypesStatics_Interface;
          RetVal : access WinRt.Byte
@@ -772,6 +822,39 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       IID_IBluetoothLEAdvertisementPublisher2 : aliased WinRt.IID := (4225455198, 22257, 20751, (164, 52, 33, 127, 189, 158, 123, 210 ));
 
    -----------------------------------------------------------------------------
+   -- type IBluetoothLEAdvertisementPublisher3 is interface and WinRt.IInspectable;
+
+      function get_PrimaryPhy
+      (
+         this : access IBluetoothLEAdvertisementPublisher3_Interface;
+         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PrimaryPhy
+      (
+         this : access IBluetoothLEAdvertisementPublisher3_Interface;
+         value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SecondaryPhy
+      (
+         this : access IBluetoothLEAdvertisementPublisher3_Interface;
+         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SecondaryPhy
+      (
+         this : access IBluetoothLEAdvertisementPublisher3_Interface;
+         value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEAdvertisementPublisher3 : aliased WinRt.IID := (486488322, 25068, 22390, (171, 134, 155, 65, 249, 75, 30, 102 ));
+
+   -----------------------------------------------------------------------------
    -- type IBluetoothLEAdvertisementPublisherFactory is interface and WinRt.IInspectable;
 
       function Create
@@ -908,6 +991,63 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       return WinRt.Hresult is abstract;
 
       IID_IBluetoothLEAdvertisementReceivedEventArgs2 : aliased WinRt.IID := (316262523, 921, 24334, (163, 72, 83, 176, 43, 107, 22, 46 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBluetoothLEAdvertisementReceivedEventArgs3 is interface and WinRt.IInspectable;
+
+      function get_PrimaryPhy
+      (
+         this : access IBluetoothLEAdvertisementReceivedEventArgs3_Interface;
+         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SecondaryPhy
+      (
+         this : access IBluetoothLEAdvertisementReceivedEventArgs3_Interface;
+         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEAdvertisementReceivedEventArgs3 : aliased WinRt.IID := (2367703892, 65414, 23940, (162, 90, 19, 125, 204, 217, 111, 122 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBluetoothLEAdvertisementScanParameters is interface and WinRt.IInspectable;
+
+      function get_ScanWindow
+      (
+         this : access IBluetoothLEAdvertisementScanParameters_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ScanInterval
+      (
+         this : access IBluetoothLEAdvertisementScanParameters_Interface;
+         RetVal : access WinRt.UInt16
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEAdvertisementScanParameters : aliased WinRt.IID := (2499351571, 25561, 21437, (175, 76, 230, 177, 166, 81, 69, 149 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBluetoothLEAdvertisementScanParametersStatics is interface and WinRt.IInspectable;
+
+      function CoexistenceOptimized
+      (
+         this : access IBluetoothLEAdvertisementScanParametersStatics_Interface;
+         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
+      )
+      return WinRt.Hresult is abstract;
+
+      function LowLatency
+      (
+         this : access IBluetoothLEAdvertisementScanParametersStatics_Interface;
+         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEAdvertisementScanParametersStatics : aliased WinRt.IID := (1418607053, 15518, 24461, (181, 225, 173, 235, 237, 92, 53, 124 ));
 
    -----------------------------------------------------------------------------
    -- type IBluetoothLEAdvertisementWatcher is interface and WinRt.IInspectable;
@@ -1051,6 +1191,67 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       return WinRt.Hresult is abstract;
 
       IID_IBluetoothLEAdvertisementWatcher2 : aliased WinRt.IID := (29304508, 45412, 22533, (144, 163, 232, 167, 153, 127, 242, 37 ));
+
+   -----------------------------------------------------------------------------
+   -- type IBluetoothLEAdvertisementWatcher3 is interface and WinRt.IInspectable;
+
+      function get_UseUncoded1MPhy
+      (
+         this : access IBluetoothLEAdvertisementWatcher3_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_UseUncoded1MPhy
+      (
+         this : access IBluetoothLEAdvertisementWatcher3_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UseCodedPhy
+      (
+         this : access IBluetoothLEAdvertisementWatcher3_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_UseCodedPhy
+      (
+         this : access IBluetoothLEAdvertisementWatcher3_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ScanParameters
+      (
+         this : access IBluetoothLEAdvertisementWatcher3_Interface;
+         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ScanParameters
+      (
+         this : access IBluetoothLEAdvertisementWatcher3_Interface;
+         value : Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UseHardwareFilter
+      (
+         this : access IBluetoothLEAdvertisementWatcher3_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_UseHardwareFilter
+      (
+         this : access IBluetoothLEAdvertisementWatcher3_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IBluetoothLEAdvertisementWatcher3 : aliased WinRt.IID := (349798590, 16386, 23998, (133, 25, 255, 202, 108, 163, 137, 240 ));
 
    -----------------------------------------------------------------------------
    -- type IBluetoothLEAdvertisementWatcherFactory is interface and WinRt.IInspectable;
@@ -1265,14 +1466,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BluetoothLEAdvertisementDataSection
 
-   function Constructor return BluetoothLEAdvertisementDataSection;
-
    function Constructor
    (
       dataType : WinRt.Byte;
       data : Windows.Storage.Streams.IBuffer
    )
    return BluetoothLEAdvertisementDataSection;
+
+   function Constructor return BluetoothLEAdvertisementDataSection;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BluetoothLEAdvertisementDataSection
@@ -1335,7 +1536,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_TxPowerLevel
       return WinRt.Byte;
 
-      function get_SlaveConnectionIntervalRange
+      function get_PeripheralConnectionIntervalRange
       return WinRt.Byte;
 
       function get_ServiceSolicitation16BitUuids
@@ -1508,6 +1709,30 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       value : WinRt.Boolean
    );
 
+   function get_PrimaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisher
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType;
+
+   procedure put_PrimaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisher;
+      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+   );
+
+   function get_SecondaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisher
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType;
+
+   procedure put_SecondaryPhy
+   (
+      this : in out BluetoothLEAdvertisementPublisher;
+      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BluetoothLEAdvertisementPublisherStatusChangedEventArgs
 
@@ -1616,6 +1841,48 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    )
    return WinRt.Boolean;
 
+   function get_PrimaryPhy
+   (
+      this : in out BluetoothLEAdvertisementReceivedEventArgs
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType;
+
+   function get_SecondaryPhy
+   (
+      this : in out BluetoothLEAdvertisementReceivedEventArgs
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BluetoothLEAdvertisementScanParameters
+
+   overriding procedure Initialize (this : in out BluetoothLEAdvertisementScanParameters);
+   overriding procedure Finalize (this : in out BluetoothLEAdvertisementScanParameters);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for BluetoothLEAdvertisementScanParameters
+
+   function CoexistenceOptimized
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters;
+
+   function LowLatency
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BluetoothLEAdvertisementScanParameters
+
+   function get_ScanWindow
+   (
+      this : in out BluetoothLEAdvertisementScanParameters
+   )
+   return WinRt.UInt16;
+
+   function get_ScanInterval
+   (
+      this : in out BluetoothLEAdvertisementScanParameters
+   )
+   return WinRt.UInt16;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BluetoothLEAdvertisementWatcher
 
@@ -1625,13 +1892,13 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BluetoothLEAdvertisementWatcher
 
-   function Constructor return BluetoothLEAdvertisementWatcher;
-
    function Constructor
    (
       advertisementFilter : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementFilter'Class
    )
    return BluetoothLEAdvertisementWatcher;
+
+   function Constructor return BluetoothLEAdvertisementWatcher;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BluetoothLEAdvertisementWatcher
@@ -1750,6 +2017,54 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       value : WinRt.Boolean
    );
 
+   function get_UseUncoded1MPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcher
+   )
+   return WinRt.Boolean;
+
+   procedure put_UseUncoded1MPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcher;
+      value : WinRt.Boolean
+   );
+
+   function get_UseCodedPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcher
+   )
+   return WinRt.Boolean;
+
+   procedure put_UseCodedPhy
+   (
+      this : in out BluetoothLEAdvertisementWatcher;
+      value : WinRt.Boolean
+   );
+
+   function get_ScanParameters
+   (
+      this : in out BluetoothLEAdvertisementWatcher
+   )
+   return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters'Class;
+
+   procedure put_ScanParameters
+   (
+      this : in out BluetoothLEAdvertisementWatcher;
+      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters'Class
+   );
+
+   function get_UseHardwareFilter
+   (
+      this : in out BluetoothLEAdvertisementWatcher
+   )
+   return WinRt.Boolean;
+
+   procedure put_UseHardwareFilter
+   (
+      this : in out BluetoothLEAdvertisementWatcher;
+      value : WinRt.Boolean
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BluetoothLEAdvertisementWatcherStoppedEventArgs
 
@@ -1774,14 +2089,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BluetoothLEManufacturerData
 
+   function Constructor return BluetoothLEManufacturerData;
+
    function Constructor
    (
       companyId : WinRt.UInt16;
       data : Windows.Storage.Streams.IBuffer
    )
    return BluetoothLEManufacturerData;
-
-   function Constructor return BluetoothLEManufacturerData;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BluetoothLEManufacturerData

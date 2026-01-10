@@ -8457,6 +8457,115 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    -- Static RuntimeClass
    package body ContactManager is
 
+      function IsShowFullContactCardSupportedAsync
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactManager");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Contacts.IContactManagerStatics5_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_Boolean.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Boolean;
+         m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
+         m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
+         m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IContactManagerStatics5'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.IsShowFullContactCardSupportedAsync (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_RetVal;
+      end;
+
+      function get_IncludeMiddleNameInSystemDisplayAndSort
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactManager");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Contacts.IContactManagerStatics5_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IContactManagerStatics5'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_IncludeMiddleNameInSystemDisplayAndSort (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      procedure put_IncludeMiddleNameInSystemDisplayAndSort
+      (
+         value : WinRt.Boolean
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactManager");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Contacts.IContactManagerStatics5_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IContactManagerStatics5'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.put_IncludeMiddleNameInSystemDisplayAndSort (value);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
       function GetForUser
       (
          user : Windows.System.User'Class
@@ -8549,6 +8658,80 @@ package body WinRt.Windows.ApplicationModel.Contacts is
                      end if;
                   end if;
                end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      procedure ShowContactCard
+      (
+         contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
+         selection : Windows.Foundation.Rect
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactManager");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Contacts.IContactManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IContactManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.ShowContactCard (contact_p.m_IContact.all, selection);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+      procedure ShowContactCard
+      (
+         contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
+         selection : Windows.Foundation.Rect;
+         preferredPlacement : Windows.UI.Popups.Placement
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactManager");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Contacts.IContactManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IContactManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.ShowContactCard (contact_p.m_IContact.all, selection, preferredPlacement);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+      function ShowDelayLoadedContactCard
+      (
+         contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
+         selection : Windows.Foundation.Rect;
+         preferredPlacement : Windows.UI.Popups.Placement
+      )
+      return WinRt.Windows.ApplicationModel.Contacts.ContactCardDelayedDataLoader is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactManager");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Contacts.IContactManagerStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContactCardDelayedDataLoader;
+      begin
+         return RetVal : WinRt.Windows.ApplicationModel.Contacts.ContactCardDelayedDataLoader do
+            Hr := RoGetActivationFactory (m_hString, IID_IContactManagerStatics'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.ShowDelayLoadedContactCard (contact_p.m_IContact.all, selection, preferredPlacement, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IContactCardDelayedDataLoader := new Windows.ApplicationModel.Contacts.IContactCardDelayedDataLoader;
+               Retval.m_IContactCardDelayedDataLoader.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
          end return;
@@ -9114,189 +9297,6 @@ package body WinRt.Windows.ApplicationModel.Contacts is
          Hr := RoGetActivationFactory (m_hString, IID_IContactManagerStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.put_SystemSortOrder (value);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      procedure ShowContactCard
-      (
-         contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
-         selection : Windows.Foundation.Rect
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactManager");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Contacts.IContactManagerStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IContactManagerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.ShowContactCard (contact_p.m_IContact.all, selection);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      procedure ShowContactCard
-      (
-         contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactManager");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Contacts.IContactManagerStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IContactManagerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.ShowContactCard (contact_p.m_IContact.all, selection, preferredPlacement);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      function ShowDelayLoadedContactCard
-      (
-         contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
-      )
-      return WinRt.Windows.ApplicationModel.Contacts.ContactCardDelayedDataLoader is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactManager");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Contacts.IContactManagerStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContactCardDelayedDataLoader;
-      begin
-         return RetVal : WinRt.Windows.ApplicationModel.Contacts.ContactCardDelayedDataLoader do
-            Hr := RoGetActivationFactory (m_hString, IID_IContactManagerStatics'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.ShowDelayLoadedContactCard (contact_p.m_IContact.all, selection, preferredPlacement, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IContactCardDelayedDataLoader := new Windows.ApplicationModel.Contacts.IContactCardDelayedDataLoader;
-               Retval.m_IContactCardDelayedDataLoader.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function IsShowFullContactCardSupportedAsync
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactManager");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Contacts.IContactManagerStatics5_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_Boolean.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Boolean;
-         m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
-         m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
-         m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IContactManagerStatics5'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.IsShowFullContactCardSupportedAsync (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_RetVal;
-      end;
-
-      function get_IncludeMiddleNameInSystemDisplayAndSort
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactManager");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Contacts.IContactManagerStatics5_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IContactManagerStatics5'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_IncludeMiddleNameInSystemDisplayAndSort (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      procedure put_IncludeMiddleNameInSystemDisplayAndSort
-      (
-         value : WinRt.Boolean
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactManager");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Contacts.IContactManagerStatics5_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IContactManagerStatics5'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.put_IncludeMiddleNameInSystemDisplayAndSort (value);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -10793,22 +10793,6 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ContactQueryOptions
 
-   function Constructor return ContactQueryOptions is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactQueryOptions");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Contacts.IContactQueryOptions;
-   begin
-      return RetVal : ContactQueryOptions do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IContactQueryOptions := new Windows.ApplicationModel.Contacts.IContactQueryOptions;
-            Retval.m_IContactQueryOptions.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       text : WinRt.WString
@@ -10859,6 +10843,22 @@ package body WinRt.Windows.ApplicationModel.Contacts is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_text);
+      end return;
+   end;
+
+   function Constructor return ContactQueryOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactQueryOptions");
+      m_ComRetVal  : aliased Windows.ApplicationModel.Contacts.IContactQueryOptions;
+   begin
+      return RetVal : ContactQueryOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IContactQueryOptions := new Windows.ApplicationModel.Contacts.IContactQueryOptions;
+            Retval.m_IContactQueryOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

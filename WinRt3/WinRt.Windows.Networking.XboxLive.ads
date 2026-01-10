@@ -46,6 +46,7 @@ package WinRt.Windows.Networking.XboxLive is
 
    type IXboxLiveDeviceAddressStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IXboxLiveDeviceAddressStatics is access all IXboxLiveDeviceAddressStatics_Interface'Class;
+   type IXboxLiveDeviceAddressStatics_Ptr is access all IXboxLiveDeviceAddressStatics;
 
    type IXboxLiveEndpointPair_Interface is interface and WinRt.IInspectable_Interface;
    type IXboxLiveEndpointPair is access all IXboxLiveEndpointPair_Interface'Class;
@@ -61,6 +62,7 @@ package WinRt.Windows.Networking.XboxLive is
 
    type IXboxLiveEndpointPairStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IXboxLiveEndpointPairStatics is access all IXboxLiveEndpointPairStatics_Interface'Class;
+   type IXboxLiveEndpointPairStatics_Ptr is access all IXboxLiveEndpointPairStatics;
 
    type IXboxLiveEndpointPairTemplate_Interface is interface and WinRt.IInspectable_Interface;
    type IXboxLiveEndpointPairTemplate is access all IXboxLiveEndpointPairTemplate_Interface'Class;
@@ -68,6 +70,7 @@ package WinRt.Windows.Networking.XboxLive is
 
    type IXboxLiveEndpointPairTemplateStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IXboxLiveEndpointPairTemplateStatics is access all IXboxLiveEndpointPairTemplateStatics_Interface'Class;
+   type IXboxLiveEndpointPairTemplateStatics_Ptr is access all IXboxLiveEndpointPairTemplateStatics;
 
    type IXboxLiveInboundEndpointPairCreatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IXboxLiveInboundEndpointPairCreatedEventArgs is access all IXboxLiveInboundEndpointPairCreatedEventArgs_Interface'Class;
@@ -79,6 +82,7 @@ package WinRt.Windows.Networking.XboxLive is
 
    type IXboxLiveQualityOfServiceMeasurementStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IXboxLiveQualityOfServiceMeasurementStatics is access all IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class;
+   type IXboxLiveQualityOfServiceMeasurementStatics_Ptr is access all IXboxLiveQualityOfServiceMeasurementStatics;
 
    type IXboxLiveQualityOfServiceMetricResult_Interface is interface and WinRt.IInspectable_Interface;
    type IXboxLiveQualityOfServiceMetricResult is access all IXboxLiveQualityOfServiceMetricResult_Interface'Class;

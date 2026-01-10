@@ -1513,6 +1513,30 @@ package body WinRt.Windows.Data.Json is
    -----------------------------------------------------------------------------
    -- Static Interfaces for JsonValue
 
+   function CreateNullValue
+   return WinRt.Windows.Data.Json.JsonValue is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
+      m_Factory        : access WinRt.Windows.Data.Json.IJsonValueStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Data.Json.IJsonValue;
+   begin
+      return RetVal : WinRt.Windows.Data.Json.JsonValue do
+         Hr := RoGetActivationFactory (m_hString, IID_IJsonValueStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateNullValue (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IJsonValue := new Windows.Data.Json.IJsonValue;
+            Retval.m_IJsonValue.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Parse
    (
       input : WinRt.WString
@@ -1649,30 +1673,6 @@ package body WinRt.Windows.Data.Json is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_input);
-      end return;
-   end;
-
-   function CreateNullValue
-   return WinRt.Windows.Data.Json.JsonValue is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
-      m_Factory        : access WinRt.Windows.Data.Json.IJsonValueStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Json.IJsonValue;
-   begin
-      return RetVal : WinRt.Windows.Data.Json.JsonValue do
-         Hr := RoGetActivationFactory (m_hString, IID_IJsonValueStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateNullValue (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IJsonValue := new Windows.Data.Json.IJsonValue;
-            Retval.m_IJsonValue.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

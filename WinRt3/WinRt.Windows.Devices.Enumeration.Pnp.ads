@@ -46,6 +46,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
 
    type IPnpObjectStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPnpObjectStatics is access all IPnpObjectStatics_Interface'Class;
+   type IPnpObjectStatics_Ptr is access all IPnpObjectStatics;
 
    type IPnpObjectUpdate_Interface is interface and WinRt.IInspectable_Interface;
    type IPnpObjectUpdate is access all IPnpObjectUpdate_Interface'Class;
@@ -96,7 +97,8 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       AssociationEndpoint_e,
       AssociationEndpointContainer_e,
       AssociationEndpointService_e,
-      DevicePanel_e
+      DevicePanel_e,
+      AssociationEndpointProtocol_e
    );
    for PnpObjectType use (
       Unknown_e => 0,
@@ -107,7 +109,8 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       AssociationEndpoint_e => 5,
       AssociationEndpointContainer_e => 6,
       AssociationEndpointService_e => 7,
-      DevicePanel_e => 8
+      DevicePanel_e => 8,
+      AssociationEndpointProtocol_e => 9
    );
    type PnpObjectType_Ptr is access all PnpObjectType;
 

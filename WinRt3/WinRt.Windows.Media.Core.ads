@@ -61,15 +61,19 @@ package WinRt.Windows.Media.Core is
 
    type IAudioStreamDescriptor2_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioStreamDescriptor2 is access all IAudioStreamDescriptor2_Interface'Class;
+   type IAudioStreamDescriptor2_Ptr is access all IAudioStreamDescriptor2;
 
    type IAudioStreamDescriptor3_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioStreamDescriptor3 is access all IAudioStreamDescriptor3_Interface'Class;
+   type IAudioStreamDescriptor3_Ptr is access all IAudioStreamDescriptor3;
 
    type IAudioStreamDescriptorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioStreamDescriptorFactory is access all IAudioStreamDescriptorFactory_Interface'Class;
+   type IAudioStreamDescriptorFactory_Ptr is access all IAudioStreamDescriptorFactory;
 
    type IAudioTrack_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioTrack is access all IAudioTrack_Interface'Class;
+   type IAudioTrack_Ptr is access all IAudioTrack;
 
    type IAudioTrackOpenFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioTrackOpenFailedEventArgs is access all IAudioTrackOpenFailedEventArgs_Interface'Class;
@@ -93,6 +97,11 @@ package WinRt.Windows.Media.Core is
 
    type ICodecSubtypesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICodecSubtypesStatics is access all ICodecSubtypesStatics_Interface'Class;
+   type ICodecSubtypesStatics_Ptr is access all ICodecSubtypesStatics;
+
+   type ICodecSubtypesStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type ICodecSubtypesStatics2 is access all ICodecSubtypesStatics2_Interface'Class;
+   type ICodecSubtypesStatics2_Ptr is access all ICodecSubtypesStatics2;
 
    type IDataCue_Interface is interface and WinRt.IInspectable_Interface;
    type IDataCue is access all IDataCue_Interface'Class;
@@ -100,6 +109,7 @@ package WinRt.Windows.Media.Core is
 
    type IDataCue2_Interface is interface and WinRt.IInspectable_Interface;
    type IDataCue2 is access all IDataCue2_Interface'Class;
+   type IDataCue2_Ptr is access all IDataCue2;
 
    type IFaceDetectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IFaceDetectedEventArgs is access all IFaceDetectedEventArgs_Interface'Class;
@@ -111,6 +121,7 @@ package WinRt.Windows.Media.Core is
 
    type IFaceDetectionEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
    type IFaceDetectionEffectDefinition is access all IFaceDetectionEffectDefinition_Interface'Class;
+   type IFaceDetectionEffectDefinition_Ptr is access all IFaceDetectionEffectDefinition;
 
    type IFaceDetectionEffectFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IFaceDetectionEffectFrame is access all IFaceDetectionEffectFrame_Interface'Class;
@@ -138,6 +149,7 @@ package WinRt.Windows.Media.Core is
 
    type ILowLightFusionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILowLightFusionStatics is access all ILowLightFusionStatics_Interface'Class;
+   type ILowLightFusionStatics_Ptr is access all ILowLightFusionStatics;
 
    type IMediaBinder_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaBinder is access all IMediaBinder_Interface'Class;
@@ -149,12 +161,15 @@ package WinRt.Windows.Media.Core is
 
    type IMediaBindingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaBindingEventArgs2 is access all IMediaBindingEventArgs2_Interface'Class;
+   type IMediaBindingEventArgs2_Ptr is access all IMediaBindingEventArgs2;
 
    type IMediaBindingEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaBindingEventArgs3 is access all IMediaBindingEventArgs3_Interface'Class;
+   type IMediaBindingEventArgs3_Ptr is access all IMediaBindingEventArgs3;
 
    type IMediaCue_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCue is access all IMediaCue_Interface'Class;
+   type IMediaCue_Ptr is access all IMediaCue;
 
    type IMediaCueEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCueEventArgs is access all IMediaCueEventArgs_Interface'Class;
@@ -162,6 +177,7 @@ package WinRt.Windows.Media.Core is
 
    type IMediaSource_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaSource is access all IMediaSource_Interface'Class;
+   type IMediaSource_Ptr is access all IMediaSource;
 
    type IMediaSource2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaSource2 is access all IMediaSource2_Interface'Class;
@@ -169,12 +185,15 @@ package WinRt.Windows.Media.Core is
 
    type IMediaSource3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaSource3 is access all IMediaSource3_Interface'Class;
+   type IMediaSource3_Ptr is access all IMediaSource3;
 
    type IMediaSource4_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaSource4 is access all IMediaSource4_Interface'Class;
+   type IMediaSource4_Ptr is access all IMediaSource4;
 
    type IMediaSource5_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaSource5 is access all IMediaSource5_Interface'Class;
+   type IMediaSource5_Ptr is access all IMediaSource5;
 
    type IMediaSourceAppServiceConnection_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaSourceAppServiceConnection is access all IMediaSourceAppServiceConnection_Interface'Class;
@@ -182,6 +201,7 @@ package WinRt.Windows.Media.Core is
 
    type IMediaSourceAppServiceConnectionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaSourceAppServiceConnectionFactory is access all IMediaSourceAppServiceConnectionFactory_Interface'Class;
+   type IMediaSourceAppServiceConnectionFactory_Ptr is access all IMediaSourceAppServiceConnectionFactory;
 
    type IMediaSourceError_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaSourceError is access all IMediaSourceError_Interface'Class;
@@ -197,15 +217,19 @@ package WinRt.Windows.Media.Core is
 
    type IMediaSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaSourceStatics is access all IMediaSourceStatics_Interface'Class;
+   type IMediaSourceStatics_Ptr is access all IMediaSourceStatics;
 
    type IMediaSourceStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaSourceStatics2 is access all IMediaSourceStatics2_Interface'Class;
+   type IMediaSourceStatics2_Ptr is access all IMediaSourceStatics2;
 
    type IMediaSourceStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaSourceStatics3 is access all IMediaSourceStatics3_Interface'Class;
+   type IMediaSourceStatics3_Ptr is access all IMediaSourceStatics3;
 
    type IMediaSourceStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaSourceStatics4 is access all IMediaSourceStatics4_Interface'Class;
+   type IMediaSourceStatics4_Ptr is access all IMediaSourceStatics4;
 
    type IMediaStreamDescriptor_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamDescriptor is access all IMediaStreamDescriptor_Interface'Class;
@@ -213,6 +237,7 @@ package WinRt.Windows.Media.Core is
 
    type IMediaStreamDescriptor2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamDescriptor2 is access all IMediaStreamDescriptor2_Interface'Class;
+   type IMediaStreamDescriptor2_Ptr is access all IMediaStreamDescriptor2;
 
    type IMediaStreamSample_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamSample is access all IMediaStreamSample_Interface'Class;
@@ -220,6 +245,7 @@ package WinRt.Windows.Media.Core is
 
    type IMediaStreamSample2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamSample2 is access all IMediaStreamSample2_Interface'Class;
+   type IMediaStreamSample2_Ptr is access all IMediaStreamSample2;
 
    type IMediaStreamSampleProtectionProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamSampleProtectionProperties is access all IMediaStreamSampleProtectionProperties_Interface'Class;
@@ -227,9 +253,11 @@ package WinRt.Windows.Media.Core is
 
    type IMediaStreamSampleStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamSampleStatics is access all IMediaStreamSampleStatics_Interface'Class;
+   type IMediaStreamSampleStatics_Ptr is access all IMediaStreamSampleStatics;
 
    type IMediaStreamSampleStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamSampleStatics2 is access all IMediaStreamSampleStatics2_Interface'Class;
+   type IMediaStreamSampleStatics2_Ptr is access all IMediaStreamSampleStatics2;
 
    type IMediaStreamSource_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamSource is access all IMediaStreamSource_Interface'Class;
@@ -237,12 +265,15 @@ package WinRt.Windows.Media.Core is
 
    type IMediaStreamSource2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamSource2 is access all IMediaStreamSource2_Interface'Class;
+   type IMediaStreamSource2_Ptr is access all IMediaStreamSource2;
 
    type IMediaStreamSource3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamSource3 is access all IMediaStreamSource3_Interface'Class;
+   type IMediaStreamSource3_Ptr is access all IMediaStreamSource3;
 
    type IMediaStreamSource4_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamSource4 is access all IMediaStreamSource4_Interface'Class;
+   type IMediaStreamSource4_Ptr is access all IMediaStreamSource4;
 
    type IMediaStreamSourceClosedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamSourceClosedEventArgs is access all IMediaStreamSourceClosedEventArgs_Interface'Class;
@@ -254,6 +285,7 @@ package WinRt.Windows.Media.Core is
 
    type IMediaStreamSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamSourceFactory is access all IMediaStreamSourceFactory_Interface'Class;
+   type IMediaStreamSourceFactory_Ptr is access all IMediaStreamSourceFactory;
 
    type IMediaStreamSourceSampleRenderedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaStreamSourceSampleRenderedEventArgs is access all IMediaStreamSourceSampleRenderedEventArgs_Interface'Class;
@@ -314,9 +346,11 @@ package WinRt.Windows.Media.Core is
 
    type IMseStreamSource2_Interface is interface and WinRt.IInspectable_Interface;
    type IMseStreamSource2 is access all IMseStreamSource2_Interface'Class;
+   type IMseStreamSource2_Ptr is access all IMseStreamSource2;
 
    type IMseStreamSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMseStreamSourceStatics is access all IMseStreamSourceStatics_Interface'Class;
+   type IMseStreamSourceStatics_Ptr is access all IMseStreamSourceStatics;
 
    type ISceneAnalysisEffect_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneAnalysisEffect is access all ISceneAnalysisEffect_Interface'Class;
@@ -328,6 +362,7 @@ package WinRt.Windows.Media.Core is
 
    type ISceneAnalysisEffectFrame2_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneAnalysisEffectFrame2 is access all ISceneAnalysisEffectFrame2_Interface'Class;
+   type ISceneAnalysisEffectFrame2_Ptr is access all ISceneAnalysisEffectFrame2;
 
    type ISceneAnalyzedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneAnalyzedEventArgs is access all ISceneAnalyzedEventArgs_Interface'Class;
@@ -335,6 +370,7 @@ package WinRt.Windows.Media.Core is
 
    type ISingleSelectMediaTrackList_Interface is interface and WinRt.IInspectable_Interface;
    type ISingleSelectMediaTrackList is access all ISingleSelectMediaTrackList_Interface'Class;
+   type ISingleSelectMediaTrackList_Ptr is access all ISingleSelectMediaTrackList;
 
    type ISpeechCue_Interface is interface and WinRt.IInspectable_Interface;
    type ISpeechCue is access all ISpeechCue_Interface'Class;
@@ -342,9 +378,11 @@ package WinRt.Windows.Media.Core is
 
    type ITimedMetadataStreamDescriptor_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedMetadataStreamDescriptor is access all ITimedMetadataStreamDescriptor_Interface'Class;
+   type ITimedMetadataStreamDescriptor_Ptr is access all ITimedMetadataStreamDescriptor;
 
    type ITimedMetadataStreamDescriptorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedMetadataStreamDescriptorFactory is access all ITimedMetadataStreamDescriptorFactory_Interface'Class;
+   type ITimedMetadataStreamDescriptorFactory_Ptr is access all ITimedMetadataStreamDescriptorFactory;
 
    type ITimedMetadataTrack_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedMetadataTrack is access all ITimedMetadataTrack_Interface'Class;
@@ -353,6 +391,7 @@ package WinRt.Windows.Media.Core is
 
    type ITimedMetadataTrack2_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedMetadataTrack2 is access all ITimedMetadataTrack2_Interface'Class;
+   type ITimedMetadataTrack2_Ptr is access all ITimedMetadataTrack2;
 
    type ITimedMetadataTrackError_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedMetadataTrackError is access all ITimedMetadataTrackError_Interface'Class;
@@ -360,6 +399,7 @@ package WinRt.Windows.Media.Core is
 
    type ITimedMetadataTrackFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedMetadataTrackFactory is access all ITimedMetadataTrackFactory_Interface'Class;
+   type ITimedMetadataTrackFactory_Ptr is access all ITimedMetadataTrackFactory;
 
    type ITimedMetadataTrackFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedMetadataTrackFailedEventArgs is access all ITimedMetadataTrackFailedEventArgs_Interface'Class;
@@ -367,6 +407,11 @@ package WinRt.Windows.Media.Core is
 
    type ITimedMetadataTrackProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedMetadataTrackProvider is access all ITimedMetadataTrackProvider_Interface'Class;
+   type ITimedMetadataTrackProvider_Ptr is access all ITimedMetadataTrackProvider;
+
+   type ITimedTextBouten_Interface is interface and WinRt.IInspectable_Interface;
+   type ITimedTextBouten is access all ITimedTextBouten_Interface'Class;
+   type ITimedTextBouten_Ptr is access all ITimedTextBouten;
 
    type ITimedTextCue_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedTextCue is access all ITimedTextCue_Interface'Class;
@@ -380,6 +425,10 @@ package WinRt.Windows.Media.Core is
    type ITimedTextRegion is access all ITimedTextRegion_Interface'Class;
    type ITimedTextRegion_Ptr is access all ITimedTextRegion;
 
+   type ITimedTextRuby_Interface is interface and WinRt.IInspectable_Interface;
+   type ITimedTextRuby is access all ITimedTextRuby_Interface'Class;
+   type ITimedTextRuby_Ptr is access all ITimedTextRuby;
+
    type ITimedTextSource_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedTextSource is access all ITimedTextSource_Interface'Class;
    type ITimedTextSource_Ptr is access all ITimedTextSource;
@@ -390,9 +439,11 @@ package WinRt.Windows.Media.Core is
 
    type ITimedTextSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedTextSourceStatics is access all ITimedTextSourceStatics_Interface'Class;
+   type ITimedTextSourceStatics_Ptr is access all ITimedTextSourceStatics;
 
    type ITimedTextSourceStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedTextSourceStatics2 is access all ITimedTextSourceStatics2_Interface'Class;
+   type ITimedTextSourceStatics2_Ptr is access all ITimedTextSourceStatics2;
 
    type ITimedTextStyle_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedTextStyle is access all ITimedTextStyle_Interface'Class;
@@ -400,6 +451,11 @@ package WinRt.Windows.Media.Core is
 
    type ITimedTextStyle2_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedTextStyle2 is access all ITimedTextStyle2_Interface'Class;
+   type ITimedTextStyle2_Ptr is access all ITimedTextStyle2;
+
+   type ITimedTextStyle3_Interface is interface and WinRt.IInspectable_Interface;
+   type ITimedTextStyle3 is access all ITimedTextStyle3_Interface'Class;
+   type ITimedTextStyle3_Ptr is access all ITimedTextStyle3;
 
    type ITimedTextSubformat_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedTextSubformat is access all ITimedTextSubformat_Interface'Class;
@@ -419,12 +475,15 @@ package WinRt.Windows.Media.Core is
 
    type IVideoStreamDescriptor2_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoStreamDescriptor2 is access all IVideoStreamDescriptor2_Interface'Class;
+   type IVideoStreamDescriptor2_Ptr is access all IVideoStreamDescriptor2;
 
    type IVideoStreamDescriptorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoStreamDescriptorFactory is access all IVideoStreamDescriptorFactory_Interface'Class;
+   type IVideoStreamDescriptorFactory_Ptr is access all IVideoStreamDescriptorFactory;
 
    type IVideoTrack_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoTrack is access all IVideoTrack_Interface'Class;
+   type IVideoTrack_Ptr is access all IVideoTrack;
 
    type IVideoTrackOpenFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoTrackOpenFailedEventArgs is access all IVideoTrackOpenFailedEventArgs_Interface'Class;
@@ -756,6 +815,12 @@ package WinRt.Windows.Media.Core is
       end record;
    type TimedMetadataTrackFailedEventArgs_Ptr is access all TimedMetadataTrackFailedEventArgs;
 
+   type TimedTextBouten is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ITimedTextBouten : access Windows.Media.Core.ITimedTextBouten;
+      end record;
+   type TimedTextBouten_Ptr is access all TimedTextBouten;
+
    type TimedTextCue is new Ada.Finalization.Limited_Controlled with
       record
          m_ITimedTextCue : access Windows.Media.Core.ITimedTextCue;
@@ -773,6 +838,12 @@ package WinRt.Windows.Media.Core is
          m_ITimedTextRegion : access Windows.Media.Core.ITimedTextRegion;
       end record;
    type TimedTextRegion_Ptr is access all TimedTextRegion;
+
+   type TimedTextRuby is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ITimedTextRuby : access Windows.Media.Core.ITimedTextRuby;
+      end record;
+   type TimedTextRuby_Ptr is access all TimedTextRuby;
 
    type TimedTextSource is new Ada.Finalization.Limited_Controlled with
       record
@@ -1080,6 +1151,40 @@ package WinRt.Windows.Media.Core is
    );
    type TimedMetadataTrackErrorCode_Ptr is access all TimedMetadataTrackErrorCode;
 
+   type TimedTextBoutenPosition is (
+      Before_e,
+      After_e,
+      Outside_e
+   );
+   for TimedTextBoutenPosition use (
+      Before_e => 0,
+      After_e => 1,
+      Outside_e => 2
+   );
+   type TimedTextBoutenPosition_Ptr is access all TimedTextBoutenPosition;
+
+   type TimedTextBoutenType is (
+      None_e,
+      Auto_e,
+      FilledCircle_e,
+      OpenCircle_e,
+      FilledDot_e,
+      OpenDot_e,
+      FilledSesame_e,
+      OpenSesame_e
+   );
+   for TimedTextBoutenType use (
+      None_e => 0,
+      Auto_e => 1,
+      FilledCircle_e => 2,
+      OpenCircle_e => 3,
+      FilledDot_e => 4,
+      OpenDot_e => 5,
+      FilledSesame_e => 6,
+      OpenSesame_e => 7
+   );
+   type TimedTextBoutenType_Ptr is access all TimedTextBoutenType;
+
    type TimedTextDisplayAlignment is (
       Before_e,
       After_e,
@@ -1125,6 +1230,52 @@ package WinRt.Windows.Media.Core is
       Center_e => 2
    );
    type TimedTextLineAlignment_Ptr is access all TimedTextLineAlignment;
+
+   type TimedTextRubyAlign is (
+      Center_e,
+      Start_e,
+      End_e,
+      SpaceAround_e,
+      SpaceBetween_e,
+      WithBase_e
+   );
+   for TimedTextRubyAlign use (
+      Center_e => 0,
+      Start_e => 1,
+      End_e => 2,
+      SpaceAround_e => 3,
+      SpaceBetween_e => 4,
+      WithBase_e => 5
+   );
+   type TimedTextRubyAlign_Ptr is access all TimedTextRubyAlign;
+
+   type TimedTextRubyPosition is (
+      Before_e,
+      After_e,
+      Outside_e
+   );
+   for TimedTextRubyPosition use (
+      Before_e => 0,
+      After_e => 1,
+      Outside_e => 2
+   );
+   type TimedTextRubyPosition_Ptr is access all TimedTextRubyPosition;
+
+   type TimedTextRubyReserve is (
+      None_e,
+      Before_e,
+      After_e,
+      Both_e,
+      Outside_e
+   );
+   for TimedTextRubyReserve use (
+      None_e => 0,
+      Before_e => 1,
+      After_e => 2,
+      Both_e => 3,
+      Outside_e => 4
+   );
+   type TimedTextRubyReserve_Ptr is access all TimedTextRubyReserve;
 
    type TimedTextScrollMode is (
       Popon_e,
@@ -1899,6 +2050,18 @@ package WinRt.Windows.Media.Core is
       return WinRt.Hresult is abstract;
 
       IID_ICodecSubtypesStatics : aliased WinRt.IID := (2792015090, 34955, 16932, (140, 246, 42, 141, 78, 176, 35, 130 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICodecSubtypesStatics2 is interface and WinRt.IInspectable;
+
+      function get_VideoFormatAv1
+      (
+         this : access ICodecSubtypesStatics2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICodecSubtypesStatics2 : aliased WinRt.IID := (909838640, 56870, 22574, (128, 20, 245, 70, 208, 117, 56, 135 ));
 
    -----------------------------------------------------------------------------
    -- type IDataCue is interface and WinRt.IInspectable;
@@ -4225,6 +4388,53 @@ package WinRt.Windows.Media.Core is
       IID_ITimedMetadataTrackProvider : aliased WinRt.IID := (998187044, 63310, 19166, (147, 197, 33, 157, 160, 91, 104, 86 ));
 
    -----------------------------------------------------------------------------
+   -- type ITimedTextBouten is interface and WinRt.IInspectable;
+
+      function get_Type
+      (
+         this : access ITimedTextBouten_Interface;
+         RetVal : access Windows.Media.Core.TimedTextBoutenType
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Type
+      (
+         this : access ITimedTextBouten_Interface;
+         value : Windows.Media.Core.TimedTextBoutenType
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Color
+      (
+         this : access ITimedTextBouten_Interface;
+         RetVal : access Windows.UI.Color
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Color
+      (
+         this : access ITimedTextBouten_Interface;
+         value : Windows.UI.Color
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Position
+      (
+         this : access ITimedTextBouten_Interface;
+         RetVal : access Windows.Media.Core.TimedTextBoutenPosition
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Position
+      (
+         this : access ITimedTextBouten_Interface;
+         value : Windows.Media.Core.TimedTextBoutenPosition
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITimedTextBouten : aliased WinRt.IID := (3641059203, 21911, 20626, (130, 12, 143, 115, 142, 15, 119, 74 ));
+
+   -----------------------------------------------------------------------------
    -- type ITimedTextCue is interface and WinRt.IInspectable;
 
       function get_CueRegion
@@ -4462,6 +4672,67 @@ package WinRt.Windows.Media.Core is
       return WinRt.Hresult is abstract;
 
       IID_ITimedTextRegion : aliased WinRt.IID := (516982815, 35334, 16930, (159, 89, 178, 27, 244, 1, 36, 180 ));
+
+   -----------------------------------------------------------------------------
+   -- type ITimedTextRuby is interface and WinRt.IInspectable;
+
+      function get_Text
+      (
+         this : access ITimedTextRuby_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Text
+      (
+         this : access ITimedTextRuby_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Position
+      (
+         this : access ITimedTextRuby_Interface;
+         RetVal : access Windows.Media.Core.TimedTextRubyPosition
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Position
+      (
+         this : access ITimedTextRuby_Interface;
+         value : Windows.Media.Core.TimedTextRubyPosition
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Align
+      (
+         this : access ITimedTextRuby_Interface;
+         RetVal : access Windows.Media.Core.TimedTextRubyAlign
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Align
+      (
+         this : access ITimedTextRuby_Interface;
+         value : Windows.Media.Core.TimedTextRubyAlign
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Reserve
+      (
+         this : access ITimedTextRuby_Interface;
+         RetVal : access Windows.Media.Core.TimedTextRubyReserve
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Reserve
+      (
+         this : access ITimedTextRuby_Interface;
+         value : Windows.Media.Core.TimedTextRubyReserve
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITimedTextRuby : aliased WinRt.IID := (271801385, 23356, 22163, (153, 89, 208, 90, 11, 210, 70, 40 ));
 
    -----------------------------------------------------------------------------
    -- type ITimedTextSource is interface and WinRt.IInspectable;
@@ -4817,6 +5088,53 @@ package WinRt.Windows.Media.Core is
       return WinRt.Hresult is abstract;
 
       IID_ITimedTextStyle2 : aliased WinRt.IID := (1700743469, 24849, 18311, (137, 204, 104, 111, 236, 229, 126, 20 ));
+
+   -----------------------------------------------------------------------------
+   -- type ITimedTextStyle3 is interface and WinRt.IInspectable;
+
+      function get_Ruby
+      (
+         this : access ITimedTextStyle3_Interface;
+         RetVal : access Windows.Media.Core.ITimedTextRuby
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Bouten
+      (
+         this : access ITimedTextStyle3_Interface;
+         RetVal : access Windows.Media.Core.ITimedTextBouten
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsTextCombined
+      (
+         this : access ITimedTextStyle3_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsTextCombined
+      (
+         this : access ITimedTextStyle3_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_FontAngleInDegrees
+      (
+         this : access ITimedTextStyle3_Interface;
+         RetVal : access WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_FontAngleInDegrees
+      (
+         this : access ITimedTextStyle3_Interface;
+         value : WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITimedTextStyle3 : aliased WinRt.IID := (4161009979, 16025, 22878, (187, 183, 120, 162, 250, 19, 194, 112 ));
 
    -----------------------------------------------------------------------------
    -- type ITimedTextSubformat is interface and WinRt.IInspectable;
@@ -5541,6 +5859,9 @@ package WinRt.Windows.Media.Core is
       function get_AudioFormatWMAudioV9
       return WinRt.WString;
 
+      function get_VideoFormatAv1
+      return WinRt.WString;
+
    end CodecSubtypes;
 
    -----------------------------------------------------------------------------
@@ -6148,18 +6469,6 @@ package WinRt.Windows.Media.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MediaSource
 
-   function CreateFromMediaFrameSource
-   (
-      frameSource : Windows.Media.Capture.Frames.MediaFrameSource'Class
-   )
-   return WinRt.Windows.Media.Core.MediaSource;
-
-   function CreateFromMediaBinder
-   (
-      binder : Windows.Media.Core.MediaBinder'Class
-   )
-   return WinRt.Windows.Media.Core.MediaSource;
-
    function CreateFromAdaptiveMediaSource
    (
       mediaSource_p : Windows.Media.Streaming.Adaptive.AdaptiveMediaSource'Class
@@ -6213,6 +6522,18 @@ package WinRt.Windows.Media.Core is
    function CreateFromDownloadOperation
    (
       downloadOperation : Windows.Networking.BackgroundTransfer.DownloadOperation'Class
+   )
+   return WinRt.Windows.Media.Core.MediaSource;
+
+   function CreateFromMediaBinder
+   (
+      binder : Windows.Media.Core.MediaBinder'Class
+   )
+   return WinRt.Windows.Media.Core.MediaSource;
+
+   function CreateFromMediaFrameSource
+   (
+      frameSource : Windows.Media.Capture.Frames.MediaFrameSource'Class
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
@@ -6422,6 +6743,13 @@ package WinRt.Windows.Media.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MediaStreamSample
 
+   function CreateFromDirect3D11Surface
+   (
+      surface : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      timestamp : Windows.Foundation.TimeSpan
+   )
+   return WinRt.Windows.Media.Core.MediaStreamSample;
+
    function CreateFromBuffer
    (
       buffer : Windows.Storage.Streams.IBuffer;
@@ -6433,13 +6761,6 @@ package WinRt.Windows.Media.Core is
    (
       stream : Windows.Storage.Streams.IInputStream;
       count : WinRt.UInt32;
-      timestamp : Windows.Foundation.TimeSpan
-   )
-   return WinRt.Windows.Media.Core.MediaStreamSample;
-
-   function CreateFromDirect3D11Surface
-   (
-      surface : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
       timestamp : Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Media.Core.MediaStreamSample;
@@ -7935,6 +8256,51 @@ package WinRt.Windows.Media.Core is
    return WinRt.Windows.Media.Core.TimedMetadataTrackError'Class;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for TimedTextBouten
+
+   overriding procedure Initialize (this : in out TimedTextBouten);
+   overriding procedure Finalize (this : in out TimedTextBouten);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for TimedTextBouten
+
+   function get_Type
+   (
+      this : in out TimedTextBouten
+   )
+   return WinRt.Windows.Media.Core.TimedTextBoutenType;
+
+   procedure put_Type
+   (
+      this : in out TimedTextBouten;
+      value : Windows.Media.Core.TimedTextBoutenType
+   );
+
+   function get_Color
+   (
+      this : in out TimedTextBouten
+   )
+   return WinRt.Windows.UI.Color;
+
+   procedure put_Color
+   (
+      this : in out TimedTextBouten;
+      value : Windows.UI.Color
+   );
+
+   function get_Position
+   (
+      this : in out TimedTextBouten
+   )
+   return WinRt.Windows.Media.Core.TimedTextBoutenPosition;
+
+   procedure put_Position
+   (
+      this : in out TimedTextBouten;
+      value : Windows.Media.Core.TimedTextBoutenPosition
+   );
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for TimedTextCue
 
    overriding procedure Initialize (this : in out TimedTextCue);
@@ -8202,6 +8568,63 @@ package WinRt.Windows.Media.Core is
    (
       this : in out TimedTextRegion;
       value : Windows.Media.Core.TimedTextScrollMode
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for TimedTextRuby
+
+   overriding procedure Initialize (this : in out TimedTextRuby);
+   overriding procedure Finalize (this : in out TimedTextRuby);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for TimedTextRuby
+
+   function get_Text
+   (
+      this : in out TimedTextRuby
+   )
+   return WinRt.WString;
+
+   procedure put_Text
+   (
+      this : in out TimedTextRuby;
+      value : WinRt.WString
+   );
+
+   function get_Position
+   (
+      this : in out TimedTextRuby
+   )
+   return WinRt.Windows.Media.Core.TimedTextRubyPosition;
+
+   procedure put_Position
+   (
+      this : in out TimedTextRuby;
+      value : Windows.Media.Core.TimedTextRubyPosition
+   );
+
+   function get_Align
+   (
+      this : in out TimedTextRuby
+   )
+   return WinRt.Windows.Media.Core.TimedTextRubyAlign;
+
+   procedure put_Align
+   (
+      this : in out TimedTextRuby;
+      value : Windows.Media.Core.TimedTextRubyAlign
+   );
+
+   function get_Reserve
+   (
+      this : in out TimedTextRuby
+   )
+   return WinRt.Windows.Media.Core.TimedTextRubyReserve;
+
+   procedure put_Reserve
+   (
+      this : in out TimedTextRuby;
+      value : Windows.Media.Core.TimedTextRubyReserve
    );
 
    -----------------------------------------------------------------------------
@@ -8510,6 +8933,42 @@ package WinRt.Windows.Media.Core is
    (
       this : in out TimedTextStyle;
       value : WinRt.Boolean
+   );
+
+   function get_Ruby
+   (
+      this : in out TimedTextStyle
+   )
+   return WinRt.Windows.Media.Core.TimedTextRuby'Class;
+
+   function get_Bouten
+   (
+      this : in out TimedTextStyle
+   )
+   return WinRt.Windows.Media.Core.TimedTextBouten'Class;
+
+   function get_IsTextCombined
+   (
+      this : in out TimedTextStyle
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsTextCombined
+   (
+      this : in out TimedTextStyle;
+      value : WinRt.Boolean
+   );
+
+   function get_FontAngleInDegrees
+   (
+      this : in out TimedTextStyle
+   )
+   return WinRt.Double;
+
+   procedure put_FontAngleInDegrees
+   (
+      this : in out TimedTextStyle;
+      value : WinRt.Double
    );
 
    -----------------------------------------------------------------------------

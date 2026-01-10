@@ -61,9 +61,11 @@ package WinRt.Windows.Graphics.Display is
 
    type IBrightnessOverrideSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBrightnessOverrideSettingsStatics is access all IBrightnessOverrideSettingsStatics_Interface'Class;
+   type IBrightnessOverrideSettingsStatics_Ptr is access all IBrightnessOverrideSettingsStatics;
 
    type IBrightnessOverrideStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBrightnessOverrideStatics is access all IBrightnessOverrideStatics_Interface'Class;
+   type IBrightnessOverrideStatics_Ptr is access all IBrightnessOverrideStatics;
 
    type IColorOverrideSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IColorOverrideSettings is access all IColorOverrideSettings_Interface'Class;
@@ -71,6 +73,7 @@ package WinRt.Windows.Graphics.Display is
 
    type IColorOverrideSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IColorOverrideSettingsStatics is access all IColorOverrideSettingsStatics_Interface'Class;
+   type IColorOverrideSettingsStatics_Ptr is access all IColorOverrideSettingsStatics;
 
    type IDisplayEnhancementOverride_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayEnhancementOverride is access all IDisplayEnhancementOverride_Interface'Class;
@@ -86,6 +89,7 @@ package WinRt.Windows.Graphics.Display is
 
    type IDisplayEnhancementOverrideStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayEnhancementOverrideStatics is access all IDisplayEnhancementOverrideStatics_Interface'Class;
+   type IDisplayEnhancementOverrideStatics_Ptr is access all IDisplayEnhancementOverrideStatics;
 
    type IDisplayInformation_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayInformation is access all IDisplayInformation_Interface'Class;
@@ -93,21 +97,35 @@ package WinRt.Windows.Graphics.Display is
 
    type IDisplayInformation2_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayInformation2 is access all IDisplayInformation2_Interface'Class;
+   type IDisplayInformation2_Ptr is access all IDisplayInformation2;
 
    type IDisplayInformation3_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayInformation3 is access all IDisplayInformation3_Interface'Class;
+   type IDisplayInformation3_Ptr is access all IDisplayInformation3;
 
    type IDisplayInformation4_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayInformation4 is access all IDisplayInformation4_Interface'Class;
+   type IDisplayInformation4_Ptr is access all IDisplayInformation4;
 
    type IDisplayInformation5_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayInformation5 is access all IDisplayInformation5_Interface'Class;
+   type IDisplayInformation5_Ptr is access all IDisplayInformation5;
 
    type IDisplayInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayInformationStatics is access all IDisplayInformationStatics_Interface'Class;
+   type IDisplayInformationStatics_Ptr is access all IDisplayInformationStatics;
 
    type IDisplayPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayPropertiesStatics is access all IDisplayPropertiesStatics_Interface'Class;
+   type IDisplayPropertiesStatics_Ptr is access all IDisplayPropertiesStatics;
+
+   type IDisplayServices_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayServices is access all IDisplayServices_Interface'Class;
+   type IDisplayServices_Ptr is access all IDisplayServices;
+
+   type IDisplayServicesStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayServicesStatics is access all IDisplayServicesStatics_Interface'Class;
+   type IDisplayServicesStatics_Ptr is access all IDisplayServicesStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -160,6 +178,12 @@ package WinRt.Windows.Graphics.Display is
          m_IDisplayInformation : access Windows.Graphics.Display.IDisplayInformation;
       end record;
    type DisplayInformation_Ptr is access all DisplayInformation;
+
+   type DisplayServices is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IDisplayServices : access Windows.Graphics.Display.IDisplayServices;
+      end record;
+   type DisplayServices_Ptr is access all DisplayServices;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -1148,6 +1172,24 @@ package WinRt.Windows.Graphics.Display is
       IID_IDisplayPropertiesStatics : aliased WinRt.IID := (1765272973, 12522, 19949, (130, 113, 69, 83, 255, 2, 246, 138 ));
 
    -----------------------------------------------------------------------------
+   -- type IDisplayServices is interface and WinRt.IInspectable;
+
+      IID_IDisplayServices : aliased WinRt.IID := (458552107, 35085, 22343, (189, 38, 253, 189, 235, 12, 138, 113 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDisplayServicesStatics is interface and WinRt.IInspectable;
+
+      function FindAll
+      (
+         this : access IDisplayServicesStatics_Interface;
+         RetValSize : access WinRt.UInt32;
+         RetVal : access Windows.Graphics.DisplayId_Ptr
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplayServicesStatics : aliased WinRt.IID := (3693123263, 29450, 21856, (180, 97, 145, 193, 61, 105, 46, 12 ));
+
+   -----------------------------------------------------------------------------
    -- Class method declarations
    -----------------------------------------------------------------------------
 
@@ -1817,5 +1859,20 @@ package WinRt.Windows.Graphics.Display is
       );
 
    end DisplayProperties;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DisplayServices
+
+   overriding procedure Initialize (this : in out DisplayServices);
+   overriding procedure Finalize (this : in out DisplayServices);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for DisplayServices
+
+   function FindAll
+   return WinRt.Windows.Graphics.DisplayId_Array;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DisplayServices
 
 end WinRt.Windows.Graphics.Display;

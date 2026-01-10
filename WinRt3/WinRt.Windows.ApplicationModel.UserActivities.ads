@@ -48,9 +48,11 @@ package WinRt.Windows.ApplicationModel.UserActivities is
 
    type IUserActivity2_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivity2 is access all IUserActivity2_Interface'Class;
+   type IUserActivity2_Ptr is access all IUserActivity2;
 
    type IUserActivity3_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivity3 is access all IUserActivity3_Interface'Class;
+   type IUserActivity3_Ptr is access all IUserActivity3;
 
    type IUserActivityAttribution_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityAttribution is access all IUserActivityAttribution_Interface'Class;
@@ -58,6 +60,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
 
    type IUserActivityAttributionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityAttributionFactory is access all IUserActivityAttributionFactory_Interface'Class;
+   type IUserActivityAttributionFactory_Ptr is access all IUserActivityAttributionFactory;
 
    type IUserActivityChannel_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityChannel is access all IUserActivityChannel_Interface'Class;
@@ -65,15 +68,19 @@ package WinRt.Windows.ApplicationModel.UserActivities is
 
    type IUserActivityChannel2_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityChannel2 is access all IUserActivityChannel2_Interface'Class;
+   type IUserActivityChannel2_Ptr is access all IUserActivityChannel2;
 
    type IUserActivityChannelStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityChannelStatics is access all IUserActivityChannelStatics_Interface'Class;
+   type IUserActivityChannelStatics_Ptr is access all IUserActivityChannelStatics;
 
    type IUserActivityChannelStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityChannelStatics2 is access all IUserActivityChannelStatics2_Interface'Class;
+   type IUserActivityChannelStatics2_Ptr is access all IUserActivityChannelStatics2;
 
    type IUserActivityChannelStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityChannelStatics3 is access all IUserActivityChannelStatics3_Interface'Class;
+   type IUserActivityChannelStatics3_Ptr is access all IUserActivityChannelStatics3;
 
    type IUserActivityContentInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityContentInfo is access all IUserActivityContentInfo_Interface'Class;
@@ -81,9 +88,11 @@ package WinRt.Windows.ApplicationModel.UserActivities is
 
    type IUserActivityContentInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityContentInfoStatics is access all IUserActivityContentInfoStatics_Interface'Class;
+   type IUserActivityContentInfoStatics_Ptr is access all IUserActivityContentInfoStatics;
 
    type IUserActivityFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityFactory is access all IUserActivityFactory_Interface'Class;
+   type IUserActivityFactory_Ptr is access all IUserActivityFactory;
 
    type IUserActivityRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityRequest is access all IUserActivityRequest_Interface'Class;
@@ -95,6 +104,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
 
    type IUserActivityRequestManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityRequestManagerStatics is access all IUserActivityRequestManagerStatics_Interface'Class;
+   type IUserActivityRequestManagerStatics_Ptr is access all IUserActivityRequestManagerStatics;
 
    type IUserActivityRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityRequestedEventArgs is access all IUserActivityRequestedEventArgs_Interface'Class;
@@ -110,6 +120,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
 
    type IUserActivityStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityStatics is access all IUserActivityStatics_Interface'Class;
+   type IUserActivityStatics_Ptr is access all IUserActivityStatics;
 
    type IUserActivityVisualElements_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityVisualElements is access all IUserActivityVisualElements_Interface'Class;
@@ -117,6 +128,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
 
    type IUserActivityVisualElements2_Interface is interface and WinRt.IInspectable_Interface;
    type IUserActivityVisualElements2 is access all IUserActivityVisualElements2_Interface'Class;
+   type IUserActivityVisualElements2_Ptr is access all IUserActivityVisualElements2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -924,13 +936,13 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for UserActivityAttribution
 
+   function Constructor return UserActivityAttribution;
+
    function Constructor
    (
       iconUri : Windows.Foundation.Uri'Class
    )
    return UserActivityAttribution;
-
-   function Constructor return UserActivityAttribution;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for UserActivityAttribution
@@ -986,15 +998,15 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel;
 
-   function GetDefault
-   return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel;
-
    procedure DisableAutoSessionCreation;
 
    function TryGetForWebAccount
    (
       account : Windows.Security.Credentials.WebAccount'Class
    )
+   return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel;
+
+   function GetDefault
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel;
 
    -----------------------------------------------------------------------------

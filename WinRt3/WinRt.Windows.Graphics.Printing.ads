@@ -50,6 +50,7 @@ package WinRt.Windows.Graphics.Printing is
 
    type IPrintDocumentSource_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintDocumentSource is access all IPrintDocumentSource_Interface'Class;
+   type IPrintDocumentSource_Ptr is access all IPrintDocumentSource;
 
    type IPrintManager_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintManager is access all IPrintManager_Interface'Class;
@@ -57,9 +58,11 @@ package WinRt.Windows.Graphics.Printing is
 
    type IPrintManagerStatic_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintManagerStatic is access all IPrintManagerStatic_Interface'Class;
+   type IPrintManagerStatic_Ptr is access all IPrintManagerStatic;
 
    type IPrintManagerStatic2_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintManagerStatic2 is access all IPrintManagerStatic2_Interface'Class;
+   type IPrintManagerStatic2_Ptr is access all IPrintManagerStatic2;
 
    type IPrintPageInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintPageInfo is access all IPrintPageInfo_Interface'Class;
@@ -71,6 +74,7 @@ package WinRt.Windows.Graphics.Printing is
 
    type IPrintPageRangeFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintPageRangeFactory is access all IPrintPageRangeFactory_Interface'Class;
+   type IPrintPageRangeFactory_Ptr is access all IPrintPageRangeFactory;
 
    type IPrintPageRangeOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintPageRangeOptions is access all IPrintPageRangeOptions_Interface'Class;
@@ -82,6 +86,7 @@ package WinRt.Windows.Graphics.Printing is
 
    type IPrintTask2_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintTask2 is access all IPrintTask2_Interface'Class;
+   type IPrintTask2_Ptr is access all IPrintTask2;
 
    type IPrintTaskCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintTaskCompletedEventArgs is access all IPrintTaskCompletedEventArgs_Interface'Class;
@@ -89,9 +94,11 @@ package WinRt.Windows.Graphics.Printing is
 
    type IPrintTaskOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintTaskOptions is access all IPrintTaskOptions_Interface'Class;
+   type IPrintTaskOptions_Ptr is access all IPrintTaskOptions;
 
    type IPrintTaskOptions2_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintTaskOptions2 is access all IPrintTaskOptions2_Interface'Class;
+   type IPrintTaskOptions2_Ptr is access all IPrintTaskOptions2;
 
    type IPrintTaskOptionsCore_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintTaskOptionsCore is access all IPrintTaskOptionsCore_Interface'Class;
@@ -99,9 +106,11 @@ package WinRt.Windows.Graphics.Printing is
 
    type IPrintTaskOptionsCoreProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintTaskOptionsCoreProperties is access all IPrintTaskOptionsCoreProperties_Interface'Class;
+   type IPrintTaskOptionsCoreProperties_Ptr is access all IPrintTaskOptionsCoreProperties;
 
    type IPrintTaskOptionsCoreUIConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintTaskOptionsCoreUIConfiguration is access all IPrintTaskOptionsCoreUIConfiguration_Interface'Class;
+   type IPrintTaskOptionsCoreUIConfiguration_Ptr is access all IPrintTaskOptionsCoreUIConfiguration;
 
    type IPrintTaskProgressingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintTaskProgressingEventArgs is access all IPrintTaskProgressingEventArgs_Interface'Class;
@@ -129,15 +138,19 @@ package WinRt.Windows.Graphics.Printing is
 
    type IPrintTaskTargetDeviceSupport_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintTaskTargetDeviceSupport is access all IPrintTaskTargetDeviceSupport_Interface'Class;
+   type IPrintTaskTargetDeviceSupport_Ptr is access all IPrintTaskTargetDeviceSupport;
 
    type IStandardPrintTaskOptionsStatic_Interface is interface and WinRt.IInspectable_Interface;
    type IStandardPrintTaskOptionsStatic is access all IStandardPrintTaskOptionsStatic_Interface'Class;
+   type IStandardPrintTaskOptionsStatic_Ptr is access all IStandardPrintTaskOptionsStatic;
 
    type IStandardPrintTaskOptionsStatic2_Interface is interface and WinRt.IInspectable_Interface;
    type IStandardPrintTaskOptionsStatic2 is access all IStandardPrintTaskOptionsStatic2_Interface'Class;
+   type IStandardPrintTaskOptionsStatic2_Ptr is access all IStandardPrintTaskOptionsStatic2;
 
    type IStandardPrintTaskOptionsStatic3_Interface is interface and WinRt.IInspectable_Interface;
    type IStandardPrintTaskOptionsStatic3 is access all IStandardPrintTaskOptionsStatic3_Interface'Class;
+   type IStandardPrintTaskOptionsStatic3_Ptr is access all IStandardPrintTaskOptionsStatic3;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -303,7 +316,8 @@ package WinRt.Windows.Graphics.Printing is
       PrinterCustom_e,
       Color_e,
       Grayscale_e,
-      Monochrome_e
+      Monochrome_e,
+      AutoSelect_e
    );
    for PrintColorMode use (
       Default_e => 0,
@@ -311,7 +325,8 @@ package WinRt.Windows.Graphics.Printing is
       PrinterCustom_e => 2,
       Color_e => 3,
       Grayscale_e => 4,
-      Monochrome_e => 5
+      Monochrome_e => 5,
+      AutoSelect_e => 6
    );
    type PrintColorMode_Ptr is access all PrintColorMode;
 
@@ -2382,6 +2397,12 @@ package WinRt.Windows.Graphics.Printing is
    -- Static RuntimeClass
    package StandardPrintTaskOptions is
 
+      function get_Bordering
+      return WinRt.WString;
+
+      function get_CustomPageRanges
+      return WinRt.WString;
+
       function get_MediaSize
       return WinRt.WString;
 
@@ -2419,12 +2440,6 @@ package WinRt.Windows.Graphics.Printing is
       return WinRt.WString;
 
       function get_InputBin
-      return WinRt.WString;
-
-      function get_CustomPageRanges
-      return WinRt.WString;
-
-      function get_Bordering
       return WinRt.WString;
 
    end StandardPrintTaskOptions;

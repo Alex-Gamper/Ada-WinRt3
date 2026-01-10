@@ -642,6 +642,80 @@ package body WinRt.Windows.Services.Maps is
 
       function FindLocationsAtAsync
       (
+         queryPoint : Windows.Devices.Geolocation.Geopoint'Class;
+         accuracy : Windows.Services.Maps.MapLocationDesiredAccuracy
+      )
+      return WinRt.Windows.Services.Maps.MapLocationFinderResult is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.MapLocationFinder");
+         m_Factory        : access WinRt.Windows.Services.Maps.IMapLocationFinderStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_MapLocationFinderResult.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_MapLocationFinderResult.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Services.Maps.IMapLocationFinderResult;
+         m_IID            : aliased WinRt.IID := (3857051187, 43992, 22165, (159, 229, 172, 149, 133, 13, 113, 152 )); -- Windows.Services.Maps.MapLocationFinderResult;
+         m_HandlerIID     : aliased WinRt.IID := (651094801, 4641, 23595, (187, 249, 207, 234, 54, 99, 194, 237 ));
+         m_Handler        : AsyncOperationCompletedHandler_MapLocationFinderResult.Kind := new AsyncOperationCompletedHandler_MapLocationFinderResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_MapLocationFinderResult.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_MapLocationFinderResult.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MapLocationFinderResult.Kind_Delegate, AsyncOperationCompletedHandler_MapLocationFinderResult.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Services.Maps.MapLocationFinderResult do
+            Hr := RoGetActivationFactory (m_hString, IID_IMapLocationFinderStatics2'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.FindLocationsAtAsync (queryPoint.m_IGeopoint.all, accuracy, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IMapLocationFinderResult := new Windows.Services.Maps.IMapLocationFinderResult;
+                        Retval.m_IMapLocationFinderResult.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function FindLocationsAtAsync
+      (
          queryPoint : Windows.Devices.Geolocation.Geopoint'Class
       )
       return WinRt.Windows.Services.Maps.MapLocationFinderResult is
@@ -863,80 +937,6 @@ package body WinRt.Windows.Services.Maps is
             end if;
             tmp := WindowsDeleteString (m_hString);
             tmp := WindowsDeleteString (HStr_searchText);
-         end return;
-      end;
-
-      function FindLocationsAtAsync
-      (
-         queryPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         accuracy : Windows.Services.Maps.MapLocationDesiredAccuracy
-      )
-      return WinRt.Windows.Services.Maps.MapLocationFinderResult is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.MapLocationFinder");
-         m_Factory        : access WinRt.Windows.Services.Maps.IMapLocationFinderStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_MapLocationFinderResult.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_MapLocationFinderResult.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Windows.Services.Maps.IMapLocationFinderResult;
-         m_IID            : aliased WinRt.IID := (3857051187, 43992, 22165, (159, 229, 172, 149, 133, 13, 113, 152 )); -- Windows.Services.Maps.MapLocationFinderResult;
-         m_HandlerIID     : aliased WinRt.IID := (651094801, 4641, 23595, (187, 249, 207, 234, 54, 99, 194, 237 ));
-         m_Handler        : AsyncOperationCompletedHandler_MapLocationFinderResult.Kind := new AsyncOperationCompletedHandler_MapLocationFinderResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_MapLocationFinderResult.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_MapLocationFinderResult.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MapLocationFinderResult.Kind_Delegate, AsyncOperationCompletedHandler_MapLocationFinderResult.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         return RetVal : WinRt.Windows.Services.Maps.MapLocationFinderResult do
-            Hr := RoGetActivationFactory (m_hString, IID_IMapLocationFinderStatics2'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.FindLocationsAtAsync (queryPoint.m_IGeopoint.all, accuracy, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr = S_OK then
-                  m_AsyncOperation := QI (m_ComRetVal);
-                  temp := m_ComRetVal.Release;
-                  if m_AsyncOperation /= null then
-                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                     while m_Captured = m_Compare loop
-                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                        m_Captured := m_Completed;
-                     end loop;
-                     if m_AsyncStatus = Completed_e then
-                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapLocationFinderResult := new Windows.Services.Maps.IMapLocationFinderResult;
-                        Retval.m_IMapLocationFinderResult.all := m_RetVal;
-                     end if;
-                     temp := m_AsyncOperation.Release;
-                     temp := m_Handler.Release;
-                     if temp = 0 then
-                        Free (m_Handler);
-                     end if;
-                  end if;
-               end if;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -1502,153 +1502,6 @@ package body WinRt.Windows.Services.Maps is
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package body MapRouteFinder is
-
-      function GetDrivingRouteFromEnhancedWaypointsAsync
-      (
-         waypoints : GenericObject
-      )
-      return WinRt.Windows.Services.Maps.MapRouteFinderResult is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.MapRouteFinder");
-         m_Factory        : access WinRt.Windows.Services.Maps.IMapRouteFinderStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_MapRouteFinderResult.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_MapRouteFinderResult.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Windows.Services.Maps.IMapRouteFinderResult;
-         m_IID            : aliased WinRt.IID := (3970580095, 50470, 20631, (182, 36, 207, 116, 61, 120, 169, 186 )); -- Windows.Services.Maps.MapRouteFinderResult;
-         m_HandlerIID     : aliased WinRt.IID := (1853500239, 33052, 21699, (137, 56, 103, 149, 244, 230, 112, 9 ));
-         m_Handler        : AsyncOperationCompletedHandler_MapRouteFinderResult.Kind := new AsyncOperationCompletedHandler_MapRouteFinderResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_MapRouteFinderResult.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_MapRouteFinderResult.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MapRouteFinderResult.Kind_Delegate, AsyncOperationCompletedHandler_MapRouteFinderResult.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         return RetVal : WinRt.Windows.Services.Maps.MapRouteFinderResult do
-            Hr := RoGetActivationFactory (m_hString, IID_IMapRouteFinderStatics3'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.GetDrivingRouteFromEnhancedWaypointsAsync (waypoints, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr = S_OK then
-                  m_AsyncOperation := QI (m_ComRetVal);
-                  temp := m_ComRetVal.Release;
-                  if m_AsyncOperation /= null then
-                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                     while m_Captured = m_Compare loop
-                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                        m_Captured := m_Completed;
-                     end loop;
-                     if m_AsyncStatus = Completed_e then
-                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
-                        Retval.m_IMapRouteFinderResult.all := m_RetVal;
-                     end if;
-                     temp := m_AsyncOperation.Release;
-                     temp := m_Handler.Release;
-                     if temp = 0 then
-                        Free (m_Handler);
-                     end if;
-                  end if;
-               end if;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function GetDrivingRouteFromEnhancedWaypointsAsync
-      (
-         waypoints : GenericObject;
-         options : Windows.Services.Maps.MapRouteDrivingOptions'Class
-      )
-      return WinRt.Windows.Services.Maps.MapRouteFinderResult is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.MapRouteFinder");
-         m_Factory        : access WinRt.Windows.Services.Maps.IMapRouteFinderStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_MapRouteFinderResult.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_MapRouteFinderResult.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Windows.Services.Maps.IMapRouteFinderResult;
-         m_IID            : aliased WinRt.IID := (3970580095, 50470, 20631, (182, 36, 207, 116, 61, 120, 169, 186 )); -- Windows.Services.Maps.MapRouteFinderResult;
-         m_HandlerIID     : aliased WinRt.IID := (1853500239, 33052, 21699, (137, 56, 103, 149, 244, 230, 112, 9 ));
-         m_Handler        : AsyncOperationCompletedHandler_MapRouteFinderResult.Kind := new AsyncOperationCompletedHandler_MapRouteFinderResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_MapRouteFinderResult.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_MapRouteFinderResult.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MapRouteFinderResult.Kind_Delegate, AsyncOperationCompletedHandler_MapRouteFinderResult.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         return RetVal : WinRt.Windows.Services.Maps.MapRouteFinderResult do
-            Hr := RoGetActivationFactory (m_hString, IID_IMapRouteFinderStatics3'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.GetDrivingRouteFromEnhancedWaypointsAsync (waypoints, options.m_IMapRouteDrivingOptions.all, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr = S_OK then
-                  m_AsyncOperation := QI (m_ComRetVal);
-                  temp := m_ComRetVal.Release;
-                  if m_AsyncOperation /= null then
-                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                     while m_Captured = m_Compare loop
-                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                        m_Captured := m_Completed;
-                     end loop;
-                     if m_AsyncStatus = Completed_e then
-                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
-                        Retval.m_IMapRouteFinderResult.all := m_RetVal;
-                     end if;
-                     temp := m_AsyncOperation.Release;
-                     temp := m_Handler.Release;
-                     if temp = 0 then
-                        Free (m_Handler);
-                     end if;
-                  end if;
-               end if;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
 
       function GetDrivingRouteAsync
       (
@@ -2472,6 +2325,153 @@ package body WinRt.Windows.Services.Maps is
          end return;
       end;
 
+      function GetDrivingRouteFromEnhancedWaypointsAsync
+      (
+         waypoints : GenericObject
+      )
+      return WinRt.Windows.Services.Maps.MapRouteFinderResult is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.MapRouteFinder");
+         m_Factory        : access WinRt.Windows.Services.Maps.IMapRouteFinderStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_MapRouteFinderResult.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_MapRouteFinderResult.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Services.Maps.IMapRouteFinderResult;
+         m_IID            : aliased WinRt.IID := (3970580095, 50470, 20631, (182, 36, 207, 116, 61, 120, 169, 186 )); -- Windows.Services.Maps.MapRouteFinderResult;
+         m_HandlerIID     : aliased WinRt.IID := (1853500239, 33052, 21699, (137, 56, 103, 149, 244, 230, 112, 9 ));
+         m_Handler        : AsyncOperationCompletedHandler_MapRouteFinderResult.Kind := new AsyncOperationCompletedHandler_MapRouteFinderResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_MapRouteFinderResult.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_MapRouteFinderResult.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MapRouteFinderResult.Kind_Delegate, AsyncOperationCompletedHandler_MapRouteFinderResult.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Services.Maps.MapRouteFinderResult do
+            Hr := RoGetActivationFactory (m_hString, IID_IMapRouteFinderStatics3'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.GetDrivingRouteFromEnhancedWaypointsAsync (waypoints, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function GetDrivingRouteFromEnhancedWaypointsAsync
+      (
+         waypoints : GenericObject;
+         options : Windows.Services.Maps.MapRouteDrivingOptions'Class
+      )
+      return WinRt.Windows.Services.Maps.MapRouteFinderResult is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.MapRouteFinder");
+         m_Factory        : access WinRt.Windows.Services.Maps.IMapRouteFinderStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_MapRouteFinderResult.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_MapRouteFinderResult.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Services.Maps.IMapRouteFinderResult;
+         m_IID            : aliased WinRt.IID := (3970580095, 50470, 20631, (182, 36, 207, 116, 61, 120, 169, 186 )); -- Windows.Services.Maps.MapRouteFinderResult;
+         m_HandlerIID     : aliased WinRt.IID := (1853500239, 33052, 21699, (137, 56, 103, 149, 244, 230, 112, 9 ));
+         m_Handler        : AsyncOperationCompletedHandler_MapRouteFinderResult.Kind := new AsyncOperationCompletedHandler_MapRouteFinderResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_MapRouteFinderResult.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_MapRouteFinderResult.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MapRouteFinderResult.Kind_Delegate, AsyncOperationCompletedHandler_MapRouteFinderResult.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.Services.Maps.MapRouteFinderResult do
+            Hr := RoGetActivationFactory (m_hString, IID_IMapRouteFinderStatics3'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.GetDrivingRouteFromEnhancedWaypointsAsync (waypoints, options.m_IMapRouteDrivingOptions.all, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
    end MapRouteFinder;
 
    -----------------------------------------------------------------------------
@@ -2945,42 +2945,43 @@ package body WinRt.Windows.Services.Maps is
    -- Static RuntimeClass
    package body MapService is
 
-      procedure put_ServiceToken
-      (
-         value : WinRt.WString
-      ) is
+      function get_WorldViewRegionCode
+      return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
          m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.MapService");
-         m_Factory        : access WinRt.Windows.Services.Maps.IMapServiceStatics_Interface'Class := null;
+         m_Factory        : access WinRt.Windows.Services.Maps.IMapServiceStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         HStr_value : constant WinRt.HString := To_HString (value);
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
       begin
-         Hr := RoGetActivationFactory (m_hString, IID_IMapServiceStatics'Access , m_Factory'Address);
+         Hr := RoGetActivationFactory (m_hString, IID_IMapServiceStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
-            Hr := m_Factory.put_ServiceToken (HStr_value);
+            Hr := m_Factory.get_WorldViewRegionCode (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
             end if;
          end if;
          tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_value);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
       end;
 
-      function get_ServiceToken
+      function get_DataAttributions
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
          m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.MapService");
-         m_Factory        : access WinRt.Windows.Services.Maps.IMapServiceStatics_Interface'Class := null;
+         m_Factory        : access WinRt.Windows.Services.Maps.IMapServiceStatics3_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
-         Hr := RoGetActivationFactory (m_hString, IID_IMapServiceStatics'Access , m_Factory'Address);
+         Hr := RoGetActivationFactory (m_hString, IID_IMapServiceStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
-            Hr := m_Factory.get_ServiceToken (m_ComRetVal'Access);
+            Hr := m_Factory.get_DataAttributions (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -3034,43 +3035,42 @@ package body WinRt.Windows.Services.Maps is
          return m_ComRetVal;
       end;
 
-      function get_DataAttributions
-      return WinRt.WString is
+      procedure put_ServiceToken
+      (
+         value : WinRt.WString
+      ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
          m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.MapService");
-         m_Factory        : access WinRt.Windows.Services.Maps.IMapServiceStatics3_Interface'Class := null;
+         m_Factory        : access WinRt.Windows.Services.Maps.IMapServiceStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
+         HStr_value : constant WinRt.HString := To_HString (value);
       begin
-         Hr := RoGetActivationFactory (m_hString, IID_IMapServiceStatics3'Access , m_Factory'Address);
+         Hr := RoGetActivationFactory (m_hString, IID_IMapServiceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
-            Hr := m_Factory.get_DataAttributions (m_ComRetVal'Access);
+            Hr := m_Factory.put_ServiceToken (HStr_value);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
             end if;
          end if;
          tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
+         tmp := WindowsDeleteString (HStr_value);
       end;
 
-      function get_WorldViewRegionCode
+      function get_ServiceToken
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
          m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.MapService");
-         m_Factory        : access WinRt.Windows.Services.Maps.IMapServiceStatics2_Interface'Class := null;
+         m_Factory        : access WinRt.Windows.Services.Maps.IMapServiceStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
-         Hr := RoGetActivationFactory (m_hString, IID_IMapServiceStatics2'Access , m_Factory'Address);
+         Hr := RoGetActivationFactory (m_hString, IID_IMapServiceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
-            Hr := m_Factory.get_WorldViewRegionCode (m_ComRetVal'Access);
+            Hr := m_Factory.get_ServiceToken (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

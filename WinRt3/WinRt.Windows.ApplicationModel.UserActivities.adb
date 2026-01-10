@@ -561,6 +561,22 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for UserActivityAttribution
 
+   function Constructor return UserActivityAttribution is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityAttribution");
+      m_ComRetVal  : aliased Windows.ApplicationModel.UserActivities.IUserActivityAttribution;
+   begin
+      return RetVal : UserActivityAttribution do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IUserActivityAttribution := new Windows.ApplicationModel.UserActivities.IUserActivityAttribution;
+            Retval.m_IUserActivityAttribution.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       iconUri : Windows.Foundation.Uri'Class
@@ -580,22 +596,6 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
             Retval.m_IUserActivityAttribution := new Windows.ApplicationModel.UserActivities.IUserActivityAttribution;
             Retval.m_IUserActivityAttribution.all := m_ComRetVal;
             temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor return UserActivityAttribution is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityAttribution");
-      m_ComRetVal  : aliased Windows.ApplicationModel.UserActivities.IUserActivityAttribution;
-   begin
-      return RetVal : UserActivityAttribution do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IUserActivityAttribution := new Windows.ApplicationModel.UserActivities.IUserActivityAttribution;
-            Retval.m_IUserActivityAttribution.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
@@ -758,30 +758,6 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       end return;
    end;
 
-   function GetDefault
-   return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityChannel");
-      m_Factory        : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannelStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivityChannel;
-   begin
-      return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel do
-         Hr := RoGetActivationFactory (m_hString, IID_IUserActivityChannelStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IUserActivityChannel := new Windows.ApplicationModel.UserActivities.IUserActivityChannel;
-            Retval.m_IUserActivityChannel.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    procedure DisableAutoSessionCreation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -816,6 +792,30 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
          Hr := RoGetActivationFactory (m_hString, IID_IUserActivityChannelStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryGetForWebAccount (account.m_IWebAccount.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IUserActivityChannel := new Windows.ApplicationModel.UserActivities.IUserActivityChannel;
+            Retval.m_IUserActivityChannel.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetDefault
+   return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityChannel");
+      m_Factory        : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannelStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivityChannel;
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel do
+         Hr := RoGetActivationFactory (m_hString, IID_IUserActivityChannelStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

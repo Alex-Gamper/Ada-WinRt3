@@ -48,6 +48,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
 
    type IWalletBarcodeFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWalletBarcodeFactory is access all IWalletBarcodeFactory_Interface'Class;
+   type IWalletBarcodeFactory_Ptr is access all IWalletBarcodeFactory;
 
    type IWalletItem_Interface is interface and WinRt.IInspectable_Interface;
    type IWalletItem is access all IWalletItem_Interface'Class;
@@ -59,9 +60,11 @@ package WinRt.Windows.ApplicationModel.Wallet is
 
    type IWalletItemCustomPropertyFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWalletItemCustomPropertyFactory is access all IWalletItemCustomPropertyFactory_Interface'Class;
+   type IWalletItemCustomPropertyFactory_Ptr is access all IWalletItemCustomPropertyFactory;
 
    type IWalletItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWalletItemFactory is access all IWalletItemFactory_Interface'Class;
+   type IWalletItemFactory_Ptr is access all IWalletItemFactory;
 
    type IWalletItemStore_Interface is interface and WinRt.IInspectable_Interface;
    type IWalletItemStore is access all IWalletItemStore_Interface'Class;
@@ -69,9 +72,11 @@ package WinRt.Windows.ApplicationModel.Wallet is
 
    type IWalletItemStore2_Interface is interface and WinRt.IInspectable_Interface;
    type IWalletItemStore2 is access all IWalletItemStore2_Interface'Class;
+   type IWalletItemStore2_Ptr is access all IWalletItemStore2;
 
    type IWalletManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWalletManagerStatics is access all IWalletManagerStatics_Interface'Class;
+   type IWalletManagerStatics_Ptr is access all IWalletManagerStatics;
 
    type IWalletRelevantLocation_Interface is interface and WinRt.IInspectable_Interface;
    type IWalletRelevantLocation is access all IWalletRelevantLocation_Interface'Class;
@@ -87,6 +92,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
 
    type IWalletVerbFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWalletVerbFactory is access all IWalletVerbFactory_Interface'Class;
+   type IWalletVerbFactory_Ptr is access all IWalletVerbFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations

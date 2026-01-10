@@ -49,9 +49,11 @@ package WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
 
    type IShareOperation2_Interface is interface and WinRt.IInspectable_Interface;
    type IShareOperation2 is access all IShareOperation2_Interface'Class;
+   type IShareOperation2_Ptr is access all IShareOperation2;
 
    type IShareOperation3_Interface is interface and WinRt.IInspectable_Interface;
    type IShareOperation3 is access all IShareOperation3_Interface'Class;
+   type IShareOperation3_Ptr is access all IShareOperation3;
 
    -----------------------------------------------------------------------------
    -- Class declarations

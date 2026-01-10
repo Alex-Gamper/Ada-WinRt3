@@ -43,12 +43,15 @@ package WinRt.Windows.UI.Xaml.Resources is
 
    type ICustomXamlResourceLoaderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICustomXamlResourceLoaderFactory is access all ICustomXamlResourceLoaderFactory_Interface'Class;
+   type ICustomXamlResourceLoaderFactory_Ptr is access all ICustomXamlResourceLoaderFactory;
 
    type ICustomXamlResourceLoaderOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type ICustomXamlResourceLoaderOverrides is access all ICustomXamlResourceLoaderOverrides_Interface'Class;
+   type ICustomXamlResourceLoaderOverrides_Ptr is access all ICustomXamlResourceLoaderOverrides;
 
    type ICustomXamlResourceLoaderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICustomXamlResourceLoaderStatics is access all ICustomXamlResourceLoaderStatics_Interface'Class;
+   type ICustomXamlResourceLoaderStatics_Ptr is access all ICustomXamlResourceLoaderStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

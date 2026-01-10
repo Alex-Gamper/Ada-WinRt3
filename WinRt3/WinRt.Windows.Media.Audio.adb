@@ -775,6 +775,183 @@ package body WinRt.Windows.Media.Audio is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for AudioEffectsPackConfiguration
+
+   procedure Initialize (this : in out AudioEffectsPackConfiguration) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out AudioEffectsPackConfiguration) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IAudioEffectsPackConfiguration, IAudioEffectsPackConfiguration_Ptr);
+   begin
+      if this.m_IAudioEffectsPackConfiguration /= null then
+         if this.m_IAudioEffectsPackConfiguration.all /= null then
+            temp := this.m_IAudioEffectsPackConfiguration.all.Release;
+            Free (this.m_IAudioEffectsPackConfiguration);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for AudioEffectsPackConfiguration
+
+   function GetForDeviceId
+   (
+      effectsPackId : WinRt.WString;
+      deviceId : WinRt.WString
+   )
+   return WinRt.Windows.Media.Audio.AudioEffectsPackConfiguration is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioEffectsPackConfiguration");
+      m_Factory        : access WinRt.Windows.Media.Audio.IAudioEffectsPackConfigurationStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Audio.IAudioEffectsPackConfiguration;
+      HStr_effectsPackId : constant WinRt.HString := To_HString (effectsPackId);
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
+   begin
+      return RetVal : WinRt.Windows.Media.Audio.AudioEffectsPackConfiguration do
+         Hr := RoGetActivationFactory (m_hString, IID_IAudioEffectsPackConfigurationStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForDeviceId (HStr_effectsPackId, HStr_deviceId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IAudioEffectsPackConfiguration := new Windows.Media.Audio.IAudioEffectsPackConfiguration;
+            Retval.m_IAudioEffectsPackConfiguration.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_effectsPackId);
+         tmp := WindowsDeleteString (HStr_deviceId);
+      end return;
+   end;
+
+   function IsDeviceIdSupported
+   (
+      effectsPackId : WinRt.WString;
+      deviceId : WinRt.WString
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioEffectsPackConfiguration");
+      m_Factory        : access WinRt.Windows.Media.Audio.IAudioEffectsPackConfigurationStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      HStr_effectsPackId : constant WinRt.HString := To_HString (effectsPackId);
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IAudioEffectsPackConfigurationStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.IsDeviceIdSupported (HStr_effectsPackId, HStr_deviceId, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_effectsPackId);
+      tmp := WindowsDeleteString (HStr_deviceId);
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for AudioEffectsPackConfiguration
+
+   function get_DeviceId
+   (
+      this : in out AudioEffectsPackConfiguration
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IAudioEffectsPackConfiguration.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_EffectsPackId
+   (
+      this : in out AudioEffectsPackConfiguration
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IAudioEffectsPackConfiguration.all.get_EffectsPackId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Status
+   (
+      this : in out AudioEffectsPackConfiguration
+   )
+   return WinRt.Windows.Media.Audio.AudioEffectsPackStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Audio.AudioEffectsPackStatus;
+   begin
+      Hr := this.m_IAudioEffectsPackConfiguration.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function add_StatusChanged
+   (
+      this : in out AudioEffectsPackConfiguration;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IAudioEffectsPackConfiguration.all.add_StatusChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_StatusChanged
+   (
+      this : in out AudioEffectsPackConfiguration;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IAudioEffectsPackConfiguration.all.remove_StatusChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AudioFileInputNode
 
    procedure Initialize (this : in out AudioFileInputNode) is
@@ -4350,6 +4527,22 @@ package body WinRt.Windows.Media.Audio is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for AudioNodeEmitter
 
+   function Constructor return AudioNodeEmitter is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioNodeEmitter");
+      m_ComRetVal  : aliased Windows.Media.Audio.IAudioNodeEmitter;
+   begin
+      return RetVal : AudioNodeEmitter do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IAudioNodeEmitter := new Windows.Media.Audio.IAudioNodeEmitter;
+            Retval.m_IAudioNodeEmitter.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       shape : Windows.Media.Audio.AudioNodeEmitterShape'Class;
@@ -4371,22 +4564,6 @@ package body WinRt.Windows.Media.Audio is
             Retval.m_IAudioNodeEmitter := new Windows.Media.Audio.IAudioNodeEmitter;
             Retval.m_IAudioNodeEmitter.all := m_ComRetVal;
             temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor return AudioNodeEmitter is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioNodeEmitter");
-      m_ComRetVal  : aliased Windows.Media.Audio.IAudioNodeEmitter;
-   begin
-      return RetVal : AudioNodeEmitter do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IAudioNodeEmitter := new Windows.Media.Audio.IAudioNodeEmitter;
-            Retval.m_IAudioNodeEmitter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
@@ -9277,6 +9454,30 @@ package body WinRt.Windows.Media.Audio is
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package body SpatialAudioFormatSubtype is
+
+      function get_DTSXForHomeTheater
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.SpatialAudioFormatSubtype");
+         m_Factory        : access WinRt.Windows.Media.Audio.ISpatialAudioFormatSubtypeStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ISpatialAudioFormatSubtypeStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_DTSXForHomeTheater (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
 
       function get_WindowsSonic
       return WinRt.WString is

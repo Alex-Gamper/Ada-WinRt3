@@ -86,6 +86,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
 
    type IGameSaveProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGameSaveProviderStatics is access all IGameSaveProviderStatics_Interface'Class;
+   type IGameSaveProviderStatics_Ptr is access all IGameSaveProviderStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

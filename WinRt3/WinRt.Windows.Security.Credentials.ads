@@ -32,6 +32,7 @@ with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Security.Cryptography.Core;
 limited with WinRt.Windows.Storage.Streams;
 limited with WinRt.Windows.System;
+limited with WinRt.Windows.UI;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Security.Credentials is
@@ -39,22 +40,47 @@ package WinRt.Windows.Security.Credentials is
    pragma PreElaborate;
 
    -----------------------------------------------------------------------------
+   -- Forward Delegates declarations
+   -----------------------------------------------------------------------------
+
+   type AttestationChallengeHandler_Delegate;
+   type AttestationChallengeHandler is access all AttestationChallengeHandler_Delegate;
+
+   -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type ICredentialFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICredentialFactory is access all ICredentialFactory_Interface'Class;
+   type ICredentialFactory_Ptr is access all ICredentialFactory;
 
    type IKeyCredential_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyCredential is access all IKeyCredential_Interface'Class;
    type IKeyCredential_Ptr is access all IKeyCredential;
 
+   type IKeyCredential2_Interface is interface and WinRt.IInspectable_Interface;
+   type IKeyCredential2 is access all IKeyCredential2_Interface'Class;
+   type IKeyCredential2_Ptr is access all IKeyCredential2;
+
    type IKeyCredentialAttestationResult_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyCredentialAttestationResult is access all IKeyCredentialAttestationResult_Interface'Class;
    type IKeyCredentialAttestationResult_Ptr is access all IKeyCredentialAttestationResult;
 
+   type IKeyCredentialCacheConfiguration_Interface is interface and WinRt.IInspectable_Interface;
+   type IKeyCredentialCacheConfiguration is access all IKeyCredentialCacheConfiguration_Interface'Class;
+   type IKeyCredentialCacheConfiguration_Ptr is access all IKeyCredentialCacheConfiguration;
+
+   type IKeyCredentialCacheConfigurationFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IKeyCredentialCacheConfigurationFactory is access all IKeyCredentialCacheConfigurationFactory_Interface'Class;
+   type IKeyCredentialCacheConfigurationFactory_Ptr is access all IKeyCredentialCacheConfigurationFactory;
+
    type IKeyCredentialManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyCredentialManagerStatics is access all IKeyCredentialManagerStatics_Interface'Class;
+   type IKeyCredentialManagerStatics_Ptr is access all IKeyCredentialManagerStatics;
+
+   type IKeyCredentialManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type IKeyCredentialManagerStatics2 is access all IKeyCredentialManagerStatics2_Interface'Class;
+   type IKeyCredentialManagerStatics2_Ptr is access all IKeyCredentialManagerStatics2;
 
    type IKeyCredentialOperationResult_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyCredentialOperationResult is access all IKeyCredentialOperationResult_Interface'Class;
@@ -78,9 +104,11 @@ package WinRt.Windows.Security.Credentials is
 
    type IWebAccount2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccount2 is access all IWebAccount2_Interface'Class;
+   type IWebAccount2_Ptr is access all IWebAccount2;
 
    type IWebAccountFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountFactory is access all IWebAccountFactory_Interface'Class;
+   type IWebAccountFactory_Ptr is access all IWebAccountFactory;
 
    type IWebAccountProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProvider is access all IWebAccountProvider_Interface'Class;
@@ -88,15 +116,19 @@ package WinRt.Windows.Security.Credentials is
 
    type IWebAccountProvider2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProvider2 is access all IWebAccountProvider2_Interface'Class;
+   type IWebAccountProvider2_Ptr is access all IWebAccountProvider2;
 
    type IWebAccountProvider3_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProvider3 is access all IWebAccountProvider3_Interface'Class;
+   type IWebAccountProvider3_Ptr is access all IWebAccountProvider3;
 
    type IWebAccountProvider4_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProvider4 is access all IWebAccountProvider4_Interface'Class;
+   type IWebAccountProvider4_Ptr is access all IWebAccountProvider4;
 
    type IWebAccountProviderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountProviderFactory is access all IWebAccountProviderFactory_Interface'Class;
+   type IWebAccountProviderFactory_Ptr is access all IWebAccountProviderFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -113,6 +145,12 @@ package WinRt.Windows.Security.Credentials is
          m_IKeyCredentialAttestationResult : access Windows.Security.Credentials.IKeyCredentialAttestationResult;
       end record;
    type KeyCredentialAttestationResult_Ptr is access all KeyCredentialAttestationResult;
+
+   type KeyCredentialCacheConfiguration is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IKeyCredentialCacheConfiguration : access Windows.Security.Credentials.IKeyCredentialCacheConfiguration;
+      end record;
+   type KeyCredentialCacheConfiguration_Ptr is access all KeyCredentialCacheConfiguration;
 
    type KeyCredentialOperationResult is new Ada.Finalization.Limited_Controlled with
       record
@@ -160,6 +198,14 @@ package WinRt.Windows.Security.Credentials is
    -- Enum declarations
    -----------------------------------------------------------------------------
 
+   type ChallengeResponseKind is (
+      VirtualizationBasedSecurityEnclave_e
+   );
+   for ChallengeResponseKind use (
+      VirtualizationBasedSecurityEnclave_e => 0
+   );
+   type ChallengeResponseKind_Ptr is access all ChallengeResponseKind;
+
    type KeyCredentialAttestationStatus is (
       Success_e,
       UnknownError_e,
@@ -173,6 +219,16 @@ package WinRt.Windows.Security.Credentials is
       TemporaryFailure_e => 3
    );
    type KeyCredentialAttestationStatus_Ptr is access all KeyCredentialAttestationStatus;
+
+   type KeyCredentialCacheOption is (
+      NoCache_e,
+      CacheWhenUnlocked_e
+   );
+   for KeyCredentialCacheOption use (
+      NoCache_e => 0,
+      CacheWhenUnlocked_e => 1
+   );
+   type KeyCredentialCacheOption_Ptr is access all KeyCredentialCacheOption;
 
    type KeyCredentialCreationOption is (
       ReplaceExisting_e,
@@ -191,7 +247,8 @@ package WinRt.Windows.Security.Credentials is
       UserCanceled_e,
       UserPrefersPassword_e,
       CredentialAlreadyExists_e,
-      SecurityDeviceLocked_e
+      SecurityDeviceLocked_e,
+      AlgorithmNotSupported_e
    );
    for KeyCredentialStatus use (
       Success_e => 0,
@@ -200,7 +257,8 @@ package WinRt.Windows.Security.Credentials is
       UserCanceled_e => 3,
       UserPrefersPassword_e => 4,
       CredentialAlreadyExists_e => 5,
-      SecurityDeviceLocked_e => 6
+      SecurityDeviceLocked_e => 6,
+      AlgorithmNotSupported_e => 7
    );
    type KeyCredentialStatus_Ptr is access all KeyCredentialStatus;
 
@@ -229,6 +287,19 @@ package WinRt.Windows.Security.Credentials is
       Error_e => 2
    );
    type WebAccountState_Ptr is access all WebAccountState;
+
+   -----------------------------------------------------------------------------
+   -- Delegate declarations
+   -----------------------------------------------------------------------------
+
+   IID_AttestationChallengeHandler : aliased WinRt.IID := (4138612144, 55301, 22653, (148, 79, 160, 155, 208, 50, 172, 245 ));
+   type AttestationChallengeHandler_Delegate (Callback : access procedure  (challenge : Windows.Storage.Streams.IBuffer)) is new WinRt.IMulticastDelegate_Interface (IID_AttestationChallengeHandler'Access) with null record;
+      function Invoke
+      (
+         this : access AttestationChallengeHandler_Delegate;
+         challenge : Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Hresult;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations
@@ -304,6 +375,29 @@ package WinRt.Windows.Security.Credentials is
       IID_IKeyCredential : aliased WinRt.IID := (2508582797, 17787, 18503, (177, 26, 250, 150, 11, 189, 177, 56 ));
 
    -----------------------------------------------------------------------------
+   -- type IKeyCredential2 is interface and WinRt.IInspectable;
+
+      function RequestDeriveSharedSecretAsync
+      (
+         this : access IKeyCredential2_Interface;
+         windowId : Windows.UI.WindowId;
+         message : WinRt.HString;
+         encryptedRequest : Windows.Storage.Streams.IBuffer;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function RetrieveAuthorizationContext
+      (
+         this : access IKeyCredential2_Interface;
+         encryptedRequest : Windows.Storage.Streams.IBuffer;
+         RetVal : access Windows.Storage.Streams.IBuffer
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IKeyCredential2 : aliased WinRt.IID := (998006281, 31602, 23045, (178, 240, 113, 25, 202, 63, 213, 223 ));
+
+   -----------------------------------------------------------------------------
    -- type IKeyCredentialAttestationResult is interface and WinRt.IInspectable;
 
       function get_CertificateChainBuffer
@@ -328,6 +422,47 @@ package WinRt.Windows.Security.Credentials is
       return WinRt.Hresult is abstract;
 
       IID_IKeyCredentialAttestationResult : aliased WinRt.IID := (2024453025, 41921, 16643, (182, 204, 71, 44, 68, 23, 28, 187 ));
+
+   -----------------------------------------------------------------------------
+   -- type IKeyCredentialCacheConfiguration is interface and WinRt.IInspectable;
+
+      function get_CacheOption
+      (
+         this : access IKeyCredentialCacheConfiguration_Interface;
+         RetVal : access Windows.Security.Credentials.KeyCredentialCacheOption
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Timeout
+      (
+         this : access IKeyCredentialCacheConfiguration_Interface;
+         RetVal : access Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UsageCount
+      (
+         this : access IKeyCredentialCacheConfiguration_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IKeyCredentialCacheConfiguration : aliased WinRt.IID := (1133236762, 25087, 21608, (149, 166, 177, 213, 33, 110, 69, 141 ));
+
+   -----------------------------------------------------------------------------
+   -- type IKeyCredentialCacheConfigurationFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IKeyCredentialCacheConfigurationFactory_Interface;
+         cacheOption : Windows.Security.Credentials.KeyCredentialCacheOption;
+         timeout : Windows.Foundation.TimeSpan;
+         usageCount : WinRt.UInt32;
+         RetVal : access Windows.Security.Credentials.IKeyCredentialCacheConfiguration
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IKeyCredentialCacheConfigurationFactory : aliased WinRt.IID := (2571682587, 51239, 23384, (148, 66, 64, 172, 216, 171, 30, 125 ));
 
    -----------------------------------------------------------------------------
    -- type IKeyCredentialManagerStatics is interface and WinRt.IInspectable;
@@ -372,6 +507,36 @@ package WinRt.Windows.Security.Credentials is
       return WinRt.Hresult is abstract;
 
       IID_IKeyCredentialManagerStatics : aliased WinRt.IID := (1789675147, 3825, 19680, (130, 144, 65, 6, 218, 106, 99, 181 ));
+
+   -----------------------------------------------------------------------------
+   -- type IKeyCredentialManagerStatics2 is interface and WinRt.IInspectable;
+
+      function RequestCreateAsync
+      (
+         this : access IKeyCredentialManagerStatics2_Interface;
+         name : WinRt.HString;
+         option : Windows.Security.Credentials.KeyCredentialCreationOption;
+         algorithm : WinRt.HString;
+         message : WinRt.HString;
+         cacheConfiguration : Windows.Security.Credentials.IKeyCredentialCacheConfiguration;
+         windowId : Windows.UI.WindowId;
+         callbackType : Windows.Security.Credentials.ChallengeResponseKind;
+         attestationCallback : Windows.Security.Credentials.AttestationChallengeHandler;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function OpenAsync
+      (
+         this : access IKeyCredentialManagerStatics2_Interface;
+         name : WinRt.HString;
+         callbackType : Windows.Security.Credentials.ChallengeResponseKind;
+         attestationCallback : Windows.Security.Credentials.AttestationChallengeHandler;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IKeyCredentialManagerStatics2 : aliased WinRt.IID := (2039557292, 11033, 22104, (159, 166, 96, 188, 224, 30, 242, 5 ));
 
    -----------------------------------------------------------------------------
    -- type IKeyCredentialOperationResult is interface and WinRt.IInspectable;
@@ -734,6 +899,22 @@ package WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Security.Credentials.KeyCredentialAttestationResult'Class;
 
+   function RequestDeriveSharedSecretAsync
+   (
+      this : in out KeyCredential;
+      windowId : Windows.UI.WindowId;
+      message : WinRt.WString;
+      encryptedRequest : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.Security.Credentials.KeyCredentialOperationResult'Class;
+
+   function RetrieveAuthorizationContext
+   (
+      this : in out KeyCredential;
+      encryptedRequest : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.Storage.Streams.IBuffer;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for KeyCredentialAttestationResult
 
@@ -762,6 +943,44 @@ package WinRt.Windows.Security.Credentials is
    return WinRt.Windows.Security.Credentials.KeyCredentialAttestationStatus;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for KeyCredentialCacheConfiguration
+
+   overriding procedure Initialize (this : in out KeyCredentialCacheConfiguration);
+   overriding procedure Finalize (this : in out KeyCredentialCacheConfiguration);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for KeyCredentialCacheConfiguration
+
+   function Constructor
+   (
+      cacheOption : Windows.Security.Credentials.KeyCredentialCacheOption;
+      timeout : Windows.Foundation.TimeSpan;
+      usageCount : WinRt.UInt32
+   )
+   return KeyCredentialCacheConfiguration;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for KeyCredentialCacheConfiguration
+
+   function get_CacheOption
+   (
+      this : in out KeyCredentialCacheConfiguration
+   )
+   return WinRt.Windows.Security.Credentials.KeyCredentialCacheOption;
+
+   function get_Timeout
+   (
+      this : in out KeyCredentialCacheConfiguration
+   )
+   return WinRt.Windows.Foundation.TimeSpan;
+
+   function get_UsageCount
+   (
+      this : in out KeyCredentialCacheConfiguration
+   )
+   return WinRt.UInt32;
+
+   -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package KeyCredentialManager is
 
@@ -787,6 +1006,27 @@ package WinRt.Windows.Security.Credentials is
       (
          name : WinRt.WString
       );
+
+      function RequestCreateAsync
+      (
+         name : WinRt.WString;
+         option : Windows.Security.Credentials.KeyCredentialCreationOption;
+         algorithm : WinRt.WString;
+         message : WinRt.WString;
+         cacheConfiguration : Windows.Security.Credentials.KeyCredentialCacheConfiguration'Class;
+         windowId : Windows.UI.WindowId;
+         callbackType : Windows.Security.Credentials.ChallengeResponseKind;
+         attestationCallback : Windows.Security.Credentials.AttestationChallengeHandler
+      )
+      return WinRt.Windows.Security.Credentials.KeyCredentialRetrievalResult;
+
+      function OpenAsync
+      (
+         name : WinRt.WString;
+         callbackType : Windows.Security.Credentials.ChallengeResponseKind;
+         attestationCallback : Windows.Security.Credentials.AttestationChallengeHandler
+      )
+      return WinRt.Windows.Security.Credentials.KeyCredentialRetrievalResult;
 
    end KeyCredentialManager;
 

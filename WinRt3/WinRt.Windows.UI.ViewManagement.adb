@@ -303,25 +303,45 @@ package body WinRt.Windows.UI.ViewManagement is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ApplicationView
 
-   function TryUnsnapToFullscreen
-   return WinRt.Boolean is
+   procedure ClearAllPersistedState is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
-      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewFullscreenStatics_Interface'Class := null;
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics4_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Boolean;
    begin
-      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewFullscreenStatics'Access , m_Factory'Address);
+      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics4'Access , m_Factory'Address);
       if Hr = S_OK then
-         Hr := m_Factory.TryUnsnapToFullscreen (m_ComRetVal'Access);
+         Hr := m_Factory.ClearAllPersistedState;
          temp := m_Factory.Release;
          if Hr /= S_OK then
             raise Program_Error;
          end if;
       end if;
       tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
+   end;
+
+   procedure ClearPersistedState
+   (
+      key : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics4'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.ClearPersistedState (HStr_key);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    function GetForCurrentView
@@ -388,6 +408,51 @@ package body WinRt.Windows.UI.ViewManagement is
          end if;
       end if;
       tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function TryUnsnapToFullscreen
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewFullscreenStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewFullscreenStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.TryUnsnapToFullscreen (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function GetApplicationViewIdForWindow
+   (
+      window : Windows.UI.Core.ICoreWindow
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewInteropStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewInteropStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetApplicationViewIdForWindow (window, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
    end;
 
    function get_PreferredLaunchWindowingMode
@@ -472,71 +537,6 @@ package body WinRt.Windows.UI.ViewManagement is
          end if;
       end if;
       tmp := WindowsDeleteString (m_hString);
-   end;
-
-   procedure ClearAllPersistedState is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
-      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics4_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics4'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.ClearAllPersistedState;
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
-   procedure ClearPersistedState
-   (
-      key : WinRt.WString
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
-      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics4_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      HStr_key : constant WinRt.HString := To_HString (key);
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics4'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.ClearPersistedState (HStr_key);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      tmp := WindowsDeleteString (HStr_key);
-   end;
-
-   function GetApplicationViewIdForWindow
-   (
-      window : Windows.UI.Core.ICoreWindow
-   )
-   return WinRt.Int32 is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
-      m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewInteropStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Int32;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewInteropStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetApplicationViewIdForWindow (window, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
    end;
 
    function get_Value
@@ -1613,167 +1613,6 @@ package body WinRt.Windows.UI.ViewManagement is
    -- Static RuntimeClass
    package body ApplicationViewSwitcher is
 
-      function TryShowAsViewModeAsync
-      (
-         viewId : WinRt.Int32;
-         viewMode : Windows.UI.ViewManagement.ApplicationViewMode
-      )
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
-         m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_Boolean.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Boolean;
-         m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
-         m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
-         m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.TryShowAsViewModeAsync (viewId, viewMode, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_RetVal;
-      end;
-
-      function TryShowAsViewModeAsync
-      (
-         viewId : WinRt.Int32;
-         viewMode : Windows.UI.ViewManagement.ApplicationViewMode;
-         viewModePreferences_p : Windows.UI.ViewManagement.ViewModePreferences'Class
-      )
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
-         m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_Boolean.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Boolean;
-         m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
-         m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
-         m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.TryShowAsViewModeAsync (viewId, viewMode, viewModePreferences_p.m_IViewModePreferences.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_RetVal;
-      end;
-
-      procedure DisableSystemViewActivationPolicy is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
-         m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.DisableSystemViewActivationPolicy;
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
       procedure DisableShowingMainViewOnActivation is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2226,6 +2065,167 @@ package body WinRt.Windows.UI.ViewManagement is
          end if;
          tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
+      end;
+
+      function TryShowAsViewModeAsync
+      (
+         viewId : WinRt.Int32;
+         viewMode : Windows.UI.ViewManagement.ApplicationViewMode
+      )
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_Boolean.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Boolean;
+         m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
+         m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
+         m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.TryShowAsViewModeAsync (viewId, viewMode, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_RetVal;
+      end;
+
+      function TryShowAsViewModeAsync
+      (
+         viewId : WinRt.Int32;
+         viewMode : Windows.UI.ViewManagement.ApplicationViewMode;
+         viewModePreferences_p : Windows.UI.ViewManagement.ViewModePreferences'Class
+      )
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_Boolean.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Boolean;
+         m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
+         m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
+         m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.TryShowAsViewModeAsync (viewId, viewMode, viewModePreferences_p.m_IViewModePreferences.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_RetVal;
+      end;
+
+      procedure DisableSystemViewActivationPolicy is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.DisableSystemViewActivationPolicy;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end ApplicationViewSwitcher;
@@ -2797,6 +2797,30 @@ package body WinRt.Windows.UI.ViewManagement is
    -----------------------------------------------------------------------------
    -- Static Interfaces for InputPane
 
+   function GetForCurrentView
+   return WinRt.Windows.UI.ViewManagement.InputPane is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.InputPane");
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.IInputPaneStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.ViewManagement.IInputPane;
+   begin
+      return RetVal : WinRt.Windows.UI.ViewManagement.InputPane do
+         Hr := RoGetActivationFactory (m_hString, IID_IInputPaneStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IInputPane := new Windows.UI.ViewManagement.IInputPane;
+            Retval.m_IInputPane.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function GetForUIContext
    (
       context : Windows.UI.UIContext'Class
@@ -2813,30 +2837,6 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IInputPaneStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForUIContext (context.m_IUIContext.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IInputPane := new Windows.UI.ViewManagement.IInputPane;
-            Retval.m_IInputPane.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetForCurrentView
-   return WinRt.Windows.UI.ViewManagement.InputPane is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.InputPane");
-      m_Factory        : access WinRt.Windows.UI.ViewManagement.IInputPaneStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IInputPane;
-   begin
-      return RetVal : WinRt.Windows.UI.ViewManagement.InputPane do
-         Hr := RoGetActivationFactory (m_hString, IID_IInputPaneStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -3529,524 +3529,6 @@ package body WinRt.Windows.UI.ViewManagement is
       end;
 
    end ProjectionManager;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for StatusBar
-
-   procedure Initialize (this : in out StatusBar) is
-   begin
-      null;
-   end;
-
-   procedure Finalize (this : in out StatusBar) is
-      temp : WinRt.UInt32 := 0;
-      procedure Free is new Ada.Unchecked_Deallocation (IStatusBar, IStatusBar_Ptr);
-   begin
-      if this.m_IStatusBar /= null then
-         if this.m_IStatusBar.all /= null then
-            temp := this.m_IStatusBar.all.Release;
-            Free (this.m_IStatusBar);
-         end if;
-      end if;
-   end;
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for StatusBar
-
-   function GetForCurrentView
-   return WinRt.Windows.UI.ViewManagement.StatusBar is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.StatusBar");
-      m_Factory        : access WinRt.Windows.UI.ViewManagement.IStatusBarStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IStatusBar;
-   begin
-      return RetVal : WinRt.Windows.UI.ViewManagement.StatusBar do
-         Hr := RoGetActivationFactory (m_hString, IID_IStatusBarStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IStatusBar := new Windows.UI.ViewManagement.IStatusBar;
-            Retval.m_IStatusBar.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for StatusBar
-
-   procedure ShowAsync
-   (
-      this : in out StatusBar
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
-
-      procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-      begin
-         if asyncStatus = Completed_e then
-            Hr := asyncInfo.GetResults;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-      m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
-      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
-
-   begin
-      Hr := this.m_IStatusBar.all.ShowAsync (m_ComRetVal'Access);
-      if Hr = S_OK then
-         m_Captured := m_Completed;
-         Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
-         while m_Captured = m_Compare loop
-            m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-            m_Captured := m_Completed;
-         end loop;
-         temp := m_ComRetVal.Release;
-         temp := m_CompletedHandler.Release;
-         if temp = 0 then
-            Free (m_CompletedHandler);
-         end if;
-      end if;
-   end;
-
-   procedure HideAsync
-   (
-      this : in out StatusBar
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
-
-      procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-      begin
-         if asyncStatus = Completed_e then
-            Hr := asyncInfo.GetResults;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-      m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
-      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
-
-   begin
-      Hr := this.m_IStatusBar.all.HideAsync (m_ComRetVal'Access);
-      if Hr = S_OK then
-         m_Captured := m_Completed;
-         Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
-         while m_Captured = m_Compare loop
-            m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-            m_Captured := m_Completed;
-         end loop;
-         temp := m_ComRetVal.Release;
-         temp := m_CompletedHandler.Release;
-         if temp = 0 then
-            Free (m_CompletedHandler);
-         end if;
-      end if;
-   end;
-
-   function get_BackgroundOpacity
-   (
-      this : in out StatusBar
-   )
-   return WinRt.Double is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Double;
-   begin
-      Hr := this.m_IStatusBar.all.get_BackgroundOpacity (m_ComRetVal'Access);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
-   end;
-
-   procedure put_BackgroundOpacity
-   (
-      this : in out StatusBar;
-      value : WinRt.Double
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := this.m_IStatusBar.all.put_BackgroundOpacity (value);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-   end;
-
-   function get_ForegroundColor
-   (
-      this : in out StatusBar
-   )
-   return IReference_Color.Kind is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
-      m_GenericRetval  : aliased IReference_Color.Kind;
-   begin
-      Hr := this.m_IStatusBar.all.get_ForegroundColor (m_ComRetVal'Access);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      temp := m_ComRetVal.Release;
-      return m_GenericRetVal;
-   end;
-
-   procedure put_ForegroundColor
-   (
-      this : in out StatusBar;
-      value : GenericObject
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := this.m_IStatusBar.all.put_ForegroundColor (value);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-   end;
-
-   function get_BackgroundColor
-   (
-      this : in out StatusBar
-   )
-   return IReference_Color.Kind is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
-      m_GenericRetval  : aliased IReference_Color.Kind;
-   begin
-      Hr := this.m_IStatusBar.all.get_BackgroundColor (m_ComRetVal'Access);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      temp := m_ComRetVal.Release;
-      return m_GenericRetVal;
-   end;
-
-   procedure put_BackgroundColor
-   (
-      this : in out StatusBar;
-      value : GenericObject
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := this.m_IStatusBar.all.put_BackgroundColor (value);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-   end;
-
-   function get_ProgressIndicator
-   (
-      this : in out StatusBar
-   )
-   return WinRt.Windows.UI.ViewManagement.StatusBarProgressIndicator'Class is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IStatusBarProgressIndicator;
-   begin
-      return RetVal : WinRt.Windows.UI.ViewManagement.StatusBarProgressIndicator do
-         Hr := this.m_IStatusBar.all.get_ProgressIndicator (m_ComRetVal'Access);
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-         Retval.m_IStatusBarProgressIndicator := new Windows.UI.ViewManagement.IStatusBarProgressIndicator;
-         Retval.m_IStatusBarProgressIndicator.all := m_ComRetVal;
-      end return;
-   end;
-
-   function get_OccludedRect
-   (
-      this : in out StatusBar
-   )
-   return WinRt.Windows.Foundation.Rect is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
-   begin
-      Hr := this.m_IStatusBar.all.get_OccludedRect (m_ComRetVal'Access);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
-   end;
-
-   function add_Showing
-   (
-      this : in out StatusBar;
-      eventHandler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
-   begin
-      Hr := this.m_IStatusBar.all.add_Showing (eventHandler, m_ComRetVal'Access);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
-   end;
-
-   procedure remove_Showing
-   (
-      this : in out StatusBar;
-      token : Windows.Foundation.EventRegistrationToken
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := this.m_IStatusBar.all.remove_Showing (token);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-   end;
-
-   function add_Hiding
-   (
-      this : in out StatusBar;
-      eventHandler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
-   begin
-      Hr := this.m_IStatusBar.all.add_Hiding (eventHandler, m_ComRetVal'Access);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
-   end;
-
-   procedure remove_Hiding
-   (
-      this : in out StatusBar;
-      token : Windows.Foundation.EventRegistrationToken
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := this.m_IStatusBar.all.remove_Hiding (token);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-   end;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for StatusBarProgressIndicator
-
-   procedure Initialize (this : in out StatusBarProgressIndicator) is
-   begin
-      null;
-   end;
-
-   procedure Finalize (this : in out StatusBarProgressIndicator) is
-      temp : WinRt.UInt32 := 0;
-      procedure Free is new Ada.Unchecked_Deallocation (IStatusBarProgressIndicator, IStatusBarProgressIndicator_Ptr);
-   begin
-      if this.m_IStatusBarProgressIndicator /= null then
-         if this.m_IStatusBarProgressIndicator.all /= null then
-            temp := this.m_IStatusBarProgressIndicator.all.Release;
-            Free (this.m_IStatusBarProgressIndicator);
-         end if;
-      end if;
-   end;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for StatusBarProgressIndicator
-
-   procedure ShowAsync
-   (
-      this : in out StatusBarProgressIndicator
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
-
-      procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-      begin
-         if asyncStatus = Completed_e then
-            Hr := asyncInfo.GetResults;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-      m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
-      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
-
-   begin
-      Hr := this.m_IStatusBarProgressIndicator.all.ShowAsync (m_ComRetVal'Access);
-      if Hr = S_OK then
-         m_Captured := m_Completed;
-         Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
-         while m_Captured = m_Compare loop
-            m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-            m_Captured := m_Completed;
-         end loop;
-         temp := m_ComRetVal.Release;
-         temp := m_CompletedHandler.Release;
-         if temp = 0 then
-            Free (m_CompletedHandler);
-         end if;
-      end if;
-   end;
-
-   procedure HideAsync
-   (
-      this : in out StatusBarProgressIndicator
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
-
-      procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-      begin
-         if asyncStatus = Completed_e then
-            Hr := asyncInfo.GetResults;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-      m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
-      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
-
-   begin
-      Hr := this.m_IStatusBarProgressIndicator.all.HideAsync (m_ComRetVal'Access);
-      if Hr = S_OK then
-         m_Captured := m_Completed;
-         Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
-         while m_Captured = m_Compare loop
-            m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-            m_Captured := m_Completed;
-         end loop;
-         temp := m_ComRetVal.Release;
-         temp := m_CompletedHandler.Release;
-         if temp = 0 then
-            Free (m_CompletedHandler);
-         end if;
-      end if;
-   end;
-
-   function get_Text
-   (
-      this : in out StatusBarProgressIndicator
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := this.m_IStatusBarProgressIndicator.all.get_Text (m_ComRetVal'Access);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   procedure put_Text
-   (
-      this : in out StatusBarProgressIndicator;
-      value : WinRt.WString
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      HStr_value : constant WinRt.HString := To_HString (value);
-   begin
-      Hr := this.m_IStatusBarProgressIndicator.all.put_Text (HStr_value);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      tmp := WindowsDeleteString (HStr_value);
-   end;
-
-   function get_ProgressValue
-   (
-      this : in out StatusBarProgressIndicator
-   )
-   return IReference_Double.Kind is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
-      m_GenericRetval  : aliased IReference_Double.Kind;
-   begin
-      Hr := this.m_IStatusBarProgressIndicator.all.get_ProgressValue (m_ComRetVal'Access);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      temp := m_ComRetVal.Release;
-      return m_GenericRetVal;
-   end;
-
-   procedure put_ProgressValue
-   (
-      this : in out StatusBarProgressIndicator;
-      value : GenericObject
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := this.m_IStatusBarProgressIndicator.all.put_ProgressValue (value);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-   end;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for UISettings
@@ -4777,6 +4259,70 @@ package body WinRt.Windows.UI.ViewManagement is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   function GetPreferredInteractionMode
+   (
+      this : in out UIViewSettings;
+      supportedModes : Windows.UI.ViewManagement.UserInteractionMode_Array
+   )
+   return WinRt.Windows.UI.ViewManagement.UserInteractionMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.ViewManagement.IUIViewSettingsPreferredInteractionMode := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.ViewManagement.UserInteractionMode;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUIViewSettings_Interface, WinRt.Windows.UI.ViewManagement.IUIViewSettingsPreferredInteractionMode, WinRt.Windows.UI.ViewManagement.IID_IUIViewSettingsPreferredInteractionMode'Unchecked_Access);
+      function Convert_supportedModes is new Ada.Unchecked_Conversion (Address, WinRt.Windows.UI.ViewManagement.UserInteractionMode_Ptr);
+   begin
+      m_Interface := QInterface (this.m_IUIViewSettings.all);
+      Hr := m_Interface.GetPreferredInteractionMode (WinRt.UInt32(supportedModes'Length), Convert_supportedModes (supportedModes (supportedModes'First)'Address), m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function add_PreferredInteractionModeChanged
+   (
+      this : in out UIViewSettings;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.ViewManagement.IUIViewSettingsPreferredInteractionMode := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUIViewSettings_Interface, WinRt.Windows.UI.ViewManagement.IUIViewSettingsPreferredInteractionMode, WinRt.Windows.UI.ViewManagement.IID_IUIViewSettingsPreferredInteractionMode'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IUIViewSettings.all);
+      Hr := m_Interface.add_PreferredInteractionModeChanged (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_PreferredInteractionModeChanged
+   (
+      this : in out UIViewSettings;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.ViewManagement.IUIViewSettingsPreferredInteractionMode := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUIViewSettings_Interface, WinRt.Windows.UI.ViewManagement.IUIViewSettingsPreferredInteractionMode, WinRt.Windows.UI.ViewManagement.IID_IUIViewSettingsPreferredInteractionMode'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IUIViewSettings.all);
+      Hr := m_Interface.remove_PreferredInteractionModeChanged (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------

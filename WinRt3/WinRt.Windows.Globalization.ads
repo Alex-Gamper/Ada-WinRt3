@@ -42,9 +42,11 @@ package WinRt.Windows.Globalization is
 
    type IApplicationLanguagesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationLanguagesStatics is access all IApplicationLanguagesStatics_Interface'Class;
+   type IApplicationLanguagesStatics_Ptr is access all IApplicationLanguagesStatics;
 
    type IApplicationLanguagesStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationLanguagesStatics2 is access all IApplicationLanguagesStatics2_Interface'Class;
+   type IApplicationLanguagesStatics2_Ptr is access all IApplicationLanguagesStatics2;
 
    type ICalendar_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendar is access all ICalendar_Interface'Class;
@@ -52,21 +54,27 @@ package WinRt.Windows.Globalization is
 
    type ICalendarFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarFactory is access all ICalendarFactory_Interface'Class;
+   type ICalendarFactory_Ptr is access all ICalendarFactory;
 
    type ICalendarFactory2_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarFactory2 is access all ICalendarFactory2_Interface'Class;
+   type ICalendarFactory2_Ptr is access all ICalendarFactory2;
 
    type ICalendarIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarIdentifiersStatics is access all ICalendarIdentifiersStatics_Interface'Class;
+   type ICalendarIdentifiersStatics_Ptr is access all ICalendarIdentifiersStatics;
 
    type ICalendarIdentifiersStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarIdentifiersStatics2 is access all ICalendarIdentifiersStatics2_Interface'Class;
+   type ICalendarIdentifiersStatics2_Ptr is access all ICalendarIdentifiersStatics2;
 
    type ICalendarIdentifiersStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarIdentifiersStatics3 is access all ICalendarIdentifiersStatics3_Interface'Class;
+   type ICalendarIdentifiersStatics3_Ptr is access all ICalendarIdentifiersStatics3;
 
    type IClockIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IClockIdentifiersStatics is access all IClockIdentifiersStatics_Interface'Class;
+   type IClockIdentifiersStatics_Ptr is access all IClockIdentifiersStatics;
 
    type ICurrencyAmount_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrencyAmount is access all ICurrencyAmount_Interface'Class;
@@ -74,15 +82,19 @@ package WinRt.Windows.Globalization is
 
    type ICurrencyAmountFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrencyAmountFactory is access all ICurrencyAmountFactory_Interface'Class;
+   type ICurrencyAmountFactory_Ptr is access all ICurrencyAmountFactory;
 
    type ICurrencyIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrencyIdentifiersStatics is access all ICurrencyIdentifiersStatics_Interface'Class;
+   type ICurrencyIdentifiersStatics_Ptr is access all ICurrencyIdentifiersStatics;
 
    type ICurrencyIdentifiersStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrencyIdentifiersStatics2 is access all ICurrencyIdentifiersStatics2_Interface'Class;
+   type ICurrencyIdentifiersStatics2_Ptr is access all ICurrencyIdentifiersStatics2;
 
    type ICurrencyIdentifiersStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrencyIdentifiersStatics3 is access all ICurrencyIdentifiersStatics3_Interface'Class;
+   type ICurrencyIdentifiersStatics3_Ptr is access all ICurrencyIdentifiersStatics3;
 
    type IGeographicRegion_Interface is interface and WinRt.IInspectable_Interface;
    type IGeographicRegion is access all IGeographicRegion_Interface'Class;
@@ -90,9 +102,11 @@ package WinRt.Windows.Globalization is
 
    type IGeographicRegionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGeographicRegionFactory is access all IGeographicRegionFactory_Interface'Class;
+   type IGeographicRegionFactory_Ptr is access all IGeographicRegionFactory;
 
    type IGeographicRegionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGeographicRegionStatics is access all IGeographicRegionStatics_Interface'Class;
+   type IGeographicRegionStatics_Ptr is access all IGeographicRegionStatics;
 
    type IJapanesePhoneme_Interface is interface and WinRt.IInspectable_Interface;
    type IJapanesePhoneme is access all IJapanesePhoneme_Interface'Class;
@@ -100,6 +114,7 @@ package WinRt.Windows.Globalization is
 
    type IJapanesePhoneticAnalyzerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IJapanesePhoneticAnalyzerStatics is access all IJapanesePhoneticAnalyzerStatics_Interface'Class;
+   type IJapanesePhoneticAnalyzerStatics_Ptr is access all IJapanesePhoneticAnalyzerStatics;
 
    type ILanguage_Interface is interface and WinRt.IInspectable_Interface;
    type ILanguage is access all ILanguage_Interface'Class;
@@ -108,33 +123,43 @@ package WinRt.Windows.Globalization is
 
    type ILanguage2_Interface is interface and WinRt.IInspectable_Interface;
    type ILanguage2 is access all ILanguage2_Interface'Class;
+   type ILanguage2_Ptr is access all ILanguage2;
 
    type ILanguage3_Interface is interface and WinRt.IInspectable_Interface;
    type ILanguage3 is access all ILanguage3_Interface'Class;
+   type ILanguage3_Ptr is access all ILanguage3;
 
    type ILanguageExtensionSubtags_Interface is interface and WinRt.IInspectable_Interface;
    type ILanguageExtensionSubtags is access all ILanguageExtensionSubtags_Interface'Class;
+   type ILanguageExtensionSubtags_Ptr is access all ILanguageExtensionSubtags;
 
    type ILanguageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILanguageFactory is access all ILanguageFactory_Interface'Class;
+   type ILanguageFactory_Ptr is access all ILanguageFactory;
 
    type ILanguageStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILanguageStatics is access all ILanguageStatics_Interface'Class;
+   type ILanguageStatics_Ptr is access all ILanguageStatics;
 
    type ILanguageStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ILanguageStatics2 is access all ILanguageStatics2_Interface'Class;
+   type ILanguageStatics2_Ptr is access all ILanguageStatics2;
 
    type ILanguageStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type ILanguageStatics3 is access all ILanguageStatics3_Interface'Class;
+   type ILanguageStatics3_Ptr is access all ILanguageStatics3;
 
    type INumeralSystemIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type INumeralSystemIdentifiersStatics is access all INumeralSystemIdentifiersStatics_Interface'Class;
+   type INumeralSystemIdentifiersStatics_Ptr is access all INumeralSystemIdentifiersStatics;
 
    type INumeralSystemIdentifiersStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type INumeralSystemIdentifiersStatics2 is access all INumeralSystemIdentifiersStatics2_Interface'Class;
+   type INumeralSystemIdentifiersStatics2_Ptr is access all INumeralSystemIdentifiersStatics2;
 
    type ITimeZoneOnCalendar_Interface is interface and WinRt.IInspectable_Interface;
    type ITimeZoneOnCalendar is access all ITimeZoneOnCalendar_Interface'Class;
+   type ITimeZoneOnCalendar_Ptr is access all ITimeZoneOnCalendar;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -2984,12 +3009,6 @@ package WinRt.Windows.Globalization is
    -- Static RuntimeClass
    package ApplicationLanguages is
 
-      function GetLanguagesForUser
-      (
-         user : Windows.System.User'Class
-      )
-      return IVectorView_HString.Kind;
-
       function get_PrimaryLanguageOverride
       return WinRt.WString;
 
@@ -3002,6 +3021,12 @@ package WinRt.Windows.Globalization is
       return IVectorView_HString.Kind;
 
       function get_ManifestLanguages
+      return IVectorView_HString.Kind;
+
+      function GetLanguagesForUser
+      (
+         user : Windows.System.User'Class
+      )
       return IVectorView_HString.Kind;
 
    end ApplicationLanguages;
@@ -3029,8 +3054,6 @@ package WinRt.Windows.Globalization is
    )
    return Calendar;
 
-   function Constructor return Calendar;
-
    function Constructor
    (
       languages : GenericObject;
@@ -3039,6 +3062,8 @@ package WinRt.Windows.Globalization is
       timeZoneId : WinRt.WString
    )
    return Calendar;
+
+   function Constructor return Calendar;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for Calendar
@@ -3673,21 +3698,6 @@ package WinRt.Windows.Globalization is
    -- Static RuntimeClass
    package CalendarIdentifiers is
 
-      function get_ChineseLunar
-      return WinRt.WString;
-
-      function get_JapaneseLunar
-      return WinRt.WString;
-
-      function get_KoreanLunar
-      return WinRt.WString;
-
-      function get_TaiwanLunar
-      return WinRt.WString;
-
-      function get_VietnameseLunar
-      return WinRt.WString;
-
       function get_Gregorian
       return WinRt.WString;
 
@@ -3713,6 +3723,21 @@ package WinRt.Windows.Globalization is
       return WinRt.WString;
 
       function get_UmAlQura
+      return WinRt.WString;
+
+      function get_ChineseLunar
+      return WinRt.WString;
+
+      function get_JapaneseLunar
+      return WinRt.WString;
+
+      function get_KoreanLunar
+      return WinRt.WString;
+
+      function get_TaiwanLunar
+      return WinRt.WString;
+
+      function get_VietnameseLunar
       return WinRt.WString;
 
       function get_Persian
@@ -3766,6 +3791,18 @@ package WinRt.Windows.Globalization is
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package CurrencyIdentifiers is
+
+      function get_MRU
+      return WinRt.WString;
+
+      function get_SSP
+      return WinRt.WString;
+
+      function get_STN
+      return WinRt.WString;
+
+      function get_VES
+      return WinRt.WString;
 
       function get_BYN
       return WinRt.WString;
@@ -4241,18 +4278,6 @@ package WinRt.Windows.Globalization is
       function get_ZWL
       return WinRt.WString;
 
-      function get_MRU
-      return WinRt.WString;
-
-      function get_SSP
-      return WinRt.WString;
-
-      function get_STN
-      return WinRt.WString;
-
-      function get_VES
-      return WinRt.WString;
-
    end CurrencyIdentifiers;
 
    -----------------------------------------------------------------------------
@@ -4264,13 +4289,13 @@ package WinRt.Windows.Globalization is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for GeographicRegion
 
+   function Constructor return GeographicRegion;
+
    function Constructor
    (
       geographicRegionCode : WinRt.WString
    )
    return GeographicRegion;
-
-   function Constructor return GeographicRegion;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for GeographicRegion
@@ -4390,12 +4415,6 @@ package WinRt.Windows.Globalization is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Language
 
-   function GetMuiCompatibleLanguageListFromLanguageTags
-   (
-      languageTags : GenericObject
-   )
-   return WinRt.GenericObject;
-
    function IsWellFormed
    (
       languageTag : WinRt.WString
@@ -4404,6 +4423,12 @@ package WinRt.Windows.Globalization is
 
    function get_CurrentInputMethodLanguageTag
    return WinRt.WString;
+
+   function GetMuiCompatibleLanguageListFromLanguageTags
+   (
+      languageTags : GenericObject
+   )
+   return WinRt.GenericObject;
 
    function TrySetInputMethodLanguageTag
    (
@@ -4460,6 +4485,42 @@ package WinRt.Windows.Globalization is
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package NumeralSystemIdentifiers is
+
+      function get_Brah
+      return WinRt.WString;
+
+      function get_Osma
+      return WinRt.WString;
+
+      function get_MathBold
+      return WinRt.WString;
+
+      function get_MathDbl
+      return WinRt.WString;
+
+      function get_MathSans
+      return WinRt.WString;
+
+      function get_MathSanb
+      return WinRt.WString;
+
+      function get_MathMono
+      return WinRt.WString;
+
+      function get_ZmthBold
+      return WinRt.WString;
+
+      function get_ZmthDbl
+      return WinRt.WString;
+
+      function get_ZmthSans
+      return WinRt.WString;
+
+      function get_ZmthSanb
+      return WinRt.WString;
+
+      function get_ZmthMono
+      return WinRt.WString;
 
       function get_Arab
       return WinRt.WString;
@@ -4567,42 +4628,6 @@ package WinRt.Windows.Globalization is
       return WinRt.WString;
 
       function get_Vaii
-      return WinRt.WString;
-
-      function get_Brah
-      return WinRt.WString;
-
-      function get_Osma
-      return WinRt.WString;
-
-      function get_MathBold
-      return WinRt.WString;
-
-      function get_MathDbl
-      return WinRt.WString;
-
-      function get_MathSans
-      return WinRt.WString;
-
-      function get_MathSanb
-      return WinRt.WString;
-
-      function get_MathMono
-      return WinRt.WString;
-
-      function get_ZmthBold
-      return WinRt.WString;
-
-      function get_ZmthDbl
-      return WinRt.WString;
-
-      function get_ZmthSans
-      return WinRt.WString;
-
-      function get_ZmthSanb
-      return WinRt.WString;
-
-      function get_ZmthMono
       return WinRt.WString;
 
    end NumeralSystemIdentifiers;

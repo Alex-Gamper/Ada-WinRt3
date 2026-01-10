@@ -655,6 +655,942 @@ package body WinRt.Windows.Management.Deployment is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for AppInstallerManager
+
+   procedure Initialize (this : in out AppInstallerManager) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out AppInstallerManager) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IAppInstallerManager, IAppInstallerManager_Ptr);
+   begin
+      if this.m_IAppInstallerManager /= null then
+         if this.m_IAppInstallerManager.all /= null then
+            temp := this.m_IAppInstallerManager.all.Release;
+            Free (this.m_IAppInstallerManager);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for AppInstallerManager
+
+   function GetDefault
+   return WinRt.Windows.Management.Deployment.AppInstallerManager is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Deployment.AppInstallerManager");
+      m_Factory        : access WinRt.Windows.Management.Deployment.IAppInstallerManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.IAppInstallerManager;
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.AppInstallerManager do
+         Hr := RoGetActivationFactory (m_hString, IID_IAppInstallerManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IAppInstallerManager := new Windows.Management.Deployment.IAppInstallerManager;
+            Retval.m_IAppInstallerManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetForSystem
+   return WinRt.Windows.Management.Deployment.AppInstallerManager is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Deployment.AppInstallerManager");
+      m_Factory        : access WinRt.Windows.Management.Deployment.IAppInstallerManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.IAppInstallerManager;
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.AppInstallerManager do
+         Hr := RoGetActivationFactory (m_hString, IID_IAppInstallerManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForSystem (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IAppInstallerManager := new Windows.Management.Deployment.IAppInstallerManager;
+            Retval.m_IAppInstallerManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for AppInstallerManager
+
+   procedure SetAutoUpdateSettings
+   (
+      this : in out AppInstallerManager;
+      packageFamilyName : WinRt.WString;
+      appInstallerInfo : Windows.Management.Deployment.AutoUpdateSettingsOptions'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
+   begin
+      Hr := this.m_IAppInstallerManager.all.SetAutoUpdateSettings (HStr_packageFamilyName, appInstallerInfo.m_IAutoUpdateSettingsOptions.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_packageFamilyName);
+   end;
+
+   procedure ClearAutoUpdateSettings
+   (
+      this : in out AppInstallerManager;
+      packageFamilyName : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
+   begin
+      Hr := this.m_IAppInstallerManager.all.ClearAutoUpdateSettings (HStr_packageFamilyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_packageFamilyName);
+   end;
+
+   procedure PauseAutoUpdatesUntil
+   (
+      this : in out AppInstallerManager;
+      packageFamilyName : WinRt.WString;
+      dateTime : Windows.Foundation.DateTime
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
+   begin
+      Hr := this.m_IAppInstallerManager.all.PauseAutoUpdatesUntil (HStr_packageFamilyName, dateTime);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_packageFamilyName);
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for AutoUpdateSettingsOptions
+
+   procedure Initialize (this : in out AutoUpdateSettingsOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out AutoUpdateSettingsOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IAutoUpdateSettingsOptions, IAutoUpdateSettingsOptions_Ptr);
+   begin
+      if this.m_IAutoUpdateSettingsOptions /= null then
+         if this.m_IAutoUpdateSettingsOptions.all /= null then
+            temp := this.m_IAutoUpdateSettingsOptions.all.Release;
+            Free (this.m_IAutoUpdateSettingsOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for AutoUpdateSettingsOptions
+
+   function Constructor return AutoUpdateSettingsOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.AutoUpdateSettingsOptions");
+      m_ComRetVal  : aliased Windows.Management.Deployment.IAutoUpdateSettingsOptions;
+   begin
+      return RetVal : AutoUpdateSettingsOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IAutoUpdateSettingsOptions := new Windows.Management.Deployment.IAutoUpdateSettingsOptions;
+            Retval.m_IAutoUpdateSettingsOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for AutoUpdateSettingsOptions
+
+   function CreateFromAppInstallerInfo
+   (
+      appInstallerInfo : Windows.ApplicationModel.AppInstallerInfo'Class
+   )
+   return WinRt.Windows.Management.Deployment.AutoUpdateSettingsOptions is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Deployment.AutoUpdateSettingsOptions");
+      m_Factory        : access WinRt.Windows.Management.Deployment.IAutoUpdateSettingsOptionsStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.IAutoUpdateSettingsOptions;
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.AutoUpdateSettingsOptions do
+         Hr := RoGetActivationFactory (m_hString, IID_IAutoUpdateSettingsOptionsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromAppInstallerInfo (appInstallerInfo.m_IAppInstallerInfo.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IAutoUpdateSettingsOptions := new Windows.Management.Deployment.IAutoUpdateSettingsOptions;
+            Retval.m_IAutoUpdateSettingsOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for AutoUpdateSettingsOptions
+
+   function get_Version
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Windows.ApplicationModel.PackageVersion is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.PackageVersion;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.get_Version (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Version
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : Windows.ApplicationModel.PackageVersion
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.put_Version (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_AppInstallerUri
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Windows.Foundation.Uri'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Uri do
+         Hr := this.m_IAutoUpdateSettingsOptions.all.get_AppInstallerUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure put_AppInstallerUri
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : Windows.Foundation.Uri'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.put_AppInstallerUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_OnLaunch
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.get_OnLaunch (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_OnLaunch
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.put_OnLaunch (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_HoursBetweenUpdateChecks
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.get_HoursBetweenUpdateChecks (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_HoursBetweenUpdateChecks
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.UInt32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.put_HoursBetweenUpdateChecks (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ShowPrompt
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.get_ShowPrompt (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_ShowPrompt
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.put_ShowPrompt (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_UpdateBlocksActivation
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.get_UpdateBlocksActivation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_UpdateBlocksActivation
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.put_UpdateBlocksActivation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_AutomaticBackgroundTask
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.get_AutomaticBackgroundTask (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_AutomaticBackgroundTask
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.put_AutomaticBackgroundTask (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_ForceUpdateFromAnyVersion
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.get_ForceUpdateFromAnyVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_ForceUpdateFromAnyVersion
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.put_ForceUpdateFromAnyVersion (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IsAutoRepairEnabled
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.get_IsAutoRepairEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsAutoRepairEnabled
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.put_IsAutoRepairEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_UpdateUris
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return IVector_IUriRuntimeClass.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_IUriRuntimeClass.Kind;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.get_UpdateUris (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_IUriRuntimeClass (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_RepairUris
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return IVector_IUriRuntimeClass.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_IUriRuntimeClass.Kind;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.get_RepairUris (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_IUriRuntimeClass (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_DependencyPackageUris
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return IVector_IUriRuntimeClass.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_IUriRuntimeClass.Kind;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.get_DependencyPackageUris (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_IUriRuntimeClass (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_OptionalPackageUris
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return IVector_IUriRuntimeClass.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_IUriRuntimeClass.Kind;
+   begin
+      Hr := this.m_IAutoUpdateSettingsOptions.all.get_OptionalPackageUris (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_IUriRuntimeClass (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CreateSharedPackageContainerOptions
+
+   procedure Initialize (this : in out CreateSharedPackageContainerOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out CreateSharedPackageContainerOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ICreateSharedPackageContainerOptions, ICreateSharedPackageContainerOptions_Ptr);
+   begin
+      if this.m_ICreateSharedPackageContainerOptions /= null then
+         if this.m_ICreateSharedPackageContainerOptions.all /= null then
+            temp := this.m_ICreateSharedPackageContainerOptions.all.Release;
+            Free (this.m_ICreateSharedPackageContainerOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for CreateSharedPackageContainerOptions
+
+   function Constructor return CreateSharedPackageContainerOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.CreateSharedPackageContainerOptions");
+      m_ComRetVal  : aliased Windows.Management.Deployment.ICreateSharedPackageContainerOptions;
+   begin
+      return RetVal : CreateSharedPackageContainerOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ICreateSharedPackageContainerOptions := new Windows.Management.Deployment.ICreateSharedPackageContainerOptions;
+            Retval.m_ICreateSharedPackageContainerOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CreateSharedPackageContainerOptions
+
+   function get_Members
+   (
+      this : in out CreateSharedPackageContainerOptions
+   )
+   return IVector_ISharedPackageContainerMember.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_ISharedPackageContainerMember.Kind;
+   begin
+      Hr := this.m_ICreateSharedPackageContainerOptions.all.get_Members (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_ISharedPackageContainerMember (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_ForceAppShutdown
+   (
+      this : in out CreateSharedPackageContainerOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_ICreateSharedPackageContainerOptions.all.get_ForceAppShutdown (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_ForceAppShutdown
+   (
+      this : in out CreateSharedPackageContainerOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ICreateSharedPackageContainerOptions.all.put_ForceAppShutdown (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CreateCollisionOption
+   (
+      this : in out CreateSharedPackageContainerOptions
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerCreationCollisionOptions is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.SharedPackageContainerCreationCollisionOptions;
+   begin
+      Hr := this.m_ICreateSharedPackageContainerOptions.all.get_CreateCollisionOption (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_CreateCollisionOption
+   (
+      this : in out CreateSharedPackageContainerOptions;
+      value : Windows.Management.Deployment.SharedPackageContainerCreationCollisionOptions
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ICreateSharedPackageContainerOptions.all.put_CreateCollisionOption (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CreateSharedPackageContainerResult
+
+   procedure Initialize (this : in out CreateSharedPackageContainerResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out CreateSharedPackageContainerResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ICreateSharedPackageContainerResult, ICreateSharedPackageContainerResult_Ptr);
+   begin
+      if this.m_ICreateSharedPackageContainerResult /= null then
+         if this.m_ICreateSharedPackageContainerResult.all /= null then
+            temp := this.m_ICreateSharedPackageContainerResult.all.Release;
+            Free (this.m_ICreateSharedPackageContainerResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CreateSharedPackageContainerResult
+
+   function get_Container
+   (
+      this : in out CreateSharedPackageContainerResult
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainer'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.ISharedPackageContainer;
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.SharedPackageContainer do
+         Hr := this.m_ICreateSharedPackageContainerResult.all.get_Container (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ISharedPackageContainer := new Windows.Management.Deployment.ISharedPackageContainer;
+         Retval.m_ISharedPackageContainer.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_Status
+   (
+      this : in out CreateSharedPackageContainerResult
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.SharedPackageContainerOperationStatus;
+   begin
+      Hr := this.m_ICreateSharedPackageContainerResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out CreateSharedPackageContainerResult
+   )
+   return WinRt.Windows.Foundation.HResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.HResult;
+   begin
+      Hr := this.m_ICreateSharedPackageContainerResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DeleteSharedPackageContainerOptions
+
+   procedure Initialize (this : in out DeleteSharedPackageContainerOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out DeleteSharedPackageContainerOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IDeleteSharedPackageContainerOptions, IDeleteSharedPackageContainerOptions_Ptr);
+   begin
+      if this.m_IDeleteSharedPackageContainerOptions /= null then
+         if this.m_IDeleteSharedPackageContainerOptions.all /= null then
+            temp := this.m_IDeleteSharedPackageContainerOptions.all.Release;
+            Free (this.m_IDeleteSharedPackageContainerOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for DeleteSharedPackageContainerOptions
+
+   function Constructor return DeleteSharedPackageContainerOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.DeleteSharedPackageContainerOptions");
+      m_ComRetVal  : aliased Windows.Management.Deployment.IDeleteSharedPackageContainerOptions;
+   begin
+      return RetVal : DeleteSharedPackageContainerOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IDeleteSharedPackageContainerOptions := new Windows.Management.Deployment.IDeleteSharedPackageContainerOptions;
+            Retval.m_IDeleteSharedPackageContainerOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DeleteSharedPackageContainerOptions
+
+   function get_ForceAppShutdown
+   (
+      this : in out DeleteSharedPackageContainerOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IDeleteSharedPackageContainerOptions.all.get_ForceAppShutdown (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_ForceAppShutdown
+   (
+      this : in out DeleteSharedPackageContainerOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IDeleteSharedPackageContainerOptions.all.put_ForceAppShutdown (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_AllUsers
+   (
+      this : in out DeleteSharedPackageContainerOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IDeleteSharedPackageContainerOptions.all.get_AllUsers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_AllUsers
+   (
+      this : in out DeleteSharedPackageContainerOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IDeleteSharedPackageContainerOptions.all.put_AllUsers (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DeleteSharedPackageContainerResult
+
+   procedure Initialize (this : in out DeleteSharedPackageContainerResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out DeleteSharedPackageContainerResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IDeleteSharedPackageContainerResult, IDeleteSharedPackageContainerResult_Ptr);
+   begin
+      if this.m_IDeleteSharedPackageContainerResult /= null then
+         if this.m_IDeleteSharedPackageContainerResult.all /= null then
+            temp := this.m_IDeleteSharedPackageContainerResult.all.Release;
+            Free (this.m_IDeleteSharedPackageContainerResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DeleteSharedPackageContainerResult
+
+   function get_Status
+   (
+      this : in out DeleteSharedPackageContainerResult
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.SharedPackageContainerOperationStatus;
+   begin
+      Hr := this.m_IDeleteSharedPackageContainerResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out DeleteSharedPackageContainerResult
+   )
+   return WinRt.Windows.Foundation.HResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.HResult;
+   begin
+      Hr := this.m_IDeleteSharedPackageContainerResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DeploymentResult
 
    procedure Initialize (this : in out DeploymentResult) is
@@ -750,6 +1686,244 @@ package body WinRt.Windows.Management.Deployment is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for FindSharedPackageContainerOptions
+
+   procedure Initialize (this : in out FindSharedPackageContainerOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out FindSharedPackageContainerOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IFindSharedPackageContainerOptions, IFindSharedPackageContainerOptions_Ptr);
+   begin
+      if this.m_IFindSharedPackageContainerOptions /= null then
+         if this.m_IFindSharedPackageContainerOptions.all /= null then
+            temp := this.m_IFindSharedPackageContainerOptions.all.Release;
+            Free (this.m_IFindSharedPackageContainerOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for FindSharedPackageContainerOptions
+
+   function Constructor return FindSharedPackageContainerOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.FindSharedPackageContainerOptions");
+      m_ComRetVal  : aliased Windows.Management.Deployment.IFindSharedPackageContainerOptions;
+   begin
+      return RetVal : FindSharedPackageContainerOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IFindSharedPackageContainerOptions := new Windows.Management.Deployment.IFindSharedPackageContainerOptions;
+            Retval.m_IFindSharedPackageContainerOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for FindSharedPackageContainerOptions
+
+   function get_Name
+   (
+      this : in out FindSharedPackageContainerOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IFindSharedPackageContainerOptions.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Name
+   (
+      this : in out FindSharedPackageContainerOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IFindSharedPackageContainerOptions.all.put_Name (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_PackageFamilyName
+   (
+      this : in out FindSharedPackageContainerOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IFindSharedPackageContainerOptions.all.get_PackageFamilyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_PackageFamilyName
+   (
+      this : in out FindSharedPackageContainerOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IFindSharedPackageContainerOptions.all.put_PackageFamilyName (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PackageAllUserProvisioningOptions
+
+   procedure Initialize (this : in out PackageAllUserProvisioningOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PackageAllUserProvisioningOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPackageAllUserProvisioningOptions, IPackageAllUserProvisioningOptions_Ptr);
+   begin
+      if this.m_IPackageAllUserProvisioningOptions /= null then
+         if this.m_IPackageAllUserProvisioningOptions.all /= null then
+            temp := this.m_IPackageAllUserProvisioningOptions.all.Release;
+            Free (this.m_IPackageAllUserProvisioningOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for PackageAllUserProvisioningOptions
+
+   function Constructor return PackageAllUserProvisioningOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.PackageAllUserProvisioningOptions");
+      m_ComRetVal  : aliased Windows.Management.Deployment.IPackageAllUserProvisioningOptions;
+   begin
+      return RetVal : PackageAllUserProvisioningOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IPackageAllUserProvisioningOptions := new Windows.Management.Deployment.IPackageAllUserProvisioningOptions;
+            Retval.m_IPackageAllUserProvisioningOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PackageAllUserProvisioningOptions
+
+   function get_OptionalPackageFamilyNames
+   (
+      this : in out PackageAllUserProvisioningOptions
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IPackageAllUserProvisioningOptions.all.get_OptionalPackageFamilyNames (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_ProjectionOrderPackageFamilyNames
+   (
+      this : in out PackageAllUserProvisioningOptions
+   )
+   return IVector_HString.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_HString.Kind;
+   begin
+      Hr := this.m_IPackageAllUserProvisioningOptions.all.get_ProjectionOrderPackageFamilyNames (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_DeferAutomaticRegistration
+   (
+      this : in out PackageAllUserProvisioningOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IPackageAllUserProvisioningOptions2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IPackageAllUserProvisioningOptions_Interface, WinRt.Windows.Management.Deployment.IPackageAllUserProvisioningOptions2, WinRt.Windows.Management.Deployment.IID_IPackageAllUserProvisioningOptions2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPackageAllUserProvisioningOptions.all);
+      Hr := m_Interface.get_DeferAutomaticRegistration (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_DeferAutomaticRegistration
+   (
+      this : in out PackageAllUserProvisioningOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IPackageAllUserProvisioningOptions2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IPackageAllUserProvisioningOptions_Interface, WinRt.Windows.Management.Deployment.IPackageAllUserProvisioningOptions2, WinRt.Windows.Management.Deployment.IID_IPackageAllUserProvisioningOptions2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPackageAllUserProvisioningOptions.all);
+      Hr := m_Interface.put_DeferAutomaticRegistration (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3952,6 +5126,250 @@ package body WinRt.Windows.Management.Deployment is
       return m_ComRetVal;
    end;
 
+   function ProvisionPackageForAllUsersAsync
+   (
+      this : in out PackageManager;
+      mainPackageFamilyName : WinRt.WString;
+      options : Windows.Management.Deployment.PackageAllUserProvisioningOptions'Class
+   )
+   return WinRt.Windows.Management.Deployment.DeploymentResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IPackageManager10 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_mainPackageFamilyName : constant WinRt.HString := To_HString (mainPackageFamilyName);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_DeploymentResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_DeploymentResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Management.Deployment.IDeploymentResult;
+      m_IID            : aliased WinRt.IID := (1519889079, 46826, 21932, (165, 220, 213, 177, 100, 217, 78, 148 )); -- Windows.Management.Deployment.DeploymentResult;
+      m_HandlerIID     : aliased WinRt.IID := (1847357737, 25056, 23944, (159, 212, 243, 206, 101, 160, 87, 25 ));
+      m_Handler        : AsyncOperationCompletedHandler_DeploymentResult.Kind := new AsyncOperationCompletedHandler_DeploymentResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_DeploymentResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_DeploymentResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeploymentResult.Kind_Delegate, AsyncOperationCompletedHandler_DeploymentResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IPackageManager_Interface, WinRt.Windows.Management.Deployment.IPackageManager10, WinRt.Windows.Management.Deployment.IID_IPackageManager10'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.DeploymentResult do
+         m_Interface := QInterface (this.m_IPackageManager.all);
+         Hr := m_Interface.ProvisionPackageForAllUsersAsync (HStr_mainPackageFamilyName, options.m_IPackageAllUserProvisioningOptions.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IDeploymentResult := new Windows.Management.Deployment.IDeploymentResult;
+                  Retval.m_IDeploymentResult.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (HStr_mainPackageFamilyName);
+      end return;
+   end;
+
+   function RemovePackageByUriAsync
+   (
+      this : in out PackageManager;
+      packageUri : Windows.Foundation.Uri'Class;
+      options : Windows.Management.Deployment.RemovePackageOptions'Class
+   )
+   return WinRt.Windows.Management.Deployment.DeploymentResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IPackageManager11 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_DeploymentResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_DeploymentResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Management.Deployment.IDeploymentResult;
+      m_IID            : aliased WinRt.IID := (1519889079, 46826, 21932, (165, 220, 213, 177, 100, 217, 78, 148 )); -- Windows.Management.Deployment.DeploymentResult;
+      m_HandlerIID     : aliased WinRt.IID := (1847357737, 25056, 23944, (159, 212, 243, 206, 101, 160, 87, 25 ));
+      m_Handler        : AsyncOperationCompletedHandler_DeploymentResult.Kind := new AsyncOperationCompletedHandler_DeploymentResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_DeploymentResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_DeploymentResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeploymentResult.Kind_Delegate, AsyncOperationCompletedHandler_DeploymentResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IPackageManager_Interface, WinRt.Windows.Management.Deployment.IPackageManager11, WinRt.Windows.Management.Deployment.IID_IPackageManager11'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.DeploymentResult do
+         m_Interface := QInterface (this.m_IPackageManager.all);
+         Hr := m_Interface.RemovePackageByUriAsync (packageUri.m_IUriRuntimeClass.all, options.m_IRemovePackageOptions.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IDeploymentResult := new Windows.Management.Deployment.IDeploymentResult;
+                  Retval.m_IDeploymentResult.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+      end return;
+   end;
+
+   function IsPackageRemovalPending
+   (
+      this : in out PackageManager;
+      packageFullName : WinRt.WString
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IPackageManager12 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      HStr_packageFullName : constant WinRt.HString := To_HString (packageFullName);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IPackageManager_Interface, WinRt.Windows.Management.Deployment.IPackageManager12, WinRt.Windows.Management.Deployment.IID_IPackageManager12'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPackageManager.all);
+      Hr := m_Interface.IsPackageRemovalPending (HStr_packageFullName, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_packageFullName);
+      return m_ComRetVal;
+   end;
+
+   function IsPackageRemovalPendingForUser
+   (
+      this : in out PackageManager;
+      packageFullName : WinRt.WString;
+      userSecurityId : WinRt.WString
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IPackageManager12 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      HStr_packageFullName : constant WinRt.HString := To_HString (packageFullName);
+      HStr_userSecurityId : constant WinRt.HString := To_HString (userSecurityId);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IPackageManager_Interface, WinRt.Windows.Management.Deployment.IPackageManager12, WinRt.Windows.Management.Deployment.IID_IPackageManager12'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPackageManager.all);
+      Hr := m_Interface.IsPackageRemovalPendingForUser (HStr_packageFullName, HStr_userSecurityId, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_packageFullName);
+      tmp := WindowsDeleteString (HStr_userSecurityId);
+      return m_ComRetVal;
+   end;
+
+   function IsPackageRemovalPendingByUri
+   (
+      this : in out PackageManager;
+      packageUri : Windows.Foundation.Uri'Class
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IPackageManager12 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IPackageManager_Interface, WinRt.Windows.Management.Deployment.IPackageManager12, WinRt.Windows.Management.Deployment.IID_IPackageManager12'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPackageManager.all);
+      Hr := m_Interface.IsPackageRemovalPendingByUri (packageUri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function IsPackageRemovalPendingByUriForUser
+   (
+      this : in out PackageManager;
+      packageUri : Windows.Foundation.Uri'Class;
+      userSecurityId : WinRt.WString
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IPackageManager12 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      HStr_userSecurityId : constant WinRt.HString := To_HString (userSecurityId);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IPackageManager_Interface, WinRt.Windows.Management.Deployment.IPackageManager12, WinRt.Windows.Management.Deployment.IID_IPackageManager12'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPackageManager.all);
+      Hr := m_Interface.IsPackageRemovalPendingByUriForUser (packageUri.m_IUriRuntimeClass.all, HStr_userSecurityId, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_userSecurityId);
+      return m_ComRetVal;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PackageManagerDebugSettings
 
@@ -5113,6 +6531,598 @@ package body WinRt.Windows.Management.Deployment is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for RemovePackageOptions
+
+   procedure Initialize (this : in out RemovePackageOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out RemovePackageOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IRemovePackageOptions, IRemovePackageOptions_Ptr);
+   begin
+      if this.m_IRemovePackageOptions /= null then
+         if this.m_IRemovePackageOptions.all /= null then
+            temp := this.m_IRemovePackageOptions.all.Release;
+            Free (this.m_IRemovePackageOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for RemovePackageOptions
+
+   function Constructor return RemovePackageOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.RemovePackageOptions");
+      m_ComRetVal  : aliased Windows.Management.Deployment.IRemovePackageOptions;
+   begin
+      return RetVal : RemovePackageOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IRemovePackageOptions := new Windows.Management.Deployment.IRemovePackageOptions;
+            Retval.m_IRemovePackageOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for RemovePackageOptions
+
+   function get_PreserveApplicationData
+   (
+      this : in out RemovePackageOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IRemovePackageOptions.all.get_PreserveApplicationData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_PreserveApplicationData
+   (
+      this : in out RemovePackageOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IRemovePackageOptions.all.put_PreserveApplicationData (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_PreserveRoamableApplicationData
+   (
+      this : in out RemovePackageOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IRemovePackageOptions.all.get_PreserveRoamableApplicationData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_PreserveRoamableApplicationData
+   (
+      this : in out RemovePackageOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IRemovePackageOptions.all.put_PreserveRoamableApplicationData (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_RemoveForAllUsers
+   (
+      this : in out RemovePackageOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IRemovePackageOptions.all.get_RemoveForAllUsers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_RemoveForAllUsers
+   (
+      this : in out RemovePackageOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IRemovePackageOptions.all.put_RemoveForAllUsers (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_DeferRemovalWhenPackagesAreInUse
+   (
+      this : in out RemovePackageOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IRemovePackageOptions2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IRemovePackageOptions_Interface, WinRt.Windows.Management.Deployment.IRemovePackageOptions2, WinRt.Windows.Management.Deployment.IID_IRemovePackageOptions2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IRemovePackageOptions.all);
+      Hr := m_Interface.get_DeferRemovalWhenPackagesAreInUse (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_DeferRemovalWhenPackagesAreInUse
+   (
+      this : in out RemovePackageOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Management.Deployment.IRemovePackageOptions2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Management.Deployment.IRemovePackageOptions_Interface, WinRt.Windows.Management.Deployment.IRemovePackageOptions2, WinRt.Windows.Management.Deployment.IID_IRemovePackageOptions2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IRemovePackageOptions.all);
+      Hr := m_Interface.put_DeferRemovalWhenPackagesAreInUse (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for SharedPackageContainer
+
+   procedure Initialize (this : in out SharedPackageContainer) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out SharedPackageContainer) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ISharedPackageContainer, ISharedPackageContainer_Ptr);
+   begin
+      if this.m_ISharedPackageContainer /= null then
+         if this.m_ISharedPackageContainer.all /= null then
+            temp := this.m_ISharedPackageContainer.all.Release;
+            Free (this.m_ISharedPackageContainer);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for SharedPackageContainer
+
+   function get_Name
+   (
+      this : in out SharedPackageContainer
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_ISharedPackageContainer.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_Id
+   (
+      this : in out SharedPackageContainer
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_ISharedPackageContainer.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetMembers
+   (
+      this : in out SharedPackageContainer
+   )
+   return IVector_ISharedPackageContainerMember.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_ISharedPackageContainerMember.Kind;
+   begin
+      Hr := this.m_ISharedPackageContainer.all.GetMembers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_ISharedPackageContainerMember (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function RemovePackageFamily
+   (
+      this : in out SharedPackageContainer;
+      packageFamilyName : WinRt.WString;
+      options : Windows.Management.Deployment.UpdateSharedPackageContainerOptions'Class
+   )
+   return WinRt.Windows.Management.Deployment.UpdateSharedPackageContainerResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.IUpdateSharedPackageContainerResult;
+      HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.UpdateSharedPackageContainerResult do
+         Hr := this.m_ISharedPackageContainer.all.RemovePackageFamily (HStr_packageFamilyName, options.m_IUpdateSharedPackageContainerOptions.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUpdateSharedPackageContainerResult := new Windows.Management.Deployment.IUpdateSharedPackageContainerResult;
+         Retval.m_IUpdateSharedPackageContainerResult.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_packageFamilyName);
+      end return;
+   end;
+
+   function ResetData
+   (
+      this : in out SharedPackageContainer
+   )
+   return WinRt.Windows.Management.Deployment.UpdateSharedPackageContainerResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.IUpdateSharedPackageContainerResult;
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.UpdateSharedPackageContainerResult do
+         Hr := this.m_ISharedPackageContainer.all.ResetData (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUpdateSharedPackageContainerResult := new Windows.Management.Deployment.IUpdateSharedPackageContainerResult;
+         Retval.m_IUpdateSharedPackageContainerResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for SharedPackageContainerManager
+
+   procedure Initialize (this : in out SharedPackageContainerManager) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out SharedPackageContainerManager) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ISharedPackageContainerManager, ISharedPackageContainerManager_Ptr);
+   begin
+      if this.m_ISharedPackageContainerManager /= null then
+         if this.m_ISharedPackageContainerManager.all /= null then
+            temp := this.m_ISharedPackageContainerManager.all.Release;
+            Free (this.m_ISharedPackageContainerManager);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for SharedPackageContainerManager
+
+   function GetDefault
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerManager is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Deployment.SharedPackageContainerManager");
+      m_Factory        : access WinRt.Windows.Management.Deployment.ISharedPackageContainerManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.ISharedPackageContainerManager;
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.SharedPackageContainerManager do
+         Hr := RoGetActivationFactory (m_hString, IID_ISharedPackageContainerManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ISharedPackageContainerManager := new Windows.Management.Deployment.ISharedPackageContainerManager;
+            Retval.m_ISharedPackageContainerManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetForUser
+   (
+      userSid : WinRt.WString
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerManager is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Deployment.SharedPackageContainerManager");
+      m_Factory        : access WinRt.Windows.Management.Deployment.ISharedPackageContainerManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.ISharedPackageContainerManager;
+      HStr_userSid : constant WinRt.HString := To_HString (userSid);
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.SharedPackageContainerManager do
+         Hr := RoGetActivationFactory (m_hString, IID_ISharedPackageContainerManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForUser (HStr_userSid, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ISharedPackageContainerManager := new Windows.Management.Deployment.ISharedPackageContainerManager;
+            Retval.m_ISharedPackageContainerManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_userSid);
+      end return;
+   end;
+
+   function GetForProvisioning
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerManager is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Deployment.SharedPackageContainerManager");
+      m_Factory        : access WinRt.Windows.Management.Deployment.ISharedPackageContainerManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.ISharedPackageContainerManager;
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.SharedPackageContainerManager do
+         Hr := RoGetActivationFactory (m_hString, IID_ISharedPackageContainerManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForProvisioning (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ISharedPackageContainerManager := new Windows.Management.Deployment.ISharedPackageContainerManager;
+            Retval.m_ISharedPackageContainerManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for SharedPackageContainerManager
+
+   function CreateContainer
+   (
+      this : in out SharedPackageContainerManager;
+      name : WinRt.WString;
+      options : Windows.Management.Deployment.CreateSharedPackageContainerOptions'Class
+   )
+   return WinRt.Windows.Management.Deployment.CreateSharedPackageContainerResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.ICreateSharedPackageContainerResult;
+      HStr_name : constant WinRt.HString := To_HString (name);
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.CreateSharedPackageContainerResult do
+         Hr := this.m_ISharedPackageContainerManager.all.CreateContainer (HStr_name, options.m_ICreateSharedPackageContainerOptions.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICreateSharedPackageContainerResult := new Windows.Management.Deployment.ICreateSharedPackageContainerResult;
+         Retval.m_ICreateSharedPackageContainerResult.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_name);
+      end return;
+   end;
+
+   function DeleteContainer
+   (
+      this : in out SharedPackageContainerManager;
+      id : WinRt.WString;
+      options : Windows.Management.Deployment.DeleteSharedPackageContainerOptions'Class
+   )
+   return WinRt.Windows.Management.Deployment.DeleteSharedPackageContainerResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.IDeleteSharedPackageContainerResult;
+      HStr_id : constant WinRt.HString := To_HString (id);
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.DeleteSharedPackageContainerResult do
+         Hr := this.m_ISharedPackageContainerManager.all.DeleteContainer (HStr_id, options.m_IDeleteSharedPackageContainerOptions.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDeleteSharedPackageContainerResult := new Windows.Management.Deployment.IDeleteSharedPackageContainerResult;
+         Retval.m_IDeleteSharedPackageContainerResult.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_id);
+      end return;
+   end;
+
+   function GetContainer
+   (
+      this : in out SharedPackageContainerManager;
+      id : WinRt.WString
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainer'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.ISharedPackageContainer;
+      HStr_id : constant WinRt.HString := To_HString (id);
+   begin
+      return RetVal : WinRt.Windows.Management.Deployment.SharedPackageContainer do
+         Hr := this.m_ISharedPackageContainerManager.all.GetContainer (HStr_id, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ISharedPackageContainer := new Windows.Management.Deployment.ISharedPackageContainer;
+         Retval.m_ISharedPackageContainer.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_id);
+      end return;
+   end;
+
+   function FindContainers
+   (
+      this : in out SharedPackageContainerManager
+   )
+   return IVector_ISharedPackageContainer.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_ISharedPackageContainer.Kind;
+   begin
+      Hr := this.m_ISharedPackageContainerManager.all.FindContainers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_ISharedPackageContainer (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function FindContainers
+   (
+      this : in out SharedPackageContainerManager;
+      options : Windows.Management.Deployment.FindSharedPackageContainerOptions'Class
+   )
+   return IVector_ISharedPackageContainer.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_ISharedPackageContainer.Kind;
+   begin
+      Hr := this.m_ISharedPackageContainerManager.all.FindContainers (options.m_IFindSharedPackageContainerOptions.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_ISharedPackageContainer (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for SharedPackageContainerMember
+
+   procedure Initialize (this : in out SharedPackageContainerMember) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out SharedPackageContainerMember) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ISharedPackageContainerMember, ISharedPackageContainerMember_Ptr);
+   begin
+      if this.m_ISharedPackageContainerMember /= null then
+         if this.m_ISharedPackageContainerMember.all /= null then
+            temp := this.m_ISharedPackageContainerMember.all.Release;
+            Free (this.m_ISharedPackageContainerMember);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for SharedPackageContainerMember
+
+   function Constructor
+   (
+      packageFamilyName : WinRt.WString
+   )
+   return SharedPackageContainerMember is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.SharedPackageContainerMember");
+      m_Factory    : access ISharedPackageContainerMemberFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.Management.Deployment.ISharedPackageContainerMember;
+      HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
+   begin
+      return RetVal : SharedPackageContainerMember do
+         Hr := RoGetActivationFactory (m_hString, IID_ISharedPackageContainerMemberFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (HStr_packageFamilyName, m_ComRetVal'Access);
+            Retval.m_ISharedPackageContainerMember := new Windows.Management.Deployment.ISharedPackageContainerMember;
+            Retval.m_ISharedPackageContainerMember.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_packageFamilyName);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for SharedPackageContainerMember
+
+   function get_PackageFamilyName
+   (
+      this : in out SharedPackageContainerMember
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_ISharedPackageContainerMember.all.get_PackageFamilyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StagePackageOptions
 
    procedure Initialize (this : in out StagePackageOptions) is
@@ -5550,6 +7560,169 @@ package body WinRt.Windows.Management.Deployment is
       m_GenericRetVal := QInterface_IMap_IUriRuntimeClass_HString (m_ComRetVal);
       temp := m_ComRetVal.Release;
       return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for UpdateSharedPackageContainerOptions
+
+   procedure Initialize (this : in out UpdateSharedPackageContainerOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out UpdateSharedPackageContainerOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IUpdateSharedPackageContainerOptions, IUpdateSharedPackageContainerOptions_Ptr);
+   begin
+      if this.m_IUpdateSharedPackageContainerOptions /= null then
+         if this.m_IUpdateSharedPackageContainerOptions.all /= null then
+            temp := this.m_IUpdateSharedPackageContainerOptions.all.Release;
+            Free (this.m_IUpdateSharedPackageContainerOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for UpdateSharedPackageContainerOptions
+
+   function Constructor return UpdateSharedPackageContainerOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.UpdateSharedPackageContainerOptions");
+      m_ComRetVal  : aliased Windows.Management.Deployment.IUpdateSharedPackageContainerOptions;
+   begin
+      return RetVal : UpdateSharedPackageContainerOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IUpdateSharedPackageContainerOptions := new Windows.Management.Deployment.IUpdateSharedPackageContainerOptions;
+            Retval.m_IUpdateSharedPackageContainerOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for UpdateSharedPackageContainerOptions
+
+   function get_ForceAppShutdown
+   (
+      this : in out UpdateSharedPackageContainerOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IUpdateSharedPackageContainerOptions.all.get_ForceAppShutdown (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_ForceAppShutdown
+   (
+      this : in out UpdateSharedPackageContainerOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IUpdateSharedPackageContainerOptions.all.put_ForceAppShutdown (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_RequirePackagesPresent
+   (
+      this : in out UpdateSharedPackageContainerOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IUpdateSharedPackageContainerOptions.all.get_RequirePackagesPresent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_RequirePackagesPresent
+   (
+      this : in out UpdateSharedPackageContainerOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IUpdateSharedPackageContainerOptions.all.put_RequirePackagesPresent (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for UpdateSharedPackageContainerResult
+
+   procedure Initialize (this : in out UpdateSharedPackageContainerResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out UpdateSharedPackageContainerResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IUpdateSharedPackageContainerResult, IUpdateSharedPackageContainerResult_Ptr);
+   begin
+      if this.m_IUpdateSharedPackageContainerResult /= null then
+         if this.m_IUpdateSharedPackageContainerResult.all /= null then
+            temp := this.m_IUpdateSharedPackageContainerResult.all.Release;
+            Free (this.m_IUpdateSharedPackageContainerResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for UpdateSharedPackageContainerResult
+
+   function get_Status
+   (
+      this : in out UpdateSharedPackageContainerResult
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerOperationStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Management.Deployment.SharedPackageContainerOperationStatus;
+   begin
+      Hr := this.m_IUpdateSharedPackageContainerResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out UpdateSharedPackageContainerResult
+   )
+   return WinRt.Windows.Foundation.HResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.HResult;
+   begin
+      Hr := this.m_IUpdateSharedPackageContainerResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
 end WinRt.Windows.Management.Deployment;

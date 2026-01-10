@@ -56,6 +56,7 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    type IPaymentCanMakePaymentResultFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentCanMakePaymentResultFactory is access all IPaymentCanMakePaymentResultFactory_Interface'Class;
+   type IPaymentCanMakePaymentResultFactory_Ptr is access all IPaymentCanMakePaymentResultFactory;
 
    type IPaymentCurrencyAmount_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentCurrencyAmount is access all IPaymentCurrencyAmount_Interface'Class;
@@ -63,6 +64,7 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    type IPaymentCurrencyAmountFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentCurrencyAmountFactory is access all IPaymentCurrencyAmountFactory_Interface'Class;
+   type IPaymentCurrencyAmountFactory_Ptr is access all IPaymentCurrencyAmountFactory;
 
    type IPaymentDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentDetails is access all IPaymentDetails_Interface'Class;
@@ -70,6 +72,7 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    type IPaymentDetailsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentDetailsFactory is access all IPaymentDetailsFactory_Interface'Class;
+   type IPaymentDetailsFactory_Ptr is access all IPaymentDetailsFactory;
 
    type IPaymentDetailsModifier_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentDetailsModifier is access all IPaymentDetailsModifier_Interface'Class;
@@ -77,6 +80,7 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    type IPaymentDetailsModifierFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentDetailsModifierFactory is access all IPaymentDetailsModifierFactory_Interface'Class;
+   type IPaymentDetailsModifierFactory_Ptr is access all IPaymentDetailsModifierFactory;
 
    type IPaymentItem_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentItem is access all IPaymentItem_Interface'Class;
@@ -84,6 +88,7 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    type IPaymentItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentItemFactory is access all IPaymentItemFactory_Interface'Class;
+   type IPaymentItemFactory_Ptr is access all IPaymentItemFactory;
 
    type IPaymentMediator_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentMediator is access all IPaymentMediator_Interface'Class;
@@ -91,6 +96,7 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    type IPaymentMediator2_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentMediator2 is access all IPaymentMediator2_Interface'Class;
+   type IPaymentMediator2_Ptr is access all IPaymentMediator2;
 
    type IPaymentMerchantInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentMerchantInfo is access all IPaymentMerchantInfo_Interface'Class;
@@ -98,6 +104,7 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    type IPaymentMerchantInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentMerchantInfoFactory is access all IPaymentMerchantInfoFactory_Interface'Class;
+   type IPaymentMerchantInfoFactory_Ptr is access all IPaymentMerchantInfoFactory;
 
    type IPaymentMethodData_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentMethodData is access all IPaymentMethodData_Interface'Class;
@@ -105,6 +112,7 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    type IPaymentMethodDataFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentMethodDataFactory is access all IPaymentMethodDataFactory_Interface'Class;
+   type IPaymentMethodDataFactory_Ptr is access all IPaymentMethodDataFactory;
 
    type IPaymentOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentOptions is access all IPaymentOptions_Interface'Class;
@@ -116,6 +124,7 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    type IPaymentRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentRequest2 is access all IPaymentRequest2_Interface'Class;
+   type IPaymentRequest2_Ptr is access all IPaymentRequest2;
 
    type IPaymentRequestChangedArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentRequestChangedArgs is access all IPaymentRequestChangedArgs_Interface'Class;
@@ -127,12 +136,15 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    type IPaymentRequestChangedResultFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentRequestChangedResultFactory is access all IPaymentRequestChangedResultFactory_Interface'Class;
+   type IPaymentRequestChangedResultFactory_Ptr is access all IPaymentRequestChangedResultFactory;
 
    type IPaymentRequestFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentRequestFactory is access all IPaymentRequestFactory_Interface'Class;
+   type IPaymentRequestFactory_Ptr is access all IPaymentRequestFactory;
 
    type IPaymentRequestFactory2_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentRequestFactory2 is access all IPaymentRequestFactory2_Interface'Class;
+   type IPaymentRequestFactory2_Ptr is access all IPaymentRequestFactory2;
 
    type IPaymentRequestSubmitResult_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentRequestSubmitResult is access all IPaymentRequestSubmitResult_Interface'Class;
@@ -148,6 +160,7 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    type IPaymentShippingOptionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentShippingOptionFactory is access all IPaymentShippingOptionFactory_Interface'Class;
+   type IPaymentShippingOptionFactory_Ptr is access all IPaymentShippingOptionFactory;
 
    type IPaymentToken_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentToken is access all IPaymentToken_Interface'Class;
@@ -155,6 +168,7 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    type IPaymentTokenFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPaymentTokenFactory is access all IPaymentTokenFactory_Interface'Class;
+   type IPaymentTokenFactory_Ptr is access all IPaymentTokenFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -2090,16 +2104,6 @@ package WinRt.Windows.ApplicationModel.Payments is
    function Constructor
    (
       details : Windows.ApplicationModel.Payments.PaymentDetails'Class;
-      methodData : GenericObject;
-      merchantInfo : Windows.ApplicationModel.Payments.PaymentMerchantInfo'Class;
-      options : Windows.ApplicationModel.Payments.PaymentOptions'Class;
-      id : WinRt.WString
-   )
-   return PaymentRequest;
-
-   function Constructor
-   (
-      details : Windows.ApplicationModel.Payments.PaymentDetails'Class;
       methodData : GenericObject
    )
    return PaymentRequest;
@@ -2118,6 +2122,16 @@ package WinRt.Windows.ApplicationModel.Payments is
       methodData : GenericObject;
       merchantInfo : Windows.ApplicationModel.Payments.PaymentMerchantInfo'Class;
       options : Windows.ApplicationModel.Payments.PaymentOptions'Class
+   )
+   return PaymentRequest;
+
+   function Constructor
+   (
+      details : Windows.ApplicationModel.Payments.PaymentDetails'Class;
+      methodData : GenericObject;
+      merchantInfo : Windows.ApplicationModel.Payments.PaymentMerchantInfo'Class;
+      options : Windows.ApplicationModel.Payments.PaymentOptions'Class;
+      id : WinRt.WString
    )
    return PaymentRequest;
 

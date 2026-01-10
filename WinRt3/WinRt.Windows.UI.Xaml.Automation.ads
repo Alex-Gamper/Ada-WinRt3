@@ -44,6 +44,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IAnnotationPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAnnotationPatternIdentifiersStatics is access all IAnnotationPatternIdentifiersStatics_Interface'Class;
+   type IAnnotationPatternIdentifiersStatics_Ptr is access all IAnnotationPatternIdentifiersStatics;
 
    type IAutomationAnnotation_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationAnnotation is access all IAutomationAnnotation_Interface'Class;
@@ -51,9 +52,11 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IAutomationAnnotationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationAnnotationFactory is access all IAutomationAnnotationFactory_Interface'Class;
+   type IAutomationAnnotationFactory_Ptr is access all IAutomationAnnotationFactory;
 
    type IAutomationAnnotationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationAnnotationStatics is access all IAutomationAnnotationStatics_Interface'Class;
+   type IAutomationAnnotationStatics_Ptr is access all IAutomationAnnotationStatics;
 
    type IAutomationElementIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationElementIdentifiers is access all IAutomationElementIdentifiers_Interface'Class;
@@ -61,27 +64,35 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IAutomationElementIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationElementIdentifiersStatics is access all IAutomationElementIdentifiersStatics_Interface'Class;
+   type IAutomationElementIdentifiersStatics_Ptr is access all IAutomationElementIdentifiersStatics;
 
    type IAutomationElementIdentifiersStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationElementIdentifiersStatics2 is access all IAutomationElementIdentifiersStatics2_Interface'Class;
+   type IAutomationElementIdentifiersStatics2_Ptr is access all IAutomationElementIdentifiersStatics2;
 
    type IAutomationElementIdentifiersStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationElementIdentifiersStatics3 is access all IAutomationElementIdentifiersStatics3_Interface'Class;
+   type IAutomationElementIdentifiersStatics3_Ptr is access all IAutomationElementIdentifiersStatics3;
 
    type IAutomationElementIdentifiersStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationElementIdentifiersStatics4 is access all IAutomationElementIdentifiersStatics4_Interface'Class;
+   type IAutomationElementIdentifiersStatics4_Ptr is access all IAutomationElementIdentifiersStatics4;
 
    type IAutomationElementIdentifiersStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationElementIdentifiersStatics5 is access all IAutomationElementIdentifiersStatics5_Interface'Class;
+   type IAutomationElementIdentifiersStatics5_Ptr is access all IAutomationElementIdentifiersStatics5;
 
    type IAutomationElementIdentifiersStatics6_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationElementIdentifiersStatics6 is access all IAutomationElementIdentifiersStatics6_Interface'Class;
+   type IAutomationElementIdentifiersStatics6_Ptr is access all IAutomationElementIdentifiersStatics6;
 
    type IAutomationElementIdentifiersStatics7_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationElementIdentifiersStatics7 is access all IAutomationElementIdentifiersStatics7_Interface'Class;
+   type IAutomationElementIdentifiersStatics7_Ptr is access all IAutomationElementIdentifiersStatics7;
 
    type IAutomationElementIdentifiersStatics8_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationElementIdentifiersStatics8 is access all IAutomationElementIdentifiersStatics8_Interface'Class;
+   type IAutomationElementIdentifiersStatics8_Ptr is access all IAutomationElementIdentifiersStatics8;
 
    type IAutomationProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationProperties is access all IAutomationProperties_Interface'Class;
@@ -89,27 +100,39 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IAutomationPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationPropertiesStatics is access all IAutomationPropertiesStatics_Interface'Class;
+   type IAutomationPropertiesStatics_Ptr is access all IAutomationPropertiesStatics;
 
    type IAutomationPropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationPropertiesStatics2 is access all IAutomationPropertiesStatics2_Interface'Class;
+   type IAutomationPropertiesStatics2_Ptr is access all IAutomationPropertiesStatics2;
 
    type IAutomationPropertiesStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationPropertiesStatics3 is access all IAutomationPropertiesStatics3_Interface'Class;
+   type IAutomationPropertiesStatics3_Ptr is access all IAutomationPropertiesStatics3;
 
    type IAutomationPropertiesStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationPropertiesStatics4 is access all IAutomationPropertiesStatics4_Interface'Class;
+   type IAutomationPropertiesStatics4_Ptr is access all IAutomationPropertiesStatics4;
 
    type IAutomationPropertiesStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationPropertiesStatics5 is access all IAutomationPropertiesStatics5_Interface'Class;
+   type IAutomationPropertiesStatics5_Ptr is access all IAutomationPropertiesStatics5;
 
    type IAutomationPropertiesStatics6_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationPropertiesStatics6 is access all IAutomationPropertiesStatics6_Interface'Class;
+   type IAutomationPropertiesStatics6_Ptr is access all IAutomationPropertiesStatics6;
 
    type IAutomationPropertiesStatics7_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationPropertiesStatics7 is access all IAutomationPropertiesStatics7_Interface'Class;
+   type IAutomationPropertiesStatics7_Ptr is access all IAutomationPropertiesStatics7;
 
    type IAutomationPropertiesStatics8_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationPropertiesStatics8 is access all IAutomationPropertiesStatics8_Interface'Class;
+   type IAutomationPropertiesStatics8_Ptr is access all IAutomationPropertiesStatics8;
+
+   type IAutomationPropertiesStatics9_Interface is interface and WinRt.IInspectable_Interface;
+   type IAutomationPropertiesStatics9 is access all IAutomationPropertiesStatics9_Interface'Class;
+   type IAutomationPropertiesStatics9_Ptr is access all IAutomationPropertiesStatics9;
 
    type IAutomationProperty_Interface is interface and WinRt.IInspectable_Interface;
    type IAutomationProperty is access all IAutomationProperty_Interface'Class;
@@ -121,6 +144,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IDockPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDockPatternIdentifiersStatics is access all IDockPatternIdentifiersStatics_Interface'Class;
+   type IDockPatternIdentifiersStatics_Ptr is access all IDockPatternIdentifiersStatics;
 
    type IDragPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type IDragPatternIdentifiers is access all IDragPatternIdentifiers_Interface'Class;
@@ -128,6 +152,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IDragPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDragPatternIdentifiersStatics is access all IDragPatternIdentifiersStatics_Interface'Class;
+   type IDragPatternIdentifiersStatics_Ptr is access all IDragPatternIdentifiersStatics;
 
    type IDropTargetPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type IDropTargetPatternIdentifiers is access all IDropTargetPatternIdentifiers_Interface'Class;
@@ -135,6 +160,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IDropTargetPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDropTargetPatternIdentifiersStatics is access all IDropTargetPatternIdentifiersStatics_Interface'Class;
+   type IDropTargetPatternIdentifiersStatics_Ptr is access all IDropTargetPatternIdentifiersStatics;
 
    type IExpandCollapsePatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type IExpandCollapsePatternIdentifiers is access all IExpandCollapsePatternIdentifiers_Interface'Class;
@@ -142,6 +168,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IExpandCollapsePatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IExpandCollapsePatternIdentifiersStatics is access all IExpandCollapsePatternIdentifiersStatics_Interface'Class;
+   type IExpandCollapsePatternIdentifiersStatics_Ptr is access all IExpandCollapsePatternIdentifiersStatics;
 
    type IGridItemPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type IGridItemPatternIdentifiers is access all IGridItemPatternIdentifiers_Interface'Class;
@@ -149,6 +176,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IGridItemPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGridItemPatternIdentifiersStatics is access all IGridItemPatternIdentifiersStatics_Interface'Class;
+   type IGridItemPatternIdentifiersStatics_Ptr is access all IGridItemPatternIdentifiersStatics;
 
    type IGridPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type IGridPatternIdentifiers is access all IGridPatternIdentifiers_Interface'Class;
@@ -156,6 +184,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IGridPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGridPatternIdentifiersStatics is access all IGridPatternIdentifiersStatics_Interface'Class;
+   type IGridPatternIdentifiersStatics_Ptr is access all IGridPatternIdentifiersStatics;
 
    type IMultipleViewPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type IMultipleViewPatternIdentifiers is access all IMultipleViewPatternIdentifiers_Interface'Class;
@@ -163,6 +192,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IMultipleViewPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMultipleViewPatternIdentifiersStatics is access all IMultipleViewPatternIdentifiersStatics_Interface'Class;
+   type IMultipleViewPatternIdentifiersStatics_Ptr is access all IMultipleViewPatternIdentifiersStatics;
 
    type IRangeValuePatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type IRangeValuePatternIdentifiers is access all IRangeValuePatternIdentifiers_Interface'Class;
@@ -170,6 +200,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IRangeValuePatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRangeValuePatternIdentifiersStatics is access all IRangeValuePatternIdentifiersStatics_Interface'Class;
+   type IRangeValuePatternIdentifiersStatics_Ptr is access all IRangeValuePatternIdentifiersStatics;
 
    type IScrollPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollPatternIdentifiers is access all IScrollPatternIdentifiers_Interface'Class;
@@ -177,6 +208,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IScrollPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollPatternIdentifiersStatics is access all IScrollPatternIdentifiersStatics_Interface'Class;
+   type IScrollPatternIdentifiersStatics_Ptr is access all IScrollPatternIdentifiersStatics;
 
    type ISelectionItemPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectionItemPatternIdentifiers is access all ISelectionItemPatternIdentifiers_Interface'Class;
@@ -184,6 +216,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type ISelectionItemPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectionItemPatternIdentifiersStatics is access all ISelectionItemPatternIdentifiersStatics_Interface'Class;
+   type ISelectionItemPatternIdentifiersStatics_Ptr is access all ISelectionItemPatternIdentifiersStatics;
 
    type ISelectionPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectionPatternIdentifiers is access all ISelectionPatternIdentifiers_Interface'Class;
@@ -191,6 +224,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type ISelectionPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectionPatternIdentifiersStatics is access all ISelectionPatternIdentifiersStatics_Interface'Class;
+   type ISelectionPatternIdentifiersStatics_Ptr is access all ISelectionPatternIdentifiersStatics;
 
    type ISpreadsheetItemPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type ISpreadsheetItemPatternIdentifiers is access all ISpreadsheetItemPatternIdentifiers_Interface'Class;
@@ -198,6 +232,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type ISpreadsheetItemPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISpreadsheetItemPatternIdentifiersStatics is access all ISpreadsheetItemPatternIdentifiersStatics_Interface'Class;
+   type ISpreadsheetItemPatternIdentifiersStatics_Ptr is access all ISpreadsheetItemPatternIdentifiersStatics;
 
    type IStylesPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type IStylesPatternIdentifiers is access all IStylesPatternIdentifiers_Interface'Class;
@@ -205,6 +240,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IStylesPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStylesPatternIdentifiersStatics is access all IStylesPatternIdentifiersStatics_Interface'Class;
+   type IStylesPatternIdentifiersStatics_Ptr is access all IStylesPatternIdentifiersStatics;
 
    type ITableItemPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type ITableItemPatternIdentifiers is access all ITableItemPatternIdentifiers_Interface'Class;
@@ -212,6 +248,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type ITableItemPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITableItemPatternIdentifiersStatics is access all ITableItemPatternIdentifiersStatics_Interface'Class;
+   type ITableItemPatternIdentifiersStatics_Ptr is access all ITableItemPatternIdentifiersStatics;
 
    type ITablePatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type ITablePatternIdentifiers is access all ITablePatternIdentifiers_Interface'Class;
@@ -219,6 +256,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type ITablePatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITablePatternIdentifiersStatics is access all ITablePatternIdentifiersStatics_Interface'Class;
+   type ITablePatternIdentifiersStatics_Ptr is access all ITablePatternIdentifiersStatics;
 
    type ITogglePatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type ITogglePatternIdentifiers is access all ITogglePatternIdentifiers_Interface'Class;
@@ -226,6 +264,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type ITogglePatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITogglePatternIdentifiersStatics is access all ITogglePatternIdentifiersStatics_Interface'Class;
+   type ITogglePatternIdentifiersStatics_Ptr is access all ITogglePatternIdentifiersStatics;
 
    type ITransformPattern2Identifiers_Interface is interface and WinRt.IInspectable_Interface;
    type ITransformPattern2Identifiers is access all ITransformPattern2Identifiers_Interface'Class;
@@ -233,6 +272,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type ITransformPattern2IdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITransformPattern2IdentifiersStatics is access all ITransformPattern2IdentifiersStatics_Interface'Class;
+   type ITransformPattern2IdentifiersStatics_Ptr is access all ITransformPattern2IdentifiersStatics;
 
    type ITransformPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type ITransformPatternIdentifiers is access all ITransformPatternIdentifiers_Interface'Class;
@@ -240,6 +280,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type ITransformPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITransformPatternIdentifiersStatics is access all ITransformPatternIdentifiersStatics_Interface'Class;
+   type ITransformPatternIdentifiersStatics_Ptr is access all ITransformPatternIdentifiersStatics;
 
    type IValuePatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type IValuePatternIdentifiers is access all IValuePatternIdentifiers_Interface'Class;
@@ -247,6 +288,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IValuePatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IValuePatternIdentifiersStatics is access all IValuePatternIdentifiersStatics_Interface'Class;
+   type IValuePatternIdentifiersStatics_Ptr is access all IValuePatternIdentifiersStatics;
 
    type IWindowPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowPatternIdentifiers is access all IWindowPatternIdentifiers_Interface'Class;
@@ -254,6 +296,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    type IWindowPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowPatternIdentifiersStatics is access all IWindowPatternIdentifiersStatics_Interface'Class;
+   type IWindowPatternIdentifiersStatics_Ptr is access all IWindowPatternIdentifiersStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1903,6 +1946,34 @@ package WinRt.Windows.UI.Xaml.Automation is
       IID_IAutomationPropertiesStatics8 : aliased WinRt.IID := (1127139872, 5914, 22029, (133, 36, 62, 101, 29, 58, 214, 202 ));
 
    -----------------------------------------------------------------------------
+   -- type IAutomationPropertiesStatics9 is interface and WinRt.IInspectable;
+
+      function get_AutomationControlTypeProperty
+      (
+         this : access IAutomationPropertiesStatics9_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetAutomationControlType
+      (
+         this : access IAutomationPropertiesStatics9_Interface;
+         element : Windows.UI.Xaml.IUIElement;
+         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationControlType
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetAutomationControlType
+      (
+         this : access IAutomationPropertiesStatics9_Interface;
+         element : Windows.UI.Xaml.IUIElement;
+         value : Windows.UI.Xaml.Automation.Peers.AutomationControlType
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAutomationPropertiesStatics9 : aliased WinRt.IID := (790671825, 34738, 21858, (128, 119, 218, 89, 62, 218, 253, 45 ));
+
+   -----------------------------------------------------------------------------
    -- type IAutomationProperty is interface and WinRt.IInspectable;
 
       IID_IAutomationProperty : aliased WinRt.IID := (3056015707, 12839, 19990, (149, 52, 221, 236, 227, 13, 219, 70 ));
@@ -2655,6 +2726,45 @@ package WinRt.Windows.UI.Xaml.Automation is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AutomationElementIdentifiers
 
+   function get_IsPeripheralProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_IsDataValidForFormProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_FullDescriptionProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_DescribedByProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_FlowsToProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_FlowsFromProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_PositionInSetProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_SizeOfSetProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_LevelProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_AnnotationsProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_ControlledPeersProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_LandmarkTypeProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
+   function get_LocalizedLandmarkTypeProperty
+   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
+
    function get_AcceleratorKeyProperty
    return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
 
@@ -2724,52 +2834,13 @@ package WinRt.Windows.UI.Xaml.Automation is
    function get_LiveSettingProperty
    return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
 
-   function get_PositionInSetProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_SizeOfSetProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_LevelProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_AnnotationsProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_LandmarkTypeProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_LocalizedLandmarkTypeProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_CultureProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
    function get_IsDialogProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_ControlledPeersProperty
    return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
 
    function get_HeadingLevelProperty
    return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
 
-   function get_IsPeripheralProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_IsDataValidForFormProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_FullDescriptionProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_DescribedByProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_FlowsToProperty
-   return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
-
-   function get_FlowsFromProperty
+   function get_CultureProperty
    return WinRt.Windows.UI.Xaml.Automation.AutomationProperty;
 
    -----------------------------------------------------------------------------
@@ -2783,6 +2854,105 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for AutomationProperties
+
+   function get_CultureProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetCulture
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Int32;
+
+   procedure SetCulture
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Int32
+   );
+
+   function get_LandmarkTypeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetLandmarkType
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType;
+
+   procedure SetLandmarkType
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
+   );
+
+   function get_LocalizedLandmarkTypeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetLocalizedLandmarkType
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.WString;
+
+   procedure SetLocalizedLandmarkType
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.WString
+   );
+
+   function get_PositionInSetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetPositionInSet
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Int32;
+
+   procedure SetPositionInSet
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Int32
+   );
+
+   function get_SizeOfSetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetSizeOfSet
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Int32;
+
+   procedure SetSizeOfSet
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Int32
+   );
+
+   function get_LevelProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetLevel
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Int32;
+
+   procedure SetLevel
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Int32
+   );
+
+   function get_AnnotationsProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetAnnotations
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.GenericObject;
 
    function get_AcceleratorKeyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
@@ -2934,112 +3104,19 @@ package WinRt.Windows.UI.Xaml.Automation is
       value : Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
    );
 
-   function get_CultureProperty
+   function get_AutomationControlTypeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function GetCulture
+   function GetAutomationControlType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : Windows.UI.Xaml.UIElement'Class
    )
-   return WinRt.Int32;
+   return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType;
 
-   procedure SetCulture
+   procedure SetAutomationControlType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.Int32
-   );
-
-   function get_PositionInSetProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetPositionInSet
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Int32;
-
-   procedure SetPositionInSet
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.Int32
-   );
-
-   function get_SizeOfSetProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetSizeOfSet
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Int32;
-
-   procedure SetSizeOfSet
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.Int32
-   );
-
-   function get_LevelProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetLevel
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Int32;
-
-   procedure SetLevel
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.Int32
-   );
-
-   function get_AnnotationsProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetAnnotations
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.GenericObject;
-
-   function get_AccessibilityViewProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetAccessibilityView
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Windows.UI.Xaml.Automation.Peers.AccessibilityView;
-
-   procedure SetAccessibilityView
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AccessibilityView
-   );
-
-   function get_ControlledPeersProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetControlledPeers
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.GenericObject;
-
-   function get_HeadingLevelProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function GetHeadingLevel
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel;
-
-   procedure SetHeadingLevel
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
+      element : Windows.UI.Xaml.UIElement'Class;
+      value : Windows.UI.Xaml.Automation.Peers.AutomationControlType
    );
 
    function get_IsPeripheralProperty
@@ -3129,35 +3206,29 @@ package WinRt.Windows.UI.Xaml.Automation is
    )
    return WinRt.GenericObject;
 
-   function get_LandmarkTypeProperty
+   function get_AccessibilityViewProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function GetLandmarkType
+   function GetAccessibilityView
    (
       element : Windows.UI.Xaml.DependencyObject'Class
    )
-   return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType;
+   return WinRt.Windows.UI.Xaml.Automation.Peers.AccessibilityView;
 
-   procedure SetLandmarkType
+   procedure SetAccessibilityView
    (
       element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
+      value : Windows.UI.Xaml.Automation.Peers.AccessibilityView
    );
 
-   function get_LocalizedLandmarkTypeProperty
+   function get_ControlledPeersProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function GetLocalizedLandmarkType
+   function GetControlledPeers
    (
       element : Windows.UI.Xaml.DependencyObject'Class
    )
-   return WinRt.WString;
-
-   procedure SetLocalizedLandmarkType
-   (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : WinRt.WString
-   );
+   return WinRt.GenericObject;
 
    function get_IsDialogProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
@@ -3172,6 +3243,21 @@ package WinRt.Windows.UI.Xaml.Automation is
    (
       element : Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
+   );
+
+   function get_HeadingLevelProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function GetHeadingLevel
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel;
+
+   procedure SetHeadingLevel
+   (
+      element : Windows.UI.Xaml.DependencyObject'Class;
+      value : Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
    );
 
    -----------------------------------------------------------------------------

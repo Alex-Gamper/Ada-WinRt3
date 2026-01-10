@@ -38,9 +38,11 @@ package WinRt.Windows.Devices.Pwm.Provider is
 
    type IPwmControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IPwmControllerProvider is access all IPwmControllerProvider_Interface'Class;
+   type IPwmControllerProvider_Ptr is access all IPwmControllerProvider;
 
    type IPwmProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IPwmProvider is access all IPwmProvider_Interface'Class;
+   type IPwmProvider_Ptr is access all IPwmProvider;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

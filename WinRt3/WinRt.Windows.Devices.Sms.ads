@@ -72,6 +72,7 @@ package WinRt.Windows.Devices.Sms is
 
    type ISmsDevice2Statics_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsDevice2Statics is access all ISmsDevice2Statics_Interface'Class;
+   type ISmsDevice2Statics_Ptr is access all ISmsDevice2Statics;
 
    type ISmsDeviceMessageStore_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsDeviceMessageStore is access all ISmsDeviceMessageStore_Interface'Class;
@@ -79,9 +80,11 @@ package WinRt.Windows.Devices.Sms is
 
    type ISmsDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsDeviceStatics is access all ISmsDeviceStatics_Interface'Class;
+   type ISmsDeviceStatics_Ptr is access all ISmsDeviceStatics;
 
    type ISmsDeviceStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsDeviceStatics2 is access all ISmsDeviceStatics2_Interface'Class;
+   type ISmsDeviceStatics2_Ptr is access all ISmsDeviceStatics2;
 
    type ISmsFilterRule_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsFilterRule is access all ISmsFilterRule_Interface'Class;
@@ -89,6 +92,7 @@ package WinRt.Windows.Devices.Sms is
 
    type ISmsFilterRuleFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsFilterRuleFactory is access all ISmsFilterRuleFactory_Interface'Class;
+   type ISmsFilterRuleFactory_Ptr is access all ISmsFilterRuleFactory;
 
    type ISmsFilterRules_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsFilterRules is access all ISmsFilterRules_Interface'Class;
@@ -96,12 +100,15 @@ package WinRt.Windows.Devices.Sms is
 
    type ISmsFilterRulesFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsFilterRulesFactory is access all ISmsFilterRulesFactory_Interface'Class;
+   type ISmsFilterRulesFactory_Ptr is access all ISmsFilterRulesFactory;
 
    type ISmsMessage_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsMessage is access all ISmsMessage_Interface'Class;
+   type ISmsMessage_Ptr is access all ISmsMessage;
 
    type ISmsMessageBase_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsMessageBase is access all ISmsMessageBase_Interface'Class;
+   type ISmsMessageBase_Ptr is access all ISmsMessageBase;
 
    type ISmsMessageReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsMessageReceivedEventArgs is access all ISmsMessageReceivedEventArgs_Interface'Class;
@@ -117,6 +124,7 @@ package WinRt.Windows.Devices.Sms is
 
    type ISmsMessageRegistrationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsMessageRegistrationStatics is access all ISmsMessageRegistrationStatics_Interface'Class;
+   type ISmsMessageRegistrationStatics_Ptr is access all ISmsMessageRegistrationStatics;
 
    type ISmsReceivedEventDetails_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsReceivedEventDetails is access all ISmsReceivedEventDetails_Interface'Class;
@@ -124,6 +132,7 @@ package WinRt.Windows.Devices.Sms is
 
    type ISmsReceivedEventDetails2_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsReceivedEventDetails2 is access all ISmsReceivedEventDetails2_Interface'Class;
+   type ISmsReceivedEventDetails2_Ptr is access all ISmsReceivedEventDetails2;
 
    type ISmsSendMessageResult_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsSendMessageResult is access all ISmsSendMessageResult_Interface'Class;
@@ -143,6 +152,7 @@ package WinRt.Windows.Devices.Sms is
 
    type ISmsTextMessageStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsTextMessageStatics is access all ISmsTextMessageStatics_Interface'Class;
+   type ISmsTextMessageStatics_Ptr is access all ISmsTextMessageStatics;
 
    type ISmsVoicemailMessage_Interface is interface and WinRt.IInspectable_Interface;
    type ISmsVoicemailMessage is access all ISmsVoicemailMessage_Interface'Class;
@@ -2628,12 +2638,6 @@ package WinRt.Windows.Devices.Sms is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SmsDevice
 
-   function FromNetworkAccountIdAsync
-   (
-      networkAccountId : WinRt.WString
-   )
-   return WinRt.Windows.Devices.Sms.SmsDevice;
-
    function GetDeviceSelector
    return WinRt.WString;
 
@@ -2644,6 +2648,12 @@ package WinRt.Windows.Devices.Sms is
    return WinRt.Windows.Devices.Sms.SmsDevice;
 
    function GetDefaultAsync
+   return WinRt.Windows.Devices.Sms.SmsDevice;
+
+   function FromNetworkAccountIdAsync
+   (
+      networkAccountId : WinRt.WString
+   )
    return WinRt.Windows.Devices.Sms.SmsDevice;
 
    -----------------------------------------------------------------------------

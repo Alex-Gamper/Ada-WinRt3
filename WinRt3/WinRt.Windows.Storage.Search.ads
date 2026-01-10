@@ -51,9 +51,11 @@ package WinRt.Windows.Storage.Search is
 
    type IContentIndexerQueryOperations_Interface is interface and WinRt.IInspectable_Interface;
    type IContentIndexerQueryOperations is access all IContentIndexerQueryOperations_Interface'Class;
+   type IContentIndexerQueryOperations_Ptr is access all IContentIndexerQueryOperations;
 
    type IContentIndexerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IContentIndexerStatics is access all IContentIndexerStatics_Interface'Class;
+   type IContentIndexerStatics_Ptr is access all IContentIndexerStatics;
 
    type IIndexableContent_Interface is interface and WinRt.IInspectable_Interface;
    type IIndexableContent is access all IIndexableContent_Interface'Class;
@@ -65,9 +67,11 @@ package WinRt.Windows.Storage.Search is
 
    type IQueryOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IQueryOptionsFactory is access all IQueryOptionsFactory_Interface'Class;
+   type IQueryOptionsFactory_Ptr is access all IQueryOptionsFactory;
 
    type IQueryOptionsWithProviderFilter_Interface is interface and WinRt.IInspectable_Interface;
    type IQueryOptionsWithProviderFilter is access all IQueryOptionsWithProviderFilter_Interface'Class;
+   type IQueryOptionsWithProviderFilter_Ptr is access all IQueryOptionsWithProviderFilter;
 
    type IStorageFileQueryResult_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageFileQueryResult is access all IStorageFileQueryResult_Interface'Class;
@@ -75,9 +79,11 @@ package WinRt.Windows.Storage.Search is
 
    type IStorageFileQueryResult2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageFileQueryResult2 is access all IStorageFileQueryResult2_Interface'Class;
+   type IStorageFileQueryResult2_Ptr is access all IStorageFileQueryResult2;
 
    type IStorageFolderQueryOperations_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageFolderQueryOperations is access all IStorageFolderQueryOperations_Interface'Class;
+   type IStorageFolderQueryOperations_Ptr is access all IStorageFolderQueryOperations;
 
    type IStorageFolderQueryResult_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageFolderQueryResult is access all IStorageFolderQueryResult_Interface'Class;
@@ -97,6 +103,7 @@ package WinRt.Windows.Storage.Search is
 
    type IStorageQueryResultBase_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageQueryResultBase is access all IStorageQueryResultBase_Interface'Class;
+   type IStorageQueryResultBase_Ptr is access all IStorageQueryResultBase;
 
    type IValueAndLanguage_Interface is interface and WinRt.IInspectable_Interface;
    type IValueAndLanguage is access all IValueAndLanguage_Interface'Class;
@@ -1265,8 +1272,6 @@ package WinRt.Windows.Storage.Search is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for QueryOptions
 
-   function Constructor return QueryOptions;
-
    function Constructor
    (
       query : Windows.Storage.Search.CommonFileQuery;
@@ -1279,6 +1284,8 @@ package WinRt.Windows.Storage.Search is
       query : Windows.Storage.Search.CommonFolderQuery
    )
    return QueryOptions;
+
+   function Constructor return QueryOptions;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for QueryOptions

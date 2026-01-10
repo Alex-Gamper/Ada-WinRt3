@@ -63,6 +63,76 @@ package body WinRt.Windows.Devices.Pwm is
    -----------------------------------------------------------------------------
    -- Static Interfaces for PwmController
 
+   function GetDefaultAsync
+   return WinRt.Windows.Devices.Pwm.PwmController is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Pwm.PwmController");
+      m_Factory        : access WinRt.Windows.Devices.Pwm.IPwmControllerStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_PwmController.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_PwmController.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.Pwm.IPwmController;
+      m_IID            : aliased WinRt.IID := (170429761, 7968, 23830, (133, 221, 82, 133, 91, 17, 86, 154 )); -- Windows.Devices.Pwm.PwmController;
+      m_HandlerIID     : aliased WinRt.IID := (1606848159, 65535, 23891, (186, 33, 156, 51, 239, 86, 178, 64 ));
+      m_Handler        : AsyncOperationCompletedHandler_PwmController.Kind := new AsyncOperationCompletedHandler_PwmController.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PwmController.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PwmController.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PwmController.Kind_Delegate, AsyncOperationCompletedHandler_PwmController.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.Pwm.PwmController do
+         Hr := RoGetActivationFactory (m_hString, IID_IPwmControllerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_IPwmController := new Windows.Devices.Pwm.IPwmController;
+                     Retval.m_IPwmController.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function GetDeviceSelector
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -188,76 +258,6 @@ package body WinRt.Windows.Devices.Pwm is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_deviceId);
-      end return;
-   end;
-
-   function GetDefaultAsync
-   return WinRt.Windows.Devices.Pwm.PwmController is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Pwm.PwmController");
-      m_Factory        : access WinRt.Windows.Devices.Pwm.IPwmControllerStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_PwmController.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_PwmController.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.Windows.Devices.Pwm.IPwmController;
-      m_IID            : aliased WinRt.IID := (170429761, 7968, 23830, (133, 221, 82, 133, 91, 17, 86, 154 )); -- Windows.Devices.Pwm.PwmController;
-      m_HandlerIID     : aliased WinRt.IID := (1606848159, 65535, 23891, (186, 33, 156, 51, 239, 86, 178, 64 ));
-      m_Handler        : AsyncOperationCompletedHandler_PwmController.Kind := new AsyncOperationCompletedHandler_PwmController.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_PwmController.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_PwmController.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PwmController.Kind_Delegate, AsyncOperationCompletedHandler_PwmController.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      return RetVal : WinRt.Windows.Devices.Pwm.PwmController do
-         Hr := RoGetActivationFactory (m_hString, IID_IPwmControllerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPwmController := new Windows.Devices.Pwm.IPwmController;
-                     Retval.m_IPwmController.all := m_RetVal;
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

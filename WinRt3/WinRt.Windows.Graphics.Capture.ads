@@ -28,9 +28,12 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
+with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Graphics.DirectX;
 limited with WinRt.Windows.Graphics.DirectX.Direct3D11;
+limited with WinRt.Windows.Security.Authorization.AppCapabilityAccess;
 limited with WinRt.Windows.System;
+limited with WinRt.Windows.UI;
 limited with WinRt.Windows.UI.Composition;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
@@ -46,15 +49,25 @@ package WinRt.Windows.Graphics.Capture is
    type IDirect3D11CaptureFrame is access all IDirect3D11CaptureFrame_Interface'Class;
    type IDirect3D11CaptureFrame_Ptr is access all IDirect3D11CaptureFrame;
 
+   type IDirect3D11CaptureFrame2_Interface is interface and WinRt.IInspectable_Interface;
+   type IDirect3D11CaptureFrame2 is access all IDirect3D11CaptureFrame2_Interface'Class;
+   type IDirect3D11CaptureFrame2_Ptr is access all IDirect3D11CaptureFrame2;
+
    type IDirect3D11CaptureFramePool_Interface is interface and WinRt.IInspectable_Interface;
    type IDirect3D11CaptureFramePool is access all IDirect3D11CaptureFramePool_Interface'Class;
    type IDirect3D11CaptureFramePool_Ptr is access all IDirect3D11CaptureFramePool;
 
    type IDirect3D11CaptureFramePoolStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDirect3D11CaptureFramePoolStatics is access all IDirect3D11CaptureFramePoolStatics_Interface'Class;
+   type IDirect3D11CaptureFramePoolStatics_Ptr is access all IDirect3D11CaptureFramePoolStatics;
 
    type IDirect3D11CaptureFramePoolStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IDirect3D11CaptureFramePoolStatics2 is access all IDirect3D11CaptureFramePoolStatics2_Interface'Class;
+   type IDirect3D11CaptureFramePoolStatics2_Ptr is access all IDirect3D11CaptureFramePoolStatics2;
+
+   type IGraphicsCaptureAccessStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IGraphicsCaptureAccessStatics is access all IGraphicsCaptureAccessStatics_Interface'Class;
+   type IGraphicsCaptureAccessStatics_Ptr is access all IGraphicsCaptureAccessStatics;
 
    type IGraphicsCaptureItem_Interface is interface and WinRt.IInspectable_Interface;
    type IGraphicsCaptureItem is access all IGraphicsCaptureItem_Interface'Class;
@@ -62,6 +75,11 @@ package WinRt.Windows.Graphics.Capture is
 
    type IGraphicsCaptureItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGraphicsCaptureItemStatics is access all IGraphicsCaptureItemStatics_Interface'Class;
+   type IGraphicsCaptureItemStatics_Ptr is access all IGraphicsCaptureItemStatics;
+
+   type IGraphicsCaptureItemStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type IGraphicsCaptureItemStatics2 is access all IGraphicsCaptureItemStatics2_Interface'Class;
+   type IGraphicsCaptureItemStatics2_Ptr is access all IGraphicsCaptureItemStatics2;
 
    type IGraphicsCapturePicker_Interface is interface and WinRt.IInspectable_Interface;
    type IGraphicsCapturePicker is access all IGraphicsCapturePicker_Interface'Class;
@@ -73,9 +91,27 @@ package WinRt.Windows.Graphics.Capture is
 
    type IGraphicsCaptureSession2_Interface is interface and WinRt.IInspectable_Interface;
    type IGraphicsCaptureSession2 is access all IGraphicsCaptureSession2_Interface'Class;
+   type IGraphicsCaptureSession2_Ptr is access all IGraphicsCaptureSession2;
+
+   type IGraphicsCaptureSession3_Interface is interface and WinRt.IInspectable_Interface;
+   type IGraphicsCaptureSession3 is access all IGraphicsCaptureSession3_Interface'Class;
+   type IGraphicsCaptureSession3_Ptr is access all IGraphicsCaptureSession3;
+
+   type IGraphicsCaptureSession4_Interface is interface and WinRt.IInspectable_Interface;
+   type IGraphicsCaptureSession4 is access all IGraphicsCaptureSession4_Interface'Class;
+   type IGraphicsCaptureSession4_Ptr is access all IGraphicsCaptureSession4;
+
+   type IGraphicsCaptureSession5_Interface is interface and WinRt.IInspectable_Interface;
+   type IGraphicsCaptureSession5 is access all IGraphicsCaptureSession5_Interface'Class;
+   type IGraphicsCaptureSession5_Ptr is access all IGraphicsCaptureSession5;
+
+   type IGraphicsCaptureSession6_Interface is interface and WinRt.IInspectable_Interface;
+   type IGraphicsCaptureSession6 is access all IGraphicsCaptureSession6_Interface'Class;
+   type IGraphicsCaptureSession6_Ptr is access all IGraphicsCaptureSession6;
 
    type IGraphicsCaptureSessionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGraphicsCaptureSessionStatics is access all IGraphicsCaptureSessionStatics_Interface'Class;
+   type IGraphicsCaptureSessionStatics_Ptr is access all IGraphicsCaptureSessionStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -112,6 +148,38 @@ package WinRt.Windows.Graphics.Capture is
    type GraphicsCaptureSession_Ptr is access all GraphicsCaptureSession;
 
    -----------------------------------------------------------------------------
+   -- Enum declarations
+   -----------------------------------------------------------------------------
+
+   type GraphicsCaptureAccessKind is (
+      Borderless_e,
+      Programmatic_e
+   );
+   for GraphicsCaptureAccessKind use (
+      Borderless_e => 0,
+      Programmatic_e => 1
+   );
+   type GraphicsCaptureAccessKind_Ptr is access all GraphicsCaptureAccessKind;
+
+   type GraphicsCaptureDirtyRegionMode is (
+      ReportOnly_e,
+      ReportAndRender_e
+   );
+   for GraphicsCaptureDirtyRegionMode use (
+      ReportOnly_e => 0,
+      ReportAndRender_e => 1
+   );
+   type GraphicsCaptureDirtyRegionMode_Ptr is access all GraphicsCaptureDirtyRegionMode;
+
+   -----------------------------------------------------------------------------
+   -- Generic package declarations
+   -----------------------------------------------------------------------------
+
+   package IVectorView_RectInt32 is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Windows.Graphics.RectInt32);
+   IID_IVectorView_RectInt32 : aliased WinRt.IID := (2429445109, 35959, 21002, (170, 6, 133, 217, 25, 118, 122, 212 ));
+   function QInterface_IVectorView_RectInt32 is new Generic_QueryInterface (GenericObject_Interface, IVectorView_RectInt32.Kind, IID_IVectorView_RectInt32'Access);
+
+   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -140,6 +208,25 @@ package WinRt.Windows.Graphics.Capture is
       return WinRt.Hresult is abstract;
 
       IID_IDirect3D11CaptureFrame : aliased WinRt.IID := (4199597603, 14554, 19250, (172, 243, 250, 151, 52, 173, 128, 14 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDirect3D11CaptureFrame2 is interface and WinRt.IInspectable;
+
+      function get_DirtyRegions
+      (
+         this : access IDirect3D11CaptureFrame2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DirtyRegionMode
+      (
+         this : access IDirect3D11CaptureFrame2_Interface;
+         RetVal : access Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDirect3D11CaptureFrame2 : aliased WinRt.IID := (931568890, 11080, 24255, (154, 251, 223, 253, 128, 93, 239, 219 ));
 
    -----------------------------------------------------------------------------
    -- type IDirect3D11CaptureFramePool is interface and WinRt.IInspectable;
@@ -226,6 +313,19 @@ package WinRt.Windows.Graphics.Capture is
       IID_IDirect3D11CaptureFramePoolStatics2 : aliased WinRt.IID := (1486557247, 27580, 24053, (169, 145, 2, 226, 139, 59, 102, 213 ));
 
    -----------------------------------------------------------------------------
+   -- type IGraphicsCaptureAccessStatics is interface and WinRt.IInspectable;
+
+      function RequestAccessAsync
+      (
+         this : access IGraphicsCaptureAccessStatics_Interface;
+         request : Windows.Graphics.Capture.GraphicsCaptureAccessKind;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IGraphicsCaptureAccessStatics : aliased WinRt.IID := (1950274416, 1772, 20544, (165, 138, 144, 31, 15, 117, 112, 149 ));
+
+   -----------------------------------------------------------------------------
    -- type IGraphicsCaptureItem is interface and WinRt.IInspectable;
 
       function get_DisplayName
@@ -273,6 +373,27 @@ package WinRt.Windows.Graphics.Capture is
       IID_IGraphicsCaptureItemStatics : aliased WinRt.IID := (2826878629, 17788, 22408, (171, 71, 12, 241, 211, 99, 126, 116 ));
 
    -----------------------------------------------------------------------------
+   -- type IGraphicsCaptureItemStatics2 is interface and WinRt.IInspectable;
+
+      function TryCreateFromWindowId
+      (
+         this : access IGraphicsCaptureItemStatics2_Interface;
+         windowId : Windows.UI.WindowId;
+         RetVal : access Windows.Graphics.Capture.IGraphicsCaptureItem
+      )
+      return WinRt.Hresult is abstract;
+
+      function TryCreateFromDisplayId
+      (
+         this : access IGraphicsCaptureItemStatics2_Interface;
+         displayId : Windows.Graphics.DisplayId;
+         RetVal : access Windows.Graphics.Capture.IGraphicsCaptureItem
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IGraphicsCaptureItemStatics2 : aliased WinRt.IID := (999468233, 58756, 22626, (191, 92, 156, 49, 108, 109, 45, 187 ));
+
+   -----------------------------------------------------------------------------
    -- type IGraphicsCapturePicker is interface and WinRt.IInspectable;
 
       function PickSingleItemAsync
@@ -313,6 +434,82 @@ package WinRt.Windows.Graphics.Capture is
       return WinRt.Hresult is abstract;
 
       IID_IGraphicsCaptureSession2 : aliased WinRt.IID := (741977664, 32046, 20548, (128, 78, 139, 103, 153, 212, 207, 158 ));
+
+   -----------------------------------------------------------------------------
+   -- type IGraphicsCaptureSession3 is interface and WinRt.IInspectable;
+
+      function get_IsBorderRequired
+      (
+         this : access IGraphicsCaptureSession3_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsBorderRequired
+      (
+         this : access IGraphicsCaptureSession3_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IGraphicsCaptureSession3 : aliased WinRt.IID := (4073576806, 8878, 24225, (149, 150, 58, 40, 147, 68, 195, 190 ));
+
+   -----------------------------------------------------------------------------
+   -- type IGraphicsCaptureSession4 is interface and WinRt.IInspectable;
+
+      function get_DirtyRegionMode
+      (
+         this : access IGraphicsCaptureSession4_Interface;
+         RetVal : access Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_DirtyRegionMode
+      (
+         this : access IGraphicsCaptureSession4_Interface;
+         value : Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IGraphicsCaptureSession4 : aliased WinRt.IID := (2929295676, 49751, 22361, (142, 208, 102, 140, 155, 85, 126, 212 ));
+
+   -----------------------------------------------------------------------------
+   -- type IGraphicsCaptureSession5 is interface and WinRt.IInspectable;
+
+      function get_MinUpdateInterval
+      (
+         this : access IGraphicsCaptureSession5_Interface;
+         RetVal : access Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_MinUpdateInterval
+      (
+         this : access IGraphicsCaptureSession5_Interface;
+         value : Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IGraphicsCaptureSession5 : aliased WinRt.IID := (1740696162, 8069, 20577, (146, 90, 35, 155, 224, 172, 9, 203 ));
+
+   -----------------------------------------------------------------------------
+   -- type IGraphicsCaptureSession6 is interface and WinRt.IInspectable;
+
+      function get_IncludeSecondaryWindows
+      (
+         this : access IGraphicsCaptureSession6_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IncludeSecondaryWindows
+      (
+         this : access IGraphicsCaptureSession6_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IGraphicsCaptureSession6 : aliased WinRt.IID := (3611398710, 48672, 24223, (188, 214, 196, 233, 143, 214, 175, 220 ));
 
    -----------------------------------------------------------------------------
    -- type IGraphicsCaptureSessionStatics is interface and WinRt.IInspectable;
@@ -356,6 +553,18 @@ package WinRt.Windows.Graphics.Capture is
       this : in out Direct3D11CaptureFrame
    )
    return WinRt.Windows.Graphics.SizeInt32;
+
+   function get_DirtyRegions
+   (
+      this : in out Direct3D11CaptureFrame
+   )
+   return IVectorView_RectInt32.Kind;
+
+   function get_DirtyRegionMode
+   (
+      this : in out Direct3D11CaptureFrame
+   )
+   return WinRt.Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode;
 
    procedure Close
    (
@@ -439,6 +648,18 @@ package WinRt.Windows.Graphics.Capture is
    );
 
    -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package GraphicsCaptureAccess is
+
+      function RequestAccessAsync
+      (
+         request : Windows.Graphics.Capture.GraphicsCaptureAccessKind
+      )
+      return WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus;
+
+   end GraphicsCaptureAccess;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for GraphicsCaptureItem
 
    overriding procedure Initialize (this : in out GraphicsCaptureItem);
@@ -450,6 +671,18 @@ package WinRt.Windows.Graphics.Capture is
    function CreateFromVisual
    (
       visual : Windows.UI.Composition.Visual'Class
+   )
+   return WinRt.Windows.Graphics.Capture.GraphicsCaptureItem;
+
+   function TryCreateFromWindowId
+   (
+      windowId : Windows.UI.WindowId
+   )
+   return WinRt.Windows.Graphics.Capture.GraphicsCaptureItem;
+
+   function TryCreateFromDisplayId
+   (
+      displayId : Windows.Graphics.DisplayId
    )
    return WinRt.Windows.Graphics.Capture.GraphicsCaptureItem;
 
@@ -528,6 +761,54 @@ package WinRt.Windows.Graphics.Capture is
    return WinRt.Boolean;
 
    procedure put_IsCursorCaptureEnabled
+   (
+      this : in out GraphicsCaptureSession;
+      value : WinRt.Boolean
+   );
+
+   function get_IsBorderRequired
+   (
+      this : in out GraphicsCaptureSession
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsBorderRequired
+   (
+      this : in out GraphicsCaptureSession;
+      value : WinRt.Boolean
+   );
+
+   function get_DirtyRegionMode
+   (
+      this : in out GraphicsCaptureSession
+   )
+   return WinRt.Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode;
+
+   procedure put_DirtyRegionMode
+   (
+      this : in out GraphicsCaptureSession;
+      value : Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode
+   );
+
+   function get_MinUpdateInterval
+   (
+      this : in out GraphicsCaptureSession
+   )
+   return WinRt.Windows.Foundation.TimeSpan;
+
+   procedure put_MinUpdateInterval
+   (
+      this : in out GraphicsCaptureSession;
+      value : Windows.Foundation.TimeSpan
+   );
+
+   function get_IncludeSecondaryWindows
+   (
+      this : in out GraphicsCaptureSession
+   )
+   return WinRt.Boolean;
+
+   procedure put_IncludeSecondaryWindows
    (
       this : in out GraphicsCaptureSession;
       value : WinRt.Boolean

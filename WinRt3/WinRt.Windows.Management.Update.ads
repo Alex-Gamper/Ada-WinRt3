@@ -27,6 +27,7 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
@@ -44,10 +45,219 @@ package WinRt.Windows.Management.Update is
 
    type IPreviewBuildsManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPreviewBuildsManagerStatics is access all IPreviewBuildsManagerStatics_Interface'Class;
+   type IPreviewBuildsManagerStatics_Ptr is access all IPreviewBuildsManagerStatics;
 
    type IPreviewBuildsState_Interface is interface and WinRt.IInspectable_Interface;
    type IPreviewBuildsState is access all IPreviewBuildsState_Interface'Class;
    type IPreviewBuildsState_Ptr is access all IPreviewBuildsState;
+
+   type IWindowsSoftwareUpdate_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdate is access all IWindowsSoftwareUpdate_Interface'Class;
+   type IWindowsSoftwareUpdate_Ptr is access all IWindowsSoftwareUpdate;
+
+   type IWindowsSoftwareUpdateActionInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateActionInfo is access all IWindowsSoftwareUpdateActionInfo_Interface'Class;
+   type IWindowsSoftwareUpdateActionInfo_Ptr is access all IWindowsSoftwareUpdateActionInfo;
+
+   type IWindowsSoftwareUpdateActionInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateActionInfoFactory is access all IWindowsSoftwareUpdateActionInfoFactory_Interface'Class;
+   type IWindowsSoftwareUpdateActionInfoFactory_Ptr is access all IWindowsSoftwareUpdateActionInfoFactory;
+
+   type IWindowsSoftwareUpdateActionProgress_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateActionProgress is access all IWindowsSoftwareUpdateActionProgress_Interface'Class;
+   type IWindowsSoftwareUpdateActionProgress_Ptr is access all IWindowsSoftwareUpdateActionProgress;
+
+   type IWindowsSoftwareUpdateActionResultInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateActionResultInfo is access all IWindowsSoftwareUpdateActionResultInfo_Interface'Class;
+   type IWindowsSoftwareUpdateActionResultInfo_Ptr is access all IWindowsSoftwareUpdateActionResultInfo;
+
+   type IWindowsSoftwareUpdateAppPackageInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateAppPackageInfo is access all IWindowsSoftwareUpdateAppPackageInfo_Interface'Class;
+   type IWindowsSoftwareUpdateAppPackageInfo_Ptr is access all IWindowsSoftwareUpdateAppPackageInfo;
+
+   type IWindowsSoftwareUpdateAppPackageInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateAppPackageInfoFactory is access all IWindowsSoftwareUpdateAppPackageInfoFactory_Interface'Class;
+   type IWindowsSoftwareUpdateAppPackageInfoFactory_Ptr is access all IWindowsSoftwareUpdateAppPackageInfoFactory;
+
+   type IWindowsSoftwareUpdateApprovalInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateApprovalInfo is access all IWindowsSoftwareUpdateApprovalInfo_Interface'Class;
+   type IWindowsSoftwareUpdateApprovalInfo_Ptr is access all IWindowsSoftwareUpdateApprovalInfo;
+
+   type IWindowsSoftwareUpdateApprovalInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateApprovalInfoFactory is access all IWindowsSoftwareUpdateApprovalInfoFactory_Interface'Class;
+   type IWindowsSoftwareUpdateApprovalInfoFactory_Ptr is access all IWindowsSoftwareUpdateApprovalInfoFactory;
+
+   type IWindowsSoftwareUpdateExecutionInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateExecutionInfo is access all IWindowsSoftwareUpdateExecutionInfo_Interface'Class;
+   type IWindowsSoftwareUpdateExecutionInfo_Ptr is access all IWindowsSoftwareUpdateExecutionInfo;
+
+   type IWindowsSoftwareUpdateExecutionInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateExecutionInfoFactory is access all IWindowsSoftwareUpdateExecutionInfoFactory_Interface'Class;
+   type IWindowsSoftwareUpdateExecutionInfoFactory_Ptr is access all IWindowsSoftwareUpdateExecutionInfoFactory;
+
+   type IWindowsSoftwareUpdateFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateFactory is access all IWindowsSoftwareUpdateFactory_Interface'Class;
+   type IWindowsSoftwareUpdateFactory_Ptr is access all IWindowsSoftwareUpdateFactory;
+
+   type IWindowsSoftwareUpdateLocalizationInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateLocalizationInfo is access all IWindowsSoftwareUpdateLocalizationInfo_Interface'Class;
+   type IWindowsSoftwareUpdateLocalizationInfo_Ptr is access all IWindowsSoftwareUpdateLocalizationInfo;
+
+   type IWindowsSoftwareUpdateLocalizationInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateLocalizationInfoFactory is access all IWindowsSoftwareUpdateLocalizationInfoFactory_Interface'Class;
+   type IWindowsSoftwareUpdateLocalizationInfoFactory_Ptr is access all IWindowsSoftwareUpdateLocalizationInfoFactory;
+
+   type IWindowsSoftwareUpdateOptionalActionInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateOptionalActionInfo is access all IWindowsSoftwareUpdateOptionalActionInfo_Interface'Class;
+   type IWindowsSoftwareUpdateOptionalActionInfo_Ptr is access all IWindowsSoftwareUpdateOptionalActionInfo;
+
+   type IWindowsSoftwareUpdateOptionalActionInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateOptionalActionInfoFactory is access all IWindowsSoftwareUpdateOptionalActionInfoFactory_Interface'Class;
+   type IWindowsSoftwareUpdateOptionalActionInfoFactory_Ptr is access all IWindowsSoftwareUpdateOptionalActionInfoFactory;
+
+   type IWindowsSoftwareUpdateOptionalInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateOptionalInfo is access all IWindowsSoftwareUpdateOptionalInfo_Interface'Class;
+   type IWindowsSoftwareUpdateOptionalInfo_Ptr is access all IWindowsSoftwareUpdateOptionalInfo;
+
+   type IWindowsSoftwareUpdateOptionalInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateOptionalInfoFactory is access all IWindowsSoftwareUpdateOptionalInfoFactory_Interface'Class;
+   type IWindowsSoftwareUpdateOptionalInfoFactory_Ptr is access all IWindowsSoftwareUpdateOptionalInfoFactory;
+
+   type IWindowsSoftwareUpdateProvider_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateProvider is access all IWindowsSoftwareUpdateProvider_Interface'Class;
+   type IWindowsSoftwareUpdateProvider_Ptr is access all IWindowsSoftwareUpdateProvider;
+
+   type IWindowsSoftwareUpdateProviderActionResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateProviderActionResult is access all IWindowsSoftwareUpdateProviderActionResult_Interface'Class;
+   type IWindowsSoftwareUpdateProviderActionResult_Ptr is access all IWindowsSoftwareUpdateProviderActionResult;
+
+   type IWindowsSoftwareUpdateProviderActionResultFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateProviderActionResultFactory is access all IWindowsSoftwareUpdateProviderActionResultFactory_Interface'Class;
+   type IWindowsSoftwareUpdateProviderActionResultFactory_Ptr is access all IWindowsSoftwareUpdateProviderActionResultFactory;
+
+   type IWindowsSoftwareUpdateProviderFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateProviderFactory is access all IWindowsSoftwareUpdateProviderFactory_Interface'Class;
+   type IWindowsSoftwareUpdateProviderFactory_Ptr is access all IWindowsSoftwareUpdateProviderFactory;
+
+   type IWindowsSoftwareUpdateProviderPayloadFileInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateProviderPayloadFileInfo is access all IWindowsSoftwareUpdateProviderPayloadFileInfo_Interface'Class;
+   type IWindowsSoftwareUpdateProviderPayloadFileInfo_Ptr is access all IWindowsSoftwareUpdateProviderPayloadFileInfo;
+
+   type IWindowsSoftwareUpdateProviderStatus_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateProviderStatus is access all IWindowsSoftwareUpdateProviderStatus_Interface'Class;
+   type IWindowsSoftwareUpdateProviderStatus_Ptr is access all IWindowsSoftwareUpdateProviderStatus;
+
+   type IWindowsSoftwareUpdateProviderStatusFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateProviderStatusFactory is access all IWindowsSoftwareUpdateProviderStatusFactory_Interface'Class;
+   type IWindowsSoftwareUpdateProviderStatusFactory_Ptr is access all IWindowsSoftwareUpdateProviderStatusFactory;
+
+   type IWindowsSoftwareUpdateResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateResult is access all IWindowsSoftwareUpdateResult_Interface'Class;
+   type IWindowsSoftwareUpdateResult_Ptr is access all IWindowsSoftwareUpdateResult;
+
+   type IWindowsSoftwareUpdateResultFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateResultFactory is access all IWindowsSoftwareUpdateResultFactory_Interface'Class;
+   type IWindowsSoftwareUpdateResultFactory_Ptr is access all IWindowsSoftwareUpdateResultFactory;
+
+   type IWindowsSoftwareUpdateScanResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateScanResult is access all IWindowsSoftwareUpdateScanResult_Interface'Class;
+   type IWindowsSoftwareUpdateScanResult_Ptr is access all IWindowsSoftwareUpdateScanResult;
+
+   type IWindowsSoftwareUpdateScanResultFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateScanResultFactory is access all IWindowsSoftwareUpdateScanResultFactory_Interface'Class;
+   type IWindowsSoftwareUpdateScanResultFactory_Ptr is access all IWindowsSoftwareUpdateScanResultFactory;
+
+   type IWindowsSoftwareUpdateVersion_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateVersion is access all IWindowsSoftwareUpdateVersion_Interface'Class;
+   type IWindowsSoftwareUpdateVersion_Ptr is access all IWindowsSoftwareUpdateVersion;
+
+   type IWindowsSoftwareUpdateVersionFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsSoftwareUpdateVersionFactory is access all IWindowsSoftwareUpdateVersionFactory_Interface'Class;
+   type IWindowsSoftwareUpdateVersionFactory_Ptr is access all IWindowsSoftwareUpdateVersionFactory;
+
+   type IWindowsUpdate_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdate is access all IWindowsUpdate_Interface'Class;
+   type IWindowsUpdate_Ptr is access all IWindowsUpdate;
+
+   type IWindowsUpdateActionCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateActionCompletedEventArgs is access all IWindowsUpdateActionCompletedEventArgs_Interface'Class;
+   type IWindowsUpdateActionCompletedEventArgs_Ptr is access all IWindowsUpdateActionCompletedEventArgs;
+
+   type IWindowsUpdateActionProgress_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateActionProgress is access all IWindowsUpdateActionProgress_Interface'Class;
+   type IWindowsUpdateActionProgress_Ptr is access all IWindowsUpdateActionProgress;
+
+   type IWindowsUpdateActionResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateActionResult is access all IWindowsUpdateActionResult_Interface'Class;
+   type IWindowsUpdateActionResult_Ptr is access all IWindowsUpdateActionResult;
+
+   type IWindowsUpdateAdministrator_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateAdministrator is access all IWindowsUpdateAdministrator_Interface'Class;
+   type IWindowsUpdateAdministrator_Ptr is access all IWindowsUpdateAdministrator;
+
+   type IWindowsUpdateAdministratorStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateAdministratorStatics is access all IWindowsUpdateAdministratorStatics_Interface'Class;
+   type IWindowsUpdateAdministratorStatics_Ptr is access all IWindowsUpdateAdministratorStatics;
+
+   type IWindowsUpdateApprovalData_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateApprovalData is access all IWindowsUpdateApprovalData_Interface'Class;
+   type IWindowsUpdateApprovalData_Ptr is access all IWindowsUpdateApprovalData;
+
+   type IWindowsUpdateAttentionRequiredInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateAttentionRequiredInfo is access all IWindowsUpdateAttentionRequiredInfo_Interface'Class;
+   type IWindowsUpdateAttentionRequiredInfo_Ptr is access all IWindowsUpdateAttentionRequiredInfo;
+
+   type IWindowsUpdateAttentionRequiredReasonChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateAttentionRequiredReasonChangedEventArgs is access all IWindowsUpdateAttentionRequiredReasonChangedEventArgs_Interface'Class;
+   type IWindowsUpdateAttentionRequiredReasonChangedEventArgs_Ptr is access all IWindowsUpdateAttentionRequiredReasonChangedEventArgs;
+
+   type IWindowsUpdateGetAdministratorResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateGetAdministratorResult is access all IWindowsUpdateGetAdministratorResult_Interface'Class;
+   type IWindowsUpdateGetAdministratorResult_Ptr is access all IWindowsUpdateGetAdministratorResult;
+
+   type IWindowsUpdateItem_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateItem is access all IWindowsUpdateItem_Interface'Class;
+   type IWindowsUpdateItem_Ptr is access all IWindowsUpdateItem;
+
+   type IWindowsUpdateManager_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateManager is access all IWindowsUpdateManager_Interface'Class;
+   type IWindowsUpdateManager_Ptr is access all IWindowsUpdateManager;
+
+   type IWindowsUpdateManager2_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateManager2 is access all IWindowsUpdateManager2_Interface'Class;
+   type IWindowsUpdateManager2_Ptr is access all IWindowsUpdateManager2;
+
+   type IWindowsUpdateManagerFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateManagerFactory is access all IWindowsUpdateManagerFactory_Interface'Class;
+   type IWindowsUpdateManagerFactory_Ptr is access all IWindowsUpdateManagerFactory;
+
+   type IWindowsUpdateManagerFactory2_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateManagerFactory2 is access all IWindowsUpdateManagerFactory2_Interface'Class;
+   type IWindowsUpdateManagerFactory2_Ptr is access all IWindowsUpdateManagerFactory2;
+
+   type IWindowsUpdateManagerScanOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateManagerScanOptions is access all IWindowsUpdateManagerScanOptions_Interface'Class;
+   type IWindowsUpdateManagerScanOptions_Ptr is access all IWindowsUpdateManagerScanOptions;
+
+   type IWindowsUpdateManagerScanOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateManagerScanOptionsFactory is access all IWindowsUpdateManagerScanOptionsFactory_Interface'Class;
+   type IWindowsUpdateManagerScanOptionsFactory_Ptr is access all IWindowsUpdateManagerScanOptionsFactory;
+
+   type IWindowsUpdateProgressChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateProgressChangedEventArgs is access all IWindowsUpdateProgressChangedEventArgs_Interface'Class;
+   type IWindowsUpdateProgressChangedEventArgs_Ptr is access all IWindowsUpdateProgressChangedEventArgs;
+
+   type IWindowsUpdateRestartRequestOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateRestartRequestOptions is access all IWindowsUpdateRestartRequestOptions_Interface'Class;
+   type IWindowsUpdateRestartRequestOptions_Ptr is access all IWindowsUpdateRestartRequestOptions;
+
+   type IWindowsUpdateRestartRequestOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateRestartRequestOptionsFactory is access all IWindowsUpdateRestartRequestOptionsFactory_Interface'Class;
+   type IWindowsUpdateRestartRequestOptionsFactory_Ptr is access all IWindowsUpdateRestartRequestOptionsFactory;
+
+   type IWindowsUpdateScanCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowsUpdateScanCompletedEventArgs is access all IWindowsUpdateScanCompletedEventArgs_Interface'Class;
+   type IWindowsUpdateScanCompletedEventArgs_Ptr is access all IWindowsUpdateScanCompletedEventArgs;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -64,6 +274,481 @@ package WinRt.Windows.Management.Update is
          m_IPreviewBuildsState : access Windows.Management.Update.IPreviewBuildsState;
       end record;
    type PreviewBuildsState_Ptr is access all PreviewBuildsState;
+
+   type WindowsSoftwareUpdate is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdate : access Windows.Management.Update.IWindowsSoftwareUpdate;
+      end record;
+   type WindowsSoftwareUpdate_Ptr is access all WindowsSoftwareUpdate;
+
+   type WindowsSoftwareUpdateActionInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateActionInfo : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+      end record;
+   type WindowsSoftwareUpdateActionInfo_Ptr is access all WindowsSoftwareUpdateActionInfo;
+
+   type WindowsSoftwareUpdateActionProgress is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateActionProgress : access Windows.Management.Update.IWindowsSoftwareUpdateActionProgress;
+      end record;
+   type WindowsSoftwareUpdateActionProgress_Ptr is access all WindowsSoftwareUpdateActionProgress;
+
+   type WindowsSoftwareUpdateActionResultInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateActionResultInfo : access Windows.Management.Update.IWindowsSoftwareUpdateActionResultInfo;
+      end record;
+   type WindowsSoftwareUpdateActionResultInfo_Ptr is access all WindowsSoftwareUpdateActionResultInfo;
+
+   type WindowsSoftwareUpdateAppPackageInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateAppPackageInfo : access Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo;
+      end record;
+   type WindowsSoftwareUpdateAppPackageInfo_Ptr is access all WindowsSoftwareUpdateAppPackageInfo;
+
+   type WindowsSoftwareUpdateApprovalInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateApprovalInfo : access Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo;
+      end record;
+   type WindowsSoftwareUpdateApprovalInfo_Ptr is access all WindowsSoftwareUpdateApprovalInfo;
+
+   type WindowsSoftwareUpdateExecutionInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateExecutionInfo : access Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
+      end record;
+   type WindowsSoftwareUpdateExecutionInfo_Ptr is access all WindowsSoftwareUpdateExecutionInfo;
+
+   type WindowsSoftwareUpdateLocalizationInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateLocalizationInfo : access Windows.Management.Update.IWindowsSoftwareUpdateLocalizationInfo;
+      end record;
+   type WindowsSoftwareUpdateLocalizationInfo_Ptr is access all WindowsSoftwareUpdateLocalizationInfo;
+
+   type WindowsSoftwareUpdateOptionalActionInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateOptionalActionInfo : access Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo;
+      end record;
+   type WindowsSoftwareUpdateOptionalActionInfo_Ptr is access all WindowsSoftwareUpdateOptionalActionInfo;
+
+   type WindowsSoftwareUpdateOptionalInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateOptionalInfo : access Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
+      end record;
+   type WindowsSoftwareUpdateOptionalInfo_Ptr is access all WindowsSoftwareUpdateOptionalInfo;
+
+   type WindowsSoftwareUpdateProvider is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateProvider : access Windows.Management.Update.IWindowsSoftwareUpdateProvider;
+      end record;
+   type WindowsSoftwareUpdateProvider_Ptr is access all WindowsSoftwareUpdateProvider;
+
+   type WindowsSoftwareUpdateProviderActionResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateProviderActionResult : access Windows.Management.Update.IWindowsSoftwareUpdateProviderActionResult;
+      end record;
+   type WindowsSoftwareUpdateProviderActionResult_Ptr is access all WindowsSoftwareUpdateProviderActionResult;
+
+   type WindowsSoftwareUpdateProviderPayloadFileInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateProviderPayloadFileInfo : access Windows.Management.Update.IWindowsSoftwareUpdateProviderPayloadFileInfo;
+      end record;
+   type WindowsSoftwareUpdateProviderPayloadFileInfo_Ptr is access all WindowsSoftwareUpdateProviderPayloadFileInfo;
+
+   type WindowsSoftwareUpdateProviderStatus is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateProviderStatus : access Windows.Management.Update.IWindowsSoftwareUpdateProviderStatus;
+      end record;
+   type WindowsSoftwareUpdateProviderStatus_Ptr is access all WindowsSoftwareUpdateProviderStatus;
+
+   type WindowsSoftwareUpdateResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateResult : access Windows.Management.Update.IWindowsSoftwareUpdateResult;
+      end record;
+   type WindowsSoftwareUpdateResult_Ptr is access all WindowsSoftwareUpdateResult;
+
+   type WindowsSoftwareUpdateScanResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateScanResult : access Windows.Management.Update.IWindowsSoftwareUpdateScanResult;
+      end record;
+   type WindowsSoftwareUpdateScanResult_Ptr is access all WindowsSoftwareUpdateScanResult;
+
+   type WindowsSoftwareUpdateVersion is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsSoftwareUpdateVersion : access Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+      end record;
+   type WindowsSoftwareUpdateVersion_Ptr is access all WindowsSoftwareUpdateVersion;
+
+   type WindowsUpdate is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdate : access Windows.Management.Update.IWindowsUpdate;
+      end record;
+   type WindowsUpdate_Ptr is access all WindowsUpdate;
+
+   type WindowsUpdateActionCompletedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateActionCompletedEventArgs : access Windows.Management.Update.IWindowsUpdateActionCompletedEventArgs;
+      end record;
+   type WindowsUpdateActionCompletedEventArgs_Ptr is access all WindowsUpdateActionCompletedEventArgs;
+
+   type WindowsUpdateActionProgress is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateActionProgress : access Windows.Management.Update.IWindowsUpdateActionProgress;
+      end record;
+   type WindowsUpdateActionProgress_Ptr is access all WindowsUpdateActionProgress;
+
+   type WindowsUpdateActionResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateActionResult : access Windows.Management.Update.IWindowsUpdateActionResult;
+      end record;
+   type WindowsUpdateActionResult_Ptr is access all WindowsUpdateActionResult;
+
+   type WindowsUpdateAdministrator is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateAdministrator : access Windows.Management.Update.IWindowsUpdateAdministrator;
+      end record;
+   type WindowsUpdateAdministrator_Ptr is access all WindowsUpdateAdministrator;
+
+   type WindowsUpdateApprovalData is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateApprovalData : access Windows.Management.Update.IWindowsUpdateApprovalData;
+      end record;
+   type WindowsUpdateApprovalData_Ptr is access all WindowsUpdateApprovalData;
+
+   type WindowsUpdateAttentionRequiredInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateAttentionRequiredInfo : access Windows.Management.Update.IWindowsUpdateAttentionRequiredInfo;
+      end record;
+   type WindowsUpdateAttentionRequiredInfo_Ptr is access all WindowsUpdateAttentionRequiredInfo;
+
+   type WindowsUpdateAttentionRequiredReasonChangedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateAttentionRequiredReasonChangedEventArgs : access Windows.Management.Update.IWindowsUpdateAttentionRequiredReasonChangedEventArgs;
+      end record;
+   type WindowsUpdateAttentionRequiredReasonChangedEventArgs_Ptr is access all WindowsUpdateAttentionRequiredReasonChangedEventArgs;
+
+   type WindowsUpdateGetAdministratorResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateGetAdministratorResult : access Windows.Management.Update.IWindowsUpdateGetAdministratorResult;
+      end record;
+   type WindowsUpdateGetAdministratorResult_Ptr is access all WindowsUpdateGetAdministratorResult;
+
+   type WindowsUpdateItem is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateItem : access Windows.Management.Update.IWindowsUpdateItem;
+      end record;
+   type WindowsUpdateItem_Ptr is access all WindowsUpdateItem;
+
+   type WindowsUpdateManager is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateManager : access Windows.Management.Update.IWindowsUpdateManager;
+      end record;
+   type WindowsUpdateManager_Ptr is access all WindowsUpdateManager;
+
+   type WindowsUpdateManagerScanOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateManagerScanOptions : access Windows.Management.Update.IWindowsUpdateManagerScanOptions;
+      end record;
+   type WindowsUpdateManagerScanOptions_Ptr is access all WindowsUpdateManagerScanOptions;
+
+   type WindowsUpdateProgressChangedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateProgressChangedEventArgs : access Windows.Management.Update.IWindowsUpdateProgressChangedEventArgs;
+      end record;
+   type WindowsUpdateProgressChangedEventArgs_Ptr is access all WindowsUpdateProgressChangedEventArgs;
+
+   type WindowsUpdateRestartRequestOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateRestartRequestOptions : access Windows.Management.Update.IWindowsUpdateRestartRequestOptions;
+      end record;
+   type WindowsUpdateRestartRequestOptions_Ptr is access all WindowsUpdateRestartRequestOptions;
+
+   type WindowsUpdateScanCompletedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWindowsUpdateScanCompletedEventArgs : access Windows.Management.Update.IWindowsUpdateScanCompletedEventArgs;
+      end record;
+   type WindowsUpdateScanCompletedEventArgs_Ptr is access all WindowsUpdateScanCompletedEventArgs;
+
+   -----------------------------------------------------------------------------
+   -- Enum declarations
+   -----------------------------------------------------------------------------
+
+   type WindowsSoftwareUpdateActionResult is (
+      Succeeded_e,
+      Continue_e,
+      Failed_e,
+      Canceled_e,
+      Removed_e
+   );
+   for WindowsSoftwareUpdateActionResult use (
+      Succeeded_e => 0,
+      Continue_e => 1,
+      Failed_e => 2,
+      Canceled_e => 3,
+      Removed_e => 4
+   );
+   type WindowsSoftwareUpdateActionResult_Ptr is access all WindowsSoftwareUpdateActionResult;
+
+   type WindowsSoftwareUpdateActionType is (
+      Download_e,
+      Install_e,
+      Deploy_e,
+      Reboot_e,
+      AppRestart_e
+   );
+   for WindowsSoftwareUpdateActionType use (
+      Download_e => 0,
+      Install_e => 1,
+      Deploy_e => 2,
+      Reboot_e => 3,
+      AppRestart_e => 4
+   );
+   type WindowsSoftwareUpdateActionType_Ptr is access all WindowsSoftwareUpdateActionType;
+
+   type WindowsSoftwareUpdateArchitecture is (
+      Neutral_e,
+      X86_e,
+      X64_e,
+      Arm_e,
+      Arm64_e
+   );
+   for WindowsSoftwareUpdateArchitecture use (
+      Neutral_e => 0,
+      X86_e => 1,
+      X64_e => 2,
+      Arm_e => 3,
+      Arm64_e => 4
+   );
+   type WindowsSoftwareUpdateArchitecture_Ptr is access all WindowsSoftwareUpdateArchitecture;
+
+   type WindowsSoftwareUpdateInstallationType is (
+      WindowsUpdate_e,
+      AppPackage_e,
+      Executable_e,
+      Powershell_e
+   );
+   for WindowsSoftwareUpdateInstallationType use (
+      WindowsUpdate_e => 0,
+      AppPackage_e => 1,
+      Executable_e => 2,
+      Powershell_e => 3
+   );
+   type WindowsSoftwareUpdateInstallationType_Ptr is access all WindowsSoftwareUpdateInstallationType;
+
+   type WindowsSoftwareUpdateProviderRegistrationType is (
+      None_e,
+      System_e,
+      Windows_e,
+      Pending_e,
+      Registered_e,
+      Unregistered_e
+   );
+   for WindowsSoftwareUpdateProviderRegistrationType use (
+      None_e => 0,
+      System_e => 1,
+      Windows_e => 2,
+      Pending_e => 3,
+      Registered_e => 4,
+      Unregistered_e => 5
+   );
+   type WindowsSoftwareUpdateProviderRegistrationType_Ptr is access all WindowsSoftwareUpdateProviderRegistrationType;
+
+   type WindowsSoftwareUpdateProviderTrustState is (
+      SignedTrusted_e,
+      SignedUntrusted_e,
+      Unsigned_e
+   );
+   for WindowsSoftwareUpdateProviderTrustState use (
+      SignedTrusted_e => 0,
+      SignedUntrusted_e => 1,
+      Unsigned_e => 2
+   );
+   type WindowsSoftwareUpdateProviderTrustState_Ptr is access all WindowsSoftwareUpdateProviderTrustState;
+
+   type WindowsSoftwareUpdateProviderType is (
+      WindowsUpdate_e,
+      Executable_e,
+      Powershell_e
+   );
+   for WindowsSoftwareUpdateProviderType use (
+      WindowsUpdate_e => 0,
+      Executable_e => 1,
+      Powershell_e => 2
+   );
+   type WindowsSoftwareUpdateProviderType_Ptr is access all WindowsSoftwareUpdateProviderType;
+
+   type WindowsSoftwareUpdateRestartReason is (
+      None_e,
+      System_e,
+      AppClose_e,
+      AppRestart_e
+   );
+   for WindowsSoftwareUpdateRestartReason use (
+      None_e => 0,
+      System_e => 1,
+      AppClose_e => 2,
+      AppRestart_e => 3
+   );
+   type WindowsSoftwareUpdateRestartReason_Ptr is access all WindowsSoftwareUpdateRestartReason;
+
+   type WindowsUpdateAdministratorOptions is (
+      None_e,
+      RequireAdministratorApprovalForScans_e,
+      RequireAdministratorApprovalForUpdates_e,
+      RequireAdministratorApprovalForActions_e
+   );
+   for WindowsUpdateAdministratorOptions use (
+      None_e => 0,
+      RequireAdministratorApprovalForScans_e => 1,
+      RequireAdministratorApprovalForUpdates_e => 2,
+      RequireAdministratorApprovalForActions_e => 4
+   );
+   type WindowsUpdateAdministratorOptions_Ptr is access all WindowsUpdateAdministratorOptions;
+
+   type WindowsUpdateAdministratorStatus is (
+      Succeeded_e,
+      NoAdministratorRegistered_e,
+      OtherAdministratorIsRegistered_e
+   );
+   for WindowsUpdateAdministratorStatus use (
+      Succeeded_e => 0,
+      NoAdministratorRegistered_e => 1,
+      OtherAdministratorIsRegistered_e => 2
+   );
+   type WindowsUpdateAdministratorStatus_Ptr is access all WindowsUpdateAdministratorStatus;
+
+   type WindowsUpdateAttentionRequiredReason is (
+      None_e,
+      SeekerUpdate_e,
+      ReadyToReboot_e,
+      NeedNonMeteredNetwork_e,
+      NeedUserAgreementForMeteredNetwork_e,
+      NeedNetwork_e,
+      NeedMoreSpace_e,
+      BatterySaverEnabled_e,
+      NeedUserInteraction_e,
+      NeedUserAgreementForPolicy_e,
+      CompatibilityError_e,
+      NeedUserInteractionForEula_e,
+      NeedUserInteractionForCta_e,
+      Regulated_e,
+      ExternalReboot_e,
+      OtherUpdate_e,
+      BlockedByProvider_e,
+      BlockedByPostRebootFailure_e,
+      UserEngaged_e,
+      BlockedByBattery_e,
+      Exclusivity_e,
+      BlockedBySerialization_e,
+      ConflictClass_e,
+      BlockedByAdminApproval_e,
+      BlockedByTooManyAttempts_e,
+      BlockedByFailure_e,
+      Demotion_e,
+      BlockedByActiveHours_e,
+      ScheduledForMaintenance_e,
+      PolicyScheduledInstallTime_e,
+      BlockedByOobe_e,
+      DeferredDuringOobe_e,
+      DeferredForSustainableTime_e,
+      BlockedByAppClose_e,
+      BlockedByAppRestart_e,
+      OtherUpdateReverting_e
+   );
+   for WindowsUpdateAttentionRequiredReason use (
+      None_e => 0,
+      SeekerUpdate_e => 1,
+      ReadyToReboot_e => 2,
+      NeedNonMeteredNetwork_e => 3,
+      NeedUserAgreementForMeteredNetwork_e => 4,
+      NeedNetwork_e => 5,
+      NeedMoreSpace_e => 6,
+      BatterySaverEnabled_e => 7,
+      NeedUserInteraction_e => 8,
+      NeedUserAgreementForPolicy_e => 9,
+      CompatibilityError_e => 10,
+      NeedUserInteractionForEula_e => 11,
+      NeedUserInteractionForCta_e => 12,
+      Regulated_e => 13,
+      ExternalReboot_e => 14,
+      OtherUpdate_e => 15,
+      BlockedByProvider_e => 16,
+      BlockedByPostRebootFailure_e => 17,
+      UserEngaged_e => 18,
+      BlockedByBattery_e => 19,
+      Exclusivity_e => 20,
+      BlockedBySerialization_e => 21,
+      ConflictClass_e => 22,
+      BlockedByAdminApproval_e => 23,
+      BlockedByTooManyAttempts_e => 24,
+      BlockedByFailure_e => 25,
+      Demotion_e => 26,
+      BlockedByActiveHours_e => 27,
+      ScheduledForMaintenance_e => 28,
+      PolicyScheduledInstallTime_e => 29,
+      BlockedByOobe_e => 30,
+      DeferredDuringOobe_e => 31,
+      DeferredForSustainableTime_e => 32,
+      BlockedByAppClose_e => 33,
+      BlockedByAppRestart_e => 34,
+      OtherUpdateReverting_e => 35
+   );
+   type WindowsUpdateAttentionRequiredReason_Ptr is access all WindowsUpdateAttentionRequiredReason;
+
+   -----------------------------------------------------------------------------
+   -- Record declarations
+   -----------------------------------------------------------------------------
+
+   type WindowsUpdateContract is record
+      null;
+   end record with Convention => C_Pass_By_Copy;
+   type WindowsUpdateContract_Ptr is access all WindowsUpdateContract;
+
+   -----------------------------------------------------------------------------
+   -- Generic package declarations
+   -----------------------------------------------------------------------------
+
+   package IReference_Guid is new WinRt.Windows.Foundation.IReference (WinRt.Guid);
+   IID_IReference_Guid : aliased WinRt.IID := (1266529349, 64404, 21630, (143, 8, 38, 7, 44, 78, 247, 35 ));
+   function QInterface_IReference_Guid is new Generic_QueryInterface (GenericObject_Interface, IReference_Guid.Kind, IID_IReference_Guid'Access);
+
+   package IVectorView_WindowsSoftwareUpdateActionType is new WinRt.Windows.Foundation.Collections.IVectorView (WindowsSoftwareUpdateActionType);
+   IID_IVectorView_WindowsSoftwareUpdateActionType : aliased WinRt.IID := (1266529349, 64404, 21630, (143, 8, 38, 7, 44, 78, 247, 35 ));
+   function QInterface_IVectorView_WindowsSoftwareUpdateActionType is new Generic_QueryInterface (GenericObject_Interface, IVectorView_WindowsSoftwareUpdateActionType.Kind, IID_IVectorView_WindowsSoftwareUpdateActionType'Access);
+
+   package IReference_WindowsSoftwareUpdateRestartReason is new WinRt.Windows.Foundation.IReference (WindowsSoftwareUpdateRestartReason);
+   IID_IReference_WindowsSoftwareUpdateRestartReason : aliased WinRt.IID := (1266529349, 64404, 21630, (143, 8, 38, 7, 44, 78, 247, 35 ));
+   function QInterface_IReference_WindowsSoftwareUpdateRestartReason is new Generic_QueryInterface (GenericObject_Interface, IReference_WindowsSoftwareUpdateRestartReason.Kind, IID_IReference_WindowsSoftwareUpdateRestartReason'Access);
+
+   package IVectorView_IWindowsSoftwareUpdateLocalizationInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IWindowsSoftwareUpdateLocalizationInfo);
+   IID_IVectorView_IWindowsSoftwareUpdateLocalizationInfo : aliased WinRt.IID := (1466335698, 42208, 22329, (178, 27, 161, 217, 224, 161, 169, 47 ));
+   function QInterface_IVectorView_IWindowsSoftwareUpdateLocalizationInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IWindowsSoftwareUpdateLocalizationInfo.Kind, IID_IVectorView_IWindowsSoftwareUpdateLocalizationInfo'Access);
+
+   package IReference_Int32 is new WinRt.Windows.Foundation.IReference (WinRt.Int32);
+   IID_IReference_Int32 : aliased WinRt.IID := (1466335698, 42208, 22329, (178, 27, 161, 217, 224, 161, 169, 47 ));
+   function QInterface_IReference_Int32 is new Generic_QueryInterface (GenericObject_Interface, IReference_Int32.Kind, IID_IReference_Int32'Access);
+
+   package IVectorView_IWindowsSoftwareUpdateProviderPayloadFileInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IWindowsSoftwareUpdateProviderPayloadFileInfo);
+   IID_IVectorView_IWindowsSoftwareUpdateProviderPayloadFileInfo : aliased WinRt.IID := (774633463, 39642, 24222, (175, 80, 46, 114, 107, 232, 110, 191 ));
+   function QInterface_IVectorView_IWindowsSoftwareUpdateProviderPayloadFileInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IWindowsSoftwareUpdateProviderPayloadFileInfo.Kind, IID_IVectorView_IWindowsSoftwareUpdateProviderPayloadFileInfo'Access);
+
+   package IVectorView_IWindowsSoftwareUpdate is new WinRt.Windows.Foundation.Collections.IVectorView (IWindowsSoftwareUpdate);
+   IID_IVectorView_IWindowsSoftwareUpdate : aliased WinRt.IID := (2887184035, 28647, 21388, (147, 225, 209, 130, 253, 64, 38, 89 ));
+   function QInterface_IVectorView_IWindowsSoftwareUpdate is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IWindowsSoftwareUpdate.Kind, IID_IVectorView_IWindowsSoftwareUpdate'Access);
+
+   package IReference_DateTime is new WinRt.Windows.Foundation.IReference (WinRt.Windows.Foundation.DateTime);
+   IID_IReference_DateTime : aliased WinRt.IID := (2256187089, 43352, 23230, (185, 219, 80, 183, 11, 212, 225, 53 ));
+   function QInterface_IReference_DateTime is new Generic_QueryInterface (GenericObject_Interface, IReference_DateTime.Kind, IID_IReference_DateTime'Access);
+
+   package IVectorView_IWindowsUpdate is new WinRt.Windows.Foundation.Collections.IVectorView (IWindowsUpdate);
+   IID_IVectorView_IWindowsUpdate : aliased WinRt.IID := (462627944, 12268, 21069, (179, 249, 197, 78, 186, 148, 26, 240 ));
+   function QInterface_IVectorView_IWindowsUpdate is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IWindowsUpdate.Kind, IID_IVectorView_IWindowsUpdate'Access);
+
+   package IReference_Boolean is new WinRt.Windows.Foundation.IReference (WinRt.Boolean);
+   IID_IReference_Boolean : aliased WinRt.IID := (148358645, 64360, 21440, (185, 39, 87, 228, 58, 113, 121, 8 ));
+   function QInterface_IReference_Boolean is new Generic_QueryInterface (GenericObject_Interface, IReference_Boolean.Kind, IID_IReference_Boolean'Access);
+
+   package IVectorView_IWindowsUpdateItem is new WinRt.Windows.Foundation.Collections.IVectorView (IWindowsUpdateItem);
+   IID_IVectorView_IWindowsUpdateItem : aliased WinRt.IID := (3104585628, 50974, 23517, (181, 162, 229, 123, 112, 67, 45, 208 ));
+   function QInterface_IVectorView_IWindowsUpdateItem is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IWindowsUpdateItem.Kind, IID_IVectorView_IWindowsUpdateItem'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -134,6 +819,2059 @@ package WinRt.Windows.Management.Update is
       IID_IPreviewBuildsState : aliased WinRt.IID := (2733805630, 45603, 24419, (117, 70, 62, 142, 172, 7, 10, 46 ));
 
    -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdate is interface and WinRt.IInspectable;
+
+      function get_InstallationType
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateInstallationType
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProviderId
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UpdateId
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Title
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Description
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MoreInfoUrl
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DownloadSizeInBytes
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_InstallSizeInBytes
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SourceVersion
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateVersion
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TargetVersion
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateVersion
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProductCode
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PackageFamilyName
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function Approve
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         approvalInfo : Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function ApproveCurrentAction
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         approve : WinRt.Boolean;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CurrentAction
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ActionResultInfo
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionResultInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ApprovalInfo
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ApprovedActions
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AttentionRequiredInfo
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access Windows.Management.Update.IWindowsUpdateAttentionRequiredInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ActionProgress
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionProgress
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RestartReason
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AppPackageInfo
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExecutionInfo
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OptionalInfo
+      (
+         this : access IWindowsSoftwareUpdate_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdate : aliased WinRt.IID := (3639710225, 39166, 22749, (175, 15, 71, 5, 50, 170, 51, 65 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateActionInfo is interface and WinRt.IInspectable;
+
+      function get_FileName
+      (
+         this : access IWindowsSoftwareUpdateActionInfo_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_FileArguments
+      (
+         this : access IWindowsSoftwareUpdateActionInfo_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ActionType
+      (
+         this : access IWindowsSoftwareUpdateActionInfo_Interface;
+         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateActionType
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateActionInfo : aliased WinRt.IID := (795288501, 63236, 21346, (182, 0, 209, 136, 8, 243, 151, 62 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateActionInfoFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateActionInfoFactory_Interface;
+         fileName : WinRt.HString;
+         fileArguments : WinRt.HString;
+         actionType : Windows.Management.Update.WindowsSoftwareUpdateActionType;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateActionInfoFactory : aliased WinRt.IID := (1585689998, 55682, 23955, (167, 203, 191, 108, 155, 110, 229, 166 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateActionProgress is interface and WinRt.IInspectable;
+
+      function get_Action
+      (
+         this : access IWindowsSoftwareUpdateActionProgress_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CurrentProgress
+      (
+         this : access IWindowsSoftwareUpdateActionProgress_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TotalProgress
+      (
+         this : access IWindowsSoftwareUpdateActionProgress_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateActionProgress : aliased WinRt.IID := (400299517, 30194, 21035, (181, 85, 53, 157, 168, 222, 85, 129 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateActionResultInfo is interface and WinRt.IInspectable;
+
+      function get_Timestamp
+      (
+         this : access IWindowsSoftwareUpdateActionResultInfo_Interface;
+         RetVal : access Windows.Foundation.DateTime
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Succeeded
+      (
+         this : access IWindowsSoftwareUpdateActionResultInfo_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ResultCode
+      (
+         this : access IWindowsSoftwareUpdateActionResultInfo_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IWindowsSoftwareUpdateActionResultInfo_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Action
+      (
+         this : access IWindowsSoftwareUpdateActionResultInfo_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateActionResultInfo : aliased WinRt.IID := (3170004922, 39112, 20939, (139, 126, 30, 237, 195, 216, 42, 105 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateAppPackageInfo is interface and WinRt.IInspectable;
+
+      function get_PackageFamilyName
+      (
+         this : access IWindowsSoftwareUpdateAppPackageInfo_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PackageArchitecture
+      (
+         this : access IWindowsSoftwareUpdateAppPackageInfo_Interface;
+         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateArchitecture
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_InstallUri
+      (
+         this : access IWindowsSoftwareUpdateAppPackageInfo_Interface;
+         RetVal : access Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateAppPackageInfo : aliased WinRt.IID := (2780649972, 58916, 21842, (130, 249, 38, 122, 69, 116, 162, 3 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateAppPackageInfoFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateAppPackageInfoFactory_Interface;
+         packageFamilyName : WinRt.HString;
+         packageArchitecture : Windows.Management.Update.WindowsSoftwareUpdateArchitecture;
+         installUri : Windows.Foundation.IUriRuntimeClass;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateAppPackageInfoFactory : aliased WinRt.IID := (2831001145, 42230, 23114, (138, 84, 38, 193, 197, 8, 205, 15 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateApprovalInfo is interface and WinRt.IInspectable;
+
+      function get_UserInitiated
+      (
+         this : access IWindowsSoftwareUpdateApprovalInfo_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AppClosure
+      (
+         this : access IWindowsSoftwareUpdateApprovalInfo_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MeteredNetwork
+      (
+         this : access IWindowsSoftwareUpdateApprovalInfo_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Seeker
+      (
+         this : access IWindowsSoftwareUpdateApprovalInfo_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateApprovalInfo : aliased WinRt.IID := (1763601310, 32943, 22658, (148, 4, 37, 67, 126, 203, 121, 27 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateApprovalInfoFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateApprovalInfoFactory_Interface;
+         userInitiated : WinRt.Boolean;
+         appClosure : WinRt.Boolean;
+         meteredNetwork : WinRt.Boolean;
+         seeker : WinRt.Boolean;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateApprovalInfoFactory : aliased WinRt.IID := (2871598204, 53919, 23237, (180, 71, 11, 252, 171, 220, 44, 195 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateExecutionInfo is interface and WinRt.IInspectable;
+
+      function get_DownloadInfo
+      (
+         this : access IWindowsSoftwareUpdateExecutionInfo_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_InstallInfo
+      (
+         this : access IWindowsSoftwareUpdateExecutionInfo_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DeployInfo
+      (
+         this : access IWindowsSoftwareUpdateExecutionInfo_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OptionalActionInfo
+      (
+         this : access IWindowsSoftwareUpdateExecutionInfo_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateExecutionInfo : aliased WinRt.IID := (152758809, 37160, 24356, (175, 193, 166, 34, 82, 223, 85, 192 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateExecutionInfoFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateExecutionInfoFactory_Interface;
+         downloadInfo : Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         installInfo : Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         actions : Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateInstance2
+      (
+         this : access IWindowsSoftwareUpdateExecutionInfoFactory_Interface;
+         deployInfo : Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         actions : Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateExecutionInfoFactory : aliased WinRt.IID := (2287562622, 47599, 21891, (129, 53, 148, 214, 46, 214, 110, 212 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateFactory_Interface;
+         providerId : WinRt.HString;
+         installationType : Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
+         updateId : WinRt.HString;
+         title : WinRt.HString;
+         description : WinRt.HString;
+         moreInfoUrl : Windows.Foundation.IUriRuntimeClass;
+         downloadSizeInBytes : WinRt.UInt64;
+         installSizeInBytes : WinRt.UInt64;
+         sourceVersion : Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+         targetVersion : Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+         appPackageInfo : Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo;
+         executionInfo : Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
+         optionalInfo : Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdate
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateInstance2
+      (
+         this : access IWindowsSoftwareUpdateFactory_Interface;
+         providerId : WinRt.HString;
+         installationType : Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
+         updateId : WinRt.HString;
+         title : WinRt.HString;
+         description : WinRt.HString;
+         moreInfoUrl : Windows.Foundation.IUriRuntimeClass;
+         downloadSizeInBytes : WinRt.UInt64;
+         installSizeInBytes : WinRt.UInt64;
+         productCode : GenericObject;
+         packageFamilyName : WinRt.HString;
+         sourceVersion : Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+         targetVersion : Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+         appPackageInfo : Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo;
+         executionInfo : Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
+         optionalInfo : Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdate
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateFactory : aliased WinRt.IID := (686284827, 16933, 21192, (187, 81, 198, 143, 11, 7, 27, 229 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateLocalizationInfo is interface and WinRt.IInspectable;
+
+      function get_LanguageId
+      (
+         this : access IWindowsSoftwareUpdateLocalizationInfo_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Title
+      (
+         this : access IWindowsSoftwareUpdateLocalizationInfo_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Description
+      (
+         this : access IWindowsSoftwareUpdateLocalizationInfo_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MoreInfoUrl
+      (
+         this : access IWindowsSoftwareUpdateLocalizationInfo_Interface;
+         RetVal : access Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateLocalizationInfo : aliased WinRt.IID := (2915229259, 22886, 24479, (174, 7, 0, 212, 162, 133, 217, 51 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateLocalizationInfoFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateLocalizationInfoFactory_Interface;
+         languageId : WinRt.UInt32;
+         title : WinRt.HString;
+         description : WinRt.HString;
+         moreInfoUrl : Windows.Foundation.IUriRuntimeClass;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateLocalizationInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateLocalizationInfoFactory : aliased WinRt.IID := (1989647140, 62909, 23692, (189, 183, 164, 97, 135, 55, 74, 255 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateOptionalActionInfo is interface and WinRt.IInspectable;
+
+      function get_CloseAndDeployInfo
+      (
+         this : access IWindowsSoftwareUpdateOptionalActionInfo_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CloseAndInstallInfo
+      (
+         this : access IWindowsSoftwareUpdateOptionalActionInfo_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CloseAndRestartInfo
+      (
+         this : access IWindowsSoftwareUpdateOptionalActionInfo_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateOptionalActionInfo : aliased WinRt.IID := (1254110672, 58638, 23755, (191, 216, 163, 3, 86, 40, 145, 210 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateOptionalActionInfoFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateOptionalActionInfoFactory_Interface;
+         closeAndDeployInfo : Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         closeAndInstallInfo : Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         closeAndRestartInfo : Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateOptionalActionInfoFactory : aliased WinRt.IID := (2295528641, 18321, 20918, (185, 136, 150, 110, 249, 58, 24, 11 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateOptionalInfo is interface and WinRt.IInspectable;
+
+      function get_LocalizationInfo
+      (
+         this : access IWindowsSoftwareUpdateOptionalInfo_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ComplianceDeadlineInDays
+      (
+         this : access IWindowsSoftwareUpdateOptionalInfo_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ComplianceGracePeriodInDays
+      (
+         this : access IWindowsSoftwareUpdateOptionalInfo_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateOptionalInfo : aliased WinRt.IID := (2013809267, 20676, 23603, (167, 81, 122, 18, 31, 90, 174, 112 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateOptionalInfoFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateOptionalInfoFactory_Interface;
+         complianceDeadlineInDays : GenericObject;
+         complianceGracePeriodInDays : GenericObject;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateInstance2
+      (
+         this : access IWindowsSoftwareUpdateOptionalInfoFactory_Interface;
+         localizationInfo : GenericObject;
+         complianceDeadlineInDays : GenericObject;
+         complianceGracePeriodInDays : GenericObject;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateOptionalInfoFactory : aliased WinRt.IID := (3627540205, 42482, 23689, (139, 235, 133, 45, 40, 151, 178, 239 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateProvider is interface and WinRt.IInspectable;
+
+      function Register
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function Unregister
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function Validate
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Id
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Version
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_FolderPath
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CatalogFile
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ScanFileName
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ScanFileArguments
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Type
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateProviderType
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PayloadFiles
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TrustState
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateProviderTrustState
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RegistrationType
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateProviderRegistrationType
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Properties
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         RetVal : access Windows.Foundation.Collections.IPropertySet
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetPropertyValue
+      (
+         this : access IWindowsSoftwareUpdateProvider_Interface;
+         name : WinRt.HString;
+         RetVal : access WinRt.IInspectable
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateProvider : aliased WinRt.IID := (548831050, 57998, 23840, (156, 0, 191, 36, 153, 34, 239, 190 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateProviderActionResult is interface and WinRt.IInspectable;
+
+      function get_Result
+      (
+         this : access IWindowsSoftwareUpdateProviderActionResult_Interface;
+         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateActionResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RestartReason
+      (
+         this : access IWindowsSoftwareUpdateProviderActionResult_Interface;
+         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateRestartReason
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ResultCode
+      (
+         this : access IWindowsSoftwareUpdateProviderActionResult_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IWindowsSoftwareUpdateProviderActionResult_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateProviderActionResult : aliased WinRt.IID := (2950245200, 27577, 21726, (189, 218, 157, 251, 108, 193, 124, 22 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateProviderActionResultFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateProviderActionResultFactory_Interface;
+         actionResult : Windows.Management.Update.WindowsSoftwareUpdateActionResult;
+         restartReason : Windows.Management.Update.WindowsSoftwareUpdateRestartReason;
+         resultCode : WinRt.UInt32;
+         extendedError : WinRt.UInt64;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateProviderActionResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateProviderActionResultFactory : aliased WinRt.IID := (201336452, 12489, 23017, (181, 63, 136, 70, 168, 93, 45, 198 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateProviderFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateProviderFactory_Interface;
+         folderPath : WinRt.HString;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateProvider
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateProviderFactory : aliased WinRt.IID := (4228734916, 57694, 20758, (178, 237, 219, 10, 100, 153, 127, 250 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateProviderPayloadFileInfo is interface and WinRt.IInspectable;
+
+      function get_Filename
+      (
+         this : access IWindowsSoftwareUpdateProviderPayloadFileInfo_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_FileHash
+      (
+         this : access IWindowsSoftwareUpdateProviderPayloadFileInfo_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CatalogFile
+      (
+         this : access IWindowsSoftwareUpdateProviderPayloadFileInfo_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TrustState
+      (
+         this : access IWindowsSoftwareUpdateProviderPayloadFileInfo_Interface;
+         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateProviderTrustState
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateProviderPayloadFileInfo : aliased WinRt.IID := (4057601754, 6913, 21351, (180, 174, 32, 219, 140, 174, 30, 155 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateProviderStatus is interface and WinRt.IInspectable;
+
+      function add_CancelRequested
+      (
+         this : access IWindowsSoftwareUpdateProviderStatus_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_CancelRequested
+      (
+         this : access IWindowsSoftwareUpdateProviderStatus_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetScanResult
+      (
+         this : access IWindowsSoftwareUpdateProviderStatus_Interface;
+         succeeded : WinRt.Boolean;
+         resultCode : WinRt.UInt32;
+         extendedError : WinRt.UInt64;
+         updates : GenericObject;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetActionProgress
+      (
+         this : access IWindowsSoftwareUpdateProviderStatus_Interface;
+         current : WinRt.UInt64;
+         total : WinRt.UInt64;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetActionResult
+      (
+         this : access IWindowsSoftwareUpdateProviderStatus_Interface;
+         actionResult : Windows.Management.Update.IWindowsSoftwareUpdateProviderActionResult;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateProviderStatus : aliased WinRt.IID := (124207544, 31374, 21430, (159, 183, 226, 144, 177, 60, 82, 233 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateProviderStatusFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateProviderStatusFactory_Interface;
+         providerId : WinRt.HString;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateProviderStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateProviderStatusFactory : aliased WinRt.IID := (3521229846, 32253, 21999, (158, 60, 24, 209, 69, 158, 49, 35 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateResult is interface and WinRt.IInspectable;
+
+      function get_Succeeded
+      (
+         this : access IWindowsSoftwareUpdateResult_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CancelRequested
+      (
+         this : access IWindowsSoftwareUpdateResult_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ResultCode
+      (
+         this : access IWindowsSoftwareUpdateResult_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IWindowsSoftwareUpdateResult_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateResult : aliased WinRt.IID := (2799168920, 25106, 23251, (170, 157, 21, 232, 59, 184, 94, 228 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateResultFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateResultFactory_Interface;
+         succeeded : WinRt.Boolean;
+         resultCode : WinRt.UInt32;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateInstance2
+      (
+         this : access IWindowsSoftwareUpdateResultFactory_Interface;
+         succeeded : WinRt.Boolean;
+         resultCode : WinRt.UInt32;
+         extendedError : WinRt.UInt64;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateInstance3
+      (
+         this : access IWindowsSoftwareUpdateResultFactory_Interface;
+         succeeded : WinRt.Boolean;
+         cancelRequested : WinRt.Boolean;
+         resultCode : WinRt.UInt32;
+         extendedError : WinRt.UInt64;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateResultFactory : aliased WinRt.IID := (1361895615, 39287, 21249, (155, 41, 158, 80, 66, 200, 207, 125 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateScanResult is interface and WinRt.IInspectable;
+
+      function get_Succeeded
+      (
+         this : access IWindowsSoftwareUpdateScanResult_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ResultCode
+      (
+         this : access IWindowsSoftwareUpdateScanResult_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IWindowsSoftwareUpdateScanResult_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Updates
+      (
+         this : access IWindowsSoftwareUpdateScanResult_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateScanResult : aliased WinRt.IID := (1137339798, 15981, 22234, (169, 3, 101, 212, 171, 114, 146, 153 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateScanResultFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateScanResultFactory_Interface;
+         succeeded : WinRt.Boolean;
+         resultCode : WinRt.UInt32;
+         updates : GenericObject;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateScanResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateInstance2
+      (
+         this : access IWindowsSoftwareUpdateScanResultFactory_Interface;
+         succeeded : WinRt.Boolean;
+         resultCode : WinRt.UInt32;
+         extendedError : WinRt.UInt64;
+         updates : GenericObject;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateScanResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateScanResultFactory : aliased WinRt.IID := (554995276, 59342, 22350, (191, 167, 105, 220, 119, 69, 125, 33 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateVersion is interface and WinRt.IInspectable;
+
+      function get_Major
+      (
+         this : access IWindowsSoftwareUpdateVersion_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Minor
+      (
+         this : access IWindowsSoftwareUpdateVersion_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RevisionMajor
+      (
+         this : access IWindowsSoftwareUpdateVersion_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RevisionMinor
+      (
+         this : access IWindowsSoftwareUpdateVersion_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateVersion : aliased WinRt.IID := (559817447, 27991, 21253, (156, 121, 78, 205, 74, 77, 120, 113 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsSoftwareUpdateVersionFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsSoftwareUpdateVersionFactory_Interface;
+         major : WinRt.UInt32;
+         minor : WinRt.UInt32;
+         revisionMajor : WinRt.UInt32;
+         revisionMinor : WinRt.UInt32;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateVersion
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsSoftwareUpdateVersionFactory : aliased WinRt.IID := (1695472020, 2136, 21800, (161, 242, 247, 60, 166, 77, 171, 201 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdate is interface and WinRt.IInspectable;
+
+      function get_ProviderId
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UpdateId
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Title
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Description
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsFeatureUpdate
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsMinorImpact
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsSecurity
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsCritical
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsForOS
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsDriver
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsMandatory
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsUrgent
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsSeeker
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MoreInfoUrl
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SupportUrl
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsEulaAccepted
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_EulaText
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Deadline
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AttentionRequiredInfo
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access Windows.Management.Update.IWindowsUpdateAttentionRequiredInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ActionResult
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access Windows.Management.Update.IWindowsUpdateActionResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CurrentAction
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ActionProgress
+      (
+         this : access IWindowsUpdate_Interface;
+         RetVal : access Windows.Management.Update.IWindowsUpdateActionProgress
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetPropertyValue
+      (
+         this : access IWindowsUpdate_Interface;
+         propertyName : WinRt.HString;
+         RetVal : access WinRt.IInspectable
+      )
+      return WinRt.Hresult is abstract;
+
+      function AcceptEula
+      (
+         this : access IWindowsUpdate_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdate : aliased WinRt.IID := (3284700631, 3827, 21170, (169, 173, 102, 191, 198, 189, 149, 130 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateActionCompletedEventArgs is interface and WinRt.IInspectable;
+
+      function get_Update
+      (
+         this : access IWindowsUpdateActionCompletedEventArgs_Interface;
+         RetVal : access Windows.Management.Update.IWindowsUpdate
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Action
+      (
+         this : access IWindowsUpdateActionCompletedEventArgs_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Succeeded
+      (
+         this : access IWindowsUpdateActionCompletedEventArgs_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IWindowsUpdateActionCompletedEventArgs_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateActionCompletedEventArgs : aliased WinRt.IID := (742701392, 42581, 21281, (174, 193, 174, 231, 98, 146, 33, 49 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateActionProgress is interface and WinRt.IInspectable;
+
+      function get_Action
+      (
+         this : access IWindowsUpdateActionProgress_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Progress
+      (
+         this : access IWindowsUpdateActionProgress_Interface;
+         RetVal : access WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateActionProgress : aliased WinRt.IID := (2209492362, 19376, 21663, (186, 57, 89, 114, 72, 130, 209, 55 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateActionResult is interface and WinRt.IInspectable;
+
+      function get_Timestamp
+      (
+         this : access IWindowsUpdateActionResult_Interface;
+         RetVal : access Windows.Foundation.DateTime
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Succeeded
+      (
+         this : access IWindowsUpdateActionResult_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IWindowsUpdateActionResult_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Action
+      (
+         this : access IWindowsUpdateActionResult_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateActionResult : aliased WinRt.IID := (3865652322, 63127, 20919, (171, 127, 231, 62, 94, 104, 143, 18 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateAdministrator is interface and WinRt.IInspectable;
+
+      function StartAdministratorScan
+      (
+         this : access IWindowsUpdateAdministrator_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function ApproveWindowsUpdateAction
+      (
+         this : access IWindowsUpdateAdministrator_Interface;
+         updateId : WinRt.HString;
+         action : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function RevokeWindowsUpdateActionApproval
+      (
+         this : access IWindowsUpdateAdministrator_Interface;
+         updateId : WinRt.HString;
+         action : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function ApproveWindowsUpdate
+      (
+         this : access IWindowsUpdateAdministrator_Interface;
+         updateId : WinRt.HString;
+         approvalData : Windows.Management.Update.IWindowsUpdateApprovalData
+      )
+      return WinRt.Hresult is abstract;
+
+      function RevokeWindowsUpdateApproval
+      (
+         this : access IWindowsUpdateAdministrator_Interface;
+         updateId : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetUpdates
+      (
+         this : access IWindowsUpdateAdministrator_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateAdministrator : aliased WinRt.IID := (2053117980, 47646, 23801, (170, 101, 48, 65, 32, 183, 61, 114 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateAdministratorStatics is interface and WinRt.IInspectable;
+
+      function GetRegisteredAdministrator
+      (
+         this : access IWindowsUpdateAdministratorStatics_Interface;
+         organizationName : WinRt.HString;
+         RetVal : access Windows.Management.Update.IWindowsUpdateGetAdministratorResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function RegisterForAdministration
+      (
+         this : access IWindowsUpdateAdministratorStatics_Interface;
+         organizationName : WinRt.HString;
+         options : Windows.Management.Update.WindowsUpdateAdministratorOptions;
+         RetVal : access Windows.Management.Update.WindowsUpdateAdministratorStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function UnregisterForAdministration
+      (
+         this : access IWindowsUpdateAdministratorStatics_Interface;
+         organizationName : WinRt.HString;
+         RetVal : access Windows.Management.Update.WindowsUpdateAdministratorStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetRegisteredAdministratorName
+      (
+         this : access IWindowsUpdateAdministratorStatics_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function RequestRestart
+      (
+         this : access IWindowsUpdateAdministratorStatics_Interface;
+         restartOptions : Windows.Management.Update.IWindowsUpdateRestartRequestOptions;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function CancelRestartRequest
+      (
+         this : access IWindowsUpdateAdministratorStatics_Interface;
+         requestRestartToken : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateAdministratorStatics : aliased WinRt.IID := (20868406, 61289, 21436, (141, 184, 196, 3, 188, 165, 80, 237 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateApprovalData is interface and WinRt.IInspectable;
+
+      function get_Seeker
+      (
+         this : access IWindowsUpdateApprovalData_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Seeker
+      (
+         this : access IWindowsUpdateApprovalData_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AllowDownloadOnMetered
+      (
+         this : access IWindowsUpdateApprovalData_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AllowDownloadOnMetered
+      (
+         this : access IWindowsUpdateApprovalData_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ComplianceDeadlineInDays
+      (
+         this : access IWindowsUpdateApprovalData_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ComplianceDeadlineInDays
+      (
+         this : access IWindowsUpdateApprovalData_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ComplianceGracePeriodInDays
+      (
+         this : access IWindowsUpdateApprovalData_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ComplianceGracePeriodInDays
+      (
+         this : access IWindowsUpdateApprovalData_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OptOutOfAutoReboot
+      (
+         this : access IWindowsUpdateApprovalData_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_OptOutOfAutoReboot
+      (
+         this : access IWindowsUpdateApprovalData_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateApprovalData : aliased WinRt.IID := (2866764797, 34011, 22972, (133, 226, 173, 79, 193, 246, 47, 124 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateAttentionRequiredInfo is interface and WinRt.IInspectable;
+
+      function get_Reason
+      (
+         this : access IWindowsUpdateAttentionRequiredInfo_Interface;
+         RetVal : access Windows.Management.Update.WindowsUpdateAttentionRequiredReason
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Timestamp
+      (
+         this : access IWindowsUpdateAttentionRequiredInfo_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateAttentionRequiredInfo : aliased WinRt.IID := (1155474809, 29907, 24570, (182, 206, 9, 225, 135, 225, 224, 237 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateAttentionRequiredReasonChangedEventArgs is interface and WinRt.IInspectable;
+
+      function get_Update
+      (
+         this : access IWindowsUpdateAttentionRequiredReasonChangedEventArgs_Interface;
+         RetVal : access Windows.Management.Update.IWindowsUpdate
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Reason
+      (
+         this : access IWindowsUpdateAttentionRequiredReasonChangedEventArgs_Interface;
+         RetVal : access Windows.Management.Update.WindowsUpdateAttentionRequiredReason
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateAttentionRequiredReasonChangedEventArgs : aliased WinRt.IID := (103263178, 56248, 21066, (177, 210, 217, 223, 0, 78, 235, 49 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateGetAdministratorResult is interface and WinRt.IInspectable;
+
+      function get_Administrator
+      (
+         this : access IWindowsUpdateGetAdministratorResult_Interface;
+         RetVal : access Windows.Management.Update.IWindowsUpdateAdministrator
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Status
+      (
+         this : access IWindowsUpdateGetAdministratorResult_Interface;
+         RetVal : access Windows.Management.Update.WindowsUpdateAdministratorStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateGetAdministratorResult : aliased WinRt.IID := (3141140420, 11330, 23324, (137, 149, 52, 51, 65, 201, 44, 80 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateItem is interface and WinRt.IInspectable;
+
+      function get_ProviderId
+      (
+         this : access IWindowsUpdateItem_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UpdateId
+      (
+         this : access IWindowsUpdateItem_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Timestamp
+      (
+         this : access IWindowsUpdateItem_Interface;
+         RetVal : access Windows.Foundation.DateTime
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Title
+      (
+         this : access IWindowsUpdateItem_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Description
+      (
+         this : access IWindowsUpdateItem_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MoreInfoUrl
+      (
+         this : access IWindowsUpdateItem_Interface;
+         RetVal : access Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Category
+      (
+         this : access IWindowsUpdateItem_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Operation
+      (
+         this : access IWindowsUpdateItem_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateItem : aliased WinRt.IID := (2988631114, 18870, 22975, (160, 51, 239, 97, 124, 215, 58, 152 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateManager is interface and WinRt.IInspectable;
+
+      function add_ScanningStateChanged
+      (
+         this : access IWindowsUpdateManager_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_ScanningStateChanged
+      (
+         this : access IWindowsUpdateManager_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_WorkingStateChanged
+      (
+         this : access IWindowsUpdateManager_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_WorkingStateChanged
+      (
+         this : access IWindowsUpdateManager_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_ProgressChanged
+      (
+         this : access IWindowsUpdateManager_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_ProgressChanged
+      (
+         this : access IWindowsUpdateManager_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_AttentionRequiredReasonChanged
+      (
+         this : access IWindowsUpdateManager_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_AttentionRequiredReasonChanged
+      (
+         this : access IWindowsUpdateManager_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_ActionCompleted
+      (
+         this : access IWindowsUpdateManager_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_ActionCompleted
+      (
+         this : access IWindowsUpdateManager_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_ScanCompleted
+      (
+         this : access IWindowsUpdateManager_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_ScanCompleted
+      (
+         this : access IWindowsUpdateManager_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsScanning
+      (
+         this : access IWindowsUpdateManager_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsWorking
+      (
+         this : access IWindowsUpdateManager_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_LastSuccessfulScanTimestamp
+      (
+         this : access IWindowsUpdateManager_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetApplicableUpdates
+      (
+         this : access IWindowsUpdateManager_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetMostRecentCompletedUpdates
+      (
+         this : access IWindowsUpdateManager_Interface;
+         count : WinRt.Int32;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetMostRecentCompletedUpdatesAsync
+      (
+         this : access IWindowsUpdateManager_Interface;
+         count : WinRt.Int32;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function StartScan
+      (
+         this : access IWindowsUpdateManager_Interface;
+         userInitiated : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateManager : aliased WinRt.IID := (1574528704, 42778, 22018, (187, 208, 9, 167, 14, 69, 115, 250 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateManager2 is interface and WinRt.IInspectable;
+
+      function GetProvider
+      (
+         this : access IWindowsUpdateManager2_Interface;
+         id : WinRt.HString;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateProvider
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProviderIds
+      (
+         this : access IWindowsUpdateManager2_Interface;
+         RetValSize : access WinRt.UInt32;
+         RetVal : access WinRt.HString_Ptr
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetApplicableSoftwareUpdates
+      (
+         this : access IWindowsUpdateManager2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function PerformScan
+      (
+         this : access IWindowsUpdateManager2_Interface;
+         options : Windows.Management.Update.IWindowsUpdateManagerScanOptions;
+         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateScanResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateManager2 : aliased WinRt.IID := (1447982723, 48417, 22436, (177, 127, 123, 246, 53, 15, 76, 117 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateManagerFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsUpdateManagerFactory_Interface;
+         clientId : WinRt.HString;
+         RetVal : access Windows.Management.Update.IWindowsUpdateManager
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateManagerFactory : aliased WinRt.IID := (456740344, 57035, 24388, (180, 124, 108, 207, 59, 207, 219, 55 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateManagerFactory2 is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsUpdateManagerFactory2_Interface;
+         clientId : WinRt.HString;
+         providerIdFilterSize : WinRt.UInt32;
+         providerIdFilter : WinRt.HString_Ptr;
+         RetVal : access Windows.Management.Update.IWindowsUpdateManager
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateManagerFactory2 : aliased WinRt.IID := (3121141347, 53600, 22969, (152, 152, 151, 161, 134, 173, 82, 234 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateManagerScanOptions is interface and WinRt.IInspectable;
+
+      function get_IsUserInitiated
+      (
+         this : access IWindowsUpdateManagerScanOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsUserInitiated
+      (
+         this : access IWindowsUpdateManagerScanOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AllowBypassThrottling
+      (
+         this : access IWindowsUpdateManagerScanOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AllowBypassThrottling
+      (
+         this : access IWindowsUpdateManagerScanOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PerformUpdateActions
+      (
+         this : access IWindowsUpdateManagerScanOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PerformUpdateActions
+      (
+         this : access IWindowsUpdateManagerScanOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateManagerScanOptions : aliased WinRt.IID := (3083010323, 24139, 23000, (153, 173, 245, 141, 103, 178, 174, 252 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateManagerScanOptionsFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsUpdateManagerScanOptionsFactory_Interface;
+         isUserInitiated : WinRt.Boolean;
+         RetVal : access Windows.Management.Update.IWindowsUpdateManagerScanOptions
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateManagerScanOptionsFactory : aliased WinRt.IID := (437227928, 61837, 23805, (140, 185, 8, 243, 251, 116, 218, 112 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateProgressChangedEventArgs is interface and WinRt.IInspectable;
+
+      function get_Update
+      (
+         this : access IWindowsUpdateProgressChangedEventArgs_Interface;
+         RetVal : access Windows.Management.Update.IWindowsUpdate
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ActionProgress
+      (
+         this : access IWindowsUpdateProgressChangedEventArgs_Interface;
+         RetVal : access Windows.Management.Update.IWindowsUpdateActionProgress
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateProgressChangedEventArgs : aliased WinRt.IID := (3153845995, 38088, 23207, (176, 251, 102, 198, 124, 35, 59, 10 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateRestartRequestOptions is interface and WinRt.IInspectable;
+
+      function get_Title
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Title
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Description
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Description
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MoreInfoUrl
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         RetVal : access Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_MoreInfoUrl
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         value : Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ComplianceDeadlineInDays
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ComplianceDeadlineInDays
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         value : WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ComplianceGracePeriodInDays
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ComplianceGracePeriodInDays
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         value : WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OrganizationName
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_OrganizationName
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OptOutOfAutoReboot
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_OptOutOfAutoReboot
+      (
+         this : access IWindowsUpdateRestartRequestOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateRestartRequestOptions : aliased WinRt.IID := (953137107, 16776, 21026, (144, 92, 108, 68, 67, 201, 81, 238 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateRestartRequestOptionsFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IWindowsUpdateRestartRequestOptionsFactory_Interface;
+         title : WinRt.HString;
+         description : WinRt.HString;
+         moreInfoUrl : Windows.Foundation.IUriRuntimeClass;
+         complianceDeadlineInDays : WinRt.Int32;
+         complianceGracePeriodInDays : WinRt.Int32;
+         RetVal : access Windows.Management.Update.IWindowsUpdateRestartRequestOptions
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateRestartRequestOptionsFactory : aliased WinRt.IID := (1978932484, 3607, 20688, (140, 21, 107, 157, 5, 57, 179, 169 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWindowsUpdateScanCompletedEventArgs is interface and WinRt.IInspectable;
+
+      function get_ProviderId
+      (
+         this : access IWindowsUpdateScanCompletedEventArgs_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Succeeded
+      (
+         this : access IWindowsUpdateScanCompletedEventArgs_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IWindowsUpdateScanCompletedEventArgs_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Updates
+      (
+         this : access IWindowsUpdateScanCompletedEventArgs_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowsUpdateScanCompletedEventArgs : aliased WinRt.IID := (2511770942, 47708, 24552, (177, 21, 18, 222, 24, 74, 107, 176 ));
+
+   -----------------------------------------------------------------------------
    -- Class method declarations
    -----------------------------------------------------------------------------
 
@@ -193,5 +2931,1876 @@ package WinRt.Windows.Management.Update is
       this : in out PreviewBuildsState
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdate
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdate);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdate);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdate
+
+   function Constructor
+   (
+      providerId : WinRt.WString;
+      installationType : Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
+      updateId : WinRt.WString;
+      title : WinRt.WString;
+      description : WinRt.WString;
+      moreInfoUrl : Windows.Foundation.Uri'Class;
+      downloadSizeInBytes : WinRt.UInt64;
+      installSizeInBytes : WinRt.UInt64;
+      sourceVersion : Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+      targetVersion : Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+      appPackageInfo : Windows.Management.Update.WindowsSoftwareUpdateAppPackageInfo'Class;
+      executionInfo : Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo'Class;
+      optionalInfo : Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo'Class
+   )
+   return WindowsSoftwareUpdate;
+
+   function Constructor
+   (
+      providerId : WinRt.WString;
+      installationType : Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
+      updateId : WinRt.WString;
+      title : WinRt.WString;
+      description : WinRt.WString;
+      moreInfoUrl : Windows.Foundation.Uri'Class;
+      downloadSizeInBytes : WinRt.UInt64;
+      installSizeInBytes : WinRt.UInt64;
+      productCode : GenericObject;
+      packageFamilyName : WinRt.WString;
+      sourceVersion : Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+      targetVersion : Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+      appPackageInfo : Windows.Management.Update.WindowsSoftwareUpdateAppPackageInfo'Class;
+      executionInfo : Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo'Class;
+      optionalInfo : Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo'Class
+   )
+   return WindowsSoftwareUpdate;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdate
+
+   function get_InstallationType
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
+
+   function get_ProviderId
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.WString;
+
+   function get_UpdateId
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.WString;
+
+   function get_Title
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.WString;
+
+   function get_Description
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.WString;
+
+   function get_MoreInfoUrl
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Foundation.Uri'Class;
+
+   function get_DownloadSizeInBytes
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.UInt64;
+
+   function get_InstallSizeInBytes
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.UInt64;
+
+   function get_SourceVersion
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+
+   function get_TargetVersion
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+
+   function get_ProductCode
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return IReference_Guid.Kind;
+
+   function get_PackageFamilyName
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.WString;
+
+   function Approve
+   (
+      this : in out WindowsSoftwareUpdate;
+      approvalInfo : Windows.Management.Update.WindowsSoftwareUpdateApprovalInfo'Class
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class;
+
+   function ApproveCurrentAction
+   (
+      this : in out WindowsSoftwareUpdate;
+      approve : WinRt.Boolean
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class;
+
+   function get_CurrentAction
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.WString;
+
+   function get_ActionResultInfo
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionResultInfo'Class;
+
+   function get_ApprovalInfo
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateApprovalInfo'Class;
+
+   function get_ApprovedActions
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return IVectorView_WindowsSoftwareUpdateActionType.Kind;
+
+   function get_AttentionRequiredInfo
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAttentionRequiredInfo'Class;
+
+   function get_ActionProgress
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionProgress'Class;
+
+   function get_RestartReason
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return IReference_WindowsSoftwareUpdateRestartReason.Kind;
+
+   function get_AppPackageInfo
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateAppPackageInfo'Class;
+
+   function get_ExecutionInfo
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo'Class;
+
+   function get_OptionalInfo
+   (
+      this : in out WindowsSoftwareUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateActionInfo
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateActionInfo);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateActionInfo);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateActionInfo
+
+   function Constructor
+   (
+      fileName : WinRt.WString;
+      fileArguments : WinRt.WString;
+      actionType : Windows.Management.Update.WindowsSoftwareUpdateActionType
+   )
+   return WindowsSoftwareUpdateActionInfo;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateActionInfo
+
+   function get_FileName
+   (
+      this : in out WindowsSoftwareUpdateActionInfo
+   )
+   return WinRt.WString;
+
+   function get_FileArguments
+   (
+      this : in out WindowsSoftwareUpdateActionInfo
+   )
+   return WinRt.WString;
+
+   function get_ActionType
+   (
+      this : in out WindowsSoftwareUpdateActionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionType;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateActionProgress
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateActionProgress);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateActionProgress);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateActionProgress
+
+   function get_Action
+   (
+      this : in out WindowsSoftwareUpdateActionProgress
+   )
+   return WinRt.WString;
+
+   function get_CurrentProgress
+   (
+      this : in out WindowsSoftwareUpdateActionProgress
+   )
+   return WinRt.UInt64;
+
+   function get_TotalProgress
+   (
+      this : in out WindowsSoftwareUpdateActionProgress
+   )
+   return WinRt.UInt64;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateActionResultInfo
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateActionResultInfo);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateActionResultInfo);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateActionResultInfo
+
+   function get_Timestamp
+   (
+      this : in out WindowsSoftwareUpdateActionResultInfo
+   )
+   return WinRt.Windows.Foundation.DateTime;
+
+   function get_Succeeded
+   (
+      this : in out WindowsSoftwareUpdateActionResultInfo
+   )
+   return WinRt.Boolean;
+
+   function get_ResultCode
+   (
+      this : in out WindowsSoftwareUpdateActionResultInfo
+   )
+   return WinRt.UInt32;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsSoftwareUpdateActionResultInfo
+   )
+   return WinRt.UInt64;
+
+   function get_Action
+   (
+      this : in out WindowsSoftwareUpdateActionResultInfo
+   )
+   return WinRt.WString;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateAppPackageInfo
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateAppPackageInfo);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateAppPackageInfo);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateAppPackageInfo
+
+   function Constructor
+   (
+      packageFamilyName : WinRt.WString;
+      packageArchitecture : Windows.Management.Update.WindowsSoftwareUpdateArchitecture;
+      installUri : Windows.Foundation.Uri'Class
+   )
+   return WindowsSoftwareUpdateAppPackageInfo;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateAppPackageInfo
+
+   function get_PackageFamilyName
+   (
+      this : in out WindowsSoftwareUpdateAppPackageInfo
+   )
+   return WinRt.WString;
+
+   function get_PackageArchitecture
+   (
+      this : in out WindowsSoftwareUpdateAppPackageInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateArchitecture;
+
+   function get_InstallUri
+   (
+      this : in out WindowsSoftwareUpdateAppPackageInfo
+   )
+   return WinRt.Windows.Foundation.Uri'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateApprovalInfo
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateApprovalInfo);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateApprovalInfo);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateApprovalInfo
+
+   function Constructor
+   (
+      userInitiated : WinRt.Boolean;
+      appClosure : WinRt.Boolean;
+      meteredNetwork : WinRt.Boolean;
+      seeker : WinRt.Boolean
+   )
+   return WindowsSoftwareUpdateApprovalInfo;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateApprovalInfo
+
+   function get_UserInitiated
+   (
+      this : in out WindowsSoftwareUpdateApprovalInfo
+   )
+   return WinRt.Boolean;
+
+   function get_AppClosure
+   (
+      this : in out WindowsSoftwareUpdateApprovalInfo
+   )
+   return WinRt.Boolean;
+
+   function get_MeteredNetwork
+   (
+      this : in out WindowsSoftwareUpdateApprovalInfo
+   )
+   return WinRt.Boolean;
+
+   function get_Seeker
+   (
+      this : in out WindowsSoftwareUpdateApprovalInfo
+   )
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateExecutionInfo
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateExecutionInfo);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateExecutionInfo);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateExecutionInfo
+
+   function Constructor
+   (
+      downloadInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      installInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      actions : Windows.Management.Update.WindowsSoftwareUpdateOptionalActionInfo'Class
+   )
+   return WindowsSoftwareUpdateExecutionInfo;
+
+   function Constructor
+   (
+      deployInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      actions : Windows.Management.Update.WindowsSoftwareUpdateOptionalActionInfo'Class
+   )
+   return WindowsSoftwareUpdateExecutionInfo;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateExecutionInfo
+
+   function get_DownloadInfo
+   (
+      this : in out WindowsSoftwareUpdateExecutionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+
+   function get_InstallInfo
+   (
+      this : in out WindowsSoftwareUpdateExecutionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+
+   function get_DeployInfo
+   (
+      this : in out WindowsSoftwareUpdateExecutionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+
+   function get_OptionalActionInfo
+   (
+      this : in out WindowsSoftwareUpdateExecutionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateOptionalActionInfo'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateLocalizationInfo
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateLocalizationInfo);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateLocalizationInfo);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateLocalizationInfo
+
+   function Constructor
+   (
+      languageId : WinRt.UInt32;
+      title : WinRt.WString;
+      description : WinRt.WString;
+      moreInfoUrl : Windows.Foundation.Uri'Class
+   )
+   return WindowsSoftwareUpdateLocalizationInfo;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateLocalizationInfo
+
+   function get_LanguageId
+   (
+      this : in out WindowsSoftwareUpdateLocalizationInfo
+   )
+   return WinRt.UInt32;
+
+   function get_Title
+   (
+      this : in out WindowsSoftwareUpdateLocalizationInfo
+   )
+   return WinRt.WString;
+
+   function get_Description
+   (
+      this : in out WindowsSoftwareUpdateLocalizationInfo
+   )
+   return WinRt.WString;
+
+   function get_MoreInfoUrl
+   (
+      this : in out WindowsSoftwareUpdateLocalizationInfo
+   )
+   return WinRt.Windows.Foundation.Uri'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateOptionalActionInfo
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateOptionalActionInfo);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateOptionalActionInfo);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateOptionalActionInfo
+
+   function Constructor
+   (
+      closeAndDeployInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      closeAndInstallInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      closeAndRestartInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class
+   )
+   return WindowsSoftwareUpdateOptionalActionInfo;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateOptionalActionInfo
+
+   function get_CloseAndDeployInfo
+   (
+      this : in out WindowsSoftwareUpdateOptionalActionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+
+   function get_CloseAndInstallInfo
+   (
+      this : in out WindowsSoftwareUpdateOptionalActionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+
+   function get_CloseAndRestartInfo
+   (
+      this : in out WindowsSoftwareUpdateOptionalActionInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateOptionalInfo
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateOptionalInfo);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateOptionalInfo);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateOptionalInfo
+
+   function Constructor
+   (
+      complianceDeadlineInDays : GenericObject;
+      complianceGracePeriodInDays : GenericObject
+   )
+   return WindowsSoftwareUpdateOptionalInfo;
+
+   function Constructor
+   (
+      localizationInfo : GenericObject;
+      complianceDeadlineInDays : GenericObject;
+      complianceGracePeriodInDays : GenericObject
+   )
+   return WindowsSoftwareUpdateOptionalInfo;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateOptionalInfo
+
+   function get_LocalizationInfo
+   (
+      this : in out WindowsSoftwareUpdateOptionalInfo
+   )
+   return IVectorView_IWindowsSoftwareUpdateLocalizationInfo.Kind;
+
+   function get_ComplianceDeadlineInDays
+   (
+      this : in out WindowsSoftwareUpdateOptionalInfo
+   )
+   return IReference_Int32.Kind;
+
+   function get_ComplianceGracePeriodInDays
+   (
+      this : in out WindowsSoftwareUpdateOptionalInfo
+   )
+   return IReference_Int32.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateProvider
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateProvider);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateProvider);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateProvider
+
+   function Constructor
+   (
+      folderPath : WinRt.WString
+   )
+   return WindowsSoftwareUpdateProvider;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateProvider
+
+   function Register
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class;
+
+   function Unregister
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class;
+
+   function Validate
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class;
+
+   function get_Id
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.WString;
+
+   function get_Version
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.WString;
+
+   function get_FolderPath
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.WString;
+
+   function get_CatalogFile
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.WString;
+
+   function get_ScanFileName
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.WString;
+
+   function get_ScanFileArguments
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.WString;
+
+   function get_Type
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateProviderType;
+
+   function get_PayloadFiles
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return IVectorView_IWindowsSoftwareUpdateProviderPayloadFileInfo.Kind;
+
+   function get_TrustState
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateProviderTrustState;
+
+   function get_RegistrationType
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateProviderRegistrationType;
+
+   function get_Properties
+   (
+      this : in out WindowsSoftwareUpdateProvider
+   )
+   return WinRt.Windows.Foundation.Collections.PropertySet'Class;
+
+   function GetPropertyValue
+   (
+      this : in out WindowsSoftwareUpdateProvider;
+      name : WinRt.WString
+   )
+   return WinRt.IInspectable;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateProviderActionResult
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateProviderActionResult);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateProviderActionResult);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateProviderActionResult
+
+   function Constructor
+   (
+      actionResult : Windows.Management.Update.WindowsSoftwareUpdateActionResult;
+      restartReason : Windows.Management.Update.WindowsSoftwareUpdateRestartReason;
+      resultCode : WinRt.UInt32;
+      extendedError : WinRt.UInt64
+   )
+   return WindowsSoftwareUpdateProviderActionResult;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateProviderActionResult
+
+   function get_Result
+   (
+      this : in out WindowsSoftwareUpdateProviderActionResult
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionResult;
+
+   function get_RestartReason
+   (
+      this : in out WindowsSoftwareUpdateProviderActionResult
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateRestartReason;
+
+   function get_ResultCode
+   (
+      this : in out WindowsSoftwareUpdateProviderActionResult
+   )
+   return WinRt.UInt32;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsSoftwareUpdateProviderActionResult
+   )
+   return WinRt.UInt64;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateProviderPayloadFileInfo
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateProviderPayloadFileInfo);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateProviderPayloadFileInfo);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateProviderPayloadFileInfo
+
+   function get_Filename
+   (
+      this : in out WindowsSoftwareUpdateProviderPayloadFileInfo
+   )
+   return WinRt.WString;
+
+   function get_FileHash
+   (
+      this : in out WindowsSoftwareUpdateProviderPayloadFileInfo
+   )
+   return WinRt.WString;
+
+   function get_CatalogFile
+   (
+      this : in out WindowsSoftwareUpdateProviderPayloadFileInfo
+   )
+   return WinRt.WString;
+
+   function get_TrustState
+   (
+      this : in out WindowsSoftwareUpdateProviderPayloadFileInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateProviderTrustState;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateProviderStatus
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateProviderStatus);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateProviderStatus);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateProviderStatus
+
+   function Constructor
+   (
+      providerId : WinRt.WString
+   )
+   return WindowsSoftwareUpdateProviderStatus;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateProviderStatus
+
+   function add_CancelRequested
+   (
+      this : in out WindowsSoftwareUpdateProviderStatus;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_CancelRequested
+   (
+      this : in out WindowsSoftwareUpdateProviderStatus;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function SetScanResult
+   (
+      this : in out WindowsSoftwareUpdateProviderStatus;
+      succeeded : WinRt.Boolean;
+      resultCode : WinRt.UInt32;
+      extendedError : WinRt.UInt64;
+      updates : GenericObject
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class;
+
+   function SetActionProgress
+   (
+      this : in out WindowsSoftwareUpdateProviderStatus;
+      current : WinRt.UInt64;
+      total : WinRt.UInt64
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class;
+
+   function SetActionResult
+   (
+      this : in out WindowsSoftwareUpdateProviderStatus;
+      actionResult : Windows.Management.Update.WindowsSoftwareUpdateProviderActionResult'Class
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateResult
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateResult);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateResult);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateResult
+
+   function Constructor
+   (
+      succeeded : WinRt.Boolean;
+      resultCode : WinRt.UInt32
+   )
+   return WindowsSoftwareUpdateResult;
+
+   function Constructor
+   (
+      succeeded : WinRt.Boolean;
+      resultCode : WinRt.UInt32;
+      extendedError : WinRt.UInt64
+   )
+   return WindowsSoftwareUpdateResult;
+
+   function Constructor
+   (
+      succeeded : WinRt.Boolean;
+      cancelRequested : WinRt.Boolean;
+      resultCode : WinRt.UInt32;
+      extendedError : WinRt.UInt64
+   )
+   return WindowsSoftwareUpdateResult;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateResult
+
+   function get_Succeeded
+   (
+      this : in out WindowsSoftwareUpdateResult
+   )
+   return WinRt.Boolean;
+
+   function get_CancelRequested
+   (
+      this : in out WindowsSoftwareUpdateResult
+   )
+   return WinRt.Boolean;
+
+   function get_ResultCode
+   (
+      this : in out WindowsSoftwareUpdateResult
+   )
+   return WinRt.UInt32;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsSoftwareUpdateResult
+   )
+   return WinRt.UInt64;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateScanResult
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateScanResult);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateScanResult);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateScanResult
+
+   function Constructor
+   (
+      succeeded : WinRt.Boolean;
+      resultCode : WinRt.UInt32;
+      updates : GenericObject
+   )
+   return WindowsSoftwareUpdateScanResult;
+
+   function Constructor
+   (
+      succeeded : WinRt.Boolean;
+      resultCode : WinRt.UInt32;
+      extendedError : WinRt.UInt64;
+      updates : GenericObject
+   )
+   return WindowsSoftwareUpdateScanResult;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateScanResult
+
+   function get_Succeeded
+   (
+      this : in out WindowsSoftwareUpdateScanResult
+   )
+   return WinRt.Boolean;
+
+   function get_ResultCode
+   (
+      this : in out WindowsSoftwareUpdateScanResult
+   )
+   return WinRt.UInt32;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsSoftwareUpdateScanResult
+   )
+   return WinRt.UInt64;
+
+   function get_Updates
+   (
+      this : in out WindowsSoftwareUpdateScanResult
+   )
+   return IVectorView_IWindowsSoftwareUpdate.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsSoftwareUpdateVersion
+
+   overriding procedure Initialize (this : in out WindowsSoftwareUpdateVersion);
+   overriding procedure Finalize (this : in out WindowsSoftwareUpdateVersion);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsSoftwareUpdateVersion
+
+   function Constructor
+   (
+      major : WinRt.UInt32;
+      minor : WinRt.UInt32;
+      revisionMajor : WinRt.UInt32;
+      revisionMinor : WinRt.UInt32
+   )
+   return WindowsSoftwareUpdateVersion;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsSoftwareUpdateVersion
+
+   function get_Major
+   (
+      this : in out WindowsSoftwareUpdateVersion
+   )
+   return WinRt.UInt32;
+
+   function get_Minor
+   (
+      this : in out WindowsSoftwareUpdateVersion
+   )
+   return WinRt.UInt32;
+
+   function get_RevisionMajor
+   (
+      this : in out WindowsSoftwareUpdateVersion
+   )
+   return WinRt.UInt32;
+
+   function get_RevisionMinor
+   (
+      this : in out WindowsSoftwareUpdateVersion
+   )
+   return WinRt.UInt32;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdate
+
+   overriding procedure Initialize (this : in out WindowsUpdate);
+   overriding procedure Finalize (this : in out WindowsUpdate);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdate
+
+   function get_ProviderId
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.WString;
+
+   function get_UpdateId
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.WString;
+
+   function get_Title
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.WString;
+
+   function get_Description
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.WString;
+
+   function get_IsFeatureUpdate
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean;
+
+   function get_IsMinorImpact
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean;
+
+   function get_IsSecurity
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean;
+
+   function get_IsCritical
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean;
+
+   function get_IsForOS
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean;
+
+   function get_IsDriver
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean;
+
+   function get_IsMandatory
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean;
+
+   function get_IsUrgent
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean;
+
+   function get_IsSeeker
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean;
+
+   function get_MoreInfoUrl
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Windows.Foundation.Uri'Class;
+
+   function get_SupportUrl
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Windows.Foundation.Uri'Class;
+
+   function get_IsEulaAccepted
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Boolean;
+
+   function get_EulaText
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.WString;
+
+   function get_Deadline
+   (
+      this : in out WindowsUpdate
+   )
+   return IReference_DateTime.Kind;
+
+   function get_AttentionRequiredInfo
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAttentionRequiredInfo'Class;
+
+   function get_ActionResult
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateActionResult'Class;
+
+   function get_CurrentAction
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.WString;
+
+   function get_ActionProgress
+   (
+      this : in out WindowsUpdate
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateActionProgress'Class;
+
+   function GetPropertyValue
+   (
+      this : in out WindowsUpdate;
+      propertyName : WinRt.WString
+   )
+   return WinRt.IInspectable;
+
+   procedure AcceptEula
+   (
+      this : in out WindowsUpdate
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateActionCompletedEventArgs
+
+   overriding procedure Initialize (this : in out WindowsUpdateActionCompletedEventArgs);
+   overriding procedure Finalize (this : in out WindowsUpdateActionCompletedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateActionCompletedEventArgs
+
+   function get_Update
+   (
+      this : in out WindowsUpdateActionCompletedEventArgs
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdate'Class;
+
+   function get_Action
+   (
+      this : in out WindowsUpdateActionCompletedEventArgs
+   )
+   return WinRt.WString;
+
+   function get_Succeeded
+   (
+      this : in out WindowsUpdateActionCompletedEventArgs
+   )
+   return WinRt.Boolean;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsUpdateActionCompletedEventArgs
+   )
+   return WinRt.Windows.Foundation.HResult;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateActionProgress
+
+   overriding procedure Initialize (this : in out WindowsUpdateActionProgress);
+   overriding procedure Finalize (this : in out WindowsUpdateActionProgress);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateActionProgress
+
+   function get_Action
+   (
+      this : in out WindowsUpdateActionProgress
+   )
+   return WinRt.WString;
+
+   function get_Progress
+   (
+      this : in out WindowsUpdateActionProgress
+   )
+   return WinRt.Double;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateActionResult
+
+   overriding procedure Initialize (this : in out WindowsUpdateActionResult);
+   overriding procedure Finalize (this : in out WindowsUpdateActionResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateActionResult
+
+   function get_Timestamp
+   (
+      this : in out WindowsUpdateActionResult
+   )
+   return WinRt.Windows.Foundation.DateTime;
+
+   function get_Succeeded
+   (
+      this : in out WindowsUpdateActionResult
+   )
+   return WinRt.Boolean;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsUpdateActionResult
+   )
+   return WinRt.Windows.Foundation.HResult;
+
+   function get_Action
+   (
+      this : in out WindowsUpdateActionResult
+   )
+   return WinRt.WString;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateAdministrator
+
+   overriding procedure Initialize (this : in out WindowsUpdateAdministrator);
+   overriding procedure Finalize (this : in out WindowsUpdateAdministrator);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for WindowsUpdateAdministrator
+
+   function GetRegisteredAdministrator
+   (
+      organizationName : WinRt.WString
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateGetAdministratorResult;
+
+   function RegisterForAdministration
+   (
+      organizationName : WinRt.WString;
+      options : Windows.Management.Update.WindowsUpdateAdministratorOptions
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAdministratorStatus;
+
+   function UnregisterForAdministration
+   (
+      organizationName : WinRt.WString
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAdministratorStatus;
+
+   function GetRegisteredAdministratorName
+   return WinRt.WString;
+
+   function RequestRestart
+   (
+      restartOptions : Windows.Management.Update.WindowsUpdateRestartRequestOptions'Class
+   )
+   return WinRt.WString;
+
+   procedure CancelRestartRequest
+   (
+      requestRestartToken : WinRt.WString
+   );
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateAdministrator
+
+   procedure StartAdministratorScan
+   (
+      this : in out WindowsUpdateAdministrator
+   );
+
+   procedure ApproveWindowsUpdateAction
+   (
+      this : in out WindowsUpdateAdministrator;
+      updateId : WinRt.WString;
+      action : WinRt.WString
+   );
+
+   procedure RevokeWindowsUpdateActionApproval
+   (
+      this : in out WindowsUpdateAdministrator;
+      updateId : WinRt.WString;
+      action : WinRt.WString
+   );
+
+   procedure ApproveWindowsUpdate
+   (
+      this : in out WindowsUpdateAdministrator;
+      updateId : WinRt.WString;
+      approvalData : Windows.Management.Update.WindowsUpdateApprovalData'Class
+   );
+
+   procedure RevokeWindowsUpdateApproval
+   (
+      this : in out WindowsUpdateAdministrator;
+      updateId : WinRt.WString
+   );
+
+   function GetUpdates
+   (
+      this : in out WindowsUpdateAdministrator
+   )
+   return IVectorView_IWindowsUpdate.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateApprovalData
+
+   overriding procedure Initialize (this : in out WindowsUpdateApprovalData);
+   overriding procedure Finalize (this : in out WindowsUpdateApprovalData);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsUpdateApprovalData
+
+   function Constructor return WindowsUpdateApprovalData;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateApprovalData
+
+   function get_Seeker
+   (
+      this : in out WindowsUpdateApprovalData
+   )
+   return IReference_Boolean.Kind;
+
+   procedure put_Seeker
+   (
+      this : in out WindowsUpdateApprovalData;
+      value : GenericObject
+   );
+
+   function get_AllowDownloadOnMetered
+   (
+      this : in out WindowsUpdateApprovalData
+   )
+   return IReference_Boolean.Kind;
+
+   procedure put_AllowDownloadOnMetered
+   (
+      this : in out WindowsUpdateApprovalData;
+      value : GenericObject
+   );
+
+   function get_ComplianceDeadlineInDays
+   (
+      this : in out WindowsUpdateApprovalData
+   )
+   return IReference_Int32.Kind;
+
+   procedure put_ComplianceDeadlineInDays
+   (
+      this : in out WindowsUpdateApprovalData;
+      value : GenericObject
+   );
+
+   function get_ComplianceGracePeriodInDays
+   (
+      this : in out WindowsUpdateApprovalData
+   )
+   return IReference_Int32.Kind;
+
+   procedure put_ComplianceGracePeriodInDays
+   (
+      this : in out WindowsUpdateApprovalData;
+      value : GenericObject
+   );
+
+   function get_OptOutOfAutoReboot
+   (
+      this : in out WindowsUpdateApprovalData
+   )
+   return IReference_Boolean.Kind;
+
+   procedure put_OptOutOfAutoReboot
+   (
+      this : in out WindowsUpdateApprovalData;
+      value : GenericObject
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateAttentionRequiredInfo
+
+   overriding procedure Initialize (this : in out WindowsUpdateAttentionRequiredInfo);
+   overriding procedure Finalize (this : in out WindowsUpdateAttentionRequiredInfo);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateAttentionRequiredInfo
+
+   function get_Reason
+   (
+      this : in out WindowsUpdateAttentionRequiredInfo
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAttentionRequiredReason;
+
+   function get_Timestamp
+   (
+      this : in out WindowsUpdateAttentionRequiredInfo
+   )
+   return IReference_DateTime.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateAttentionRequiredReasonChangedEventArgs
+
+   overriding procedure Initialize (this : in out WindowsUpdateAttentionRequiredReasonChangedEventArgs);
+   overriding procedure Finalize (this : in out WindowsUpdateAttentionRequiredReasonChangedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateAttentionRequiredReasonChangedEventArgs
+
+   function get_Update
+   (
+      this : in out WindowsUpdateAttentionRequiredReasonChangedEventArgs
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdate'Class;
+
+   function get_Reason
+   (
+      this : in out WindowsUpdateAttentionRequiredReasonChangedEventArgs
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAttentionRequiredReason;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateGetAdministratorResult
+
+   overriding procedure Initialize (this : in out WindowsUpdateGetAdministratorResult);
+   overriding procedure Finalize (this : in out WindowsUpdateGetAdministratorResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateGetAdministratorResult
+
+   function get_Administrator
+   (
+      this : in out WindowsUpdateGetAdministratorResult
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAdministrator'Class;
+
+   function get_Status
+   (
+      this : in out WindowsUpdateGetAdministratorResult
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateAdministratorStatus;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateItem
+
+   overriding procedure Initialize (this : in out WindowsUpdateItem);
+   overriding procedure Finalize (this : in out WindowsUpdateItem);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateItem
+
+   function get_ProviderId
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.WString;
+
+   function get_UpdateId
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.WString;
+
+   function get_Timestamp
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.Windows.Foundation.DateTime;
+
+   function get_Title
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.WString;
+
+   function get_Description
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.WString;
+
+   function get_MoreInfoUrl
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.Windows.Foundation.Uri'Class;
+
+   function get_Category
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.WString;
+
+   function get_Operation
+   (
+      this : in out WindowsUpdateItem
+   )
+   return WinRt.WString;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateManager
+
+   overriding procedure Initialize (this : in out WindowsUpdateManager);
+   overriding procedure Finalize (this : in out WindowsUpdateManager);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsUpdateManager
+
+   function Constructor
+   (
+      clientId : WinRt.WString
+   )
+   return WindowsUpdateManager;
+
+   function Constructor
+   (
+      clientId : WinRt.WString;
+      providerIdFilter : WinRt.HString_Array
+   )
+   return WindowsUpdateManager;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateManager
+
+   function add_ScanningStateChanged
+   (
+      this : in out WindowsUpdateManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ScanningStateChanged
+   (
+      this : in out WindowsUpdateManager;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_WorkingStateChanged
+   (
+      this : in out WindowsUpdateManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_WorkingStateChanged
+   (
+      this : in out WindowsUpdateManager;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_ProgressChanged
+   (
+      this : in out WindowsUpdateManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ProgressChanged
+   (
+      this : in out WindowsUpdateManager;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_AttentionRequiredReasonChanged
+   (
+      this : in out WindowsUpdateManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_AttentionRequiredReasonChanged
+   (
+      this : in out WindowsUpdateManager;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_ActionCompleted
+   (
+      this : in out WindowsUpdateManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ActionCompleted
+   (
+      this : in out WindowsUpdateManager;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_ScanCompleted
+   (
+      this : in out WindowsUpdateManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ScanCompleted
+   (
+      this : in out WindowsUpdateManager;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function get_IsScanning
+   (
+      this : in out WindowsUpdateManager
+   )
+   return WinRt.Boolean;
+
+   function get_IsWorking
+   (
+      this : in out WindowsUpdateManager
+   )
+   return WinRt.Boolean;
+
+   function get_LastSuccessfulScanTimestamp
+   (
+      this : in out WindowsUpdateManager
+   )
+   return IReference_DateTime.Kind;
+
+   function GetApplicableUpdates
+   (
+      this : in out WindowsUpdateManager
+   )
+   return IVectorView_IWindowsUpdate.Kind;
+
+   function GetMostRecentCompletedUpdates
+   (
+      this : in out WindowsUpdateManager;
+      count : WinRt.Int32
+   )
+   return IVectorView_IWindowsUpdateItem.Kind;
+
+   function GetMostRecentCompletedUpdatesAsync
+   (
+      this : in out WindowsUpdateManager;
+      count : WinRt.Int32
+   )
+   return WinRt.GenericObject;
+
+   procedure StartScan
+   (
+      this : in out WindowsUpdateManager;
+      userInitiated : WinRt.Boolean
+   );
+
+   function GetProvider
+   (
+      this : in out WindowsUpdateManager;
+      id : WinRt.WString
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateProvider'Class;
+
+   function get_ProviderIds
+   (
+      this : in out WindowsUpdateManager
+   )
+   return WinRt.WString_Array;
+
+   function GetApplicableSoftwareUpdates
+   (
+      this : in out WindowsUpdateManager
+   )
+   return IVectorView_IWindowsSoftwareUpdate.Kind;
+
+   function PerformScan
+   (
+      this : in out WindowsUpdateManager;
+      options : Windows.Management.Update.WindowsUpdateManagerScanOptions'Class
+   )
+   return WinRt.Windows.Management.Update.WindowsSoftwareUpdateScanResult'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateManagerScanOptions
+
+   overriding procedure Initialize (this : in out WindowsUpdateManagerScanOptions);
+   overriding procedure Finalize (this : in out WindowsUpdateManagerScanOptions);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsUpdateManagerScanOptions
+
+   function Constructor return WindowsUpdateManagerScanOptions;
+
+   function Constructor
+   (
+      isUserInitiated : WinRt.Boolean
+   )
+   return WindowsUpdateManagerScanOptions;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateManagerScanOptions
+
+   function get_IsUserInitiated
+   (
+      this : in out WindowsUpdateManagerScanOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsUserInitiated
+   (
+      this : in out WindowsUpdateManagerScanOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_AllowBypassThrottling
+   (
+      this : in out WindowsUpdateManagerScanOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_AllowBypassThrottling
+   (
+      this : in out WindowsUpdateManagerScanOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_PerformUpdateActions
+   (
+      this : in out WindowsUpdateManagerScanOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_PerformUpdateActions
+   (
+      this : in out WindowsUpdateManagerScanOptions;
+      value : WinRt.Boolean
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateProgressChangedEventArgs
+
+   overriding procedure Initialize (this : in out WindowsUpdateProgressChangedEventArgs);
+   overriding procedure Finalize (this : in out WindowsUpdateProgressChangedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateProgressChangedEventArgs
+
+   function get_Update
+   (
+      this : in out WindowsUpdateProgressChangedEventArgs
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdate'Class;
+
+   function get_ActionProgress
+   (
+      this : in out WindowsUpdateProgressChangedEventArgs
+   )
+   return WinRt.Windows.Management.Update.WindowsUpdateActionProgress'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateRestartRequestOptions
+
+   overriding procedure Initialize (this : in out WindowsUpdateRestartRequestOptions);
+   overriding procedure Finalize (this : in out WindowsUpdateRestartRequestOptions);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WindowsUpdateRestartRequestOptions
+
+   function Constructor
+   (
+      title : WinRt.WString;
+      description : WinRt.WString;
+      moreInfoUrl : Windows.Foundation.Uri'Class;
+      complianceDeadlineInDays : WinRt.Int32;
+      complianceGracePeriodInDays : WinRt.Int32
+   )
+   return WindowsUpdateRestartRequestOptions;
+
+   function Constructor return WindowsUpdateRestartRequestOptions;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateRestartRequestOptions
+
+   function get_Title
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.WString;
+
+   procedure put_Title
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : WinRt.WString
+   );
+
+   function get_Description
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.WString;
+
+   procedure put_Description
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : WinRt.WString
+   );
+
+   function get_MoreInfoUrl
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.Windows.Foundation.Uri'Class;
+
+   procedure put_MoreInfoUrl
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : Windows.Foundation.Uri'Class
+   );
+
+   function get_ComplianceDeadlineInDays
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.Int32;
+
+   procedure put_ComplianceDeadlineInDays
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : WinRt.Int32
+   );
+
+   function get_ComplianceGracePeriodInDays
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.Int32;
+
+   procedure put_ComplianceGracePeriodInDays
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : WinRt.Int32
+   );
+
+   function get_OrganizationName
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.WString;
+
+   procedure put_OrganizationName
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : WinRt.WString
+   );
+
+   function get_OptOutOfAutoReboot
+   (
+      this : in out WindowsUpdateRestartRequestOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_OptOutOfAutoReboot
+   (
+      this : in out WindowsUpdateRestartRequestOptions;
+      value : WinRt.Boolean
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WindowsUpdateScanCompletedEventArgs
+
+   overriding procedure Initialize (this : in out WindowsUpdateScanCompletedEventArgs);
+   overriding procedure Finalize (this : in out WindowsUpdateScanCompletedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WindowsUpdateScanCompletedEventArgs
+
+   function get_ProviderId
+   (
+      this : in out WindowsUpdateScanCompletedEventArgs
+   )
+   return WinRt.WString;
+
+   function get_Succeeded
+   (
+      this : in out WindowsUpdateScanCompletedEventArgs
+   )
+   return WinRt.Boolean;
+
+   function get_ExtendedError
+   (
+      this : in out WindowsUpdateScanCompletedEventArgs
+   )
+   return WinRt.Windows.Foundation.HResult;
+
+   function get_Updates
+   (
+      this : in out WindowsUpdateScanCompletedEventArgs
+   )
+   return IVectorView_IWindowsUpdate.Kind;
 
 end WinRt.Windows.Management.Update;

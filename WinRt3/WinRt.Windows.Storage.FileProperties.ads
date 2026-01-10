@@ -51,6 +51,7 @@ package WinRt.Windows.Storage.FileProperties is
 
    type IGeotagHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGeotagHelperStatics is access all IGeotagHelperStatics_Interface'Class;
+   type IGeotagHelperStatics_Ptr is access all IGeotagHelperStatics;
 
    type IImageProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IImageProperties is access all IImageProperties_Interface'Class;
@@ -66,9 +67,11 @@ package WinRt.Windows.Storage.FileProperties is
 
    type IStorageItemExtraProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageItemExtraProperties is access all IStorageItemExtraProperties_Interface'Class;
+   type IStorageItemExtraProperties_Ptr is access all IStorageItemExtraProperties;
 
    type IThumbnailProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IThumbnailProperties is access all IThumbnailProperties_Interface'Class;
+   type IThumbnailProperties_Ptr is access all IThumbnailProperties;
 
    type IVideoProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoProperties is access all IVideoProperties_Interface'Class;

@@ -50,8 +50,13 @@ package WinRt.Windows.Devices.Lights is
    type ILampArray is access all ILampArray_Interface'Class;
    type ILampArray_Ptr is access all ILampArray;
 
+   type ILampArray2_Interface is interface and WinRt.IInspectable_Interface;
+   type ILampArray2 is access all ILampArray2_Interface'Class;
+   type ILampArray2_Ptr is access all ILampArray2;
+
    type ILampArrayStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArrayStatics is access all ILampArrayStatics_Interface'Class;
+   type ILampArrayStatics_Ptr is access all ILampArrayStatics;
 
    type ILampAvailabilityChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ILampAvailabilityChangedEventArgs is access all ILampAvailabilityChangedEventArgs_Interface'Class;
@@ -63,6 +68,7 @@ package WinRt.Windows.Devices.Lights is
 
    type ILampStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILampStatics is access all ILampStatics_Interface'Class;
+   type ILampStatics_Ptr is access all ILampStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -107,7 +113,10 @@ package WinRt.Windows.Devices.Lights is
       Chassis_e,
       Wearable_e,
       Furniture_e,
-      Art_e
+      Art_e,
+      Headset_e,
+      Microphone_e,
+      Speaker_e
    );
    for LampArrayKind use (
       Undefined_e => 0,
@@ -120,7 +129,10 @@ package WinRt.Windows.Devices.Lights is
       Chassis_e => 7,
       Wearable_e => 8,
       Furniture_e => 9,
-      Art_e => 10
+      Art_e => 10,
+      Headset_e => 11,
+      Microphone_e => 12,
+      Speaker_e => 13
    );
    type LampArrayKind_Ptr is access all LampArrayKind;
 
@@ -433,6 +445,33 @@ package WinRt.Windows.Devices.Lights is
       return WinRt.Hresult is abstract;
 
       IID_ILampArray : aliased WinRt.IID := (2060359559, 51360, 20117, (161, 224, 213, 134, 118, 83, 134, 73 ));
+
+   -----------------------------------------------------------------------------
+   -- type ILampArray2 is interface and WinRt.IInspectable;
+
+      function get_IsAvailable
+      (
+         this : access ILampArray2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_AvailabilityChanged
+      (
+         this : access ILampArray2_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_AvailabilityChanged
+      (
+         this : access ILampArray2_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ILampArray2 : aliased WinRt.IID := (84678687, 24744, 18193, (161, 175, 27, 27, 76, 101, 142, 162 ));
 
    -----------------------------------------------------------------------------
    -- type ILampArrayStatics is interface and WinRt.IInspectable;
@@ -850,6 +889,25 @@ package WinRt.Windows.Devices.Lights is
       messageId : WinRt.Int32
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
+
+   function get_IsAvailable
+   (
+      this : in out LampArray
+   )
+   return WinRt.Boolean;
+
+   function add_AvailabilityChanged
+   (
+      this : in out LampArray;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_AvailabilityChanged
+   (
+      this : in out LampArray;
+      token : Windows.Foundation.EventRegistrationToken
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for LampAvailabilityChangedEventArgs

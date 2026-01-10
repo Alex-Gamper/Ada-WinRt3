@@ -42,6 +42,7 @@ package WinRt.Windows.Gaming.UI is
 
    type IGameBarStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGameBarStatics is access all IGameBarStatics_Interface'Class;
+   type IGameBarStatics_Ptr is access all IGameBarStatics;
 
    type IGameChatMessageReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IGameChatMessageReceivedEventArgs is access all IGameChatMessageReceivedEventArgs_Interface'Class;
@@ -57,6 +58,7 @@ package WinRt.Windows.Gaming.UI is
 
    type IGameChatOverlayStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGameChatOverlayStatics is access all IGameChatOverlayStatics_Interface'Class;
+   type IGameChatOverlayStatics_Ptr is access all IGameChatOverlayStatics;
 
    type IGameUIProviderActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IGameUIProviderActivatedEventArgs is access all IGameUIProviderActivatedEventArgs_Interface'Class;

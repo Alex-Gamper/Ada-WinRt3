@@ -59,6 +59,33 @@ package body WinRt.Windows.Gaming.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ArcadeStick
 
+   function FromGameController
+   (
+      gameController : Windows.Gaming.Input.IGameController
+   )
+   return WinRt.Windows.Gaming.Input.ArcadeStick is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
+      m_Factory        : access WinRt.Windows.Gaming.Input.IArcadeStickStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Gaming.Input.IArcadeStick;
+   begin
+      return RetVal : WinRt.Windows.Gaming.Input.ArcadeStick do
+         Hr := RoGetActivationFactory (m_hString, IID_IArcadeStickStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IArcadeStick := new Windows.Gaming.Input.IArcadeStick;
+            Retval.m_IArcadeStick.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function add_ArcadeStickAdded
    (
       value : GenericObject
@@ -168,33 +195,6 @@ package body WinRt.Windows.Gaming.Input is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
-   end;
-
-   function FromGameController
-   (
-      gameController : Windows.Gaming.Input.IGameController
-   )
-   return WinRt.Windows.Gaming.Input.ArcadeStick is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
-      m_Factory        : access WinRt.Windows.Gaming.Input.IArcadeStickStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.IArcadeStick;
-   begin
-      return RetVal : WinRt.Windows.Gaming.Input.ArcadeStick do
-         Hr := RoGetActivationFactory (m_hString, IID_IArcadeStickStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IArcadeStick := new Windows.Gaming.Input.IArcadeStick;
-            Retval.m_IArcadeStick.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -1444,6 +1444,33 @@ package body WinRt.Windows.Gaming.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RacingWheel
 
+   function FromGameController
+   (
+      gameController : Windows.Gaming.Input.IGameController
+   )
+   return WinRt.Windows.Gaming.Input.RacingWheel is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
+      m_Factory        : access WinRt.Windows.Gaming.Input.IRacingWheelStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Gaming.Input.IRacingWheel;
+   begin
+      return RetVal : WinRt.Windows.Gaming.Input.RacingWheel do
+         Hr := RoGetActivationFactory (m_hString, IID_IRacingWheelStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IRacingWheel := new Windows.Gaming.Input.IRacingWheel;
+            Retval.m_IRacingWheel.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function add_RacingWheelAdded
    (
       value : GenericObject
@@ -1553,33 +1580,6 @@ package body WinRt.Windows.Gaming.Input is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
-   end;
-
-   function FromGameController
-   (
-      gameController : Windows.Gaming.Input.IGameController
-   )
-   return WinRt.Windows.Gaming.Input.RacingWheel is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
-      m_Factory        : access WinRt.Windows.Gaming.Input.IRacingWheelStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.IRacingWheel;
-   begin
-      return RetVal : WinRt.Windows.Gaming.Input.RacingWheel do
-         Hr := RoGetActivationFactory (m_hString, IID_IRacingWheelStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IRacingWheel := new Windows.Gaming.Input.IRacingWheel;
-            Retval.m_IRacingWheel.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -2574,33 +2574,6 @@ package body WinRt.Windows.Gaming.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for UINavigationController
 
-   function FromGameController
-   (
-      gameController : Windows.Gaming.Input.IGameController
-   )
-   return WinRt.Windows.Gaming.Input.UINavigationController is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
-      m_Factory        : access WinRt.Windows.Gaming.Input.IUINavigationControllerStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.IUINavigationController;
-   begin
-      return RetVal : WinRt.Windows.Gaming.Input.UINavigationController do
-         Hr := RoGetActivationFactory (m_hString, IID_IUINavigationControllerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IUINavigationController := new Windows.Gaming.Input.IUINavigationController;
-            Retval.m_IUINavigationController.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function add_UINavigationControllerAdded
    (
       value : GenericObject
@@ -2710,6 +2683,33 @@ package body WinRt.Windows.Gaming.Input is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
+   end;
+
+   function FromGameController
+   (
+      gameController : Windows.Gaming.Input.IGameController
+   )
+   return WinRt.Windows.Gaming.Input.UINavigationController is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
+      m_Factory        : access WinRt.Windows.Gaming.Input.IUINavigationControllerStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Gaming.Input.IUINavigationController;
+   begin
+      return RetVal : WinRt.Windows.Gaming.Input.UINavigationController do
+         Hr := RoGetActivationFactory (m_hString, IID_IUINavigationControllerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IUINavigationController := new Windows.Gaming.Input.IUINavigationController;
+            Retval.m_IUINavigationController.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
    end;
 
    -----------------------------------------------------------------------------

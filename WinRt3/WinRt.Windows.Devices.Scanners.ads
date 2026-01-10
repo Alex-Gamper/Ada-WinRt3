@@ -48,6 +48,7 @@ package WinRt.Windows.Devices.Scanners is
 
    type IImageScannerFeederConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type IImageScannerFeederConfiguration is access all IImageScannerFeederConfiguration_Interface'Class;
+   type IImageScannerFeederConfiguration_Ptr is access all IImageScannerFeederConfiguration;
 
    type IImageScannerFormatConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type IImageScannerFormatConfiguration is access all IImageScannerFormatConfiguration_Interface'Class;
@@ -63,9 +64,11 @@ package WinRt.Windows.Devices.Scanners is
 
    type IImageScannerSourceConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type IImageScannerSourceConfiguration is access all IImageScannerSourceConfiguration_Interface'Class;
+   type IImageScannerSourceConfiguration_Ptr is access all IImageScannerSourceConfiguration;
 
    type IImageScannerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IImageScannerStatics is access all IImageScannerStatics_Interface'Class;
+   type IImageScannerStatics_Ptr is access all IImageScannerStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

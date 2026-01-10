@@ -30,12 +30,17 @@
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
 with WinRt.Windows.Graphics.DirectX;
 with WinRt.Windows.Graphics.DirectX.Direct3D11;
+with WinRt.Windows.Security.Authorization.AppCapabilityAccess;
 with WinRt.Windows.System;
+with WinRt.Windows.UI;
 with WinRt.Windows.UI.Composition;
 with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Graphics.Capture is
+
+   package IAsyncOperation_AppCapabilityAccessStatus is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus);
+   package AsyncOperationCompletedHandler_AppCapabilityAccessStatus is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus);
 
    package IAsyncOperation_GraphicsCaptureItem is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Graphics.Capture.IGraphicsCaptureItem);
    package AsyncOperationCompletedHandler_GraphicsCaptureItem is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Graphics.Capture.IGraphicsCaptureItem);
@@ -108,6 +113,51 @@ package body WinRt.Windows.Graphics.Capture is
       m_ComRetVal      : aliased Windows.Graphics.SizeInt32;
    begin
       Hr := this.m_IDirect3D11CaptureFrame.all.get_ContentSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_DirtyRegions
+   (
+      this : in out Direct3D11CaptureFrame
+   )
+   return IVectorView_RectInt32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Capture.IDirect3D11CaptureFrame2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_RectInt32.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IDirect3D11CaptureFrame_Interface, WinRt.Windows.Graphics.Capture.IDirect3D11CaptureFrame2, WinRt.Windows.Graphics.Capture.IID_IDirect3D11CaptureFrame2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IDirect3D11CaptureFrame.all);
+      Hr := m_Interface.get_DirtyRegions (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_RectInt32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_DirtyRegionMode
+   (
+      this : in out Direct3D11CaptureFrame
+   )
+   return WinRt.Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Capture.IDirect3D11CaptureFrame2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IDirect3D11CaptureFrame_Interface, WinRt.Windows.Graphics.Capture.IDirect3D11CaptureFrame2, WinRt.Windows.Graphics.Capture.IID_IDirect3D11CaptureFrame2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IDirect3D11CaptureFrame.all);
+      Hr := m_Interface.get_DirtyRegionMode (m_ComRetVal'Access);
+      temp := m_Interface.Release;
       if Hr /= S_OK then
          raise Program_Error;
       end if;
@@ -349,6 +399,82 @@ package body WinRt.Windows.Graphics.Capture is
    end;
 
    -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package body GraphicsCaptureAccess is
+
+      function RequestAccessAsync
+      (
+         request : Windows.Graphics.Capture.GraphicsCaptureAccessKind
+      )
+      return WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Capture.GraphicsCaptureAccess");
+         m_Factory        : access WinRt.Windows.Graphics.Capture.IGraphicsCaptureAccessStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_AppCapabilityAccessStatus.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_AppCapabilityAccessStatus.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus;
+         m_IID            : aliased WinRt.IID := (2189209410, 24550, 23387, (132, 206, 196, 72, 52, 19, 77, 61 )); -- Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus;
+         m_HandlerIID     : aliased WinRt.IID := (1856041705, 48279, 22760, (163, 166, 200, 41, 185, 229, 242, 170 ));
+         m_Handler        : AsyncOperationCompletedHandler_AppCapabilityAccessStatus.Kind := new AsyncOperationCompletedHandler_AppCapabilityAccessStatus.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_AppCapabilityAccessStatus.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_AppCapabilityAccessStatus.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppCapabilityAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_AppCapabilityAccessStatus.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IGraphicsCaptureAccessStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.RequestAccessAsync (request, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_RetVal;
+      end;
+
+   end GraphicsCaptureAccess;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for GraphicsCaptureItem
 
    procedure Initialize (this : in out GraphicsCaptureItem) is
@@ -387,6 +513,60 @@ package body WinRt.Windows.Graphics.Capture is
          Hr := RoGetActivationFactory (m_hString, IID_IGraphicsCaptureItemStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromVisual (visual.m_IVisual.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IGraphicsCaptureItem := new Windows.Graphics.Capture.IGraphicsCaptureItem;
+            Retval.m_IGraphicsCaptureItem.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function TryCreateFromWindowId
+   (
+      windowId : Windows.UI.WindowId
+   )
+   return WinRt.Windows.Graphics.Capture.GraphicsCaptureItem is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Capture.GraphicsCaptureItem");
+      m_Factory        : access WinRt.Windows.Graphics.Capture.IGraphicsCaptureItemStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Capture.IGraphicsCaptureItem;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Capture.GraphicsCaptureItem do
+         Hr := RoGetActivationFactory (m_hString, IID_IGraphicsCaptureItemStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.TryCreateFromWindowId (windowId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IGraphicsCaptureItem := new Windows.Graphics.Capture.IGraphicsCaptureItem;
+            Retval.m_IGraphicsCaptureItem.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function TryCreateFromDisplayId
+   (
+      displayId : Windows.Graphics.DisplayId
+   )
+   return WinRt.Windows.Graphics.Capture.GraphicsCaptureItem is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Capture.GraphicsCaptureItem");
+      m_Factory        : access WinRt.Windows.Graphics.Capture.IGraphicsCaptureItemStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Capture.IGraphicsCaptureItem;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Capture.GraphicsCaptureItem do
+         Hr := RoGetActivationFactory (m_hString, IID_IGraphicsCaptureItemStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.TryCreateFromDisplayId (displayId, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -674,6 +854,166 @@ package body WinRt.Windows.Graphics.Capture is
    begin
       m_Interface := QInterface (this.m_IGraphicsCaptureSession.all);
       Hr := m_Interface.put_IsCursorCaptureEnabled (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IsBorderRequired
+   (
+      this : in out GraphicsCaptureSession
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession_Interface, WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession3, WinRt.Windows.Graphics.Capture.IID_IGraphicsCaptureSession3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IGraphicsCaptureSession.all);
+      Hr := m_Interface.get_IsBorderRequired (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsBorderRequired
+   (
+      this : in out GraphicsCaptureSession;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession_Interface, WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession3, WinRt.Windows.Graphics.Capture.IID_IGraphicsCaptureSession3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IGraphicsCaptureSession.all);
+      Hr := m_Interface.put_IsBorderRequired (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_DirtyRegionMode
+   (
+      this : in out GraphicsCaptureSession
+   )
+   return WinRt.Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession_Interface, WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession4, WinRt.Windows.Graphics.Capture.IID_IGraphicsCaptureSession4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IGraphicsCaptureSession.all);
+      Hr := m_Interface.get_DirtyRegionMode (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_DirtyRegionMode
+   (
+      this : in out GraphicsCaptureSession;
+      value : Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession_Interface, WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession4, WinRt.Windows.Graphics.Capture.IID_IGraphicsCaptureSession4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IGraphicsCaptureSession.all);
+      Hr := m_Interface.put_DirtyRegionMode (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_MinUpdateInterval
+   (
+      this : in out GraphicsCaptureSession
+   )
+   return WinRt.Windows.Foundation.TimeSpan is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession5 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession_Interface, WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession5, WinRt.Windows.Graphics.Capture.IID_IGraphicsCaptureSession5'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IGraphicsCaptureSession.all);
+      Hr := m_Interface.get_MinUpdateInterval (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_MinUpdateInterval
+   (
+      this : in out GraphicsCaptureSession;
+      value : Windows.Foundation.TimeSpan
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession5 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession_Interface, WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession5, WinRt.Windows.Graphics.Capture.IID_IGraphicsCaptureSession5'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IGraphicsCaptureSession.all);
+      Hr := m_Interface.put_MinUpdateInterval (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IncludeSecondaryWindows
+   (
+      this : in out GraphicsCaptureSession
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession6 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession_Interface, WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession6, WinRt.Windows.Graphics.Capture.IID_IGraphicsCaptureSession6'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IGraphicsCaptureSession.all);
+      Hr := m_Interface.get_IncludeSecondaryWindows (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IncludeSecondaryWindows
+   (
+      this : in out GraphicsCaptureSession;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession6 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession_Interface, WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession6, WinRt.Windows.Graphics.Capture.IID_IGraphicsCaptureSession6'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IGraphicsCaptureSession.all);
+      Hr := m_Interface.put_IncludeSecondaryWindows (value);
       temp := m_Interface.Release;
       if Hr /= S_OK then
          raise Program_Error;

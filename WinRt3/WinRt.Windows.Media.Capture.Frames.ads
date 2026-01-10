@@ -62,6 +62,7 @@ package WinRt.Windows.Media.Capture.Frames is
 
    type IDepthMediaFrame2_Interface is interface and WinRt.IInspectable_Interface;
    type IDepthMediaFrame2 is access all IDepthMediaFrame2_Interface'Class;
+   type IDepthMediaFrame2_Ptr is access all IDepthMediaFrame2;
 
    type IDepthMediaFrameFormat_Interface is interface and WinRt.IInspectable_Interface;
    type IDepthMediaFrameFormat is access all IDepthMediaFrameFormat_Interface'Class;
@@ -81,6 +82,7 @@ package WinRt.Windows.Media.Capture.Frames is
 
    type IMediaFrameFormat2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrameFormat2 is access all IMediaFrameFormat2_Interface'Class;
+   type IMediaFrameFormat2_Ptr is access all IMediaFrameFormat2;
 
    type IMediaFrameReader_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrameReader is access all IMediaFrameReader_Interface'Class;
@@ -88,6 +90,7 @@ package WinRt.Windows.Media.Capture.Frames is
 
    type IMediaFrameReader2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrameReader2 is access all IMediaFrameReader2_Interface'Class;
+   type IMediaFrameReader2_Ptr is access all IMediaFrameReader2;
 
    type IMediaFrameReference_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrameReference is access all IMediaFrameReference_Interface'Class;
@@ -95,6 +98,7 @@ package WinRt.Windows.Media.Capture.Frames is
 
    type IMediaFrameReference2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrameReference2 is access all IMediaFrameReference2_Interface'Class;
+   type IMediaFrameReference2_Ptr is access all IMediaFrameReference2;
 
    type IMediaFrameSource_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrameSource is access all IMediaFrameSource_Interface'Class;
@@ -106,9 +110,11 @@ package WinRt.Windows.Media.Capture.Frames is
 
    type IMediaFrameSourceController2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrameSourceController2 is access all IMediaFrameSourceController2_Interface'Class;
+   type IMediaFrameSourceController2_Ptr is access all IMediaFrameSourceController2;
 
    type IMediaFrameSourceController3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrameSourceController3 is access all IMediaFrameSourceController3_Interface'Class;
+   type IMediaFrameSourceController3_Ptr is access all IMediaFrameSourceController3;
 
    type IMediaFrameSourceGetPropertyResult_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrameSourceGetPropertyResult is access all IMediaFrameSourceGetPropertyResult_Interface'Class;
@@ -120,6 +126,7 @@ package WinRt.Windows.Media.Capture.Frames is
 
    type IMediaFrameSourceGroupStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrameSourceGroupStatics is access all IMediaFrameSourceGroupStatics_Interface'Class;
+   type IMediaFrameSourceGroupStatics_Ptr is access all IMediaFrameSourceGroupStatics;
 
    type IMediaFrameSourceInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrameSourceInfo is access all IMediaFrameSourceInfo_Interface'Class;
@@ -127,9 +134,15 @@ package WinRt.Windows.Media.Capture.Frames is
 
    type IMediaFrameSourceInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrameSourceInfo2 is access all IMediaFrameSourceInfo2_Interface'Class;
+   type IMediaFrameSourceInfo2_Ptr is access all IMediaFrameSourceInfo2;
 
    type IMediaFrameSourceInfo3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaFrameSourceInfo3 is access all IMediaFrameSourceInfo3_Interface'Class;
+   type IMediaFrameSourceInfo3_Ptr is access all IMediaFrameSourceInfo3;
+
+   type IMediaFrameSourceInfo4_Interface is interface and WinRt.IInspectable_Interface;
+   type IMediaFrameSourceInfo4 is access all IMediaFrameSourceInfo4_Interface'Class;
+   type IMediaFrameSourceInfo4_Ptr is access all IMediaFrameSourceInfo4;
 
    type IMultiSourceMediaFrameArrivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMultiSourceMediaFrameArrivedEventArgs is access all IMultiSourceMediaFrameArrivedEventArgs_Interface'Class;
@@ -141,6 +154,7 @@ package WinRt.Windows.Media.Capture.Frames is
 
    type IMultiSourceMediaFrameReader2_Interface is interface and WinRt.IInspectable_Interface;
    type IMultiSourceMediaFrameReader2 is access all IMultiSourceMediaFrameReader2_Interface'Class;
+   type IMultiSourceMediaFrameReader2_Ptr is access all IMultiSourceMediaFrameReader2;
 
    type IMultiSourceMediaFrameReference_Interface is interface and WinRt.IInspectable_Interface;
    type IMultiSourceMediaFrameReference is access all IMultiSourceMediaFrameReference_Interface'Class;
@@ -326,7 +340,8 @@ package WinRt.Windows.Media.Capture.Frames is
       Infrared_e,
       Depth_e,
       Audio_e,
-      Image_e
+      Image_e,
+      Metadata_e
    );
    for MediaFrameSourceKind use (
       Custom_e => 0,
@@ -334,7 +349,8 @@ package WinRt.Windows.Media.Capture.Frames is
       Infrared_e => 2,
       Depth_e => 3,
       Audio_e => 4,
-      Image_e => 5
+      Image_e => 5,
+      Metadata_e => 6
    );
    type MediaFrameSourceKind_Ptr is access all MediaFrameSourceKind;
 
@@ -1022,6 +1038,18 @@ package WinRt.Windows.Media.Capture.Frames is
       return WinRt.Hresult is abstract;
 
       IID_IMediaFrameSourceInfo3 : aliased WinRt.IID := (3397536438, 26346, 22661, (162, 182, 38, 192, 238, 236, 60, 123 ));
+
+   -----------------------------------------------------------------------------
+   -- type IMediaFrameSourceInfo4 is interface and WinRt.IInspectable;
+
+      function get_IsShareable
+      (
+         this : access IMediaFrameSourceInfo4_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IMediaFrameSourceInfo4 : aliased WinRt.IID := (1209521953, 34283, 18188, (143, 55, 67, 202, 84, 152, 228, 29 ));
 
    -----------------------------------------------------------------------------
    -- type IMultiSourceMediaFrameArrivedEventArgs is interface and WinRt.IInspectable;
@@ -1763,6 +1791,12 @@ package WinRt.Windows.Media.Capture.Frames is
       displayRegion : Windows.UI.WindowManagement.DisplayRegion'Class
    )
    return WinRt.Windows.Devices.Enumeration.Panel;
+
+   function get_IsShareable
+   (
+      this : in out MediaFrameSourceInfo
+   )
+   return WinRt.Boolean;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MultiSourceMediaFrameArrivedEventArgs

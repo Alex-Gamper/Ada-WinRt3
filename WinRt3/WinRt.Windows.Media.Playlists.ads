@@ -46,6 +46,7 @@ package WinRt.Windows.Media.Playlists is
 
    type IPlaylistStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPlaylistStatics is access all IPlaylistStatics_Interface'Class;
+   type IPlaylistStatics_Ptr is access all IPlaylistStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

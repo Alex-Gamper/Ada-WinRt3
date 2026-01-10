@@ -56,12 +56,15 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
 
    type IDevicePortalConnectionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDevicePortalConnectionStatics is access all IDevicePortalConnectionStatics_Interface'Class;
+   type IDevicePortalConnectionStatics_Ptr is access all IDevicePortalConnectionStatics;
 
    type IDevicePortalWebSocketConnection_Interface is interface and WinRt.IInspectable_Interface;
    type IDevicePortalWebSocketConnection is access all IDevicePortalWebSocketConnection_Interface'Class;
+   type IDevicePortalWebSocketConnection_Ptr is access all IDevicePortalWebSocketConnection;
 
    type IDevicePortalWebSocketConnectionRequestReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDevicePortalWebSocketConnectionRequestReceivedEventArgs is access all IDevicePortalWebSocketConnectionRequestReceivedEventArgs_Interface'Class;
+   type IDevicePortalWebSocketConnectionRequestReceivedEventArgs_Ptr is access all IDevicePortalWebSocketConnectionRequestReceivedEventArgs;
 
    -----------------------------------------------------------------------------
    -- Class declarations

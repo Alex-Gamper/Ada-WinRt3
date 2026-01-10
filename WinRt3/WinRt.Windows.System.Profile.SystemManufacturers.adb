@@ -312,30 +312,6 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
    -- Static RuntimeClass
    package body SystemSupportInfo is
 
-      function get_LocalDeviceInfo
-      return WinRt.Windows.System.Profile.SystemManufacturers.SystemSupportDeviceInfo is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SystemManufacturers.SystemSupportInfo");
-         m_Factory        : access WinRt.Windows.System.Profile.SystemManufacturers.ISystemSupportInfoStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Profile.SystemManufacturers.ISystemSupportDeviceInfo;
-      begin
-         return RetVal : WinRt.Windows.System.Profile.SystemManufacturers.SystemSupportDeviceInfo do
-            Hr := RoGetActivationFactory (m_hString, IID_ISystemSupportInfoStatics2'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.get_LocalDeviceInfo (m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_ISystemSupportDeviceInfo := new Windows.System.Profile.SystemManufacturers.ISystemSupportDeviceInfo;
-               Retval.m_ISystemSupportDeviceInfo.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
       function get_LocalSystemEdition
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -379,6 +355,30 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
                end if;
                Retval.m_IOemSupportInfo := new Windows.System.Profile.SystemManufacturers.IOemSupportInfo;
                Retval.m_IOemSupportInfo.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function get_LocalDeviceInfo
+      return WinRt.Windows.System.Profile.SystemManufacturers.SystemSupportDeviceInfo is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SystemManufacturers.SystemSupportInfo");
+         m_Factory        : access WinRt.Windows.System.Profile.SystemManufacturers.ISystemSupportInfoStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.System.Profile.SystemManufacturers.ISystemSupportDeviceInfo;
+      begin
+         return RetVal : WinRt.Windows.System.Profile.SystemManufacturers.SystemSupportDeviceInfo do
+            Hr := RoGetActivationFactory (m_hString, IID_ISystemSupportInfoStatics2'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.get_LocalDeviceInfo (m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_ISystemSupportDeviceInfo := new Windows.System.Profile.SystemManufacturers.ISystemSupportDeviceInfo;
+               Retval.m_ISystemSupportDeviceInfo.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
          end return;

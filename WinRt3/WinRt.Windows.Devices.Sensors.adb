@@ -61,6 +61,15 @@ package body WinRt.Windows.Devices.Sensors is
    package IAsyncOperation_HingeAngleSensor is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Sensors.IHingeAngleSensor);
    package AsyncOperationCompletedHandler_HingeAngleSensor is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.Sensors.IHingeAngleSensor);
 
+   package IAsyncOperation_HumanPresenceSensor is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Sensors.IHumanPresenceSensor);
+   package AsyncOperationCompletedHandler_HumanPresenceSensor is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.Sensors.IHumanPresenceSensor);
+
+   package IAsyncOperation_HumanPresenceSettings is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings);
+   package AsyncOperationCompletedHandler_HumanPresenceSettings is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings);
+
+   package IAsyncOperation_HumanPresenceFeatures is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Sensors.IHumanPresenceFeatures);
+   package AsyncOperationCompletedHandler_HumanPresenceFeatures is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.Sensors.IHumanPresenceFeatures);
+
    package IAsyncOperation_Inclinometer is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Sensors.IInclinometer);
    package AsyncOperationCompletedHandler_Inclinometer is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.Sensors.IInclinometer);
 
@@ -1637,6 +1646,61 @@ package body WinRt.Windows.Devices.Sensors is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for AdaptiveDimmingOptions
+
+   procedure Initialize (this : in out AdaptiveDimmingOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out AdaptiveDimmingOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IAdaptiveDimmingOptions, IAdaptiveDimmingOptions_Ptr);
+   begin
+      if this.m_IAdaptiveDimmingOptions /= null then
+         if this.m_IAdaptiveDimmingOptions.all /= null then
+            temp := this.m_IAdaptiveDimmingOptions.all.Release;
+            Free (this.m_IAdaptiveDimmingOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for AdaptiveDimmingOptions
+
+   function get_AllowWhenExternalDisplayConnected
+   (
+      this : in out AdaptiveDimmingOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IAdaptiveDimmingOptions.all.get_AllowWhenExternalDisplayConnected (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_AllowWhenExternalDisplayConnected
+   (
+      this : in out AdaptiveDimmingOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IAdaptiveDimmingOptions.all.put_AllowWhenExternalDisplayConnected (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Altimeter
 
    procedure Initialize (this : in out Altimeter) is
@@ -2599,30 +2663,6 @@ package body WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Compass
 
-   function GetDefault
-   return WinRt.Windows.Devices.Sensors.Compass is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Compass");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.ICompassStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ICompass;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.Compass do
-         Hr := RoGetActivationFactory (m_hString, IID_ICompassStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ICompass := new Windows.Devices.Sensors.ICompass;
-            Retval.m_ICompass.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function GetDeviceSelector_Compass
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -2719,6 +2759,30 @@ package body WinRt.Windows.Devices.Sensors is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_deviceId);
+      end return;
+   end;
+
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.Compass is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Compass");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.ICompassStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.ICompass;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.Compass do
+         Hr := RoGetActivationFactory (m_hString, IID_ICompassStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ICompass := new Windows.Devices.Sensors.ICompass;
+            Retval.m_ICompass.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3221,6 +3285,126 @@ package body WinRt.Windows.Devices.Sensors is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DetectedPerson
+
+   procedure Initialize (this : in out DetectedPerson) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out DetectedPerson) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IDetectedPerson, IDetectedPerson_Ptr);
+   begin
+      if this.m_IDetectedPerson /= null then
+         if this.m_IDetectedPerson.all /= null then
+            temp := this.m_IDetectedPerson.all.Release;
+            Free (this.m_IDetectedPerson);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DetectedPerson
+
+   function get_Engagement
+   (
+      this : in out DetectedPerson
+   )
+   return WinRt.Windows.Devices.Sensors.HumanEngagement is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.HumanEngagement;
+   begin
+      Hr := this.m_IDetectedPerson.all.get_Engagement (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_DistanceInMillimeters
+   (
+      this : in out DetectedPerson
+   )
+   return IReference_UInt32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_UInt32.Kind;
+   begin
+      Hr := this.m_IDetectedPerson.all.get_DistanceInMillimeters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_HeadOrientation
+   (
+      this : in out DetectedPerson
+   )
+   return WinRt.Windows.Devices.Sensors.HeadOrientation'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IHeadOrientation;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.HeadOrientation do
+         Hr := this.m_IDetectedPerson.all.get_HeadOrientation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHeadOrientation := new Windows.Devices.Sensors.IHeadOrientation;
+         Retval.m_IHeadOrientation.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_HeadPosition
+   (
+      this : in out DetectedPerson
+   )
+   return WinRt.Windows.Devices.Sensors.HeadPosition'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IHeadPosition;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.HeadPosition do
+         Hr := this.m_IDetectedPerson.all.get_HeadPosition (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHeadPosition := new Windows.Devices.Sensors.IHeadPosition;
+         Retval.m_IHeadPosition.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_PersonId
+   (
+      this : in out DetectedPerson
+   )
+   return IReference_Int32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Int32.Kind;
+   begin
+      Hr := this.m_IDetectedPerson.all.get_PersonId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Gyrometer
 
    procedure Initialize (this : in out Gyrometer) is
@@ -3242,30 +3426,6 @@ package body WinRt.Windows.Devices.Sensors is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for Gyrometer
-
-   function GetDefault
-   return WinRt.Windows.Devices.Sensors.Gyrometer is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Gyrometer");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IGyrometerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IGyrometer;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.Gyrometer do
-         Hr := RoGetActivationFactory (m_hString, IID_IGyrometerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IGyrometer := new Windows.Devices.Sensors.IGyrometer;
-            Retval.m_IGyrometer.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
 
    function GetDeviceSelector_Gyrometer
    return WinRt.WString is
@@ -3363,6 +3523,30 @@ package body WinRt.Windows.Devices.Sensors is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_deviceId);
+      end return;
+   end;
+
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.Gyrometer is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Gyrometer");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IGyrometerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IGyrometer;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.Gyrometer do
+         Hr := RoGetActivationFactory (m_hString, IID_IGyrometerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IGyrometer := new Windows.Devices.Sensors.IGyrometer;
+            Retval.m_IGyrometer.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3919,6 +4103,152 @@ package body WinRt.Windows.Devices.Sensors is
          Retval.m_IGyrometerReading := new Windows.Devices.Sensors.IGyrometerReading;
          Retval.m_IGyrometerReading.all := m_ComRetVal;
       end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HeadOrientation
+
+   procedure Initialize (this : in out HeadOrientation) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out HeadOrientation) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IHeadOrientation, IHeadOrientation_Ptr);
+   begin
+      if this.m_IHeadOrientation /= null then
+         if this.m_IHeadOrientation.all /= null then
+            temp := this.m_IHeadOrientation.all.Release;
+            Free (this.m_IHeadOrientation);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HeadOrientation
+
+   function get_RollInDegrees
+   (
+      this : in out HeadOrientation
+   )
+   return IReference_Double.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Double.Kind;
+   begin
+      Hr := this.m_IHeadOrientation.all.get_RollInDegrees (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_PitchInDegrees
+   (
+      this : in out HeadOrientation
+   )
+   return IReference_Double.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Double.Kind;
+   begin
+      Hr := this.m_IHeadOrientation.all.get_PitchInDegrees (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_YawInDegrees
+   (
+      this : in out HeadOrientation
+   )
+   return IReference_Double.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Double.Kind;
+   begin
+      Hr := this.m_IHeadOrientation.all.get_YawInDegrees (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HeadPosition
+
+   procedure Initialize (this : in out HeadPosition) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out HeadPosition) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IHeadPosition, IHeadPosition_Ptr);
+   begin
+      if this.m_IHeadPosition /= null then
+         if this.m_IHeadPosition.all /= null then
+            temp := this.m_IHeadPosition.all.Release;
+            Free (this.m_IHeadPosition);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HeadPosition
+
+   function get_AzimuthInDegrees
+   (
+      this : in out HeadPosition
+   )
+   return IReference_Double.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Double.Kind;
+   begin
+      Hr := this.m_IHeadPosition.all.get_AzimuthInDegrees (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_AltitudeInDegrees
+   (
+      this : in out HeadPosition
+   )
+   return IReference_Double.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Double.Kind;
+   begin
+      Hr := this.m_IHeadPosition.all.get_AltitudeInDegrees (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -4483,6 +4813,1884 @@ package body WinRt.Windows.Devices.Sensors is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HumanPresenceFeatures
+
+   procedure Initialize (this : in out HumanPresenceFeatures) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out HumanPresenceFeatures) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IHumanPresenceFeatures, IHumanPresenceFeatures_Ptr);
+   begin
+      if this.m_IHumanPresenceFeatures /= null then
+         if this.m_IHumanPresenceFeatures.all /= null then
+            temp := this.m_IHumanPresenceFeatures.all.Release;
+            Free (this.m_IHumanPresenceFeatures);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HumanPresenceFeatures
+
+   function get_SensorId
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IHumanPresenceFeatures.all.get_SensorId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_SupportedWakeOrLockDistancesInMillimeters
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return IVectorView_UInt32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_UInt32.Kind;
+   begin
+      Hr := this.m_IHumanPresenceFeatures.all.get_SupportedWakeOrLockDistancesInMillimeters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_IsWakeOnApproachSupported
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IHumanPresenceFeatures.all.get_IsWakeOnApproachSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsLockOnLeaveSupported
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IHumanPresenceFeatures.all.get_IsLockOnLeaveSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsAttentionAwareDimmingSupported
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IHumanPresenceFeatures.all.get_IsAttentionAwareDimmingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsAdaptiveDimmingSupported
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceFeatures2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceFeatures_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceFeatures2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceFeatures2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceFeatures.all);
+      Hr := m_Interface.get_IsAdaptiveDimmingSupported (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsOnlookerDetectionSupported
+   (
+      this : in out HumanPresenceFeatures
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceFeatures3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceFeatures_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceFeatures3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceFeatures3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceFeatures.all);
+      Hr := m_Interface.get_IsOnlookerDetectionSupported (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HumanPresenceSensor
+
+   procedure Initialize (this : in out HumanPresenceSensor) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out HumanPresenceSensor) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IHumanPresenceSensor, IHumanPresenceSensor_Ptr);
+   begin
+      if this.m_IHumanPresenceSensor /= null then
+         if this.m_IHumanPresenceSensor.all /= null then
+            temp := this.m_IHumanPresenceSensor.all.Release;
+            Free (this.m_IHumanPresenceSensor);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for HumanPresenceSensor
+
+   function FromId
+   (
+      sensorId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSensorStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IHumanPresenceSensor;
+      HStr_sensorId : constant WinRt.HString := To_HString (sensorId);
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSensorStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FromId (HStr_sensorId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IHumanPresenceSensor := new Windows.Devices.Sensors.IHumanPresenceSensor;
+            Retval.m_IHumanPresenceSensor.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_sensorId);
+      end return;
+   end;
+
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSensorStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IHumanPresenceSensor;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSensorStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IHumanPresenceSensor := new Windows.Devices.Sensors.IHumanPresenceSensor;
+            Retval.m_IHumanPresenceSensor.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetDeviceSelector_HumanPresenceSensor
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSensorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSensorStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function FromIdAsync_HumanPresenceSensor
+   (
+      sensorId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSensorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_sensorId : constant WinRt.HString := To_HString (sensorId);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_HumanPresenceSensor.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_HumanPresenceSensor.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.Sensors.IHumanPresenceSensor;
+      m_IID            : aliased WinRt.IID := (762524974, 1447, 23044, (141, 84, 201, 85, 102, 147, 36, 25 )); -- Windows.Devices.Sensors.HumanPresenceSensor;
+      m_HandlerIID     : aliased WinRt.IID := (3233195189, 47597, 21943, (174, 236, 249, 207, 239, 244, 56, 28 ));
+      m_Handler        : AsyncOperationCompletedHandler_HumanPresenceSensor.Kind := new AsyncOperationCompletedHandler_HumanPresenceSensor.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HumanPresenceSensor.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HumanPresenceSensor.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HumanPresenceSensor.Kind_Delegate, AsyncOperationCompletedHandler_HumanPresenceSensor.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSensorStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FromIdAsync (HStr_sensorId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_IHumanPresenceSensor := new Windows.Devices.Sensors.IHumanPresenceSensor;
+                     Retval.m_IHumanPresenceSensor.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_sensorId);
+      end return;
+   end;
+
+   function GetDefaultAsync_HumanPresenceSensor
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSensorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_HumanPresenceSensor.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_HumanPresenceSensor.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.Sensors.IHumanPresenceSensor;
+      m_IID            : aliased WinRt.IID := (762524974, 1447, 23044, (141, 84, 201, 85, 102, 147, 36, 25 )); -- Windows.Devices.Sensors.HumanPresenceSensor;
+      m_HandlerIID     : aliased WinRt.IID := (3233195189, 47597, 21943, (174, 236, 249, 207, 239, 244, 56, 28 ));
+      m_Handler        : AsyncOperationCompletedHandler_HumanPresenceSensor.Kind := new AsyncOperationCompletedHandler_HumanPresenceSensor.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HumanPresenceSensor.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HumanPresenceSensor.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HumanPresenceSensor.Kind_Delegate, AsyncOperationCompletedHandler_HumanPresenceSensor.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSensorStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_IHumanPresenceSensor := new Windows.Devices.Sensors.IHumanPresenceSensor;
+                     Retval.m_IHumanPresenceSensor.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HumanPresenceSensor
+
+   function get_DeviceId
+   (
+      this : in out HumanPresenceSensor
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IHumanPresenceSensor.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_MaxDetectableDistanceInMillimeters
+   (
+      this : in out HumanPresenceSensor
+   )
+   return IReference_UInt32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_UInt32.Kind;
+   begin
+      Hr := this.m_IHumanPresenceSensor.all.get_MaxDetectableDistanceInMillimeters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_MinDetectableDistanceInMillimeters
+   (
+      this : in out HumanPresenceSensor
+   )
+   return IReference_UInt32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_UInt32.Kind;
+   begin
+      Hr := this.m_IHumanPresenceSensor.all.get_MinDetectableDistanceInMillimeters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetCurrentReading
+   (
+      this : in out HumanPresenceSensor
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSensorReading'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IHumanPresenceSensorReading;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceSensorReading do
+         Hr := this.m_IHumanPresenceSensor.all.GetCurrentReading (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHumanPresenceSensorReading := new Windows.Devices.Sensors.IHumanPresenceSensorReading;
+         Retval.m_IHumanPresenceSensorReading.all := m_ComRetVal;
+      end return;
+   end;
+
+   function add_ReadingChanged
+   (
+      this : in out HumanPresenceSensor;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IHumanPresenceSensor.all.add_ReadingChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ReadingChanged
+   (
+      this : in out HumanPresenceSensor;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IHumanPresenceSensor.all.remove_ReadingChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IsPresenceSupported
+   (
+      this : in out HumanPresenceSensor
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensor2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensor_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensor2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensor2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSensor.all);
+      Hr := m_Interface.get_IsPresenceSupported (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsEngagementSupported
+   (
+      this : in out HumanPresenceSensor
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensor2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensor_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensor2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensor2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSensor.all);
+      Hr := m_Interface.get_IsEngagementSupported (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_MaxDetectablePersons
+   (
+      this : in out HumanPresenceSensor
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensor_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensor3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSensor.all);
+      Hr := m_Interface.get_MaxDetectablePersons (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_MinDetectableAzimuthInDegrees
+   (
+      this : in out HumanPresenceSensor
+   )
+   return IReference_Double.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Double.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensor_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensor3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSensor.all);
+      Hr := m_Interface.get_MinDetectableAzimuthInDegrees (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_MaxDetectableAzimuthInDegrees
+   (
+      this : in out HumanPresenceSensor
+   )
+   return IReference_Double.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Double.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensor_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensor3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSensor.all);
+      Hr := m_Interface.get_MaxDetectableAzimuthInDegrees (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_MinDetectableAltitudeInDegrees
+   (
+      this : in out HumanPresenceSensor
+   )
+   return IReference_Double.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Double.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensor_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensor3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSensor.all);
+      Hr := m_Interface.get_MinDetectableAltitudeInDegrees (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_MaxDetectableAltitudeInDegrees
+   (
+      this : in out HumanPresenceSensor
+   )
+   return IReference_Double.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Double.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensor_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensor3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSensor.all);
+      Hr := m_Interface.get_MaxDetectableAltitudeInDegrees (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HumanPresenceSensorReading
+
+   procedure Initialize (this : in out HumanPresenceSensorReading) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out HumanPresenceSensorReading) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IHumanPresenceSensorReading, IHumanPresenceSensorReading_Ptr);
+   begin
+      if this.m_IHumanPresenceSensorReading /= null then
+         if this.m_IHumanPresenceSensorReading.all /= null then
+            temp := this.m_IHumanPresenceSensorReading.all.Release;
+            Free (this.m_IHumanPresenceSensorReading);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HumanPresenceSensorReading
+
+   function get_Timestamp
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return WinRt.Windows.Foundation.DateTime is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+   begin
+      Hr := this.m_IHumanPresenceSensorReading.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Presence
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresence is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.HumanPresence;
+   begin
+      Hr := this.m_IHumanPresenceSensorReading.all.get_Presence (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Engagement
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return WinRt.Windows.Devices.Sensors.HumanEngagement is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.HumanEngagement;
+   begin
+      Hr := this.m_IHumanPresenceSensorReading.all.get_Engagement (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_DistanceInMillimeters
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return IReference_UInt32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_UInt32.Kind;
+   begin
+      Hr := this.m_IHumanPresenceSensorReading.all.get_DistanceInMillimeters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_Properties
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return IMapView_HString_IInspectable.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensorReading2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSensorReading.all);
+      Hr := m_Interface.get_Properties (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_OnlookerPresence
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresence is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.HumanPresence;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensorReading3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSensorReading.all);
+      Hr := m_Interface.get_OnlookerPresence (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_DetectedPersons
+   (
+      this : in out HumanPresenceSensorReading
+   )
+   return IVectorView_IDetectedPerson.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IDetectedPerson.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensorReading3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSensorReading.all);
+      Hr := m_Interface.get_DetectedPersons (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IDetectedPerson (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HumanPresenceSensorReadingChangedEventArgs
+
+   procedure Initialize (this : in out HumanPresenceSensorReadingChangedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out HumanPresenceSensorReadingChangedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IHumanPresenceSensorReadingChangedEventArgs, IHumanPresenceSensorReadingChangedEventArgs_Ptr);
+   begin
+      if this.m_IHumanPresenceSensorReadingChangedEventArgs /= null then
+         if this.m_IHumanPresenceSensorReadingChangedEventArgs.all /= null then
+            temp := this.m_IHumanPresenceSensorReadingChangedEventArgs.all.Release;
+            Free (this.m_IHumanPresenceSensorReadingChangedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HumanPresenceSensorReadingChangedEventArgs
+
+   function get_Reading
+   (
+      this : in out HumanPresenceSensorReadingChangedEventArgs
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSensorReading'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IHumanPresenceSensorReading;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceSensorReading do
+         Hr := this.m_IHumanPresenceSensorReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IHumanPresenceSensorReading := new Windows.Devices.Sensors.IHumanPresenceSensorReading;
+         Retval.m_IHumanPresenceSensorReading.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HumanPresenceSensorReadingUpdate
+
+   procedure Initialize (this : in out HumanPresenceSensorReadingUpdate) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out HumanPresenceSensorReadingUpdate) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IHumanPresenceSensorReadingUpdate, IHumanPresenceSensorReadingUpdate_Ptr);
+   begin
+      if this.m_IHumanPresenceSensorReadingUpdate /= null then
+         if this.m_IHumanPresenceSensorReadingUpdate.all /= null then
+            temp := this.m_IHumanPresenceSensorReadingUpdate.all.Release;
+            Free (this.m_IHumanPresenceSensorReadingUpdate);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for HumanPresenceSensorReadingUpdate
+
+   function Constructor return HumanPresenceSensorReadingUpdate is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSensorReadingUpdate");
+      m_ComRetVal  : aliased Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate;
+   begin
+      return RetVal : HumanPresenceSensorReadingUpdate do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IHumanPresenceSensorReadingUpdate := new Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate;
+            Retval.m_IHumanPresenceSensorReadingUpdate.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HumanPresenceSensorReadingUpdate
+
+   function get_Timestamp
+   (
+      this : in out HumanPresenceSensorReadingUpdate
+   )
+   return IReference_DateTime.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_DateTime.Kind;
+   begin
+      Hr := this.m_IHumanPresenceSensorReadingUpdate.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_Timestamp
+   (
+      this : in out HumanPresenceSensorReadingUpdate;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IHumanPresenceSensorReadingUpdate.all.put_Timestamp (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Presence
+   (
+      this : in out HumanPresenceSensorReadingUpdate
+   )
+   return IReference_HumanPresence.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_HumanPresence.Kind;
+   begin
+      Hr := this.m_IHumanPresenceSensorReadingUpdate.all.get_Presence (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_HumanPresence (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_Presence
+   (
+      this : in out HumanPresenceSensorReadingUpdate;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IHumanPresenceSensorReadingUpdate.all.put_Presence (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Engagement
+   (
+      this : in out HumanPresenceSensorReadingUpdate
+   )
+   return IReference_HumanEngagement.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_HumanEngagement.Kind;
+   begin
+      Hr := this.m_IHumanPresenceSensorReadingUpdate.all.get_Engagement (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_HumanEngagement (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_Engagement
+   (
+      this : in out HumanPresenceSensorReadingUpdate;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IHumanPresenceSensorReadingUpdate.all.put_Engagement (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_DistanceInMillimeters
+   (
+      this : in out HumanPresenceSensorReadingUpdate
+   )
+   return IReference_UInt32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_UInt32.Kind;
+   begin
+      Hr := this.m_IHumanPresenceSensorReadingUpdate.all.get_DistanceInMillimeters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_DistanceInMillimeters
+   (
+      this : in out HumanPresenceSensorReadingUpdate;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IHumanPresenceSensorReadingUpdate.all.put_DistanceInMillimeters (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_OnlookerPresence
+   (
+      this : in out HumanPresenceSensorReadingUpdate
+   )
+   return IReference_HumanPresence.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_HumanPresence.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensorReadingUpdate2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSensorReadingUpdate.all);
+      Hr := m_Interface.get_OnlookerPresence (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_HumanPresence (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_OnlookerPresence
+   (
+      this : in out HumanPresenceSensorReadingUpdate;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensorReadingUpdate2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSensorReadingUpdate.all);
+      Hr := m_Interface.put_OnlookerPresence (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for HumanPresenceSettings
+
+   procedure Initialize (this : in out HumanPresenceSettings) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out HumanPresenceSettings) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IHumanPresenceSettings, IHumanPresenceSettings_Ptr);
+   begin
+      if this.m_IHumanPresenceSettings /= null then
+         if this.m_IHumanPresenceSettings.all /= null then
+            temp := this.m_IHumanPresenceSettings.all.Release;
+            Free (this.m_IHumanPresenceSettings);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for HumanPresenceSettings
+
+   function GetCurrentSettingsAsync
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSettings is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSettings");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettingsStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_HumanPresenceSettings.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_HumanPresenceSettings.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.Sensors.IHumanPresenceSettings;
+      m_IID            : aliased WinRt.IID := (25704767, 50869, 24366, (162, 197, 128, 9, 17, 49, 38, 232 )); -- Windows.Devices.Sensors.HumanPresenceSettings;
+      m_HandlerIID     : aliased WinRt.IID := (2875851547, 17320, 24124, (188, 193, 4, 36, 70, 53, 189, 167 ));
+      m_Handler        : AsyncOperationCompletedHandler_HumanPresenceSettings.Kind := new AsyncOperationCompletedHandler_HumanPresenceSettings.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HumanPresenceSettings.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HumanPresenceSettings.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HumanPresenceSettings.Kind_Delegate, AsyncOperationCompletedHandler_HumanPresenceSettings.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceSettings do
+         Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSettingsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetCurrentSettingsAsync (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_IHumanPresenceSettings := new Windows.Devices.Sensors.IHumanPresenceSettings;
+                     Retval.m_IHumanPresenceSettings.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetCurrentSettings
+   return WinRt.Windows.Devices.Sensors.HumanPresenceSettings is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSettings");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettingsStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IHumanPresenceSettings;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceSettings do
+         Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSettingsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetCurrentSettings (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IHumanPresenceSettings := new Windows.Devices.Sensors.IHumanPresenceSettings;
+            Retval.m_IHumanPresenceSettings.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   procedure UpdateSettingsAsync
+   (
+      settings : Windows.Devices.Sensors.HumanPresenceSettings'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSettings");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettingsStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
+
+      procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+      begin
+         if asyncStatus = Completed_e then
+            Hr := asyncInfo.GetResults;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
+      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
+
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSettingsStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.UpdateSettingsAsync (settings.m_IHumanPresenceSettings.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr = S_OK then
+            m_Captured := m_Completed;
+            Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            temp := m_ComRetVal.Release;
+            temp := m_CompletedHandler.Release;
+            if temp = 0 then
+               Free (m_CompletedHandler);
+            end if;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   procedure UpdateSettings
+   (
+      settings : Windows.Devices.Sensors.HumanPresenceSettings'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSettings");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettingsStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSettingsStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.UpdateSettings (settings.m_IHumanPresenceSettings.all);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function GetSupportedFeaturesForSensorIdAsync
+   (
+      sensorId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresenceFeatures is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSettings");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettingsStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_sensorId : constant WinRt.HString := To_HString (sensorId);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_HumanPresenceFeatures.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_HumanPresenceFeatures.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.Sensors.IHumanPresenceFeatures;
+      m_IID            : aliased WinRt.IID := (9907705, 22027, 21795, (166, 17, 167, 143, 247, 47, 145, 154 )); -- Windows.Devices.Sensors.HumanPresenceFeatures;
+      m_HandlerIID     : aliased WinRt.IID := (795554211, 15767, 21287, (175, 191, 117, 228, 95, 221, 105, 248 ));
+      m_Handler        : AsyncOperationCompletedHandler_HumanPresenceFeatures.Kind := new AsyncOperationCompletedHandler_HumanPresenceFeatures.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HumanPresenceFeatures.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HumanPresenceFeatures.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HumanPresenceFeatures.Kind_Delegate, AsyncOperationCompletedHandler_HumanPresenceFeatures.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceFeatures do
+         Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSettingsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetSupportedFeaturesForSensorIdAsync (HStr_sensorId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_IHumanPresenceFeatures := new Windows.Devices.Sensors.IHumanPresenceFeatures;
+                     Retval.m_IHumanPresenceFeatures.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_sensorId);
+      end return;
+   end;
+
+   function GetSupportedFeaturesForSensorId
+   (
+      sensorId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Sensors.HumanPresenceFeatures is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSettings");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettingsStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IHumanPresenceFeatures;
+      HStr_sensorId : constant WinRt.HString := To_HString (sensorId);
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceFeatures do
+         Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSettingsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetSupportedFeaturesForSensorId (HStr_sensorId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IHumanPresenceFeatures := new Windows.Devices.Sensors.IHumanPresenceFeatures;
+            Retval.m_IHumanPresenceFeatures.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_sensorId);
+      end return;
+   end;
+
+   function GetSupportedLockOnLeaveTimeouts
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSettings");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettingsStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSettingsStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetSupportedLockOnLeaveTimeouts (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function add_SettingsChanged
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSettings");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettingsStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSettingsStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.add_SettingsChanged (handler, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   procedure remove_SettingsChanged
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSettings");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettingsStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSettingsStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.remove_SettingsChanged (token);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for HumanPresenceSettings
+
+   function get_SensorId
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.get_SensorId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_SensorId
+   (
+      this : in out HumanPresenceSettings;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.put_SensorId (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_IsWakeOnApproachEnabled
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.get_IsWakeOnApproachEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsWakeOnApproachEnabled
+   (
+      this : in out HumanPresenceSettings;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.put_IsWakeOnApproachEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_WakeOnApproachDistanceInMillimeters
+   (
+      this : in out HumanPresenceSettings
+   )
+   return IReference_UInt32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_UInt32.Kind;
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.get_WakeOnApproachDistanceInMillimeters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_WakeOnApproachDistanceInMillimeters
+   (
+      this : in out HumanPresenceSettings;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.put_WakeOnApproachDistanceInMillimeters (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IsLockOnLeaveEnabled
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.get_IsLockOnLeaveEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsLockOnLeaveEnabled
+   (
+      this : in out HumanPresenceSettings;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.put_IsLockOnLeaveEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_LockOnLeaveDistanceInMillimeters
+   (
+      this : in out HumanPresenceSettings
+   )
+   return IReference_UInt32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_UInt32.Kind;
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.get_LockOnLeaveDistanceInMillimeters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_LockOnLeaveDistanceInMillimeters
+   (
+      this : in out HumanPresenceSettings;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.put_LockOnLeaveDistanceInMillimeters (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_LockOnLeaveTimeout
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Windows.Foundation.TimeSpan is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.get_LockOnLeaveTimeout (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_LockOnLeaveTimeout
+   (
+      this : in out HumanPresenceSettings;
+      value : Windows.Foundation.TimeSpan
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.put_LockOnLeaveTimeout (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IsAttentionAwareDimmingEnabled
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.get_IsAttentionAwareDimmingEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsAttentionAwareDimmingEnabled
+   (
+      this : in out HumanPresenceSettings;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IHumanPresenceSettings.all.put_IsAttentionAwareDimmingEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IsAdaptiveDimmingEnabled
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSettings2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSettings.all);
+      Hr := m_Interface.get_IsAdaptiveDimmingEnabled (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsAdaptiveDimmingEnabled
+   (
+      this : in out HumanPresenceSettings;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSettings2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSettings.all);
+      Hr := m_Interface.put_IsAdaptiveDimmingEnabled (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_WakeOptions
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Windows.Devices.Sensors.WakeOnApproachOptions'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IWakeOnApproachOptions;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSettings2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.WakeOnApproachOptions do
+         m_Interface := QInterface (this.m_IHumanPresenceSettings.all);
+         Hr := m_Interface.get_WakeOptions (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWakeOnApproachOptions := new Windows.Devices.Sensors.IWakeOnApproachOptions;
+         Retval.m_IWakeOnApproachOptions.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_DimmingOptions
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Windows.Devices.Sensors.AdaptiveDimmingOptions'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IAdaptiveDimmingOptions;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSettings2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.AdaptiveDimmingOptions do
+         m_Interface := QInterface (this.m_IHumanPresenceSettings.all);
+         Hr := m_Interface.get_DimmingOptions (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IAdaptiveDimmingOptions := new Windows.Devices.Sensors.IAdaptiveDimmingOptions;
+         Retval.m_IAdaptiveDimmingOptions.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_LockOptions
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Windows.Devices.Sensors.LockOnLeaveOptions'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.ILockOnLeaveOptions;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSettings2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.LockOnLeaveOptions do
+         m_Interface := QInterface (this.m_IHumanPresenceSettings.all);
+         Hr := m_Interface.get_LockOptions (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ILockOnLeaveOptions := new Windows.Devices.Sensors.ILockOnLeaveOptions;
+         Retval.m_ILockOnLeaveOptions.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_IsOnlookerDetectionEnabled
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSettings3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSettings3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSettings.all);
+      Hr := m_Interface.get_IsOnlookerDetectionEnabled (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IsOnlookerDetectionEnabled
+   (
+      this : in out HumanPresenceSettings;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSettings3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSettings3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHumanPresenceSettings.all);
+      Hr := m_Interface.put_IsOnlookerDetectionEnabled (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_OnlookerDetectionOptions
+   (
+      this : in out HumanPresenceSettings
+   )
+   return WinRt.Windows.Devices.Sensors.OnlookerDetectionOptions'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IOnlookerDetectionOptions;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSettings3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSettings3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.OnlookerDetectionOptions do
+         m_Interface := QInterface (this.m_IHumanPresenceSettings.all);
+         Hr := m_Interface.get_OnlookerDetectionOptions (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IOnlookerDetectionOptions := new Windows.Devices.Sensors.IOnlookerDetectionOptions;
+         Retval.m_IOnlookerDetectionOptions.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Inclinometer
 
    procedure Initialize (this : in out Inclinometer) is
@@ -4518,6 +6726,33 @@ package body WinRt.Windows.Devices.Sensors is
          Hr := RoGetActivationFactory (m_hString, IID_IInclinometerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IInclinometer := new Windows.Devices.Sensors.IInclinometer;
+            Retval.m_IInclinometer.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetDefault
+   (
+      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
+   )
+   return WinRt.Windows.Devices.Sensors.Inclinometer is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Inclinometer");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IInclinometerStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IInclinometer;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.Inclinometer do
+         Hr := RoGetActivationFactory (m_hString, IID_IInclinometerStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (sensorReadingtype, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -4628,33 +6863,6 @@ package body WinRt.Windows.Devices.Sensors is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_deviceId);
-      end return;
-   end;
-
-   function GetDefault
-   (
-      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
-   )
-   return WinRt.Windows.Devices.Sensors.Inclinometer is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Inclinometer");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IInclinometerStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IInclinometer;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.Inclinometer do
-         Hr := RoGetActivationFactory (m_hString, IID_IInclinometerStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (sensorReadingtype, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IInclinometer := new Windows.Devices.Sensors.IInclinometer;
-            Retval.m_IInclinometer.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5639,6 +7847,27 @@ package body WinRt.Windows.Devices.Sensors is
       end return;
    end;
 
+   function IsChromaticitySupported
+   (
+      this : in out LightSensor
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.ILightSensor4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ILightSensor_Interface, WinRt.Windows.Devices.Sensors.ILightSensor4, WinRt.Windows.Devices.Sensors.IID_ILightSensor4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ILightSensor.all);
+      Hr := m_Interface.IsChromaticitySupported (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for LightSensorDataThreshold
 
@@ -5721,6 +7950,46 @@ package body WinRt.Windows.Devices.Sensors is
       temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILightSensorDataThreshold.all.put_AbsoluteLux (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Chromaticity
+   (
+      this : in out LightSensorDataThreshold
+   )
+   return WinRt.Windows.Devices.Sensors.LightSensorChromaticity is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.ILightSensorDataThreshold2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.LightSensorChromaticity;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ILightSensorDataThreshold_Interface, WinRt.Windows.Devices.Sensors.ILightSensorDataThreshold2, WinRt.Windows.Devices.Sensors.IID_ILightSensorDataThreshold2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ILightSensorDataThreshold.all);
+      Hr := m_Interface.get_Chromaticity (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Chromaticity
+   (
+      this : in out LightSensorDataThreshold;
+      value : Windows.Devices.Sensors.LightSensorChromaticity
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.ILightSensorDataThreshold2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ILightSensorDataThreshold_Interface, WinRt.Windows.Devices.Sensors.ILightSensorDataThreshold2, WinRt.Windows.Devices.Sensors.IID_ILightSensorDataThreshold2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ILightSensorDataThreshold.all);
+      Hr := m_Interface.put_Chromaticity (value);
+      temp := m_Interface.Release;
       if Hr /= S_OK then
          raise Program_Error;
       end if;
@@ -5831,6 +8100,27 @@ package body WinRt.Windows.Devices.Sensors is
       return m_GenericRetVal;
    end;
 
+   function get_Chromaticity
+   (
+      this : in out LightSensorReading
+   )
+   return WinRt.Windows.Devices.Sensors.LightSensorChromaticity is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Sensors.ILightSensorReading3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.LightSensorChromaticity;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ILightSensorReading_Interface, WinRt.Windows.Devices.Sensors.ILightSensorReading3, WinRt.Windows.Devices.Sensors.IID_ILightSensorReading3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ILightSensorReading.all);
+      Hr := m_Interface.get_Chromaticity (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for LightSensorReadingChangedEventArgs
 
@@ -5875,6 +8165,61 @@ package body WinRt.Windows.Devices.Sensors is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for LockOnLeaveOptions
+
+   procedure Initialize (this : in out LockOnLeaveOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out LockOnLeaveOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ILockOnLeaveOptions, ILockOnLeaveOptions_Ptr);
+   begin
+      if this.m_ILockOnLeaveOptions /= null then
+         if this.m_ILockOnLeaveOptions.all /= null then
+            temp := this.m_ILockOnLeaveOptions.all.Release;
+            Free (this.m_ILockOnLeaveOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for LockOnLeaveOptions
+
+   function get_AllowWhenExternalDisplayConnected
+   (
+      this : in out LockOnLeaveOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_ILockOnLeaveOptions.all.get_AllowWhenExternalDisplayConnected (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_AllowWhenExternalDisplayConnected
+   (
+      this : in out LockOnLeaveOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ILockOnLeaveOptions.all.put_AllowWhenExternalDisplayConnected (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Magnetometer
 
    procedure Initialize (this : in out Magnetometer) is
@@ -5896,6 +8241,30 @@ package body WinRt.Windows.Devices.Sensors is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for Magnetometer
+
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.Magnetometer is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Magnetometer");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IMagnetometerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IMagnetometer;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.Magnetometer do
+         Hr := RoGetActivationFactory (m_hString, IID_IMagnetometerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IMagnetometer := new Windows.Devices.Sensors.IMagnetometer;
+            Retval.m_IMagnetometer.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
 
    function GetDeviceSelector_Magnetometer
    return WinRt.WString is
@@ -5993,30 +8362,6 @@ package body WinRt.Windows.Devices.Sensors is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_deviceId);
-      end return;
-   end;
-
-   function GetDefault
-   return WinRt.Windows.Devices.Sensors.Magnetometer is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Magnetometer");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IMagnetometerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IMagnetometer;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.Magnetometer do
-         Hr := RoGetActivationFactory (m_hString, IID_IMagnetometerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IMagnetometer := new Windows.Devices.Sensors.IMagnetometer;
-            Retval.m_IMagnetometer.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6593,6 +8938,93 @@ package body WinRt.Windows.Devices.Sensors is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for OnlookerDetectionOptions
+
+   procedure Initialize (this : in out OnlookerDetectionOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out OnlookerDetectionOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IOnlookerDetectionOptions, IOnlookerDetectionOptions_Ptr);
+   begin
+      if this.m_IOnlookerDetectionOptions /= null then
+         if this.m_IOnlookerDetectionOptions.all /= null then
+            temp := this.m_IOnlookerDetectionOptions.all.Release;
+            Free (this.m_IOnlookerDetectionOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for OnlookerDetectionOptions
+
+   function get_Action
+   (
+      this : in out OnlookerDetectionOptions
+   )
+   return WinRt.Windows.Devices.Sensors.OnlookerDetectionAction is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.OnlookerDetectionAction;
+   begin
+      Hr := this.m_IOnlookerDetectionOptions.all.get_Action (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Action
+   (
+      this : in out OnlookerDetectionOptions;
+      value : Windows.Devices.Sensors.OnlookerDetectionAction
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IOnlookerDetectionOptions.all.put_Action (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_BackOnMode
+   (
+      this : in out OnlookerDetectionOptions
+   )
+   return WinRt.Windows.Devices.Sensors.OnlookerDetectionBackOnMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.OnlookerDetectionBackOnMode;
+   begin
+      Hr := this.m_IOnlookerDetectionOptions.all.get_BackOnMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_BackOnMode
+   (
+      this : in out OnlookerDetectionOptions;
+      value : Windows.Devices.Sensors.OnlookerDetectionBackOnMode
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IOnlookerDetectionOptions.all.put_BackOnMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for OrientationSensor
 
    procedure Initialize (this : in out OrientationSensor) is
@@ -6614,6 +9046,109 @@ package body WinRt.Windows.Devices.Sensors is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for OrientationSensor
+
+   function GetDefault
+   (
+      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
+   )
+   return WinRt.Windows.Devices.Sensors.OrientationSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (sensorReadingtype, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
+            Retval.m_IOrientationSensor.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetDefault
+   (
+      sensorReadingType : Windows.Devices.Sensors.SensorReadingType;
+      optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal
+   )
+   return WinRt.Windows.Devices.Sensors.OrientationSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (sensorReadingType, optimizationGoal, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
+            Retval.m_IOrientationSensor.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.OrientationSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
+            Retval.m_IOrientationSensor.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetDefaultForRelativeReadings
+   return WinRt.Windows.Devices.Sensors.OrientationSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefaultForRelativeReadings (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
+            Retval.m_IOrientationSensor.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
 
    function GetDeviceSelector_OrientationSensor
    (
@@ -6742,109 +9277,6 @@ package body WinRt.Windows.Devices.Sensors is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_deviceId);
-      end return;
-   end;
-
-   function GetDefault
-   return WinRt.Windows.Devices.Sensors.OrientationSensor is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
-         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
-            Retval.m_IOrientationSensor.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetDefaultForRelativeReadings
-   return WinRt.Windows.Devices.Sensors.OrientationSensor is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
-         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefaultForRelativeReadings (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
-            Retval.m_IOrientationSensor.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetDefault
-   (
-      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
-   )
-   return WinRt.Windows.Devices.Sensors.OrientationSensor is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
-         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (sensorReadingtype, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
-            Retval.m_IOrientationSensor.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetDefault
-   (
-      sensorReadingType : Windows.Devices.Sensors.SensorReadingType;
-      optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal
-   )
-   return WinRt.Windows.Devices.Sensors.OrientationSensor is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
-         Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (sensorReadingType, optimizationGoal, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
-            Retval.m_IOrientationSensor.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8002,30 +10434,6 @@ package body WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ProximitySensor
 
-   function GetReadingsFromTriggerDetails_ProximitySensor
-   (
-      triggerDetails : Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
-   )
-   return WinRt.GenericObject is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.ProximitySensor");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.IProximitySensorStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IProximitySensorStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetReadingsFromTriggerDetails (triggerDetails.m_ISensorDataThresholdTriggerDetails.all, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
    function GetDeviceSelector_ProximitySensor
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -8077,6 +10485,30 @@ package body WinRt.Windows.Devices.Sensors is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_sensorId);
       end return;
+   end;
+
+   function GetReadingsFromTriggerDetails_ProximitySensor
+   (
+      triggerDetails : Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
+   )
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.ProximitySensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.IProximitySensorStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IProximitySensorStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetReadingsFromTriggerDetails (triggerDetails.m_ISensorDataThresholdTriggerDetails.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -8772,30 +11204,6 @@ package body WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SimpleOrientationSensor
 
-   function GetDefault
-   return WinRt.Windows.Devices.Sensors.SimpleOrientationSensor is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.SimpleOrientationSensor");
-      m_Factory        : access WinRt.Windows.Devices.Sensors.ISimpleOrientationSensorStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ISimpleOrientationSensor;
-   begin
-      return RetVal : WinRt.Windows.Devices.Sensors.SimpleOrientationSensor do
-         Hr := RoGetActivationFactory (m_hString, IID_ISimpleOrientationSensorStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ISimpleOrientationSensor := new Windows.Devices.Sensors.ISimpleOrientationSensor;
-            Retval.m_ISimpleOrientationSensor.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function GetDeviceSelector_SimpleOrientationSensor
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -8892,6 +11300,30 @@ package body WinRt.Windows.Devices.Sensors is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_deviceId);
+      end return;
+   end;
+
+   function GetDefault
+   return WinRt.Windows.Devices.Sensors.SimpleOrientationSensor is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.SimpleOrientationSensor");
+      m_Factory        : access WinRt.Windows.Devices.Sensors.ISimpleOrientationSensorStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Sensors.ISimpleOrientationSensor;
+   begin
+      return RetVal : WinRt.Windows.Devices.Sensors.SimpleOrientationSensor do
+         Hr := RoGetActivationFactory (m_hString, IID_ISimpleOrientationSensorStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ISimpleOrientationSensor := new Windows.Devices.Sensors.ISimpleOrientationSensor;
+            Retval.m_ISimpleOrientationSensor.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9067,6 +11499,93 @@ package body WinRt.Windows.Devices.Sensors is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WakeOnApproachOptions
+
+   procedure Initialize (this : in out WakeOnApproachOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WakeOnApproachOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IWakeOnApproachOptions, IWakeOnApproachOptions_Ptr);
+   begin
+      if this.m_IWakeOnApproachOptions /= null then
+         if this.m_IWakeOnApproachOptions.all /= null then
+            temp := this.m_IWakeOnApproachOptions.all.Release;
+            Free (this.m_IWakeOnApproachOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WakeOnApproachOptions
+
+   function get_AllowWhenExternalDisplayConnected
+   (
+      this : in out WakeOnApproachOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWakeOnApproachOptions.all.get_AllowWhenExternalDisplayConnected (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_AllowWhenExternalDisplayConnected
+   (
+      this : in out WakeOnApproachOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWakeOnApproachOptions.all.put_AllowWhenExternalDisplayConnected (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_DisableWhenBatterySaverOn
+   (
+      this : in out WakeOnApproachOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IWakeOnApproachOptions.all.get_DisableWhenBatterySaverOn (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_DisableWhenBatterySaverOn
+   (
+      this : in out WakeOnApproachOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IWakeOnApproachOptions.all.put_DisableWhenBatterySaverOn (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Devices.Sensors;

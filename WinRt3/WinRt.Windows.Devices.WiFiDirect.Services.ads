@@ -52,6 +52,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
 
    type IWiFiDirectServiceAdvertiserFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiDirectServiceAdvertiserFactory is access all IWiFiDirectServiceAdvertiserFactory_Interface'Class;
+   type IWiFiDirectServiceAdvertiserFactory_Ptr is access all IWiFiDirectServiceAdvertiserFactory;
 
    type IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs is access all IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs_Interface'Class;
@@ -83,6 +84,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
 
    type IWiFiDirectServiceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiDirectServiceStatics is access all IWiFiDirectServiceStatics_Interface'Class;
+   type IWiFiDirectServiceStatics_Ptr is access all IWiFiDirectServiceStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

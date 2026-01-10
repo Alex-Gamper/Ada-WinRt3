@@ -120,22 +120,6 @@ package body WinRt.Windows.Globalization.Collation is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for CharacterGroupings
 
-   function Constructor return CharacterGroupings is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Collation.CharacterGroupings");
-      m_ComRetVal  : aliased Windows.Globalization.Collation.ICharacterGroupings;
-   begin
-      return RetVal : CharacterGroupings do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ICharacterGroupings := new Windows.Globalization.Collation.ICharacterGroupings;
-            Retval.m_ICharacterGroupings.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       language : WinRt.WString
@@ -159,6 +143,22 @@ package body WinRt.Windows.Globalization.Collation is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_language);
+      end return;
+   end;
+
+   function Constructor return CharacterGroupings is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Collation.CharacterGroupings");
+      m_ComRetVal  : aliased Windows.Globalization.Collation.ICharacterGroupings;
+   begin
+      return RetVal : CharacterGroupings do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ICharacterGroupings := new Windows.Globalization.Collation.ICharacterGroupings;
+            Retval.m_ICharacterGroupings.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

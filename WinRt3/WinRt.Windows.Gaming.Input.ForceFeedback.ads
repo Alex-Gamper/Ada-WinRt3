@@ -41,12 +41,15 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
 
    type IConditionForceEffect_Interface is interface and WinRt.IInspectable_Interface;
    type IConditionForceEffect is access all IConditionForceEffect_Interface'Class;
+   type IConditionForceEffect_Ptr is access all IConditionForceEffect;
 
    type IConditionForceEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IConditionForceEffectFactory is access all IConditionForceEffectFactory_Interface'Class;
+   type IConditionForceEffectFactory_Ptr is access all IConditionForceEffectFactory;
 
    type IConstantForceEffect_Interface is interface and WinRt.IInspectable_Interface;
    type IConstantForceEffect is access all IConstantForceEffect_Interface'Class;
+   type IConstantForceEffect_Ptr is access all IConstantForceEffect;
 
    type IForceFeedbackEffect_Interface is interface and WinRt.IInspectable_Interface;
    type IForceFeedbackEffect is access all IForceFeedbackEffect_Interface'Class;
@@ -58,12 +61,15 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
 
    type IPeriodicForceEffect_Interface is interface and WinRt.IInspectable_Interface;
    type IPeriodicForceEffect is access all IPeriodicForceEffect_Interface'Class;
+   type IPeriodicForceEffect_Ptr is access all IPeriodicForceEffect;
 
    type IPeriodicForceEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPeriodicForceEffectFactory is access all IPeriodicForceEffectFactory_Interface'Class;
+   type IPeriodicForceEffectFactory_Ptr is access all IPeriodicForceEffectFactory;
 
    type IRampForceEffect_Interface is interface and WinRt.IInspectable_Interface;
    type IRampForceEffect is access all IRampForceEffect_Interface'Class;
+   type IRampForceEffect_Ptr is access all IRampForceEffect;
 
    -----------------------------------------------------------------------------
    -- Class declarations

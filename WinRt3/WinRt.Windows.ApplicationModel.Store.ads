@@ -49,30 +49,39 @@ package WinRt.Windows.ApplicationModel.Store is
 
    type ICurrentApp_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrentApp is access all ICurrentApp_Interface'Class;
+   type ICurrentApp_Ptr is access all ICurrentApp;
 
    type ICurrentApp2Statics_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrentApp2Statics is access all ICurrentApp2Statics_Interface'Class;
+   type ICurrentApp2Statics_Ptr is access all ICurrentApp2Statics;
 
    type ICurrentAppSimulator_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrentAppSimulator is access all ICurrentAppSimulator_Interface'Class;
+   type ICurrentAppSimulator_Ptr is access all ICurrentAppSimulator;
 
    type ICurrentAppSimulatorStaticsWithFiltering_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrentAppSimulatorStaticsWithFiltering is access all ICurrentAppSimulatorStaticsWithFiltering_Interface'Class;
+   type ICurrentAppSimulatorStaticsWithFiltering_Ptr is access all ICurrentAppSimulatorStaticsWithFiltering;
 
    type ICurrentAppSimulatorWithCampaignId_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrentAppSimulatorWithCampaignId is access all ICurrentAppSimulatorWithCampaignId_Interface'Class;
+   type ICurrentAppSimulatorWithCampaignId_Ptr is access all ICurrentAppSimulatorWithCampaignId;
 
    type ICurrentAppSimulatorWithConsumables_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrentAppSimulatorWithConsumables is access all ICurrentAppSimulatorWithConsumables_Interface'Class;
+   type ICurrentAppSimulatorWithConsumables_Ptr is access all ICurrentAppSimulatorWithConsumables;
 
    type ICurrentAppStaticsWithFiltering_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrentAppStaticsWithFiltering is access all ICurrentAppStaticsWithFiltering_Interface'Class;
+   type ICurrentAppStaticsWithFiltering_Ptr is access all ICurrentAppStaticsWithFiltering;
 
    type ICurrentAppWithCampaignId_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrentAppWithCampaignId is access all ICurrentAppWithCampaignId_Interface'Class;
+   type ICurrentAppWithCampaignId_Ptr is access all ICurrentAppWithCampaignId;
 
    type ICurrentAppWithConsumables_Interface is interface and WinRt.IInspectable_Interface;
    type ICurrentAppWithConsumables is access all ICurrentAppWithConsumables_Interface'Class;
+   type ICurrentAppWithConsumables_Ptr is access all ICurrentAppWithConsumables;
 
    type ILicenseInformation_Interface is interface and WinRt.IInspectable_Interface;
    type ILicenseInformation is access all ILicenseInformation_Interface'Class;
@@ -84,6 +93,7 @@ package WinRt.Windows.ApplicationModel.Store is
 
    type IListingInformation2_Interface is interface and WinRt.IInspectable_Interface;
    type IListingInformation2 is access all IListingInformation2_Interface'Class;
+   type IListingInformation2_Ptr is access all IListingInformation2;
 
    type IProductLicense_Interface is interface and WinRt.IInspectable_Interface;
    type IProductLicense is access all IProductLicense_Interface'Class;
@@ -91,6 +101,7 @@ package WinRt.Windows.ApplicationModel.Store is
 
    type IProductLicenseWithFulfillment_Interface is interface and WinRt.IInspectable_Interface;
    type IProductLicenseWithFulfillment is access all IProductLicenseWithFulfillment_Interface'Class;
+   type IProductLicenseWithFulfillment_Ptr is access all IProductLicenseWithFulfillment;
 
    type IProductListing_Interface is interface and WinRt.IInspectable_Interface;
    type IProductListing is access all IProductListing_Interface'Class;
@@ -98,12 +109,15 @@ package WinRt.Windows.ApplicationModel.Store is
 
    type IProductListing2_Interface is interface and WinRt.IInspectable_Interface;
    type IProductListing2 is access all IProductListing2_Interface'Class;
+   type IProductListing2_Ptr is access all IProductListing2;
 
    type IProductListingWithConsumables_Interface is interface and WinRt.IInspectable_Interface;
    type IProductListingWithConsumables is access all IProductListingWithConsumables_Interface'Class;
+   type IProductListingWithConsumables_Ptr is access all IProductListingWithConsumables;
 
    type IProductListingWithMetadata_Interface is interface and WinRt.IInspectable_Interface;
    type IProductListingWithMetadata is access all IProductListingWithMetadata_Interface'Class;
+   type IProductListingWithMetadata_Ptr is access all IProductListingWithMetadata;
 
    type IProductPurchaseDisplayProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IProductPurchaseDisplayProperties is access all IProductPurchaseDisplayProperties_Interface'Class;
@@ -111,6 +125,7 @@ package WinRt.Windows.ApplicationModel.Store is
 
    type IProductPurchaseDisplayPropertiesFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IProductPurchaseDisplayPropertiesFactory is access all IProductPurchaseDisplayPropertiesFactory_Interface'Class;
+   type IProductPurchaseDisplayPropertiesFactory_Ptr is access all IProductPurchaseDisplayPropertiesFactory;
 
    type IPurchaseResults_Interface is interface and WinRt.IInspectable_Interface;
    type IPurchaseResults is access all IPurchaseResults_Interface'Class;
@@ -960,6 +975,40 @@ package WinRt.Windows.ApplicationModel.Store is
    -- Static RuntimeClass
    package CurrentApp is
 
+      function get_LicenseInformation
+      return WinRt.Windows.ApplicationModel.Store.LicenseInformation;
+
+      function get_LinkUri
+      return WinRt.Windows.Foundation.Uri;
+
+      function get_AppId
+      return WinRt.Guid;
+
+      function RequestAppPurchaseAsync
+      (
+         includeReceipt : WinRt.Boolean
+      )
+      return WinRt.WString;
+
+      function RequestProductPurchaseAsync
+      (
+         productId : WinRt.WString;
+         includeReceipt : WinRt.Boolean
+      )
+      return WinRt.WString;
+
+      function LoadListingInformationAsync
+      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
+
+      function GetAppReceiptAsync
+      return WinRt.WString;
+
+      function GetProductReceiptAsync
+      (
+         productId : WinRt.WString
+      )
+      return WinRt.WString;
+
       function LoadListingInformationByProductIdsAsync
       (
          productIds : GenericObject
@@ -976,6 +1025,9 @@ package WinRt.Windows.ApplicationModel.Store is
       (
          productId : WinRt.WString
       );
+
+      function GetAppPurchaseCampaignIdAsync
+      return WinRt.WString;
 
       function GetCustomerPurchaseIdAsync
       (
@@ -1015,48 +1067,26 @@ package WinRt.Windows.ApplicationModel.Store is
       function GetUnfulfilledConsumablesAsync
       return WinRt.GenericObject;
 
-      function GetAppPurchaseCampaignIdAsync
-      return WinRt.WString;
-
-      function get_LicenseInformation
-      return WinRt.Windows.ApplicationModel.Store.LicenseInformation;
-
-      function get_LinkUri
-      return WinRt.Windows.Foundation.Uri;
-
-      function get_AppId
-      return WinRt.Guid;
-
-      function RequestAppPurchaseAsync
-      (
-         includeReceipt : WinRt.Boolean
-      )
-      return WinRt.WString;
-
-      function RequestProductPurchaseAsync
-      (
-         productId : WinRt.WString;
-         includeReceipt : WinRt.Boolean
-      )
-      return WinRt.WString;
-
-      function LoadListingInformationAsync
-      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
-
-      function GetAppReceiptAsync
-      return WinRt.WString;
-
-      function GetProductReceiptAsync
-      (
-         productId : WinRt.WString
-      )
-      return WinRt.WString;
-
    end CurrentApp;
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package CurrentAppSimulator is
+
+      function GetAppPurchaseCampaignIdAsync_CurrentAppSimulator
+      return WinRt.WString;
+
+      function LoadListingInformationByProductIdsAsync_CurrentAppSimulator
+      (
+         productIds : GenericObject
+      )
+      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
+
+      function LoadListingInformationByKeywordsAsync_CurrentAppSimulator
+      (
+         keywords : GenericObject
+      )
+      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
 
       function get_LicenseInformation_CurrentAppSimulator
       return WinRt.Windows.ApplicationModel.Store.LicenseInformation;
@@ -1097,9 +1127,6 @@ package WinRt.Windows.ApplicationModel.Store is
          simulatorSettingsFile : Windows.Storage.StorageFile'Class
       );
 
-      function GetAppPurchaseCampaignIdAsync_CurrentAppSimulator
-      return WinRt.WString;
-
       function ReportConsumableFulfillmentAsync_CurrentAppSimulator
       (
          productId : WinRt.WString;
@@ -1123,18 +1150,6 @@ package WinRt.Windows.ApplicationModel.Store is
 
       function GetUnfulfilledConsumablesAsync_CurrentAppSimulator
       return WinRt.GenericObject;
-
-      function LoadListingInformationByProductIdsAsync_CurrentAppSimulator
-      (
-         productIds : GenericObject
-      )
-      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
-
-      function LoadListingInformationByKeywordsAsync_CurrentAppSimulator
-      (
-         keywords : GenericObject
-      )
-      return WinRt.Windows.ApplicationModel.Store.ListingInformation;
 
    end CurrentAppSimulator;
 

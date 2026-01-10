@@ -52,6 +52,7 @@ package WinRt.Windows.UI.Input.Spatial is
 
    type ISpatialGestureRecognizerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialGestureRecognizerFactory is access all ISpatialGestureRecognizerFactory_Interface'Class;
+   type ISpatialGestureRecognizerFactory_Ptr is access all ISpatialGestureRecognizerFactory;
 
    type ISpatialHoldCanceledEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialHoldCanceledEventArgs is access all ISpatialHoldCanceledEventArgs_Interface'Class;
@@ -75,9 +76,11 @@ package WinRt.Windows.UI.Input.Spatial is
 
    type ISpatialInteractionController2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionController2 is access all ISpatialInteractionController2_Interface'Class;
+   type ISpatialInteractionController2_Ptr is access all ISpatialInteractionController2;
 
    type ISpatialInteractionController3_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionController3 is access all ISpatialInteractionController3_Interface'Class;
+   type ISpatialInteractionController3_Ptr is access all ISpatialInteractionController3;
 
    type ISpatialInteractionControllerProperties_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionControllerProperties is access all ISpatialInteractionControllerProperties_Interface'Class;
@@ -89,6 +92,7 @@ package WinRt.Windows.UI.Input.Spatial is
 
    type ISpatialInteractionDetectedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionDetectedEventArgs2 is access all ISpatialInteractionDetectedEventArgs2_Interface'Class;
+   type ISpatialInteractionDetectedEventArgs2_Ptr is access all ISpatialInteractionDetectedEventArgs2;
 
    type ISpatialInteractionManager_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionManager is access all ISpatialInteractionManager_Interface'Class;
@@ -96,9 +100,11 @@ package WinRt.Windows.UI.Input.Spatial is
 
    type ISpatialInteractionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionManagerStatics is access all ISpatialInteractionManagerStatics_Interface'Class;
+   type ISpatialInteractionManagerStatics_Ptr is access all ISpatialInteractionManagerStatics;
 
    type ISpatialInteractionManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionManagerStatics2 is access all ISpatialInteractionManagerStatics2_Interface'Class;
+   type ISpatialInteractionManagerStatics2_Ptr is access all ISpatialInteractionManagerStatics2;
 
    type ISpatialInteractionSource_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionSource is access all ISpatialInteractionSource_Interface'Class;
@@ -106,12 +112,15 @@ package WinRt.Windows.UI.Input.Spatial is
 
    type ISpatialInteractionSource2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionSource2 is access all ISpatialInteractionSource2_Interface'Class;
+   type ISpatialInteractionSource2_Ptr is access all ISpatialInteractionSource2;
 
    type ISpatialInteractionSource3_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionSource3 is access all ISpatialInteractionSource3_Interface'Class;
+   type ISpatialInteractionSource3_Ptr is access all ISpatialInteractionSource3;
 
    type ISpatialInteractionSource4_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionSource4 is access all ISpatialInteractionSource4_Interface'Class;
+   type ISpatialInteractionSource4_Ptr is access all ISpatialInteractionSource4;
 
    type ISpatialInteractionSourceEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionSourceEventArgs is access all ISpatialInteractionSourceEventArgs_Interface'Class;
@@ -119,6 +128,7 @@ package WinRt.Windows.UI.Input.Spatial is
 
    type ISpatialInteractionSourceEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionSourceEventArgs2 is access all ISpatialInteractionSourceEventArgs2_Interface'Class;
+   type ISpatialInteractionSourceEventArgs2_Ptr is access all ISpatialInteractionSourceEventArgs2;
 
    type ISpatialInteractionSourceLocation_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionSourceLocation is access all ISpatialInteractionSourceLocation_Interface'Class;
@@ -126,9 +136,11 @@ package WinRt.Windows.UI.Input.Spatial is
 
    type ISpatialInteractionSourceLocation2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionSourceLocation2 is access all ISpatialInteractionSourceLocation2_Interface'Class;
+   type ISpatialInteractionSourceLocation2_Ptr is access all ISpatialInteractionSourceLocation2;
 
    type ISpatialInteractionSourceLocation3_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionSourceLocation3 is access all ISpatialInteractionSourceLocation3_Interface'Class;
+   type ISpatialInteractionSourceLocation3_Ptr is access all ISpatialInteractionSourceLocation3;
 
    type ISpatialInteractionSourceProperties_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionSourceProperties is access all ISpatialInteractionSourceProperties_Interface'Class;
@@ -140,9 +152,11 @@ package WinRt.Windows.UI.Input.Spatial is
 
    type ISpatialInteractionSourceState2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionSourceState2 is access all ISpatialInteractionSourceState2_Interface'Class;
+   type ISpatialInteractionSourceState2_Ptr is access all ISpatialInteractionSourceState2;
 
    type ISpatialInteractionSourceState3_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialInteractionSourceState3 is access all ISpatialInteractionSourceState3_Interface'Class;
+   type ISpatialInteractionSourceState3_Ptr is access all ISpatialInteractionSourceState3;
 
    type ISpatialManipulationCanceledEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialManipulationCanceledEventArgs is access all ISpatialManipulationCanceledEventArgs_Interface'Class;
@@ -186,6 +200,7 @@ package WinRt.Windows.UI.Input.Spatial is
 
    type ISpatialPointerInteractionSourcePose2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialPointerInteractionSourcePose2 is access all ISpatialPointerInteractionSourcePose2_Interface'Class;
+   type ISpatialPointerInteractionSourcePose2_Ptr is access all ISpatialPointerInteractionSourcePose2;
 
    type ISpatialPointerPose_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialPointerPose is access all ISpatialPointerPose_Interface'Class;
@@ -193,12 +208,15 @@ package WinRt.Windows.UI.Input.Spatial is
 
    type ISpatialPointerPose2_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialPointerPose2 is access all ISpatialPointerPose2_Interface'Class;
+   type ISpatialPointerPose2_Ptr is access all ISpatialPointerPose2;
 
    type ISpatialPointerPose3_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialPointerPose3 is access all ISpatialPointerPose3_Interface'Class;
+   type ISpatialPointerPose3_Ptr is access all ISpatialPointerPose3;
 
    type ISpatialPointerPoseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialPointerPoseStatics is access all ISpatialPointerPoseStatics_Interface'Class;
+   type ISpatialPointerPoseStatics_Ptr is access all ISpatialPointerPoseStatics;
 
    type ISpatialRecognitionEndedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISpatialRecognitionEndedEventArgs is access all ISpatialRecognitionEndedEventArgs_Interface'Class;
@@ -2185,14 +2203,14 @@ package WinRt.Windows.UI.Input.Spatial is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SpatialInteractionManager
 
-   function GetForCurrentView
-   return WinRt.Windows.UI.Input.Spatial.SpatialInteractionManager;
-
    function IsSourceKindSupported
    (
       kind : Windows.UI.Input.Spatial.SpatialInteractionSourceKind
    )
    return WinRt.Boolean;
+
+   function GetForCurrentView
+   return WinRt.Windows.UI.Input.Spatial.SpatialInteractionManager;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SpatialInteractionManager

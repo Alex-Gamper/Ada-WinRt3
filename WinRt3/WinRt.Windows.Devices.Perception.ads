@@ -46,27 +46,35 @@ package WinRt.Windows.Devices.Perception is
 
    type IKnownCameraIntrinsicsPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownCameraIntrinsicsPropertiesStatics is access all IKnownCameraIntrinsicsPropertiesStatics_Interface'Class;
+   type IKnownCameraIntrinsicsPropertiesStatics_Ptr is access all IKnownCameraIntrinsicsPropertiesStatics;
 
    type IKnownPerceptionColorFrameSourcePropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownPerceptionColorFrameSourcePropertiesStatics is access all IKnownPerceptionColorFrameSourcePropertiesStatics_Interface'Class;
+   type IKnownPerceptionColorFrameSourcePropertiesStatics_Ptr is access all IKnownPerceptionColorFrameSourcePropertiesStatics;
 
    type IKnownPerceptionDepthFrameSourcePropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownPerceptionDepthFrameSourcePropertiesStatics is access all IKnownPerceptionDepthFrameSourcePropertiesStatics_Interface'Class;
+   type IKnownPerceptionDepthFrameSourcePropertiesStatics_Ptr is access all IKnownPerceptionDepthFrameSourcePropertiesStatics;
 
    type IKnownPerceptionFrameSourcePropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownPerceptionFrameSourcePropertiesStatics is access all IKnownPerceptionFrameSourcePropertiesStatics_Interface'Class;
+   type IKnownPerceptionFrameSourcePropertiesStatics_Ptr is access all IKnownPerceptionFrameSourcePropertiesStatics;
 
    type IKnownPerceptionFrameSourcePropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownPerceptionFrameSourcePropertiesStatics2 is access all IKnownPerceptionFrameSourcePropertiesStatics2_Interface'Class;
+   type IKnownPerceptionFrameSourcePropertiesStatics2_Ptr is access all IKnownPerceptionFrameSourcePropertiesStatics2;
 
    type IKnownPerceptionInfraredFrameSourcePropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownPerceptionInfraredFrameSourcePropertiesStatics is access all IKnownPerceptionInfraredFrameSourcePropertiesStatics_Interface'Class;
+   type IKnownPerceptionInfraredFrameSourcePropertiesStatics_Ptr is access all IKnownPerceptionInfraredFrameSourcePropertiesStatics;
 
    type IKnownPerceptionVideoFrameSourcePropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownPerceptionVideoFrameSourcePropertiesStatics is access all IKnownPerceptionVideoFrameSourcePropertiesStatics_Interface'Class;
+   type IKnownPerceptionVideoFrameSourcePropertiesStatics_Ptr is access all IKnownPerceptionVideoFrameSourcePropertiesStatics;
 
    type IKnownPerceptionVideoProfilePropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownPerceptionVideoProfilePropertiesStatics is access all IKnownPerceptionVideoProfilePropertiesStatics_Interface'Class;
+   type IKnownPerceptionVideoProfilePropertiesStatics_Ptr is access all IKnownPerceptionVideoProfilePropertiesStatics;
 
    type IPerceptionColorFrame_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionColorFrame is access all IPerceptionColorFrame_Interface'Class;
@@ -86,6 +94,7 @@ package WinRt.Windows.Devices.Perception is
 
    type IPerceptionColorFrameSource2_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionColorFrameSource2 is access all IPerceptionColorFrameSource2_Interface'Class;
+   type IPerceptionColorFrameSource2_Ptr is access all IPerceptionColorFrameSource2;
 
    type IPerceptionColorFrameSourceAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionColorFrameSourceAddedEventArgs is access all IPerceptionColorFrameSourceAddedEventArgs_Interface'Class;
@@ -97,6 +106,7 @@ package WinRt.Windows.Devices.Perception is
 
    type IPerceptionColorFrameSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionColorFrameSourceStatics is access all IPerceptionColorFrameSourceStatics_Interface'Class;
+   type IPerceptionColorFrameSourceStatics_Ptr is access all IPerceptionColorFrameSourceStatics;
 
    type IPerceptionColorFrameSourceWatcher_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionColorFrameSourceWatcher is access all IPerceptionColorFrameSourceWatcher_Interface'Class;
@@ -132,6 +142,7 @@ package WinRt.Windows.Devices.Perception is
 
    type IPerceptionDepthFrameSource2_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionDepthFrameSource2 is access all IPerceptionDepthFrameSource2_Interface'Class;
+   type IPerceptionDepthFrameSource2_Ptr is access all IPerceptionDepthFrameSource2;
 
    type IPerceptionDepthFrameSourceAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionDepthFrameSourceAddedEventArgs is access all IPerceptionDepthFrameSourceAddedEventArgs_Interface'Class;
@@ -143,6 +154,7 @@ package WinRt.Windows.Devices.Perception is
 
    type IPerceptionDepthFrameSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionDepthFrameSourceStatics is access all IPerceptionDepthFrameSourceStatics_Interface'Class;
+   type IPerceptionDepthFrameSourceStatics_Ptr is access all IPerceptionDepthFrameSourceStatics;
 
    type IPerceptionDepthFrameSourceWatcher_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionDepthFrameSourceWatcher is access all IPerceptionDepthFrameSourceWatcher_Interface'Class;
@@ -174,6 +186,7 @@ package WinRt.Windows.Devices.Perception is
 
    type IPerceptionInfraredFrameSource2_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionInfraredFrameSource2 is access all IPerceptionInfraredFrameSource2_Interface'Class;
+   type IPerceptionInfraredFrameSource2_Ptr is access all IPerceptionInfraredFrameSource2;
 
    type IPerceptionInfraredFrameSourceAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionInfraredFrameSourceAddedEventArgs is access all IPerceptionInfraredFrameSourceAddedEventArgs_Interface'Class;
@@ -185,6 +198,7 @@ package WinRt.Windows.Devices.Perception is
 
    type IPerceptionInfraredFrameSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionInfraredFrameSourceStatics is access all IPerceptionInfraredFrameSourceStatics_Interface'Class;
+   type IPerceptionInfraredFrameSourceStatics_Ptr is access all IPerceptionInfraredFrameSourceStatics;
 
    type IPerceptionInfraredFrameSourceWatcher_Interface is interface and WinRt.IInspectable_Interface;
    type IPerceptionInfraredFrameSourceWatcher is access all IPerceptionInfraredFrameSourceWatcher_Interface'Class;
@@ -2301,6 +2315,9 @@ package WinRt.Windows.Devices.Perception is
    -- Static RuntimeClass
    package KnownPerceptionFrameSourceProperties is
 
+      function get_DeviceId
+      return WinRt.WString;
+
       function get_Id
       return WinRt.WString;
 
@@ -2314,9 +2331,6 @@ package WinRt.Windows.Devices.Perception is
       return WinRt.WString;
 
       function get_EnclosureLocation
-      return WinRt.WString;
-
-      function get_DeviceId
       return WinRt.WString;
 
    end KnownPerceptionFrameSourceProperties;

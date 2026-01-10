@@ -44,6 +44,7 @@ package WinRt.Windows.UI.Composition.Effects is
 
    type ISceneLightingEffect2_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneLightingEffect2 is access all ISceneLightingEffect2_Interface'Class;
+   type ISceneLightingEffect2_Ptr is access all ISceneLightingEffect2;
 
    -----------------------------------------------------------------------------
    -- Class declarations

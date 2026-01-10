@@ -53,6 +53,7 @@ package WinRt.Windows.Foundation is
 
    type IAsyncInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IAsyncInfo is access all IAsyncInfo_Interface'Class;
+   type IAsyncInfo_Ptr is access all IAsyncInfo;
 
    type IClosable_Interface is interface and WinRt.IInspectable_Interface;
    type IClosable is access all IClosable_Interface'Class;
@@ -64,12 +65,15 @@ package WinRt.Windows.Foundation is
 
    type IDeferralFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDeferralFactory is access all IDeferralFactory_Interface'Class;
+   type IDeferralFactory_Ptr is access all IDeferralFactory;
 
    type IGetActivationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGetActivationFactory is access all IGetActivationFactory_Interface'Class;
+   type IGetActivationFactory_Ptr is access all IGetActivationFactory;
 
    type IGuidHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGuidHelperStatics is access all IGuidHelperStatics_Interface'Class;
+   type IGuidHelperStatics_Ptr is access all IGuidHelperStatics;
 
    type IMemoryBuffer_Interface is interface and WinRt.IInspectable_Interface;
    type IMemoryBuffer is access all IMemoryBuffer_Interface'Class;
@@ -77,21 +81,27 @@ package WinRt.Windows.Foundation is
 
    type IMemoryBufferFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMemoryBufferFactory is access all IMemoryBufferFactory_Interface'Class;
+   type IMemoryBufferFactory_Ptr is access all IMemoryBufferFactory;
 
    type IMemoryBufferReference_Interface is interface and WinRt.IInspectable_Interface;
    type IMemoryBufferReference is access all IMemoryBufferReference_Interface'Class;
+   type IMemoryBufferReference_Ptr is access all IMemoryBufferReference;
 
    type IPropertyValue_Interface is interface and WinRt.IInspectable_Interface;
    type IPropertyValue is access all IPropertyValue_Interface'Class;
+   type IPropertyValue_Ptr is access all IPropertyValue;
 
    type IPropertyValueStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPropertyValueStatics is access all IPropertyValueStatics_Interface'Class;
+   type IPropertyValueStatics_Ptr is access all IPropertyValueStatics;
 
    type IStringable_Interface is interface and WinRt.IInspectable_Interface;
    type IStringable is access all IStringable_Interface'Class;
+   type IStringable_Ptr is access all IStringable;
 
    type IUriEscapeStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUriEscapeStatics is access all IUriEscapeStatics_Interface'Class;
+   type IUriEscapeStatics_Ptr is access all IUriEscapeStatics;
 
    type IUriRuntimeClass_Interface is interface and WinRt.IInspectable_Interface;
    type IUriRuntimeClass is access all IUriRuntimeClass_Interface'Class;
@@ -99,9 +109,11 @@ package WinRt.Windows.Foundation is
 
    type IUriRuntimeClassFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IUriRuntimeClassFactory is access all IUriRuntimeClassFactory_Interface'Class;
+   type IUriRuntimeClassFactory_Ptr is access all IUriRuntimeClassFactory;
 
    type IUriRuntimeClassWithAbsoluteCanonicalUri_Interface is interface and WinRt.IInspectable_Interface;
    type IUriRuntimeClassWithAbsoluteCanonicalUri is access all IUriRuntimeClassWithAbsoluteCanonicalUri_Interface'Class;
+   type IUriRuntimeClassWithAbsoluteCanonicalUri_Ptr is access all IUriRuntimeClassWithAbsoluteCanonicalUri;
 
    type IWwwFormUrlDecoderEntry_Interface is interface and WinRt.IInspectable_Interface;
    type IWwwFormUrlDecoderEntry is access all IWwwFormUrlDecoderEntry_Interface'Class;
@@ -114,6 +126,7 @@ package WinRt.Windows.Foundation is
 
    type IWwwFormUrlDecoderRuntimeClassFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWwwFormUrlDecoderRuntimeClassFactory is access all IWwwFormUrlDecoderRuntimeClassFactory_Interface'Class;
+   type IWwwFormUrlDecoderRuntimeClassFactory_Ptr is access all IWwwFormUrlDecoderRuntimeClassFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations

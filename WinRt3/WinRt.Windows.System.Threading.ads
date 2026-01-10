@@ -53,6 +53,7 @@ package WinRt.Windows.System.Threading is
 
    type IThreadPoolStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IThreadPoolStatics is access all IThreadPoolStatics_Interface'Class;
+   type IThreadPoolStatics_Ptr is access all IThreadPoolStatics;
 
    type IThreadPoolTimer_Interface is interface and WinRt.IInspectable_Interface;
    type IThreadPoolTimer is access all IThreadPoolTimer_Interface'Class;
@@ -60,6 +61,7 @@ package WinRt.Windows.System.Threading is
 
    type IThreadPoolTimerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IThreadPoolTimerStatics is access all IThreadPoolTimerStatics_Interface'Class;
+   type IThreadPoolTimerStatics_Ptr is access all IThreadPoolTimerStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -50,6 +50,10 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
    type IPhoneIncomingCallDismissedTriggerDetails is access all IPhoneIncomingCallDismissedTriggerDetails_Interface'Class;
    type IPhoneIncomingCallDismissedTriggerDetails_Ptr is access all IPhoneIncomingCallDismissedTriggerDetails;
 
+   type IPhoneIncomingCallNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
+   type IPhoneIncomingCallNotificationTriggerDetails is access all IPhoneIncomingCallNotificationTriggerDetails_Interface'Class;
+   type IPhoneIncomingCallNotificationTriggerDetails_Ptr is access all IPhoneIncomingCallNotificationTriggerDetails;
+
    type IPhoneLineChangedTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IPhoneLineChangedTriggerDetails is access all IPhoneLineChangedTriggerDetails_Interface'Class;
    type IPhoneLineChangedTriggerDetails_Ptr is access all IPhoneLineChangedTriggerDetails;
@@ -79,6 +83,12 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
          m_IPhoneIncomingCallDismissedTriggerDetails : access Windows.ApplicationModel.Calls.Background.IPhoneIncomingCallDismissedTriggerDetails;
       end record;
    type PhoneIncomingCallDismissedTriggerDetails_Ptr is access all PhoneIncomingCallDismissedTriggerDetails;
+
+   type PhoneIncomingCallNotificationTriggerDetails is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPhoneIncomingCallNotificationTriggerDetails : access Windows.ApplicationModel.Calls.Background.IPhoneIncomingCallNotificationTriggerDetails;
+      end record;
+   type PhoneIncomingCallNotificationTriggerDetails_Ptr is access all PhoneIncomingCallNotificationTriggerDetails;
 
    type PhoneLineChangedTriggerDetails is new Ada.Finalization.Limited_Controlled with
       record
@@ -167,7 +177,8 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       AirplaneModeDisabledForEmergencyCall_e,
       CallOriginDataRequest_e,
       CallBlocked_e,
-      IncomingCallDismissed_e
+      IncomingCallDismissed_e,
+      IncomingCallNotification_e
    );
    for PhoneTriggerType use (
       NewVoicemailMessage_e => 0,
@@ -176,7 +187,8 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       AirplaneModeDisabledForEmergencyCall_e => 3,
       CallOriginDataRequest_e => 4,
       CallBlocked_e => 5,
-      IncomingCallDismissed_e => 6
+      IncomingCallDismissed_e => 6,
+      IncomingCallNotification_e => 7
    );
    type PhoneTriggerType_Ptr is access all PhoneTriggerType;
 
@@ -284,6 +296,25 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       return WinRt.Hresult is abstract;
 
       IID_IPhoneIncomingCallDismissedTriggerDetails : aliased WinRt.IID := (3134390902, 33718, 22322, (156, 56, 12, 32, 101, 70, 25, 106 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPhoneIncomingCallNotificationTriggerDetails is interface and WinRt.IInspectable;
+
+      function get_LineId
+      (
+         this : access IPhoneIncomingCallNotificationTriggerDetails_Interface;
+         RetVal : access WinRt.Guid
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CallId
+      (
+         this : access IPhoneIncomingCallNotificationTriggerDetails_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPhoneIncomingCallNotificationTriggerDetails : aliased WinRt.IID := (722362436, 39730, 23874, (130, 34, 210, 129, 46, 57, 251, 33 ));
 
    -----------------------------------------------------------------------------
    -- type IPhoneLineChangedTriggerDetails is interface and WinRt.IInspectable;
@@ -434,6 +465,27 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       this : in out PhoneIncomingCallDismissedTriggerDetails
    )
    return WinRt.Windows.ApplicationModel.Calls.Background.PhoneIncomingCallDismissedReason;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PhoneIncomingCallNotificationTriggerDetails
+
+   overriding procedure Initialize (this : in out PhoneIncomingCallNotificationTriggerDetails);
+   overriding procedure Finalize (this : in out PhoneIncomingCallNotificationTriggerDetails);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PhoneIncomingCallNotificationTriggerDetails
+
+   function get_LineId
+   (
+      this : in out PhoneIncomingCallNotificationTriggerDetails
+   )
+   return WinRt.Guid;
+
+   function get_CallId
+   (
+      this : in out PhoneIncomingCallNotificationTriggerDetails
+   )
+   return WinRt.WString;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PhoneLineChangedTriggerDetails

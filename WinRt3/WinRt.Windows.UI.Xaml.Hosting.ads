@@ -52,6 +52,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
 
    type IDesignerAppManagerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDesignerAppManagerFactory is access all IDesignerAppManagerFactory_Interface'Class;
+   type IDesignerAppManagerFactory_Ptr is access all IDesignerAppManagerFactory;
 
    type IDesignerAppView_Interface is interface and WinRt.IInspectable_Interface;
    type IDesignerAppView is access all IDesignerAppView_Interface'Class;
@@ -63,6 +64,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
 
    type IDesktopWindowXamlSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDesktopWindowXamlSourceFactory is access all IDesktopWindowXamlSourceFactory_Interface'Class;
+   type IDesktopWindowXamlSourceFactory_Ptr is access all IDesktopWindowXamlSourceFactory;
 
    type IDesktopWindowXamlSourceGotFocusEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDesktopWindowXamlSourceGotFocusEventArgs is access all IDesktopWindowXamlSourceGotFocusEventArgs_Interface'Class;
@@ -78,12 +80,15 @@ package WinRt.Windows.UI.Xaml.Hosting is
 
    type IElementCompositionPreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IElementCompositionPreviewStatics is access all IElementCompositionPreviewStatics_Interface'Class;
+   type IElementCompositionPreviewStatics_Ptr is access all IElementCompositionPreviewStatics;
 
    type IElementCompositionPreviewStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IElementCompositionPreviewStatics2 is access all IElementCompositionPreviewStatics2_Interface'Class;
+   type IElementCompositionPreviewStatics2_Ptr is access all IElementCompositionPreviewStatics2;
 
    type IElementCompositionPreviewStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IElementCompositionPreviewStatics3 is access all IElementCompositionPreviewStatics3_Interface'Class;
+   type IElementCompositionPreviewStatics3_Ptr is access all IElementCompositionPreviewStatics3;
 
    type IWindowsXamlManager_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowsXamlManager is access all IWindowsXamlManager_Interface'Class;
@@ -91,6 +96,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
 
    type IWindowsXamlManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowsXamlManagerStatics is access all IWindowsXamlManagerStatics_Interface'Class;
+   type IWindowsXamlManagerStatics_Ptr is access all IWindowsXamlManagerStatics;
 
    type IXamlSourceFocusNavigationRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlSourceFocusNavigationRequest is access all IXamlSourceFocusNavigationRequest_Interface'Class;
@@ -98,6 +104,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
 
    type IXamlSourceFocusNavigationRequestFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlSourceFocusNavigationRequestFactory is access all IXamlSourceFocusNavigationRequestFactory_Interface'Class;
+   type IXamlSourceFocusNavigationRequestFactory_Ptr is access all IXamlSourceFocusNavigationRequestFactory;
 
    type IXamlSourceFocusNavigationResult_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlSourceFocusNavigationResult is access all IXamlSourceFocusNavigationResult_Interface'Class;
@@ -105,6 +112,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
 
    type IXamlSourceFocusNavigationResultFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlSourceFocusNavigationResultFactory is access all IXamlSourceFocusNavigationResultFactory_Interface'Class;
+   type IXamlSourceFocusNavigationResultFactory_Ptr is access all IXamlSourceFocusNavigationResultFactory;
 
    type IXamlUIPresenter_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlUIPresenter is access all IXamlUIPresenter_Interface'Class;
@@ -112,18 +120,23 @@ package WinRt.Windows.UI.Xaml.Hosting is
 
    type IXamlUIPresenterHost_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlUIPresenterHost is access all IXamlUIPresenterHost_Interface'Class;
+   type IXamlUIPresenterHost_Ptr is access all IXamlUIPresenterHost;
 
    type IXamlUIPresenterHost2_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlUIPresenterHost2 is access all IXamlUIPresenterHost2_Interface'Class;
+   type IXamlUIPresenterHost2_Ptr is access all IXamlUIPresenterHost2;
 
    type IXamlUIPresenterHost3_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlUIPresenterHost3 is access all IXamlUIPresenterHost3_Interface'Class;
+   type IXamlUIPresenterHost3_Ptr is access all IXamlUIPresenterHost3;
 
    type IXamlUIPresenterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlUIPresenterStatics is access all IXamlUIPresenterStatics_Interface'Class;
+   type IXamlUIPresenterStatics_Ptr is access all IXamlUIPresenterStatics;
 
    type IXamlUIPresenterStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlUIPresenterStatics2 is access all IXamlUIPresenterStatics2_Interface'Class;
+   type IXamlUIPresenterStatics2_Ptr is access all IXamlUIPresenterStatics2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1064,6 +1077,30 @@ package WinRt.Windows.UI.Xaml.Hosting is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ElementCompositionPreview
 
+   procedure SetImplicitShowAnimation
+   (
+      element : Windows.UI.Xaml.UIElement'Class;
+      animation : Windows.UI.Composition.ICompositionAnimationBase
+   );
+
+   procedure SetImplicitHideAnimation
+   (
+      element : Windows.UI.Xaml.UIElement'Class;
+      animation : Windows.UI.Composition.ICompositionAnimationBase
+   );
+
+   procedure SetIsTranslationEnabled
+   (
+      element : Windows.UI.Xaml.UIElement'Class;
+      value : WinRt.Boolean
+   );
+
+   function GetPointerPositionPropertySet
+   (
+      targetElement : Windows.UI.Xaml.UIElement'Class
+   )
+   return WinRt.Windows.UI.Composition.CompositionPropertySet;
+
    function GetElementVisual
    (
       element : Windows.UI.Xaml.UIElement'Class
@@ -1099,30 +1136,6 @@ package WinRt.Windows.UI.Xaml.Hosting is
       appWindow : Windows.UI.WindowManagement.AppWindow'Class
    )
    return WinRt.Windows.UI.Xaml.UIElement;
-
-   procedure SetImplicitShowAnimation
-   (
-      element : Windows.UI.Xaml.UIElement'Class;
-      animation : Windows.UI.Composition.ICompositionAnimationBase
-   );
-
-   procedure SetImplicitHideAnimation
-   (
-      element : Windows.UI.Xaml.UIElement'Class;
-      animation : Windows.UI.Composition.ICompositionAnimationBase
-   );
-
-   procedure SetIsTranslationEnabled
-   (
-      element : Windows.UI.Xaml.UIElement'Class;
-      value : WinRt.Boolean
-   );
-
-   function GetPointerPositionPropertySet
-   (
-      targetElement : Windows.UI.Xaml.UIElement'Class
-   )
-   return WinRt.Windows.UI.Composition.CompositionPropertySet;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ElementCompositionPreview
@@ -1231,6 +1244,21 @@ package WinRt.Windows.UI.Xaml.Hosting is
    -----------------------------------------------------------------------------
    -- Static Interfaces for XamlUIPresenter
 
+   function get_CompleteTimelinesAutomatically
+   return WinRt.Boolean;
+
+   procedure put_CompleteTimelinesAutomatically
+   (
+      value : WinRt.Boolean
+   );
+
+   procedure SetHost
+   (
+      host : Windows.UI.Xaml.Hosting.IXamlUIPresenterHost
+   );
+
+   procedure NotifyWindowSizeChanged;
+
    function GetFlyoutPlacementTargetInfo
    (
       placementTarget : Windows.UI.Xaml.FrameworkElement'Class;
@@ -1251,21 +1279,6 @@ package WinRt.Windows.UI.Xaml.Hosting is
       chosenPlacement : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode_Ptr
    )
    return WinRt.Windows.Foundation.Rect;
-
-   function get_CompleteTimelinesAutomatically
-   return WinRt.Boolean;
-
-   procedure put_CompleteTimelinesAutomatically
-   (
-      value : WinRt.Boolean
-   );
-
-   procedure SetHost
-   (
-      host : Windows.UI.Xaml.Hosting.IXamlUIPresenterHost
-   );
-
-   procedure NotifyWindowSizeChanged;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for XamlUIPresenter

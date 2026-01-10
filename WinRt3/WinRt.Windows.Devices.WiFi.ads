@@ -47,9 +47,11 @@ package WinRt.Windows.Devices.WiFi is
 
    type IWiFiAdapter2_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiAdapter2 is access all IWiFiAdapter2_Interface'Class;
+   type IWiFiAdapter2_Ptr is access all IWiFiAdapter2;
 
    type IWiFiAdapterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiAdapterStatics is access all IWiFiAdapterStatics_Interface'Class;
+   type IWiFiAdapterStatics_Ptr is access all IWiFiAdapterStatics;
 
    type IWiFiAvailableNetwork_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiAvailableNetwork is access all IWiFiAvailableNetwork_Interface'Class;
@@ -62,6 +64,26 @@ package WinRt.Windows.Devices.WiFi is
    type IWiFiNetworkReport_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiNetworkReport is access all IWiFiNetworkReport_Interface'Class;
    type IWiFiNetworkReport_Ptr is access all IWiFiNetworkReport;
+
+   type IWiFiOnDemandHotspotConnectTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
+   type IWiFiOnDemandHotspotConnectTriggerDetails is access all IWiFiOnDemandHotspotConnectTriggerDetails_Interface'Class;
+   type IWiFiOnDemandHotspotConnectTriggerDetails_Ptr is access all IWiFiOnDemandHotspotConnectTriggerDetails;
+
+   type IWiFiOnDemandHotspotConnectionResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IWiFiOnDemandHotspotConnectionResult is access all IWiFiOnDemandHotspotConnectionResult_Interface'Class;
+   type IWiFiOnDemandHotspotConnectionResult_Ptr is access all IWiFiOnDemandHotspotConnectionResult;
+
+   type IWiFiOnDemandHotspotNetwork_Interface is interface and WinRt.IInspectable_Interface;
+   type IWiFiOnDemandHotspotNetwork is access all IWiFiOnDemandHotspotNetwork_Interface'Class;
+   type IWiFiOnDemandHotspotNetwork_Ptr is access all IWiFiOnDemandHotspotNetwork;
+
+   type IWiFiOnDemandHotspotNetworkProperties_Interface is interface and WinRt.IInspectable_Interface;
+   type IWiFiOnDemandHotspotNetworkProperties is access all IWiFiOnDemandHotspotNetworkProperties_Interface'Class;
+   type IWiFiOnDemandHotspotNetworkProperties_Ptr is access all IWiFiOnDemandHotspotNetworkProperties;
+
+   type IWiFiOnDemandHotspotNetworkStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IWiFiOnDemandHotspotNetworkStatics is access all IWiFiOnDemandHotspotNetworkStatics_Interface'Class;
+   type IWiFiOnDemandHotspotNetworkStatics_Ptr is access all IWiFiOnDemandHotspotNetworkStatics;
 
    type IWiFiWpsConfigurationResult_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiWpsConfigurationResult is access all IWiFiWpsConfigurationResult_Interface'Class;
@@ -94,6 +116,30 @@ package WinRt.Windows.Devices.WiFi is
          m_IWiFiNetworkReport : access Windows.Devices.WiFi.IWiFiNetworkReport;
       end record;
    type WiFiNetworkReport_Ptr is access all WiFiNetworkReport;
+
+   type WiFiOnDemandHotspotConnectTriggerDetails is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWiFiOnDemandHotspotConnectTriggerDetails : access Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectTriggerDetails;
+      end record;
+   type WiFiOnDemandHotspotConnectTriggerDetails_Ptr is access all WiFiOnDemandHotspotConnectTriggerDetails;
+
+   type WiFiOnDemandHotspotConnectionResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWiFiOnDemandHotspotConnectionResult : access Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult;
+      end record;
+   type WiFiOnDemandHotspotConnectionResult_Ptr is access all WiFiOnDemandHotspotConnectionResult;
+
+   type WiFiOnDemandHotspotNetwork is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWiFiOnDemandHotspotNetwork : access Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork;
+      end record;
+   type WiFiOnDemandHotspotNetwork_Ptr is access all WiFiOnDemandHotspotNetwork;
+
+   type WiFiOnDemandHotspotNetworkProperties is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWiFiOnDemandHotspotNetworkProperties : access Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkProperties;
+      end record;
+   type WiFiOnDemandHotspotNetworkProperties_Ptr is access all WiFiOnDemandHotspotNetworkProperties;
 
    type WiFiWpsConfigurationResult is new Ada.Finalization.Limited_Controlled with
       record
@@ -163,6 +209,78 @@ package WinRt.Windows.Devices.WiFi is
    );
    type WiFiNetworkKind_Ptr is access all WiFiNetworkKind;
 
+   type WiFiOnDemandHotspotAvailability is (
+      Available_e,
+      Unavailable_e
+   );
+   for WiFiOnDemandHotspotAvailability use (
+      Available_e => 0,
+      Unavailable_e => 1
+   );
+   type WiFiOnDemandHotspotAvailability_Ptr is access all WiFiOnDemandHotspotAvailability;
+
+   type WiFiOnDemandHotspotCellularBars is (
+      ZeroBars_e,
+      OneBar_e,
+      TwoBars_e,
+      ThreeBars_e,
+      FourBars_e,
+      FiveBars_e
+   );
+   for WiFiOnDemandHotspotCellularBars use (
+      ZeroBars_e => 0,
+      OneBar_e => 1,
+      TwoBars_e => 2,
+      ThreeBars_e => 3,
+      FourBars_e => 4,
+      FiveBars_e => 5
+   );
+   type WiFiOnDemandHotspotCellularBars_Ptr is access all WiFiOnDemandHotspotCellularBars;
+
+   type WiFiOnDemandHotspotConnectStatus is (
+      UnspecifiedFailure_e,
+      Success_e,
+      AppTimedOut_e,
+      InvalidCredential_e,
+      NetworkNotAvailable_e,
+      UnsupportedAuthenticationProtocol_e,
+      BluetoothConnectFailed_e,
+      BluetoothTransmissionError_e,
+      OperationCanceledByUser_e,
+      EntitlementCheckFailed_e,
+      NoCellularSignal_e,
+      CellularDataTurnedOff_e,
+      WlanConnectFailed_e,
+      WlanNotVisible_e,
+      AccessPointCannotConnect_e,
+      CellularConnectTimedOut_e,
+      RoamingNotAllowed_e,
+      PairingRequired_e,
+      DataLimitReached_e
+   );
+   for WiFiOnDemandHotspotConnectStatus use (
+      UnspecifiedFailure_e => 0,
+      Success_e => 1,
+      AppTimedOut_e => 2,
+      InvalidCredential_e => 3,
+      NetworkNotAvailable_e => 4,
+      UnsupportedAuthenticationProtocol_e => 5,
+      BluetoothConnectFailed_e => 6,
+      BluetoothTransmissionError_e => 7,
+      OperationCanceledByUser_e => 8,
+      EntitlementCheckFailed_e => 9,
+      NoCellularSignal_e => 10,
+      CellularDataTurnedOff_e => 11,
+      WlanConnectFailed_e => 12,
+      WlanNotVisible_e => 13,
+      AccessPointCannotConnect_e => 14,
+      CellularConnectTimedOut_e => 15,
+      RoamingNotAllowed_e => 16,
+      PairingRequired_e => 17,
+      DataLimitReached_e => 18
+   );
+   type WiFiOnDemandHotspotConnectStatus_Ptr is access all WiFiOnDemandHotspotConnectStatus;
+
    type WiFiPhyKind is (
       Unknown_e,
       Fhss_e,
@@ -174,7 +292,8 @@ package WinRt.Windows.Devices.WiFi is
       HT_e,
       Vht_e,
       Dmg_e,
-      HE_e
+      HE_e,
+      Eht_e
    );
    for WiFiPhyKind use (
       Unknown_e => 0,
@@ -187,7 +306,8 @@ package WinRt.Windows.Devices.WiFi is
       HT_e => 7,
       Vht_e => 8,
       Dmg_e => 9,
-      HE_e => 10
+      HE_e => 10,
+      Eht_e => 11
    );
    type WiFiPhyKind_Ptr is access all WiFiPhyKind;
 
@@ -238,6 +358,14 @@ package WinRt.Windows.Devices.WiFi is
    package IVectorView_IWiFiAvailableNetwork is new WinRt.Windows.Foundation.Collections.IVectorView (IWiFiAvailableNetwork);
    IID_IVectorView_IWiFiAvailableNetwork : aliased WinRt.IID := (2508213552, 17737, 24544, (188, 27, 98, 133, 10, 121, 160, 17 ));
    function QInterface_IVectorView_IWiFiAvailableNetwork is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IWiFiAvailableNetwork.Kind, IID_IVectorView_IWiFiAvailableNetwork'Access);
+
+   package IReference_UInt32 is new WinRt.Windows.Foundation.IReference (WinRt.UInt32);
+   IID_IReference_UInt32 : aliased WinRt.IID := (1945952886, 53691, 21430, (149, 143, 31, 168, 242, 213, 176, 162 ));
+   function QInterface_IReference_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IReference_UInt32.Kind, IID_IReference_UInt32'Access);
+
+   package IReference_WiFiOnDemandHotspotCellularBars is new WinRt.Windows.Foundation.IReference (WiFiOnDemandHotspotCellularBars);
+   IID_IReference_WiFiOnDemandHotspotCellularBars : aliased WinRt.IID := (1945952886, 53691, 21430, (149, 143, 31, 168, 242, 213, 176, 162 ));
+   function QInterface_IReference_WiFiOnDemandHotspotCellularBars is new Generic_QueryInterface (GenericObject_Interface, IReference_WiFiOnDemandHotspotCellularBars.Kind, IID_IReference_WiFiOnDemandHotspotCellularBars'Access);
 
    package IVectorView_WiFiWpsKind is new WinRt.Windows.Foundation.Collections.IVectorView (WiFiWpsKind);
    IID_IVectorView_WiFiWpsKind : aliased WinRt.IID := (4141468733, 32438, 22465, (141, 149, 114, 9, 86, 47, 236, 18 ));
@@ -497,6 +625,193 @@ package WinRt.Windows.Devices.WiFi is
       IID_IWiFiNetworkReport : aliased WinRt.IID := (2502221522, 22801, 17502, (129, 148, 190, 79, 26, 112, 72, 149 ));
 
    -----------------------------------------------------------------------------
+   -- type IWiFiOnDemandHotspotConnectTriggerDetails is interface and WinRt.IInspectable;
+
+      function get_RequestedNetwork
+      (
+         this : access IWiFiOnDemandHotspotConnectTriggerDetails_Interface;
+         RetVal : access Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork
+      )
+      return WinRt.Hresult is abstract;
+
+      function ReportError
+      (
+         this : access IWiFiOnDemandHotspotConnectTriggerDetails_Interface;
+         status : Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function ConnectAsync
+      (
+         this : access IWiFiOnDemandHotspotConnectTriggerDetails_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function Connect
+      (
+         this : access IWiFiOnDemandHotspotConnectTriggerDetails_Interface;
+         RetVal : access Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWiFiOnDemandHotspotConnectTriggerDetails : aliased WinRt.IID := (2724784984, 26869, 22991, (141, 56, 53, 191, 68, 176, 151, 239 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWiFiOnDemandHotspotConnectionResult is interface and WinRt.IInspectable;
+
+      function get_Status
+      (
+         this : access IWiFiOnDemandHotspotConnectionResult_Interface;
+         RetVal : access Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWiFiOnDemandHotspotConnectionResult : aliased WinRt.IID := (2434241697, 27778, 24035, (138, 74, 249, 255, 34, 164, 149, 122 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWiFiOnDemandHotspotNetwork is interface and WinRt.IInspectable;
+
+      function GetProperties
+      (
+         this : access IWiFiOnDemandHotspotNetwork_Interface;
+         RetVal : access Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkProperties
+      )
+      return WinRt.Hresult is abstract;
+
+      function UpdateProperties
+      (
+         this : access IWiFiOnDemandHotspotNetwork_Interface;
+         newProperties : Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkProperties
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Id
+      (
+         this : access IWiFiOnDemandHotspotNetwork_Interface;
+         RetVal : access WinRt.Guid
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWiFiOnDemandHotspotNetwork : aliased WinRt.IID := (417100053, 41038, 20604, (187, 175, 183, 131, 105, 210, 159, 167 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWiFiOnDemandHotspotNetworkProperties is interface and WinRt.IInspectable;
+
+      function get_DisplayName
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_DisplayName
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Availability
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         RetVal : access Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Availability
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         value : Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RemainingBatteryPercent
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_RemainingBatteryPercent
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CellularBars
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CellularBars
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsMetered
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsMetered
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Ssid
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Ssid
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Password
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         RetVal : access Windows.Security.Credentials.IPasswordCredential
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Password
+      (
+         this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
+         value : Windows.Security.Credentials.IPasswordCredential
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWiFiOnDemandHotspotNetworkProperties : aliased WinRt.IID := (3356533234, 51229, 22610, (190, 80, 228, 189, 77, 129, 233, 141 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWiFiOnDemandHotspotNetworkStatics is interface and WinRt.IInspectable;
+
+      function GetOrCreateById
+      (
+         this : access IWiFiOnDemandHotspotNetworkStatics_Interface;
+         networkId : WinRt.Guid;
+         RetVal : access Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWiFiOnDemandHotspotNetworkStatics : aliased WinRt.IID := (16103596, 32999, 20564, (135, 28, 135, 57, 243, 116, 227, 201 ));
+
+   -----------------------------------------------------------------------------
    -- type IWiFiWpsConfigurationResult is interface and WinRt.IInspectable;
 
       function get_Status
@@ -736,6 +1051,183 @@ package WinRt.Windows.Devices.WiFi is
       this : in out WiFiNetworkReport
    )
    return IVectorView_IWiFiAvailableNetwork.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WiFiOnDemandHotspotConnectTriggerDetails
+
+   overriding procedure Initialize (this : in out WiFiOnDemandHotspotConnectTriggerDetails);
+   overriding procedure Finalize (this : in out WiFiOnDemandHotspotConnectTriggerDetails);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WiFiOnDemandHotspotConnectTriggerDetails
+
+   function get_RequestedNetwork
+   (
+      this : in out WiFiOnDemandHotspotConnectTriggerDetails
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetwork'Class;
+
+   procedure ReportError
+   (
+      this : in out WiFiOnDemandHotspotConnectTriggerDetails;
+      status : Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus
+   );
+
+   function ConnectAsync
+   (
+      this : in out WiFiOnDemandHotspotConnectTriggerDetails
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectionResult'Class;
+
+   function Connect
+   (
+      this : in out WiFiOnDemandHotspotConnectTriggerDetails
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectionResult'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WiFiOnDemandHotspotConnectionResult
+
+   overriding procedure Initialize (this : in out WiFiOnDemandHotspotConnectionResult);
+   overriding procedure Finalize (this : in out WiFiOnDemandHotspotConnectionResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WiFiOnDemandHotspotConnectionResult
+
+   function get_Status
+   (
+      this : in out WiFiOnDemandHotspotConnectionResult
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WiFiOnDemandHotspotNetwork
+
+   overriding procedure Initialize (this : in out WiFiOnDemandHotspotNetwork);
+   overriding procedure Finalize (this : in out WiFiOnDemandHotspotNetwork);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for WiFiOnDemandHotspotNetwork
+
+   function GetOrCreateById
+   (
+      networkId : WinRt.Guid
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetwork;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WiFiOnDemandHotspotNetwork
+
+   function GetProperties
+   (
+      this : in out WiFiOnDemandHotspotNetwork
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetworkProperties'Class;
+
+   procedure UpdateProperties
+   (
+      this : in out WiFiOnDemandHotspotNetwork;
+      newProperties : Windows.Devices.WiFi.WiFiOnDemandHotspotNetworkProperties'Class
+   );
+
+   function get_Id
+   (
+      this : in out WiFiOnDemandHotspotNetwork
+   )
+   return WinRt.Guid;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WiFiOnDemandHotspotNetworkProperties
+
+   overriding procedure Initialize (this : in out WiFiOnDemandHotspotNetworkProperties);
+   overriding procedure Finalize (this : in out WiFiOnDemandHotspotNetworkProperties);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WiFiOnDemandHotspotNetworkProperties
+
+   function get_DisplayName
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return WinRt.WString;
+
+   procedure put_DisplayName
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : WinRt.WString
+   );
+
+   function get_Availability
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability;
+
+   procedure put_Availability
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability
+   );
+
+   function get_RemainingBatteryPercent
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return IReference_UInt32.Kind;
+
+   procedure put_RemainingBatteryPercent
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : GenericObject
+   );
+
+   function get_CellularBars
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return IReference_WiFiOnDemandHotspotCellularBars.Kind;
+
+   procedure put_CellularBars
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : GenericObject
+   );
+
+   function get_IsMetered
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsMetered
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : WinRt.Boolean
+   );
+
+   function get_Ssid
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return WinRt.WString;
+
+   procedure put_Ssid
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : WinRt.WString
+   );
+
+   function get_Password
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties
+   )
+   return WinRt.Windows.Security.Credentials.PasswordCredential'Class;
+
+   procedure put_Password
+   (
+      this : in out WiFiOnDemandHotspotNetworkProperties;
+      value : Windows.Security.Credentials.PasswordCredential'Class
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for WiFiWpsConfigurationResult

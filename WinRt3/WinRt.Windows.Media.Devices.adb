@@ -31,6 +31,7 @@ with WinRt.Windows.Devices.Enumeration;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
 with WinRt.Windows.Media.Capture;
 with WinRt.Windows.Media.Devices.Core;
+with WinRt.Windows.Media.Effects;
 with WinRt.Windows.Media.MediaProperties;
 with WinRt.Windows.Storage.Streams;
 with Ada.Unchecked_Conversion;
@@ -384,6 +385,30 @@ package body WinRt.Windows.Media.Devices is
             Free (m_CompletedHandler);
          end if;
       end if;
+   end;
+
+   function get_AudioCaptureEffectsManager
+   (
+      this : in out AudioDeviceController
+   )
+   return WinRt.Windows.Media.Effects.AudioCaptureEffectsManager'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Devices.IAudioDeviceController2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Effects.IAudioCaptureEffectsManager;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Devices.IAudioDeviceController_Interface, WinRt.Windows.Media.Devices.IAudioDeviceController2, WinRt.Windows.Media.Devices.IID_IAudioDeviceController2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Media.Effects.AudioCaptureEffectsManager do
+         m_Interface := QInterface (this.m_IAudioDeviceController.all);
+         Hr := m_Interface.get_AudioCaptureEffectsManager (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IAudioCaptureEffectsManager := new Windows.Media.Effects.IAudioCaptureEffectsManager;
+         Retval.m_IAudioCaptureEffectsManager.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -1133,6 +1158,201 @@ package body WinRt.Windows.Media.Devices is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CameraOcclusionInfo
+
+   procedure Initialize (this : in out CameraOcclusionInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out CameraOcclusionInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ICameraOcclusionInfo, ICameraOcclusionInfo_Ptr);
+   begin
+      if this.m_ICameraOcclusionInfo /= null then
+         if this.m_ICameraOcclusionInfo.all /= null then
+            temp := this.m_ICameraOcclusionInfo.all.Release;
+            Free (this.m_ICameraOcclusionInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CameraOcclusionInfo
+
+   function GetState
+   (
+      this : in out CameraOcclusionInfo
+   )
+   return WinRt.Windows.Media.Devices.CameraOcclusionState'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Devices.ICameraOcclusionState;
+   begin
+      return RetVal : WinRt.Windows.Media.Devices.CameraOcclusionState do
+         Hr := this.m_ICameraOcclusionInfo.all.GetState (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICameraOcclusionState := new Windows.Media.Devices.ICameraOcclusionState;
+         Retval.m_ICameraOcclusionState.all := m_ComRetVal;
+      end return;
+   end;
+
+   function IsOcclusionKindSupported
+   (
+      this : in out CameraOcclusionInfo;
+      occlusionKind : Windows.Media.Devices.CameraOcclusionKind
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_ICameraOcclusionInfo.all.IsOcclusionKindSupported (occlusionKind, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function add_StateChanged
+   (
+      this : in out CameraOcclusionInfo;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_ICameraOcclusionInfo.all.add_StateChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_StateChanged
+   (
+      this : in out CameraOcclusionInfo;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ICameraOcclusionInfo.all.remove_StateChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CameraOcclusionState
+
+   procedure Initialize (this : in out CameraOcclusionState) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out CameraOcclusionState) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ICameraOcclusionState, ICameraOcclusionState_Ptr);
+   begin
+      if this.m_ICameraOcclusionState /= null then
+         if this.m_ICameraOcclusionState.all /= null then
+            temp := this.m_ICameraOcclusionState.all.Release;
+            Free (this.m_ICameraOcclusionState);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CameraOcclusionState
+
+   function get_IsOccluded
+   (
+      this : in out CameraOcclusionState
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_ICameraOcclusionState.all.get_IsOccluded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function IsOcclusionKind
+   (
+      this : in out CameraOcclusionState;
+      occlusionKind : Windows.Media.Devices.CameraOcclusionKind
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_ICameraOcclusionState.all.IsOcclusionKind (occlusionKind, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CameraOcclusionStateChangedEventArgs
+
+   procedure Initialize (this : in out CameraOcclusionStateChangedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out CameraOcclusionStateChangedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ICameraOcclusionStateChangedEventArgs, ICameraOcclusionStateChangedEventArgs_Ptr);
+   begin
+      if this.m_ICameraOcclusionStateChangedEventArgs /= null then
+         if this.m_ICameraOcclusionStateChangedEventArgs.all /= null then
+            temp := this.m_ICameraOcclusionStateChangedEventArgs.all.Release;
+            Free (this.m_ICameraOcclusionStateChangedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CameraOcclusionStateChangedEventArgs
+
+   function get_State
+   (
+      this : in out CameraOcclusionStateChangedEventArgs
+   )
+   return WinRt.Windows.Media.Devices.CameraOcclusionState'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Devices.ICameraOcclusionState;
+   begin
+      return RetVal : WinRt.Windows.Media.Devices.CameraOcclusionState do
+         Hr := this.m_ICameraOcclusionStateChangedEventArgs.all.get_State (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICameraOcclusionState := new Windows.Media.Devices.ICameraOcclusionState;
+         Retval.m_ICameraOcclusionState.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DefaultAudioCaptureDeviceChangedEventArgs
 
    procedure Initialize (this : in out DefaultAudioCaptureDeviceChangedEventArgs) is
@@ -1320,6 +1540,445 @@ package body WinRt.Windows.Media.Devices is
    begin
       this.Callback (sender, e);
       return Hr;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DigitalWindowBounds
+
+   procedure Initialize (this : in out DigitalWindowBounds) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out DigitalWindowBounds) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IDigitalWindowBounds, IDigitalWindowBounds_Ptr);
+   begin
+      if this.m_IDigitalWindowBounds /= null then
+         if this.m_IDigitalWindowBounds.all /= null then
+            temp := this.m_IDigitalWindowBounds.all.Release;
+            Free (this.m_IDigitalWindowBounds);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for DigitalWindowBounds
+
+   function Constructor return DigitalWindowBounds is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.DigitalWindowBounds");
+      m_ComRetVal  : aliased Windows.Media.Devices.IDigitalWindowBounds;
+   begin
+      return RetVal : DigitalWindowBounds do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IDigitalWindowBounds := new Windows.Media.Devices.IDigitalWindowBounds;
+            Retval.m_IDigitalWindowBounds.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DigitalWindowBounds
+
+   function get_NormalizedOriginTop
+   (
+      this : in out DigitalWindowBounds
+   )
+   return WinRt.Double is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Double;
+   begin
+      Hr := this.m_IDigitalWindowBounds.all.get_NormalizedOriginTop (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_NormalizedOriginTop
+   (
+      this : in out DigitalWindowBounds;
+      value : WinRt.Double
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IDigitalWindowBounds.all.put_NormalizedOriginTop (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_NormalizedOriginLeft
+   (
+      this : in out DigitalWindowBounds
+   )
+   return WinRt.Double is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Double;
+   begin
+      Hr := this.m_IDigitalWindowBounds.all.get_NormalizedOriginLeft (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_NormalizedOriginLeft
+   (
+      this : in out DigitalWindowBounds;
+      value : WinRt.Double
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IDigitalWindowBounds.all.put_NormalizedOriginLeft (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_Scale
+   (
+      this : in out DigitalWindowBounds
+   )
+   return WinRt.Double is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Double;
+   begin
+      Hr := this.m_IDigitalWindowBounds.all.get_Scale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Scale
+   (
+      this : in out DigitalWindowBounds;
+      value : WinRt.Double
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IDigitalWindowBounds.all.put_Scale (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DigitalWindowCapability
+
+   procedure Initialize (this : in out DigitalWindowCapability) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out DigitalWindowCapability) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IDigitalWindowCapability, IDigitalWindowCapability_Ptr);
+   begin
+      if this.m_IDigitalWindowCapability /= null then
+         if this.m_IDigitalWindowCapability.all /= null then
+            temp := this.m_IDigitalWindowCapability.all.Release;
+            Free (this.m_IDigitalWindowCapability);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DigitalWindowCapability
+
+   function get_Width
+   (
+      this : in out DigitalWindowCapability
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IDigitalWindowCapability.all.get_Width (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Height
+   (
+      this : in out DigitalWindowCapability
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IDigitalWindowCapability.all.get_Height (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_MinScaleValue
+   (
+      this : in out DigitalWindowCapability
+   )
+   return WinRt.Double is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Double;
+   begin
+      Hr := this.m_IDigitalWindowCapability.all.get_MinScaleValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_MaxScaleValue
+   (
+      this : in out DigitalWindowCapability
+   )
+   return WinRt.Double is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Double;
+   begin
+      Hr := this.m_IDigitalWindowCapability.all.get_MaxScaleValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_MinScaleValueWithoutUpsampling
+   (
+      this : in out DigitalWindowCapability
+   )
+   return WinRt.Double is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Double;
+   begin
+      Hr := this.m_IDigitalWindowCapability.all.get_MinScaleValueWithoutUpsampling (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_NormalizedFieldOfViewLimit
+   (
+      this : in out DigitalWindowCapability
+   )
+   return WinRt.Windows.Foundation.Rect is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.Rect;
+   begin
+      Hr := this.m_IDigitalWindowCapability.all.get_NormalizedFieldOfViewLimit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DigitalWindowControl
+
+   procedure Initialize (this : in out DigitalWindowControl) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out DigitalWindowControl) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IDigitalWindowControl, IDigitalWindowControl_Ptr);
+   begin
+      if this.m_IDigitalWindowControl /= null then
+         if this.m_IDigitalWindowControl.all /= null then
+            temp := this.m_IDigitalWindowControl.all.Release;
+            Free (this.m_IDigitalWindowControl);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DigitalWindowControl
+
+   function get_IsSupported
+   (
+      this : in out DigitalWindowControl
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IDigitalWindowControl.all.get_IsSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_SupportedModes
+   (
+      this : in out DigitalWindowControl
+   )
+   return WinRt.Windows.Media.Devices.DigitalWindowMode_Array is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Devices.DigitalWindowMode_Ptr;
+      m_ComRetValSize  : aliased WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IDigitalWindowControl.all.get_SupportedModes (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      declare
+         ArrayRetVal : WinRt.Windows.Media.Devices.DigitalWindowMode_Array (1..Integer(m_ComRetValSize));
+         function To_Ada_DigitalWindowMode is new To_Ada_Type (WinRt.Windows.Media.Devices.DigitalWindowMode, WinRt.Windows.Media.Devices.DigitalWindowMode_Ptr); 
+      begin
+         for i in ArrayRetVal'Range loop
+            ArrayRetval (i) := To_Ada_DigitalWindowMode (m_ComRetVal, i);
+         end loop;
+         return ArrayRetVal;
+      end;
+   end;
+
+   function get_CurrentMode
+   (
+      this : in out DigitalWindowControl
+   )
+   return WinRt.Windows.Media.Devices.DigitalWindowMode is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Devices.DigitalWindowMode;
+   begin
+      Hr := this.m_IDigitalWindowControl.all.get_CurrentMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetBounds
+   (
+      this : in out DigitalWindowControl
+   )
+   return WinRt.Windows.Media.Devices.DigitalWindowBounds'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Devices.IDigitalWindowBounds;
+   begin
+      return RetVal : WinRt.Windows.Media.Devices.DigitalWindowBounds do
+         Hr := this.m_IDigitalWindowControl.all.GetBounds (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDigitalWindowBounds := new Windows.Media.Devices.IDigitalWindowBounds;
+         Retval.m_IDigitalWindowBounds.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure Configure
+   (
+      this : in out DigitalWindowControl;
+      digitalWindowMode : Windows.Media.Devices.DigitalWindowMode
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IDigitalWindowControl.all.Configure (digitalWindowMode);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure Configure
+   (
+      this : in out DigitalWindowControl;
+      digitalWindowMode : Windows.Media.Devices.DigitalWindowMode;
+      digitalWindowBounds_p : Windows.Media.Devices.DigitalWindowBounds'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IDigitalWindowControl.all.Configure (digitalWindowMode, digitalWindowBounds_p.m_IDigitalWindowBounds.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SupportedCapabilities
+   (
+      this : in out DigitalWindowControl
+   )
+   return IVectorView_IDigitalWindowCapability.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IDigitalWindowCapability.Kind;
+   begin
+      Hr := this.m_IDigitalWindowControl.all.get_SupportedCapabilities (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IDigitalWindowCapability (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function GetCapabilityForSize
+   (
+      this : in out DigitalWindowControl;
+      width : WinRt.Int32;
+      height : WinRt.Int32
+   )
+   return WinRt.Windows.Media.Devices.DigitalWindowCapability'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Devices.IDigitalWindowCapability;
+   begin
+      return RetVal : WinRt.Windows.Media.Devices.DigitalWindowCapability do
+         Hr := this.m_IDigitalWindowControl.all.GetCapabilityForSize (width, height, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDigitalWindowCapability := new Windows.Media.Devices.IDigitalWindowCapability;
+         Retval.m_IDigitalWindowCapability.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -6655,6 +7314,79 @@ package body WinRt.Windows.Media.Devices is
          Retval.m_IPanelBasedOptimizationControl := new Windows.Media.Devices.IPanelBasedOptimizationControl;
          Retval.m_IPanelBasedOptimizationControl.all := m_ComRetVal;
       end return;
+   end;
+
+   function get_DigitalWindowControl
+   (
+      this : in out VideoDeviceController
+   )
+   return WinRt.Windows.Media.Devices.DigitalWindowControl'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Devices.IAdvancedVideoCaptureDeviceController9 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Devices.IDigitalWindowControl;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Devices.IVideoDeviceController_Interface, WinRt.Windows.Media.Devices.IAdvancedVideoCaptureDeviceController9, WinRt.Windows.Media.Devices.IID_IAdvancedVideoCaptureDeviceController9'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Media.Devices.DigitalWindowControl do
+         m_Interface := QInterface (this.m_IVideoDeviceController.all);
+         Hr := m_Interface.get_DigitalWindowControl (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDigitalWindowControl := new Windows.Media.Devices.IDigitalWindowControl;
+         Retval.m_IDigitalWindowControl.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_CameraOcclusionInfo
+   (
+      this : in out VideoDeviceController
+   )
+   return WinRt.Windows.Media.Devices.CameraOcclusionInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Devices.IAdvancedVideoCaptureDeviceController10 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Devices.ICameraOcclusionInfo;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Devices.IVideoDeviceController_Interface, WinRt.Windows.Media.Devices.IAdvancedVideoCaptureDeviceController10, WinRt.Windows.Media.Devices.IID_IAdvancedVideoCaptureDeviceController10'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Media.Devices.CameraOcclusionInfo do
+         m_Interface := QInterface (this.m_IVideoDeviceController.all);
+         Hr := m_Interface.get_CameraOcclusionInfo (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ICameraOcclusionInfo := new Windows.Media.Devices.ICameraOcclusionInfo;
+         Retval.m_ICameraOcclusionInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function TryAcquireExclusiveControl
+   (
+      this : in out VideoDeviceController;
+      deviceId : WinRt.WString;
+      mode : Windows.Media.Capture.MediaCaptureDeviceExclusiveControlReleaseMode
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Devices.IAdvancedVideoCaptureDeviceController11 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Devices.IVideoDeviceController_Interface, WinRt.Windows.Media.Devices.IAdvancedVideoCaptureDeviceController11, WinRt.Windows.Media.Devices.IID_IAdvancedVideoCaptureDeviceController11'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IVideoDeviceController.all);
+      Hr := m_Interface.TryAcquireExclusiveControl (HStr_deviceId, mode, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_deviceId);
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

@@ -70,9 +70,11 @@ package WinRt.Windows.UI.Xaml.Printing is
 
    type IPrintDocumentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintDocumentFactory is access all IPrintDocumentFactory_Interface'Class;
+   type IPrintDocumentFactory_Ptr is access all IPrintDocumentFactory;
 
    type IPrintDocumentStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintDocumentStatics is access all IPrintDocumentStatics_Interface'Class;
+   type IPrintDocumentStatics_Ptr is access all IPrintDocumentStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

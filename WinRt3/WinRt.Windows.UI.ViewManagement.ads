@@ -57,18 +57,23 @@ package WinRt.Windows.UI.ViewManagement is
 
    type IApplicationView2_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationView2 is access all IApplicationView2_Interface'Class;
+   type IApplicationView2_Ptr is access all IApplicationView2;
 
    type IApplicationView3_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationView3 is access all IApplicationView3_Interface'Class;
+   type IApplicationView3_Ptr is access all IApplicationView3;
 
    type IApplicationView4_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationView4 is access all IApplicationView4_Interface'Class;
+   type IApplicationView4_Ptr is access all IApplicationView4;
 
    type IApplicationView7_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationView7 is access all IApplicationView7_Interface'Class;
+   type IApplicationView7_Ptr is access all IApplicationView7;
 
    type IApplicationView9_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationView9 is access all IApplicationView9_Interface'Class;
+   type IApplicationView9_Ptr is access all IApplicationView9;
 
    type IApplicationViewConsolidatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewConsolidatedEventArgs is access all IApplicationViewConsolidatedEventArgs_Interface'Class;
@@ -76,12 +81,15 @@ package WinRt.Windows.UI.ViewManagement is
 
    type IApplicationViewConsolidatedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewConsolidatedEventArgs2 is access all IApplicationViewConsolidatedEventArgs2_Interface'Class;
+   type IApplicationViewConsolidatedEventArgs2_Ptr is access all IApplicationViewConsolidatedEventArgs2;
 
    type IApplicationViewFullscreenStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewFullscreenStatics is access all IApplicationViewFullscreenStatics_Interface'Class;
+   type IApplicationViewFullscreenStatics_Ptr is access all IApplicationViewFullscreenStatics;
 
    type IApplicationViewInteropStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewInteropStatics is access all IApplicationViewInteropStatics_Interface'Class;
+   type IApplicationViewInteropStatics_Ptr is access all IApplicationViewInteropStatics;
 
    type IApplicationViewScaling_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewScaling is access all IApplicationViewScaling_Interface'Class;
@@ -89,27 +97,35 @@ package WinRt.Windows.UI.ViewManagement is
 
    type IApplicationViewScalingStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewScalingStatics is access all IApplicationViewScalingStatics_Interface'Class;
+   type IApplicationViewScalingStatics_Ptr is access all IApplicationViewScalingStatics;
 
    type IApplicationViewStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewStatics is access all IApplicationViewStatics_Interface'Class;
+   type IApplicationViewStatics_Ptr is access all IApplicationViewStatics;
 
    type IApplicationViewStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewStatics2 is access all IApplicationViewStatics2_Interface'Class;
+   type IApplicationViewStatics2_Ptr is access all IApplicationViewStatics2;
 
    type IApplicationViewStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewStatics3 is access all IApplicationViewStatics3_Interface'Class;
+   type IApplicationViewStatics3_Ptr is access all IApplicationViewStatics3;
 
    type IApplicationViewStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewStatics4 is access all IApplicationViewStatics4_Interface'Class;
+   type IApplicationViewStatics4_Ptr is access all IApplicationViewStatics4;
 
    type IApplicationViewSwitcherStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewSwitcherStatics is access all IApplicationViewSwitcherStatics_Interface'Class;
+   type IApplicationViewSwitcherStatics_Ptr is access all IApplicationViewSwitcherStatics;
 
    type IApplicationViewSwitcherStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewSwitcherStatics2 is access all IApplicationViewSwitcherStatics2_Interface'Class;
+   type IApplicationViewSwitcherStatics2_Ptr is access all IApplicationViewSwitcherStatics2;
 
    type IApplicationViewSwitcherStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewSwitcherStatics3 is access all IApplicationViewSwitcherStatics3_Interface'Class;
+   type IApplicationViewSwitcherStatics3_Ptr is access all IApplicationViewSwitcherStatics3;
 
    type IApplicationViewTitleBar_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewTitleBar is access all IApplicationViewTitleBar_Interface'Class;
@@ -121,9 +137,11 @@ package WinRt.Windows.UI.ViewManagement is
 
    type IApplicationViewTransferContextStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewTransferContextStatics is access all IApplicationViewTransferContextStatics_Interface'Class;
+   type IApplicationViewTransferContextStatics_Ptr is access all IApplicationViewTransferContextStatics;
 
    type IApplicationViewWithContext_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewWithContext is access all IApplicationViewWithContext_Interface'Class;
+   type IApplicationViewWithContext_Ptr is access all IApplicationViewWithContext;
 
    type IInputPane_Interface is interface and WinRt.IInspectable_Interface;
    type IInputPane is access all IInputPane_Interface'Class;
@@ -131,15 +149,19 @@ package WinRt.Windows.UI.ViewManagement is
 
    type IInputPane2_Interface is interface and WinRt.IInspectable_Interface;
    type IInputPane2 is access all IInputPane2_Interface'Class;
+   type IInputPane2_Ptr is access all IInputPane2;
 
    type IInputPaneControl_Interface is interface and WinRt.IInspectable_Interface;
    type IInputPaneControl is access all IInputPaneControl_Interface'Class;
+   type IInputPaneControl_Ptr is access all IInputPaneControl;
 
    type IInputPaneStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInputPaneStatics is access all IInputPaneStatics_Interface'Class;
+   type IInputPaneStatics_Ptr is access all IInputPaneStatics;
 
    type IInputPaneStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IInputPaneStatics2 is access all IInputPaneStatics2_Interface'Class;
+   type IInputPaneStatics2_Ptr is access all IInputPaneStatics2;
 
    type IInputPaneVisibilityEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IInputPaneVisibilityEventArgs is access all IInputPaneVisibilityEventArgs_Interface'Class;
@@ -147,20 +169,11 @@ package WinRt.Windows.UI.ViewManagement is
 
    type IProjectionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IProjectionManagerStatics is access all IProjectionManagerStatics_Interface'Class;
+   type IProjectionManagerStatics_Ptr is access all IProjectionManagerStatics;
 
    type IProjectionManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IProjectionManagerStatics2 is access all IProjectionManagerStatics2_Interface'Class;
-
-   type IStatusBar_Interface is interface and WinRt.IInspectable_Interface;
-   type IStatusBar is access all IStatusBar_Interface'Class;
-   type IStatusBar_Ptr is access all IStatusBar;
-
-   type IStatusBarProgressIndicator_Interface is interface and WinRt.IInspectable_Interface;
-   type IStatusBarProgressIndicator is access all IStatusBarProgressIndicator_Interface'Class;
-   type IStatusBarProgressIndicator_Ptr is access all IStatusBarProgressIndicator;
-
-   type IStatusBarStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStatusBarStatics is access all IStatusBarStatics_Interface'Class;
+   type IProjectionManagerStatics2_Ptr is access all IProjectionManagerStatics2;
 
    type IUISettings_Interface is interface and WinRt.IInspectable_Interface;
    type IUISettings is access all IUISettings_Interface'Class;
@@ -168,18 +181,23 @@ package WinRt.Windows.UI.ViewManagement is
 
    type IUISettings2_Interface is interface and WinRt.IInspectable_Interface;
    type IUISettings2 is access all IUISettings2_Interface'Class;
+   type IUISettings2_Ptr is access all IUISettings2;
 
    type IUISettings3_Interface is interface and WinRt.IInspectable_Interface;
    type IUISettings3 is access all IUISettings3_Interface'Class;
+   type IUISettings3_Ptr is access all IUISettings3;
 
    type IUISettings4_Interface is interface and WinRt.IInspectable_Interface;
    type IUISettings4 is access all IUISettings4_Interface'Class;
+   type IUISettings4_Ptr is access all IUISettings4;
 
    type IUISettings5_Interface is interface and WinRt.IInspectable_Interface;
    type IUISettings5 is access all IUISettings5_Interface'Class;
+   type IUISettings5_Ptr is access all IUISettings5;
 
    type IUISettings6_Interface is interface and WinRt.IInspectable_Interface;
    type IUISettings6 is access all IUISettings6_Interface'Class;
+   type IUISettings6_Ptr is access all IUISettings6;
 
    type IUISettingsAnimationsEnabledChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IUISettingsAnimationsEnabledChangedEventArgs is access all IUISettingsAnimationsEnabledChangedEventArgs_Interface'Class;
@@ -197,8 +215,13 @@ package WinRt.Windows.UI.ViewManagement is
    type IUIViewSettings is access all IUIViewSettings_Interface'Class;
    type IUIViewSettings_Ptr is access all IUIViewSettings;
 
+   type IUIViewSettingsPreferredInteractionMode_Interface is interface and WinRt.IInspectable_Interface;
+   type IUIViewSettingsPreferredInteractionMode is access all IUIViewSettingsPreferredInteractionMode_Interface'Class;
+   type IUIViewSettingsPreferredInteractionMode_Ptr is access all IUIViewSettingsPreferredInteractionMode;
+
    type IUIViewSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUIViewSettingsStatics is access all IUIViewSettingsStatics_Interface'Class;
+   type IUIViewSettingsStatics_Ptr is access all IUIViewSettingsStatics;
 
    type IViewModePreferences_Interface is interface and WinRt.IInspectable_Interface;
    type IViewModePreferences is access all IViewModePreferences_Interface'Class;
@@ -206,6 +229,7 @@ package WinRt.Windows.UI.ViewManagement is
 
    type IViewModePreferencesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IViewModePreferencesStatics is access all IViewModePreferencesStatics_Interface'Class;
+   type IViewModePreferencesStatics_Ptr is access all IViewModePreferencesStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -264,18 +288,6 @@ package WinRt.Windows.UI.ViewManagement is
          m_IInputPaneVisibilityEventArgs : access Windows.UI.ViewManagement.IInputPaneVisibilityEventArgs;
       end record;
    type InputPaneVisibilityEventArgs_Ptr is access all InputPaneVisibilityEventArgs;
-
-   type StatusBar is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IStatusBar : access Windows.UI.ViewManagement.IStatusBar;
-      end record;
-   type StatusBar_Ptr is access all StatusBar;
-
-   type StatusBarProgressIndicator is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IStatusBarProgressIndicator : access Windows.UI.ViewManagement.IStatusBarProgressIndicator;
-      end record;
-   type StatusBarProgressIndicator_Ptr is access all StatusBarProgressIndicator;
 
    type UISettings is new Ada.Finalization.Limited_Controlled with
       record
@@ -409,6 +421,16 @@ package WinRt.Windows.UI.ViewManagement is
    );
    type HandPreference_Ptr is access all HandPreference;
 
+   type ScreenCaptureDisabledBehavior is (
+      DrawAsBlack_e,
+      ExcludeFromCapture_e
+   );
+   for ScreenCaptureDisabledBehavior use (
+      DrawAsBlack_e => 0,
+      ExcludeFromCapture_e => 1
+   );
+   type ScreenCaptureDisabledBehavior_Ptr is access all ScreenCaptureDisabledBehavior;
+
    type UIColorType is (
       Background_e,
       Foreground_e,
@@ -502,6 +524,7 @@ package WinRt.Windows.UI.ViewManagement is
       Touch_e => 1
    );
    type UserInteractionMode_Ptr is access all UserInteractionMode;
+   type UserInteractionMode_Array is array (Natural range <>) of aliased UserInteractionMode;
 
    type ViewSizePreference is (
       Default_e,
@@ -539,10 +562,6 @@ package WinRt.Windows.UI.ViewManagement is
    package IReference_Color is new WinRt.Windows.Foundation.IReference (WinRt.Windows.UI.Color);
    IID_IReference_Color : aliased WinRt.IID := (1639171503, 57398, 23936, (178, 219, 253, 128, 247, 34, 93, 210 ));
    function QInterface_IReference_Color is new Generic_QueryInterface (GenericObject_Interface, IReference_Color.Kind, IID_IReference_Color'Access);
-
-   package IReference_Double is new WinRt.Windows.Foundation.IReference (WinRt.Double);
-   IID_IReference_Double : aliased WinRt.IID := (268120079, 11222, 20655, (179, 79, 192, 249, 22, 83, 113, 101 ));
-   function QInterface_IReference_Double is new Generic_QueryInterface (GenericObject_Interface, IReference_Double.Kind, IID_IReference_Double'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -1633,170 +1652,6 @@ package WinRt.Windows.UI.ViewManagement is
       IID_IProjectionManagerStatics2 : aliased WinRt.IID := (4080873283, 10057, 19678, (185, 119, 192, 196, 30, 116, 21, 209 ));
 
    -----------------------------------------------------------------------------
-   -- type IStatusBar is interface and WinRt.IInspectable;
-
-      function ShowAsync
-      (
-         this : access IStatusBar_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
-      )
-      return WinRt.Hresult is abstract;
-
-      function HideAsync
-      (
-         this : access IStatusBar_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
-      )
-      return WinRt.Hresult is abstract;
-
-      function get_BackgroundOpacity
-      (
-         this : access IStatusBar_Interface;
-         RetVal : access WinRt.Double
-      )
-      return WinRt.Hresult is abstract;
-
-      function put_BackgroundOpacity
-      (
-         this : access IStatusBar_Interface;
-         value : WinRt.Double
-      )
-      return WinRt.Hresult is abstract;
-
-      function get_ForegroundColor
-      (
-         this : access IStatusBar_Interface;
-         RetVal : access GenericObject
-      )
-      return WinRt.Hresult is abstract;
-
-      function put_ForegroundColor
-      (
-         this : access IStatusBar_Interface;
-         value : GenericObject
-      )
-      return WinRt.Hresult is abstract;
-
-      function get_BackgroundColor
-      (
-         this : access IStatusBar_Interface;
-         RetVal : access GenericObject
-      )
-      return WinRt.Hresult is abstract;
-
-      function put_BackgroundColor
-      (
-         this : access IStatusBar_Interface;
-         value : GenericObject
-      )
-      return WinRt.Hresult is abstract;
-
-      function get_ProgressIndicator
-      (
-         this : access IStatusBar_Interface;
-         RetVal : access Windows.UI.ViewManagement.IStatusBarProgressIndicator
-      )
-      return WinRt.Hresult is abstract;
-
-      function get_OccludedRect
-      (
-         this : access IStatusBar_Interface;
-         RetVal : access Windows.Foundation.Rect
-      )
-      return WinRt.Hresult is abstract;
-
-      function add_Showing
-      (
-         this : access IStatusBar_Interface;
-         eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
-      )
-      return WinRt.Hresult is abstract;
-
-      function remove_Showing
-      (
-         this : access IStatusBar_Interface;
-         token : Windows.Foundation.EventRegistrationToken
-      )
-      return WinRt.Hresult is abstract;
-
-      function add_Hiding
-      (
-         this : access IStatusBar_Interface;
-         eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
-      )
-      return WinRt.Hresult is abstract;
-
-      function remove_Hiding
-      (
-         this : access IStatusBar_Interface;
-         token : Windows.Foundation.EventRegistrationToken
-      )
-      return WinRt.Hresult is abstract;
-
-      IID_IStatusBar : aliased WinRt.IID := (268223935, 39120, 18532, (177, 232, 179, 244, 2, 11, 232, 180 ));
-
-   -----------------------------------------------------------------------------
-   -- type IStatusBarProgressIndicator is interface and WinRt.IInspectable;
-
-      function ShowAsync
-      (
-         this : access IStatusBarProgressIndicator_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
-      )
-      return WinRt.Hresult is abstract;
-
-      function HideAsync
-      (
-         this : access IStatusBarProgressIndicator_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
-      )
-      return WinRt.Hresult is abstract;
-
-      function get_Text
-      (
-         this : access IStatusBarProgressIndicator_Interface;
-         RetVal : access WinRt.HString
-      )
-      return WinRt.Hresult is abstract;
-
-      function put_Text
-      (
-         this : access IStatusBarProgressIndicator_Interface;
-         value : WinRt.HString
-      )
-      return WinRt.Hresult is abstract;
-
-      function get_ProgressValue
-      (
-         this : access IStatusBarProgressIndicator_Interface;
-         RetVal : access GenericObject
-      )
-      return WinRt.Hresult is abstract;
-
-      function put_ProgressValue
-      (
-         this : access IStatusBarProgressIndicator_Interface;
-         value : GenericObject
-      )
-      return WinRt.Hresult is abstract;
-
-      IID_IStatusBarProgressIndicator : aliased WinRt.IID := (1993025136, 41943, 18895, (130, 0, 79, 62, 237, 202, 39, 187 ));
-
-   -----------------------------------------------------------------------------
-   -- type IStatusBarStatics is interface and WinRt.IInspectable;
-
-      function GetForCurrentView
-      (
-         this : access IStatusBarStatics_Interface;
-         RetVal : access Windows.UI.ViewManagement.IStatusBar
-      )
-      return WinRt.Hresult is abstract;
-
-      IID_IStatusBarStatics : aliased WinRt.IID := (2336636895, 16943, 17761, (136, 6, 251, 18, 137, 202, 223, 183 ));
-
-   -----------------------------------------------------------------------------
    -- type IUISettings is interface and WinRt.IInspectable;
 
       function get_HandPreference
@@ -2065,6 +1920,35 @@ package WinRt.Windows.UI.ViewManagement is
       IID_IUIViewSettings : aliased WinRt.IID := (3325450230, 34896, 18189, (136, 248, 69, 94, 22, 234, 44, 38 ));
 
    -----------------------------------------------------------------------------
+   -- type IUIViewSettingsPreferredInteractionMode is interface and WinRt.IInspectable;
+
+      function GetPreferredInteractionMode
+      (
+         this : access IUIViewSettingsPreferredInteractionMode_Interface;
+         supportedModesSize : WinRt.UInt32;
+         supportedModes : Windows.UI.ViewManagement.UserInteractionMode_Ptr;
+         RetVal : access Windows.UI.ViewManagement.UserInteractionMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_PreferredInteractionModeChanged
+      (
+         this : access IUIViewSettingsPreferredInteractionMode_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_PreferredInteractionModeChanged
+      (
+         this : access IUIViewSettingsPreferredInteractionMode_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IUIViewSettingsPreferredInteractionMode : aliased WinRt.IID := (1114497633, 33516, 24417, (186, 212, 25, 178, 208, 211, 207, 53 ));
+
+   -----------------------------------------------------------------------------
    -- type IUIViewSettingsStatics is interface and WinRt.IInspectable;
 
       function GetForCurrentView
@@ -2203,8 +2087,12 @@ package WinRt.Windows.UI.ViewManagement is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ApplicationView
 
-   function TryUnsnapToFullscreen
-   return WinRt.Boolean;
+   procedure ClearAllPersistedState;
+
+   procedure ClearPersistedState
+   (
+      key : WinRt.WString
+   );
 
    function GetForCurrentView
    return WinRt.Windows.UI.ViewManagement.ApplicationView;
@@ -2216,6 +2104,15 @@ package WinRt.Windows.UI.ViewManagement is
    (
       value : WinRt.Boolean
    );
+
+   function TryUnsnapToFullscreen
+   return WinRt.Boolean;
+
+   function GetApplicationViewIdForWindow
+   (
+      window : Windows.UI.Core.ICoreWindow
+   )
+   return WinRt.Int32;
 
    function get_PreferredLaunchWindowingMode
    return WinRt.Windows.UI.ViewManagement.ApplicationViewWindowingMode;
@@ -2232,19 +2129,6 @@ package WinRt.Windows.UI.ViewManagement is
    (
       value : Windows.Foundation.Size
    );
-
-   procedure ClearAllPersistedState;
-
-   procedure ClearPersistedState
-   (
-      key : WinRt.WString
-   );
-
-   function GetApplicationViewIdForWindow
-   (
-      window : Windows.UI.Core.ICoreWindow
-   )
-   return WinRt.Int32;
 
    function get_Value
    return WinRt.Windows.UI.ViewManagement.ApplicationViewState;
@@ -2535,23 +2419,6 @@ package WinRt.Windows.UI.ViewManagement is
    -- Static RuntimeClass
    package ApplicationViewSwitcher is
 
-      function TryShowAsViewModeAsync
-      (
-         viewId : WinRt.Int32;
-         viewMode : Windows.UI.ViewManagement.ApplicationViewMode
-      )
-      return WinRt.Boolean;
-
-      function TryShowAsViewModeAsync
-      (
-         viewId : WinRt.Int32;
-         viewMode : Windows.UI.ViewManagement.ApplicationViewMode;
-         viewModePreferences_p : Windows.UI.ViewManagement.ViewModePreferences'Class
-      )
-      return WinRt.Boolean;
-
-      procedure DisableSystemViewActivationPolicy;
-
       procedure DisableShowingMainViewOnActivation;
 
       function TryShowAsStandaloneAsync
@@ -2601,6 +2468,23 @@ package WinRt.Windows.UI.ViewManagement is
          options : Windows.UI.ViewManagement.ApplicationViewSwitchingOptions
       )
       return WinRt.Boolean;
+
+      function TryShowAsViewModeAsync
+      (
+         viewId : WinRt.Int32;
+         viewMode : Windows.UI.ViewManagement.ApplicationViewMode
+      )
+      return WinRt.Boolean;
+
+      function TryShowAsViewModeAsync
+      (
+         viewId : WinRt.Int32;
+         viewMode : Windows.UI.ViewManagement.ApplicationViewMode;
+         viewModePreferences_p : Windows.UI.ViewManagement.ViewModePreferences'Class
+      )
+      return WinRt.Boolean;
+
+      procedure DisableSystemViewActivationPolicy;
 
    end ApplicationViewSwitcher;
 
@@ -2798,13 +2682,13 @@ package WinRt.Windows.UI.ViewManagement is
    -----------------------------------------------------------------------------
    -- Static Interfaces for InputPane
 
+   function GetForCurrentView
+   return WinRt.Windows.UI.ViewManagement.InputPane;
+
    function GetForUIContext
    (
       context : Windows.UI.UIContext'Class
    )
-   return WinRt.Windows.UI.ViewManagement.InputPane;
-
-   function GetForCurrentView
    return WinRt.Windows.UI.ViewManagement.InputPane;
 
    -----------------------------------------------------------------------------
@@ -2957,148 +2841,6 @@ package WinRt.Windows.UI.ViewManagement is
       return WinRt.WString;
 
    end ProjectionManager;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for StatusBar
-
-   overriding procedure Initialize (this : in out StatusBar);
-   overriding procedure Finalize (this : in out StatusBar);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for StatusBar
-
-   function GetForCurrentView
-   return WinRt.Windows.UI.ViewManagement.StatusBar;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for StatusBar
-
-   procedure ShowAsync
-   (
-      this : in out StatusBar
-   );
-
-   procedure HideAsync
-   (
-      this : in out StatusBar
-   );
-
-   function get_BackgroundOpacity
-   (
-      this : in out StatusBar
-   )
-   return WinRt.Double;
-
-   procedure put_BackgroundOpacity
-   (
-      this : in out StatusBar;
-      value : WinRt.Double
-   );
-
-   function get_ForegroundColor
-   (
-      this : in out StatusBar
-   )
-   return IReference_Color.Kind;
-
-   procedure put_ForegroundColor
-   (
-      this : in out StatusBar;
-      value : GenericObject
-   );
-
-   function get_BackgroundColor
-   (
-      this : in out StatusBar
-   )
-   return IReference_Color.Kind;
-
-   procedure put_BackgroundColor
-   (
-      this : in out StatusBar;
-      value : GenericObject
-   );
-
-   function get_ProgressIndicator
-   (
-      this : in out StatusBar
-   )
-   return WinRt.Windows.UI.ViewManagement.StatusBarProgressIndicator'Class;
-
-   function get_OccludedRect
-   (
-      this : in out StatusBar
-   )
-   return WinRt.Windows.Foundation.Rect;
-
-   function add_Showing
-   (
-      this : in out StatusBar;
-      eventHandler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_Showing
-   (
-      this : in out StatusBar;
-      token : Windows.Foundation.EventRegistrationToken
-   );
-
-   function add_Hiding
-   (
-      this : in out StatusBar;
-      eventHandler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_Hiding
-   (
-      this : in out StatusBar;
-      token : Windows.Foundation.EventRegistrationToken
-   );
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for StatusBarProgressIndicator
-
-   overriding procedure Initialize (this : in out StatusBarProgressIndicator);
-   overriding procedure Finalize (this : in out StatusBarProgressIndicator);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for StatusBarProgressIndicator
-
-   procedure ShowAsync
-   (
-      this : in out StatusBarProgressIndicator
-   );
-
-   procedure HideAsync
-   (
-      this : in out StatusBarProgressIndicator
-   );
-
-   function get_Text
-   (
-      this : in out StatusBarProgressIndicator
-   )
-   return WinRt.WString;
-
-   procedure put_Text
-   (
-      this : in out StatusBarProgressIndicator;
-      value : WinRt.WString
-   );
-
-   function get_ProgressValue
-   (
-      this : in out StatusBarProgressIndicator
-   )
-   return IReference_Double.Kind;
-
-   procedure put_ProgressValue
-   (
-      this : in out StatusBarProgressIndicator;
-      value : GenericObject
-   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for UISettings
@@ -3343,6 +3085,26 @@ package WinRt.Windows.UI.ViewManagement is
       this : in out UIViewSettings
    )
    return WinRt.Windows.UI.ViewManagement.UserInteractionMode;
+
+   function GetPreferredInteractionMode
+   (
+      this : in out UIViewSettings;
+      supportedModes : Windows.UI.ViewManagement.UserInteractionMode_Array
+   )
+   return WinRt.Windows.UI.ViewManagement.UserInteractionMode;
+
+   function add_PreferredInteractionModeChanged
+   (
+      this : in out UIViewSettings;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_PreferredInteractionModeChanged
+   (
+      this : in out UIViewSettings;
+      token : Windows.Foundation.EventRegistrationToken
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ViewModePreferences

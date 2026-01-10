@@ -62,6 +62,7 @@ package WinRt.Windows.UI.WindowManagement is
 
    type IAppWindowFrameStyle_Interface is interface and WinRt.IInspectable_Interface;
    type IAppWindowFrameStyle is access all IAppWindowFrameStyle_Interface'Class;
+   type IAppWindowFrameStyle_Ptr is access all IAppWindowFrameStyle;
 
    type IAppWindowPlacement_Interface is interface and WinRt.IInspectable_Interface;
    type IAppWindowPlacement is access all IAppWindowPlacement_Interface'Class;
@@ -73,6 +74,7 @@ package WinRt.Windows.UI.WindowManagement is
 
    type IAppWindowPresentationConfigurationFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAppWindowPresentationConfigurationFactory is access all IAppWindowPresentationConfigurationFactory_Interface'Class;
+   type IAppWindowPresentationConfigurationFactory_Ptr is access all IAppWindowPresentationConfigurationFactory;
 
    type IAppWindowPresenter_Interface is interface and WinRt.IInspectable_Interface;
    type IAppWindowPresenter is access all IAppWindowPresenter_Interface'Class;
@@ -80,6 +82,7 @@ package WinRt.Windows.UI.WindowManagement is
 
    type IAppWindowStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppWindowStatics is access all IAppWindowStatics_Interface'Class;
+   type IAppWindowStatics_Ptr is access all IAppWindowStatics;
 
    type IAppWindowTitleBar_Interface is interface and WinRt.IInspectable_Interface;
    type IAppWindowTitleBar is access all IAppWindowTitleBar_Interface'Class;
@@ -91,6 +94,7 @@ package WinRt.Windows.UI.WindowManagement is
 
    type IAppWindowTitleBarVisibility_Interface is interface and WinRt.IInspectable_Interface;
    type IAppWindowTitleBarVisibility is access all IAppWindowTitleBarVisibility_Interface'Class;
+   type IAppWindowTitleBarVisibility_Ptr is access all IAppWindowTitleBarVisibility;
 
    type ICompactOverlayPresentationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type ICompactOverlayPresentationConfiguration is access all ICompactOverlayPresentationConfiguration_Interface'Class;
@@ -107,6 +111,10 @@ package WinRt.Windows.UI.WindowManagement is
    type IFullScreenPresentationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type IFullScreenPresentationConfiguration is access all IFullScreenPresentationConfiguration_Interface'Class;
    type IFullScreenPresentationConfiguration_Ptr is access all IFullScreenPresentationConfiguration;
+
+   type IWindowServicesStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IWindowServicesStatics is access all IWindowServicesStatics_Interface'Class;
+   type IWindowServicesStatics_Ptr is access all IWindowServicesStatics;
 
    type IWindowingEnvironment_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowingEnvironment is access all IWindowingEnvironment_Interface'Class;
@@ -126,6 +134,7 @@ package WinRt.Windows.UI.WindowManagement is
 
    type IWindowingEnvironmentStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowingEnvironmentStatics is access all IWindowingEnvironmentStatics_Interface'Class;
+   type IWindowingEnvironmentStatics_Ptr is access all IWindowingEnvironmentStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1082,6 +1091,18 @@ package WinRt.Windows.UI.WindowManagement is
       IID_IFullScreenPresentationConfiguration : aliased WinRt.IID := (1137958104, 53928, 20541, (166, 38, 21, 83, 61, 109, 95, 98 ));
 
    -----------------------------------------------------------------------------
+   -- type IWindowServicesStatics is interface and WinRt.IInspectable;
+
+      function FindAllTopLevelWindowIds
+      (
+         this : access IWindowServicesStatics_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWindowServicesStatics : aliased WinRt.IID := (3488929049, 20646, 23652, (151, 246, 194, 217, 106, 221, 127, 66 ));
+
+   -----------------------------------------------------------------------------
    -- type IWindowingEnvironment is interface and WinRt.IInspectable;
 
       function get_IsEnabled
@@ -1890,6 +1911,15 @@ package WinRt.Windows.UI.WindowManagement is
       this : in out FullScreenPresentationConfiguration;
       value : WinRt.Boolean
    );
+
+   -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package WindowServices is
+
+      function FindAllTopLevelWindowIds
+      return WinRt.GenericObject;
+
+   end WindowServices;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for WindowingEnvironment

@@ -11504,6 +11504,30 @@ package body WinRt.Windows.Devices.PointOfService is
    -----------------------------------------------------------------------------
    -- Static Interfaces for LineDisplay
 
+   function get_StatisticsCategorySelector
+   return WinRt.Windows.Devices.PointOfService.LineDisplayStatisticsCategorySelector is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.LineDisplay");
+      m_Factory        : access WinRt.Windows.Devices.PointOfService.ILineDisplayStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.PointOfService.ILineDisplayStatisticsCategorySelector;
+   begin
+      return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayStatisticsCategorySelector do
+         Hr := RoGetActivationFactory (m_hString, IID_ILineDisplayStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_StatisticsCategorySelector (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ILineDisplayStatisticsCategorySelector := new Windows.Devices.PointOfService.ILineDisplayStatisticsCategorySelector;
+            Retval.m_ILineDisplayStatisticsCategorySelector.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function FromIdAsync_LineDisplay
    (
       deviceId : WinRt.WString
@@ -11698,30 +11722,6 @@ package body WinRt.Windows.Devices.PointOfService is
       AdaRetval := To_Ada (m_ComRetVal);
       tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
-   end;
-
-   function get_StatisticsCategorySelector
-   return WinRt.Windows.Devices.PointOfService.LineDisplayStatisticsCategorySelector is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.LineDisplay");
-      m_Factory        : access WinRt.Windows.Devices.PointOfService.ILineDisplayStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.PointOfService.ILineDisplayStatisticsCategorySelector;
-   begin
-      return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayStatisticsCategorySelector do
-         Hr := RoGetActivationFactory (m_hString, IID_ILineDisplayStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_StatisticsCategorySelector (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ILineDisplayStatisticsCategorySelector := new Windows.Devices.PointOfService.ILineDisplayStatisticsCategorySelector;
-            Retval.m_ILineDisplayStatisticsCategorySelector.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
    end;
 
    -----------------------------------------------------------------------------

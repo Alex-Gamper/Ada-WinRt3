@@ -1824,22 +1824,6 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for NumeralSystemTranslator
 
-   function Constructor return NumeralSystemTranslator is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.NumeralSystemTranslator");
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
-   begin
-      return RetVal : NumeralSystemTranslator do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_INumeralSystemTranslator := new Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
-            Retval.m_INumeralSystemTranslator.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       languages : GenericObject
@@ -1859,6 +1843,22 @@ package body WinRt.Windows.Globalization.NumberFormatting is
             Retval.m_INumeralSystemTranslator := new Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
             Retval.m_INumeralSystemTranslator.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return NumeralSystemTranslator is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.NumeralSystemTranslator");
+      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
+   begin
+      return RetVal : NumeralSystemTranslator do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_INumeralSystemTranslator := new Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
+            Retval.m_INumeralSystemTranslator.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
@@ -1990,22 +1990,6 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PercentFormatter
 
-   function Constructor return PercentFormatter is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.PercentFormatter");
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumberFormatter;
-   begin
-      return RetVal : PercentFormatter do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_INumberFormatter := new Windows.Globalization.NumberFormatting.INumberFormatter;
-            Retval.m_INumberFormatter.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       languages : GenericObject;
@@ -2030,6 +2014,22 @@ package body WinRt.Windows.Globalization.NumberFormatting is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_geographicRegion);
+      end return;
+   end;
+
+   function Constructor return PercentFormatter is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.PercentFormatter");
+      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumberFormatter;
+   begin
+      return RetVal : PercentFormatter do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_INumberFormatter := new Windows.Globalization.NumberFormatting.INumberFormatter;
+            Retval.m_INumberFormatter.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2699,22 +2699,6 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PermilleFormatter
 
-   function Constructor return PermilleFormatter is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.PermilleFormatter");
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumberFormatter;
-   begin
-      return RetVal : PermilleFormatter do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_INumberFormatter := new Windows.Globalization.NumberFormatting.INumberFormatter;
-            Retval.m_INumberFormatter.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       languages : GenericObject;
@@ -2739,6 +2723,22 @@ package body WinRt.Windows.Globalization.NumberFormatting is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_geographicRegion);
+      end return;
+   end;
+
+   function Constructor return PermilleFormatter is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.PermilleFormatter");
+      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumberFormatter;
+   begin
+      return RetVal : PermilleFormatter do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_INumberFormatter := new Windows.Globalization.NumberFormatting.INumberFormatter;
+            Retval.m_INumberFormatter.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

@@ -70,6 +70,7 @@ package WinRt.Windows.Media.Capture is
 
    type IAdvancedCapturedPhoto2_Interface is interface and WinRt.IInspectable_Interface;
    type IAdvancedCapturedPhoto2 is access all IAdvancedCapturedPhoto2_Interface'Class;
+   type IAdvancedCapturedPhoto2_Ptr is access all IAdvancedCapturedPhoto2;
 
    type IAdvancedPhotoCapture_Interface is interface and WinRt.IInspectable_Interface;
    type IAdvancedPhotoCapture is access all IAdvancedPhotoCapture_Interface'Class;
@@ -81,6 +82,7 @@ package WinRt.Windows.Media.Capture is
 
    type IAppBroadcastBackgroundService2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastBackgroundService2 is access all IAppBroadcastBackgroundService2_Interface'Class;
+   type IAppBroadcastBackgroundService2_Ptr is access all IAppBroadcastBackgroundService2;
 
    type IAppBroadcastBackgroundServiceSignInInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastBackgroundServiceSignInInfo is access all IAppBroadcastBackgroundServiceSignInInfo_Interface'Class;
@@ -88,6 +90,7 @@ package WinRt.Windows.Media.Capture is
 
    type IAppBroadcastBackgroundServiceSignInInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastBackgroundServiceSignInInfo2 is access all IAppBroadcastBackgroundServiceSignInInfo2_Interface'Class;
+   type IAppBroadcastBackgroundServiceSignInInfo2_Ptr is access all IAppBroadcastBackgroundServiceSignInInfo2;
 
    type IAppBroadcastBackgroundServiceStreamInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastBackgroundServiceStreamInfo is access all IAppBroadcastBackgroundServiceStreamInfo_Interface'Class;
@@ -95,6 +98,7 @@ package WinRt.Windows.Media.Capture is
 
    type IAppBroadcastBackgroundServiceStreamInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastBackgroundServiceStreamInfo2 is access all IAppBroadcastBackgroundServiceStreamInfo2_Interface'Class;
+   type IAppBroadcastBackgroundServiceStreamInfo2_Ptr is access all IAppBroadcastBackgroundServiceStreamInfo2;
 
    type IAppBroadcastCameraCaptureStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastCameraCaptureStateChangedEventArgs is access all IAppBroadcastCameraCaptureStateChangedEventArgs_Interface'Class;
@@ -110,6 +114,7 @@ package WinRt.Windows.Media.Capture is
 
    type IAppBroadcastManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastManagerStatics is access all IAppBroadcastManagerStatics_Interface'Class;
+   type IAppBroadcastManagerStatics_Ptr is access all IAppBroadcastManagerStatics;
 
    type IAppBroadcastMicrophoneCaptureStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastMicrophoneCaptureStateChangedEventArgs is access all IAppBroadcastMicrophoneCaptureStateChangedEventArgs_Interface'Class;
@@ -125,6 +130,7 @@ package WinRt.Windows.Media.Capture is
 
    type IAppBroadcastPlugInManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastPlugInManagerStatics is access all IAppBroadcastPlugInManagerStatics_Interface'Class;
+   type IAppBroadcastPlugInManagerStatics_Ptr is access all IAppBroadcastPlugInManagerStatics;
 
    type IAppBroadcastPlugInStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastPlugInStateChangedEventArgs is access all IAppBroadcastPlugInStateChangedEventArgs_Interface'Class;
@@ -208,9 +214,11 @@ package WinRt.Windows.Media.Capture is
 
    type IAppCaptureAlternateShortcutKeys2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCaptureAlternateShortcutKeys2 is access all IAppCaptureAlternateShortcutKeys2_Interface'Class;
+   type IAppCaptureAlternateShortcutKeys2_Ptr is access all IAppCaptureAlternateShortcutKeys2;
 
    type IAppCaptureAlternateShortcutKeys3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCaptureAlternateShortcutKeys3 is access all IAppCaptureAlternateShortcutKeys3_Interface'Class;
+   type IAppCaptureAlternateShortcutKeys3_Ptr is access all IAppCaptureAlternateShortcutKeys3;
 
    type IAppCaptureDurationGeneratedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCaptureDurationGeneratedEventArgs is access all IAppCaptureDurationGeneratedEventArgs_Interface'Class;
@@ -222,6 +230,7 @@ package WinRt.Windows.Media.Capture is
 
    type IAppCaptureManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCaptureManagerStatics is access all IAppCaptureManagerStatics_Interface'Class;
+   type IAppCaptureManagerStatics_Ptr is access all IAppCaptureManagerStatics;
 
    type IAppCaptureMetadataWriter_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCaptureMetadataWriter is access all IAppCaptureMetadataWriter_Interface'Class;
@@ -249,15 +258,19 @@ package WinRt.Windows.Media.Capture is
 
    type IAppCaptureSettings2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCaptureSettings2 is access all IAppCaptureSettings2_Interface'Class;
+   type IAppCaptureSettings2_Ptr is access all IAppCaptureSettings2;
 
    type IAppCaptureSettings3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCaptureSettings3 is access all IAppCaptureSettings3_Interface'Class;
+   type IAppCaptureSettings3_Ptr is access all IAppCaptureSettings3;
 
    type IAppCaptureSettings4_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCaptureSettings4 is access all IAppCaptureSettings4_Interface'Class;
+   type IAppCaptureSettings4_Ptr is access all IAppCaptureSettings4;
 
    type IAppCaptureSettings5_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCaptureSettings5 is access all IAppCaptureSettings5_Interface'Class;
+   type IAppCaptureSettings5_Ptr is access all IAppCaptureSettings5;
 
    type IAppCaptureState_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCaptureState is access all IAppCaptureState_Interface'Class;
@@ -265,9 +278,11 @@ package WinRt.Windows.Media.Capture is
 
    type IAppCaptureStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCaptureStatics is access all IAppCaptureStatics_Interface'Class;
+   type IAppCaptureStatics_Ptr is access all IAppCaptureStatics;
 
    type IAppCaptureStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCaptureStatics2 is access all IAppCaptureStatics2_Interface'Class;
+   type IAppCaptureStatics2_Ptr is access all IAppCaptureStatics2;
 
    type ICameraCaptureUI_Interface is interface and WinRt.IInspectable_Interface;
    type ICameraCaptureUI is access all ICameraCaptureUI_Interface'Class;
@@ -283,6 +298,7 @@ package WinRt.Windows.Media.Capture is
 
    type ICameraOptionsUIStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICameraOptionsUIStatics is access all ICameraOptionsUIStatics_Interface'Class;
+   type ICameraOptionsUIStatics_Ptr is access all ICameraOptionsUIStatics;
 
    type ICapturedFrame_Interface is interface and WinRt.IInspectable_Interface;
    type ICapturedFrame is access all ICapturedFrame_Interface'Class;
@@ -290,6 +306,7 @@ package WinRt.Windows.Media.Capture is
 
    type ICapturedFrame2_Interface is interface and WinRt.IInspectable_Interface;
    type ICapturedFrame2 is access all ICapturedFrame2_Interface'Class;
+   type ICapturedFrame2_Ptr is access all ICapturedFrame2;
 
    type ICapturedFrameControlValues_Interface is interface and WinRt.IInspectable_Interface;
    type ICapturedFrameControlValues is access all ICapturedFrameControlValues_Interface'Class;
@@ -297,9 +314,11 @@ package WinRt.Windows.Media.Capture is
 
    type ICapturedFrameControlValues2_Interface is interface and WinRt.IInspectable_Interface;
    type ICapturedFrameControlValues2 is access all ICapturedFrameControlValues2_Interface'Class;
+   type ICapturedFrameControlValues2_Ptr is access all ICapturedFrameControlValues2;
 
    type ICapturedFrameWithSoftwareBitmap_Interface is interface and WinRt.IInspectable_Interface;
    type ICapturedFrameWithSoftwareBitmap is access all ICapturedFrameWithSoftwareBitmap_Interface'Class;
+   type ICapturedFrameWithSoftwareBitmap_Ptr is access all ICapturedFrameWithSoftwareBitmap;
 
    type ICapturedPhoto_Interface is interface and WinRt.IInspectable_Interface;
    type ICapturedPhoto is access all ICapturedPhoto_Interface'Class;
@@ -323,6 +342,7 @@ package WinRt.Windows.Media.Capture is
 
    type IGameBarServicesManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGameBarServicesManagerStatics is access all IGameBarServicesManagerStatics_Interface'Class;
+   type IGameBarServicesManagerStatics_Ptr is access all IGameBarServicesManagerStatics;
 
    type IGameBarServicesTargetInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IGameBarServicesTargetInfo is access all IGameBarServicesTargetInfo_Interface'Class;
@@ -334,9 +354,11 @@ package WinRt.Windows.Media.Capture is
 
    type ILowLagMediaRecording2_Interface is interface and WinRt.IInspectable_Interface;
    type ILowLagMediaRecording2 is access all ILowLagMediaRecording2_Interface'Class;
+   type ILowLagMediaRecording2_Ptr is access all ILowLagMediaRecording2;
 
    type ILowLagMediaRecording3_Interface is interface and WinRt.IInspectable_Interface;
    type ILowLagMediaRecording3 is access all ILowLagMediaRecording3_Interface'Class;
+   type ILowLagMediaRecording3_Ptr is access all ILowLagMediaRecording3;
 
    type ILowLagPhotoCapture_Interface is interface and WinRt.IInspectable_Interface;
    type ILowLagPhotoCapture is access all ILowLagPhotoCapture_Interface'Class;
@@ -352,21 +374,27 @@ package WinRt.Windows.Media.Capture is
 
    type IMediaCapture2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCapture2 is access all IMediaCapture2_Interface'Class;
+   type IMediaCapture2_Ptr is access all IMediaCapture2;
 
    type IMediaCapture3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCapture3 is access all IMediaCapture3_Interface'Class;
+   type IMediaCapture3_Ptr is access all IMediaCapture3;
 
    type IMediaCapture4_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCapture4 is access all IMediaCapture4_Interface'Class;
+   type IMediaCapture4_Ptr is access all IMediaCapture4;
 
    type IMediaCapture5_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCapture5 is access all IMediaCapture5_Interface'Class;
+   type IMediaCapture5_Ptr is access all IMediaCapture5;
 
    type IMediaCapture6_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCapture6 is access all IMediaCapture6_Interface'Class;
+   type IMediaCapture6_Ptr is access all IMediaCapture6;
 
    type IMediaCapture7_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCapture7 is access all IMediaCapture7_Interface'Class;
+   type IMediaCapture7_Ptr is access all IMediaCapture7;
 
    type IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs is access all IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs_Interface'Class;
@@ -386,21 +414,27 @@ package WinRt.Windows.Media.Capture is
 
    type IMediaCaptureInitializationSettings2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureInitializationSettings2 is access all IMediaCaptureInitializationSettings2_Interface'Class;
+   type IMediaCaptureInitializationSettings2_Ptr is access all IMediaCaptureInitializationSettings2;
 
    type IMediaCaptureInitializationSettings3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureInitializationSettings3 is access all IMediaCaptureInitializationSettings3_Interface'Class;
+   type IMediaCaptureInitializationSettings3_Ptr is access all IMediaCaptureInitializationSettings3;
 
    type IMediaCaptureInitializationSettings4_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureInitializationSettings4 is access all IMediaCaptureInitializationSettings4_Interface'Class;
+   type IMediaCaptureInitializationSettings4_Ptr is access all IMediaCaptureInitializationSettings4;
 
    type IMediaCaptureInitializationSettings5_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureInitializationSettings5 is access all IMediaCaptureInitializationSettings5_Interface'Class;
+   type IMediaCaptureInitializationSettings5_Ptr is access all IMediaCaptureInitializationSettings5;
 
    type IMediaCaptureInitializationSettings6_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureInitializationSettings6 is access all IMediaCaptureInitializationSettings6_Interface'Class;
+   type IMediaCaptureInitializationSettings6_Ptr is access all IMediaCaptureInitializationSettings6;
 
    type IMediaCaptureInitializationSettings7_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureInitializationSettings7 is access all IMediaCaptureInitializationSettings7_Interface'Class;
+   type IMediaCaptureInitializationSettings7_Ptr is access all IMediaCaptureInitializationSettings7;
 
    type IMediaCapturePauseResult_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCapturePauseResult is access all IMediaCapturePauseResult_Interface'Class;
@@ -416,12 +450,15 @@ package WinRt.Windows.Media.Capture is
 
    type IMediaCaptureSettings2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureSettings2 is access all IMediaCaptureSettings2_Interface'Class;
+   type IMediaCaptureSettings2_Ptr is access all IMediaCaptureSettings2;
 
    type IMediaCaptureSettings3_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureSettings3 is access all IMediaCaptureSettings3_Interface'Class;
+   type IMediaCaptureSettings3_Ptr is access all IMediaCaptureSettings3;
 
    type IMediaCaptureStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureStatics is access all IMediaCaptureStatics_Interface'Class;
+   type IMediaCaptureStatics_Ptr is access all IMediaCaptureStatics;
 
    type IMediaCaptureStopResult_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureStopResult is access all IMediaCaptureStopResult_Interface'Class;
@@ -429,6 +466,7 @@ package WinRt.Windows.Media.Capture is
 
    type IMediaCaptureVideoPreview_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureVideoPreview is access all IMediaCaptureVideoPreview_Interface'Class;
+   type IMediaCaptureVideoPreview_Ptr is access all IMediaCaptureVideoPreview;
 
    type IMediaCaptureVideoProfile_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureVideoProfile is access all IMediaCaptureVideoProfile_Interface'Class;
@@ -436,6 +474,7 @@ package WinRt.Windows.Media.Capture is
 
    type IMediaCaptureVideoProfile2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureVideoProfile2 is access all IMediaCaptureVideoProfile2_Interface'Class;
+   type IMediaCaptureVideoProfile2_Ptr is access all IMediaCaptureVideoProfile2;
 
    type IMediaCaptureVideoProfileMediaDescription_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureVideoProfileMediaDescription is access all IMediaCaptureVideoProfileMediaDescription_Interface'Class;
@@ -443,6 +482,7 @@ package WinRt.Windows.Media.Capture is
 
    type IMediaCaptureVideoProfileMediaDescription2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCaptureVideoProfileMediaDescription2 is access all IMediaCaptureVideoProfileMediaDescription2_Interface'Class;
+   type IMediaCaptureVideoProfileMediaDescription2_Ptr is access all IMediaCaptureVideoProfileMediaDescription2;
 
    type IOptionalReferencePhotoCapturedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IOptionalReferencePhotoCapturedEventArgs is access all IOptionalReferencePhotoCapturedEventArgs_Interface'Class;
@@ -455,17 +495,6 @@ package WinRt.Windows.Media.Capture is
    type IPhotoConfirmationCapturedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPhotoConfirmationCapturedEventArgs is access all IPhotoConfirmationCapturedEventArgs_Interface'Class;
    type IPhotoConfirmationCapturedEventArgs_Ptr is access all IPhotoConfirmationCapturedEventArgs;
-
-   type IScreenCapture_Interface is interface and WinRt.IInspectable_Interface;
-   type IScreenCapture is access all IScreenCapture_Interface'Class;
-   type IScreenCapture_Ptr is access all IScreenCapture;
-
-   type IScreenCaptureStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IScreenCaptureStatics is access all IScreenCaptureStatics_Interface'Class;
-
-   type ISourceSuspensionChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISourceSuspensionChangedEventArgs is access all ISourceSuspensionChangedEventArgs_Interface'Class;
-   type ISourceSuspensionChangedEventArgs_Ptr is access all ISourceSuspensionChangedEventArgs;
 
    type IVideoStreamConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type IVideoStreamConfiguration is access all IVideoStreamConfiguration_Interface'Class;
@@ -882,18 +911,6 @@ package WinRt.Windows.Media.Capture is
          m_IPhotoConfirmationCapturedEventArgs : access Windows.Media.Capture.IPhotoConfirmationCapturedEventArgs;
       end record;
    type PhotoConfirmationCapturedEventArgs_Ptr is access all PhotoConfirmationCapturedEventArgs;
-
-   type ScreenCapture is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IScreenCapture : access Windows.Media.Capture.IScreenCapture;
-      end record;
-   type ScreenCapture_Ptr is access all ScreenCapture;
-
-   type SourceSuspensionChangedEventArgs is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ISourceSuspensionChangedEventArgs : access Windows.Media.Capture.ISourceSuspensionChangedEventArgs;
-      end record;
-   type SourceSuspensionChangedEventArgs_Ptr is access all SourceSuspensionChangedEventArgs;
 
    type VideoStreamConfiguration is new Ada.Finalization.Limited_Controlled with
       record
@@ -1351,7 +1368,8 @@ package WinRt.Windows.Media.Capture is
       VariablePhotoSequence_e,
       HdrWithWcgVideo_e,
       HdrWithWcgPhoto_e,
-      VideoHdr8_e
+      VideoHdr8_e,
+      CompressedCamera_e
    );
    for KnownVideoProfile use (
       VideoRecording_e => 0,
@@ -1363,9 +1381,20 @@ package WinRt.Windows.Media.Capture is
       VariablePhotoSequence_e => 6,
       HdrWithWcgVideo_e => 7,
       HdrWithWcgPhoto_e => 8,
-      VideoHdr8_e => 9
+      VideoHdr8_e => 9,
+      CompressedCamera_e => 10
    );
    type KnownVideoProfile_Ptr is access all KnownVideoProfile;
+
+   type MediaCaptureDeviceExclusiveControlReleaseMode is (
+      OnDispose_e,
+      OnAllStreamsStopped_e
+   );
+   for MediaCaptureDeviceExclusiveControlReleaseMode use (
+      OnDispose_e => 0,
+      OnAllStreamsStopped_e => 1
+   );
+   type MediaCaptureDeviceExclusiveControlReleaseMode_Ptr is access all MediaCaptureDeviceExclusiveControlReleaseMode;
 
    type MediaCaptureDeviceExclusiveControlStatus is (
       ExclusiveControlAvailable_e,
@@ -1412,14 +1441,20 @@ package WinRt.Windows.Media.Capture is
       Communications_e,
       Media_e,
       GameChat_e,
-      Speech_e
+      Speech_e,
+      FarFieldSpeech_e,
+      UniformSpeech_e,
+      VoiceTyping_e
    );
    for MediaCategory use (
       Other_e => 0,
       Communications_e => 1,
       Media_e => 2,
       GameChat_e => 3,
-      Speech_e => 4
+      Speech_e => 4,
+      FarFieldSpeech_e => 5,
+      UniformSpeech_e => 6,
+      VoiceTyping_e => 7
    );
    type MediaCategory_Ptr is access all MediaCategory;
 
@@ -1427,13 +1462,15 @@ package WinRt.Windows.Media.Capture is
       VideoPreview_e,
       VideoRecord_e,
       Audio_e,
-      Photo_e
+      Photo_e,
+      Metadata_e
    );
    for MediaStreamType use (
       VideoPreview_e => 0,
       VideoRecord_e => 1,
       Audio_e => 2,
-      Photo_e => 3
+      Photo_e => 3,
+      Metadata_e => 4
    );
    type MediaStreamType_Ptr is access all MediaStreamType;
 
@@ -6438,85 +6475,6 @@ package WinRt.Windows.Media.Capture is
       IID_IPhotoConfirmationCapturedEventArgs : aliased WinRt.IID := (2873570930, 49802, 18471, (143, 141, 54, 54, 211, 190, 181, 30 ));
 
    -----------------------------------------------------------------------------
-   -- type IScreenCapture is interface and WinRt.IInspectable;
-
-      function get_AudioSource
-      (
-         this : access IScreenCapture_Interface;
-         RetVal : access Windows.Media.Core.IMediaSource
-      )
-      return WinRt.Hresult is abstract;
-
-      function get_VideoSource
-      (
-         this : access IScreenCapture_Interface;
-         RetVal : access Windows.Media.Core.IMediaSource
-      )
-      return WinRt.Hresult is abstract;
-
-      function get_IsAudioSuspended
-      (
-         this : access IScreenCapture_Interface;
-         RetVal : access WinRt.Boolean
-      )
-      return WinRt.Hresult is abstract;
-
-      function get_IsVideoSuspended
-      (
-         this : access IScreenCapture_Interface;
-         RetVal : access WinRt.Boolean
-      )
-      return WinRt.Hresult is abstract;
-
-      function add_SourceSuspensionChanged
-      (
-         this : access IScreenCapture_Interface;
-         handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
-      )
-      return WinRt.Hresult is abstract;
-
-      function remove_SourceSuspensionChanged
-      (
-         this : access IScreenCapture_Interface;
-         token : Windows.Foundation.EventRegistrationToken
-      )
-      return WinRt.Hresult is abstract;
-
-      IID_IScreenCapture : aliased WinRt.IID := (2300026615, 52498, 19982, (166, 212, 91, 61, 233, 139, 46, 155 ));
-
-   -----------------------------------------------------------------------------
-   -- type IScreenCaptureStatics is interface and WinRt.IInspectable;
-
-      function GetForCurrentView
-      (
-         this : access IScreenCaptureStatics_Interface;
-         RetVal : access Windows.Media.Capture.IScreenCapture
-      )
-      return WinRt.Hresult is abstract;
-
-      IID_IScreenCaptureStatics : aliased WinRt.IID := (3365454768, 51365, 4578, (139, 139, 8, 0, 32, 12, 154, 102 ));
-
-   -----------------------------------------------------------------------------
-   -- type ISourceSuspensionChangedEventArgs is interface and WinRt.IInspectable;
-
-      function get_IsAudioSuspended
-      (
-         this : access ISourceSuspensionChangedEventArgs_Interface;
-         RetVal : access WinRt.Boolean
-      )
-      return WinRt.Hresult is abstract;
-
-      function get_IsVideoSuspended
-      (
-         this : access ISourceSuspensionChangedEventArgs_Interface;
-         RetVal : access WinRt.Boolean
-      )
-      return WinRt.Hresult is abstract;
-
-      IID_ISourceSuspensionChangedEventArgs : aliased WinRt.IID := (785283934, 54427, 17300, (188, 50, 249, 125, 108, 237, 236, 28 ));
-
-   -----------------------------------------------------------------------------
    -- type IVideoStreamConfiguration is interface and WinRt.IInspectable;
 
       function get_InputProperties
@@ -10938,79 +10896,6 @@ package WinRt.Windows.Media.Capture is
       this : in out PhotoConfirmationCapturedEventArgs
    )
    return WinRt.Windows.Foundation.TimeSpan;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for ScreenCapture
-
-   overriding procedure Initialize (this : in out ScreenCapture);
-   overriding procedure Finalize (this : in out ScreenCapture);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for ScreenCapture
-
-   function GetForCurrentView
-   return WinRt.Windows.Media.Capture.ScreenCapture;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for ScreenCapture
-
-   function get_AudioSource
-   (
-      this : in out ScreenCapture
-   )
-   return WinRt.Windows.Media.Core.IMediaSource;
-
-   function get_VideoSource
-   (
-      this : in out ScreenCapture
-   )
-   return WinRt.Windows.Media.Core.IMediaSource;
-
-   function get_IsAudioSuspended
-   (
-      this : in out ScreenCapture
-   )
-   return WinRt.Boolean;
-
-   function get_IsVideoSuspended
-   (
-      this : in out ScreenCapture
-   )
-   return WinRt.Boolean;
-
-   function add_SourceSuspensionChanged
-   (
-      this : in out ScreenCapture;
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_SourceSuspensionChanged
-   (
-      this : in out ScreenCapture;
-      token : Windows.Foundation.EventRegistrationToken
-   );
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for SourceSuspensionChangedEventArgs
-
-   overriding procedure Initialize (this : in out SourceSuspensionChangedEventArgs);
-   overriding procedure Finalize (this : in out SourceSuspensionChangedEventArgs);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for SourceSuspensionChangedEventArgs
-
-   function get_IsAudioSuspended
-   (
-      this : in out SourceSuspensionChangedEventArgs
-   )
-   return WinRt.Boolean;
-
-   function get_IsVideoSuspended
-   (
-      this : in out SourceSuspensionChangedEventArgs
-   )
-   return WinRt.Boolean;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for VideoStreamConfiguration

@@ -48,9 +48,11 @@ package WinRt.Windows.Gaming.Input is
 
    type IArcadeStickStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IArcadeStickStatics is access all IArcadeStickStatics_Interface'Class;
+   type IArcadeStickStatics_Ptr is access all IArcadeStickStatics;
 
    type IArcadeStickStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IArcadeStickStatics2 is access all IArcadeStickStatics2_Interface'Class;
+   type IArcadeStickStatics2_Ptr is access all IArcadeStickStatics2;
 
    type IFlightStick_Interface is interface and WinRt.IInspectable_Interface;
    type IFlightStick is access all IFlightStick_Interface'Class;
@@ -58,12 +60,15 @@ package WinRt.Windows.Gaming.Input is
 
    type IFlightStickStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFlightStickStatics is access all IFlightStickStatics_Interface'Class;
+   type IFlightStickStatics_Ptr is access all IFlightStickStatics;
 
    type IGameController_Interface is interface and WinRt.IInspectable_Interface;
    type IGameController is access all IGameController_Interface'Class;
+   type IGameController_Ptr is access all IGameController;
 
    type IGameControllerBatteryInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IGameControllerBatteryInfo is access all IGameControllerBatteryInfo_Interface'Class;
+   type IGameControllerBatteryInfo_Ptr is access all IGameControllerBatteryInfo;
 
    type IGamepad_Interface is interface and WinRt.IInspectable_Interface;
    type IGamepad is access all IGamepad_Interface'Class;
@@ -71,12 +76,15 @@ package WinRt.Windows.Gaming.Input is
 
    type IGamepad2_Interface is interface and WinRt.IInspectable_Interface;
    type IGamepad2 is access all IGamepad2_Interface'Class;
+   type IGamepad2_Ptr is access all IGamepad2;
 
    type IGamepadStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGamepadStatics is access all IGamepadStatics_Interface'Class;
+   type IGamepadStatics_Ptr is access all IGamepadStatics;
 
    type IGamepadStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IGamepadStatics2 is access all IGamepadStatics2_Interface'Class;
+   type IGamepadStatics2_Ptr is access all IGamepadStatics2;
 
    type IHeadset_Interface is interface and WinRt.IInspectable_Interface;
    type IHeadset is access all IHeadset_Interface'Class;
@@ -88,9 +96,11 @@ package WinRt.Windows.Gaming.Input is
 
    type IRacingWheelStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRacingWheelStatics is access all IRacingWheelStatics_Interface'Class;
+   type IRacingWheelStatics_Ptr is access all IRacingWheelStatics;
 
    type IRacingWheelStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IRacingWheelStatics2 is access all IRacingWheelStatics2_Interface'Class;
+   type IRacingWheelStatics2_Ptr is access all IRacingWheelStatics2;
 
    type IRawGameController_Interface is interface and WinRt.IInspectable_Interface;
    type IRawGameController is access all IRawGameController_Interface'Class;
@@ -98,9 +108,11 @@ package WinRt.Windows.Gaming.Input is
 
    type IRawGameController2_Interface is interface and WinRt.IInspectable_Interface;
    type IRawGameController2 is access all IRawGameController2_Interface'Class;
+   type IRawGameController2_Ptr is access all IRawGameController2;
 
    type IRawGameControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRawGameControllerStatics is access all IRawGameControllerStatics_Interface'Class;
+   type IRawGameControllerStatics_Ptr is access all IRawGameControllerStatics;
 
    type IUINavigationController_Interface is interface and WinRt.IInspectable_Interface;
    type IUINavigationController is access all IUINavigationController_Interface'Class;
@@ -108,9 +120,11 @@ package WinRt.Windows.Gaming.Input is
 
    type IUINavigationControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUINavigationControllerStatics is access all IUINavigationControllerStatics_Interface'Class;
+   type IUINavigationControllerStatics_Ptr is access all IUINavigationControllerStatics;
 
    type IUINavigationControllerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IUINavigationControllerStatics2 is access all IUINavigationControllerStatics2_Interface'Class;
+   type IUINavigationControllerStatics2_Ptr is access all IUINavigationControllerStatics2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1325,6 +1339,12 @@ package WinRt.Windows.Gaming.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ArcadeStick
 
+   function FromGameController
+   (
+      gameController : Windows.Gaming.Input.IGameController
+   )
+   return WinRt.Windows.Gaming.Input.ArcadeStick;
+
    function add_ArcadeStickAdded
    (
       value : GenericObject
@@ -1349,12 +1369,6 @@ package WinRt.Windows.Gaming.Input is
 
    function get_ArcadeSticks
    return WinRt.GenericObject;
-
-   function FromGameController
-   (
-      gameController : Windows.Gaming.Input.IGameController
-   )
-   return WinRt.Windows.Gaming.Input.ArcadeStick;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ArcadeStick
@@ -1727,6 +1741,12 @@ package WinRt.Windows.Gaming.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RacingWheel
 
+   function FromGameController
+   (
+      gameController : Windows.Gaming.Input.IGameController
+   )
+   return WinRt.Windows.Gaming.Input.RacingWheel;
+
    function add_RacingWheelAdded
    (
       value : GenericObject
@@ -1751,12 +1771,6 @@ package WinRt.Windows.Gaming.Input is
 
    function get_RacingWheels
    return WinRt.GenericObject;
-
-   function FromGameController
-   (
-      gameController : Windows.Gaming.Input.IGameController
-   )
-   return WinRt.Windows.Gaming.Input.RacingWheel;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for RacingWheel
@@ -2065,12 +2079,6 @@ package WinRt.Windows.Gaming.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for UINavigationController
 
-   function FromGameController
-   (
-      gameController : Windows.Gaming.Input.IGameController
-   )
-   return WinRt.Windows.Gaming.Input.UINavigationController;
-
    function add_UINavigationControllerAdded
    (
       value : GenericObject
@@ -2095,6 +2103,12 @@ package WinRt.Windows.Gaming.Input is
 
    function get_UINavigationControllers
    return WinRt.GenericObject;
+
+   function FromGameController
+   (
+      gameController : Windows.Gaming.Input.IGameController
+   )
+   return WinRt.Windows.Gaming.Input.UINavigationController;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for UINavigationController

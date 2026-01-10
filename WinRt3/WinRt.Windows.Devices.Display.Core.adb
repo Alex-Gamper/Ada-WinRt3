@@ -32,9 +32,13 @@ with WinRt.Windows.Graphics;
 with WinRt.Windows.Graphics.DirectX;
 with WinRt.Windows.Graphics.DirectX.Direct3D11;
 with WinRt.Windows.Storage.Streams;
+with Ada.Unchecked_Conversion;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Devices.Display.Core is
+
+   package IAsyncOperation_DisplayMuxDevice is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Display.Core.IDisplayMuxDevice);
+   package AsyncOperationCompletedHandler_DisplayMuxDevice is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.Display.Core.IDisplayMuxDevice);
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DisplayAdapter
@@ -231,6 +235,51 @@ package body WinRt.Windows.Devices.Display.Core is
       return m_GenericRetVal;
    end;
 
+   function get_IsIndirectDisplayDevice
+   (
+      this : in out DisplayAdapter
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayAdapter2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayAdapter_Interface, WinRt.Windows.Devices.Display.Core.IDisplayAdapter2, WinRt.Windows.Devices.Display.Core.IID_IDisplayAdapter2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IDisplayAdapter.all);
+      Hr := m_Interface.get_IsIndirectDisplayDevice (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_PreferredRenderAdapter
+   (
+      this : in out DisplayAdapter
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayAdapter'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayAdapter2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayAdapter;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayAdapter_Interface, WinRt.Windows.Devices.Display.Core.IDisplayAdapter2, WinRt.Windows.Devices.Display.Core.IID_IDisplayAdapter2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Display.Core.DisplayAdapter do
+         m_Interface := QInterface (this.m_IDisplayAdapter.all);
+         Hr := m_Interface.get_PreferredRenderAdapter (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDisplayAdapter := new Windows.Devices.Display.Core.IDisplayAdapter;
+         Retval.m_IDisplayAdapter.all := m_ComRetVal;
+      end return;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DisplayDevice
 
@@ -390,6 +439,57 @@ package body WinRt.Windows.Devices.Display.Core is
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDisplayDevice.all.IsCapabilitySupported (capability, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function CreateSimpleScanoutWithDirtyRectsAndOptions
+   (
+      this : in out DisplayDevice;
+      source : Windows.Devices.Display.Core.DisplaySource'Class;
+      surface : Windows.Devices.Display.Core.DisplaySurface'Class;
+      subresourceIndex : WinRt.UInt32;
+      syncInterval : WinRt.UInt32;
+      dirtyRects : GenericObject;
+      options : Windows.Devices.Display.Core.DisplayScanoutOptions
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayScanout'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayDevice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayScanout;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayDevice_Interface, WinRt.Windows.Devices.Display.Core.IDisplayDevice2, WinRt.Windows.Devices.Display.Core.IID_IDisplayDevice2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Display.Core.DisplayScanout do
+         m_Interface := QInterface (this.m_IDisplayDevice.all);
+         Hr := m_Interface.CreateSimpleScanoutWithDirtyRectsAndOptions (source.m_IDisplaySource.all, surface.m_IDisplaySurface.all, subresourceIndex, syncInterval, dirtyRects, options, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDisplayScanout := new Windows.Devices.Display.Core.IDisplayScanout;
+         Retval.m_IDisplayScanout.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_RenderAdapterId
+   (
+      this : in out DisplayDevice
+   )
+   return WinRt.Windows.Graphics.DisplayAdapterId is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayDeviceRenderAdapter := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.DisplayAdapterId;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayDevice_Interface, WinRt.Windows.Devices.Display.Core.IDisplayDeviceRenderAdapter, WinRt.Windows.Devices.Display.Core.IID_IDisplayDeviceRenderAdapter'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IDisplayDevice.all);
+      Hr := m_Interface.get_RenderAdapterId (m_ComRetVal'Access);
+      temp := m_Interface.Release;
       if Hr /= S_OK then
          raise Program_Error;
       end if;
@@ -808,6 +908,56 @@ package body WinRt.Windows.Devices.Display.Core is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   function TryReadCurrentStateForModeQuery
+   (
+      this : in out DisplayManager
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayManagerResultWithState'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayManager2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayManagerResultWithState;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayManager_Interface, WinRt.Windows.Devices.Display.Core.IDisplayManager2, WinRt.Windows.Devices.Display.Core.IID_IDisplayManager2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Display.Core.DisplayManagerResultWithState do
+         m_Interface := QInterface (this.m_IDisplayManager.all);
+         Hr := m_Interface.TryReadCurrentStateForModeQuery (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDisplayManagerResultWithState := new Windows.Devices.Display.Core.IDisplayManagerResultWithState;
+         Retval.m_IDisplayManagerResultWithState.all := m_ComRetVal;
+      end return;
+   end;
+
+   function CreateDisplayDeviceForIndirectAdapter
+   (
+      this : in out DisplayManager;
+      indirectAdapter : Windows.Devices.Display.Core.DisplayAdapter'Class;
+      renderAdapter : Windows.Devices.Display.Core.DisplayAdapter'Class
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayDevice'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayManager3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayDevice;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayManager_Interface, WinRt.Windows.Devices.Display.Core.IDisplayManager3, WinRt.Windows.Devices.Display.Core.IID_IDisplayManager3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Display.Core.DisplayDevice do
+         m_Interface := QInterface (this.m_IDisplayManager.all);
+         Hr := m_Interface.CreateDisplayDeviceForIndirectAdapter (indirectAdapter.m_IDisplayAdapter.all, renderAdapter.m_IDisplayAdapter.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDisplayDevice := new Windows.Devices.Display.Core.IDisplayDevice;
+         Retval.m_IDisplayDevice.all := m_ComRetVal;
+      end return;
    end;
 
    procedure Close
@@ -1386,6 +1536,402 @@ package body WinRt.Windows.Devices.Display.Core is
       return m_GenericRetVal;
    end;
 
+   function get_PhysicalPresentationRate
+   (
+      this : in out DisplayModeInfo
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayPresentationRate is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayModeInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayPresentationRate;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayModeInfo_Interface, WinRt.Windows.Devices.Display.Core.IDisplayModeInfo2, WinRt.Windows.Devices.Display.Core.IID_IDisplayModeInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IDisplayModeInfo.all);
+      Hr := m_Interface.get_PhysicalPresentationRate (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DisplayMuxDevice
+
+   procedure Initialize (this : in out DisplayMuxDevice) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out DisplayMuxDevice) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IDisplayMuxDevice, IDisplayMuxDevice_Ptr);
+   begin
+      if this.m_IDisplayMuxDevice /= null then
+         if this.m_IDisplayMuxDevice.all /= null then
+            temp := this.m_IDisplayMuxDevice.all.Release;
+            Free (this.m_IDisplayMuxDevice);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for DisplayMuxDevice
+
+   function GetDeviceSelector
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.DisplayMuxDevice");
+      m_Factory        : access WinRt.Windows.Devices.Display.Core.IDisplayMuxDeviceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IDisplayMuxDeviceStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function FromIdAsync
+   (
+      deviceInterfaceId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayMuxDevice is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.DisplayMuxDevice");
+      m_Factory        : access WinRt.Windows.Devices.Display.Core.IDisplayMuxDeviceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceInterfaceId : constant WinRt.HString := To_HString (deviceInterfaceId);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_DisplayMuxDevice.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_DisplayMuxDevice.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.Display.Core.IDisplayMuxDevice;
+      m_IID            : aliased WinRt.IID := (107756377, 2459, 24375, (137, 235, 29, 84, 253, 147, 233, 179 )); -- Windows.Devices.Display.Core.DisplayMuxDevice;
+      m_HandlerIID     : aliased WinRt.IID := (1640477701, 57825, 21433, (164, 64, 75, 174, 1, 99, 109, 35 ));
+      m_Handler        : AsyncOperationCompletedHandler_DisplayMuxDevice.Kind := new AsyncOperationCompletedHandler_DisplayMuxDevice.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_DisplayMuxDevice.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_DisplayMuxDevice.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DisplayMuxDevice.Kind_Delegate, AsyncOperationCompletedHandler_DisplayMuxDevice.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.Display.Core.DisplayMuxDevice do
+         Hr := RoGetActivationFactory (m_hString, IID_IDisplayMuxDeviceStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FromIdAsync (HStr_deviceInterfaceId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_IDisplayMuxDevice := new Windows.Devices.Display.Core.IDisplayMuxDevice;
+                     Retval.m_IDisplayMuxDevice.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceInterfaceId);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DisplayMuxDevice
+
+   function get_Id
+   (
+      this : in out DisplayMuxDevice
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IDisplayMuxDevice.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_IsActive
+   (
+      this : in out DisplayMuxDevice
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IDisplayMuxDevice.all.get_IsActive (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetAvailableMuxTargets
+   (
+      this : in out DisplayMuxDevice
+   )
+   return IVectorView_IDisplayTarget.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IDisplayTarget.Kind;
+   begin
+      Hr := this.m_IDisplayMuxDevice.all.GetAvailableMuxTargets (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IDisplayTarget (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_CurrentTarget
+   (
+      this : in out DisplayMuxDevice
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayTarget'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayTarget;
+   begin
+      return RetVal : WinRt.Windows.Devices.Display.Core.DisplayTarget do
+         Hr := this.m_IDisplayMuxDevice.all.get_CurrentTarget (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDisplayTarget := new Windows.Devices.Display.Core.IDisplayTarget;
+         Retval.m_IDisplayTarget.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_PreferredTarget
+   (
+      this : in out DisplayMuxDevice
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayTarget'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayTarget;
+   begin
+      return RetVal : WinRt.Windows.Devices.Display.Core.DisplayTarget do
+         Hr := this.m_IDisplayMuxDevice.all.get_PreferredTarget (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDisplayTarget := new Windows.Devices.Display.Core.IDisplayTarget;
+         Retval.m_IDisplayTarget.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_IsAutomaticTargetSwitchingEnabled
+   (
+      this : in out DisplayMuxDevice
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IDisplayMuxDevice.all.get_IsAutomaticTargetSwitchingEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure SetPreferredTarget
+   (
+      this : in out DisplayMuxDevice;
+      target : Windows.Devices.Display.Core.DisplayTarget'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
+
+      procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+      begin
+         if asyncStatus = Completed_e then
+            Hr := asyncInfo.GetResults;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
+      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
+
+   begin
+      Hr := this.m_IDisplayMuxDevice.all.SetPreferredTarget (target.m_IDisplayTarget.all, m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_Captured := m_Completed;
+         Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
+         while m_Captured = m_Compare loop
+            m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+            m_Captured := m_Completed;
+         end loop;
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
+            Free (m_CompletedHandler);
+         end if;
+      end if;
+   end;
+
+   procedure SetAutomaticTargetSwitching
+   (
+      this : in out DisplayMuxDevice
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
+
+      procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+      begin
+         if asyncStatus = Completed_e then
+            Hr := asyncInfo.GetResults;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
+      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
+
+   begin
+      Hr := this.m_IDisplayMuxDevice.all.SetAutomaticTargetSwitching (m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_Captured := m_Completed;
+         Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
+         while m_Captured = m_Compare loop
+            m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+            m_Captured := m_Completed;
+         end loop;
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
+            Free (m_CompletedHandler);
+         end if;
+      end if;
+   end;
+
+   function add_Changed
+   (
+      this : in out DisplayMuxDevice;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IDisplayMuxDevice.all.add_Changed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_Changed
+   (
+      this : in out DisplayMuxDevice;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IDisplayMuxDevice.all.remove_Changed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure Close
+   (
+      this : in out DisplayMuxDevice
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Foundation.IClosable := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayMuxDevice_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IDisplayMuxDevice.all);
+      Hr := m_Interface.Close;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DisplayPath
 
@@ -1819,6 +2365,49 @@ package body WinRt.Windows.Devices.Display.Core is
       return m_GenericRetVal;
    end;
 
+   function get_PhysicalPresentationRate
+   (
+      this : in out DisplayPath
+   )
+   return IReference_DisplayPresentationRate.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayPath2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_DisplayPresentationRate.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayPath_Interface, WinRt.Windows.Devices.Display.Core.IDisplayPath2, WinRt.Windows.Devices.Display.Core.IID_IDisplayPath2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IDisplayPath.all);
+      Hr := m_Interface.get_PhysicalPresentationRate (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_DisplayPresentationRate (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   procedure put_PhysicalPresentationRate
+   (
+      this : in out DisplayPath;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayPath2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayPath_Interface, WinRt.Windows.Devices.Display.Core.IDisplayPath2, WinRt.Windows.Devices.Display.Core.IID_IDisplayPath2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IDisplayPath.all);
+      Hr := m_Interface.put_PhysicalPresentationRate (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DisplayPrimaryDescription
 
@@ -2128,6 +2717,68 @@ package body WinRt.Windows.Devices.Display.Core is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   function get_Status
+   (
+      this : in out DisplaySource
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplaySourceStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplaySource2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplaySourceStatus;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplaySource_Interface, WinRt.Windows.Devices.Display.Core.IDisplaySource2, WinRt.Windows.Devices.Display.Core.IID_IDisplaySource2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IDisplaySource.all);
+      Hr := m_Interface.get_Status (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function add_StatusChanged
+   (
+      this : in out DisplaySource;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplaySource2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplaySource_Interface, WinRt.Windows.Devices.Display.Core.IDisplaySource2, WinRt.Windows.Devices.Display.Core.IID_IDisplaySource2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IDisplaySource.all);
+      Hr := m_Interface.add_StatusChanged (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_StatusChanged
+   (
+      this : in out DisplaySource;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplaySource2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplaySource_Interface, WinRt.Windows.Devices.Display.Core.IDisplaySource2, WinRt.Windows.Devices.Display.Core.IID_IDisplaySource2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IDisplaySource.all);
+      Hr := m_Interface.remove_StatusChanged (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2840,6 +3491,26 @@ package body WinRt.Windows.Devices.Display.Core is
       end if;
    end;
 
+   procedure SetSignal
+   (
+      this : in out DisplayTask;
+      signalKind : Windows.Devices.Display.Core.DisplayTaskSignalKind;
+      fence : Windows.Devices.Display.Core.DisplayFence'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayTask2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayTask_Interface, WinRt.Windows.Devices.Display.Core.IDisplayTask2, WinRt.Windows.Devices.Display.Core.IID_IDisplayTask2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IDisplayTask.all);
+      Hr := m_Interface.SetSignal (signalKind, fence.m_IDisplayFence.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DisplayTaskPool
 
@@ -2896,6 +3567,105 @@ package body WinRt.Windows.Devices.Display.Core is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   function TryExecuteTask
+   (
+      this : in out DisplayTaskPool;
+      task_x : Windows.Devices.Display.Core.DisplayTask'Class
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayTaskResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayTaskPool2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayTaskResult;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayTaskPool_Interface, WinRt.Windows.Devices.Display.Core.IDisplayTaskPool2, WinRt.Windows.Devices.Display.Core.IID_IDisplayTaskPool2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Display.Core.DisplayTaskResult do
+         m_Interface := QInterface (this.m_IDisplayTaskPool.all);
+         Hr := m_Interface.TryExecuteTask (task_x.m_IDisplayTask.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDisplayTaskResult := new Windows.Devices.Display.Core.IDisplayTaskResult;
+         Retval.m_IDisplayTaskResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DisplayTaskResult
+
+   procedure Initialize (this : in out DisplayTaskResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out DisplayTaskResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IDisplayTaskResult, IDisplayTaskResult_Ptr);
+   begin
+      if this.m_IDisplayTaskResult /= null then
+         if this.m_IDisplayTaskResult.all /= null then
+            temp := this.m_IDisplayTaskResult.all.Release;
+            Free (this.m_IDisplayTaskResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DisplayTaskResult
+
+   function get_PresentStatus
+   (
+      this : in out DisplayTaskResult
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayPresentStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayPresentStatus;
+   begin
+      Hr := this.m_IDisplayTaskResult.all.get_PresentStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_PresentId
+   (
+      this : in out DisplayTaskResult
+   )
+   return WinRt.UInt64 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt64;
+   begin
+      Hr := this.m_IDisplayTaskResult.all.get_PresentId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_SourceStatus
+   (
+      this : in out DisplayTaskResult
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplaySourceStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplaySourceStatus;
+   begin
+      Hr := this.m_IDisplayTaskResult.all.get_SourceStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

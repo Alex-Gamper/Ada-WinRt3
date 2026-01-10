@@ -4934,6 +4934,136 @@ package body WinRt.Windows.ApplicationModel.Activation is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PhoneCallActivatedEventArgs
+
+   procedure Initialize (this : in out PhoneCallActivatedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PhoneCallActivatedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPhoneCallActivatedEventArgs, IPhoneCallActivatedEventArgs_Ptr);
+   begin
+      if this.m_IPhoneCallActivatedEventArgs /= null then
+         if this.m_IPhoneCallActivatedEventArgs.all /= null then
+            temp := this.m_IPhoneCallActivatedEventArgs.all.Release;
+            Free (this.m_IPhoneCallActivatedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PhoneCallActivatedEventArgs
+
+   function get_LineId
+   (
+      this : in out PhoneCallActivatedEventArgs
+   )
+   return WinRt.Guid is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Guid;
+   begin
+      Hr := this.m_IPhoneCallActivatedEventArgs.all.get_LineId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Kind
+   (
+      this : in out PhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPhoneCallActivatedEventArgs.all);
+      Hr := m_Interface.get_Kind (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_PreviousExecutionState
+   (
+      this : in out PhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPhoneCallActivatedEventArgs.all);
+      Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_SplashScreen
+   (
+      this : in out PhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
+         m_Interface := QInterface (this.m_IPhoneCallActivatedEventArgs.all);
+         Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_User
+   (
+      this : in out PhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.System.User'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.System.IUser;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.System.User do
+         m_Interface := QInterface (this.m_IPhoneCallActivatedEventArgs.all);
+         Hr := m_Interface.get_User (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PickerReturnedActivatedEventArgs
 
    procedure Initialize (this : in out PickerReturnedActivatedEventArgs) is

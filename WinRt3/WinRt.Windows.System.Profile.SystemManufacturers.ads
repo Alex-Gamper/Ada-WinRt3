@@ -44,6 +44,7 @@ package WinRt.Windows.System.Profile.SystemManufacturers is
 
    type ISmbiosInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISmbiosInformationStatics is access all ISmbiosInformationStatics_Interface'Class;
+   type ISmbiosInformationStatics_Ptr is access all ISmbiosInformationStatics;
 
    type ISystemSupportDeviceInfo_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemSupportDeviceInfo is access all ISystemSupportDeviceInfo_Interface'Class;
@@ -51,9 +52,11 @@ package WinRt.Windows.System.Profile.SystemManufacturers is
 
    type ISystemSupportInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemSupportInfoStatics is access all ISystemSupportInfoStatics_Interface'Class;
+   type ISystemSupportInfoStatics_Ptr is access all ISystemSupportInfoStatics;
 
    type ISystemSupportInfoStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemSupportInfoStatics2 is access all ISystemSupportInfoStatics2_Interface'Class;
+   type ISystemSupportInfoStatics2_Ptr is access all ISystemSupportInfoStatics2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -302,14 +305,14 @@ package WinRt.Windows.System.Profile.SystemManufacturers is
    -- Static RuntimeClass
    package SystemSupportInfo is
 
-      function get_LocalDeviceInfo
-      return WinRt.Windows.System.Profile.SystemManufacturers.SystemSupportDeviceInfo;
-
       function get_LocalSystemEdition
       return WinRt.WString;
 
       function get_OemSupportInfo
       return WinRt.Windows.System.Profile.SystemManufacturers.OemSupportInfo;
+
+      function get_LocalDeviceInfo
+      return WinRt.Windows.System.Profile.SystemManufacturers.SystemSupportDeviceInfo;
 
    end SystemSupportInfo;
 

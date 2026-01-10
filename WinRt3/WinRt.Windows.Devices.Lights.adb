@@ -1085,6 +1085,68 @@ package body WinRt.Windows.Devices.Lights is
       return m_RetVal;
    end;
 
+   function get_IsAvailable
+   (
+      this : in out LampArray
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Lights.ILampArray2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.ILampArray_Interface, WinRt.Windows.Devices.Lights.ILampArray2, WinRt.Windows.Devices.Lights.IID_ILampArray2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ILampArray.all);
+      Hr := m_Interface.get_IsAvailable (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function add_AvailabilityChanged
+   (
+      this : in out LampArray;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Lights.ILampArray2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.ILampArray_Interface, WinRt.Windows.Devices.Lights.ILampArray2, WinRt.Windows.Devices.Lights.IID_ILampArray2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ILampArray.all);
+      Hr := m_Interface.add_AvailabilityChanged (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_AvailabilityChanged
+   (
+      this : in out LampArray;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Lights.ILampArray2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.ILampArray_Interface, WinRt.Windows.Devices.Lights.ILampArray2, WinRt.Windows.Devices.Lights.IID_ILampArray2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ILampArray.all);
+      Hr := m_Interface.remove_AvailabilityChanged (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for LampAvailabilityChangedEventArgs
 

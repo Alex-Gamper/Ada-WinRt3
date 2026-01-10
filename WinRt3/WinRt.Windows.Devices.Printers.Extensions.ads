@@ -44,6 +44,7 @@ package WinRt.Windows.Devices.Printers.Extensions is
 
    type IPrint3DWorkflow2_Interface is interface and WinRt.IInspectable_Interface;
    type IPrint3DWorkflow2 is access all IPrint3DWorkflow2_Interface'Class;
+   type IPrint3DWorkflow2_Ptr is access all IPrint3DWorkflow2;
 
    type IPrint3DWorkflowPrintRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPrint3DWorkflowPrintRequestedEventArgs is access all IPrint3DWorkflowPrintRequestedEventArgs_Interface'Class;
@@ -55,6 +56,7 @@ package WinRt.Windows.Devices.Printers.Extensions is
 
    type IPrintExtensionContextStatic_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintExtensionContextStatic is access all IPrintExtensionContextStatic_Interface'Class;
+   type IPrintExtensionContextStatic_Ptr is access all IPrintExtensionContextStatic;
 
    type IPrintNotificationEventDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintNotificationEventDetails is access all IPrintNotificationEventDetails_Interface'Class;

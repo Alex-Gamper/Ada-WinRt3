@@ -136,6 +136,27 @@ package body WinRt.Windows.AI.MachineLearning is
       return m_ComRetVal;
    end;
 
+   function get_PixelRange
+   (
+      this : in out ImageFeatureDescriptor
+   )
+   return WinRt.Windows.AI.MachineLearning.LearningModelPixelRange is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.AI.MachineLearning.IImageFeatureDescriptor2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelPixelRange;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.IImageFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.IImageFeatureDescriptor2, WinRt.Windows.AI.MachineLearning.IID_IImageFeatureDescriptor2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IImageFeatureDescriptor.all);
+      Hr := m_Interface.get_PixelRange (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
    function get_Name
    (
       this : in out ImageFeatureDescriptor
@@ -1813,6 +1834,28 @@ package body WinRt.Windows.AI.MachineLearning is
       end if;
    end;
 
+   procedure OverrideNamedDimension
+   (
+      this : in out LearningModelSessionOptions;
+      name : WinRt.WString;
+      dimension : WinRt.UInt32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelSessionOptions3 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ILearningModelSessionOptions_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelSessionOptions3, WinRt.Windows.AI.MachineLearning.IID_ILearningModelSessionOptions3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ILearningModelSessionOptions.all);
+      Hr := m_Interface.OverrideNamedDimension (HStr_name, dimension);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MapFeatureDescriptor
 
@@ -2113,65 +2156,6 @@ package body WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorBoolean
 
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Boolean_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorBoolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
-      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorBooleanStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorBoolean;
-      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
-      function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Boolean_Ptr);
-   begin
-      return RetVal : WinRt.Windows.AI.MachineLearning.TensorBoolean do
-         Hr := RoGetActivationFactory (m_hString, IID_ITensorBooleanStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ITensorBoolean := new Windows.AI.MachineLearning.ITensorBoolean;
-            Retval.m_ITensorBoolean.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorBoolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
-      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorBooleanStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorBoolean;
-      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
-   begin
-      return RetVal : WinRt.Windows.AI.MachineLearning.TensorBoolean do
-         Hr := RoGetActivationFactory (m_hString, IID_ITensorBooleanStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ITensorBoolean := new Windows.AI.MachineLearning.ITensorBoolean;
-            Retval.m_ITensorBoolean.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorBoolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2269,6 +2253,65 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorBooleanStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ITensorBoolean := new Windows.AI.MachineLearning.ITensorBoolean;
+            Retval.m_ITensorBoolean.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Boolean_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorBoolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
+      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorBooleanStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorBoolean;
+      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
+      function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Boolean_Ptr);
+   begin
+      return RetVal : WinRt.Windows.AI.MachineLearning.TensorBoolean do
+         Hr := RoGetActivationFactory (m_hString, IID_ITensorBooleanStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ITensorBoolean := new Windows.AI.MachineLearning.ITensorBoolean;
+            Retval.m_ITensorBoolean.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorBoolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
+      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorBooleanStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorBoolean;
+      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
+   begin
+      return RetVal : WinRt.Windows.AI.MachineLearning.TensorBoolean do
+         Hr := RoGetActivationFactory (m_hString, IID_ITensorBooleanStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -2431,65 +2474,6 @@ package body WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorDouble
 
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Double_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorDouble is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
-      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorDoubleStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorDouble;
-      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
-      function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Double_Ptr);
-   begin
-      return RetVal : WinRt.Windows.AI.MachineLearning.TensorDouble do
-         Hr := RoGetActivationFactory (m_hString, IID_ITensorDoubleStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ITensorDouble := new Windows.AI.MachineLearning.ITensorDouble;
-            Retval.m_ITensorDouble.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorDouble is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
-      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorDoubleStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorDouble;
-      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
-   begin
-      return RetVal : WinRt.Windows.AI.MachineLearning.TensorDouble do
-         Hr := RoGetActivationFactory (m_hString, IID_ITensorDoubleStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ITensorDouble := new Windows.AI.MachineLearning.ITensorDouble;
-            Retval.m_ITensorDouble.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorDouble is
       Hr               : WinRt.HResult := S_OK;
@@ -2587,6 +2571,65 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorDoubleStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ITensorDouble := new Windows.AI.MachineLearning.ITensorDouble;
+            Retval.m_ITensorDouble.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Double_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorDouble is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
+      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorDoubleStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorDouble;
+      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
+      function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Double_Ptr);
+   begin
+      return RetVal : WinRt.Windows.AI.MachineLearning.TensorDouble do
+         Hr := RoGetActivationFactory (m_hString, IID_ITensorDoubleStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ITensorDouble := new Windows.AI.MachineLearning.ITensorDouble;
+            Retval.m_ITensorDouble.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorDouble is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
+      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorDoubleStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorDouble;
+      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
+   begin
+      return RetVal : WinRt.Windows.AI.MachineLearning.TensorDouble do
+         Hr := RoGetActivationFactory (m_hString, IID_ITensorDoubleStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -3217,65 +3260,6 @@ package body WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorFloat16Bit
 
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Single_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
-      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloat16BitStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat16Bit;
-      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
-      function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Single_Ptr);
-   begin
-      return RetVal : WinRt.Windows.AI.MachineLearning.TensorFloat16Bit do
-         Hr := RoGetActivationFactory (m_hString, IID_ITensorFloat16BitStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ITensorFloat16Bit := new Windows.AI.MachineLearning.ITensorFloat16Bit;
-            Retval.m_ITensorFloat16Bit.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
-      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloat16BitStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat16Bit;
-      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
-   begin
-      return RetVal : WinRt.Windows.AI.MachineLearning.TensorFloat16Bit do
-         Hr := RoGetActivationFactory (m_hString, IID_ITensorFloat16BitStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ITensorFloat16Bit := new Windows.AI.MachineLearning.ITensorFloat16Bit;
-            Retval.m_ITensorFloat16Bit.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit is
       Hr               : WinRt.HResult := S_OK;
@@ -3373,6 +3357,65 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorFloat16BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ITensorFloat16Bit := new Windows.AI.MachineLearning.ITensorFloat16Bit;
+            Retval.m_ITensorFloat16Bit.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Single_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
+      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloat16BitStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat16Bit;
+      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
+      function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Single_Ptr);
+   begin
+      return RetVal : WinRt.Windows.AI.MachineLearning.TensorFloat16Bit do
+         Hr := RoGetActivationFactory (m_hString, IID_ITensorFloat16BitStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ITensorFloat16Bit := new Windows.AI.MachineLearning.ITensorFloat16Bit;
+            Retval.m_ITensorFloat16Bit.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
+      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloat16BitStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat16Bit;
+      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
+   begin
+      return RetVal : WinRt.Windows.AI.MachineLearning.TensorFloat16Bit do
+         Hr := RoGetActivationFactory (m_hString, IID_ITensorFloat16BitStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -4807,6 +4850,36 @@ package body WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorString
 
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.HString_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorString");
+      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorStringStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorString;
+      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
+      function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.HString_Ptr);
+   begin
+      return RetVal : WinRt.Windows.AI.MachineLearning.TensorString do
+         Hr := RoGetActivationFactory (m_hString, IID_ITensorStringStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ITensorString := new Windows.AI.MachineLearning.ITensorString;
+            Retval.m_ITensorString.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorString is
       Hr               : WinRt.HResult := S_OK;
@@ -4904,36 +4977,6 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorStringStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ITensorString := new Windows.AI.MachineLearning.ITensorString;
-            Retval.m_ITensorString.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.HString_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorString");
-      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorStringStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorString;
-      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
-      function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.HString_Ptr);
-   begin
-      return RetVal : WinRt.Windows.AI.MachineLearning.TensorString do
-         Hr := RoGetActivationFactory (m_hString, IID_ITensorStringStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -5414,6 +5457,65 @@ package body WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorUInt32Bit
 
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.UInt32_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
+      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt32BitStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt32Bit;
+      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
+      function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.UInt32_Ptr);
+   begin
+      return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt32Bit do
+         Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt32BitStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ITensorUInt32Bit := new Windows.AI.MachineLearning.ITensorUInt32Bit;
+            Retval.m_ITensorUInt32Bit.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
+      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt32BitStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt32Bit;
+      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
+   begin
+      return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt32Bit do
+         Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt32BitStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ITensorUInt32Bit := new Windows.AI.MachineLearning.ITensorUInt32Bit;
+            Retval.m_ITensorUInt32Bit.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit is
       Hr               : WinRt.HResult := S_OK;
@@ -5511,65 +5613,6 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt32BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ITensorUInt32Bit := new Windows.AI.MachineLearning.ITensorUInt32Bit;
-            Retval.m_ITensorUInt32Bit.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.UInt32_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
-      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt32BitStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt32Bit;
-      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
-      function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.UInt32_Ptr);
-   begin
-      return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt32Bit do
-         Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt32BitStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ITensorUInt32Bit := new Windows.AI.MachineLearning.ITensorUInt32Bit;
-            Retval.m_ITensorUInt32Bit.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
-      m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt32BitStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt32Bit;
-      function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
-   begin
-      return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt32Bit do
-         Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt32BitStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

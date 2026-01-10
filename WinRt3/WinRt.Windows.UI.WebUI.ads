@@ -98,6 +98,7 @@ package WinRt.Windows.UI.WebUI is
 
    type IActivatedEventArgsDeferral_Interface is interface and WinRt.IInspectable_Interface;
    type IActivatedEventArgsDeferral is access all IActivatedEventArgsDeferral_Interface'Class;
+   type IActivatedEventArgsDeferral_Ptr is access all IActivatedEventArgsDeferral;
 
    type IActivatedOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IActivatedOperation is access all IActivatedOperation_Interface'Class;
@@ -113,15 +114,19 @@ package WinRt.Windows.UI.WebUI is
 
    type IWebUIActivationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWebUIActivationStatics is access all IWebUIActivationStatics_Interface'Class;
+   type IWebUIActivationStatics_Ptr is access all IWebUIActivationStatics;
 
    type IWebUIActivationStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebUIActivationStatics2 is access all IWebUIActivationStatics2_Interface'Class;
+   type IWebUIActivationStatics2_Ptr is access all IWebUIActivationStatics2;
 
    type IWebUIActivationStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IWebUIActivationStatics3 is access all IWebUIActivationStatics3_Interface'Class;
+   type IWebUIActivationStatics3_Ptr is access all IWebUIActivationStatics3;
 
    type IWebUIActivationStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IWebUIActivationStatics4 is access all IWebUIActivationStatics4_Interface'Class;
+   type IWebUIActivationStatics4_Ptr is access all IWebUIActivationStatics4;
 
    type IWebUIBackgroundTaskInstance_Interface is interface and WinRt.IInspectable_Interface;
    type IWebUIBackgroundTaskInstance is access all IWebUIBackgroundTaskInstance_Interface'Class;
@@ -129,6 +134,7 @@ package WinRt.Windows.UI.WebUI is
 
    type IWebUIBackgroundTaskInstanceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWebUIBackgroundTaskInstanceStatics is access all IWebUIBackgroundTaskInstanceStatics_Interface'Class;
+   type IWebUIBackgroundTaskInstanceStatics_Ptr is access all IWebUIBackgroundTaskInstanceStatics;
 
    type IWebUINavigatedDeferral_Interface is interface and WinRt.IInspectable_Interface;
    type IWebUINavigatedDeferral is access all IWebUINavigatedDeferral_Interface'Class;
@@ -148,6 +154,7 @@ package WinRt.Windows.UI.WebUI is
 
    type IWebUIViewStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWebUIViewStatics is access all IWebUIViewStatics_Interface'Class;
+   type IWebUIViewStatics_Ptr is access all IWebUIViewStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -410,6 +417,12 @@ package WinRt.Windows.UI.WebUI is
          m_IWebUINavigatedOperation : access Windows.UI.WebUI.IWebUINavigatedOperation;
       end record;
    type WebUINavigatedOperation_Ptr is access all WebUINavigatedOperation;
+
+   type WebUIPhoneCallActivatedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPhoneCallActivatedEventArgs : access Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs;
+      end record;
+   type WebUIPhoneCallActivatedEventArgs_Ptr is access all WebUIPhoneCallActivatedEventArgs;
 
    type WebUIPrint3DWorkflowActivatedEventArgs is new Ada.Finalization.Limited_Controlled with
       record
@@ -1404,55 +1417,6 @@ package WinRt.Windows.UI.WebUI is
    -- Static RuntimeClass
    package WebUIApplication is
 
-      function add_NewWebUIViewCreated
-      (
-         handler : GenericObject
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken;
-
-      procedure remove_NewWebUIViewCreated
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      );
-
-      function add_BackgroundActivated
-      (
-         handler : Windows.UI.WebUI.BackgroundActivatedEventHandler
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken;
-
-      procedure remove_BackgroundActivated
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      );
-
-      function add_LeavingBackground
-      (
-         handler : Windows.UI.WebUI.LeavingBackgroundEventHandler
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken;
-
-      procedure remove_LeavingBackground
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      );
-
-      function add_EnteredBackground
-      (
-         handler : Windows.UI.WebUI.EnteredBackgroundEventHandler
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken;
-
-      procedure remove_EnteredBackground
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      );
-
-      procedure EnablePrelaunch
-      (
-         value : WinRt.Boolean
-      );
-
       function RequestRestartAsync
       (
          launchArguments : WinRt.WString
@@ -1506,6 +1470,55 @@ package WinRt.Windows.UI.WebUI is
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_Navigated
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
+
+      function add_LeavingBackground
+      (
+         handler : Windows.UI.WebUI.LeavingBackgroundEventHandler
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken;
+
+      procedure remove_LeavingBackground
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
+
+      function add_EnteredBackground
+      (
+         handler : Windows.UI.WebUI.EnteredBackgroundEventHandler
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken;
+
+      procedure remove_EnteredBackground
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
+
+      procedure EnablePrelaunch
+      (
+         value : WinRt.Boolean
+      );
+
+      function add_NewWebUIViewCreated
+      (
+         handler : GenericObject
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken;
+
+      procedure remove_NewWebUIViewCreated
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
+
+      function add_BackgroundActivated
+      (
+         handler : Windows.UI.WebUI.BackgroundActivatedEventHandler
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken;
+
+      procedure remove_BackgroundActivated
       (
          token : Windows.Foundation.EventRegistrationToken
       );
@@ -3161,6 +3174,51 @@ package WinRt.Windows.UI.WebUI is
       this : in out WebUINavigatedOperation
    )
    return WinRt.Windows.UI.WebUI.WebUINavigatedDeferral'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WebUIPhoneCallActivatedEventArgs
+
+   overriding procedure Initialize (this : in out WebUIPhoneCallActivatedEventArgs);
+   overriding procedure Finalize (this : in out WebUIPhoneCallActivatedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WebUIPhoneCallActivatedEventArgs
+
+   function get_LineId
+   (
+      this : in out WebUIPhoneCallActivatedEventArgs
+   )
+   return WinRt.Guid;
+
+   function get_Kind
+   (
+      this : in out WebUIPhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.ActivationKind;
+
+   function get_PreviousExecutionState
+   (
+      this : in out WebUIPhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
+
+   function get_SplashScreen
+   (
+      this : in out WebUIPhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class;
+
+   function get_User
+   (
+      this : in out WebUIPhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.System.User'Class;
+
+   function get_ActivatedOperation
+   (
+      this : in out WebUIPhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.UI.WebUI.ActivatedOperation'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for WebUIPrint3DWorkflowActivatedEventArgs

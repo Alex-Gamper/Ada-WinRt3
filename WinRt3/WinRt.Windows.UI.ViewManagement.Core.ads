@@ -39,18 +39,45 @@ package WinRt.Windows.UI.ViewManagement.Core is
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
+   type ICoreFrameworkInputView_Interface is interface and WinRt.IInspectable_Interface;
+   type ICoreFrameworkInputView is access all ICoreFrameworkInputView_Interface'Class;
+   type ICoreFrameworkInputView_Ptr is access all ICoreFrameworkInputView;
+
+   type ICoreFrameworkInputViewAnimationStartingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type ICoreFrameworkInputViewAnimationStartingEventArgs is access all ICoreFrameworkInputViewAnimationStartingEventArgs_Interface'Class;
+   type ICoreFrameworkInputViewAnimationStartingEventArgs_Ptr is access all ICoreFrameworkInputViewAnimationStartingEventArgs;
+
+   type ICoreFrameworkInputViewOcclusionsChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type ICoreFrameworkInputViewOcclusionsChangedEventArgs is access all ICoreFrameworkInputViewOcclusionsChangedEventArgs_Interface'Class;
+   type ICoreFrameworkInputViewOcclusionsChangedEventArgs_Ptr is access all ICoreFrameworkInputViewOcclusionsChangedEventArgs;
+
+   type ICoreFrameworkInputViewStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type ICoreFrameworkInputViewStatics is access all ICoreFrameworkInputViewStatics_Interface'Class;
+   type ICoreFrameworkInputViewStatics_Ptr is access all ICoreFrameworkInputViewStatics;
+
    type ICoreInputView_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreInputView is access all ICoreInputView_Interface'Class;
    type ICoreInputView_Ptr is access all ICoreInputView;
 
    type ICoreInputView2_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreInputView2 is access all ICoreInputView2_Interface'Class;
+   type ICoreInputView2_Ptr is access all ICoreInputView2;
 
    type ICoreInputView3_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreInputView3 is access all ICoreInputView3_Interface'Class;
+   type ICoreInputView3_Ptr is access all ICoreInputView3;
 
    type ICoreInputView4_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreInputView4 is access all ICoreInputView4_Interface'Class;
+   type ICoreInputView4_Ptr is access all ICoreInputView4;
+
+   type ICoreInputView5_Interface is interface and WinRt.IInspectable_Interface;
+   type ICoreInputView5 is access all ICoreInputView5_Interface'Class;
+   type ICoreInputView5_Ptr is access all ICoreInputView5;
+
+   type ICoreInputViewAnimationStartingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type ICoreInputViewAnimationStartingEventArgs is access all ICoreInputViewAnimationStartingEventArgs_Interface'Class;
+   type ICoreInputViewAnimationStartingEventArgs_Ptr is access all ICoreInputViewAnimationStartingEventArgs;
 
    type ICoreInputViewHidingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreInputViewHidingEventArgs is access all ICoreInputViewHidingEventArgs_Interface'Class;
@@ -70,9 +97,11 @@ package WinRt.Windows.UI.ViewManagement.Core is
 
    type ICoreInputViewStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreInputViewStatics is access all ICoreInputViewStatics_Interface'Class;
+   type ICoreInputViewStatics_Ptr is access all ICoreInputViewStatics;
 
    type ICoreInputViewStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreInputViewStatics2 is access all ICoreInputViewStatics2_Interface'Class;
+   type ICoreInputViewStatics2_Ptr is access all ICoreInputViewStatics2;
 
    type ICoreInputViewTransferringXYFocusEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreInputViewTransferringXYFocusEventArgs is access all ICoreInputViewTransferringXYFocusEventArgs_Interface'Class;
@@ -84,16 +113,41 @@ package WinRt.Windows.UI.ViewManagement.Core is
 
    type IUISettingsControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUISettingsControllerStatics is access all IUISettingsControllerStatics_Interface'Class;
+   type IUISettingsControllerStatics_Ptr is access all IUISettingsControllerStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
    -----------------------------------------------------------------------------
+
+   type CoreFrameworkInputView is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ICoreFrameworkInputView : access Windows.UI.ViewManagement.Core.ICoreFrameworkInputView;
+      end record;
+   type CoreFrameworkInputView_Ptr is access all CoreFrameworkInputView;
+
+   type CoreFrameworkInputViewAnimationStartingEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ICoreFrameworkInputViewAnimationStartingEventArgs : access Windows.UI.ViewManagement.Core.ICoreFrameworkInputViewAnimationStartingEventArgs;
+      end record;
+   type CoreFrameworkInputViewAnimationStartingEventArgs_Ptr is access all CoreFrameworkInputViewAnimationStartingEventArgs;
+
+   type CoreFrameworkInputViewOcclusionsChangedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ICoreFrameworkInputViewOcclusionsChangedEventArgs : access Windows.UI.ViewManagement.Core.ICoreFrameworkInputViewOcclusionsChangedEventArgs;
+      end record;
+   type CoreFrameworkInputViewOcclusionsChangedEventArgs_Ptr is access all CoreFrameworkInputViewOcclusionsChangedEventArgs;
 
    type CoreInputView is new Ada.Finalization.Limited_Controlled with
       record
          m_ICoreInputView : access Windows.UI.ViewManagement.Core.ICoreInputView;
       end record;
    type CoreInputView_Ptr is access all CoreInputView;
+
+   type CoreInputViewAnimationStartingEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ICoreInputViewAnimationStartingEventArgs : access Windows.UI.ViewManagement.Core.ICoreInputViewAnimationStartingEventArgs;
+      end record;
+   type CoreInputViewAnimationStartingEventArgs_Ptr is access all CoreInputViewAnimationStartingEventArgs;
 
    type CoreInputViewHidingEventArgs is new Ada.Finalization.Limited_Controlled with
       record
@@ -140,14 +194,20 @@ package WinRt.Windows.UI.ViewManagement.Core is
       Keyboard_e,
       Handwriting_e,
       Emoji_e,
-      Symbols_e
+      Symbols_e,
+      Clipboard_e,
+      Dictation_e,
+      Gamepad_e
    );
    for CoreInputViewKind use (
       Default_e => 0,
       Keyboard_e => 1,
       Handwriting_e => 2,
       Emoji_e => 3,
-      Symbols_e => 4
+      Symbols_e => 4,
+      Clipboard_e => 5,
+      Dictation_e => 6,
+      Gamepad_e => 7
    );
    type CoreInputViewKind_Ptr is access all CoreInputViewKind;
 
@@ -182,12 +242,112 @@ package WinRt.Windows.UI.ViewManagement.Core is
    -----------------------------------------------------------------------------
 
    package IVectorView_ICoreInputViewOcclusion is new WinRt.Windows.Foundation.Collections.IVectorView (ICoreInputViewOcclusion);
-   IID_IVectorView_ICoreInputViewOcclusion : aliased WinRt.IID := (3339079890, 63890, 22612, (179, 239, 138, 163, 117, 202, 58, 176 ));
+   IID_IVectorView_ICoreInputViewOcclusion : aliased WinRt.IID := (2303418626, 8329, 21474, (161, 84, 127, 108, 146, 21, 248, 60 ));
    function QInterface_IVectorView_ICoreInputViewOcclusion is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ICoreInputViewOcclusion.Kind, IID_IVectorView_ICoreInputViewOcclusion'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
+   -- type ICoreFrameworkInputView is interface and WinRt.IInspectable;
+
+      function add_PrimaryViewAnimationStarting
+      (
+         this : access ICoreFrameworkInputView_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_PrimaryViewAnimationStarting
+      (
+         this : access ICoreFrameworkInputView_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_OcclusionsChanged
+      (
+         this : access ICoreFrameworkInputView_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_OcclusionsChanged
+      (
+         this : access ICoreFrameworkInputView_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICoreFrameworkInputView : aliased WinRt.IID := (3615265966, 18104, 23882, (148, 137, 141, 222, 195, 214, 57, 166 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICoreFrameworkInputViewAnimationStartingEventArgs is interface and WinRt.IInspectable;
+
+      function get_Occlusions
+      (
+         this : access ICoreFrameworkInputViewAnimationStartingEventArgs_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_FrameworkAnimationRecommended
+      (
+         this : access ICoreFrameworkInputViewAnimationStartingEventArgs_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AnimationDuration
+      (
+         this : access ICoreFrameworkInputViewAnimationStartingEventArgs_Interface;
+         RetVal : access Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICoreFrameworkInputViewAnimationStartingEventArgs : aliased WinRt.IID := (3236728860, 48036, 20507, (174, 139, 101, 201, 231, 86, 167, 25 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICoreFrameworkInputViewOcclusionsChangedEventArgs is interface and WinRt.IInspectable;
+
+      function get_Occlusions
+      (
+         this : access ICoreFrameworkInputViewOcclusionsChangedEventArgs_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Handled
+      (
+         this : access ICoreFrameworkInputViewOcclusionsChangedEventArgs_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICoreFrameworkInputViewOcclusionsChangedEventArgs : aliased WinRt.IID := (4084156745, 51244, 21457, (167, 93, 43, 43, 175, 13, 155, 13 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICoreFrameworkInputViewStatics is interface and WinRt.IInspectable;
+
+      function GetForUIContext
+      (
+         this : access ICoreFrameworkInputViewStatics_Interface;
+         context : Windows.UI.IUIContext;
+         RetVal : access Windows.UI.ViewManagement.Core.ICoreFrameworkInputView
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetForCurrentView
+      (
+         this : access ICoreFrameworkInputViewStatics_Interface;
+         RetVal : access Windows.UI.ViewManagement.Core.ICoreFrameworkInputView
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICoreFrameworkInputViewStatics : aliased WinRt.IID := (1860950454, 60098, 24459, (151, 95, 119, 46, 227, 228, 46, 235 ));
 
    -----------------------------------------------------------------------------
    -- type ICoreInputView is interface and WinRt.IInspectable;
@@ -335,6 +495,82 @@ package WinRt.Windows.UI.ViewManagement.Core is
       return WinRt.Hresult is abstract;
 
       IID_ICoreInputView4 : aliased WinRt.IID := (2646998, 55791, 22507, (140, 239, 119, 246, 206, 27, 126, 231 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICoreInputView5 is interface and WinRt.IInspectable;
+
+      function IsKindSupported
+      (
+         this : access ICoreInputView5_Interface;
+         type_x : Windows.UI.ViewManagement.Core.CoreInputViewKind;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_SupportedKindsChanged
+      (
+         this : access ICoreInputView5_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_SupportedKindsChanged
+      (
+         this : access ICoreInputView5_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_PrimaryViewAnimationStarting
+      (
+         this : access ICoreInputView5_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_PrimaryViewAnimationStarting
+      (
+         this : access ICoreInputView5_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICoreInputView5 : aliased WinRt.IID := (325261024, 50901, 23639, (129, 30, 26, 216, 169, 155, 166, 171 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICoreInputViewAnimationStartingEventArgs is interface and WinRt.IInspectable;
+
+      function get_Occlusions
+      (
+         this : access ICoreInputViewAnimationStartingEventArgs_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Handled
+      (
+         this : access ICoreInputViewAnimationStartingEventArgs_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Handled
+      (
+         this : access ICoreInputViewAnimationStartingEventArgs_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AnimationDuration
+      (
+         this : access ICoreInputViewAnimationStartingEventArgs_Interface;
+         RetVal : access Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICoreInputViewAnimationStartingEventArgs : aliased WinRt.IID := (2836679410, 46428, 24225, (184, 171, 83, 64, 243, 233, 72, 151 ));
 
    -----------------------------------------------------------------------------
    -- type ICoreInputViewHidingEventArgs is interface and WinRt.IInspectable;
@@ -534,6 +770,101 @@ package WinRt.Windows.UI.ViewManagement.Core is
    -----------------------------------------------------------------------------
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CoreFrameworkInputView
+
+   overriding procedure Initialize (this : in out CoreFrameworkInputView);
+   overriding procedure Finalize (this : in out CoreFrameworkInputView);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for CoreFrameworkInputView
+
+   function GetForUIContext
+   (
+      context : Windows.UI.UIContext'Class
+   )
+   return WinRt.Windows.UI.ViewManagement.Core.CoreFrameworkInputView;
+
+   function GetForCurrentView
+   return WinRt.Windows.UI.ViewManagement.Core.CoreFrameworkInputView;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CoreFrameworkInputView
+
+   function add_PrimaryViewAnimationStarting
+   (
+      this : in out CoreFrameworkInputView;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_PrimaryViewAnimationStarting
+   (
+      this : in out CoreFrameworkInputView;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_OcclusionsChanged
+   (
+      this : in out CoreFrameworkInputView;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_OcclusionsChanged
+   (
+      this : in out CoreFrameworkInputView;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CoreFrameworkInputViewAnimationStartingEventArgs
+
+   overriding procedure Initialize (this : in out CoreFrameworkInputViewAnimationStartingEventArgs);
+   overriding procedure Finalize (this : in out CoreFrameworkInputViewAnimationStartingEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CoreFrameworkInputViewAnimationStartingEventArgs
+
+   function get_Occlusions
+   (
+      this : in out CoreFrameworkInputViewAnimationStartingEventArgs
+   )
+   return IVectorView_ICoreInputViewOcclusion.Kind;
+
+   function get_FrameworkAnimationRecommended
+   (
+      this : in out CoreFrameworkInputViewAnimationStartingEventArgs
+   )
+   return WinRt.Boolean;
+
+   function get_AnimationDuration
+   (
+      this : in out CoreFrameworkInputViewAnimationStartingEventArgs
+   )
+   return WinRt.Windows.Foundation.TimeSpan;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CoreFrameworkInputViewOcclusionsChangedEventArgs
+
+   overriding procedure Initialize (this : in out CoreFrameworkInputViewOcclusionsChangedEventArgs);
+   overriding procedure Finalize (this : in out CoreFrameworkInputViewOcclusionsChangedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CoreFrameworkInputViewOcclusionsChangedEventArgs
+
+   function get_Occlusions
+   (
+      this : in out CoreFrameworkInputViewOcclusionsChangedEventArgs
+   )
+   return IVectorView_ICoreInputViewOcclusion.Kind;
+
+   function get_Handled
+   (
+      this : in out CoreFrameworkInputViewOcclusionsChangedEventArgs
+   )
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CoreInputView
 
    overriding procedure Initialize (this : in out CoreInputView);
@@ -542,13 +873,13 @@ package WinRt.Windows.UI.ViewManagement.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for CoreInputView
 
-   function GetForCurrentView
-   return WinRt.Windows.UI.ViewManagement.Core.CoreInputView;
-
    function GetForUIContext
    (
       context : Windows.UI.UIContext'Class
    )
+   return WinRt.Windows.UI.ViewManagement.Core.CoreInputView;
+
+   function GetForCurrentView
    return WinRt.Windows.UI.ViewManagement.Core.CoreInputView;
 
    -----------------------------------------------------------------------------
@@ -663,6 +994,72 @@ package WinRt.Windows.UI.ViewManagement.Core is
       this : in out CoreInputView;
       token : Windows.Foundation.EventRegistrationToken
    );
+
+   function IsKindSupported
+   (
+      this : in out CoreInputView;
+      type_x : Windows.UI.ViewManagement.Core.CoreInputViewKind
+   )
+   return WinRt.Boolean;
+
+   function add_SupportedKindsChanged
+   (
+      this : in out CoreInputView;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_SupportedKindsChanged
+   (
+      this : in out CoreInputView;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_PrimaryViewAnimationStarting
+   (
+      this : in out CoreInputView;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_PrimaryViewAnimationStarting
+   (
+      this : in out CoreInputView;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CoreInputViewAnimationStartingEventArgs
+
+   overriding procedure Initialize (this : in out CoreInputViewAnimationStartingEventArgs);
+   overriding procedure Finalize (this : in out CoreInputViewAnimationStartingEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CoreInputViewAnimationStartingEventArgs
+
+   function get_Occlusions
+   (
+      this : in out CoreInputViewAnimationStartingEventArgs
+   )
+   return IVectorView_ICoreInputViewOcclusion.Kind;
+
+   function get_Handled
+   (
+      this : in out CoreInputViewAnimationStartingEventArgs
+   )
+   return WinRt.Boolean;
+
+   procedure put_Handled
+   (
+      this : in out CoreInputViewAnimationStartingEventArgs;
+      value : WinRt.Boolean
+   );
+
+   function get_AnimationDuration
+   (
+      this : in out CoreInputViewAnimationStartingEventArgs
+   )
+   return WinRt.Windows.Foundation.TimeSpan;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CoreInputViewHidingEventArgs

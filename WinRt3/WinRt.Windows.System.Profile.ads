@@ -41,22 +41,31 @@ package WinRt.Windows.System.Profile is
 
    type IAnalyticsInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAnalyticsInfoStatics is access all IAnalyticsInfoStatics_Interface'Class;
+   type IAnalyticsInfoStatics_Ptr is access all IAnalyticsInfoStatics;
 
    type IAnalyticsInfoStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAnalyticsInfoStatics2 is access all IAnalyticsInfoStatics2_Interface'Class;
+   type IAnalyticsInfoStatics2_Ptr is access all IAnalyticsInfoStatics2;
 
    type IAnalyticsVersionInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IAnalyticsVersionInfo is access all IAnalyticsVersionInfo_Interface'Class;
    type IAnalyticsVersionInfo_Ptr is access all IAnalyticsVersionInfo;
 
+   type IAnalyticsVersionInfo2_Interface is interface and WinRt.IInspectable_Interface;
+   type IAnalyticsVersionInfo2 is access all IAnalyticsVersionInfo2_Interface'Class;
+   type IAnalyticsVersionInfo2_Ptr is access all IAnalyticsVersionInfo2;
+
    type IAppApplicabilityStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppApplicabilityStatics is access all IAppApplicabilityStatics_Interface'Class;
+   type IAppApplicabilityStatics_Ptr is access all IAppApplicabilityStatics;
 
    type IEducationSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IEducationSettingsStatics is access all IEducationSettingsStatics_Interface'Class;
+   type IEducationSettingsStatics_Ptr is access all IEducationSettingsStatics;
 
    type IHardwareIdentificationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHardwareIdentificationStatics is access all IHardwareIdentificationStatics_Interface'Class;
+   type IHardwareIdentificationStatics_Ptr is access all IHardwareIdentificationStatics;
 
    type IHardwareToken_Interface is interface and WinRt.IInspectable_Interface;
    type IHardwareToken is access all IHardwareToken_Interface'Class;
@@ -64,21 +73,31 @@ package WinRt.Windows.System.Profile is
 
    type IKnownRetailInfoPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKnownRetailInfoPropertiesStatics is access all IKnownRetailInfoPropertiesStatics_Interface'Class;
+   type IKnownRetailInfoPropertiesStatics_Ptr is access all IKnownRetailInfoPropertiesStatics;
 
    type IPlatformAutomaticAppSignInManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPlatformAutomaticAppSignInManagerStatics is access all IPlatformAutomaticAppSignInManagerStatics_Interface'Class;
+   type IPlatformAutomaticAppSignInManagerStatics_Ptr is access all IPlatformAutomaticAppSignInManagerStatics;
 
    type IPlatformDiagnosticsAndUsageDataSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPlatformDiagnosticsAndUsageDataSettingsStatics is access all IPlatformDiagnosticsAndUsageDataSettingsStatics_Interface'Class;
+   type IPlatformDiagnosticsAndUsageDataSettingsStatics_Ptr is access all IPlatformDiagnosticsAndUsageDataSettingsStatics;
 
    type IRetailInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRetailInfoStatics is access all IRetailInfoStatics_Interface'Class;
+   type IRetailInfoStatics_Ptr is access all IRetailInfoStatics;
 
    type ISharedModeSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISharedModeSettingsStatics is access all ISharedModeSettingsStatics_Interface'Class;
+   type ISharedModeSettingsStatics_Ptr is access all ISharedModeSettingsStatics;
 
    type ISharedModeSettingsStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ISharedModeSettingsStatics2 is access all ISharedModeSettingsStatics2_Interface'Class;
+   type ISharedModeSettingsStatics2_Ptr is access all ISharedModeSettingsStatics2;
+
+   type ISmartAppControlPolicyStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type ISmartAppControlPolicyStatics is access all ISmartAppControlPolicyStatics_Interface'Class;
+   type ISmartAppControlPolicyStatics_Ptr is access all ISmartAppControlPolicyStatics;
 
    type ISystemIdentificationInfo_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemIdentificationInfo is access all ISystemIdentificationInfo_Interface'Class;
@@ -86,9 +105,11 @@ package WinRt.Windows.System.Profile is
 
    type ISystemIdentificationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemIdentificationStatics is access all ISystemIdentificationStatics_Interface'Class;
+   type ISystemIdentificationStatics_Ptr is access all ISystemIdentificationStatics;
 
    type ISystemSetupInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemSetupInfoStatics is access all ISystemSetupInfoStatics_Interface'Class;
+   type ISystemSetupInfoStatics_Ptr is access all ISystemSetupInfoStatics;
 
    type IUnsupportedAppRequirement_Interface is interface and WinRt.IInspectable_Interface;
    type IUnsupportedAppRequirement is access all IUnsupportedAppRequirement_Interface'Class;
@@ -96,6 +117,7 @@ package WinRt.Windows.System.Profile is
 
    type IWindowsIntegrityPolicyStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowsIntegrityPolicyStatics is access all IWindowsIntegrityPolicyStatics_Interface'Class;
+   type IWindowsIntegrityPolicyStatics_Ptr is access all IWindowsIntegrityPolicyStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -269,6 +291,18 @@ package WinRt.Windows.System.Profile is
       return WinRt.Hresult is abstract;
 
       IID_IAnalyticsVersionInfo : aliased WinRt.IID := (2455843000, 39253, 19572, (189, 193, 124, 208, 222, 207, 155, 3 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAnalyticsVersionInfo2 is interface and WinRt.IInspectable;
+
+      function get_ProductName
+      (
+         this : access IAnalyticsVersionInfo2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAnalyticsVersionInfo2 : aliased WinRt.IID := (1994986929, 65334, 16508, (159, 87, 22, 13, 62, 84, 7, 71 ));
 
    -----------------------------------------------------------------------------
    -- type IAppApplicabilityStatics is interface and WinRt.IInspectable;
@@ -584,6 +618,33 @@ package WinRt.Windows.System.Profile is
       IID_ISharedModeSettingsStatics2 : aliased WinRt.IID := (1619626148, 52465, 20200, (165, 226, 253, 106, 29, 12, 250, 200 ));
 
    -----------------------------------------------------------------------------
+   -- type ISmartAppControlPolicyStatics is interface and WinRt.IInspectable;
+
+      function get_IsEnabled
+      (
+         this : access ISmartAppControlPolicyStatics_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_Changed
+      (
+         this : access ISmartAppControlPolicyStatics_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_Changed
+      (
+         this : access ISmartAppControlPolicyStatics_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ISmartAppControlPolicyStatics : aliased WinRt.IID := (1610139483, 1854, 20501, (141, 152, 95, 242, 36, 24, 10, 11 ));
+
+   -----------------------------------------------------------------------------
    -- type ISystemIdentificationInfo is interface and WinRt.IInspectable;
 
       function get_Id
@@ -647,7 +708,7 @@ package WinRt.Windows.System.Profile is
       )
       return WinRt.Hresult is abstract;
 
-      IID_ISystemSetupInfoStatics : aliased WinRt.IID := (748036264, 7560, 24109, (163, 36, 165, 67, 175, 66, 71, 238 ));
+      IID_ISystemSetupInfoStatics : aliased WinRt.IID := (3090573899, 64362, 17777, (190, 10, 154, 15, 103, 149, 65, 35 ));
 
    -----------------------------------------------------------------------------
    -- type IUnsupportedAppRequirement is interface and WinRt.IInspectable;
@@ -724,17 +785,17 @@ package WinRt.Windows.System.Profile is
    -- Static RuntimeClass
    package AnalyticsInfo is
 
-      function GetSystemPropertiesAsync
-      (
-         attributeNames : GenericObject
-      )
-      return WinRt.GenericObject;
-
       function get_VersionInfo
       return WinRt.Windows.System.Profile.AnalyticsVersionInfo;
 
       function get_DeviceForm
       return WinRt.WString;
+
+      function GetSystemPropertiesAsync
+      (
+         attributeNames : GenericObject
+      )
+      return WinRt.GenericObject;
 
    end AnalyticsInfo;
 
@@ -754,6 +815,12 @@ package WinRt.Windows.System.Profile is
    return WinRt.WString;
 
    function get_DeviceFamilyVersion
+   (
+      this : in out AnalyticsVersionInfo
+   )
+   return WinRt.WString;
+
+   function get_ProductName
    (
       this : in out AnalyticsVersionInfo
    )
@@ -949,6 +1016,26 @@ package WinRt.Windows.System.Profile is
       return WinRt.Boolean;
 
    end SharedModeSettings;
+
+   -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package SmartAppControlPolicy is
+
+      function get_IsEnabled_SmartAppControlPolicy
+      return WinRt.Boolean;
+
+      function add_Changed
+      (
+         handler : GenericObject
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken;
+
+      procedure remove_Changed
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
+
+   end SmartAppControlPolicy;
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass

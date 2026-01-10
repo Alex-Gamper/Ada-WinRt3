@@ -1880,72 +1880,6 @@ package body WinRt.Windows.Media.SpeechRecognition is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SpeechRecognizer
 
-   function get_SystemSpeechLanguage
-   return WinRt.Windows.Globalization.Language is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
-      m_Factory        : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.ILanguage;
-   begin
-      return RetVal : WinRt.Windows.Globalization.Language do
-         Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognizerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_SystemSpeechLanguage (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ILanguage := new Windows.Globalization.ILanguage;
-            Retval.m_ILanguage.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_SupportedTopicLanguages
-   return WinRt.GenericObject is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
-      m_Factory        : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognizerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.get_SupportedTopicLanguages (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   function get_SupportedGrammarLanguages
-   return WinRt.GenericObject is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
-      m_Factory        : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognizerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.get_SupportedGrammarLanguages (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
    function TrySetSystemSpeechLanguageAsync
    (
       speechLanguage : Windows.Globalization.Language'Class
@@ -2014,6 +1948,72 @@ package body WinRt.Windows.Media.SpeechRecognition is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
+   end;
+
+   function get_SystemSpeechLanguage
+   return WinRt.Windows.Globalization.Language is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
+      m_Factory        : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Globalization.ILanguage;
+   begin
+      return RetVal : WinRt.Windows.Globalization.Language do
+         Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognizerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SystemSpeechLanguage (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ILanguage := new Windows.Globalization.ILanguage;
+            Retval.m_ILanguage.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SupportedTopicLanguages
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
+      m_Factory        : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognizerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_SupportedTopicLanguages (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function get_SupportedGrammarLanguages
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
+      m_Factory        : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognizerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_SupportedGrammarLanguages (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -2831,191 +2831,6 @@ package body WinRt.Windows.Media.SpeechRecognition is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
-   end;
-
-   -----------------------------------------------------------------------------
-   -- Static RuntimeClass
-   package body VoiceCommandManager is
-
-      procedure InstallCommandSetsFromStorageFileAsync
-      (
-         file : Windows.Storage.StorageFile'Class
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.VoiceCommandManager");
-         m_Factory        : access WinRt.Windows.Media.SpeechRecognition.IVoiceCommandManager_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
-
-         procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         begin
-            if asyncStatus = Completed_e then
-               Hr := asyncInfo.GetResults;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-         m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
-         procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
-
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IVoiceCommandManager'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.InstallCommandSetsFromStorageFileAsync (file.m_IStorageFile.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_Captured := m_Completed;
-               Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
-               while m_Captured = m_Compare loop
-                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                  m_Captured := m_Completed;
-               end loop;
-               temp := m_ComRetVal.Release;
-               temp := m_CompletedHandler.Release;
-               if temp = 0 then
-                  Free (m_CompletedHandler);
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      function get_InstalledCommandSets
-      return WinRt.GenericObject is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.VoiceCommandManager");
-         m_Factory        : access WinRt.Windows.Media.SpeechRecognition.IVoiceCommandManager_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IVoiceCommandManager'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_InstalledCommandSets (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-   end VoiceCommandManager;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for VoiceCommandSet
-
-   procedure Initialize (this : in out VoiceCommandSet) is
-   begin
-      null;
-   end;
-
-   procedure Finalize (this : in out VoiceCommandSet) is
-      temp : WinRt.UInt32 := 0;
-      procedure Free is new Ada.Unchecked_Deallocation (IVoiceCommandSet, IVoiceCommandSet_Ptr);
-   begin
-      if this.m_IVoiceCommandSet /= null then
-         if this.m_IVoiceCommandSet.all /= null then
-            temp := this.m_IVoiceCommandSet.all.Release;
-            Free (this.m_IVoiceCommandSet);
-         end if;
-      end if;
-   end;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for VoiceCommandSet
-
-   function get_Language
-   (
-      this : in out VoiceCommandSet
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := this.m_IVoiceCommandSet.all.get_Language (m_ComRetVal'Access);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function get_Name
-   (
-      this : in out VoiceCommandSet
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := this.m_IVoiceCommandSet.all.get_Name (m_ComRetVal'Access);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   procedure SetPhraseListAsync
-   (
-      this : in out VoiceCommandSet;
-      phraseListName : WinRt.WString;
-      phraseList : GenericObject
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      HStr_phraseListName : constant WinRt.HString := To_HString (phraseListName);
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
-
-      procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-      begin
-         if asyncStatus = Completed_e then
-            Hr := asyncInfo.GetResults;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-      m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
-      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
-
-   begin
-      Hr := this.m_IVoiceCommandSet.all.SetPhraseListAsync (HStr_phraseListName, phraseList, m_ComRetVal'Access);
-      if Hr = S_OK then
-         m_Captured := m_Completed;
-         Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
-         while m_Captured = m_Compare loop
-            m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-            m_Captured := m_Completed;
-         end loop;
-         temp := m_ComRetVal.Release;
-         temp := m_CompletedHandler.Release;
-         if temp = 0 then
-            Free (m_CompletedHandler);
-         end if;
-      end if;
-      tmp := WindowsDeleteString (HStr_phraseListName);
    end;
 
 end WinRt.Windows.Media.SpeechRecognition;

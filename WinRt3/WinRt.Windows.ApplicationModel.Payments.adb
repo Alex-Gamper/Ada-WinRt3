@@ -2110,36 +2110,6 @@ package body WinRt.Windows.ApplicationModel.Payments is
    function Constructor
    (
       details : Windows.ApplicationModel.Payments.PaymentDetails'Class;
-      methodData : GenericObject;
-      merchantInfo : Windows.ApplicationModel.Payments.PaymentMerchantInfo'Class;
-      options : Windows.ApplicationModel.Payments.PaymentOptions'Class;
-      id : WinRt.WString
-   )
-   return PaymentRequest is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
-      m_Factory    : access IPaymentRequestFactory2_Interface'Class := null;
-      temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentRequest;
-      HStr_id : constant WinRt.HString := To_HString (id);
-   begin
-      return RetVal : PaymentRequest do
-         Hr := RoGetActivationFactory (m_hString, IID_IPaymentRequestFactory2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateWithMerchantInfoOptionsAndId (details.m_IPaymentDetails.all, methodData, merchantInfo.m_IPaymentMerchantInfo.all, options.m_IPaymentOptions.all, HStr_id, m_ComRetVal'Access);
-            Retval.m_IPaymentRequest := new Windows.ApplicationModel.Payments.IPaymentRequest;
-            Retval.m_IPaymentRequest.all := m_ComRetVal;
-            temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_id);
-      end return;
-   end;
-
-   function Constructor
-   (
-      details : Windows.ApplicationModel.Payments.PaymentDetails'Class;
       methodData : GenericObject
    )
    return PaymentRequest is
@@ -2212,6 +2182,36 @@ package body WinRt.Windows.ApplicationModel.Payments is
             temp := m_Factory.Release;
          end if;
          tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor
+   (
+      details : Windows.ApplicationModel.Payments.PaymentDetails'Class;
+      methodData : GenericObject;
+      merchantInfo : Windows.ApplicationModel.Payments.PaymentMerchantInfo'Class;
+      options : Windows.ApplicationModel.Payments.PaymentOptions'Class;
+      id : WinRt.WString
+   )
+   return PaymentRequest is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
+      m_Factory    : access IPaymentRequestFactory2_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentRequest;
+      HStr_id : constant WinRt.HString := To_HString (id);
+   begin
+      return RetVal : PaymentRequest do
+         Hr := RoGetActivationFactory (m_hString, IID_IPaymentRequestFactory2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateWithMerchantInfoOptionsAndId (details.m_IPaymentDetails.all, methodData, merchantInfo.m_IPaymentMerchantInfo.all, options.m_IPaymentOptions.all, HStr_id, m_ComRetVal'Access);
+            Retval.m_IPaymentRequest := new Windows.ApplicationModel.Payments.IPaymentRequest;
+            Retval.m_IPaymentRequest.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 

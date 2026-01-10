@@ -419,6 +419,25 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       end if;
    end;
 
+   procedure UpdateAdvertisingParameters
+   (
+      this : in out GattServiceProviderConnection;
+      parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.Background.IGattServiceProviderConnection2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Background.IGattServiceProviderConnection_Interface, WinRt.Windows.Devices.Bluetooth.Background.IGattServiceProviderConnection2, WinRt.Windows.Devices.Bluetooth.Background.IID_IGattServiceProviderConnection2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IGattServiceProviderConnection.all);
+      Hr := m_Interface.UpdateAdvertisingParameters (parameters.m_IGattServiceProviderAdvertisingParameters.all);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for GattServiceProviderTriggerDetails
 

@@ -48,6 +48,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
 
    type IUserDataAccountProviderOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataAccountProviderOperation is access all IUserDataAccountProviderOperation_Interface'Class;
+   type IUserDataAccountProviderOperation_Ptr is access all IUserDataAccountProviderOperation;
 
    type IUserDataAccountProviderResolveErrorsOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IUserDataAccountProviderResolveErrorsOperation is access all IUserDataAccountProviderResolveErrorsOperation_Interface'Class;

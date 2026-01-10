@@ -2319,4 +2319,60 @@ package body WinRt.Windows.Graphics.Display is
       return Hr;
    end;
 
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DisplayServices
+
+   procedure Initialize (this : in out DisplayServices) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out DisplayServices) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IDisplayServices, IDisplayServices_Ptr);
+   begin
+      if this.m_IDisplayServices /= null then
+         if this.m_IDisplayServices.all /= null then
+            temp := this.m_IDisplayServices.all.Release;
+            Free (this.m_IDisplayServices);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for DisplayServices
+
+   function FindAll
+   return WinRt.Windows.Graphics.DisplayId_Array is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayServices");
+      m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayServicesStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.DisplayId_Ptr;
+      m_ComRetValSize  : aliased WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IDisplayServicesStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.FindAll (m_ComRetValSize'Access, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      declare
+         ArrayRetVal : WinRt.Windows.Graphics.DisplayId_Array (1..Integer(m_ComRetValSize));
+         function To_Ada_DisplayId is new To_Ada_Type (WinRt.Windows.Graphics.DisplayId, WinRt.Windows.Graphics.DisplayId_Ptr); 
+      begin
+         for i in ArrayRetVal'Range loop
+            ArrayRetval (i) := To_Ada_DisplayId (m_ComRetVal, i);
+         end loop;
+         return ArrayRetVal;
+      end;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DisplayServices
+
 end WinRt.Windows.Graphics.Display;

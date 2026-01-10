@@ -1171,22 +1171,6 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BackgroundTransferContentPart
 
-   function Constructor return BackgroundTransferContentPart is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart");
-      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
-   begin
-      return RetVal : BackgroundTransferContentPart do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IBackgroundTransferContentPart := new Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
-            Retval.m_IBackgroundTransferContentPart.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       name : WinRt.WString
@@ -1239,6 +1223,22 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_name);
          tmp := WindowsDeleteString (HStr_fileName);
+      end return;
+   end;
+
+   function Constructor return BackgroundTransferContentPart is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart");
+      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
+   begin
+      return RetVal : BackgroundTransferContentPart do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBackgroundTransferContentPart := new Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
+            Retval.m_IBackgroundTransferContentPart.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1537,22 +1537,6 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BackgroundUploader
 
-   function Constructor return BackgroundUploader is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundUploader");
-      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundUploader;
-   begin
-      return RetVal : BackgroundUploader do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IBackgroundUploader := new Windows.Networking.BackgroundTransfer.IBackgroundUploader;
-            Retval.m_IBackgroundUploader.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       completionGroup : Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup'Class
@@ -1572,6 +1556,22 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
             Retval.m_IBackgroundUploader := new Windows.Networking.BackgroundTransfer.IBackgroundUploader;
             Retval.m_IBackgroundUploader.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return BackgroundUploader is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundUploader");
+      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundUploader;
+   begin
+      return RetVal : BackgroundUploader do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBackgroundUploader := new Windows.Networking.BackgroundTransfer.IBackgroundUploader;
+            Retval.m_IBackgroundUploader.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

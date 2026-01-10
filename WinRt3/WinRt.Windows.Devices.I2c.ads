@@ -45,6 +45,7 @@ package WinRt.Windows.Devices.I2c is
 
    type II2cConnectionSettingsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type II2cConnectionSettingsFactory is access all II2cConnectionSettingsFactory_Interface'Class;
+   type II2cConnectionSettingsFactory_Ptr is access all II2cConnectionSettingsFactory;
 
    type II2cController_Interface is interface and WinRt.IInspectable_Interface;
    type II2cController is access all II2cController_Interface'Class;
@@ -52,6 +53,7 @@ package WinRt.Windows.Devices.I2c is
 
    type II2cControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type II2cControllerStatics is access all II2cControllerStatics_Interface'Class;
+   type II2cControllerStatics_Ptr is access all II2cControllerStatics;
 
    type II2cDevice_Interface is interface and WinRt.IInspectable_Interface;
    type II2cDevice is access all II2cDevice_Interface'Class;
@@ -59,6 +61,7 @@ package WinRt.Windows.Devices.I2c is
 
    type II2cDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type II2cDeviceStatics is access all II2cDeviceStatics_Interface'Class;
+   type II2cDeviceStatics_Ptr is access all II2cDeviceStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

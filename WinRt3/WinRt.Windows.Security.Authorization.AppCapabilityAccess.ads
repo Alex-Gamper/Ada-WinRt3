@@ -43,12 +43,17 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    type IAppCapability is access all IAppCapability_Interface'Class;
    type IAppCapability_Ptr is access all IAppCapability;
 
+   type IAppCapability2_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppCapability2 is access all IAppCapability2_Interface'Class;
+   type IAppCapability2_Ptr is access all IAppCapability2;
+
    type IAppCapabilityAccessChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCapabilityAccessChangedEventArgs is access all IAppCapabilityAccessChangedEventArgs_Interface'Class;
    type IAppCapabilityAccessChangedEventArgs_Ptr is access all IAppCapabilityAccessChangedEventArgs;
 
    type IAppCapabilityStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppCapabilityStatics is access all IAppCapabilityStatics_Interface'Class;
+   type IAppCapabilityStatics_Ptr is access all IAppCapabilityStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -137,6 +142,25 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       return WinRt.Hresult is abstract;
 
       IID_IAppCapability : aliased WinRt.IID := (1279908117, 35370, 17045, (148, 55, 45, 247, 195, 150, 175, 244 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAppCapability2 is interface and WinRt.IInspectable;
+
+      function get_DisplayMessage
+      (
+         this : access IAppCapability2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_DisplayMessage
+      (
+         this : access IAppCapability2_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppCapability2 : aliased WinRt.IID := (298306742, 51023, 20643, (185, 96, 136, 0, 135, 103, 217, 57 ));
 
    -----------------------------------------------------------------------------
    -- type IAppCapabilityAccessChangedEventArgs is interface and WinRt.IInspectable;
@@ -261,6 +285,18 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    (
       this : in out AppCapability;
       token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function get_DisplayMessage
+   (
+      this : in out AppCapability
+   )
+   return WinRt.WString;
+
+   procedure put_DisplayMessage
+   (
+      this : in out AppCapability;
+      value : WinRt.WString
    );
 
    -----------------------------------------------------------------------------

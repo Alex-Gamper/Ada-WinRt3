@@ -1294,30 +1294,6 @@ package body WinRt.Windows.UI.Input.Spatial is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SpatialInteractionManager
 
-   function GetForCurrentView
-   return WinRt.Windows.UI.Input.Spatial.SpatialInteractionManager is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.Spatial.SpatialInteractionManager");
-      m_Factory        : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionManager;
-   begin
-      return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionManager do
-         Hr := RoGetActivationFactory (m_hString, IID_ISpatialInteractionManagerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ISpatialInteractionManager := new Windows.UI.Input.Spatial.ISpatialInteractionManager;
-            Retval.m_ISpatialInteractionManager.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function IsSourceKindSupported
    (
       kind : Windows.UI.Input.Spatial.SpatialInteractionSourceKind
@@ -1340,6 +1316,30 @@ package body WinRt.Windows.UI.Input.Spatial is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
+   end;
+
+   function GetForCurrentView
+   return WinRt.Windows.UI.Input.Spatial.SpatialInteractionManager is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.Spatial.SpatialInteractionManager");
+      m_Factory        : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionManager;
+   begin
+      return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionManager do
+         Hr := RoGetActivationFactory (m_hString, IID_ISpatialInteractionManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ISpatialInteractionManager := new Windows.UI.Input.Spatial.ISpatialInteractionManager;
+            Retval.m_ISpatialInteractionManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
    end;
 
    -----------------------------------------------------------------------------

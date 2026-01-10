@@ -62,6 +62,7 @@ package WinRt.Windows.ApplicationModel.Search is
 
    type ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails_Interface is interface and WinRt.IInspectable_Interface;
    type ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails is access all ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails_Interface'Class;
+   type ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails_Ptr is access all ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails;
 
    type ISearchPaneResultSuggestionChosenEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISearchPaneResultSuggestionChosenEventArgs is access all ISearchPaneResultSuggestionChosenEventArgs_Interface'Class;
@@ -69,9 +70,11 @@ package WinRt.Windows.ApplicationModel.Search is
 
    type ISearchPaneStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISearchPaneStatics is access all ISearchPaneStatics_Interface'Class;
+   type ISearchPaneStatics_Ptr is access all ISearchPaneStatics;
 
    type ISearchPaneStaticsWithHideThisApplication_Interface is interface and WinRt.IInspectable_Interface;
    type ISearchPaneStaticsWithHideThisApplication is access all ISearchPaneStaticsWithHideThisApplication_Interface'Class;
+   type ISearchPaneStaticsWithHideThisApplication_Ptr is access all ISearchPaneStaticsWithHideThisApplication;
 
    type ISearchPaneSuggestionsRequest_Interface is interface and WinRt.IInspectable_Interface;
    type ISearchPaneSuggestionsRequest is access all ISearchPaneSuggestionsRequest_Interface'Class;
@@ -95,6 +98,7 @@ package WinRt.Windows.ApplicationModel.Search is
 
    type ISearchQueryLinguisticDetailsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISearchQueryLinguisticDetailsFactory is access all ISearchQueryLinguisticDetailsFactory_Interface'Class;
+   type ISearchQueryLinguisticDetailsFactory_Ptr is access all ISearchQueryLinguisticDetailsFactory;
 
    type ISearchSuggestionCollection_Interface is interface and WinRt.IInspectable_Interface;
    type ISearchSuggestionCollection is access all ISearchSuggestionCollection_Interface'Class;

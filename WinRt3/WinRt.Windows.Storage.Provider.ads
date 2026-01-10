@@ -49,6 +49,7 @@ package WinRt.Windows.Storage.Provider is
 
    type ICachedFileUpdaterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICachedFileUpdaterStatics is access all ICachedFileUpdaterStatics_Interface'Class;
+   type ICachedFileUpdaterStatics_Ptr is access all ICachedFileUpdaterStatics;
 
    type ICachedFileUpdaterUI_Interface is interface and WinRt.IInspectable_Interface;
    type ICachedFileUpdaterUI is access all ICachedFileUpdaterUI_Interface'Class;
@@ -56,6 +57,7 @@ package WinRt.Windows.Storage.Provider is
 
    type ICachedFileUpdaterUI2_Interface is interface and WinRt.IInspectable_Interface;
    type ICachedFileUpdaterUI2 is access all ICachedFileUpdaterUI2_Interface'Class;
+   type ICachedFileUpdaterUI2_Ptr is access all ICachedFileUpdaterUI2;
 
    type IFileUpdateRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IFileUpdateRequest is access all IFileUpdateRequest_Interface'Class;
@@ -63,6 +65,7 @@ package WinRt.Windows.Storage.Provider is
 
    type IFileUpdateRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type IFileUpdateRequest2 is access all IFileUpdateRequest2_Interface'Class;
+   type IFileUpdateRequest2_Ptr is access all IFileUpdateRequest2;
 
    type IFileUpdateRequestDeferral_Interface is interface and WinRt.IInspectable_Interface;
    type IFileUpdateRequestDeferral is access all IFileUpdateRequestDeferral_Interface'Class;
@@ -78,6 +81,7 @@ package WinRt.Windows.Storage.Provider is
 
    type IStorageProviderFileTypeInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderFileTypeInfoFactory is access all IStorageProviderFileTypeInfoFactory_Interface'Class;
+   type IStorageProviderFileTypeInfoFactory_Ptr is access all IStorageProviderFileTypeInfoFactory;
 
    type IStorageProviderGetContentInfoForPathResult_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderGetContentInfoForPathResult is access all IStorageProviderGetContentInfoForPathResult_Interface'Class;
@@ -89,6 +93,7 @@ package WinRt.Windows.Storage.Provider is
 
    type IStorageProviderItemPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderItemPropertiesStatics is access all IStorageProviderItemPropertiesStatics_Interface'Class;
+   type IStorageProviderItemPropertiesStatics_Ptr is access all IStorageProviderItemPropertiesStatics;
 
    type IStorageProviderItemProperty_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderItemProperty is access all IStorageProviderItemProperty_Interface'Class;
@@ -100,6 +105,7 @@ package WinRt.Windows.Storage.Provider is
 
    type IStorageProviderItemPropertySource_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderItemPropertySource is access all IStorageProviderItemPropertySource_Interface'Class;
+   type IStorageProviderItemPropertySource_Ptr is access all IStorageProviderItemPropertySource;
 
    type IStorageProviderKnownFolderEntry_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderKnownFolderEntry is access all IStorageProviderKnownFolderEntry_Interface'Class;
@@ -111,9 +117,11 @@ package WinRt.Windows.Storage.Provider is
 
    type IStorageProviderKnownFolderSyncInfoSource_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderKnownFolderSyncInfoSource is access all IStorageProviderKnownFolderSyncInfoSource_Interface'Class;
+   type IStorageProviderKnownFolderSyncInfoSource_Ptr is access all IStorageProviderKnownFolderSyncInfoSource;
 
    type IStorageProviderKnownFolderSyncInfoSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderKnownFolderSyncInfoSourceFactory is access all IStorageProviderKnownFolderSyncInfoSourceFactory_Interface'Class;
+   type IStorageProviderKnownFolderSyncInfoSourceFactory_Ptr is access all IStorageProviderKnownFolderSyncInfoSourceFactory;
 
    type IStorageProviderKnownFolderSyncRequestArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderKnownFolderSyncRequestArgs is access all IStorageProviderKnownFolderSyncRequestArgs_Interface'Class;
@@ -125,10 +133,44 @@ package WinRt.Windows.Storage.Provider is
 
    type IStorageProviderPropertyCapabilities_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderPropertyCapabilities is access all IStorageProviderPropertyCapabilities_Interface'Class;
+   type IStorageProviderPropertyCapabilities_Ptr is access all IStorageProviderPropertyCapabilities;
+
+   type IStorageProviderQueryResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderQueryResult is access all IStorageProviderQueryResult_Interface'Class;
+   type IStorageProviderQueryResult_Ptr is access all IStorageProviderQueryResult;
+   type IStorageProviderQueryResult_Array is array (Natural range <>) of IStorageProviderQueryResult;
+
+   type IStorageProviderQueryResultSet_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderQueryResultSet is access all IStorageProviderQueryResultSet_Interface'Class;
+   type IStorageProviderQueryResultSet_Ptr is access all IStorageProviderQueryResultSet;
+
+   type IStorageProviderQueryResultSetFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderQueryResultSetFactory is access all IStorageProviderQueryResultSetFactory_Interface'Class;
+   type IStorageProviderQueryResultSetFactory_Ptr is access all IStorageProviderQueryResultSetFactory;
 
    type IStorageProviderQuotaUI_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderQuotaUI is access all IStorageProviderQuotaUI_Interface'Class;
    type IStorageProviderQuotaUI_Ptr is access all IStorageProviderQuotaUI;
+
+   type IStorageProviderSearchHandler_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderSearchHandler is access all IStorageProviderSearchHandler_Interface'Class;
+   type IStorageProviderSearchHandler_Ptr is access all IStorageProviderSearchHandler;
+
+   type IStorageProviderSearchHandlerFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderSearchHandlerFactory is access all IStorageProviderSearchHandlerFactory_Interface'Class;
+   type IStorageProviderSearchHandlerFactory_Ptr is access all IStorageProviderSearchHandlerFactory;
+
+   type IStorageProviderSearchQueryOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderSearchQueryOptions is access all IStorageProviderSearchQueryOptions_Interface'Class;
+   type IStorageProviderSearchQueryOptions_Ptr is access all IStorageProviderSearchQueryOptions;
+
+   type IStorageProviderSearchResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderSearchResult is access all IStorageProviderSearchResult_Interface'Class;
+   type IStorageProviderSearchResult_Ptr is access all IStorageProviderSearchResult;
+
+   type IStorageProviderShareLinkSource_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderShareLinkSource is access all IStorageProviderShareLinkSource_Interface'Class;
+   type IStorageProviderShareLinkSource_Ptr is access all IStorageProviderShareLinkSource;
 
    type IStorageProviderStatusUI_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderStatusUI is access all IStorageProviderStatusUI_Interface'Class;
@@ -136,9 +178,23 @@ package WinRt.Windows.Storage.Provider is
 
    type IStorageProviderStatusUISource_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderStatusUISource is access all IStorageProviderStatusUISource_Interface'Class;
+   type IStorageProviderStatusUISource_Ptr is access all IStorageProviderStatusUISource;
 
    type IStorageProviderStatusUISourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderStatusUISourceFactory is access all IStorageProviderStatusUISourceFactory_Interface'Class;
+   type IStorageProviderStatusUISourceFactory_Ptr is access all IStorageProviderStatusUISourceFactory;
+
+   type IStorageProviderSuggestionsHandler_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderSuggestionsHandler is access all IStorageProviderSuggestionsHandler_Interface'Class;
+   type IStorageProviderSuggestionsHandler_Ptr is access all IStorageProviderSuggestionsHandler;
+
+   type IStorageProviderSuggestionsHandlerFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderSuggestionsHandlerFactory is access all IStorageProviderSuggestionsHandlerFactory_Interface'Class;
+   type IStorageProviderSuggestionsHandlerFactory_Ptr is access all IStorageProviderSuggestionsHandlerFactory;
+
+   type IStorageProviderSuggestionsQueryOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IStorageProviderSuggestionsQueryOptions is access all IStorageProviderSuggestionsQueryOptions_Interface'Class;
+   type IStorageProviderSuggestionsQueryOptions_Ptr is access all IStorageProviderSuggestionsQueryOptions;
 
    type IStorageProviderSyncRootInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderSyncRootInfo is access all IStorageProviderSyncRootInfo_Interface'Class;
@@ -146,21 +202,27 @@ package WinRt.Windows.Storage.Provider is
 
    type IStorageProviderSyncRootInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderSyncRootInfo2 is access all IStorageProviderSyncRootInfo2_Interface'Class;
+   type IStorageProviderSyncRootInfo2_Ptr is access all IStorageProviderSyncRootInfo2;
 
    type IStorageProviderSyncRootInfo3_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderSyncRootInfo3 is access all IStorageProviderSyncRootInfo3_Interface'Class;
+   type IStorageProviderSyncRootInfo3_Ptr is access all IStorageProviderSyncRootInfo3;
 
    type IStorageProviderSyncRootManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderSyncRootManagerStatics is access all IStorageProviderSyncRootManagerStatics_Interface'Class;
+   type IStorageProviderSyncRootManagerStatics_Ptr is access all IStorageProviderSyncRootManagerStatics;
 
    type IStorageProviderSyncRootManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderSyncRootManagerStatics2 is access all IStorageProviderSyncRootManagerStatics2_Interface'Class;
+   type IStorageProviderSyncRootManagerStatics2_Ptr is access all IStorageProviderSyncRootManagerStatics2;
 
    type IStorageProviderUICommand_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderUICommand is access all IStorageProviderUICommand_Interface'Class;
+   type IStorageProviderUICommand_Ptr is access all IStorageProviderUICommand;
 
    type IStorageProviderUriSource_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderUriSource is access all IStorageProviderUriSource_Interface'Class;
+   type IStorageProviderUriSource_Ptr is access all IStorageProviderUriSource;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -244,17 +306,47 @@ package WinRt.Windows.Storage.Provider is
       end record;
    type StorageProviderMoreInfoUI_Ptr is access all StorageProviderMoreInfoUI;
 
+   type StorageProviderQueryResultSet is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IStorageProviderQueryResultSet : access Windows.Storage.Provider.IStorageProviderQueryResultSet;
+      end record;
+   type StorageProviderQueryResultSet_Ptr is access all StorageProviderQueryResultSet;
+
    type StorageProviderQuotaUI is new Ada.Finalization.Limited_Controlled with
       record
          m_IStorageProviderQuotaUI : access Windows.Storage.Provider.IStorageProviderQuotaUI;
       end record;
    type StorageProviderQuotaUI_Ptr is access all StorageProviderQuotaUI;
 
+   type StorageProviderSearchQueryOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IStorageProviderSearchQueryOptions : access Windows.Storage.Provider.IStorageProviderSearchQueryOptions;
+      end record;
+   type StorageProviderSearchQueryOptions_Ptr is access all StorageProviderSearchQueryOptions;
+
+   type StorageProviderSearchResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IStorageProviderSearchResult : access Windows.Storage.Provider.IStorageProviderSearchResult;
+      end record;
+   type StorageProviderSearchResult_Ptr is access all StorageProviderSearchResult;
+
    type StorageProviderStatusUI is new Ada.Finalization.Limited_Controlled with
       record
          m_IStorageProviderStatusUI : access Windows.Storage.Provider.IStorageProviderStatusUI;
       end record;
    type StorageProviderStatusUI_Ptr is access all StorageProviderStatusUI;
+
+   type StorageProviderSuggestionResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IStorageProviderQueryResult : access Windows.Storage.Provider.IStorageProviderQueryResult;
+      end record;
+   type StorageProviderSuggestionResult_Ptr is access all StorageProviderSuggestionResult;
+
+   type StorageProviderSuggestionsQueryOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IStorageProviderSuggestionsQueryOptions : access Windows.Storage.Provider.IStorageProviderSuggestionsQueryOptions;
+      end record;
+   type StorageProviderSuggestionsQueryOptions_Ptr is access all StorageProviderSuggestionsQueryOptions;
 
    type StorageProviderSyncRootInfo is new Ada.Finalization.Limited_Controlled with
       record
@@ -420,6 +512,80 @@ package WinRt.Windows.Storage.Provider is
    );
    type StorageProviderProtectionMode_Ptr is access all StorageProviderProtectionMode;
 
+   type StorageProviderResultKind is (
+      Search_e,
+      Recommended_e,
+      Favorites_e,
+      Recent_e,
+      Shared_e,
+      RelatedFiles_e,
+      RelatedConversations_e
+   );
+   for StorageProviderResultKind use (
+      Search_e => 0,
+      Recommended_e => 1,
+      Favorites_e => 2,
+      Recent_e => 3,
+      Shared_e => 4,
+      RelatedFiles_e => 5,
+      RelatedConversations_e => 6
+   );
+   type StorageProviderResultKind_Ptr is access all StorageProviderResultKind;
+
+   type StorageProviderResultUsageKind is (
+      Rendered_e,
+      Opened_e,
+      SuggestionResponseReceived_e
+   );
+   for StorageProviderResultUsageKind use (
+      Rendered_e => 0,
+      Opened_e => 1,
+      SuggestionResponseReceived_e => 2
+   );
+   type StorageProviderResultUsageKind_Ptr is access all StorageProviderResultUsageKind;
+
+   type StorageProviderSearchMatchKind is (
+      Lexical_e,
+      Semantic_e
+   );
+   for StorageProviderSearchMatchKind use (
+      Lexical_e => 0,
+      Semantic_e => 1
+   );
+   type StorageProviderSearchMatchKind_Ptr is access all StorageProviderSearchMatchKind;
+
+   type StorageProviderSearchQueryStatus is (
+      Success_e,
+      Error_e,
+      Timeout_e,
+      NoNetwork_e,
+      NetworkError_e,
+      NotSignedIn_e,
+      QueryNotSupported_e,
+      SortOrderNotSupported_e
+   );
+   for StorageProviderSearchQueryStatus use (
+      Success_e => 0,
+      Error_e => 1,
+      Timeout_e => 2,
+      NoNetwork_e => 3,
+      NetworkError_e => 4,
+      NotSignedIn_e => 5,
+      QueryNotSupported_e => 6,
+      SortOrderNotSupported_e => 7
+   );
+   type StorageProviderSearchQueryStatus_Ptr is access all StorageProviderSearchQueryStatus;
+
+   type StorageProviderShareLinkState is (
+      Enabled_e,
+      Disabled_e
+   );
+   for StorageProviderShareLinkState use (
+      Enabled_e => 0,
+      Disabled_e => 1
+   );
+   type StorageProviderShareLinkState_Ptr is access all StorageProviderShareLinkState;
+
    type StorageProviderState is (
       InSync_e,
       Syncing_e,
@@ -521,6 +687,10 @@ package WinRt.Windows.Storage.Provider is
    package IVectorView_Guid is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.Guid);
    IID_IVectorView_Guid : aliased WinRt.IID := (3443177807, 60063, 20924, (182, 88, 76, 213, 161, 0, 25, 118 ));
    function QInterface_IVectorView_Guid is new Generic_QueryInterface (GenericObject_Interface, IVectorView_Guid.Kind, IID_IVectorView_Guid'Access);
+
+   package IVectorView_HString is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.HString);
+   IID_IVectorView_HString : aliased WinRt.IID := (2161496540, 45521, 23567, (145, 175, 119, 103, 226, 39, 213, 237 ));
+   function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
    package IVector_IStorageProviderUICommand is new WinRt.Windows.Foundation.Collections.IVector (IStorageProviderUICommand);
    IID_IVector_IStorageProviderUICommand : aliased WinRt.IID := (594988064, 58832, 22016, (163, 176, 74, 239, 84, 52, 64, 98 ));
@@ -1123,6 +1293,129 @@ package WinRt.Windows.Storage.Provider is
       IID_IStorageProviderPropertyCapabilities : aliased WinRt.IID := (1703751438, 25527, 17767, (172, 249, 81, 171, 227, 1, 221, 165 ));
 
    -----------------------------------------------------------------------------
+   -- type IStorageProviderQueryResult is interface and WinRt.IInspectable;
+
+      function get_Kind
+      (
+         this : access IStorageProviderQueryResult_Interface;
+         RetVal : access Windows.Storage.Provider.StorageProviderResultKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Kind
+      (
+         this : access IStorageProviderQueryResult_Interface;
+         value : Windows.Storage.Provider.StorageProviderResultKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ResultId
+      (
+         this : access IStorageProviderQueryResult_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ResultId
+      (
+         this : access IStorageProviderQueryResult_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RemoteFileId
+      (
+         this : access IStorageProviderQueryResult_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_RemoteFileId
+      (
+         this : access IStorageProviderQueryResult_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_FilePath
+      (
+         this : access IStorageProviderQueryResult_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_FilePath
+      (
+         this : access IStorageProviderQueryResult_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RequestedProperties
+      (
+         this : access IStorageProviderQueryResult_Interface;
+         RetVal : access Windows.Foundation.Collections.IPropertySet
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderQueryResult : aliased WinRt.IID := (4056744110, 46249, 23840, (165, 152, 62, 180, 221, 143, 248, 244 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderQueryResultSet is interface and WinRt.IInspectable;
+
+      function GetResults
+      (
+         this : access IStorageProviderQueryResultSet_Interface;
+         RetValSize : access WinRt.UInt32;
+         RetVal : access Windows.Storage.Provider.IStorageProviderQueryResult_Ptr
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_QueryResultId
+      (
+         this : access IStorageProviderQueryResultSet_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_QueryResultId
+      (
+         this : access IStorageProviderQueryResultSet_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Status
+      (
+         this : access IStorageProviderQueryResultSet_Interface;
+         RetVal : access Windows.Storage.Provider.StorageProviderSearchQueryStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Status
+      (
+         this : access IStorageProviderQueryResultSet_Interface;
+         value : Windows.Storage.Provider.StorageProviderSearchQueryStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderQueryResultSet : aliased WinRt.IID := (1472365575, 32033, 24472, (172, 82, 9, 38, 169, 127, 50, 89 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderQueryResultSetFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IStorageProviderQueryResultSetFactory_Interface;
+         resultsSize : WinRt.UInt32;
+         results : Windows.Storage.Provider.IStorageProviderQueryResult_Ptr;
+         RetVal : access Windows.Storage.Provider.IStorageProviderQueryResultSet
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderQueryResultSetFactory : aliased WinRt.IID := (806974658, 39690, 20945, (132, 181, 50, 87, 142, 227, 8, 61 ));
+
+   -----------------------------------------------------------------------------
    -- type IStorageProviderQuotaUI is interface and WinRt.IInspectable;
 
       function get_QuotaTotalInBytes
@@ -1182,6 +1475,179 @@ package WinRt.Windows.Storage.Provider is
       return WinRt.Hresult is abstract;
 
       IID_IStorageProviderQuotaUI : aliased WinRt.IID := (3127023043, 12590, 21583, (159, 213, 31, 129, 178, 31, 54, 73 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderSearchHandler is interface and WinRt.IInspectable;
+
+      function Find
+      (
+         this : access IStorageProviderSearchHandler_Interface;
+         options : Windows.Storage.Provider.IStorageProviderSearchQueryOptions;
+         RetVal : access Windows.Storage.Provider.IStorageProviderQueryResultSet
+      )
+      return WinRt.Hresult is abstract;
+
+      function ReportUsage
+      (
+         this : access IStorageProviderSearchHandler_Interface;
+         resultUsageKind : Windows.Storage.Provider.StorageProviderResultUsageKind;
+         remoteFileId : WinRt.HString;
+         resultId : WinRt.HString;
+         latency : Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderSearchHandler : aliased WinRt.IID := (1775015805, 44461, 22985, (143, 209, 243, 11, 111, 174, 15, 217 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderSearchHandlerFactory is interface and WinRt.IInspectable;
+
+      function CreateSearchHandler
+      (
+         this : access IStorageProviderSearchHandlerFactory_Interface;
+         cloudProviderId : WinRt.HString;
+         RetVal : access Windows.Storage.Provider.IStorageProviderSearchHandler
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderSearchHandlerFactory : aliased WinRt.IID := (2967252352, 62453, 20843, (138, 206, 78, 119, 2, 44, 149, 152 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderSearchQueryOptions is interface and WinRt.IInspectable;
+
+      function get_UserQuery
+      (
+         this : access IStorageProviderSearchQueryOptions_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Language
+      (
+         this : access IStorageProviderSearchQueryOptions_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SortOrder
+      (
+         this : access IStorageProviderSearchQueryOptions_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProgrammaticQuery
+      (
+         this : access IStorageProviderSearchQueryOptions_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MaxResults
+      (
+         this : access IStorageProviderSearchQueryOptions_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_FolderScope
+      (
+         this : access IStorageProviderSearchQueryOptions_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_QueryId
+      (
+         this : access IStorageProviderSearchQueryOptions_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PropertiesToFetch
+      (
+         this : access IStorageProviderSearchQueryOptions_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderSearchQueryOptions : aliased WinRt.IID := (2480428267, 4103, 22076, (178, 19, 204, 68, 189, 136, 254, 242 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderSearchResult is interface and WinRt.IInspectable;
+
+      function get_MatchScore
+      (
+         this : access IStorageProviderSearchResult_Interface;
+         RetVal : access WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_MatchScore
+      (
+         this : access IStorageProviderSearchResult_Interface;
+         value : WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MatchKind
+      (
+         this : access IStorageProviderSearchResult_Interface;
+         RetVal : access Windows.Storage.Provider.StorageProviderSearchMatchKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_MatchKind
+      (
+         this : access IStorageProviderSearchResult_Interface;
+         value : Windows.Storage.Provider.StorageProviderSearchMatchKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MatchedPropertyName
+      (
+         this : access IStorageProviderSearchResult_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_MatchedPropertyName
+      (
+         this : access IStorageProviderSearchResult_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderSearchResult : aliased WinRt.IID := (4229304393, 2453, 21343, (153, 183, 254, 41, 44, 186, 186, 245 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderShareLinkSource is interface and WinRt.IInspectable;
+
+      function CreateLinkAsync
+      (
+         this : access IStorageProviderShareLinkSource_Interface;
+         storageItemList : GenericObject;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetDefaultAccessControlStringAsync
+      (
+         this : access IStorageProviderShareLinkSource_Interface;
+         storageItemList : GenericObject;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetState
+      (
+         this : access IStorageProviderShareLinkSource_Interface;
+         storageItemList : GenericObject;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderShareLinkSource : aliased WinRt.IID := (1281381858, 668, 21817, (142, 81, 161, 175, 200, 56, 181, 203 ));
 
    -----------------------------------------------------------------------------
    -- type IStorageProviderStatusUI is interface and WinRt.IInspectable;
@@ -1339,6 +1805,109 @@ package WinRt.Windows.Storage.Provider is
       return WinRt.Hresult is abstract;
 
       IID_IStorageProviderStatusUISourceFactory : aliased WinRt.IID := (316959604, 20058, 22737, (166, 47, 3, 118, 232, 238, 125, 216 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderSuggestionsHandler is interface and WinRt.IInspectable;
+
+      function GetSuggestions
+      (
+         this : access IStorageProviderSuggestionsHandler_Interface;
+         options : Windows.Storage.Provider.IStorageProviderSuggestionsQueryOptions;
+         RetVal : access Windows.Storage.Provider.IStorageProviderQueryResultSet
+      )
+      return WinRt.Hresult is abstract;
+
+      function Add
+      (
+         this : access IStorageProviderSuggestionsHandler_Interface;
+         kind : Windows.Storage.Provider.StorageProviderResultKind;
+         remoteFileId : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function Remove
+      (
+         this : access IStorageProviderSuggestionsHandler_Interface;
+         kind : Windows.Storage.Provider.StorageProviderResultKind;
+         remoteFileId : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetDetails
+      (
+         this : access IStorageProviderSuggestionsHandler_Interface;
+         remoteFileId : WinRt.HString;
+         propertiesToFetchSize : WinRt.UInt32;
+         propertiesToFetch : WinRt.HString_Ptr;
+         queryId : WinRt.HString;
+         RetVal : access Windows.Storage.Provider.IStorageProviderQueryResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function ReportUsage
+      (
+         this : access IStorageProviderSuggestionsHandler_Interface;
+         resultUsageKind : Windows.Storage.Provider.StorageProviderResultUsageKind;
+         remoteFileId : WinRt.HString;
+         resultId : WinRt.HString;
+         latency : Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderSuggestionsHandler : aliased WinRt.IID := (2952041462, 57853, 23811, (180, 128, 241, 132, 156, 131, 239, 74 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderSuggestionsHandlerFactory is interface and WinRt.IInspectable;
+
+      function CreateSuggestionsHandler
+      (
+         this : access IStorageProviderSuggestionsHandlerFactory_Interface;
+         cloudProviderId : WinRt.HString;
+         RetVal : access Windows.Storage.Provider.IStorageProviderSuggestionsHandler
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderSuggestionsHandlerFactory : aliased WinRt.IID := (3699062232, 41563, 22691, (172, 231, 179, 84, 49, 6, 162, 170 ));
+
+   -----------------------------------------------------------------------------
+   -- type IStorageProviderSuggestionsQueryOptions is interface and WinRt.IInspectable;
+
+      function get_SuggestionsKind
+      (
+         this : access IStorageProviderSuggestionsQueryOptions_Interface;
+         RetVal : access Windows.Storage.Provider.StorageProviderResultKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RemoteFileId
+      (
+         this : access IStorageProviderSuggestionsQueryOptions_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MaxResults
+      (
+         this : access IStorageProviderSuggestionsQueryOptions_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_QueryId
+      (
+         this : access IStorageProviderSuggestionsQueryOptions_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PropertiesToFetch
+      (
+         this : access IStorageProviderSuggestionsQueryOptions_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IStorageProviderSuggestionsQueryOptions : aliased WinRt.IID := (4021860173, 3460, 22428, (177, 55, 234, 115, 6, 53, 217, 187 ));
 
    -----------------------------------------------------------------------------
    -- type IStorageProviderSyncRootInfo is interface and WinRt.IInspectable;
@@ -2244,6 +2813,54 @@ package WinRt.Windows.Storage.Provider is
    );
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderQueryResultSet
+
+   overriding procedure Initialize (this : in out StorageProviderQueryResultSet);
+   overriding procedure Finalize (this : in out StorageProviderQueryResultSet);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageProviderQueryResultSet
+
+   function Constructor
+   (
+      results : Windows.Storage.Provider.IStorageProviderQueryResult_Array
+   )
+   return StorageProviderQueryResultSet;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderQueryResultSet
+
+   function GetResults
+   (
+      this : in out StorageProviderQueryResultSet
+   )
+   return WinRt.Windows.Storage.Provider.IStorageProviderQueryResult_Array;
+
+   function get_QueryResultId
+   (
+      this : in out StorageProviderQueryResultSet
+   )
+   return WinRt.WString;
+
+   procedure put_QueryResultId
+   (
+      this : in out StorageProviderQueryResultSet;
+      value : WinRt.WString
+   );
+
+   function get_Status
+   (
+      this : in out StorageProviderQueryResultSet
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderSearchQueryStatus;
+
+   procedure put_Status
+   (
+      this : in out StorageProviderQueryResultSet;
+      value : Windows.Storage.Provider.StorageProviderSearchQueryStatus
+   );
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StorageProviderQuotaUI
 
    overriding procedure Initialize (this : in out StorageProviderQuotaUI);
@@ -2304,6 +2921,167 @@ package WinRt.Windows.Storage.Provider is
       this : in out StorageProviderQuotaUI;
       value : GenericObject
    );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderSearchQueryOptions
+
+   overriding procedure Initialize (this : in out StorageProviderSearchQueryOptions);
+   overriding procedure Finalize (this : in out StorageProviderSearchQueryOptions);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderSearchQueryOptions
+
+   function get_UserQuery
+   (
+      this : in out StorageProviderSearchQueryOptions
+   )
+   return WinRt.WString;
+
+   function get_Language
+   (
+      this : in out StorageProviderSearchQueryOptions
+   )
+   return WinRt.WString;
+
+   function get_SortOrder
+   (
+      this : in out StorageProviderSearchQueryOptions
+   )
+   return WinRt.GenericObject;
+
+   function get_ProgrammaticQuery
+   (
+      this : in out StorageProviderSearchQueryOptions
+   )
+   return WinRt.WString;
+
+   function get_MaxResults
+   (
+      this : in out StorageProviderSearchQueryOptions
+   )
+   return WinRt.UInt32;
+
+   function get_FolderScope
+   (
+      this : in out StorageProviderSearchQueryOptions
+   )
+   return WinRt.WString;
+
+   function get_QueryId
+   (
+      this : in out StorageProviderSearchQueryOptions
+   )
+   return WinRt.WString;
+
+   function get_PropertiesToFetch
+   (
+      this : in out StorageProviderSearchQueryOptions
+   )
+   return IVectorView_HString.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderSearchResult
+
+   overriding procedure Initialize (this : in out StorageProviderSearchResult);
+   overriding procedure Finalize (this : in out StorageProviderSearchResult);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageProviderSearchResult
+
+   function Constructor return StorageProviderSearchResult;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderSearchResult
+
+   function get_MatchScore
+   (
+      this : in out StorageProviderSearchResult
+   )
+   return WinRt.Double;
+
+   procedure put_MatchScore
+   (
+      this : in out StorageProviderSearchResult;
+      value : WinRt.Double
+   );
+
+   function get_MatchKind
+   (
+      this : in out StorageProviderSearchResult
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderSearchMatchKind;
+
+   procedure put_MatchKind
+   (
+      this : in out StorageProviderSearchResult;
+      value : Windows.Storage.Provider.StorageProviderSearchMatchKind
+   );
+
+   function get_MatchedPropertyName
+   (
+      this : in out StorageProviderSearchResult
+   )
+   return WinRt.WString;
+
+   procedure put_MatchedPropertyName
+   (
+      this : in out StorageProviderSearchResult;
+      value : WinRt.WString
+   );
+
+   function get_Kind
+   (
+      this : in out StorageProviderSearchResult
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderResultKind;
+
+   procedure put_Kind
+   (
+      this : in out StorageProviderSearchResult;
+      value : Windows.Storage.Provider.StorageProviderResultKind
+   );
+
+   function get_ResultId
+   (
+      this : in out StorageProviderSearchResult
+   )
+   return WinRt.WString;
+
+   procedure put_ResultId
+   (
+      this : in out StorageProviderSearchResult;
+      value : WinRt.WString
+   );
+
+   function get_RemoteFileId
+   (
+      this : in out StorageProviderSearchResult
+   )
+   return WinRt.WString;
+
+   procedure put_RemoteFileId
+   (
+      this : in out StorageProviderSearchResult;
+      value : WinRt.WString
+   );
+
+   function get_FilePath
+   (
+      this : in out StorageProviderSearchResult
+   )
+   return WinRt.WString;
+
+   procedure put_FilePath
+   (
+      this : in out StorageProviderSearchResult;
+      value : WinRt.WString
+   );
+
+   function get_RequestedProperties
+   (
+      this : in out StorageProviderSearchResult
+   )
+   return WinRt.Windows.Foundation.Collections.PropertySet'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StorageProviderStatusUI
@@ -2414,6 +3192,113 @@ package WinRt.Windows.Storage.Provider is
       this : in out StorageProviderStatusUI;
       value : GenericObject
    );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderSuggestionResult
+
+   overriding procedure Initialize (this : in out StorageProviderSuggestionResult);
+   overriding procedure Finalize (this : in out StorageProviderSuggestionResult);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for StorageProviderSuggestionResult
+
+   function Constructor return StorageProviderSuggestionResult;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderSuggestionResult
+
+   function get_Kind
+   (
+      this : in out StorageProviderSuggestionResult
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderResultKind;
+
+   procedure put_Kind
+   (
+      this : in out StorageProviderSuggestionResult;
+      value : Windows.Storage.Provider.StorageProviderResultKind
+   );
+
+   function get_ResultId
+   (
+      this : in out StorageProviderSuggestionResult
+   )
+   return WinRt.WString;
+
+   procedure put_ResultId
+   (
+      this : in out StorageProviderSuggestionResult;
+      value : WinRt.WString
+   );
+
+   function get_RemoteFileId
+   (
+      this : in out StorageProviderSuggestionResult
+   )
+   return WinRt.WString;
+
+   procedure put_RemoteFileId
+   (
+      this : in out StorageProviderSuggestionResult;
+      value : WinRt.WString
+   );
+
+   function get_FilePath
+   (
+      this : in out StorageProviderSuggestionResult
+   )
+   return WinRt.WString;
+
+   procedure put_FilePath
+   (
+      this : in out StorageProviderSuggestionResult;
+      value : WinRt.WString
+   );
+
+   function get_RequestedProperties
+   (
+      this : in out StorageProviderSuggestionResult
+   )
+   return WinRt.Windows.Foundation.Collections.PropertySet'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for StorageProviderSuggestionsQueryOptions
+
+   overriding procedure Initialize (this : in out StorageProviderSuggestionsQueryOptions);
+   overriding procedure Finalize (this : in out StorageProviderSuggestionsQueryOptions);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for StorageProviderSuggestionsQueryOptions
+
+   function get_SuggestionsKind
+   (
+      this : in out StorageProviderSuggestionsQueryOptions
+   )
+   return WinRt.Windows.Storage.Provider.StorageProviderResultKind;
+
+   function get_RemoteFileId
+   (
+      this : in out StorageProviderSuggestionsQueryOptions
+   )
+   return WinRt.WString;
+
+   function get_MaxResults
+   (
+      this : in out StorageProviderSuggestionsQueryOptions
+   )
+   return WinRt.UInt32;
+
+   function get_QueryId
+   (
+      this : in out StorageProviderSuggestionsQueryOptions
+   )
+   return WinRt.WString;
+
+   function get_PropertiesToFetch
+   (
+      this : in out StorageProviderSuggestionsQueryOptions
+   )
+   return IVectorView_HString.Kind;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StorageProviderSyncRootInfo
@@ -2637,9 +3522,6 @@ package WinRt.Windows.Storage.Provider is
    -- Static RuntimeClass
    package StorageProviderSyncRootManager is
 
-      function IsSupported
-      return WinRt.Boolean;
-
       procedure Register
       (
          syncRootInformation : Windows.Storage.Provider.StorageProviderSyncRootInfo'Class
@@ -2664,6 +3546,9 @@ package WinRt.Windows.Storage.Provider is
 
       function GetCurrentSyncRoots
       return WinRt.GenericObject;
+
+      function IsSupported
+      return WinRt.Boolean;
 
    end StorageProviderSyncRootManager;
 

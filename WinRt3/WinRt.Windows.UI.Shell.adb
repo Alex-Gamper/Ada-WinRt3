@@ -75,6 +75,262 @@ package body WinRt.Windows.UI.Shell is
    end AdaptiveCardBuilder;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for FocusSession
+
+   procedure Initialize (this : in out FocusSession) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out FocusSession) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IFocusSession, IFocusSession_Ptr);
+   begin
+      if this.m_IFocusSession /= null then
+         if this.m_IFocusSession.all /= null then
+            temp := this.m_IFocusSession.all.Release;
+            Free (this.m_IFocusSession);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for FocusSession
+
+   function get_Id
+   (
+      this : in out FocusSession
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IFocusSession.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure End_x
+   (
+      this : in out FocusSession
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IFocusSession.all.End_x;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for FocusSessionManager
+
+   procedure Initialize (this : in out FocusSessionManager) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out FocusSessionManager) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IFocusSessionManager, IFocusSessionManager_Ptr);
+   begin
+      if this.m_IFocusSessionManager /= null then
+         if this.m_IFocusSessionManager.all /= null then
+            temp := this.m_IFocusSessionManager.all.Release;
+            Free (this.m_IFocusSessionManager);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for FocusSessionManager
+
+   function GetDefault
+   return WinRt.Windows.UI.Shell.FocusSessionManager is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.FocusSessionManager");
+      m_Factory        : access WinRt.Windows.UI.Shell.IFocusSessionManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IFocusSessionManager;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.FocusSessionManager do
+         Hr := RoGetActivationFactory (m_hString, IID_IFocusSessionManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefault (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IFocusSessionManager := new Windows.UI.Shell.IFocusSessionManager;
+            Retval.m_IFocusSessionManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_IsSupported
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.FocusSessionManager");
+      m_Factory        : access WinRt.Windows.UI.Shell.IFocusSessionManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IFocusSessionManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_IsSupported (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for FocusSessionManager
+
+   function get_IsFocusActive
+   (
+      this : in out FocusSessionManager
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IFocusSessionManager.all.get_IsFocusActive (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetSession
+   (
+      this : in out FocusSessionManager;
+      id : WinRt.WString
+   )
+   return WinRt.Windows.UI.Shell.FocusSession'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IFocusSession;
+      HStr_id : constant WinRt.HString := To_HString (id);
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.FocusSession do
+         Hr := this.m_IFocusSessionManager.all.GetSession (HStr_id, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IFocusSession := new Windows.UI.Shell.IFocusSession;
+         Retval.m_IFocusSession.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_id);
+      end return;
+   end;
+
+   function TryStartFocusSession
+   (
+      this : in out FocusSessionManager
+   )
+   return WinRt.Windows.UI.Shell.FocusSession'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IFocusSession;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.FocusSession do
+         Hr := this.m_IFocusSessionManager.all.TryStartFocusSession (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IFocusSession := new Windows.UI.Shell.IFocusSession;
+         Retval.m_IFocusSession.all := m_ComRetVal;
+      end return;
+   end;
+
+   function TryStartFocusSession
+   (
+      this : in out FocusSessionManager;
+      endTime : Windows.Foundation.DateTime
+   )
+   return WinRt.Windows.UI.Shell.FocusSession'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IFocusSession;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.FocusSession do
+         Hr := this.m_IFocusSessionManager.all.TryStartFocusSession (endTime, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IFocusSession := new Windows.UI.Shell.IFocusSession;
+         Retval.m_IFocusSession.all := m_ComRetVal;
+      end return;
+   end;
+
+   procedure DeactivateFocus
+   (
+      this : in out FocusSessionManager
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IFocusSessionManager.all.DeactivateFocus;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_IsFocusActiveChanged
+   (
+      this : in out FocusSessionManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IFocusSessionManager.all.add_IsFocusActiveChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_IsFocusActiveChanged
+   (
+      this : in out FocusSessionManager;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IFocusSessionManager.all.remove_IsFocusActiveChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for SecurityAppManager
 
    procedure Initialize (this : in out SecurityAppManager) is
@@ -169,6 +425,236 @@ package body WinRt.Windows.UI.Shell is
       temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecurityAppManager.all.UpdateState (kind, guidRegistration, state, substatus, detailsUri.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for ShareWindowCommandEventArgs
+
+   procedure Initialize (this : in out ShareWindowCommandEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out ShareWindowCommandEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IShareWindowCommandEventArgs, IShareWindowCommandEventArgs_Ptr);
+   begin
+      if this.m_IShareWindowCommandEventArgs /= null then
+         if this.m_IShareWindowCommandEventArgs.all /= null then
+            temp := this.m_IShareWindowCommandEventArgs.all.Release;
+            Free (this.m_IShareWindowCommandEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for ShareWindowCommandEventArgs
+
+   function get_WindowId
+   (
+      this : in out ShareWindowCommandEventArgs
+   )
+   return WinRt.Windows.UI.WindowId is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.WindowId;
+   begin
+      Hr := this.m_IShareWindowCommandEventArgs.all.get_WindowId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Command
+   (
+      this : in out ShareWindowCommandEventArgs
+   )
+   return WinRt.Windows.UI.Shell.ShareWindowCommand is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.ShareWindowCommand;
+   begin
+      Hr := this.m_IShareWindowCommandEventArgs.all.get_Command (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Command
+   (
+      this : in out ShareWindowCommandEventArgs;
+      value : Windows.UI.Shell.ShareWindowCommand
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IShareWindowCommandEventArgs.all.put_Command (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for ShareWindowCommandSource
+
+   procedure Initialize (this : in out ShareWindowCommandSource) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out ShareWindowCommandSource) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IShareWindowCommandSource, IShareWindowCommandSource_Ptr);
+   begin
+      if this.m_IShareWindowCommandSource /= null then
+         if this.m_IShareWindowCommandSource.all /= null then
+            temp := this.m_IShareWindowCommandSource.all.Release;
+            Free (this.m_IShareWindowCommandSource);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for ShareWindowCommandSource
+
+   function GetForCurrentView
+   return WinRt.Windows.UI.Shell.ShareWindowCommandSource is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.ShareWindowCommandSource");
+      m_Factory        : access WinRt.Windows.UI.Shell.IShareWindowCommandSourceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Shell.IShareWindowCommandSource;
+   begin
+      return RetVal : WinRt.Windows.UI.Shell.ShareWindowCommandSource do
+         Hr := RoGetActivationFactory (m_hString, IID_IShareWindowCommandSourceStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IShareWindowCommandSource := new Windows.UI.Shell.IShareWindowCommandSource;
+            Retval.m_IShareWindowCommandSource.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for ShareWindowCommandSource
+
+   procedure Start
+   (
+      this : in out ShareWindowCommandSource
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IShareWindowCommandSource.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure Stop
+   (
+      this : in out ShareWindowCommandSource
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IShareWindowCommandSource.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure ReportCommandChanged
+   (
+      this : in out ShareWindowCommandSource
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IShareWindowCommandSource.all.ReportCommandChanged;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_CommandRequested
+   (
+      this : in out ShareWindowCommandSource;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IShareWindowCommandSource.all.add_CommandRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_CommandRequested
+   (
+      this : in out ShareWindowCommandSource;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IShareWindowCommandSource.all.remove_CommandRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_CommandInvoked
+   (
+      this : in out ShareWindowCommandSource;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IShareWindowCommandSource.all.add_CommandInvoked (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_CommandInvoked
+   (
+      this : in out ShareWindowCommandSource;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IShareWindowCommandSource.all.remove_CommandInvoked (token);
       if Hr /= S_OK then
          raise Program_Error;
       end if;
@@ -1581,7 +2067,7 @@ package body WinRt.Windows.UI.Shell is
 
    function GetForWindow
    (
-      windowId : WinRt.UInt64
+      id : Windows.UI.WindowId
    )
    return WinRt.Windows.UI.Shell.WindowTabManager is
       Hr               : WinRt.HResult := S_OK;
@@ -1594,7 +2080,7 @@ package body WinRt.Windows.UI.Shell is
       return RetVal : WinRt.Windows.UI.Shell.WindowTabManager do
          Hr := RoGetActivationFactory (m_hString, IID_IWindowTabManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
-            Hr := m_Factory.GetForWindow (windowId, m_ComRetVal'Access);
+            Hr := m_Factory.GetForWindow (id, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

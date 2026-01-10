@@ -47,9 +47,11 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type INDClientFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INDClientFactory is access all INDClientFactory_Interface'Class;
+   type INDClientFactory_Ptr is access all INDClientFactory;
 
    type INDClosedCaptionDataReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type INDClosedCaptionDataReceivedEventArgs is access all INDClosedCaptionDataReceivedEventArgs_Interface'Class;
+   type INDClosedCaptionDataReceivedEventArgs_Ptr is access all INDClosedCaptionDataReceivedEventArgs;
 
    type INDCustomData_Interface is interface and WinRt.IInspectable_Interface;
    type INDCustomData is access all INDCustomData_Interface'Class;
@@ -57,9 +59,11 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type INDCustomDataFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INDCustomDataFactory is access all INDCustomDataFactory_Interface'Class;
+   type INDCustomDataFactory_Ptr is access all INDCustomDataFactory;
 
    type INDDownloadEngine_Interface is interface and WinRt.IInspectable_Interface;
    type INDDownloadEngine is access all INDDownloadEngine_Interface'Class;
+   type INDDownloadEngine_Ptr is access all INDDownloadEngine;
 
    type INDDownloadEngineNotifier_Interface is interface and WinRt.IInspectable_Interface;
    type INDDownloadEngineNotifier is access all INDDownloadEngineNotifier_Interface'Class;
@@ -67,6 +71,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type INDLicenseFetchCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type INDLicenseFetchCompletedEventArgs is access all INDLicenseFetchCompletedEventArgs_Interface'Class;
+   type INDLicenseFetchCompletedEventArgs_Ptr is access all INDLicenseFetchCompletedEventArgs;
 
    type INDLicenseFetchDescriptor_Interface is interface and WinRt.IInspectable_Interface;
    type INDLicenseFetchDescriptor is access all INDLicenseFetchDescriptor_Interface'Class;
@@ -74,9 +79,11 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type INDLicenseFetchDescriptorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INDLicenseFetchDescriptorFactory is access all INDLicenseFetchDescriptorFactory_Interface'Class;
+   type INDLicenseFetchDescriptorFactory_Ptr is access all INDLicenseFetchDescriptorFactory;
 
    type INDLicenseFetchResult_Interface is interface and WinRt.IInspectable_Interface;
    type INDLicenseFetchResult is access all INDLicenseFetchResult_Interface'Class;
+   type INDLicenseFetchResult_Ptr is access all INDLicenseFetchResult;
 
    type INDMessenger_Interface is interface and WinRt.IInspectable_Interface;
    type INDMessenger is access all INDMessenger_Interface'Class;
@@ -84,15 +91,19 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type INDProximityDetectionCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type INDProximityDetectionCompletedEventArgs is access all INDProximityDetectionCompletedEventArgs_Interface'Class;
+   type INDProximityDetectionCompletedEventArgs_Ptr is access all INDProximityDetectionCompletedEventArgs;
 
    type INDRegistrationCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type INDRegistrationCompletedEventArgs is access all INDRegistrationCompletedEventArgs_Interface'Class;
+   type INDRegistrationCompletedEventArgs_Ptr is access all INDRegistrationCompletedEventArgs;
 
    type INDSendResult_Interface is interface and WinRt.IInspectable_Interface;
    type INDSendResult is access all INDSendResult_Interface'Class;
+   type INDSendResult_Ptr is access all INDSendResult;
 
    type INDStartResult_Interface is interface and WinRt.IInspectable_Interface;
    type INDStartResult is access all INDStartResult_Interface'Class;
+   type INDStartResult_Ptr is access all INDStartResult;
 
    type INDStorageFileHelper_Interface is interface and WinRt.IInspectable_Interface;
    type INDStorageFileHelper is access all INDStorageFileHelper_Interface'Class;
@@ -100,6 +111,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type INDStreamParser_Interface is interface and WinRt.IInspectable_Interface;
    type INDStreamParser is access all INDStreamParser_Interface'Class;
+   type INDStreamParser_Ptr is access all INDStreamParser;
 
    type INDStreamParserNotifier_Interface is interface and WinRt.IInspectable_Interface;
    type INDStreamParserNotifier is access all INDStreamParserNotifier_Interface'Class;
@@ -107,9 +119,11 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type INDTCPMessengerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INDTCPMessengerFactory is access all INDTCPMessengerFactory_Interface'Class;
+   type INDTCPMessengerFactory_Ptr is access all INDTCPMessengerFactory;
 
    type INDTransmitterProperties_Interface is interface and WinRt.IInspectable_Interface;
    type INDTransmitterProperties is access all INDTransmitterProperties_Interface'Class;
+   type INDTransmitterProperties_Ptr is access all INDTransmitterProperties;
 
    type IPlayReadyContentHeader_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyContentHeader is access all IPlayReadyContentHeader_Interface'Class;
@@ -117,15 +131,19 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type IPlayReadyContentHeader2_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyContentHeader2 is access all IPlayReadyContentHeader2_Interface'Class;
+   type IPlayReadyContentHeader2_Ptr is access all IPlayReadyContentHeader2;
 
    type IPlayReadyContentHeaderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyContentHeaderFactory is access all IPlayReadyContentHeaderFactory_Interface'Class;
+   type IPlayReadyContentHeaderFactory_Ptr is access all IPlayReadyContentHeaderFactory;
 
    type IPlayReadyContentHeaderFactory2_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyContentHeaderFactory2 is access all IPlayReadyContentHeaderFactory2_Interface'Class;
+   type IPlayReadyContentHeaderFactory2_Ptr is access all IPlayReadyContentHeaderFactory2;
 
    type IPlayReadyContentResolver_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyContentResolver is access all IPlayReadyContentResolver_Interface'Class;
+   type IPlayReadyContentResolver_Ptr is access all IPlayReadyContentResolver;
 
    type IPlayReadyDomain_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyDomain is access all IPlayReadyDomain_Interface'Class;
@@ -134,6 +152,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type IPlayReadyDomainIterableFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyDomainIterableFactory is access all IPlayReadyDomainIterableFactory_Interface'Class;
+   type IPlayReadyDomainIterableFactory_Ptr is access all IPlayReadyDomainIterableFactory;
 
    type IPlayReadyDomainJoinServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyDomainJoinServiceRequest is access all IPlayReadyDomainJoinServiceRequest_Interface'Class;
@@ -158,6 +177,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type IPlayReadyLicense2_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyLicense2 is access all IPlayReadyLicense2_Interface'Class;
+   type IPlayReadyLicense2_Ptr is access all IPlayReadyLicense2;
 
    type IPlayReadyLicenseAcquisitionServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyLicenseAcquisitionServiceRequest is access all IPlayReadyLicenseAcquisitionServiceRequest_Interface'Class;
@@ -165,15 +185,19 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type IPlayReadyLicenseAcquisitionServiceRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyLicenseAcquisitionServiceRequest2 is access all IPlayReadyLicenseAcquisitionServiceRequest2_Interface'Class;
+   type IPlayReadyLicenseAcquisitionServiceRequest2_Ptr is access all IPlayReadyLicenseAcquisitionServiceRequest2;
 
    type IPlayReadyLicenseAcquisitionServiceRequest3_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyLicenseAcquisitionServiceRequest3 is access all IPlayReadyLicenseAcquisitionServiceRequest3_Interface'Class;
+   type IPlayReadyLicenseAcquisitionServiceRequest3_Ptr is access all IPlayReadyLicenseAcquisitionServiceRequest3;
 
    type IPlayReadyLicenseIterableFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyLicenseIterableFactory is access all IPlayReadyLicenseIterableFactory_Interface'Class;
+   type IPlayReadyLicenseIterableFactory_Ptr is access all IPlayReadyLicenseIterableFactory;
 
    type IPlayReadyLicenseManagement_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyLicenseManagement is access all IPlayReadyLicenseManagement_Interface'Class;
+   type IPlayReadyLicenseManagement_Ptr is access all IPlayReadyLicenseManagement;
 
    type IPlayReadyLicenseSession_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyLicenseSession is access all IPlayReadyLicenseSession_Interface'Class;
@@ -181,9 +205,11 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type IPlayReadyLicenseSession2_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyLicenseSession2 is access all IPlayReadyLicenseSession2_Interface'Class;
+   type IPlayReadyLicenseSession2_Ptr is access all IPlayReadyLicenseSession2;
 
    type IPlayReadyLicenseSessionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyLicenseSessionFactory is access all IPlayReadyLicenseSessionFactory_Interface'Class;
+   type IPlayReadyLicenseSessionFactory_Ptr is access all IPlayReadyLicenseSessionFactory;
 
    type IPlayReadyMeteringReportServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyMeteringReportServiceRequest is access all IPlayReadyMeteringReportServiceRequest_Interface'Class;
@@ -195,6 +221,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type IPlayReadySecureStopIterableFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadySecureStopIterableFactory is access all IPlayReadySecureStopIterableFactory_Interface'Class;
+   type IPlayReadySecureStopIterableFactory_Ptr is access all IPlayReadySecureStopIterableFactory;
 
    type IPlayReadySecureStopServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadySecureStopServiceRequest is access all IPlayReadySecureStopServiceRequest_Interface'Class;
@@ -203,9 +230,11 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type IPlayReadySecureStopServiceRequestFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadySecureStopServiceRequestFactory is access all IPlayReadySecureStopServiceRequestFactory_Interface'Class;
+   type IPlayReadySecureStopServiceRequestFactory_Ptr is access all IPlayReadySecureStopServiceRequestFactory;
 
    type IPlayReadyServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyServiceRequest is access all IPlayReadyServiceRequest_Interface'Class;
+   type IPlayReadyServiceRequest_Ptr is access all IPlayReadyServiceRequest;
 
    type IPlayReadySoapMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadySoapMessage is access all IPlayReadySoapMessage_Interface'Class;
@@ -213,18 +242,23 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    type IPlayReadyStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyStatics is access all IPlayReadyStatics_Interface'Class;
+   type IPlayReadyStatics_Ptr is access all IPlayReadyStatics;
 
    type IPlayReadyStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyStatics2 is access all IPlayReadyStatics2_Interface'Class;
+   type IPlayReadyStatics2_Ptr is access all IPlayReadyStatics2;
 
    type IPlayReadyStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyStatics3 is access all IPlayReadyStatics3_Interface'Class;
+   type IPlayReadyStatics3_Ptr is access all IPlayReadyStatics3;
 
    type IPlayReadyStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyStatics4 is access all IPlayReadyStatics4_Interface'Class;
+   type IPlayReadyStatics4_Ptr is access all IPlayReadyStatics4;
 
    type IPlayReadyStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayReadyStatics5 is access all IPlayReadyStatics5_Interface'Class;
+   type IPlayReadyStatics5_Ptr is access all IPlayReadyStatics5;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -2556,19 +2590,6 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor
    (
-      dwFlags : WinRt.UInt32;
-      contentKeyIds : WinRt.Guid_Array;
-      contentKeyIdStrings : WinRt.HString_Array;
-      contentEncryptionAlgorithm : Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm;
-      licenseAcquisitionUrl : Windows.Foundation.Uri'Class;
-      licenseAcquisitionUserInterfaceUrl : Windows.Foundation.Uri'Class;
-      customAttributes : WinRt.WString;
-      domainServiceId : WinRt.Guid
-   )
-   return PlayReadyContentHeader;
-
-   function Constructor
-   (
       headerBytes : WinRt.Byte_Array;
       licenseAcquisitionUrl : Windows.Foundation.Uri'Class;
       licenseAcquisitionUserInterfaceUrl : Windows.Foundation.Uri'Class;
@@ -2592,6 +2613,19 @@ package WinRt.Windows.Media.Protection.PlayReady is
    function Constructor
    (
       headerBytes : WinRt.Byte_Array
+   )
+   return PlayReadyContentHeader;
+
+   function Constructor
+   (
+      dwFlags : WinRt.UInt32;
+      contentKeyIds : WinRt.Guid_Array;
+      contentKeyIdStrings : WinRt.HString_Array;
+      contentEncryptionAlgorithm : Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm;
+      licenseAcquisitionUrl : Windows.Foundation.Uri'Class;
+      licenseAcquisitionUserInterfaceUrl : Windows.Foundation.Uri'Class;
+      customAttributes : WinRt.WString;
+      domainServiceId : WinRt.Guid
    )
    return PlayReadyContentHeader;
 
@@ -3308,14 +3342,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for PlayReadyLicenseIterable
 
-   function Constructor return PlayReadyLicenseIterable;
-
    function Constructor
    (
       contentHeader : Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class;
       fullyEvaluated : WinRt.Boolean
    )
    return PlayReadyLicenseIterable;
+
+   function Constructor return PlayReadyLicenseIterable;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for PlayReadyLicenseIterable
@@ -3795,20 +3829,19 @@ package WinRt.Windows.Media.Protection.PlayReady is
    -- Static RuntimeClass
    package PlayReadyStatics is
 
-      function get_SecureStopServiceRequestType
-      return WinRt.Guid;
-
-      function CheckSupportedHardware
-      (
-         hwdrmFeature : Windows.Media.Protection.PlayReady.PlayReadyHardwareDRMFeatures
-      )
-      return WinRt.Boolean;
-
       function get_InputTrustAuthorityToCreate
       return WinRt.WString;
 
       function get_ProtectionSystemId
       return WinRt.Guid;
+
+      function get_HardwareDRMDisabledAtTime
+      return IReference_DateTime.Kind;
+
+      function get_HardwareDRMDisabledUntilTime
+      return IReference_DateTime.Kind;
+
+      procedure ResetHardwareDRMDisabled;
 
       function get_DomainJoinServiceRequestType
       return WinRt.Guid;
@@ -3837,13 +3870,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_PlayReadyCertificateSecurityLevel
       return WinRt.UInt32;
 
-      function get_HardwareDRMDisabledAtTime
-      return IReference_DateTime.Kind;
+      function get_SecureStopServiceRequestType
+      return WinRt.Guid;
 
-      function get_HardwareDRMDisabledUntilTime
-      return IReference_DateTime.Kind;
-
-      procedure ResetHardwareDRMDisabled;
+      function CheckSupportedHardware
+      (
+         hwdrmFeature : Windows.Media.Protection.PlayReady.PlayReadyHardwareDRMFeatures
+      )
+      return WinRt.Boolean;
 
    end PlayReadyStatics;
 

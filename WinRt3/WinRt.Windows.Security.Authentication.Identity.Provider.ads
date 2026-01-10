@@ -57,9 +57,11 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
 
    type ISecondaryAuthenticationFactorAuthenticationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISecondaryAuthenticationFactorAuthenticationStatics is access all ISecondaryAuthenticationFactorAuthenticationStatics_Interface'Class;
+   type ISecondaryAuthenticationFactorAuthenticationStatics_Ptr is access all ISecondaryAuthenticationFactorAuthenticationStatics;
 
    type ISecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatics is access all ISecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatics_Interface'Class;
+   type ISecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatics_Ptr is access all ISecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatics;
 
    type ISecondaryAuthenticationFactorInfo_Interface is interface and WinRt.IInspectable_Interface;
    type ISecondaryAuthenticationFactorInfo is access all ISecondaryAuthenticationFactorInfo_Interface'Class;
@@ -67,6 +69,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
 
    type ISecondaryAuthenticationFactorInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type ISecondaryAuthenticationFactorInfo2 is access all ISecondaryAuthenticationFactorInfo2_Interface'Class;
+   type ISecondaryAuthenticationFactorInfo2_Ptr is access all ISecondaryAuthenticationFactorInfo2;
 
    type ISecondaryAuthenticationFactorRegistration_Interface is interface and WinRt.IInspectable_Interface;
    type ISecondaryAuthenticationFactorRegistration is access all ISecondaryAuthenticationFactorRegistration_Interface'Class;
@@ -78,6 +81,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
 
    type ISecondaryAuthenticationFactorRegistrationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISecondaryAuthenticationFactorRegistrationStatics is access all ISecondaryAuthenticationFactorRegistrationStatics_Interface'Class;
+   type ISecondaryAuthenticationFactorRegistrationStatics_Ptr is access all ISecondaryAuthenticationFactorRegistrationStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

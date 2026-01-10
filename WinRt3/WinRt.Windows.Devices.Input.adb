@@ -27,6 +27,7 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+with WinRt.Windows.Devices.Haptics;
 with WinRt.Windows.Foundation; use WinRt.Windows.Foundation;
 with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
@@ -608,6 +609,30 @@ package body WinRt.Windows.Devices.Input is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   function get_SimpleHapticsController
+   (
+      this : in out PenDevice
+   )
+   return WinRt.Windows.Devices.Haptics.SimpleHapticsController'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Input.IPenDevice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Input.IPenDevice_Interface, WinRt.Windows.Devices.Input.IPenDevice2, WinRt.Windows.Devices.Input.IID_IPenDevice2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
+         m_Interface := QInterface (this.m_IPenDevice.all);
+         Hr := m_Interface.get_SimpleHapticsController (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
+         Retval.m_ISimpleHapticsController.all := m_ComRetVal;
+      end return;
    end;
 
    -----------------------------------------------------------------------------

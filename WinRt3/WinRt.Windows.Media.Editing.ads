@@ -54,6 +54,7 @@ package WinRt.Windows.Media.Editing is
 
    type IBackgroundAudioTrackStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBackgroundAudioTrackStatics is access all IBackgroundAudioTrackStatics_Interface'Class;
+   type IBackgroundAudioTrackStatics_Ptr is access all IBackgroundAudioTrackStatics;
 
    type IEmbeddedAudioTrack_Interface is interface and WinRt.IInspectable_Interface;
    type IEmbeddedAudioTrack is access all IEmbeddedAudioTrack_Interface'Class;
@@ -65,9 +66,11 @@ package WinRt.Windows.Media.Editing is
 
    type IMediaClipStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaClipStatics is access all IMediaClipStatics_Interface'Class;
+   type IMediaClipStatics_Ptr is access all IMediaClipStatics;
 
    type IMediaClipStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaClipStatics2 is access all IMediaClipStatics2_Interface'Class;
+   type IMediaClipStatics2_Ptr is access all IMediaClipStatics2;
 
    type IMediaComposition_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaComposition is access all IMediaComposition_Interface'Class;
@@ -75,9 +78,11 @@ package WinRt.Windows.Media.Editing is
 
    type IMediaComposition2_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaComposition2 is access all IMediaComposition2_Interface'Class;
+   type IMediaComposition2_Ptr is access all IMediaComposition2;
 
    type IMediaCompositionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaCompositionStatics is access all IMediaCompositionStatics_Interface'Class;
+   type IMediaCompositionStatics_Ptr is access all IMediaCompositionStatics;
 
    type IMediaOverlay_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaOverlay is access all IMediaOverlay_Interface'Class;
@@ -85,6 +90,7 @@ package WinRt.Windows.Media.Editing is
 
    type IMediaOverlayFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaOverlayFactory is access all IMediaOverlayFactory_Interface'Class;
+   type IMediaOverlayFactory_Ptr is access all IMediaOverlayFactory;
 
    type IMediaOverlayLayer_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaOverlayLayer is access all IMediaOverlayLayer_Interface'Class;
@@ -92,6 +98,7 @@ package WinRt.Windows.Media.Editing is
 
    type IMediaOverlayLayerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaOverlayLayerFactory is access all IMediaOverlayLayerFactory_Interface'Class;
+   type IMediaOverlayLayerFactory_Ptr is access all IMediaOverlayLayerFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1296,13 +1303,13 @@ package WinRt.Windows.Media.Editing is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for MediaOverlayLayer
 
+   function Constructor return MediaOverlayLayer;
+
    function Constructor
    (
       compositorDefinition : Windows.Media.Effects.IVideoCompositorDefinition
    )
    return MediaOverlayLayer;
-
-   function Constructor return MediaOverlayLayer;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for MediaOverlayLayer

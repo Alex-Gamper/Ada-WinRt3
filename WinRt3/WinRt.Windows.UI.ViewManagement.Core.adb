@@ -37,6 +37,286 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    package AsyncOperationCompletedHandler_UISettingsController is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.UI.ViewManagement.Core.IUISettingsController);
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CoreFrameworkInputView
+
+   procedure Initialize (this : in out CoreFrameworkInputView) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out CoreFrameworkInputView) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ICoreFrameworkInputView, ICoreFrameworkInputView_Ptr);
+   begin
+      if this.m_ICoreFrameworkInputView /= null then
+         if this.m_ICoreFrameworkInputView.all /= null then
+            temp := this.m_ICoreFrameworkInputView.all.Release;
+            Free (this.m_ICoreFrameworkInputView);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for CoreFrameworkInputView
+
+   function GetForUIContext
+   (
+      context : Windows.UI.UIContext'Class
+   )
+   return WinRt.Windows.UI.ViewManagement.Core.CoreFrameworkInputView is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.Core.CoreFrameworkInputView");
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.Core.ICoreFrameworkInputViewStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.ViewManagement.Core.ICoreFrameworkInputView;
+   begin
+      return RetVal : WinRt.Windows.UI.ViewManagement.Core.CoreFrameworkInputView do
+         Hr := RoGetActivationFactory (m_hString, IID_ICoreFrameworkInputViewStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForUIContext (context.m_IUIContext.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ICoreFrameworkInputView := new Windows.UI.ViewManagement.Core.ICoreFrameworkInputView;
+            Retval.m_ICoreFrameworkInputView.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetForCurrentView
+   return WinRt.Windows.UI.ViewManagement.Core.CoreFrameworkInputView is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.Core.CoreFrameworkInputView");
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.Core.ICoreFrameworkInputViewStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.ViewManagement.Core.ICoreFrameworkInputView;
+   begin
+      return RetVal : WinRt.Windows.UI.ViewManagement.Core.CoreFrameworkInputView do
+         Hr := RoGetActivationFactory (m_hString, IID_ICoreFrameworkInputViewStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ICoreFrameworkInputView := new Windows.UI.ViewManagement.Core.ICoreFrameworkInputView;
+            Retval.m_ICoreFrameworkInputView.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CoreFrameworkInputView
+
+   function add_PrimaryViewAnimationStarting
+   (
+      this : in out CoreFrameworkInputView;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_ICoreFrameworkInputView.all.add_PrimaryViewAnimationStarting (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_PrimaryViewAnimationStarting
+   (
+      this : in out CoreFrameworkInputView;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ICoreFrameworkInputView.all.remove_PrimaryViewAnimationStarting (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_OcclusionsChanged
+   (
+      this : in out CoreFrameworkInputView;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_ICoreFrameworkInputView.all.add_OcclusionsChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_OcclusionsChanged
+   (
+      this : in out CoreFrameworkInputView;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ICoreFrameworkInputView.all.remove_OcclusionsChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CoreFrameworkInputViewAnimationStartingEventArgs
+
+   procedure Initialize (this : in out CoreFrameworkInputViewAnimationStartingEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out CoreFrameworkInputViewAnimationStartingEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ICoreFrameworkInputViewAnimationStartingEventArgs, ICoreFrameworkInputViewAnimationStartingEventArgs_Ptr);
+   begin
+      if this.m_ICoreFrameworkInputViewAnimationStartingEventArgs /= null then
+         if this.m_ICoreFrameworkInputViewAnimationStartingEventArgs.all /= null then
+            temp := this.m_ICoreFrameworkInputViewAnimationStartingEventArgs.all.Release;
+            Free (this.m_ICoreFrameworkInputViewAnimationStartingEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CoreFrameworkInputViewAnimationStartingEventArgs
+
+   function get_Occlusions
+   (
+      this : in out CoreFrameworkInputViewAnimationStartingEventArgs
+   )
+   return IVectorView_ICoreInputViewOcclusion.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_ICoreInputViewOcclusion.Kind;
+   begin
+      Hr := this.m_ICoreFrameworkInputViewAnimationStartingEventArgs.all.get_Occlusions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_ICoreInputViewOcclusion (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_FrameworkAnimationRecommended
+   (
+      this : in out CoreFrameworkInputViewAnimationStartingEventArgs
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_ICoreFrameworkInputViewAnimationStartingEventArgs.all.get_FrameworkAnimationRecommended (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_AnimationDuration
+   (
+      this : in out CoreFrameworkInputViewAnimationStartingEventArgs
+   )
+   return WinRt.Windows.Foundation.TimeSpan is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+   begin
+      Hr := this.m_ICoreFrameworkInputViewAnimationStartingEventArgs.all.get_AnimationDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CoreFrameworkInputViewOcclusionsChangedEventArgs
+
+   procedure Initialize (this : in out CoreFrameworkInputViewOcclusionsChangedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out CoreFrameworkInputViewOcclusionsChangedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ICoreFrameworkInputViewOcclusionsChangedEventArgs, ICoreFrameworkInputViewOcclusionsChangedEventArgs_Ptr);
+   begin
+      if this.m_ICoreFrameworkInputViewOcclusionsChangedEventArgs /= null then
+         if this.m_ICoreFrameworkInputViewOcclusionsChangedEventArgs.all /= null then
+            temp := this.m_ICoreFrameworkInputViewOcclusionsChangedEventArgs.all.Release;
+            Free (this.m_ICoreFrameworkInputViewOcclusionsChangedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CoreFrameworkInputViewOcclusionsChangedEventArgs
+
+   function get_Occlusions
+   (
+      this : in out CoreFrameworkInputViewOcclusionsChangedEventArgs
+   )
+   return IVectorView_ICoreInputViewOcclusion.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_ICoreInputViewOcclusion.Kind;
+   begin
+      Hr := this.m_ICoreFrameworkInputViewOcclusionsChangedEventArgs.all.get_Occlusions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_ICoreInputViewOcclusion (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_Handled
+   (
+      this : in out CoreFrameworkInputViewOcclusionsChangedEventArgs
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_ICoreFrameworkInputViewOcclusionsChangedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for CoreInputView
 
    procedure Initialize (this : in out CoreInputView) is
@@ -59,30 +339,6 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for CoreInputView
 
-   function GetForCurrentView
-   return WinRt.Windows.UI.ViewManagement.Core.CoreInputView is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.Core.CoreInputView");
-      m_Factory        : access WinRt.Windows.UI.ViewManagement.Core.ICoreInputViewStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.Core.ICoreInputView;
-   begin
-      return RetVal : WinRt.Windows.UI.ViewManagement.Core.CoreInputView do
-         Hr := RoGetActivationFactory (m_hString, IID_ICoreInputViewStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_ICoreInputView := new Windows.UI.ViewManagement.Core.ICoreInputView;
-            Retval.m_ICoreInputView.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function GetForUIContext
    (
       context : Windows.UI.UIContext'Class
@@ -99,6 +355,30 @@ package body WinRt.Windows.UI.ViewManagement.Core is
          Hr := RoGetActivationFactory (m_hString, IID_ICoreInputViewStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForUIContext (context.m_IUIContext.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ICoreInputView := new Windows.UI.ViewManagement.Core.ICoreInputView;
+            Retval.m_ICoreInputView.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetForCurrentView
+   return WinRt.Windows.UI.ViewManagement.Core.CoreInputView is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.Core.CoreInputView");
+      m_Factory        : access WinRt.Windows.UI.ViewManagement.Core.ICoreInputViewStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.ViewManagement.Core.ICoreInputView;
+   begin
+      return RetVal : WinRt.Windows.UI.ViewManagement.Core.CoreInputView do
+         Hr := RoGetActivationFactory (m_hString, IID_ICoreInputViewStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -449,6 +729,202 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   function IsKindSupported
+   (
+      this : in out CoreInputView;
+      type_x : Windows.UI.ViewManagement.Core.CoreInputViewKind
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView5 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView5, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView5'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICoreInputView.all);
+      Hr := m_Interface.IsKindSupported (type_x, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function add_SupportedKindsChanged
+   (
+      this : in out CoreInputView;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView5 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView5, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView5'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICoreInputView.all);
+      Hr := m_Interface.add_SupportedKindsChanged (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_SupportedKindsChanged
+   (
+      this : in out CoreInputView;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView5 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView5, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView5'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICoreInputView.all);
+      Hr := m_Interface.remove_SupportedKindsChanged (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_PrimaryViewAnimationStarting
+   (
+      this : in out CoreInputView;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView5 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView5, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView5'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICoreInputView.all);
+      Hr := m_Interface.add_PrimaryViewAnimationStarting (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_PrimaryViewAnimationStarting
+   (
+      this : in out CoreInputView;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView5 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView5, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView5'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_ICoreInputView.all);
+      Hr := m_Interface.remove_PrimaryViewAnimationStarting (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CoreInputViewAnimationStartingEventArgs
+
+   procedure Initialize (this : in out CoreInputViewAnimationStartingEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out CoreInputViewAnimationStartingEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ICoreInputViewAnimationStartingEventArgs, ICoreInputViewAnimationStartingEventArgs_Ptr);
+   begin
+      if this.m_ICoreInputViewAnimationStartingEventArgs /= null then
+         if this.m_ICoreInputViewAnimationStartingEventArgs.all /= null then
+            temp := this.m_ICoreInputViewAnimationStartingEventArgs.all.Release;
+            Free (this.m_ICoreInputViewAnimationStartingEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CoreInputViewAnimationStartingEventArgs
+
+   function get_Occlusions
+   (
+      this : in out CoreInputViewAnimationStartingEventArgs
+   )
+   return IVectorView_ICoreInputViewOcclusion.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_ICoreInputViewOcclusion.Kind;
+   begin
+      Hr := this.m_ICoreInputViewAnimationStartingEventArgs.all.get_Occlusions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_ICoreInputViewOcclusion (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_Handled
+   (
+      this : in out CoreInputViewAnimationStartingEventArgs
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_ICoreInputViewAnimationStartingEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Handled
+   (
+      this : in out CoreInputViewAnimationStartingEventArgs;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ICoreInputViewAnimationStartingEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_AnimationDuration
+   (
+      this : in out CoreInputViewAnimationStartingEventArgs
+   )
+   return WinRt.Windows.Foundation.TimeSpan is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+   begin
+      Hr := this.m_ICoreInputViewAnimationStartingEventArgs.all.get_AnimationDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

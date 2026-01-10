@@ -62,6 +62,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
 
    type IHttpDiagnosticProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpDiagnosticProviderStatics is access all IHttpDiagnosticProviderStatics_Interface'Class;
+   type IHttpDiagnosticProviderStatics_Ptr is access all IHttpDiagnosticProviderStatics;
 
    type IHttpDiagnosticSourceLocation_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpDiagnosticSourceLocation is access all IHttpDiagnosticSourceLocation_Interface'Class;

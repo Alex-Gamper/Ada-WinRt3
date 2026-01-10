@@ -45,20 +45,41 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    type IActivationSignalDetectionConfiguration is access all IActivationSignalDetectionConfiguration_Interface'Class;
    type IActivationSignalDetectionConfiguration_Ptr is access all IActivationSignalDetectionConfiguration;
 
+   type IActivationSignalDetectionConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
+   type IActivationSignalDetectionConfiguration2 is access all IActivationSignalDetectionConfiguration2_Interface'Class;
+   type IActivationSignalDetectionConfiguration2_Ptr is access all IActivationSignalDetectionConfiguration2;
+
+   type IActivationSignalDetectionConfigurationCreationResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IActivationSignalDetectionConfigurationCreationResult is access all IActivationSignalDetectionConfigurationCreationResult_Interface'Class;
+   type IActivationSignalDetectionConfigurationCreationResult_Ptr is access all IActivationSignalDetectionConfigurationCreationResult;
+
    type IActivationSignalDetector_Interface is interface and WinRt.IInspectable_Interface;
    type IActivationSignalDetector is access all IActivationSignalDetector_Interface'Class;
    type IActivationSignalDetector_Ptr is access all IActivationSignalDetector;
+
+   type IActivationSignalDetector2_Interface is interface and WinRt.IInspectable_Interface;
+   type IActivationSignalDetector2 is access all IActivationSignalDetector2_Interface'Class;
+   type IActivationSignalDetector2_Ptr is access all IActivationSignalDetector2;
 
    type IConversationalAgentDetectorManager_Interface is interface and WinRt.IInspectable_Interface;
    type IConversationalAgentDetectorManager is access all IConversationalAgentDetectorManager_Interface'Class;
    type IConversationalAgentDetectorManager_Ptr is access all IConversationalAgentDetectorManager;
 
+   type IConversationalAgentDetectorManager2_Interface is interface and WinRt.IInspectable_Interface;
+   type IConversationalAgentDetectorManager2 is access all IConversationalAgentDetectorManager2_Interface'Class;
+   type IConversationalAgentDetectorManager2_Ptr is access all IConversationalAgentDetectorManager2;
+
    type IConversationalAgentDetectorManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IConversationalAgentDetectorManagerStatics is access all IConversationalAgentDetectorManagerStatics_Interface'Class;
+   type IConversationalAgentDetectorManagerStatics_Ptr is access all IConversationalAgentDetectorManagerStatics;
 
    type IConversationalAgentSession_Interface is interface and WinRt.IInspectable_Interface;
    type IConversationalAgentSession is access all IConversationalAgentSession_Interface'Class;
    type IConversationalAgentSession_Ptr is access all IConversationalAgentSession;
+
+   type IConversationalAgentSession2_Interface is interface and WinRt.IInspectable_Interface;
+   type IConversationalAgentSession2 is access all IConversationalAgentSession2_Interface'Class;
+   type IConversationalAgentSession2_Ptr is access all IConversationalAgentSession2;
 
    type IConversationalAgentSessionInterruptedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IConversationalAgentSessionInterruptedEventArgs is access all IConversationalAgentSessionInterruptedEventArgs_Interface'Class;
@@ -66,10 +87,15 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
 
    type IConversationalAgentSessionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IConversationalAgentSessionStatics is access all IConversationalAgentSessionStatics_Interface'Class;
+   type IConversationalAgentSessionStatics_Ptr is access all IConversationalAgentSessionStatics;
 
    type IConversationalAgentSignal_Interface is interface and WinRt.IInspectable_Interface;
    type IConversationalAgentSignal is access all IConversationalAgentSignal_Interface'Class;
    type IConversationalAgentSignal_Ptr is access all IConversationalAgentSignal;
+
+   type IConversationalAgentSignal2_Interface is interface and WinRt.IInspectable_Interface;
+   type IConversationalAgentSignal2 is access all IConversationalAgentSignal2_Interface'Class;
+   type IConversationalAgentSignal2_Ptr is access all IConversationalAgentSignal2;
 
    type IConversationalAgentSignalDetectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IConversationalAgentSignalDetectedEventArgs is access all IConversationalAgentSignalDetectedEventArgs_Interface'Class;
@@ -87,6 +113,10 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    type IDetectionConfigurationAvailabilityInfo is access all IDetectionConfigurationAvailabilityInfo_Interface'Class;
    type IDetectionConfigurationAvailabilityInfo_Ptr is access all IDetectionConfigurationAvailabilityInfo;
 
+   type IDetectionConfigurationAvailabilityInfo2_Interface is interface and WinRt.IInspectable_Interface;
+   type IDetectionConfigurationAvailabilityInfo2 is access all IDetectionConfigurationAvailabilityInfo2_Interface'Class;
+   type IDetectionConfigurationAvailabilityInfo2_Ptr is access all IDetectionConfigurationAvailabilityInfo2;
+
    -----------------------------------------------------------------------------
    -- Class declarations
    -----------------------------------------------------------------------------
@@ -96,6 +126,12 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
          m_IActivationSignalDetectionConfiguration : access Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration;
       end record;
    type ActivationSignalDetectionConfiguration_Ptr is access all ActivationSignalDetectionConfiguration;
+
+   type ActivationSignalDetectionConfigurationCreationResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IActivationSignalDetectionConfigurationCreationResult : access Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfigurationCreationResult;
+      end record;
+   type ActivationSignalDetectionConfigurationCreationResult_Ptr is access all ActivationSignalDetectionConfigurationCreationResult;
 
    type ActivationSignalDetector is new Ada.Finalization.Limited_Controlled with
       record
@@ -155,6 +191,76 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    -- Enum declarations
    -----------------------------------------------------------------------------
 
+   type ActivationSignalDetectionConfigurationCreationStatus is (
+      Success_e,
+      SignalIdNotAvailable_e,
+      ModelIdNotSupported_e,
+      InvalidSignalId_e,
+      InvalidModelId_e,
+      InvalidDisplayName_e,
+      ConfigurationAlreadyExists_e,
+      CreationNotSupported_e
+   );
+   for ActivationSignalDetectionConfigurationCreationStatus use (
+      Success_e => 0,
+      SignalIdNotAvailable_e => 1,
+      ModelIdNotSupported_e => 2,
+      InvalidSignalId_e => 3,
+      InvalidModelId_e => 4,
+      InvalidDisplayName_e => 5,
+      ConfigurationAlreadyExists_e => 6,
+      CreationNotSupported_e => 7
+   );
+   type ActivationSignalDetectionConfigurationCreationStatus_Ptr is access all ActivationSignalDetectionConfigurationCreationStatus;
+
+   type ActivationSignalDetectionConfigurationRemovalResult is (
+      Success_e,
+      NotFound_e,
+      CurrentlyEnabled_e,
+      RemovalNotSupported_e
+   );
+   for ActivationSignalDetectionConfigurationRemovalResult use (
+      Success_e => 0,
+      NotFound_e => 1,
+      CurrentlyEnabled_e => 2,
+      RemovalNotSupported_e => 3
+   );
+   type ActivationSignalDetectionConfigurationRemovalResult_Ptr is access all ActivationSignalDetectionConfigurationRemovalResult;
+
+   type ActivationSignalDetectionConfigurationSetModelDataResult is (
+      Success_e,
+      EmptyModelData_e,
+      UnsupportedFormat_e,
+      ConfigurationCurrentlyEnabled_e,
+      InvalidData_e,
+      SetModelDataNotSupported_e,
+      ConfigurationNotFound_e,
+      UnknownError_e
+   );
+   for ActivationSignalDetectionConfigurationSetModelDataResult use (
+      Success_e => 0,
+      EmptyModelData_e => 1,
+      UnsupportedFormat_e => 2,
+      ConfigurationCurrentlyEnabled_e => 3,
+      InvalidData_e => 4,
+      SetModelDataNotSupported_e => 5,
+      ConfigurationNotFound_e => 6,
+      UnknownError_e => 7
+   );
+   type ActivationSignalDetectionConfigurationSetModelDataResult_Ptr is access all ActivationSignalDetectionConfigurationSetModelDataResult;
+
+   type ActivationSignalDetectionConfigurationStateChangeResult is (
+      Success_e,
+      NoModelData_e,
+      ConfigurationNotFound_e
+   );
+   for ActivationSignalDetectionConfigurationStateChangeResult use (
+      Success_e => 0,
+      NoModelData_e => 1,
+      ConfigurationNotFound_e => 2
+   );
+   type ActivationSignalDetectionConfigurationStateChangeResult_Ptr is access all ActivationSignalDetectionConfigurationStateChangeResult;
+
    type ActivationSignalDetectionTrainingDataFormat is (
       Voice8kHz8BitMono_e,
       Voice8kHz16BitMono_e,
@@ -207,6 +313,30 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    );
    type ActivationSignalDetectorPowerState_Ptr is access all ActivationSignalDetectorPowerState;
 
+   type ConversationalAgentActivationKind is (
+      VoiceActivationPreview_e,
+      Foreground_e
+   );
+   for ConversationalAgentActivationKind use (
+      VoiceActivationPreview_e => 0,
+      Foreground_e => 1
+   );
+   type ConversationalAgentActivationKind_Ptr is access all ConversationalAgentActivationKind;
+
+   type ConversationalAgentActivationResult is (
+      Success_e,
+      AgentInactive_e,
+      ScreenNotAvailable_e,
+      AgentInterrupted_e
+   );
+   for ConversationalAgentActivationResult use (
+      Success_e => 0,
+      AgentInactive_e => 1,
+      ScreenNotAvailable_e => 2,
+      AgentInterrupted_e => 3
+   );
+   type ConversationalAgentActivationResult_Ptr is access all ConversationalAgentActivationResult;
+
    type ConversationalAgentSessionUpdateResponse is (
       Success_e,
       Failed_e
@@ -249,6 +379,24 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    );
    type ConversationalAgentSystemStateChangeType_Ptr is access all ConversationalAgentSystemStateChangeType;
 
+   type ConversationalAgentVoiceActivationPrerequisiteKind is (
+      MicrophonePermission_e,
+      KnownAgents_e,
+      AgentAllowed_e,
+      AppCapability_e,
+      BackgroundTaskRegistration_e,
+      PolicyPermission_e
+   );
+   for ConversationalAgentVoiceActivationPrerequisiteKind use (
+      MicrophonePermission_e => 0,
+      KnownAgents_e => 1,
+      AgentAllowed_e => 2,
+      AppCapability_e => 3,
+      BackgroundTaskRegistration_e => 4,
+      PolicyPermission_e => 5
+   );
+   type ConversationalAgentVoiceActivationPrerequisiteKind_Ptr is access all ConversationalAgentVoiceActivationPrerequisiteKind;
+
    type DetectionConfigurationAvailabilityChangeKind is (
       SystemResourceAccess_e,
       Permission_e,
@@ -269,7 +417,9 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       VoiceTooFast_e,
       VoiceTooSlow_e,
       VoiceQualityProblem_e,
-      TrainingSystemInternalError_e
+      TrainingSystemInternalError_e,
+      TrainingTimedOut_e,
+      ConfigurationNotFound_e
    );
    for DetectionConfigurationTrainingStatus use (
       Success_e => 0,
@@ -279,9 +429,45 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       VoiceTooFast_e => 4,
       VoiceTooSlow_e => 5,
       VoiceQualityProblem_e => 6,
-      TrainingSystemInternalError_e => 7
+      TrainingSystemInternalError_e => 7,
+      TrainingTimedOut_e => 8,
+      ConfigurationNotFound_e => 9
    );
    type DetectionConfigurationTrainingStatus_Ptr is access all DetectionConfigurationTrainingStatus;
+
+   type SignalDetectorResourceKind is (
+      ParallelModelSupport_e,
+      ParallelModelSupportForAgent_e,
+      ParallelSignalSupport_e,
+      ParallelSignalSupportForAgent_e,
+      DisplayOffSupport_e,
+      PluggedInPower_e,
+      Detector_e,
+      SupportedSleepState_e,
+      SupportedBatterySaverState_e,
+      ScreenAvailability_e,
+      InputHardware_e,
+      AcousticEchoCancellation_e,
+      ModelIdSupport_e,
+      DataChannel_e
+   );
+   for SignalDetectorResourceKind use (
+      ParallelModelSupport_e => 0,
+      ParallelModelSupportForAgent_e => 1,
+      ParallelSignalSupport_e => 2,
+      ParallelSignalSupportForAgent_e => 3,
+      DisplayOffSupport_e => 4,
+      PluggedInPower_e => 5,
+      Detector_e => 6,
+      SupportedSleepState_e => 7,
+      SupportedBatterySaverState_e => 8,
+      ScreenAvailability_e => 9,
+      InputHardware_e => 10,
+      AcousticEchoCancellation_e => 11,
+      ModelIdSupport_e => 12,
+      DataChannel_e => 13
+   );
+   type SignalDetectorResourceKind_Ptr is access all SignalDetectorResourceKind;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations
@@ -303,6 +489,10 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    IID_IVectorView_IActivationSignalDetectionConfiguration : aliased WinRt.IID := (76725479, 63300, 21831, (133, 100, 105, 63, 160, 89, 174, 124 ));
    function QInterface_IVectorView_IActivationSignalDetectionConfiguration is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IActivationSignalDetectionConfiguration.Kind, IID_IVectorView_IActivationSignalDetectionConfiguration'Access);
 
+   package IVector_HString is new WinRt.Windows.Foundation.Collections.IVector (WinRt.HString);
+   IID_IVector_HString : aliased WinRt.IID := (940618231, 42560, 22053, (139, 149, 143, 36, 229, 179, 110, 249 ));
+   function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
+
    package IVectorView_IActivationSignalDetector is new WinRt.Windows.Foundation.Collections.IVectorView (IActivationSignalDetector);
    IID_IVectorView_IActivationSignalDetector : aliased WinRt.IID := (1681211013, 24137, 20704, (176, 241, 102, 10, 57, 59, 19, 15 ));
    function QInterface_IVectorView_IActivationSignalDetector is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IActivationSignalDetector.Kind, IID_IVectorView_IActivationSignalDetector'Access);
@@ -310,6 +500,14 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    package IVectorView_UInt32 is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.UInt32);
    IID_IVectorView_UInt32 : aliased WinRt.IID := (3818688420, 38738, 21241, (147, 157, 120, 201, 14, 91, 175, 234 ));
    function QInterface_IVectorView_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IVectorView_UInt32.Kind, IID_IVectorView_UInt32'Access);
+
+   package IVectorView_ConversationalAgentVoiceActivationPrerequisiteKind is new WinRt.Windows.Foundation.Collections.IVectorView (ConversationalAgentVoiceActivationPrerequisiteKind);
+   IID_IVectorView_ConversationalAgentVoiceActivationPrerequisiteKind : aliased WinRt.IID := (1005296349, 46773, 20616, (185, 165, 145, 25, 75, 164, 66, 104 ));
+   function QInterface_IVectorView_ConversationalAgentVoiceActivationPrerequisiteKind is new Generic_QueryInterface (GenericObject_Interface, IVectorView_ConversationalAgentVoiceActivationPrerequisiteKind.Kind, IID_IVectorView_ConversationalAgentVoiceActivationPrerequisiteKind'Access);
+
+   package IVectorView_SignalDetectorResourceKind is new WinRt.Windows.Foundation.Collections.IVectorView (SignalDetectorResourceKind);
+   IID_IVectorView_SignalDetectorResourceKind : aliased WinRt.IID := (3065469745, 1529, 23837, (150, 136, 44, 160, 254, 238, 116, 201 ));
+   function QInterface_IVectorView_SignalDetectorResourceKind is new Generic_QueryInterface (GenericObject_Interface, IVectorView_SignalDetectorResourceKind.Kind, IID_IVectorView_SignalDetectorResourceKind'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -496,6 +694,71 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       IID_IActivationSignalDetectionConfiguration : aliased WinRt.IID := (1087946262, 21015, 22556, (154, 178, 206, 155, 47, 46, 142, 0 ));
 
    -----------------------------------------------------------------------------
+   -- type IActivationSignalDetectionConfiguration2 is interface and WinRt.IInspectable;
+
+      function SetModelDataWithResult
+      (
+         this : access IActivationSignalDetectionConfiguration2_Interface;
+         dataType : WinRt.HString;
+         data : Windows.Storage.Streams.IInputStream;
+         RetVal : access Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetModelDataWithResultAsync
+      (
+         this : access IActivationSignalDetectionConfiguration2_Interface;
+         dataType : WinRt.HString;
+         data : Windows.Storage.Streams.IInputStream;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetEnabledWithResultAsync
+      (
+         this : access IActivationSignalDetectionConfiguration2_Interface;
+         value : WinRt.Boolean;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetEnabledWithResult
+      (
+         this : access IActivationSignalDetectionConfiguration2_Interface;
+         value : WinRt.Boolean;
+         RetVal : access Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationStateChangeResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TrainingStepCompletionMaxAllowedTime
+      (
+         this : access IActivationSignalDetectionConfiguration2_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IActivationSignalDetectionConfiguration2 : aliased WinRt.IID := (1910091810, 22060, 22478, (167, 139, 139, 79, 240, 20, 91, 171 ));
+
+   -----------------------------------------------------------------------------
+   -- type IActivationSignalDetectionConfigurationCreationResult is interface and WinRt.IInspectable;
+
+      function get_Status
+      (
+         this : access IActivationSignalDetectionConfigurationCreationResult_Interface;
+         RetVal : access Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationCreationStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Configuration
+      (
+         this : access IActivationSignalDetectionConfigurationCreationResult_Interface;
+         RetVal : access Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IActivationSignalDetectionConfigurationCreationResult : aliased WinRt.IID := (1284095003, 36114, 24136, (167, 28, 127, 107, 193, 205, 102, 224 ));
+
+   -----------------------------------------------------------------------------
    -- type IActivationSignalDetector is interface and WinRt.IInspectable;
 
       function get_ProviderId
@@ -627,6 +890,72 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       IID_IActivationSignalDetector : aliased WinRt.IID := (3049206879, 42192, 23339, (142, 101, 179, 197, 94, 231, 86, 255 ));
 
    -----------------------------------------------------------------------------
+   -- type IActivationSignalDetector2 is interface and WinRt.IInspectable;
+
+      function GetAvailableModelIdsForSignalIdAsync
+      (
+         this : access IActivationSignalDetector2_Interface;
+         signalId : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetAvailableModelIdsForSignalId
+      (
+         this : access IActivationSignalDetector2_Interface;
+         signalId : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateConfigurationWithResultAsync
+      (
+         this : access IActivationSignalDetector2_Interface;
+         signalId : WinRt.HString;
+         modelId : WinRt.HString;
+         displayName : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateConfigurationWithResult
+      (
+         this : access IActivationSignalDetector2_Interface;
+         signalId : WinRt.HString;
+         modelId : WinRt.HString;
+         displayName : WinRt.HString;
+         RetVal : access Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfigurationCreationResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function RemoveConfigurationWithResultAsync
+      (
+         this : access IActivationSignalDetector2_Interface;
+         signalId : WinRt.HString;
+         modelId : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function RemoveConfigurationWithResult
+      (
+         this : access IActivationSignalDetector2_Interface;
+         signalId : WinRt.HString;
+         modelId : WinRt.HString;
+         RetVal : access Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationRemovalResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DetectorId
+      (
+         this : access IActivationSignalDetector2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IActivationSignalDetector2 : aliased WinRt.IID := (3353495818, 47781, 22994, (133, 209, 186, 66, 247, 207, 120, 201 ));
+
+   -----------------------------------------------------------------------------
    -- type IConversationalAgentDetectorManager is interface and WinRt.IInspectable;
 
       function GetAllActivationSignalDetectors
@@ -660,6 +989,27 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       return WinRt.Hresult is abstract;
 
       IID_IConversationalAgentDetectorManager : aliased WinRt.IID := (3734305712, 22906, 24056, (140, 251, 157, 187, 88, 59, 163, 255 ));
+
+   -----------------------------------------------------------------------------
+   -- type IConversationalAgentDetectorManager2 is interface and WinRt.IInspectable;
+
+      function GetActivationSignalDetectorFromId
+      (
+         this : access IConversationalAgentDetectorManager2_Interface;
+         detectorId : WinRt.HString;
+         RetVal : access Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetActivationSignalDetectorFromIdAsync
+      (
+         this : access IConversationalAgentDetectorManager2_Interface;
+         detectorId : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IConversationalAgentDetectorManager2 : aliased WinRt.IID := (2220953393, 55283, 21246, (147, 17, 201, 235, 78, 62, 179, 10 ));
 
    -----------------------------------------------------------------------------
    -- type IConversationalAgentDetectorManagerStatics is interface and WinRt.IInspectable;
@@ -928,6 +1278,56 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       IID_IConversationalAgentSession : aliased WinRt.IID := (3668631706, 47034, 22501, (173, 19, 223, 82, 15, 155, 111, 167 ));
 
    -----------------------------------------------------------------------------
+   -- type IConversationalAgentSession2 is interface and WinRt.IInspectable;
+
+      function RequestActivationAsync
+      (
+         this : access IConversationalAgentSession2_Interface;
+         activationKind : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function RequestActivation
+      (
+         this : access IConversationalAgentSession2_Interface;
+         activationKind : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind;
+         RetVal : access Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetSupportLockScreenActivationAsync
+      (
+         this : access IConversationalAgentSession2_Interface;
+         lockScreenActivationSupported : WinRt.Boolean;
+         RetVal : access Windows.Foundation.IAsyncAction
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetSupportLockScreenActivation
+      (
+         this : access IConversationalAgentSession2_Interface;
+         lockScreenActivationSupported : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetMissingPrerequisites
+      (
+         this : access IConversationalAgentSession2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetMissingPrerequisitesAsync
+      (
+         this : access IConversationalAgentSession2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IConversationalAgentSession2 : aliased WinRt.IID := (2812935161, 44152, 22527, (149, 150, 172, 199, 161, 201, 166, 7 ));
+
+   -----------------------------------------------------------------------------
    -- type IConversationalAgentSessionInterruptedEventArgs is interface and WinRt.IInspectable;
 
       IID_IConversationalAgentSessionInterruptedEventArgs : aliased WinRt.IID := (2540067103, 63037, 23870, (155, 242, 189, 7, 96, 85, 38, 134 ));
@@ -1041,6 +1441,25 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       IID_IConversationalAgentSignal : aliased WinRt.IID := (552412663, 45344, 20978, (134, 3, 38, 93, 106, 71, 242, 50 ));
 
    -----------------------------------------------------------------------------
+   -- type IConversationalAgentSignal2 is interface and WinRt.IInspectable;
+
+      function get_DetectorId
+      (
+         this : access IConversationalAgentSignal2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DetectorKind
+      (
+         this : access IConversationalAgentSignal2_Interface;
+         RetVal : access Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IConversationalAgentSignal2 : aliased WinRt.IID := (3503061929, 39547, 23604, (136, 14, 182, 20, 108, 144, 78, 203 ));
+
+   -----------------------------------------------------------------------------
    -- type IConversationalAgentSignalDetectedEventArgs is interface and WinRt.IInspectable;
 
       IID_IConversationalAgentSignalDetectedEventArgs : aliased WinRt.IID := (1297607567, 63626, 22939, (145, 211, 214, 4, 135, 103, 8, 188 ));
@@ -1101,6 +1520,18 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       return WinRt.Hresult is abstract;
 
       IID_IDetectionConfigurationAvailabilityInfo : aliased WinRt.IID := (3048210096, 16624, 21400, (184, 56, 145, 151, 156, 44, 98, 8 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDetectionConfigurationAvailabilityInfo2 is interface and WinRt.IInspectable;
+
+      function get_UnavailableSystemResources
+      (
+         this : access IDetectionConfigurationAvailabilityInfo2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDetectionConfigurationAvailabilityInfo2 : aliased WinRt.IID := (820012083, 14515, 23627, (132, 195, 98, 182, 230, 133, 178, 255 ));
 
    -----------------------------------------------------------------------------
    -- Class method declarations
@@ -1262,6 +1693,68 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       this : in out ActivationSignalDetectionConfiguration
    );
 
+   procedure Close
+   (
+      this : in out ActivationSignalDetectionConfiguration
+   );
+
+   function SetModelDataWithResult
+   (
+      this : in out ActivationSignalDetectionConfiguration;
+      dataType : WinRt.WString;
+      data : Windows.Storage.Streams.IInputStream
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult;
+
+   function SetModelDataWithResultAsync
+   (
+      this : in out ActivationSignalDetectionConfiguration;
+      dataType : WinRt.WString;
+      data : Windows.Storage.Streams.IInputStream
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult;
+
+   function SetEnabledWithResultAsync
+   (
+      this : in out ActivationSignalDetectionConfiguration;
+      value : WinRt.Boolean
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationStateChangeResult;
+
+   function SetEnabledWithResult
+   (
+      this : in out ActivationSignalDetectionConfiguration;
+      value : WinRt.Boolean
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationStateChangeResult;
+
+   function get_TrainingStepCompletionMaxAllowedTime
+   (
+      this : in out ActivationSignalDetectionConfiguration
+   )
+   return WinRt.UInt32;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for ActivationSignalDetectionConfigurationCreationResult
+
+   overriding procedure Initialize (this : in out ActivationSignalDetectionConfigurationCreationResult);
+   overriding procedure Finalize (this : in out ActivationSignalDetectionConfigurationCreationResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for ActivationSignalDetectionConfigurationCreationResult
+
+   function get_Status
+   (
+      this : in out ActivationSignalDetectionConfigurationCreationResult
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationCreationStatus;
+
+   function get_Configuration
+   (
+      this : in out ActivationSignalDetectionConfigurationCreationResult
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfiguration'Class;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ActivationSignalDetector
 
@@ -1379,6 +1872,60 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       modelId : WinRt.WString
    );
 
+   function GetAvailableModelIdsForSignalIdAsync
+   (
+      this : in out ActivationSignalDetector;
+      signalId : WinRt.WString
+   )
+   return WinRt.GenericObject;
+
+   function GetAvailableModelIdsForSignalId
+   (
+      this : in out ActivationSignalDetector;
+      signalId : WinRt.WString
+   )
+   return IVector_HString.Kind;
+
+   function CreateConfigurationWithResultAsync
+   (
+      this : in out ActivationSignalDetector;
+      signalId : WinRt.WString;
+      modelId : WinRt.WString;
+      displayName : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationCreationResult'Class;
+
+   function CreateConfigurationWithResult
+   (
+      this : in out ActivationSignalDetector;
+      signalId : WinRt.WString;
+      modelId : WinRt.WString;
+      displayName : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationCreationResult'Class;
+
+   function RemoveConfigurationWithResultAsync
+   (
+      this : in out ActivationSignalDetector;
+      signalId : WinRt.WString;
+      modelId : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationRemovalResult;
+
+   function RemoveConfigurationWithResult
+   (
+      this : in out ActivationSignalDetector;
+      signalId : WinRt.WString;
+      modelId : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationRemovalResult;
+
+   function get_DetectorId
+   (
+      this : in out ActivationSignalDetector
+   )
+   return WinRt.WString;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ConversationalAgentDetectorManager
 
@@ -1419,6 +1966,20 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       kind : Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind
    )
    return WinRt.GenericObject;
+
+   function GetActivationSignalDetectorFromId
+   (
+      this : in out ConversationalAgentDetectorManager;
+      detectorId : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetector'Class;
+
+   function GetActivationSignalDetectorFromIdAsync
+   (
+      this : in out ConversationalAgentDetectorManager;
+      detectorId : WinRt.WString
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetector'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ConversationalAgentSession
@@ -1653,6 +2214,44 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return IVectorView_UInt32.Kind;
 
+   function RequestActivationAsync
+   (
+      this : in out ConversationalAgentSession;
+      activationKind : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult;
+
+   function RequestActivation
+   (
+      this : in out ConversationalAgentSession;
+      activationKind : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult;
+
+   procedure SetSupportLockScreenActivationAsync
+   (
+      this : in out ConversationalAgentSession;
+      lockScreenActivationSupported : WinRt.Boolean
+   );
+
+   procedure SetSupportLockScreenActivation
+   (
+      this : in out ConversationalAgentSession;
+      lockScreenActivationSupported : WinRt.Boolean
+   );
+
+   function GetMissingPrerequisites
+   (
+      this : in out ConversationalAgentSession
+   )
+   return IVectorView_ConversationalAgentVoiceActivationPrerequisiteKind.Kind;
+
+   function GetMissingPrerequisitesAsync
+   (
+      this : in out ConversationalAgentSession
+   )
+   return WinRt.GenericObject;
+
    procedure Close
    (
       this : in out ConversationalAgentSession
@@ -1748,6 +2347,18 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       value : Windows.Foundation.TimeSpan
    );
 
+   function get_DetectorId
+   (
+      this : in out ConversationalAgentSignal
+   )
+   return WinRt.WString;
+
+   function get_DetectorKind
+   (
+      this : in out ConversationalAgentSignal
+   )
+   return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ConversationalAgentSignalDetectedEventArgs
 
@@ -1819,5 +2430,11 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       this : in out DetectionConfigurationAvailabilityInfo
    )
    return WinRt.Boolean;
+
+   function get_UnavailableSystemResources
+   (
+      this : in out DetectionConfigurationAvailabilityInfo
+   )
+   return IVectorView_SignalDetectorResourceKind.Kind;
 
 end WinRt.Windows.ApplicationModel.ConversationalAgent;

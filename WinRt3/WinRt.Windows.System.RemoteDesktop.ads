@@ -38,6 +38,7 @@ package WinRt.Windows.System.RemoteDesktop is
 
    type IInteractiveSessionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInteractiveSessionStatics is access all IInteractiveSessionStatics_Interface'Class;
+   type IInteractiveSessionStatics_Ptr is access all IInteractiveSessionStatics;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -48,9 +48,11 @@ package WinRt.Windows.Media.Devices.Core is
 
    type ICameraIntrinsics2_Interface is interface and WinRt.IInspectable_Interface;
    type ICameraIntrinsics2 is access all ICameraIntrinsics2_Interface'Class;
+   type ICameraIntrinsics2_Ptr is access all ICameraIntrinsics2;
 
    type ICameraIntrinsicsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICameraIntrinsicsFactory is access all ICameraIntrinsicsFactory_Interface'Class;
+   type ICameraIntrinsicsFactory_Ptr is access all ICameraIntrinsicsFactory;
 
    type IDepthCorrelatedCoordinateMapper_Interface is interface and WinRt.IInspectable_Interface;
    type IDepthCorrelatedCoordinateMapper is access all IDepthCorrelatedCoordinateMapper_Interface'Class;
@@ -62,6 +64,7 @@ package WinRt.Windows.Media.Devices.Core is
 
    type IFrameControlCapabilities2_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameControlCapabilities2 is access all IFrameControlCapabilities2_Interface'Class;
+   type IFrameControlCapabilities2_Ptr is access all IFrameControlCapabilities2;
 
    type IFrameController_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameController is access all IFrameController_Interface'Class;
@@ -69,6 +72,7 @@ package WinRt.Windows.Media.Devices.Core is
 
    type IFrameController2_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameController2 is access all IFrameController2_Interface'Class;
+   type IFrameController2_Ptr is access all IFrameController2;
 
    type IFrameExposureCapabilities_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameExposureCapabilities is access all IFrameExposureCapabilities_Interface'Class;

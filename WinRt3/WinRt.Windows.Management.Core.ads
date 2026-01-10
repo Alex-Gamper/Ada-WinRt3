@@ -44,6 +44,7 @@ package WinRt.Windows.Management.Core is
 
    type IApplicationDataManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationDataManagerStatics is access all IApplicationDataManagerStatics_Interface'Class;
+   type IApplicationDataManagerStatics_Ptr is access all IApplicationDataManagerStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

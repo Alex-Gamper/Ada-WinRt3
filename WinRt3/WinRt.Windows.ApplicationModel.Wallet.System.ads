@@ -45,9 +45,11 @@ package WinRt.Windows.ApplicationModel.Wallet.System is
 
    type IWalletItemSystemStore2_Interface is interface and WinRt.IInspectable_Interface;
    type IWalletItemSystemStore2 is access all IWalletItemSystemStore2_Interface'Class;
+   type IWalletItemSystemStore2_Ptr is access all IWalletItemSystemStore2;
 
    type IWalletManagerSystemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWalletManagerSystemStatics is access all IWalletManagerSystemStatics_Interface'Class;
+   type IWalletManagerSystemStatics_Ptr is access all IWalletManagerSystemStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

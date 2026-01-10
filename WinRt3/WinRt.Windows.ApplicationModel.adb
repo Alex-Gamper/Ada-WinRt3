@@ -37,6 +37,9 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.ApplicationModel is
 
+   package IAsyncOperation_FullTrustProcessLaunchResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.IFullTrustProcessLaunchResult);
+   package AsyncOperationCompletedHandler_FullTrustProcessLaunchResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.IFullTrustProcessLaunchResult);
+
    package IAsyncOperation_GenericObject is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.GenericObject);
    package AsyncOperationCompletedHandler_GenericObject is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.GenericObject);
 
@@ -364,6 +367,59 @@ package body WinRt.Windows.ApplicationModel is
       end return;
    end;
 
+   function get_ExecutionContext
+   (
+      this : in out AppInfo
+   )
+   return WinRt.Windows.ApplicationModel.AppExecutionContext is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInfo3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.AppExecutionContext;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInfo_Interface, WinRt.Windows.ApplicationModel.IAppInfo3, WinRt.Windows.ApplicationModel.IID_IAppInfo3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInfo.all);
+      Hr := m_Interface.get_ExecutionContext (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_SupportedFileExtensions
+   (
+      this : in out AppInfo
+   )
+   return WinRt.WString_Array is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInfo4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString_Ptr;
+      m_ComRetValSize  : aliased WinRt.UInt32 := 0;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInfo_Interface, WinRt.Windows.ApplicationModel.IAppInfo4, WinRt.Windows.ApplicationModel.IID_IAppInfo4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInfo.all);
+      Hr := m_Interface.get_SupportedFileExtensions (m_ComRetValSize'Access, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      declare
+         ArrayRetVal : WinRt.WString_Array (1..Integer(m_ComRetValSize));
+         function To_Ada_HString is new To_Ada_Type (WinRt.HString, WinRt.HString_Ptr); 
+      begin
+         for i in ArrayRetVal'Range loop
+            ArrayRetval (i) := To_Ada (To_Ada_HString (m_ComRetVal, i));
+         end loop;
+         tmp := WindowsDeleteString (m_ComRetVal.all);
+         return ArrayRetVal;
+      end;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AppInstallerInfo
 
@@ -405,6 +461,336 @@ package body WinRt.Windows.ApplicationModel is
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
+   end;
+
+   function get_OnLaunch
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_OnLaunch (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_HoursBetweenUpdateChecks
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_HoursBetweenUpdateChecks (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ShowPrompt
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_ShowPrompt (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_UpdateBlocksActivation
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_UpdateBlocksActivation (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_AutomaticBackgroundTask
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_AutomaticBackgroundTask (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ForceUpdateFromAnyVersion
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_ForceUpdateFromAnyVersion (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsAutoRepairEnabled
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_IsAutoRepairEnabled (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Version
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Windows.ApplicationModel.PackageVersion is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.PackageVersion;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_Version (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_LastChecked
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Windows.Foundation.DateTime is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_LastChecked (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_PausedUntil
+   (
+      this : in out AppInstallerInfo
+   )
+   return IReference_DateTime.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_DateTime.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_PausedUntil (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_UpdateUris
+   (
+      this : in out AppInstallerInfo
+   )
+   return IVectorView_IUriRuntimeClass.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IUriRuntimeClass.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_UpdateUris (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IUriRuntimeClass (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_RepairUris
+   (
+      this : in out AppInstallerInfo
+   )
+   return IVectorView_IUriRuntimeClass.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IUriRuntimeClass.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_RepairUris (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IUriRuntimeClass (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_DependencyPackageUris
+   (
+      this : in out AppInstallerInfo
+   )
+   return IVectorView_IUriRuntimeClass.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IUriRuntimeClass.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_DependencyPackageUris (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IUriRuntimeClass (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_OptionalPackageUris
+   (
+      this : in out AppInstallerInfo
+   )
+   return IVectorView_IUriRuntimeClass.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IUriRuntimeClass.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_OptionalPackageUris (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IUriRuntimeClass (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_PolicySource
+   (
+      this : in out AppInstallerInfo
+   )
+   return WinRt.Windows.ApplicationModel.AppInstallerPolicySource is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.AppInstallerPolicySource;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAppInstallerInfo.all);
+      Hr := m_Interface.get_PolicySource (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -599,52 +985,7 @@ package body WinRt.Windows.ApplicationModel is
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
-   package body CameraApplicationManager is
-
-      procedure ShowInstalledApplicationsUI is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.CameraApplicationManager");
-         m_Factory        : access WinRt.Windows.ApplicationModel.ICameraApplicationManagerStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICameraApplicationManagerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.ShowInstalledApplicationsUI;
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-   end CameraApplicationManager;
-
-   -----------------------------------------------------------------------------
-   -- Static RuntimeClass
    package body DesignMode is
-
-      function get_DesignMode2Enabled
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DesignMode");
-         m_Factory        : access WinRt.Windows.ApplicationModel.IDesignModeStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Boolean;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IDesignModeStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_DesignMode2Enabled (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
 
       function get_DesignModeEnabled
       return WinRt.Boolean is
@@ -658,6 +999,27 @@ package body WinRt.Windows.ApplicationModel is
          Hr := RoGetActivationFactory (m_hString, IID_IDesignModeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DesignModeEnabled (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function get_DesignMode2Enabled
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DesignMode");
+         m_Factory        : access WinRt.Windows.ApplicationModel.IDesignModeStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IDesignModeStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_DesignMode2Enabled (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -710,6 +1072,273 @@ package body WinRt.Windows.ApplicationModel is
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for FindRelatedPackagesOptions
+
+   procedure Initialize (this : in out FindRelatedPackagesOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out FindRelatedPackagesOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IFindRelatedPackagesOptions, IFindRelatedPackagesOptions_Ptr);
+   begin
+      if this.m_IFindRelatedPackagesOptions /= null then
+         if this.m_IFindRelatedPackagesOptions.all /= null then
+            temp := this.m_IFindRelatedPackagesOptions.all.Release;
+            Free (this.m_IFindRelatedPackagesOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for FindRelatedPackagesOptions
+
+   function Constructor
+   (
+      Relationship : Windows.ApplicationModel.PackageRelationship
+   )
+   return FindRelatedPackagesOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.FindRelatedPackagesOptions");
+      m_Factory    : access IFindRelatedPackagesOptionsFactory_Interface'Class := null;
+      temp         : WinRt.UInt32 := 0;
+      m_ComRetVal  : aliased Windows.ApplicationModel.IFindRelatedPackagesOptions;
+   begin
+      return RetVal : FindRelatedPackagesOptions do
+         Hr := RoGetActivationFactory (m_hString, IID_IFindRelatedPackagesOptionsFactory'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateInstance (Relationship, m_ComRetVal'Access);
+            Retval.m_IFindRelatedPackagesOptions := new Windows.ApplicationModel.IFindRelatedPackagesOptions;
+            Retval.m_IFindRelatedPackagesOptions.all := m_ComRetVal;
+            temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for FindRelatedPackagesOptions
+
+   function get_Relationship
+   (
+      this : in out FindRelatedPackagesOptions
+   )
+   return WinRt.Windows.ApplicationModel.PackageRelationship is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.PackageRelationship;
+   begin
+      Hr := this.m_IFindRelatedPackagesOptions.all.get_Relationship (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Relationship
+   (
+      this : in out FindRelatedPackagesOptions;
+      value : Windows.ApplicationModel.PackageRelationship
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IFindRelatedPackagesOptions.all.put_Relationship (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IncludeFrameworks
+   (
+      this : in out FindRelatedPackagesOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IFindRelatedPackagesOptions.all.get_IncludeFrameworks (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IncludeFrameworks
+   (
+      this : in out FindRelatedPackagesOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IFindRelatedPackagesOptions.all.put_IncludeFrameworks (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IncludeHostRuntimes
+   (
+      this : in out FindRelatedPackagesOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IFindRelatedPackagesOptions.all.get_IncludeHostRuntimes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IncludeHostRuntimes
+   (
+      this : in out FindRelatedPackagesOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IFindRelatedPackagesOptions.all.put_IncludeHostRuntimes (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IncludeOptionals
+   (
+      this : in out FindRelatedPackagesOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IFindRelatedPackagesOptions.all.get_IncludeOptionals (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IncludeOptionals
+   (
+      this : in out FindRelatedPackagesOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IFindRelatedPackagesOptions.all.put_IncludeOptionals (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_IncludeResources
+   (
+      this : in out FindRelatedPackagesOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IFindRelatedPackagesOptions.all.get_IncludeResources (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_IncludeResources
+   (
+      this : in out FindRelatedPackagesOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IFindRelatedPackagesOptions.all.put_IncludeResources (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for FullTrustProcessLaunchResult
+
+   procedure Initialize (this : in out FullTrustProcessLaunchResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out FullTrustProcessLaunchResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IFullTrustProcessLaunchResult, IFullTrustProcessLaunchResult_Ptr);
+   begin
+      if this.m_IFullTrustProcessLaunchResult /= null then
+         if this.m_IFullTrustProcessLaunchResult.all /= null then
+            temp := this.m_IFullTrustProcessLaunchResult.all.Release;
+            Free (this.m_IFullTrustProcessLaunchResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for FullTrustProcessLaunchResult
+
+   function get_LaunchResult
+   (
+      this : in out FullTrustProcessLaunchResult
+   )
+   return WinRt.Windows.ApplicationModel.FullTrustLaunchResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.FullTrustLaunchResult;
+   begin
+      Hr := this.m_IFullTrustProcessLaunchResult.all.get_LaunchResult (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out FullTrustProcessLaunchResult
+   )
+   return WinRt.Windows.Foundation.HResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.HResult;
+   begin
+      Hr := this.m_IFullTrustProcessLaunchResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -916,6 +1545,159 @@ package body WinRt.Windows.ApplicationModel is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_fullTrustPackageRelativeAppId);
          tmp := WindowsDeleteString (HStr_parameterGroupId);
+      end;
+
+      function LaunchFullTrustProcessForCurrentAppWithArgumentsAsync
+      (
+         commandLine : WinRt.WString
+      )
+      return WinRt.Windows.ApplicationModel.FullTrustProcessLaunchResult is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.FullTrustProcessLauncher");
+         m_Factory        : access WinRt.Windows.ApplicationModel.IFullTrustProcessLauncherStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_commandLine : constant WinRt.HString := To_HString (commandLine);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_FullTrustProcessLaunchResult.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_FullTrustProcessLaunchResult.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.ApplicationModel.IFullTrustProcessLaunchResult;
+         m_IID            : aliased WinRt.IID := (3816699758, 38494, 24575, (166, 111, 24, 48, 155, 152, 30, 165 )); -- Windows.ApplicationModel.FullTrustProcessLaunchResult;
+         m_HandlerIID     : aliased WinRt.IID := (3375937653, 44166, 22854, (167, 224, 242, 161, 71, 96, 26, 218 ));
+         m_Handler        : AsyncOperationCompletedHandler_FullTrustProcessLaunchResult.Kind := new AsyncOperationCompletedHandler_FullTrustProcessLaunchResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_FullTrustProcessLaunchResult.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_FullTrustProcessLaunchResult.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_FullTrustProcessLaunchResult.Kind_Delegate, AsyncOperationCompletedHandler_FullTrustProcessLaunchResult.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.ApplicationModel.FullTrustProcessLaunchResult do
+            Hr := RoGetActivationFactory (m_hString, IID_IFullTrustProcessLauncherStatics2'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.LaunchFullTrustProcessForCurrentAppWithArgumentsAsync (HStr_commandLine, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IFullTrustProcessLaunchResult := new Windows.ApplicationModel.IFullTrustProcessLaunchResult;
+                        Retval.m_IFullTrustProcessLaunchResult.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_commandLine);
+         end return;
+      end;
+
+      function LaunchFullTrustProcessForAppWithArgumentsAsync
+      (
+         fullTrustPackageRelativeAppId : WinRt.WString;
+         commandLine : WinRt.WString
+      )
+      return WinRt.Windows.ApplicationModel.FullTrustProcessLaunchResult is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.FullTrustProcessLauncher");
+         m_Factory        : access WinRt.Windows.ApplicationModel.IFullTrustProcessLauncherStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_fullTrustPackageRelativeAppId : constant WinRt.HString := To_HString (fullTrustPackageRelativeAppId);
+         HStr_commandLine : constant WinRt.HString := To_HString (commandLine);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_FullTrustProcessLaunchResult.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_FullTrustProcessLaunchResult.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.ApplicationModel.IFullTrustProcessLaunchResult;
+         m_IID            : aliased WinRt.IID := (3816699758, 38494, 24575, (166, 111, 24, 48, 155, 152, 30, 165 )); -- Windows.ApplicationModel.FullTrustProcessLaunchResult;
+         m_HandlerIID     : aliased WinRt.IID := (3375937653, 44166, 22854, (167, 224, 242, 161, 71, 96, 26, 218 ));
+         m_Handler        : AsyncOperationCompletedHandler_FullTrustProcessLaunchResult.Kind := new AsyncOperationCompletedHandler_FullTrustProcessLaunchResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_FullTrustProcessLaunchResult.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_FullTrustProcessLaunchResult.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_FullTrustProcessLaunchResult.Kind_Delegate, AsyncOperationCompletedHandler_FullTrustProcessLaunchResult.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.ApplicationModel.FullTrustProcessLaunchResult do
+            Hr := RoGetActivationFactory (m_hString, IID_IFullTrustProcessLauncherStatics2'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.LaunchFullTrustProcessForAppWithArgumentsAsync (HStr_fullTrustPackageRelativeAppId, HStr_commandLine, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IFullTrustProcessLaunchResult := new Windows.ApplicationModel.IFullTrustProcessLaunchResult;
+                        Retval.m_IFullTrustProcessLaunchResult.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_fullTrustPackageRelativeAppId);
+            tmp := WindowsDeleteString (HStr_commandLine);
+         end return;
       end;
 
    end FullTrustProcessLauncher;
@@ -2427,6 +3209,55 @@ package body WinRt.Windows.ApplicationModel is
       return m_ComRetVal;
    end;
 
+   function FindRelatedPackages
+   (
+      this : in out Package_x;
+      options : Windows.ApplicationModel.FindRelatedPackagesOptions'Class
+   )
+   return IVector_IPackage.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IPackage9 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVector_IPackage.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage9, WinRt.Windows.ApplicationModel.IID_IPackage9'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPackage.all);
+      Hr := m_Interface.FindRelatedPackages (options.m_IFindRelatedPackagesOptions.all, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVector_IPackage (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_SourceUriSchemeName
+   (
+      this : in out Package_x
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.IPackage9 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage9, WinRt.Windows.ApplicationModel.IID_IPackage9'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPackage.all);
+      Hr := m_Interface.get_SourceUriSchemeName (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PackageCatalog
 
@@ -2487,6 +3318,33 @@ package body WinRt.Windows.ApplicationModel is
          Hr := RoGetActivationFactory (m_hString, IID_IPackageCatalogStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.OpenForCurrentUser (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IPackageCatalog := new Windows.ApplicationModel.IPackageCatalog;
+            Retval.m_IPackageCatalog.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function OpenForPackage
+   (
+      package_x_p : Windows.ApplicationModel.Package_x'Class
+   )
+   return WinRt.Windows.ApplicationModel.PackageCatalog is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.PackageCatalog");
+      m_Factory        : access WinRt.Windows.ApplicationModel.IPackageCatalogStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.IPackageCatalog;
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.PackageCatalog do
+         Hr := RoGetActivationFactory (m_hString, IID_IPackageCatalogStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.OpenForPackage (package_x_p.m_IPackage.all, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

@@ -50,9 +50,11 @@ package WinRt.Windows.System.Diagnostics is
 
    type IDiagnosticInvoker2_Interface is interface and WinRt.IInspectable_Interface;
    type IDiagnosticInvoker2 is access all IDiagnosticInvoker2_Interface'Class;
+   type IDiagnosticInvoker2_Ptr is access all IDiagnosticInvoker2;
 
    type IDiagnosticInvokerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDiagnosticInvokerStatics is access all IDiagnosticInvokerStatics_Interface'Class;
+   type IDiagnosticInvokerStatics_Ptr is access all IDiagnosticInvokerStatics;
 
    type IProcessCpuUsage_Interface is interface and WinRt.IInspectable_Interface;
    type IProcessCpuUsage is access all IProcessCpuUsage_Interface'Class;
@@ -68,12 +70,15 @@ package WinRt.Windows.System.Diagnostics is
 
    type IProcessDiagnosticInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type IProcessDiagnosticInfo2 is access all IProcessDiagnosticInfo2_Interface'Class;
+   type IProcessDiagnosticInfo2_Ptr is access all IProcessDiagnosticInfo2;
 
    type IProcessDiagnosticInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IProcessDiagnosticInfoStatics is access all IProcessDiagnosticInfoStatics_Interface'Class;
+   type IProcessDiagnosticInfoStatics_Ptr is access all IProcessDiagnosticInfoStatics;
 
    type IProcessDiagnosticInfoStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IProcessDiagnosticInfoStatics2 is access all IProcessDiagnosticInfoStatics2_Interface'Class;
+   type IProcessDiagnosticInfoStatics2_Ptr is access all IProcessDiagnosticInfoStatics2;
 
    type IProcessDiskUsage_Interface is interface and WinRt.IInspectable_Interface;
    type IProcessDiskUsage is access all IProcessDiskUsage_Interface'Class;
@@ -105,6 +110,11 @@ package WinRt.Windows.System.Diagnostics is
 
    type ISystemDiagnosticInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemDiagnosticInfoStatics is access all ISystemDiagnosticInfoStatics_Interface'Class;
+   type ISystemDiagnosticInfoStatics_Ptr is access all ISystemDiagnosticInfoStatics;
+
+   type ISystemDiagnosticInfoStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type ISystemDiagnosticInfoStatics2 is access all ISystemDiagnosticInfoStatics2_Interface'Class;
+   type ISystemDiagnosticInfoStatics2_Ptr is access all ISystemDiagnosticInfoStatics2;
 
    type ISystemMemoryUsage_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemMemoryUsage is access all ISystemMemoryUsage_Interface'Class;
@@ -212,7 +222,8 @@ package WinRt.Windows.System.Diagnostics is
       VerifyingTrust_e,
       Detecting_e,
       Resolving_e,
-      VerifyingResolution_e
+      VerifyingResolution_e,
+      Executing_e
    );
    for DiagnosticActionState use (
       Initializing_e => 0,
@@ -220,7 +231,8 @@ package WinRt.Windows.System.Diagnostics is
       VerifyingTrust_e => 2,
       Detecting_e => 3,
       Resolving_e => 4,
-      VerifyingResolution_e => 5
+      VerifyingResolution_e => 5,
+      Executing_e => 6
    );
    type DiagnosticActionState_Ptr is access all DiagnosticActionState;
 
@@ -674,6 +686,26 @@ package WinRt.Windows.System.Diagnostics is
       IID_ISystemDiagnosticInfoStatics : aliased WinRt.IID := (3557076001, 64637, 17904, (154, 63, 57, 32, 58, 237, 159, 126 ));
 
    -----------------------------------------------------------------------------
+   -- type ISystemDiagnosticInfoStatics2 is interface and WinRt.IInspectable;
+
+      function IsArchitectureSupported
+      (
+         this : access ISystemDiagnosticInfoStatics2_Interface;
+         type_x : Windows.System.ProcessorArchitecture;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PreferredArchitecture
+      (
+         this : access ISystemDiagnosticInfoStatics2_Interface;
+         RetVal : access Windows.System.ProcessorArchitecture
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ISystemDiagnosticInfoStatics2 : aliased WinRt.IID := (2044645769, 27385, 19881, (164, 34, 21, 247, 50, 85, 179, 235 ));
+
+   -----------------------------------------------------------------------------
    -- type ISystemMemoryUsage is interface and WinRt.IInspectable;
 
       function GetReport
@@ -1094,6 +1126,15 @@ package WinRt.Windows.System.Diagnostics is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for SystemDiagnosticInfo
+
+   function IsArchitectureSupported
+   (
+      type_x : Windows.System.ProcessorArchitecture
+   )
+   return WinRt.Boolean;
+
+   function get_PreferredArchitecture
+   return WinRt.Windows.System.ProcessorArchitecture;
 
    function GetForCurrentSystem
    return WinRt.Windows.System.Diagnostics.SystemDiagnosticInfo;

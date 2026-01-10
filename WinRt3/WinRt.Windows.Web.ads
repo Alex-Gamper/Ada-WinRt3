@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
-limited with WinRt.Windows.Storage.Streams;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Web is
 
@@ -40,9 +39,11 @@ package WinRt.Windows.Web is
 
    type IUriToStreamResolver_Interface is interface and WinRt.IInspectable_Interface;
    type IUriToStreamResolver is access all IUriToStreamResolver_Interface'Class;
+   type IUriToStreamResolver_Ptr is access all IUriToStreamResolver;
 
    type IWebErrorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWebErrorStatics is access all IWebErrorStatics_Interface'Class;
+   type IWebErrorStatics_Ptr is access all IWebErrorStatics;
 
    -----------------------------------------------------------------------------
    -- Enum declarations

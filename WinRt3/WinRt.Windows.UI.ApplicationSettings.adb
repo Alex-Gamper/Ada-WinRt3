@@ -58,48 +58,6 @@ package body WinRt.Windows.UI.ApplicationSettings is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AccountsSettingsPane
 
-   function GetForCurrentView
-   return WinRt.Windows.UI.ApplicationSettings.AccountsSettingsPane is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
-      m_Factory        : access WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ApplicationSettings.IAccountsSettingsPane;
-   begin
-      return RetVal : WinRt.Windows.UI.ApplicationSettings.AccountsSettingsPane do
-         Hr := RoGetActivationFactory (m_hString, IID_IAccountsSettingsPaneStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IAccountsSettingsPane := new Windows.UI.ApplicationSettings.IAccountsSettingsPane;
-            Retval.m_IAccountsSettingsPane.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   procedure Show is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
-      m_Factory        : access WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IAccountsSettingsPaneStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.Show;
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
    procedure ShowManageAccountsForUserAsync
    (
       user : Windows.System.User'Class
@@ -193,6 +151,48 @@ package body WinRt.Windows.UI.ApplicationSettings is
             if temp = 0 then
                Free (m_CompletedHandler);
             end if;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function GetForCurrentView
+   return WinRt.Windows.UI.ApplicationSettings.AccountsSettingsPane is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
+      m_Factory        : access WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.ApplicationSettings.IAccountsSettingsPane;
+   begin
+      return RetVal : WinRt.Windows.UI.ApplicationSettings.AccountsSettingsPane do
+         Hr := RoGetActivationFactory (m_hString, IID_IAccountsSettingsPaneStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IAccountsSettingsPane := new Windows.UI.ApplicationSettings.IAccountsSettingsPane;
+            Retval.m_IAccountsSettingsPane.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   procedure Show is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
+      m_Factory        : access WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IAccountsSettingsPaneStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.Show;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
          end if;
       end if;
       tmp := WindowsDeleteString (m_hString);

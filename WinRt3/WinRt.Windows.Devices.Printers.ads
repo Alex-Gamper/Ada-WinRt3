@@ -29,6 +29,8 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
+limited with WinRt.Windows.Graphics.Printing;
+limited with WinRt.Windows.Graphics.Printing.PrintTicket;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
@@ -50,6 +52,7 @@ package WinRt.Windows.Devices.Printers is
 
    type IIppAttributeValueStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IIppAttributeValueStatics is access all IIppAttributeValueStatics_Interface'Class;
+   type IIppAttributeValueStatics_Ptr is access all IIppAttributeValueStatics;
 
    type IIppIntegerRange_Interface is interface and WinRt.IInspectable_Interface;
    type IIppIntegerRange is access all IIppIntegerRange_Interface'Class;
@@ -57,10 +60,39 @@ package WinRt.Windows.Devices.Printers is
 
    type IIppIntegerRangeFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IIppIntegerRangeFactory is access all IIppIntegerRangeFactory_Interface'Class;
+   type IIppIntegerRangeFactory_Ptr is access all IIppIntegerRangeFactory;
 
    type IIppPrintDevice_Interface is interface and WinRt.IInspectable_Interface;
    type IIppPrintDevice is access all IIppPrintDevice_Interface'Class;
    type IIppPrintDevice_Ptr is access all IIppPrintDevice;
+
+   type IIppPrintDevice2_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppPrintDevice2 is access all IIppPrintDevice2_Interface'Class;
+   type IIppPrintDevice2_Ptr is access all IIppPrintDevice2;
+
+   type IIppPrintDevice3_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppPrintDevice3 is access all IIppPrintDevice3_Interface'Class;
+   type IIppPrintDevice3_Ptr is access all IIppPrintDevice3;
+
+   type IIppPrintDevice4_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppPrintDevice4 is access all IIppPrintDevice4_Interface'Class;
+   type IIppPrintDevice4_Ptr is access all IIppPrintDevice4;
+
+   type IIppPrintDevice5_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppPrintDevice5 is access all IIppPrintDevice5_Interface'Class;
+   type IIppPrintDevice5_Ptr is access all IIppPrintDevice5;
+
+   type IIppPrintDeviceInstallationResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppPrintDeviceInstallationResult is access all IIppPrintDeviceInstallationResult_Interface'Class;
+   type IIppPrintDeviceInstallationResult_Ptr is access all IIppPrintDeviceInstallationResult;
+
+   type IIppPrintDeviceManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppPrintDeviceManagerStatics is access all IIppPrintDeviceManagerStatics_Interface'Class;
+   type IIppPrintDeviceManagerStatics_Ptr is access all IIppPrintDeviceManagerStatics;
+
+   type IIppPrintDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IIppPrintDeviceStatics is access all IIppPrintDeviceStatics_Interface'Class;
+   type IIppPrintDeviceStatics_Ptr is access all IIppPrintDeviceStatics;
 
    type IIppResolution_Interface is interface and WinRt.IInspectable_Interface;
    type IIppResolution is access all IIppResolution_Interface'Class;
@@ -68,6 +100,7 @@ package WinRt.Windows.Devices.Printers is
 
    type IIppResolutionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IIppResolutionFactory is access all IIppResolutionFactory_Interface'Class;
+   type IIppResolutionFactory_Ptr is access all IIppResolutionFactory;
 
    type IIppSetAttributesResult_Interface is interface and WinRt.IInspectable_Interface;
    type IIppSetAttributesResult is access all IIppSetAttributesResult_Interface'Class;
@@ -79,6 +112,19 @@ package WinRt.Windows.Devices.Printers is
 
    type IIppTextWithLanguageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IIppTextWithLanguageFactory is access all IIppTextWithLanguageFactory_Interface'Class;
+   type IIppTextWithLanguageFactory_Ptr is access all IIppTextWithLanguageFactory;
+
+   type IPageConfigurationSettings_Interface is interface and WinRt.IInspectable_Interface;
+   type IPageConfigurationSettings is access all IPageConfigurationSettings_Interface'Class;
+   type IPageConfigurationSettings_Ptr is access all IPageConfigurationSettings;
+
+   type IPdlPassthroughProvider_Interface is interface and WinRt.IInspectable_Interface;
+   type IPdlPassthroughProvider is access all IPdlPassthroughProvider_Interface'Class;
+   type IPdlPassthroughProvider_Ptr is access all IPdlPassthroughProvider;
+
+   type IPdlPassthroughTarget_Interface is interface and WinRt.IInspectable_Interface;
+   type IPdlPassthroughTarget is access all IPdlPassthroughTarget_Interface'Class;
+   type IPdlPassthroughTarget_Ptr is access all IPdlPassthroughTarget;
 
    type IPrint3DDevice_Interface is interface and WinRt.IInspectable_Interface;
    type IPrint3DDevice is access all IPrint3DDevice_Interface'Class;
@@ -86,10 +132,35 @@ package WinRt.Windows.Devices.Printers is
 
    type IPrint3DDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPrint3DDeviceStatics is access all IPrint3DDeviceStatics_Interface'Class;
+   type IPrint3DDeviceStatics_Ptr is access all IPrint3DDeviceStatics;
 
    type IPrintSchema_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintSchema is access all IPrintSchema_Interface'Class;
    type IPrintSchema_Ptr is access all IPrintSchema;
+
+   type IReplaceDevicePropertiesResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IReplaceDevicePropertiesResult is access all IReplaceDevicePropertiesResult_Interface'Class;
+   type IReplaceDevicePropertiesResult_Ptr is access all IReplaceDevicePropertiesResult;
+
+   type IVirtualPrinterInstallationParameters_Interface is interface and WinRt.IInspectable_Interface;
+   type IVirtualPrinterInstallationParameters is access all IVirtualPrinterInstallationParameters_Interface'Class;
+   type IVirtualPrinterInstallationParameters_Ptr is access all IVirtualPrinterInstallationParameters;
+
+   type IVirtualPrinterInstallationResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IVirtualPrinterInstallationResult is access all IVirtualPrinterInstallationResult_Interface'Class;
+   type IVirtualPrinterInstallationResult_Ptr is access all IVirtualPrinterInstallationResult;
+
+   type IVirtualPrinterManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IVirtualPrinterManagerStatics is access all IVirtualPrinterManagerStatics_Interface'Class;
+   type IVirtualPrinterManagerStatics_Ptr is access all IVirtualPrinterManagerStatics;
+
+   type IVirtualPrinterSupportedFormat_Interface is interface and WinRt.IInspectable_Interface;
+   type IVirtualPrinterSupportedFormat is access all IVirtualPrinterSupportedFormat_Interface'Class;
+   type IVirtualPrinterSupportedFormat_Ptr is access all IVirtualPrinterSupportedFormat;
+
+   type IVirtualPrinterSupportedFormatFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IVirtualPrinterSupportedFormatFactory is access all IVirtualPrinterSupportedFormatFactory_Interface'Class;
+   type IVirtualPrinterSupportedFormatFactory_Ptr is access all IVirtualPrinterSupportedFormatFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -119,6 +190,12 @@ package WinRt.Windows.Devices.Printers is
       end record;
    type IppPrintDevice_Ptr is access all IppPrintDevice;
 
+   type IppPrintDeviceInstallationResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IIppPrintDeviceInstallationResult : access Windows.Devices.Printers.IIppPrintDeviceInstallationResult;
+      end record;
+   type IppPrintDeviceInstallationResult_Ptr is access all IppPrintDeviceInstallationResult;
+
    type IppResolution is new Ada.Finalization.Limited_Controlled with
       record
          m_IIppResolution : access Windows.Devices.Printers.IIppResolution;
@@ -137,6 +214,24 @@ package WinRt.Windows.Devices.Printers is
       end record;
    type IppTextWithLanguage_Ptr is access all IppTextWithLanguage;
 
+   type PageConfigurationSettings is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPageConfigurationSettings : access Windows.Devices.Printers.IPageConfigurationSettings;
+      end record;
+   type PageConfigurationSettings_Ptr is access all PageConfigurationSettings;
+
+   type PdlPassthroughProvider is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPdlPassthroughProvider : access Windows.Devices.Printers.IPdlPassthroughProvider;
+      end record;
+   type PdlPassthroughProvider_Ptr is access all PdlPassthroughProvider;
+
+   type PdlPassthroughTarget is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPdlPassthroughTarget : access Windows.Devices.Printers.IPdlPassthroughTarget;
+      end record;
+   type PdlPassthroughTarget_Ptr is access all PdlPassthroughTarget;
+
    type Print3DDevice is new Ada.Finalization.Limited_Controlled with
       record
          m_IPrint3DDevice : access Windows.Devices.Printers.IPrint3DDevice;
@@ -148,6 +243,30 @@ package WinRt.Windows.Devices.Printers is
          m_IPrintSchema : access Windows.Devices.Printers.IPrintSchema;
       end record;
    type PrintSchema_Ptr is access all PrintSchema;
+
+   type ReplaceDevicePropertiesResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IReplaceDevicePropertiesResult : access Windows.Devices.Printers.IReplaceDevicePropertiesResult;
+      end record;
+   type ReplaceDevicePropertiesResult_Ptr is access all ReplaceDevicePropertiesResult;
+
+   type VirtualPrinterInstallationParameters is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IVirtualPrinterInstallationParameters : access Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
+      end record;
+   type VirtualPrinterInstallationParameters_Ptr is access all VirtualPrinterInstallationParameters;
+
+   type VirtualPrinterInstallationResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IVirtualPrinterInstallationResult : access Windows.Devices.Printers.IVirtualPrinterInstallationResult;
+      end record;
+   type VirtualPrinterInstallationResult_Ptr is access all VirtualPrinterInstallationResult;
+
+   type VirtualPrinterSupportedFormat is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IVirtualPrinterSupportedFormat : access Windows.Devices.Printers.IVirtualPrinterSupportedFormat;
+      end record;
+   type VirtualPrinterSupportedFormat_Ptr is access all VirtualPrinterSupportedFormat;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -217,6 +336,32 @@ package WinRt.Windows.Devices.Printers is
    );
    type IppAttributeValueKind_Ptr is access all IppAttributeValueKind;
 
+   type IppPrintDeviceInstallationStatus is (
+      InstallationSucceeded_e,
+      PrinterAlreadyInstalled_e,
+      CommunicationError_e,
+      OtherFailure_e
+   );
+   for IppPrintDeviceInstallationStatus use (
+      InstallationSucceeded_e => 0,
+      PrinterAlreadyInstalled_e => 1,
+      CommunicationError_e => 2,
+      OtherFailure_e => 3
+   );
+   type IppPrintDeviceInstallationStatus_Ptr is access all IppPrintDeviceInstallationStatus;
+
+   type IppPrintDeviceKind is (
+      Printer_e,
+      FaxOut_e,
+      VirtualPrinter_e
+   );
+   for IppPrintDeviceKind use (
+      Printer_e => 0,
+      FaxOut_e => 1,
+      VirtualPrinter_e => 2
+   );
+   type IppPrintDeviceKind_Ptr is access all IppPrintDeviceKind;
+
    type IppResolutionUnit is (
       DotsPerInch_e,
       DotsPerCentimeter_e
@@ -226,6 +371,52 @@ package WinRt.Windows.Devices.Printers is
       DotsPerCentimeter_e => 1
    );
    type IppResolutionUnit_Ptr is access all IppResolutionUnit;
+
+   type PageConfigurationSource is (
+      PrintJobConfiguration_e,
+      PdlContent_e
+   );
+   for PageConfigurationSource use (
+      PrintJobConfiguration_e => 0,
+      PdlContent_e => 1
+   );
+   type PageConfigurationSource_Ptr is access all PageConfigurationSource;
+
+   type ReplaceDevicePropertiesStatus is (
+      Succeeded_e,
+      AccessDenied_e,
+      OtherFailure_e
+   );
+   for ReplaceDevicePropertiesStatus use (
+      Succeeded_e => 0,
+      AccessDenied_e => 1,
+      OtherFailure_e => 2
+   );
+   type ReplaceDevicePropertiesStatus_Ptr is access all ReplaceDevicePropertiesStatus;
+
+   type VirtualPrinterInstallationStatus is (
+      InstallationSucceeded_e,
+      PrinterAlreadyInstalled_e,
+      PrinterInstallationAccessDenied_e,
+      PrinterInstallationFailed_e
+   );
+   for VirtualPrinterInstallationStatus use (
+      InstallationSucceeded_e => 0,
+      PrinterAlreadyInstalled_e => 1,
+      PrinterInstallationAccessDenied_e => 2,
+      PrinterInstallationFailed_e => 3
+   );
+   type VirtualPrinterInstallationStatus_Ptr is access all VirtualPrinterInstallationStatus;
+
+   type VirtualPrinterPreferredInputFormat is (
+      OpenXps_e,
+      PostScript_e
+   );
+   for VirtualPrinterPreferredInputFormat use (
+      OpenXps_e => 0,
+      PostScript_e => 1
+   );
+   type VirtualPrinterPreferredInputFormat_Ptr is access all VirtualPrinterPreferredInputFormat;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -283,6 +474,14 @@ package WinRt.Windows.Devices.Printers is
    package IMapView_HString_IIppAttributeError is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, IIppAttributeError);
    IID_IMapView_HString_IIppAttributeError : aliased WinRt.IID := (4201262953, 49120, 24519, (141, 35, 120, 12, 184, 100, 102, 108 ));
    function QInterface_IMapView_HString_IIppAttributeError is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_IIppAttributeError.Kind, IID_IMapView_HString_IIppAttributeError'Access);
+
+   package IVectorView_HString is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.HString);
+   IID_IVectorView_HString : aliased WinRt.IID := (3227353925, 46131, 21902, (146, 79, 202, 179, 10, 17, 48, 185 ));
+   function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
+
+   package IVector_IVirtualPrinterSupportedFormat is new WinRt.Windows.Foundation.Collections.IVector (IVirtualPrinterSupportedFormat);
+   IID_IVector_IVirtualPrinterSupportedFormat : aliased WinRt.IID := (4070118757, 5927, 23639, (134, 12, 221, 159, 95, 226, 150, 206 ));
+   function QInterface_IVector_IVirtualPrinterSupportedFormat is new Generic_QueryInterface (GenericObject_Interface, IVector_IVirtualPrinterSupportedFormat.Kind, IID_IVector_IVirtualPrinterSupportedFormat'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -851,6 +1050,202 @@ package WinRt.Windows.Devices.Printers is
       IID_IIppPrintDevice : aliased WinRt.IID := (3611864150, 30451, 24006, (175, 212, 194, 168, 104, 107, 147, 89 ));
 
    -----------------------------------------------------------------------------
+   -- type IIppPrintDevice2 is interface and WinRt.IInspectable;
+
+      function GetMaxSupportedPdfSize
+      (
+         this : access IIppPrintDevice2_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetMaxSupportedPdfVersion
+      (
+         this : access IIppPrintDevice2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsPdlPassthroughSupported
+      (
+         this : access IIppPrintDevice2_Interface;
+         pdlContentType : WinRt.HString;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetPdlPassthroughProvider
+      (
+         this : access IIppPrintDevice2_Interface;
+         RetVal : access Windows.Devices.Printers.IPdlPassthroughProvider
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppPrintDevice2 : aliased WinRt.IID := (4157097161, 40225, 23651, (172, 32, 54, 118, 145, 91, 226, 215 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppPrintDevice3 is interface and WinRt.IInspectable;
+
+      function get_IsIppFaxOutPrinter
+      (
+         this : access IIppPrintDevice3_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppPrintDevice3 : aliased WinRt.IID := (3055914861, 42093, 24119, (128, 206, 95, 105, 213, 84, 71, 18 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppPrintDevice4 is interface and WinRt.IInspectable;
+
+      function get_DeviceKind
+      (
+         this : access IIppPrintDevice4_Interface;
+         RetVal : access Windows.Devices.Printers.IppPrintDeviceKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CanModifyUserDefaultPrintTicket
+      (
+         this : access IIppPrintDevice4_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UserDefaultPrintTicket
+      (
+         this : access IIppPrintDevice4_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_UserDefaultPrintTicket
+      (
+         this : access IIppPrintDevice4_Interface;
+         value : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+      )
+      return WinRt.Hresult is abstract;
+
+      function RefreshPrintDeviceCapabilities
+      (
+         this : access IIppPrintDevice4_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetMaxSupportedPdlVersion
+      (
+         this : access IIppPrintDevice4_Interface;
+         pdlContentType : WinRt.HString;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppPrintDevice4 : aliased WinRt.IID := (2353538174, 59497, 23035, (188, 109, 218, 234, 6, 20, 249, 62 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppPrintDevice5 is interface and WinRt.IInspectable;
+
+      function GetDeviceProperties
+      (
+         this : access IIppPrintDevice5_Interface;
+         RetVal : access Windows.Foundation.Collections.IPropertySet
+      )
+      return WinRt.Hresult is abstract;
+
+      function ReplaceDeviceProperties
+      (
+         this : access IIppPrintDevice5_Interface;
+         deviceProperties : GenericObject;
+         RetVal : access Windows.Devices.Printers.IReplaceDevicePropertiesResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppPrintDevice5 : aliased WinRt.IID := (3935469514, 57459, 23988, (154, 238, 19, 223, 113, 78, 133, 58 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppPrintDeviceInstallationResult is interface and WinRt.IInspectable;
+
+      function get_Status
+      (
+         this : access IIppPrintDeviceInstallationResult_Interface;
+         RetVal : access Windows.Devices.Printers.IppPrintDeviceInstallationStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_InstalledPrinterName
+      (
+         this : access IIppPrintDeviceInstallationResult_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IIppPrintDeviceInstallationResult_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppPrintDeviceInstallationResult : aliased WinRt.IID := (4212142028, 34750, 22527, (160, 134, 146, 39, 33, 72, 162, 86 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppPrintDeviceManagerStatics is interface and WinRt.IInspectable;
+
+      function CanInstallIppPrintDevice
+      (
+         this : access IIppPrintDeviceManagerStatics_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function InstallIppPrintDeviceAsync
+      (
+         this : access IIppPrintDeviceManagerStatics_Interface;
+         printerUri : Windows.Foundation.IUriRuntimeClass;
+         printerName : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppPrintDeviceManagerStatics : aliased WinRt.IID := (2406554181, 49593, 20923, (128, 200, 56, 150, 156, 129, 248, 0 ));
+
+   -----------------------------------------------------------------------------
+   -- type IIppPrintDeviceStatics is interface and WinRt.IInspectable;
+
+      function GetDeviceSelector
+      (
+         this : access IIppPrintDeviceStatics_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function FromId
+      (
+         this : access IIppPrintDeviceStatics_Interface;
+         deviceId : WinRt.HString;
+         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+      )
+      return WinRt.Hresult is abstract;
+
+      function FromPrinterName
+      (
+         this : access IIppPrintDeviceStatics_Interface;
+         printerName : WinRt.HString;
+         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsIppPrinter
+      (
+         this : access IIppPrintDeviceStatics_Interface;
+         printerName : WinRt.HString;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IIppPrintDeviceStatics : aliased WinRt.IID := (2109841160, 32544, 21163, (148, 167, 137, 75, 131, 178, 161, 126 ));
+
+   -----------------------------------------------------------------------------
    -- type IIppResolution is interface and WinRt.IInspectable;
 
       function get_Width
@@ -944,6 +1339,98 @@ package WinRt.Windows.Devices.Printers is
       IID_IIppTextWithLanguageFactory : aliased WinRt.IID := (3393855117, 10600, 22389, (153, 124, 138, 70, 241, 165, 116, 237 ));
 
    -----------------------------------------------------------------------------
+   -- type IPageConfigurationSettings is interface and WinRt.IInspectable;
+
+      function get_OrientationSource
+      (
+         this : access IPageConfigurationSettings_Interface;
+         RetVal : access Windows.Devices.Printers.PageConfigurationSource
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_OrientationSource
+      (
+         this : access IPageConfigurationSettings_Interface;
+         value : Windows.Devices.Printers.PageConfigurationSource
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SizeSource
+      (
+         this : access IPageConfigurationSettings_Interface;
+         RetVal : access Windows.Devices.Printers.PageConfigurationSource
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SizeSource
+      (
+         this : access IPageConfigurationSettings_Interface;
+         value : Windows.Devices.Printers.PageConfigurationSource
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPageConfigurationSettings : aliased WinRt.IID := (3069976066, 21297, 21759, (149, 160, 31, 203, 118, 187, 151, 169 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPdlPassthroughProvider is interface and WinRt.IInspectable;
+
+      function get_SupportedPdlContentTypes
+      (
+         this : access IPdlPassthroughProvider_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function StartPrintJobWithTaskOptions
+      (
+         this : access IPdlPassthroughProvider_Interface;
+         jobName : WinRt.HString;
+         pdlContentType : WinRt.HString;
+         taskOptions : Windows.Graphics.Printing.IPrintTaskOptionsCore;
+         pageConfigurationSettings_p : Windows.Devices.Printers.IPageConfigurationSettings;
+         RetVal : access Windows.Devices.Printers.IPdlPassthroughTarget
+      )
+      return WinRt.Hresult is abstract;
+
+      function StartPrintJobWithPrintTicket
+      (
+         this : access IPdlPassthroughProvider_Interface;
+         jobName : WinRt.HString;
+         pdlContentType : WinRt.HString;
+         printTicket : Windows.Storage.Streams.IInputStream;
+         pageConfigurationSettings_p : Windows.Devices.Printers.IPageConfigurationSettings;
+         RetVal : access Windows.Devices.Printers.IPdlPassthroughTarget
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPdlPassthroughProvider : aliased WinRt.IID := (600251858, 24855, 21823, (147, 120, 24, 10, 245, 132, 154, 73 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPdlPassthroughTarget is interface and WinRt.IInspectable;
+
+      function get_PrintJobId
+      (
+         this : access IPdlPassthroughTarget_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetOutputStream
+      (
+         this : access IPdlPassthroughTarget_Interface;
+         RetVal : access Windows.Storage.Streams.IOutputStream
+      )
+      return WinRt.Hresult is abstract;
+
+      function Submit
+      (
+         this : access IPdlPassthroughTarget_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPdlPassthroughTarget : aliased WinRt.IID := (2554379897, 26616, 21381, (165, 185, 232, 201, 110, 15, 202, 118 ));
+
+   -----------------------------------------------------------------------------
    -- type IPrint3DDevice is interface and WinRt.IInspectable;
 
       function get_PrintSchema
@@ -1002,6 +1489,264 @@ package WinRt.Windows.Devices.Printers is
       return WinRt.Hresult is abstract;
 
       IID_IPrintSchema : aliased WinRt.IID := (3266937622, 9912, 19451, (129, 56, 159, 150, 44, 34, 163, 91 ));
+
+   -----------------------------------------------------------------------------
+   -- type IReplaceDevicePropertiesResult is interface and WinRt.IInspectable;
+
+      function get_Status
+      (
+         this : access IReplaceDevicePropertiesResult_Interface;
+         RetVal : access Windows.Devices.Printers.ReplaceDevicePropertiesStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IReplaceDevicePropertiesResult_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IReplaceDevicePropertiesResult : aliased WinRt.IID := (318687819, 55667, 22497, (130, 107, 247, 91, 149, 24, 169, 241 ));
+
+   -----------------------------------------------------------------------------
+   -- type IVirtualPrinterInstallationParameters is interface and WinRt.IInspectable;
+
+      function get_PrinterName
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PrinterName
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OutputFileExtensions
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SupportedInputFormats
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PrintDeviceCapabilitiesPackageRelativeFilePath
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PrintDeviceCapabilitiesPackageRelativeFilePath
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PrintDeviceResourcesPackageRelativeFilePath
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PrintDeviceResourcesPackageRelativeFilePath
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PreferredInputFormat
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         RetVal : access Windows.Devices.Printers.VirtualPrinterPreferredInputFormat
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PreferredInputFormat
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         value : Windows.Devices.Printers.VirtualPrinterPreferredInputFormat
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PrinterUri
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         RetVal : access Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PrinterUri
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         value : Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_EntryPoint
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_EntryPoint
+      (
+         this : access IVirtualPrinterInstallationParameters_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVirtualPrinterInstallationParameters : aliased WinRt.IID := (3150010803, 4851, 22604, (141, 38, 178, 44, 13, 200, 50, 65 ));
+
+   -----------------------------------------------------------------------------
+   -- type IVirtualPrinterInstallationResult is interface and WinRt.IInspectable;
+
+      function get_Status
+      (
+         this : access IVirtualPrinterInstallationResult_Interface;
+         RetVal : access Windows.Devices.Printers.VirtualPrinterInstallationStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IVirtualPrinterInstallationResult_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVirtualPrinterInstallationResult : aliased WinRt.IID := (2195651960, 5633, 22103, (133, 223, 117, 235, 105, 22, 4, 189 ));
+
+   -----------------------------------------------------------------------------
+   -- type IVirtualPrinterManagerStatics is interface and WinRt.IInspectable;
+
+      function InstallVirtualPrinterAsync
+      (
+         this : access IVirtualPrinterManagerStatics_Interface;
+         parameters : Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function InstallVirtualPrinterAsync
+      (
+         this : access IVirtualPrinterManagerStatics_Interface;
+         parameters : Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
+         appPackageFamilyName : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function InstallVirtualPrinterForAllUsersAsync
+      (
+         this : access IVirtualPrinterManagerStatics_Interface;
+         parameters : Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function InstallVirtualPrinterForAllUsersAsync
+      (
+         this : access IVirtualPrinterManagerStatics_Interface;
+         parameters : Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
+         appPackageFamilyName : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function FindAllVirtualPrinters
+      (
+         this : access IVirtualPrinterManagerStatics_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function FindAllVirtualPrinters
+      (
+         this : access IVirtualPrinterManagerStatics_Interface;
+         appPackageFamilyName : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function RemoveVirtualPrinterAsync
+      (
+         this : access IVirtualPrinterManagerStatics_Interface;
+         printerName : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function RemoveVirtualPrinterForAllUsersAsync
+      (
+         this : access IVirtualPrinterManagerStatics_Interface;
+         printerName : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVirtualPrinterManagerStatics : aliased WinRt.IID := (336626870, 26370, 23391, (131, 218, 199, 88, 145, 101, 117, 84 ));
+
+   -----------------------------------------------------------------------------
+   -- type IVirtualPrinterSupportedFormat is interface and WinRt.IInspectable;
+
+      function get_ContentType
+      (
+         this : access IVirtualPrinterSupportedFormat_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ContentType
+      (
+         this : access IVirtualPrinterSupportedFormat_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MaxSupportedVersion
+      (
+         this : access IVirtualPrinterSupportedFormat_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_MaxSupportedVersion
+      (
+         this : access IVirtualPrinterSupportedFormat_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVirtualPrinterSupportedFormat : aliased WinRt.IID := (939653655, 8885, 23979, (173, 56, 57, 228, 125, 96, 113, 175 ));
+
+   -----------------------------------------------------------------------------
+   -- type IVirtualPrinterSupportedFormatFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access IVirtualPrinterSupportedFormatFactory_Interface;
+         contentType : WinRt.HString;
+         maxSupportedVersion : WinRt.HString;
+         RetVal : access Windows.Devices.Printers.IVirtualPrinterSupportedFormat
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVirtualPrinterSupportedFormatFactory : aliased WinRt.IID := (1839918404, 38822, 22516, (190, 139, 157, 186, 188, 88, 127, 45 ));
 
    -----------------------------------------------------------------------------
    -- Class method declarations
@@ -1423,6 +2168,30 @@ package WinRt.Windows.Devices.Printers is
    overriding procedure Finalize (this : in out IppPrintDevice);
 
    -----------------------------------------------------------------------------
+   -- Static Interfaces for IppPrintDevice
+
+   function GetDeviceSelector
+   return WinRt.WString;
+
+   function FromId
+   (
+      deviceId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppPrintDevice;
+
+   function FromPrinterName
+   (
+      printerName : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Printers.IppPrintDevice;
+
+   function IsIppPrinter
+   (
+      printerName : WinRt.WString
+   )
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
    -- Implemented Interfaces for IppPrintDevice
 
    function get_PrinterName
@@ -1464,6 +2233,129 @@ package WinRt.Windows.Devices.Printers is
       printerAttributes : GenericObject
    )
    return WinRt.Windows.Devices.Printers.IppSetAttributesResult'Class;
+
+   function GetMaxSupportedPdfSize
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.UInt64;
+
+   function GetMaxSupportedPdfVersion
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.WString;
+
+   function IsPdlPassthroughSupported
+   (
+      this : in out IppPrintDevice;
+      pdlContentType : WinRt.WString
+   )
+   return WinRt.Boolean;
+
+   function GetPdlPassthroughProvider
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Windows.Devices.Printers.PdlPassthroughProvider'Class;
+
+   function get_IsIppFaxOutPrinter
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Boolean;
+
+   function get_DeviceKind
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Windows.Devices.Printers.IppPrintDeviceKind;
+
+   function get_CanModifyUserDefaultPrintTicket
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Boolean;
+
+   function get_UserDefaultPrintTicket
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+
+   procedure put_UserDefaultPrintTicket
+   (
+      this : in out IppPrintDevice;
+      value : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+   );
+
+   procedure RefreshPrintDeviceCapabilities
+   (
+      this : in out IppPrintDevice
+   );
+
+   function GetMaxSupportedPdlVersion
+   (
+      this : in out IppPrintDevice;
+      pdlContentType : WinRt.WString
+   )
+   return WinRt.WString;
+
+   function GetDeviceProperties
+   (
+      this : in out IppPrintDevice
+   )
+   return WinRt.Windows.Foundation.Collections.ValueSet'Class;
+
+   function ReplaceDeviceProperties
+   (
+      this : in out IppPrintDevice;
+      deviceProperties : GenericObject
+   )
+   return WinRt.Windows.Devices.Printers.ReplaceDevicePropertiesResult'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IppPrintDeviceInstallationResult
+
+   overriding procedure Initialize (this : in out IppPrintDeviceInstallationResult);
+   overriding procedure Finalize (this : in out IppPrintDeviceInstallationResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IppPrintDeviceInstallationResult
+
+   function get_Status
+   (
+      this : in out IppPrintDeviceInstallationResult
+   )
+   return WinRt.Windows.Devices.Printers.IppPrintDeviceInstallationStatus;
+
+   function get_InstalledPrinterName
+   (
+      this : in out IppPrintDeviceInstallationResult
+   )
+   return WinRt.WString;
+
+   function get_ExtendedError
+   (
+      this : in out IppPrintDeviceInstallationResult
+   )
+   return WinRt.Windows.Foundation.HResult;
+
+   -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package IppPrintDeviceManager is
+
+      function CanInstallIppPrintDevice
+      return WinRt.Boolean;
+
+      function InstallIppPrintDeviceAsync
+      (
+         printerUri : Windows.Foundation.Uri'Class;
+         printerName : WinRt.WString
+      )
+      return WinRt.Windows.Devices.Printers.IppPrintDeviceInstallationResult;
+
+   end IppPrintDeviceManager;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for IppResolution
@@ -1556,6 +2448,110 @@ package WinRt.Windows.Devices.Printers is
    return WinRt.WString;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PageConfigurationSettings
+
+   overriding procedure Initialize (this : in out PageConfigurationSettings);
+   overriding procedure Finalize (this : in out PageConfigurationSettings);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for PageConfigurationSettings
+
+   function Constructor return PageConfigurationSettings;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PageConfigurationSettings
+
+   function get_OrientationSource
+   (
+      this : in out PageConfigurationSettings
+   )
+   return WinRt.Windows.Devices.Printers.PageConfigurationSource;
+
+   procedure put_OrientationSource
+   (
+      this : in out PageConfigurationSettings;
+      value : Windows.Devices.Printers.PageConfigurationSource
+   );
+
+   function get_SizeSource
+   (
+      this : in out PageConfigurationSettings
+   )
+   return WinRt.Windows.Devices.Printers.PageConfigurationSource;
+
+   procedure put_SizeSource
+   (
+      this : in out PageConfigurationSettings;
+      value : Windows.Devices.Printers.PageConfigurationSource
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PdlPassthroughProvider
+
+   overriding procedure Initialize (this : in out PdlPassthroughProvider);
+   overriding procedure Finalize (this : in out PdlPassthroughProvider);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PdlPassthroughProvider
+
+   function get_SupportedPdlContentTypes
+   (
+      this : in out PdlPassthroughProvider
+   )
+   return IVectorView_HString.Kind;
+
+   function StartPrintJobWithTaskOptions
+   (
+      this : in out PdlPassthroughProvider;
+      jobName : WinRt.WString;
+      pdlContentType : WinRt.WString;
+      taskOptions : Windows.Graphics.Printing.PrintTaskOptions'Class;
+      pageConfigurationSettings_p : Windows.Devices.Printers.PageConfigurationSettings'Class
+   )
+   return WinRt.Windows.Devices.Printers.PdlPassthroughTarget'Class;
+
+   function StartPrintJobWithPrintTicket
+   (
+      this : in out PdlPassthroughProvider;
+      jobName : WinRt.WString;
+      pdlContentType : WinRt.WString;
+      printTicket : Windows.Storage.Streams.IInputStream;
+      pageConfigurationSettings_p : Windows.Devices.Printers.PageConfigurationSettings'Class
+   )
+   return WinRt.Windows.Devices.Printers.PdlPassthroughTarget'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PdlPassthroughTarget
+
+   overriding procedure Initialize (this : in out PdlPassthroughTarget);
+   overriding procedure Finalize (this : in out PdlPassthroughTarget);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PdlPassthroughTarget
+
+   function get_PrintJobId
+   (
+      this : in out PdlPassthroughTarget
+   )
+   return WinRt.Int32;
+
+   function GetOutputStream
+   (
+      this : in out PdlPassthroughTarget
+   )
+   return WinRt.Windows.Storage.Streams.IOutputStream;
+
+   procedure Submit
+   (
+      this : in out PdlPassthroughTarget
+   );
+
+   procedure Close
+   (
+      this : in out PdlPassthroughTarget
+   );
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Print3DDevice
 
    overriding procedure Initialize (this : in out Print3DDevice);
@@ -1570,7 +2566,7 @@ package WinRt.Windows.Devices.Printers is
    )
    return WinRt.Windows.Devices.Printers.Print3DDevice;
 
-   function GetDeviceSelector
+   function GetDeviceSelector_Print3DDevice
    return WinRt.WString;
 
    -----------------------------------------------------------------------------
@@ -1610,5 +2606,241 @@ package WinRt.Windows.Devices.Printers is
       deltaTicket : Windows.Storage.Streams.IRandomAccessStreamWithContentType
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for ReplaceDevicePropertiesResult
+
+   overriding procedure Initialize (this : in out ReplaceDevicePropertiesResult);
+   overriding procedure Finalize (this : in out ReplaceDevicePropertiesResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for ReplaceDevicePropertiesResult
+
+   function get_Status
+   (
+      this : in out ReplaceDevicePropertiesResult
+   )
+   return WinRt.Windows.Devices.Printers.ReplaceDevicePropertiesStatus;
+
+   function get_ExtendedError
+   (
+      this : in out ReplaceDevicePropertiesResult
+   )
+   return WinRt.Windows.Foundation.HResult;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for VirtualPrinterInstallationParameters
+
+   overriding procedure Initialize (this : in out VirtualPrinterInstallationParameters);
+   overriding procedure Finalize (this : in out VirtualPrinterInstallationParameters);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for VirtualPrinterInstallationParameters
+
+   function Constructor return VirtualPrinterInstallationParameters;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for VirtualPrinterInstallationParameters
+
+   function get_PrinterName
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return WinRt.WString;
+
+   procedure put_PrinterName
+   (
+      this : in out VirtualPrinterInstallationParameters;
+      value : WinRt.WString
+   );
+
+   function get_OutputFileExtensions
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return IVector_HString.Kind;
+
+   function get_SupportedInputFormats
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return IVector_IVirtualPrinterSupportedFormat.Kind;
+
+   function get_PrintDeviceCapabilitiesPackageRelativeFilePath
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return WinRt.WString;
+
+   procedure put_PrintDeviceCapabilitiesPackageRelativeFilePath
+   (
+      this : in out VirtualPrinterInstallationParameters;
+      value : WinRt.WString
+   );
+
+   function get_PrintDeviceResourcesPackageRelativeFilePath
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return WinRt.WString;
+
+   procedure put_PrintDeviceResourcesPackageRelativeFilePath
+   (
+      this : in out VirtualPrinterInstallationParameters;
+      value : WinRt.WString
+   );
+
+   function get_PreferredInputFormat
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return WinRt.Windows.Devices.Printers.VirtualPrinterPreferredInputFormat;
+
+   procedure put_PreferredInputFormat
+   (
+      this : in out VirtualPrinterInstallationParameters;
+      value : Windows.Devices.Printers.VirtualPrinterPreferredInputFormat
+   );
+
+   function get_PrinterUri
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return WinRt.Windows.Foundation.Uri'Class;
+
+   procedure put_PrinterUri
+   (
+      this : in out VirtualPrinterInstallationParameters;
+      value : Windows.Foundation.Uri'Class
+   );
+
+   function get_EntryPoint
+   (
+      this : in out VirtualPrinterInstallationParameters
+   )
+   return WinRt.WString;
+
+   procedure put_EntryPoint
+   (
+      this : in out VirtualPrinterInstallationParameters;
+      value : WinRt.WString
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for VirtualPrinterInstallationResult
+
+   overriding procedure Initialize (this : in out VirtualPrinterInstallationResult);
+   overriding procedure Finalize (this : in out VirtualPrinterInstallationResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for VirtualPrinterInstallationResult
+
+   function get_Status
+   (
+      this : in out VirtualPrinterInstallationResult
+   )
+   return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationStatus;
+
+   function get_ExtendedError
+   (
+      this : in out VirtualPrinterInstallationResult
+   )
+   return WinRt.Windows.Foundation.HResult;
+
+   -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package VirtualPrinterManager is
+
+      function InstallVirtualPrinterAsync
+      (
+         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class
+      )
+      return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult;
+
+      function InstallVirtualPrinterAsync
+      (
+         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class;
+         appPackageFamilyName : WinRt.WString
+      )
+      return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult;
+
+      function InstallVirtualPrinterForAllUsersAsync
+      (
+         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class
+      )
+      return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult;
+
+      function InstallVirtualPrinterForAllUsersAsync
+      (
+         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class;
+         appPackageFamilyName : WinRt.WString
+      )
+      return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult;
+
+      function FindAllVirtualPrinters
+      return IVectorView_HString.Kind;
+
+      function FindAllVirtualPrinters
+      (
+         appPackageFamilyName : WinRt.WString
+      )
+      return IVectorView_HString.Kind;
+
+      function RemoveVirtualPrinterAsync
+      (
+         printerName : WinRt.WString
+      )
+      return WinRt.Boolean;
+
+      function RemoveVirtualPrinterForAllUsersAsync
+      (
+         printerName : WinRt.WString
+      )
+      return WinRt.Boolean;
+
+   end VirtualPrinterManager;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for VirtualPrinterSupportedFormat
+
+   overriding procedure Initialize (this : in out VirtualPrinterSupportedFormat);
+   overriding procedure Finalize (this : in out VirtualPrinterSupportedFormat);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for VirtualPrinterSupportedFormat
+
+   function Constructor
+   (
+      contentType : WinRt.WString;
+      maxSupportedVersion : WinRt.WString
+   )
+   return VirtualPrinterSupportedFormat;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for VirtualPrinterSupportedFormat
+
+   function get_ContentType
+   (
+      this : in out VirtualPrinterSupportedFormat
+   )
+   return WinRt.WString;
+
+   procedure put_ContentType
+   (
+      this : in out VirtualPrinterSupportedFormat;
+      value : WinRt.WString
+   );
+
+   function get_MaxSupportedVersion
+   (
+      this : in out VirtualPrinterSupportedFormat
+   )
+   return WinRt.WString;
+
+   procedure put_MaxSupportedVersion
+   (
+      this : in out VirtualPrinterSupportedFormat;
+      value : WinRt.WString
+   );
 
 end WinRt.Windows.Devices.Printers;

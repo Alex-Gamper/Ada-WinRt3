@@ -34,11 +34,11 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.ApplicationModel.Store is
 
-   package IAsyncOperation_ListingInformation is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Store.IListingInformation);
-   package AsyncOperationCompletedHandler_ListingInformation is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Store.IListingInformation);
-
    package IAsyncOperation_HString is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.HString);
    package AsyncOperationCompletedHandler_HString is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.HString);
+
+   package IAsyncOperation_ListingInformation is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Store.IListingInformation);
+   package AsyncOperationCompletedHandler_ListingInformation is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Store.IListingInformation);
 
    package IAsyncOperation_FulfillmentResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.ApplicationModel.Store.FulfillmentResult);
    package AsyncOperationCompletedHandler_FulfillmentResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.ApplicationModel.Store.FulfillmentResult);
@@ -52,6 +52,439 @@ package body WinRt.Windows.ApplicationModel.Store is
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package body CurrentApp is
+
+      function get_LicenseInformation
+      return WinRt.Windows.ApplicationModel.Store.LicenseInformation is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.ApplicationModel.Store.ILicenseInformation;
+      begin
+         return RetVal : WinRt.Windows.ApplicationModel.Store.LicenseInformation do
+            Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.get_LicenseInformation (m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_ILicenseInformation := new Windows.ApplicationModel.Store.ILicenseInformation;
+               Retval.m_ILicenseInformation.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function get_LinkUri
+      return WinRt.Windows.Foundation.Uri is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      begin
+         return RetVal : WinRt.Windows.Foundation.Uri do
+            Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.get_LinkUri (m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+               Retval.m_IUriRuntimeClass.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function get_AppId
+      return WinRt.Guid is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Guid;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_AppId (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function RequestAppPurchaseAsync
+      (
+         includeReceipt : WinRt.Boolean
+      )
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_HString.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.HString;
+         AdaRetval        : WString;
+         m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
+         m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
+         m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.RequestAppPurchaseAsync (includeReceipt, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
+         return AdaRetVal;
+      end;
+
+      function RequestProductPurchaseAsync
+      (
+         productId : WinRt.WString;
+         includeReceipt : WinRt.Boolean
+      )
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_productId : constant WinRt.HString := To_HString (productId);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_HString.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.HString;
+         AdaRetval        : WString;
+         m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
+         m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
+         m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.RequestProductPurchaseAsync (HStr_productId, includeReceipt, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_productId);
+         AdaRetval := To_Ada (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
+         return AdaRetVal;
+      end;
+
+      function LoadListingInformationAsync
+      return WinRt.Windows.ApplicationModel.Store.ListingInformation is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_ListingInformation.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_ListingInformation.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.Windows.ApplicationModel.Store.IListingInformation;
+         m_IID            : aliased WinRt.IID := (370540791, 27983, 20493, (147, 168, 9, 173, 107, 90, 196, 171 )); -- Windows.ApplicationModel.Store.ListingInformation;
+         m_HandlerIID     : aliased WinRt.IID := (4260903202, 30254, 22492, (183, 33, 199, 46, 229, 104, 253, 150 ));
+         m_Handler        : AsyncOperationCompletedHandler_ListingInformation.Kind := new AsyncOperationCompletedHandler_ListingInformation.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_ListingInformation.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_ListingInformation.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ListingInformation.Kind_Delegate, AsyncOperationCompletedHandler_ListingInformation.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         return RetVal : WinRt.Windows.ApplicationModel.Store.ListingInformation do
+            Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.LoadListingInformationAsync (m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IListingInformation := new Windows.ApplicationModel.Store.IListingInformation;
+                        Retval.m_IListingInformation.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
+                  end if;
+               end if;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function GetAppReceiptAsync
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_HString.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.HString;
+         AdaRetval        : WString;
+         m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
+         m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
+         m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetAppReceiptAsync (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
+         return AdaRetVal;
+      end;
+
+      function GetProductReceiptAsync
+      (
+         productId : WinRt.WString
+      )
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         HStr_productId : constant WinRt.HString := To_HString (productId);
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_HString.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.HString;
+         AdaRetval        : WString;
+         m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
+         m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
+         m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetProductReceiptAsync (HStr_productId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_productId);
+         AdaRetval := To_Ada (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
+         return AdaRetVal;
+      end;
 
       function LoadListingInformationByProductIdsAsync
       (
@@ -220,6 +653,76 @@ package body WinRt.Windows.ApplicationModel.Store is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_productId);
+      end;
+
+      function GetAppPurchaseCampaignIdAsync
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentAppWithCampaignId_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_Temp           : WinRt.Int32 := 0;
+         m_Completed      : WinRt.UInt32 := 0;
+         m_Captured       : WinRt.UInt32 := 0;
+         m_Compare        : constant WinRt.UInt32 := 0;
+
+         use type IAsyncOperation_HString.Kind;
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+         m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
+         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+         m_ComRetVal      : aliased WinRt.GenericObject := null;
+         m_RetVal         : aliased WinRt.HString;
+         AdaRetval        : WString;
+         m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
+         m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
+         m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
+
+         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+            pragma unreferenced (asyncInfo);
+         begin
+            if asyncStatus = Completed_e then
+               m_AsyncStatus := AsyncStatus;
+            end if;
+            m_Completed := 1;
+            WakeByAddressSingle (m_Completed'Address);
+         end;
+
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ICurrentAppWithCampaignId'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetAppPurchaseCampaignIdAsync (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
+         return AdaRetVal;
       end;
 
       function GetCustomerPurchaseIdAsync
@@ -672,12 +1175,18 @@ package body WinRt.Windows.ApplicationModel.Store is
          return m_RetVal;
       end;
 
-      function GetAppPurchaseCampaignIdAsync
+   end CurrentApp;
+
+   -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package body CurrentAppSimulator is
+
+      function GetAppPurchaseCampaignIdAsync_CurrentAppSimulator
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentAppWithCampaignId_Interface'Class := null;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentAppSimulator");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentAppSimulatorWithCampaignId_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
@@ -712,7 +1221,7 @@ package body WinRt.Windows.ApplicationModel.Store is
          end;
 
       begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICurrentAppWithCampaignId'Access , m_Factory'Address);
+         Hr := RoGetActivationFactory (m_hString, IID_ICurrentAppSimulatorWithCampaignId'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetAppPurchaseCampaignIdAsync (m_ComRetVal'Access);
             temp := m_Factory.Release;
@@ -742,230 +1251,15 @@ package body WinRt.Windows.ApplicationModel.Store is
          return AdaRetVal;
       end;
 
-      function get_LicenseInformation
-      return WinRt.Windows.ApplicationModel.Store.LicenseInformation is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.ApplicationModel.Store.ILicenseInformation;
-      begin
-         return RetVal : WinRt.Windows.ApplicationModel.Store.LicenseInformation do
-            Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.get_LicenseInformation (m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_ILicenseInformation := new Windows.ApplicationModel.Store.ILicenseInformation;
-               Retval.m_ILicenseInformation.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function get_LinkUri
-      return WinRt.Windows.Foundation.Uri is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
-      begin
-         return RetVal : WinRt.Windows.Foundation.Uri do
-            Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.get_LinkUri (m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
-               Retval.m_IUriRuntimeClass.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function get_AppId
-      return WinRt.Guid is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.Guid;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_AppId (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      function RequestAppPurchaseAsync
+      function LoadListingInformationByProductIdsAsync_CurrentAppSimulator
       (
-         includeReceipt : WinRt.Boolean
+         productIds : GenericObject
       )
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_HString.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.HString;
-         AdaRetval        : WString;
-         m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
-         m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
-         m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.RequestAppPurchaseAsync (includeReceipt, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_RetVal);
-         tmp := WindowsDeleteString (m_RetVal);
-         return AdaRetVal;
-      end;
-
-      function RequestProductPurchaseAsync
-      (
-         productId : WinRt.WString;
-         includeReceipt : WinRt.Boolean
-      )
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_productId : constant WinRt.HString := To_HString (productId);
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_HString.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.HString;
-         AdaRetval        : WString;
-         m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
-         m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
-         m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.RequestProductPurchaseAsync (HStr_productId, includeReceipt, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_productId);
-         AdaRetval := To_Ada (m_RetVal);
-         tmp := WindowsDeleteString (m_RetVal);
-         return AdaRetVal;
-      end;
-
-      function LoadListingInformationAsync
       return WinRt.Windows.ApplicationModel.Store.ListingInformation is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentAppSimulator");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentAppSimulatorStaticsWithFiltering_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
@@ -1000,9 +1294,9 @@ package body WinRt.Windows.ApplicationModel.Store is
 
       begin
          return RetVal : WinRt.Windows.ApplicationModel.Store.ListingInformation do
-            Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
+            Hr := RoGetActivationFactory (m_hString, IID_ICurrentAppSimulatorStaticsWithFiltering'Access , m_Factory'Address);
             if Hr = S_OK then
-               Hr := m_Factory.LoadListingInformationAsync (m_ComRetVal'Access);
+               Hr := m_Factory.LoadListingInformationByProductIdsAsync (productIds, m_ComRetVal'Access);
                temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
@@ -1030,108 +1324,36 @@ package body WinRt.Windows.ApplicationModel.Store is
          end return;
       end;
 
-      function GetAppReceiptAsync
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_HString.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.HString;
-         AdaRetval        : WString;
-         m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
-         m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
-         m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetAppReceiptAsync (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_RetVal);
-         tmp := WindowsDeleteString (m_RetVal);
-         return AdaRetVal;
-      end;
-
-      function GetProductReceiptAsync
+      function LoadListingInformationByKeywordsAsync_CurrentAppSimulator
       (
-         productId : WinRt.WString
+         keywords : GenericObject
       )
-      return WinRt.WString is
+      return WinRt.Windows.ApplicationModel.Store.ListingInformation is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentAppSimulator");
+         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentAppSimulatorStaticsWithFiltering_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         HStr_productId : constant WinRt.HString := To_HString (productId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type IAsyncOperation_HString.Kind;
+         use type IAsyncOperation_ListingInformation.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
 
-         m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
+         m_AsyncOperation : aliased IAsyncOperation_ListingInformation.Kind;
          m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
          m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.HString;
-         AdaRetval        : WString;
-         m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
-         m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
-         m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+         m_RetVal         : aliased WinRt.Windows.ApplicationModel.Store.IListingInformation;
+         m_IID            : aliased WinRt.IID := (370540791, 27983, 20493, (147, 168, 9, 173, 107, 90, 196, 171 )); -- Windows.ApplicationModel.Store.ListingInformation;
+         m_HandlerIID     : aliased WinRt.IID := (4260903202, 30254, 22492, (183, 33, 199, 46, 229, 104, 253, 150 ));
+         m_Handler        : AsyncOperationCompletedHandler_ListingInformation.Kind := new AsyncOperationCompletedHandler_ListingInformation.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
 
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
+         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_ListingInformation.Kind, m_IID'Unchecked_Access);
+         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_ListingInformation.Kind, GenericObject);
+         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ListingInformation.Kind_Delegate, AsyncOperationCompletedHandler_ListingInformation.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
             pragma unreferenced (asyncInfo);
@@ -1144,42 +1366,36 @@ package body WinRt.Windows.ApplicationModel.Store is
          end;
 
       begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetProductReceiptAsync (HStr_productId, m_ComRetVal'Access);
-            temp := m_Factory.Release;
+         return RetVal : WinRt.Windows.ApplicationModel.Store.ListingInformation do
+            Hr := RoGetActivationFactory (m_hString, IID_ICurrentAppSimulatorStaticsWithFiltering'Access , m_Factory'Address);
             if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
+               Hr := m_Factory.LoadListingInformationByKeywordsAsync (keywords, m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr = S_OK then
+                  m_AsyncOperation := QI (m_ComRetVal);
+                  temp := m_ComRetVal.Release;
+                  if m_AsyncOperation /= null then
+                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                     while m_Captured = m_Compare loop
+                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                        m_Captured := m_Completed;
+                     end loop;
+                     if m_AsyncStatus = Completed_e then
+                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                        Retval.m_IListingInformation := new Windows.ApplicationModel.Store.IListingInformation;
+                        Retval.m_IListingInformation.all := m_RetVal;
+                     end if;
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
+                        Free (m_Handler);
+                     end if;
                   end if;
                end if;
             end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_productId);
-         AdaRetval := To_Ada (m_RetVal);
-         tmp := WindowsDeleteString (m_RetVal);
-         return AdaRetVal;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
       end;
-
-   end CurrentApp;
-
-   -----------------------------------------------------------------------------
-   -- Static RuntimeClass
-   package body CurrentAppSimulator is
 
       function get_LicenseInformation_CurrentAppSimulator
       return WinRt.Windows.ApplicationModel.Store.LicenseInformation is
@@ -1663,76 +1879,6 @@ package body WinRt.Windows.ApplicationModel.Store is
          tmp := WindowsDeleteString (m_hString);
       end;
 
-      function GetAppPurchaseCampaignIdAsync_CurrentAppSimulator
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentAppSimulator");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentAppSimulatorWithCampaignId_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_HString.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_HString.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.HString;
-         AdaRetval        : WString;
-         m_IID            : aliased WinRt.IID := (1042277891, 63639, 21091, (179, 40, 8, 6, 66, 107, 138, 121 )); -- HString;
-         m_HandlerIID     : aliased WinRt.IID := (3080352799, 32693, 20654, (158, 153, 145, 18, 1, 236, 61, 65 ));
-         m_Handler        : AsyncOperationCompletedHandler_HString.Kind := new AsyncOperationCompletedHandler_HString.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_HString.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_HString.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_ICurrentAppSimulatorWithCampaignId'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetAppPurchaseCampaignIdAsync (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_RetVal);
-         tmp := WindowsDeleteString (m_RetVal);
-         return AdaRetVal;
-      end;
-
       function ReportConsumableFulfillmentAsync_CurrentAppSimulator
       (
          productId : WinRt.WString;
@@ -2025,152 +2171,6 @@ package body WinRt.Windows.ApplicationModel.Store is
          end if;
          tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
-      end;
-
-      function LoadListingInformationByProductIdsAsync_CurrentAppSimulator
-      (
-         productIds : GenericObject
-      )
-      return WinRt.Windows.ApplicationModel.Store.ListingInformation is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentAppSimulator");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentAppSimulatorStaticsWithFiltering_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_ListingInformation.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_ListingInformation.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Windows.ApplicationModel.Store.IListingInformation;
-         m_IID            : aliased WinRt.IID := (370540791, 27983, 20493, (147, 168, 9, 173, 107, 90, 196, 171 )); -- Windows.ApplicationModel.Store.ListingInformation;
-         m_HandlerIID     : aliased WinRt.IID := (4260903202, 30254, 22492, (183, 33, 199, 46, 229, 104, 253, 150 ));
-         m_Handler        : AsyncOperationCompletedHandler_ListingInformation.Kind := new AsyncOperationCompletedHandler_ListingInformation.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_ListingInformation.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_ListingInformation.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ListingInformation.Kind_Delegate, AsyncOperationCompletedHandler_ListingInformation.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         return RetVal : WinRt.Windows.ApplicationModel.Store.ListingInformation do
-            Hr := RoGetActivationFactory (m_hString, IID_ICurrentAppSimulatorStaticsWithFiltering'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.LoadListingInformationByProductIdsAsync (productIds, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr = S_OK then
-                  m_AsyncOperation := QI (m_ComRetVal);
-                  temp := m_ComRetVal.Release;
-                  if m_AsyncOperation /= null then
-                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                     while m_Captured = m_Compare loop
-                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                        m_Captured := m_Completed;
-                     end loop;
-                     if m_AsyncStatus = Completed_e then
-                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IListingInformation := new Windows.ApplicationModel.Store.IListingInformation;
-                        Retval.m_IListingInformation.all := m_RetVal;
-                     end if;
-                     temp := m_AsyncOperation.Release;
-                     temp := m_Handler.Release;
-                     if temp = 0 then
-                        Free (m_Handler);
-                     end if;
-                  end if;
-               end if;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function LoadListingInformationByKeywordsAsync_CurrentAppSimulator
-      (
-         keywords : GenericObject
-      )
-      return WinRt.Windows.ApplicationModel.Store.ListingInformation is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentAppSimulator");
-         m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentAppSimulatorStaticsWithFiltering_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_ListingInformation.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_ListingInformation.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Windows.ApplicationModel.Store.IListingInformation;
-         m_IID            : aliased WinRt.IID := (370540791, 27983, 20493, (147, 168, 9, 173, 107, 90, 196, 171 )); -- Windows.ApplicationModel.Store.ListingInformation;
-         m_HandlerIID     : aliased WinRt.IID := (4260903202, 30254, 22492, (183, 33, 199, 46, 229, 104, 253, 150 ));
-         m_Handler        : AsyncOperationCompletedHandler_ListingInformation.Kind := new AsyncOperationCompletedHandler_ListingInformation.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_ListingInformation.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_ListingInformation.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ListingInformation.Kind_Delegate, AsyncOperationCompletedHandler_ListingInformation.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         return RetVal : WinRt.Windows.ApplicationModel.Store.ListingInformation do
-            Hr := RoGetActivationFactory (m_hString, IID_ICurrentAppSimulatorStaticsWithFiltering'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.LoadListingInformationByKeywordsAsync (keywords, m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr = S_OK then
-                  m_AsyncOperation := QI (m_ComRetVal);
-                  temp := m_ComRetVal.Release;
-                  if m_AsyncOperation /= null then
-                     Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                     while m_Captured = m_Compare loop
-                        m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                        m_Captured := m_Completed;
-                     end loop;
-                     if m_AsyncStatus = Completed_e then
-                        Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IListingInformation := new Windows.ApplicationModel.Store.IListingInformation;
-                        Retval.m_IListingInformation.all := m_RetVal;
-                     end if;
-                     temp := m_AsyncOperation.Release;
-                     temp := m_Handler.Release;
-                     if temp = 0 then
-                        Free (m_Handler);
-                     end if;
-                  end if;
-               end if;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
       end;
 
    end CurrentAppSimulator;

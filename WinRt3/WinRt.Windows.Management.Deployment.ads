@@ -46,6 +46,39 @@ package WinRt.Windows.Management.Deployment is
 
    type IAddPackageOptions2_Interface is interface and WinRt.IInspectable_Interface;
    type IAddPackageOptions2 is access all IAddPackageOptions2_Interface'Class;
+   type IAddPackageOptions2_Ptr is access all IAddPackageOptions2;
+
+   type IAppInstallerManager_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppInstallerManager is access all IAppInstallerManager_Interface'Class;
+   type IAppInstallerManager_Ptr is access all IAppInstallerManager;
+
+   type IAppInstallerManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppInstallerManagerStatics is access all IAppInstallerManagerStatics_Interface'Class;
+   type IAppInstallerManagerStatics_Ptr is access all IAppInstallerManagerStatics;
+
+   type IAutoUpdateSettingsOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IAutoUpdateSettingsOptions is access all IAutoUpdateSettingsOptions_Interface'Class;
+   type IAutoUpdateSettingsOptions_Ptr is access all IAutoUpdateSettingsOptions;
+
+   type IAutoUpdateSettingsOptionsStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IAutoUpdateSettingsOptionsStatics is access all IAutoUpdateSettingsOptionsStatics_Interface'Class;
+   type IAutoUpdateSettingsOptionsStatics_Ptr is access all IAutoUpdateSettingsOptionsStatics;
+
+   type ICreateSharedPackageContainerOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type ICreateSharedPackageContainerOptions is access all ICreateSharedPackageContainerOptions_Interface'Class;
+   type ICreateSharedPackageContainerOptions_Ptr is access all ICreateSharedPackageContainerOptions;
+
+   type ICreateSharedPackageContainerResult_Interface is interface and WinRt.IInspectable_Interface;
+   type ICreateSharedPackageContainerResult is access all ICreateSharedPackageContainerResult_Interface'Class;
+   type ICreateSharedPackageContainerResult_Ptr is access all ICreateSharedPackageContainerResult;
+
+   type IDeleteSharedPackageContainerOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IDeleteSharedPackageContainerOptions is access all IDeleteSharedPackageContainerOptions_Interface'Class;
+   type IDeleteSharedPackageContainerOptions_Ptr is access all IDeleteSharedPackageContainerOptions;
+
+   type IDeleteSharedPackageContainerResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IDeleteSharedPackageContainerResult is access all IDeleteSharedPackageContainerResult_Interface'Class;
+   type IDeleteSharedPackageContainerResult_Ptr is access all IDeleteSharedPackageContainerResult;
 
    type IDeploymentResult_Interface is interface and WinRt.IInspectable_Interface;
    type IDeploymentResult is access all IDeploymentResult_Interface'Class;
@@ -53,34 +86,67 @@ package WinRt.Windows.Management.Deployment is
 
    type IDeploymentResult2_Interface is interface and WinRt.IInspectable_Interface;
    type IDeploymentResult2 is access all IDeploymentResult2_Interface'Class;
+   type IDeploymentResult2_Ptr is access all IDeploymentResult2;
+
+   type IFindSharedPackageContainerOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IFindSharedPackageContainerOptions is access all IFindSharedPackageContainerOptions_Interface'Class;
+   type IFindSharedPackageContainerOptions_Ptr is access all IFindSharedPackageContainerOptions;
+
+   type IPackageAllUserProvisioningOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IPackageAllUserProvisioningOptions is access all IPackageAllUserProvisioningOptions_Interface'Class;
+   type IPackageAllUserProvisioningOptions_Ptr is access all IPackageAllUserProvisioningOptions;
+
+   type IPackageAllUserProvisioningOptions2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPackageAllUserProvisioningOptions2 is access all IPackageAllUserProvisioningOptions2_Interface'Class;
+   type IPackageAllUserProvisioningOptions2_Ptr is access all IPackageAllUserProvisioningOptions2;
 
    type IPackageManager_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageManager is access all IPackageManager_Interface'Class;
    type IPackageManager_Ptr is access all IPackageManager;
 
+   type IPackageManager10_Interface is interface and WinRt.IInspectable_Interface;
+   type IPackageManager10 is access all IPackageManager10_Interface'Class;
+   type IPackageManager10_Ptr is access all IPackageManager10;
+
+   type IPackageManager11_Interface is interface and WinRt.IInspectable_Interface;
+   type IPackageManager11 is access all IPackageManager11_Interface'Class;
+   type IPackageManager11_Ptr is access all IPackageManager11;
+
+   type IPackageManager12_Interface is interface and WinRt.IInspectable_Interface;
+   type IPackageManager12 is access all IPackageManager12_Interface'Class;
+   type IPackageManager12_Ptr is access all IPackageManager12;
+
    type IPackageManager2_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageManager2 is access all IPackageManager2_Interface'Class;
+   type IPackageManager2_Ptr is access all IPackageManager2;
 
    type IPackageManager3_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageManager3 is access all IPackageManager3_Interface'Class;
+   type IPackageManager3_Ptr is access all IPackageManager3;
 
    type IPackageManager4_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageManager4 is access all IPackageManager4_Interface'Class;
+   type IPackageManager4_Ptr is access all IPackageManager4;
 
    type IPackageManager5_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageManager5 is access all IPackageManager5_Interface'Class;
+   type IPackageManager5_Ptr is access all IPackageManager5;
 
    type IPackageManager6_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageManager6 is access all IPackageManager6_Interface'Class;
+   type IPackageManager6_Ptr is access all IPackageManager6;
 
    type IPackageManager7_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageManager7 is access all IPackageManager7_Interface'Class;
+   type IPackageManager7_Ptr is access all IPackageManager7;
 
    type IPackageManager8_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageManager8 is access all IPackageManager8_Interface'Class;
+   type IPackageManager8_Ptr is access all IPackageManager8;
 
    type IPackageManager9_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageManager9 is access all IPackageManager9_Interface'Class;
+   type IPackageManager9_Ptr is access all IPackageManager9;
 
    type IPackageManagerDebugSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageManagerDebugSettings is access all IPackageManagerDebugSettings_Interface'Class;
@@ -96,6 +162,7 @@ package WinRt.Windows.Management.Deployment is
 
    type IPackageVolume2_Interface is interface and WinRt.IInspectable_Interface;
    type IPackageVolume2 is access all IPackageVolume2_Interface'Class;
+   type IPackageVolume2_Ptr is access all IPackageVolume2;
 
    type IRegisterPackageOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IRegisterPackageOptions is access all IRegisterPackageOptions_Interface'Class;
@@ -103,6 +170,35 @@ package WinRt.Windows.Management.Deployment is
 
    type IRegisterPackageOptions2_Interface is interface and WinRt.IInspectable_Interface;
    type IRegisterPackageOptions2 is access all IRegisterPackageOptions2_Interface'Class;
+   type IRegisterPackageOptions2_Ptr is access all IRegisterPackageOptions2;
+
+   type IRemovePackageOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IRemovePackageOptions is access all IRemovePackageOptions_Interface'Class;
+   type IRemovePackageOptions_Ptr is access all IRemovePackageOptions;
+
+   type IRemovePackageOptions2_Interface is interface and WinRt.IInspectable_Interface;
+   type IRemovePackageOptions2 is access all IRemovePackageOptions2_Interface'Class;
+   type IRemovePackageOptions2_Ptr is access all IRemovePackageOptions2;
+
+   type ISharedPackageContainer_Interface is interface and WinRt.IInspectable_Interface;
+   type ISharedPackageContainer is access all ISharedPackageContainer_Interface'Class;
+   type ISharedPackageContainer_Ptr is access all ISharedPackageContainer;
+
+   type ISharedPackageContainerManager_Interface is interface and WinRt.IInspectable_Interface;
+   type ISharedPackageContainerManager is access all ISharedPackageContainerManager_Interface'Class;
+   type ISharedPackageContainerManager_Ptr is access all ISharedPackageContainerManager;
+
+   type ISharedPackageContainerManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type ISharedPackageContainerManagerStatics is access all ISharedPackageContainerManagerStatics_Interface'Class;
+   type ISharedPackageContainerManagerStatics_Ptr is access all ISharedPackageContainerManagerStatics;
+
+   type ISharedPackageContainerMember_Interface is interface and WinRt.IInspectable_Interface;
+   type ISharedPackageContainerMember is access all ISharedPackageContainerMember_Interface'Class;
+   type ISharedPackageContainerMember_Ptr is access all ISharedPackageContainerMember;
+
+   type ISharedPackageContainerMemberFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type ISharedPackageContainerMemberFactory is access all ISharedPackageContainerMemberFactory_Interface'Class;
+   type ISharedPackageContainerMemberFactory_Ptr is access all ISharedPackageContainerMemberFactory;
 
    type IStagePackageOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IStagePackageOptions is access all IStagePackageOptions_Interface'Class;
@@ -110,6 +206,15 @@ package WinRt.Windows.Management.Deployment is
 
    type IStagePackageOptions2_Interface is interface and WinRt.IInspectable_Interface;
    type IStagePackageOptions2 is access all IStagePackageOptions2_Interface'Class;
+   type IStagePackageOptions2_Ptr is access all IStagePackageOptions2;
+
+   type IUpdateSharedPackageContainerOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type IUpdateSharedPackageContainerOptions is access all IUpdateSharedPackageContainerOptions_Interface'Class;
+   type IUpdateSharedPackageContainerOptions_Ptr is access all IUpdateSharedPackageContainerOptions;
+
+   type IUpdateSharedPackageContainerResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IUpdateSharedPackageContainerResult is access all IUpdateSharedPackageContainerResult_Interface'Class;
+   type IUpdateSharedPackageContainerResult_Ptr is access all IUpdateSharedPackageContainerResult;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -121,11 +226,59 @@ package WinRt.Windows.Management.Deployment is
       end record;
    type AddPackageOptions_Ptr is access all AddPackageOptions;
 
+   type AppInstallerManager is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IAppInstallerManager : access Windows.Management.Deployment.IAppInstallerManager;
+      end record;
+   type AppInstallerManager_Ptr is access all AppInstallerManager;
+
+   type AutoUpdateSettingsOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IAutoUpdateSettingsOptions : access Windows.Management.Deployment.IAutoUpdateSettingsOptions;
+      end record;
+   type AutoUpdateSettingsOptions_Ptr is access all AutoUpdateSettingsOptions;
+
+   type CreateSharedPackageContainerOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ICreateSharedPackageContainerOptions : access Windows.Management.Deployment.ICreateSharedPackageContainerOptions;
+      end record;
+   type CreateSharedPackageContainerOptions_Ptr is access all CreateSharedPackageContainerOptions;
+
+   type CreateSharedPackageContainerResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ICreateSharedPackageContainerResult : access Windows.Management.Deployment.ICreateSharedPackageContainerResult;
+      end record;
+   type CreateSharedPackageContainerResult_Ptr is access all CreateSharedPackageContainerResult;
+
+   type DeleteSharedPackageContainerOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IDeleteSharedPackageContainerOptions : access Windows.Management.Deployment.IDeleteSharedPackageContainerOptions;
+      end record;
+   type DeleteSharedPackageContainerOptions_Ptr is access all DeleteSharedPackageContainerOptions;
+
+   type DeleteSharedPackageContainerResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IDeleteSharedPackageContainerResult : access Windows.Management.Deployment.IDeleteSharedPackageContainerResult;
+      end record;
+   type DeleteSharedPackageContainerResult_Ptr is access all DeleteSharedPackageContainerResult;
+
    type DeploymentResult is new Ada.Finalization.Limited_Controlled with
       record
          m_IDeploymentResult : access Windows.Management.Deployment.IDeploymentResult;
       end record;
    type DeploymentResult_Ptr is access all DeploymentResult;
+
+   type FindSharedPackageContainerOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IFindSharedPackageContainerOptions : access Windows.Management.Deployment.IFindSharedPackageContainerOptions;
+      end record;
+   type FindSharedPackageContainerOptions_Ptr is access all FindSharedPackageContainerOptions;
+
+   type PackageAllUserProvisioningOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPackageAllUserProvisioningOptions : access Windows.Management.Deployment.IPackageAllUserProvisioningOptions;
+      end record;
+   type PackageAllUserProvisioningOptions_Ptr is access all PackageAllUserProvisioningOptions;
 
    type PackageManager is new Ada.Finalization.Limited_Controlled with
       record
@@ -157,11 +310,47 @@ package WinRt.Windows.Management.Deployment is
       end record;
    type RegisterPackageOptions_Ptr is access all RegisterPackageOptions;
 
+   type RemovePackageOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IRemovePackageOptions : access Windows.Management.Deployment.IRemovePackageOptions;
+      end record;
+   type RemovePackageOptions_Ptr is access all RemovePackageOptions;
+
+   type SharedPackageContainer is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ISharedPackageContainer : access Windows.Management.Deployment.ISharedPackageContainer;
+      end record;
+   type SharedPackageContainer_Ptr is access all SharedPackageContainer;
+
+   type SharedPackageContainerManager is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ISharedPackageContainerManager : access Windows.Management.Deployment.ISharedPackageContainerManager;
+      end record;
+   type SharedPackageContainerManager_Ptr is access all SharedPackageContainerManager;
+
+   type SharedPackageContainerMember is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ISharedPackageContainerMember : access Windows.Management.Deployment.ISharedPackageContainerMember;
+      end record;
+   type SharedPackageContainerMember_Ptr is access all SharedPackageContainerMember;
+
    type StagePackageOptions is new Ada.Finalization.Limited_Controlled with
       record
          m_IStagePackageOptions : access Windows.Management.Deployment.IStagePackageOptions;
       end record;
    type StagePackageOptions_Ptr is access all StagePackageOptions;
+
+   type UpdateSharedPackageContainerOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IUpdateSharedPackageContainerOptions : access Windows.Management.Deployment.IUpdateSharedPackageContainerOptions;
+      end record;
+   type UpdateSharedPackageContainerOptions_Ptr is access all UpdateSharedPackageContainerOptions;
+
+   type UpdateSharedPackageContainerResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IUpdateSharedPackageContainerResult : access Windows.Management.Deployment.IUpdateSharedPackageContainerResult;
+      end record;
+   type UpdateSharedPackageContainerResult_Ptr is access all UpdateSharedPackageContainerResult;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -297,15 +486,47 @@ package WinRt.Windows.Management.Deployment is
       None_e,
       PreserveRoamableApplicationData_e,
       PreserveApplicationData_e,
+      DeferRemovalWhenPackagesAreInUse_e,
       RemoveForAllUsers_e
    );
    for RemovalOptions use (
       None_e => 0,
       PreserveRoamableApplicationData_e => 128,
       PreserveApplicationData_e => 4096,
+      DeferRemovalWhenPackagesAreInUse_e => 8192,
       RemoveForAllUsers_e => 524288
    );
    type RemovalOptions_Ptr is access all RemovalOptions;
+
+   type SharedPackageContainerCreationCollisionOptions is (
+      FailIfExists_e,
+      MergeWithExisting_e,
+      ReplaceExisting_e
+   );
+   for SharedPackageContainerCreationCollisionOptions use (
+      FailIfExists_e => 0,
+      MergeWithExisting_e => 1,
+      ReplaceExisting_e => 2
+   );
+   type SharedPackageContainerCreationCollisionOptions_Ptr is access all SharedPackageContainerCreationCollisionOptions;
+
+   type SharedPackageContainerOperationStatus is (
+      Success_e,
+      BlockedByPolicy_e,
+      AlreadyExists_e,
+      PackageFamilyExistsInAnotherContainer_e,
+      NotFound_e,
+      UnknownFailure_e
+   );
+   for SharedPackageContainerOperationStatus use (
+      Success_e => 0,
+      BlockedByPolicy_e => 1,
+      AlreadyExists_e => 2,
+      PackageFamilyExistsInAnotherContainer_e => 3,
+      NotFound_e => 4,
+      UnknownFailure_e => 5
+   );
+   type SharedPackageContainerOperationStatus_Ptr is access all SharedPackageContainerOperationStatus;
 
    type StubPackageOption is (
       Default_e,
@@ -331,6 +552,11 @@ package WinRt.Windows.Management.Deployment is
    end record with Convention => C_Pass_By_Copy;
    type DeploymentProgress_Ptr is access all DeploymentProgress;
 
+   type SharedPackageContainerContract is record
+      null;
+   end record with Convention => C_Pass_By_Copy;
+   type SharedPackageContainerContract_Ptr is access all SharedPackageContainerContract;
+
    -----------------------------------------------------------------------------
    -- Generic package declarations
    -----------------------------------------------------------------------------
@@ -347,6 +573,10 @@ package WinRt.Windows.Management.Deployment is
    IID_IMap_IUriRuntimeClass_HString : aliased WinRt.IID := (2659774265, 41892, 24450, (152, 44, 10, 95, 80, 71, 199, 68 ));
    function QInterface_IMap_IUriRuntimeClass_HString is new Generic_QueryInterface (GenericObject_Interface, IMap_IUriRuntimeClass_HString.Kind, IID_IMap_IUriRuntimeClass_HString'Access);
 
+   package IVector_ISharedPackageContainerMember is new WinRt.Windows.Foundation.Collections.IVector (ISharedPackageContainerMember);
+   IID_IVector_ISharedPackageContainerMember : aliased WinRt.IID := (3371894463, 42941, 21630, (151, 149, 215, 218, 160, 57, 119, 202 ));
+   function QInterface_IVector_ISharedPackageContainerMember is new Generic_QueryInterface (GenericObject_Interface, IVector_ISharedPackageContainerMember.Kind, IID_IVector_ISharedPackageContainerMember'Access);
+
    package IIterable_IPackageUserInformation is new WinRt.Windows.Foundation.Collections.IIterable (IPackageUserInformation);
    IID_IIterable_IPackageUserInformation : aliased WinRt.IID := (1041388540, 30476, 23957, (175, 5, 88, 173, 164, 47, 24, 43 ));
    function QInterface_IIterable_IPackageUserInformation is new Generic_QueryInterface (GenericObject_Interface, IIterable_IPackageUserInformation.Kind, IID_IIterable_IPackageUserInformation'Access);
@@ -354,6 +584,10 @@ package WinRt.Windows.Management.Deployment is
    package IIterable_IPackageVolume is new WinRt.Windows.Foundation.Collections.IIterable (IPackageVolume);
    IID_IIterable_IPackageVolume : aliased WinRt.IID := (3628842396, 15151, 23081, (191, 34, 41, 66, 173, 204, 102, 197 ));
    function QInterface_IIterable_IPackageVolume is new Generic_QueryInterface (GenericObject_Interface, IIterable_IPackageVolume.Kind, IID_IIterable_IPackageVolume'Access);
+
+   package IVector_ISharedPackageContainer is new WinRt.Windows.Foundation.Collections.IVector (ISharedPackageContainer);
+   IID_IVector_ISharedPackageContainer : aliased WinRt.IID := (1166669944, 53049, 22709, (186, 205, 234, 36, 69, 136, 98, 215 ));
+   function QInterface_IVector_ISharedPackageContainer is new Generic_QueryInterface (GenericObject_Interface, IVector_ISharedPackageContainer.Kind, IID_IVector_ISharedPackageContainer'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -601,6 +835,343 @@ package WinRt.Windows.Management.Deployment is
       IID_IAddPackageOptions2 : aliased WinRt.IID := (3998308392, 48947, 16631, (132, 175, 27, 111, 173, 41, 25, 215 ));
 
    -----------------------------------------------------------------------------
+   -- type IAppInstallerManager is interface and WinRt.IInspectable;
+
+      function SetAutoUpdateSettings
+      (
+         this : access IAppInstallerManager_Interface;
+         packageFamilyName : WinRt.HString;
+         appInstallerInfo : Windows.Management.Deployment.IAutoUpdateSettingsOptions
+      )
+      return WinRt.Hresult is abstract;
+
+      function ClearAutoUpdateSettings
+      (
+         this : access IAppInstallerManager_Interface;
+         packageFamilyName : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function PauseAutoUpdatesUntil
+      (
+         this : access IAppInstallerManager_Interface;
+         packageFamilyName : WinRt.HString;
+         dateTime : Windows.Foundation.DateTime
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppInstallerManager : aliased WinRt.IID := (3891143107, 8451, 21486, (155, 24, 104, 175, 234, 176, 3, 61 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAppInstallerManagerStatics is interface and WinRt.IInspectable;
+
+      function GetDefault
+      (
+         this : access IAppInstallerManagerStatics_Interface;
+         RetVal : access Windows.Management.Deployment.IAppInstallerManager
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetForSystem
+      (
+         this : access IAppInstallerManagerStatics_Interface;
+         RetVal : access Windows.Management.Deployment.IAppInstallerManager
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppInstallerManagerStatics : aliased WinRt.IID := (3378147029, 64601, 21302, (155, 46, 43, 7, 197, 230, 20, 52 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAutoUpdateSettingsOptions is interface and WinRt.IInspectable;
+
+      function get_Version
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         RetVal : access Windows.ApplicationModel.PackageVersion
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Version
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         value : Windows.ApplicationModel.PackageVersion
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AppInstallerUri
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         RetVal : access Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AppInstallerUri
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         value : Windows.Foundation.IUriRuntimeClass
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OnLaunch
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_OnLaunch
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_HoursBetweenUpdateChecks
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_HoursBetweenUpdateChecks
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         value : WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ShowPrompt
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ShowPrompt
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UpdateBlocksActivation
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_UpdateBlocksActivation
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AutomaticBackgroundTask
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AutomaticBackgroundTask
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ForceUpdateFromAnyVersion
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ForceUpdateFromAnyVersion
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsAutoRepairEnabled
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsAutoRepairEnabled
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UpdateUris
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RepairUris
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DependencyPackageUris
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_OptionalPackageUris
+      (
+         this : access IAutoUpdateSettingsOptions_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAutoUpdateSettingsOptions : aliased WinRt.IID := (1732844935, 13793, 20778, (137, 104, 26, 232, 141, 27, 230, 211 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAutoUpdateSettingsOptionsStatics is interface and WinRt.IInspectable;
+
+      function CreateFromAppInstallerInfo
+      (
+         this : access IAutoUpdateSettingsOptionsStatics_Interface;
+         appInstallerInfo : Windows.ApplicationModel.IAppInstallerInfo;
+         RetVal : access Windows.Management.Deployment.IAutoUpdateSettingsOptions
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAutoUpdateSettingsOptionsStatics : aliased WinRt.IID := (2289775485, 3077, 21712, (189, 73, 59, 183, 162, 192, 132, 203 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICreateSharedPackageContainerOptions is interface and WinRt.IInspectable;
+
+      function get_Members
+      (
+         this : access ICreateSharedPackageContainerOptions_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ForceAppShutdown
+      (
+         this : access ICreateSharedPackageContainerOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ForceAppShutdown
+      (
+         this : access ICreateSharedPackageContainerOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CreateCollisionOption
+      (
+         this : access ICreateSharedPackageContainerOptions_Interface;
+         RetVal : access Windows.Management.Deployment.SharedPackageContainerCreationCollisionOptions
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CreateCollisionOption
+      (
+         this : access ICreateSharedPackageContainerOptions_Interface;
+         value : Windows.Management.Deployment.SharedPackageContainerCreationCollisionOptions
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICreateSharedPackageContainerOptions : aliased WinRt.IID := (3266014926, 63076, 23694, (164, 179, 42, 51, 39, 109, 61, 222 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICreateSharedPackageContainerResult is interface and WinRt.IInspectable;
+
+      function get_Container
+      (
+         this : access ICreateSharedPackageContainerResult_Interface;
+         RetVal : access Windows.Management.Deployment.ISharedPackageContainer
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Status
+      (
+         this : access ICreateSharedPackageContainerResult_Interface;
+         RetVal : access Windows.Management.Deployment.SharedPackageContainerOperationStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access ICreateSharedPackageContainerResult_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICreateSharedPackageContainerResult : aliased WinRt.IID := (3465023679, 5404, 22279, (185, 54, 73, 126, 86, 74, 252, 122 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDeleteSharedPackageContainerOptions is interface and WinRt.IInspectable;
+
+      function get_ForceAppShutdown
+      (
+         this : access IDeleteSharedPackageContainerOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ForceAppShutdown
+      (
+         this : access IDeleteSharedPackageContainerOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AllUsers
+      (
+         this : access IDeleteSharedPackageContainerOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AllUsers
+      (
+         this : access IDeleteSharedPackageContainerOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDeleteSharedPackageContainerOptions : aliased WinRt.IID := (2642511455, 39022, 20792, (139, 93, 56, 77, 142, 102, 237, 108 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDeleteSharedPackageContainerResult is interface and WinRt.IInspectable;
+
+      function get_Status
+      (
+         this : access IDeleteSharedPackageContainerResult_Interface;
+         RetVal : access Windows.Management.Deployment.SharedPackageContainerOperationStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IDeleteSharedPackageContainerResult_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDeleteSharedPackageContainerResult : aliased WinRt.IID := (892962948, 22326, 20859, (133, 188, 229, 152, 200, 26, 178, 132 ));
+
+   -----------------------------------------------------------------------------
    -- type IDeploymentResult is interface and WinRt.IInspectable;
 
       function get_ErrorText
@@ -637,6 +1208,77 @@ package WinRt.Windows.Management.Deployment is
       return WinRt.Hresult is abstract;
 
       IID_IDeploymentResult2 : aliased WinRt.IID := (4228804956, 23041, 19415, (188, 241, 56, 28, 140, 130, 224, 74 ));
+
+   -----------------------------------------------------------------------------
+   -- type IFindSharedPackageContainerOptions is interface and WinRt.IInspectable;
+
+      function get_Name
+      (
+         this : access IFindSharedPackageContainerOptions_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Name
+      (
+         this : access IFindSharedPackageContainerOptions_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PackageFamilyName
+      (
+         this : access IFindSharedPackageContainerOptions_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PackageFamilyName
+      (
+         this : access IFindSharedPackageContainerOptions_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IFindSharedPackageContainerOptions : aliased WinRt.IID := (3020933374, 33668, 21708, (129, 125, 174, 9, 211, 182, 166, 6 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPackageAllUserProvisioningOptions is interface and WinRt.IInspectable;
+
+      function get_OptionalPackageFamilyNames
+      (
+         this : access IPackageAllUserProvisioningOptions_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ProjectionOrderPackageFamilyNames
+      (
+         this : access IPackageAllUserProvisioningOptions_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPackageAllUserProvisioningOptions : aliased WinRt.IID := (3660950050, 7648, 23870, (153, 255, 210, 79, 49, 24, 191, 94 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPackageAllUserProvisioningOptions2 is interface and WinRt.IInspectable;
+
+      function get_DeferAutomaticRegistration
+      (
+         this : access IPackageAllUserProvisioningOptions2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_DeferAutomaticRegistration
+      (
+         this : access IPackageAllUserProvisioningOptions2_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPackageAllUserProvisioningOptions2 : aliased WinRt.IID := (3118713525, 11671, 22431, (147, 104, 209, 11, 180, 212, 84, 43 ));
 
    -----------------------------------------------------------------------------
    -- type IPackageManager is interface and WinRt.IInspectable;
@@ -782,6 +1424,73 @@ package WinRt.Windows.Management.Deployment is
       return WinRt.Hresult is abstract;
 
       IID_IPackageManager : aliased WinRt.IID := (2591902565, 24207, 20423, (162, 229, 127, 105, 37, 203, 139, 83 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPackageManager10 is interface and WinRt.IInspectable;
+
+      function ProvisionPackageForAllUsersAsync
+      (
+         this : access IPackageManager10_Interface;
+         mainPackageFamilyName : WinRt.HString;
+         options : Windows.Management.Deployment.IPackageAllUserProvisioningOptions;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPackageManager10 : aliased WinRt.IID := (2815938686, 11878, 16531, (174, 213, 224, 147, 237, 135, 179, 187 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPackageManager11 is interface and WinRt.IInspectable;
+
+      function RemovePackageByUriAsync
+      (
+         this : access IPackageManager11_Interface;
+         packageUri : Windows.Foundation.IUriRuntimeClass;
+         options : Windows.Management.Deployment.IRemovePackageOptions;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPackageManager11 : aliased WinRt.IID := (311757604, 51070, 20135, (136, 89, 50, 83, 24, 7, 78, 21 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPackageManager12 is interface and WinRt.IInspectable;
+
+      function IsPackageRemovalPending
+      (
+         this : access IPackageManager12_Interface;
+         packageFullName : WinRt.HString;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsPackageRemovalPendingForUser
+      (
+         this : access IPackageManager12_Interface;
+         packageFullName : WinRt.HString;
+         userSecurityId : WinRt.HString;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsPackageRemovalPendingByUri
+      (
+         this : access IPackageManager12_Interface;
+         packageUri : Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsPackageRemovalPendingByUriForUser
+      (
+         this : access IPackageManager12_Interface;
+         packageUri : Windows.Foundation.IUriRuntimeClass;
+         userSecurityId : WinRt.HString;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPackageManager12 : aliased WinRt.IID := (1562589919, 63971, 19862, (180, 13, 150, 120, 142, 57, 83, 159 ));
 
    -----------------------------------------------------------------------------
    -- type IPackageManager2 is interface and WinRt.IInspectable;
@@ -1663,6 +2372,212 @@ package WinRt.Windows.Management.Deployment is
       IID_IRegisterPackageOptions2 : aliased WinRt.IID := (1039832899, 34559, 18961, (188, 147, 67, 78, 182, 190, 58, 11 ));
 
    -----------------------------------------------------------------------------
+   -- type IRemovePackageOptions is interface and WinRt.IInspectable;
+
+      function get_PreserveApplicationData
+      (
+         this : access IRemovePackageOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PreserveApplicationData
+      (
+         this : access IRemovePackageOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PreserveRoamableApplicationData
+      (
+         this : access IRemovePackageOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PreserveRoamableApplicationData
+      (
+         this : access IRemovePackageOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RemoveForAllUsers
+      (
+         this : access IRemovePackageOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_RemoveForAllUsers
+      (
+         this : access IRemovePackageOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IRemovePackageOptions : aliased WinRt.IID := (332333555, 50256, 20348, (165, 163, 94, 60, 99, 27, 116, 98 ));
+
+   -----------------------------------------------------------------------------
+   -- type IRemovePackageOptions2 is interface and WinRt.IInspectable;
+
+      function get_DeferRemovalWhenPackagesAreInUse
+      (
+         this : access IRemovePackageOptions2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_DeferRemovalWhenPackagesAreInUse
+      (
+         this : access IRemovePackageOptions2_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IRemovePackageOptions2 : aliased WinRt.IID := (1070359013, 8901, 16955, (180, 180, 207, 16, 187, 80, 131, 12 ));
+
+   -----------------------------------------------------------------------------
+   -- type ISharedPackageContainer is interface and WinRt.IInspectable;
+
+      function get_Name
+      (
+         this : access ISharedPackageContainer_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Id
+      (
+         this : access ISharedPackageContainer_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetMembers
+      (
+         this : access ISharedPackageContainer_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function RemovePackageFamily
+      (
+         this : access ISharedPackageContainer_Interface;
+         packageFamilyName : WinRt.HString;
+         options : Windows.Management.Deployment.IUpdateSharedPackageContainerOptions;
+         RetVal : access Windows.Management.Deployment.IUpdateSharedPackageContainerResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function ResetData
+      (
+         this : access ISharedPackageContainer_Interface;
+         RetVal : access Windows.Management.Deployment.IUpdateSharedPackageContainerResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ISharedPackageContainer : aliased WinRt.IID := (394205865, 5406, 24311, (177, 217, 47, 186, 11, 75, 13, 23 ));
+
+   -----------------------------------------------------------------------------
+   -- type ISharedPackageContainerManager is interface and WinRt.IInspectable;
+
+      function CreateContainer
+      (
+         this : access ISharedPackageContainerManager_Interface;
+         name : WinRt.HString;
+         options : Windows.Management.Deployment.ICreateSharedPackageContainerOptions;
+         RetVal : access Windows.Management.Deployment.ICreateSharedPackageContainerResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function DeleteContainer
+      (
+         this : access ISharedPackageContainerManager_Interface;
+         id : WinRt.HString;
+         options : Windows.Management.Deployment.IDeleteSharedPackageContainerOptions;
+         RetVal : access Windows.Management.Deployment.IDeleteSharedPackageContainerResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetContainer
+      (
+         this : access ISharedPackageContainerManager_Interface;
+         id : WinRt.HString;
+         RetVal : access Windows.Management.Deployment.ISharedPackageContainer
+      )
+      return WinRt.Hresult is abstract;
+
+      function FindContainers
+      (
+         this : access ISharedPackageContainerManager_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function FindContainers
+      (
+         this : access ISharedPackageContainerManager_Interface;
+         options : Windows.Management.Deployment.IFindSharedPackageContainerOptions;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ISharedPackageContainerManager : aliased WinRt.IID := (3191156840, 7927, 23240, (171, 63, 11, 159, 97, 47, 2, 116 ));
+
+   -----------------------------------------------------------------------------
+   -- type ISharedPackageContainerManagerStatics is interface and WinRt.IInspectable;
+
+      function GetDefault
+      (
+         this : access ISharedPackageContainerManagerStatics_Interface;
+         RetVal : access Windows.Management.Deployment.ISharedPackageContainerManager
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetForUser
+      (
+         this : access ISharedPackageContainerManagerStatics_Interface;
+         userSid : WinRt.HString;
+         RetVal : access Windows.Management.Deployment.ISharedPackageContainerManager
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetForProvisioning
+      (
+         this : access ISharedPackageContainerManagerStatics_Interface;
+         RetVal : access Windows.Management.Deployment.ISharedPackageContainerManager
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ISharedPackageContainerManagerStatics : aliased WinRt.IID := (787833672, 33674, 24405, (168, 158, 17, 152, 162, 198, 39, 230 ));
+
+   -----------------------------------------------------------------------------
+   -- type ISharedPackageContainerMember is interface and WinRt.IInspectable;
+
+      function get_PackageFamilyName
+      (
+         this : access ISharedPackageContainerMember_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ISharedPackageContainerMember : aliased WinRt.IID := (4262265912, 17353, 21542, (184, 156, 247, 155, 248, 93, 223, 244 ));
+
+   -----------------------------------------------------------------------------
+   -- type ISharedPackageContainerMemberFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access ISharedPackageContainerMemberFactory_Interface;
+         packageFamilyName : WinRt.HString;
+         RetVal : access Windows.Management.Deployment.ISharedPackageContainerMember
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ISharedPackageContainerMemberFactory : aliased WinRt.IID := (1236324075, 18831, 23138, (183, 56, 179, 202, 13, 67, 103, 4 ));
+
+   -----------------------------------------------------------------------------
    -- type IStagePackageOptions is interface and WinRt.IInspectable;
 
       function get_DependencyPackageUris
@@ -1832,6 +2747,58 @@ package WinRt.Windows.Management.Deployment is
       return WinRt.Hresult is abstract;
 
       IID_IStagePackageOptions2 : aliased WinRt.IID := (2567720140, 25126, 16786, (186, 146, 121, 135, 95, 206, 13, 156 ));
+
+   -----------------------------------------------------------------------------
+   -- type IUpdateSharedPackageContainerOptions is interface and WinRt.IInspectable;
+
+      function get_ForceAppShutdown
+      (
+         this : access IUpdateSharedPackageContainerOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ForceAppShutdown
+      (
+         this : access IUpdateSharedPackageContainerOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_RequirePackagesPresent
+      (
+         this : access IUpdateSharedPackageContainerOptions_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_RequirePackagesPresent
+      (
+         this : access IUpdateSharedPackageContainerOptions_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IUpdateSharedPackageContainerOptions : aliased WinRt.IID := (2154245763, 29076, 23033, (181, 185, 218, 165, 55, 95, 19, 10 ));
+
+   -----------------------------------------------------------------------------
+   -- type IUpdateSharedPackageContainerResult is interface and WinRt.IInspectable;
+
+      function get_Status
+      (
+         this : access IUpdateSharedPackageContainerResult_Interface;
+         RetVal : access Windows.Management.Deployment.SharedPackageContainerOperationStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IUpdateSharedPackageContainerResult_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IUpdateSharedPackageContainerResult : aliased WinRt.IID := (2856353271, 50989, 21592, (174, 163, 70, 69, 182, 168, 238, 153 ));
 
    -----------------------------------------------------------------------------
    -- Class method declarations
@@ -2050,6 +3017,329 @@ package WinRt.Windows.Management.Deployment is
    );
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for AppInstallerManager
+
+   overriding procedure Initialize (this : in out AppInstallerManager);
+   overriding procedure Finalize (this : in out AppInstallerManager);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for AppInstallerManager
+
+   function GetDefault
+   return WinRt.Windows.Management.Deployment.AppInstallerManager;
+
+   function GetForSystem
+   return WinRt.Windows.Management.Deployment.AppInstallerManager;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for AppInstallerManager
+
+   procedure SetAutoUpdateSettings
+   (
+      this : in out AppInstallerManager;
+      packageFamilyName : WinRt.WString;
+      appInstallerInfo : Windows.Management.Deployment.AutoUpdateSettingsOptions'Class
+   );
+
+   procedure ClearAutoUpdateSettings
+   (
+      this : in out AppInstallerManager;
+      packageFamilyName : WinRt.WString
+   );
+
+   procedure PauseAutoUpdatesUntil
+   (
+      this : in out AppInstallerManager;
+      packageFamilyName : WinRt.WString;
+      dateTime : Windows.Foundation.DateTime
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for AutoUpdateSettingsOptions
+
+   overriding procedure Initialize (this : in out AutoUpdateSettingsOptions);
+   overriding procedure Finalize (this : in out AutoUpdateSettingsOptions);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for AutoUpdateSettingsOptions
+
+   function Constructor return AutoUpdateSettingsOptions;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for AutoUpdateSettingsOptions
+
+   function CreateFromAppInstallerInfo
+   (
+      appInstallerInfo : Windows.ApplicationModel.AppInstallerInfo'Class
+   )
+   return WinRt.Windows.Management.Deployment.AutoUpdateSettingsOptions;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for AutoUpdateSettingsOptions
+
+   function get_Version
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Windows.ApplicationModel.PackageVersion;
+
+   procedure put_Version
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : Windows.ApplicationModel.PackageVersion
+   );
+
+   function get_AppInstallerUri
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Windows.Foundation.Uri'Class;
+
+   procedure put_AppInstallerUri
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : Windows.Foundation.Uri'Class
+   );
+
+   function get_OnLaunch
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_OnLaunch
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_HoursBetweenUpdateChecks
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.UInt32;
+
+   procedure put_HoursBetweenUpdateChecks
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.UInt32
+   );
+
+   function get_ShowPrompt
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_ShowPrompt
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_UpdateBlocksActivation
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_UpdateBlocksActivation
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_AutomaticBackgroundTask
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_AutomaticBackgroundTask
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_ForceUpdateFromAnyVersion
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_ForceUpdateFromAnyVersion
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_IsAutoRepairEnabled
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsAutoRepairEnabled
+   (
+      this : in out AutoUpdateSettingsOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_UpdateUris
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return IVector_IUriRuntimeClass.Kind;
+
+   function get_RepairUris
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return IVector_IUriRuntimeClass.Kind;
+
+   function get_DependencyPackageUris
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return IVector_IUriRuntimeClass.Kind;
+
+   function get_OptionalPackageUris
+   (
+      this : in out AutoUpdateSettingsOptions
+   )
+   return IVector_IUriRuntimeClass.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CreateSharedPackageContainerOptions
+
+   overriding procedure Initialize (this : in out CreateSharedPackageContainerOptions);
+   overriding procedure Finalize (this : in out CreateSharedPackageContainerOptions);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for CreateSharedPackageContainerOptions
+
+   function Constructor return CreateSharedPackageContainerOptions;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CreateSharedPackageContainerOptions
+
+   function get_Members
+   (
+      this : in out CreateSharedPackageContainerOptions
+   )
+   return IVector_ISharedPackageContainerMember.Kind;
+
+   function get_ForceAppShutdown
+   (
+      this : in out CreateSharedPackageContainerOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_ForceAppShutdown
+   (
+      this : in out CreateSharedPackageContainerOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_CreateCollisionOption
+   (
+      this : in out CreateSharedPackageContainerOptions
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerCreationCollisionOptions;
+
+   procedure put_CreateCollisionOption
+   (
+      this : in out CreateSharedPackageContainerOptions;
+      value : Windows.Management.Deployment.SharedPackageContainerCreationCollisionOptions
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CreateSharedPackageContainerResult
+
+   overriding procedure Initialize (this : in out CreateSharedPackageContainerResult);
+   overriding procedure Finalize (this : in out CreateSharedPackageContainerResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CreateSharedPackageContainerResult
+
+   function get_Container
+   (
+      this : in out CreateSharedPackageContainerResult
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainer'Class;
+
+   function get_Status
+   (
+      this : in out CreateSharedPackageContainerResult
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerOperationStatus;
+
+   function get_ExtendedError
+   (
+      this : in out CreateSharedPackageContainerResult
+   )
+   return WinRt.Windows.Foundation.HResult;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DeleteSharedPackageContainerOptions
+
+   overriding procedure Initialize (this : in out DeleteSharedPackageContainerOptions);
+   overriding procedure Finalize (this : in out DeleteSharedPackageContainerOptions);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for DeleteSharedPackageContainerOptions
+
+   function Constructor return DeleteSharedPackageContainerOptions;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DeleteSharedPackageContainerOptions
+
+   function get_ForceAppShutdown
+   (
+      this : in out DeleteSharedPackageContainerOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_ForceAppShutdown
+   (
+      this : in out DeleteSharedPackageContainerOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_AllUsers
+   (
+      this : in out DeleteSharedPackageContainerOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_AllUsers
+   (
+      this : in out DeleteSharedPackageContainerOptions;
+      value : WinRt.Boolean
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DeleteSharedPackageContainerResult
+
+   overriding procedure Initialize (this : in out DeleteSharedPackageContainerResult);
+   overriding procedure Finalize (this : in out DeleteSharedPackageContainerResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DeleteSharedPackageContainerResult
+
+   function get_Status
+   (
+      this : in out DeleteSharedPackageContainerResult
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerOperationStatus;
+
+   function get_ExtendedError
+   (
+      this : in out DeleteSharedPackageContainerResult
+   )
+   return WinRt.Windows.Foundation.HResult;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DeploymentResult
 
    overriding procedure Initialize (this : in out DeploymentResult);
@@ -2081,6 +3371,82 @@ package WinRt.Windows.Management.Deployment is
       this : in out DeploymentResult
    )
    return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for FindSharedPackageContainerOptions
+
+   overriding procedure Initialize (this : in out FindSharedPackageContainerOptions);
+   overriding procedure Finalize (this : in out FindSharedPackageContainerOptions);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for FindSharedPackageContainerOptions
+
+   function Constructor return FindSharedPackageContainerOptions;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for FindSharedPackageContainerOptions
+
+   function get_Name
+   (
+      this : in out FindSharedPackageContainerOptions
+   )
+   return WinRt.WString;
+
+   procedure put_Name
+   (
+      this : in out FindSharedPackageContainerOptions;
+      value : WinRt.WString
+   );
+
+   function get_PackageFamilyName
+   (
+      this : in out FindSharedPackageContainerOptions
+   )
+   return WinRt.WString;
+
+   procedure put_PackageFamilyName
+   (
+      this : in out FindSharedPackageContainerOptions;
+      value : WinRt.WString
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PackageAllUserProvisioningOptions
+
+   overriding procedure Initialize (this : in out PackageAllUserProvisioningOptions);
+   overriding procedure Finalize (this : in out PackageAllUserProvisioningOptions);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for PackageAllUserProvisioningOptions
+
+   function Constructor return PackageAllUserProvisioningOptions;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PackageAllUserProvisioningOptions
+
+   function get_OptionalPackageFamilyNames
+   (
+      this : in out PackageAllUserProvisioningOptions
+   )
+   return IVector_HString.Kind;
+
+   function get_ProjectionOrderPackageFamilyNames
+   (
+      this : in out PackageAllUserProvisioningOptions
+   )
+   return IVector_HString.Kind;
+
+   function get_DeferAutomaticRegistration
+   (
+      this : in out PackageAllUserProvisioningOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_DeferAutomaticRegistration
+   (
+      this : in out PackageAllUserProvisioningOptions;
+      value : WinRt.Boolean
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PackageManager
@@ -2600,6 +3966,52 @@ package WinRt.Windows.Management.Deployment is
    )
    return WinRt.Windows.Management.Deployment.PackageStubPreference;
 
+   function ProvisionPackageForAllUsersAsync
+   (
+      this : in out PackageManager;
+      mainPackageFamilyName : WinRt.WString;
+      options : Windows.Management.Deployment.PackageAllUserProvisioningOptions'Class
+   )
+   return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
+
+   function RemovePackageByUriAsync
+   (
+      this : in out PackageManager;
+      packageUri : Windows.Foundation.Uri'Class;
+      options : Windows.Management.Deployment.RemovePackageOptions'Class
+   )
+   return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
+
+   function IsPackageRemovalPending
+   (
+      this : in out PackageManager;
+      packageFullName : WinRt.WString
+   )
+   return WinRt.Boolean;
+
+   function IsPackageRemovalPendingForUser
+   (
+      this : in out PackageManager;
+      packageFullName : WinRt.WString;
+      userSecurityId : WinRt.WString
+   )
+   return WinRt.Boolean;
+
+   function IsPackageRemovalPendingByUri
+   (
+      this : in out PackageManager;
+      packageUri : Windows.Foundation.Uri'Class
+   )
+   return WinRt.Boolean;
+
+   function IsPackageRemovalPendingByUriForUser
+   (
+      this : in out PackageManager;
+      packageUri : Windows.Foundation.Uri'Class;
+      userSecurityId : WinRt.WString
+   )
+   return WinRt.Boolean;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PackageManagerDebugSettings
 
@@ -2974,6 +4386,193 @@ package WinRt.Windows.Management.Deployment is
    return IMap_IUriRuntimeClass_HString.Kind;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for RemovePackageOptions
+
+   overriding procedure Initialize (this : in out RemovePackageOptions);
+   overriding procedure Finalize (this : in out RemovePackageOptions);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for RemovePackageOptions
+
+   function Constructor return RemovePackageOptions;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for RemovePackageOptions
+
+   function get_PreserveApplicationData
+   (
+      this : in out RemovePackageOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_PreserveApplicationData
+   (
+      this : in out RemovePackageOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_PreserveRoamableApplicationData
+   (
+      this : in out RemovePackageOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_PreserveRoamableApplicationData
+   (
+      this : in out RemovePackageOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_RemoveForAllUsers
+   (
+      this : in out RemovePackageOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_RemoveForAllUsers
+   (
+      this : in out RemovePackageOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_DeferRemovalWhenPackagesAreInUse
+   (
+      this : in out RemovePackageOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_DeferRemovalWhenPackagesAreInUse
+   (
+      this : in out RemovePackageOptions;
+      value : WinRt.Boolean
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for SharedPackageContainer
+
+   overriding procedure Initialize (this : in out SharedPackageContainer);
+   overriding procedure Finalize (this : in out SharedPackageContainer);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for SharedPackageContainer
+
+   function get_Name
+   (
+      this : in out SharedPackageContainer
+   )
+   return WinRt.WString;
+
+   function get_Id
+   (
+      this : in out SharedPackageContainer
+   )
+   return WinRt.WString;
+
+   function GetMembers
+   (
+      this : in out SharedPackageContainer
+   )
+   return IVector_ISharedPackageContainerMember.Kind;
+
+   function RemovePackageFamily
+   (
+      this : in out SharedPackageContainer;
+      packageFamilyName : WinRt.WString;
+      options : Windows.Management.Deployment.UpdateSharedPackageContainerOptions'Class
+   )
+   return WinRt.Windows.Management.Deployment.UpdateSharedPackageContainerResult'Class;
+
+   function ResetData
+   (
+      this : in out SharedPackageContainer
+   )
+   return WinRt.Windows.Management.Deployment.UpdateSharedPackageContainerResult'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for SharedPackageContainerManager
+
+   overriding procedure Initialize (this : in out SharedPackageContainerManager);
+   overriding procedure Finalize (this : in out SharedPackageContainerManager);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for SharedPackageContainerManager
+
+   function GetDefault
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerManager;
+
+   function GetForUser
+   (
+      userSid : WinRt.WString
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerManager;
+
+   function GetForProvisioning
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerManager;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for SharedPackageContainerManager
+
+   function CreateContainer
+   (
+      this : in out SharedPackageContainerManager;
+      name : WinRt.WString;
+      options : Windows.Management.Deployment.CreateSharedPackageContainerOptions'Class
+   )
+   return WinRt.Windows.Management.Deployment.CreateSharedPackageContainerResult'Class;
+
+   function DeleteContainer
+   (
+      this : in out SharedPackageContainerManager;
+      id : WinRt.WString;
+      options : Windows.Management.Deployment.DeleteSharedPackageContainerOptions'Class
+   )
+   return WinRt.Windows.Management.Deployment.DeleteSharedPackageContainerResult'Class;
+
+   function GetContainer
+   (
+      this : in out SharedPackageContainerManager;
+      id : WinRt.WString
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainer'Class;
+
+   function FindContainers
+   (
+      this : in out SharedPackageContainerManager
+   )
+   return IVector_ISharedPackageContainer.Kind;
+
+   function FindContainers
+   (
+      this : in out SharedPackageContainerManager;
+      options : Windows.Management.Deployment.FindSharedPackageContainerOptions'Class
+   )
+   return IVector_ISharedPackageContainer.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for SharedPackageContainerMember
+
+   overriding procedure Initialize (this : in out SharedPackageContainerMember);
+   overriding procedure Finalize (this : in out SharedPackageContainerMember);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for SharedPackageContainerMember
+
+   function Constructor
+   (
+      packageFamilyName : WinRt.WString
+   )
+   return SharedPackageContainerMember;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for SharedPackageContainerMember
+
+   function get_PackageFamilyName
+   (
+      this : in out SharedPackageContainerMember
+   )
+   return WinRt.WString;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StagePackageOptions
 
    overriding procedure Initialize (this : in out StagePackageOptions);
@@ -3124,5 +4723,64 @@ package WinRt.Windows.Management.Deployment is
       this : in out StagePackageOptions
    )
    return IMap_IUriRuntimeClass_HString.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for UpdateSharedPackageContainerOptions
+
+   overriding procedure Initialize (this : in out UpdateSharedPackageContainerOptions);
+   overriding procedure Finalize (this : in out UpdateSharedPackageContainerOptions);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for UpdateSharedPackageContainerOptions
+
+   function Constructor return UpdateSharedPackageContainerOptions;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for UpdateSharedPackageContainerOptions
+
+   function get_ForceAppShutdown
+   (
+      this : in out UpdateSharedPackageContainerOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_ForceAppShutdown
+   (
+      this : in out UpdateSharedPackageContainerOptions;
+      value : WinRt.Boolean
+   );
+
+   function get_RequirePackagesPresent
+   (
+      this : in out UpdateSharedPackageContainerOptions
+   )
+   return WinRt.Boolean;
+
+   procedure put_RequirePackagesPresent
+   (
+      this : in out UpdateSharedPackageContainerOptions;
+      value : WinRt.Boolean
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for UpdateSharedPackageContainerResult
+
+   overriding procedure Initialize (this : in out UpdateSharedPackageContainerResult);
+   overriding procedure Finalize (this : in out UpdateSharedPackageContainerResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for UpdateSharedPackageContainerResult
+
+   function get_Status
+   (
+      this : in out UpdateSharedPackageContainerResult
+   )
+   return WinRt.Windows.Management.Deployment.SharedPackageContainerOperationStatus;
+
+   function get_ExtendedError
+   (
+      this : in out UpdateSharedPackageContainerResult
+   )
+   return WinRt.Windows.Foundation.HResult;
 
 end WinRt.Windows.Management.Deployment;

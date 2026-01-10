@@ -526,6 +526,48 @@ package body WinRt.Windows.Devices.Bluetooth is
       return m_ComRetVal;
    end;
 
+   function get_IsLowEnergyUncoded2MPhySupported
+   (
+      this : in out BluetoothAdapter
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.IBluetoothAdapter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothAdapter_Interface, WinRt.Windows.Devices.Bluetooth.IBluetoothAdapter4, WinRt.Windows.Devices.Bluetooth.IID_IBluetoothAdapter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothAdapter.all);
+      Hr := m_Interface.get_IsLowEnergyUncoded2MPhySupported (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsLowEnergyCodedPhySupported
+   (
+      this : in out BluetoothAdapter
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.IBluetoothAdapter4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothAdapter_Interface, WinRt.Windows.Devices.Bluetooth.IBluetoothAdapter4, WinRt.Windows.Devices.Bluetooth.IID_IBluetoothAdapter4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothAdapter.all);
+      Hr := m_Interface.get_IsLowEnergyCodedPhySupported (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BluetoothClassOfDevice
 
@@ -698,143 +740,6 @@ package body WinRt.Windows.Devices.Bluetooth is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for BluetoothDevice
-
-   function GetDeviceSelectorFromPairingState
-   (
-      pairingState : WinRt.Boolean
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelectorFromPairingState (pairingState, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function GetDeviceSelectorFromConnectionStatus
-   (
-      connectionStatus : Windows.Devices.Bluetooth.BluetoothConnectionStatus
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelectorFromConnectionStatus (connectionStatus, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function GetDeviceSelectorFromDeviceName
-   (
-      deviceName : WinRt.WString
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-      HStr_deviceName : constant WinRt.HString := To_HString (deviceName);
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelectorFromDeviceName (HStr_deviceName, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      tmp := WindowsDeleteString (HStr_deviceName);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function GetDeviceSelectorFromBluetoothAddress
-   (
-      bluetoothAddress : WinRt.UInt64
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelectorFromBluetoothAddress (bluetoothAddress, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function GetDeviceSelectorFromClassOfDevice
-   (
-      classOfDevice : Windows.Devices.Bluetooth.BluetoothClassOfDevice'Class
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelectorFromClassOfDevice (classOfDevice.m_IBluetoothClassOfDevice.all, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
 
    function FromIdAsync_BluetoothDevice
    (
@@ -1070,6 +975,143 @@ package body WinRt.Windows.Devices.Bluetooth is
       Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetDeviceSelectorFromPairingState
+   (
+      pairingState : WinRt.Boolean
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelectorFromPairingState (pairingState, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetDeviceSelectorFromConnectionStatus
+   (
+      connectionStatus : Windows.Devices.Bluetooth.BluetoothConnectionStatus
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelectorFromConnectionStatus (connectionStatus, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetDeviceSelectorFromDeviceName
+   (
+      deviceName : WinRt.WString
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      HStr_deviceName : constant WinRt.HString := To_HString (deviceName);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelectorFromDeviceName (HStr_deviceName, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_deviceName);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetDeviceSelectorFromBluetoothAddress
+   (
+      bluetoothAddress : WinRt.UInt64
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelectorFromBluetoothAddress (bluetoothAddress, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function GetDeviceSelectorFromClassOfDevice
+   (
+      classOfDevice : Windows.Devices.Bluetooth.BluetoothClassOfDevice'Class
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothDevice");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothDeviceStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelectorFromClassOfDevice (classOfDevice.m_IBluetoothClassOfDevice.all, m_ComRetVal'Access);
          temp := m_Factory.Release;
          if Hr /= S_OK then
             raise Program_Error;
@@ -1326,24 +1368,6 @@ package body WinRt.Windows.Devices.Bluetooth is
       temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBluetoothDevice.all.remove_ConnectionStatusChanged (token);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-   end;
-
-   procedure Close
-   (
-      this : in out BluetoothDevice
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      temp             : WinRt.UInt32 := 0;
-      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothDevice_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
-   begin
-      m_Interface := QInterface (this.m_IBluetoothDevice.all);
-      Hr := m_Interface.Close;
-      temp := m_Interface.Release;
       if Hr /= S_OK then
          raise Program_Error;
       end if;
@@ -1791,6 +1815,24 @@ package body WinRt.Windows.Devices.Bluetooth is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   procedure Close
+   (
+      this : in out BluetoothDevice
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Foundation.IClosable := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothDevice_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothDevice.all);
+      Hr := m_Interface.Close;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3097,6 +3139,217 @@ package body WinRt.Windows.Devices.Bluetooth is
    end BluetoothLEAppearanceSubcategories;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BluetoothLEConnectionParameters
+
+   procedure Initialize (this : in out BluetoothLEConnectionParameters) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out BluetoothLEConnectionParameters) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IBluetoothLEConnectionParameters, IBluetoothLEConnectionParameters_Ptr);
+   begin
+      if this.m_IBluetoothLEConnectionParameters /= null then
+         if this.m_IBluetoothLEConnectionParameters.all /= null then
+            temp := this.m_IBluetoothLEConnectionParameters.all.Release;
+            Free (this.m_IBluetoothLEConnectionParameters);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BluetoothLEConnectionParameters
+
+   function get_LinkTimeout
+   (
+      this : in out BluetoothLEConnectionParameters
+   )
+   return WinRt.UInt16 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt16;
+   begin
+      Hr := this.m_IBluetoothLEConnectionParameters.all.get_LinkTimeout (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ConnectionLatency
+   (
+      this : in out BluetoothLEConnectionParameters
+   )
+   return WinRt.UInt16 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt16;
+   begin
+      Hr := this.m_IBluetoothLEConnectionParameters.all.get_ConnectionLatency (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ConnectionInterval
+   (
+      this : in out BluetoothLEConnectionParameters
+   )
+   return WinRt.UInt16 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt16;
+   begin
+      Hr := this.m_IBluetoothLEConnectionParameters.all.get_ConnectionInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BluetoothLEConnectionPhy
+
+   procedure Initialize (this : in out BluetoothLEConnectionPhy) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out BluetoothLEConnectionPhy) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IBluetoothLEConnectionPhy, IBluetoothLEConnectionPhy_Ptr);
+   begin
+      if this.m_IBluetoothLEConnectionPhy /= null then
+         if this.m_IBluetoothLEConnectionPhy.all /= null then
+            temp := this.m_IBluetoothLEConnectionPhy.all.Release;
+            Free (this.m_IBluetoothLEConnectionPhy);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BluetoothLEConnectionPhy
+
+   function get_TransmitInfo
+   (
+      this : in out BluetoothLEConnectionPhy
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEConnectionPhyInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothLEConnectionPhyInfo;
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothLEConnectionPhyInfo do
+         Hr := this.m_IBluetoothLEConnectionPhy.all.get_TransmitInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBluetoothLEConnectionPhyInfo := new Windows.Devices.Bluetooth.IBluetoothLEConnectionPhyInfo;
+         Retval.m_IBluetoothLEConnectionPhyInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_ReceiveInfo
+   (
+      this : in out BluetoothLEConnectionPhy
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEConnectionPhyInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothLEConnectionPhyInfo;
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothLEConnectionPhyInfo do
+         Hr := this.m_IBluetoothLEConnectionPhy.all.get_ReceiveInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBluetoothLEConnectionPhyInfo := new Windows.Devices.Bluetooth.IBluetoothLEConnectionPhyInfo;
+         Retval.m_IBluetoothLEConnectionPhyInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BluetoothLEConnectionPhyInfo
+
+   procedure Initialize (this : in out BluetoothLEConnectionPhyInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out BluetoothLEConnectionPhyInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IBluetoothLEConnectionPhyInfo, IBluetoothLEConnectionPhyInfo_Ptr);
+   begin
+      if this.m_IBluetoothLEConnectionPhyInfo /= null then
+         if this.m_IBluetoothLEConnectionPhyInfo.all /= null then
+            temp := this.m_IBluetoothLEConnectionPhyInfo.all.Release;
+            Free (this.m_IBluetoothLEConnectionPhyInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BluetoothLEConnectionPhyInfo
+
+   function get_IsUncoded1MPhy
+   (
+      this : in out BluetoothLEConnectionPhyInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IBluetoothLEConnectionPhyInfo.all.get_IsUncoded1MPhy (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsUncoded2MPhy
+   (
+      this : in out BluetoothLEConnectionPhyInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IBluetoothLEConnectionPhyInfo.all.get_IsUncoded2MPhy (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IsCodedPhy
+   (
+      this : in out BluetoothLEConnectionPhyInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IBluetoothLEConnectionPhyInfo.all.get_IsCodedPhy (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for BluetoothLEDevice
 
    procedure Initialize (this : in out BluetoothLEDevice) is
@@ -3118,6 +3371,178 @@ package body WinRt.Windows.Devices.Bluetooth is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for BluetoothLEDevice
+
+   function FromIdAsync_BluetoothLEDevice
+   (
+      deviceId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothLEDevice");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEDeviceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_BluetoothLEDevice.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_BluetoothLEDevice.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice;
+      m_IID            : aliased WinRt.IID := (929013095, 29858, 24465, (161, 29, 22, 144, 147, 113, 141, 65 )); -- Windows.Devices.Bluetooth.BluetoothLEDevice;
+      m_HandlerIID     : aliased WinRt.IID := (2438379423, 50506, 21111, (143, 139, 210, 204, 67, 199, 224, 4 ));
+      m_Handler        : AsyncOperationCompletedHandler_BluetoothLEDevice.Kind := new AsyncOperationCompletedHandler_BluetoothLEDevice.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_BluetoothLEDevice.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_BluetoothLEDevice.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BluetoothLEDevice.Kind_Delegate, AsyncOperationCompletedHandler_BluetoothLEDevice.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice do
+         Hr := RoGetActivationFactory (m_hString, IID_IBluetoothLEDeviceStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_IBluetoothLEDevice := new Windows.Devices.Bluetooth.IBluetoothLEDevice;
+                     Retval.m_IBluetoothLEDevice.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
+      end return;
+   end;
+
+   function FromBluetoothAddressAsync_BluetoothLEDevice
+   (
+      bluetoothAddress : WinRt.UInt64
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothLEDevice");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEDeviceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_BluetoothLEDevice.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_BluetoothLEDevice.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice;
+      m_IID            : aliased WinRt.IID := (929013095, 29858, 24465, (161, 29, 22, 144, 147, 113, 141, 65 )); -- Windows.Devices.Bluetooth.BluetoothLEDevice;
+      m_HandlerIID     : aliased WinRt.IID := (2438379423, 50506, 21111, (143, 139, 210, 204, 67, 199, 224, 4 ));
+      m_Handler        : AsyncOperationCompletedHandler_BluetoothLEDevice.Kind := new AsyncOperationCompletedHandler_BluetoothLEDevice.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_BluetoothLEDevice.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_BluetoothLEDevice.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BluetoothLEDevice.Kind_Delegate, AsyncOperationCompletedHandler_BluetoothLEDevice.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice do
+         Hr := RoGetActivationFactory (m_hString, IID_IBluetoothLEDeviceStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FromBluetoothAddressAsync (bluetoothAddress, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_IBluetoothLEDevice := new Windows.Devices.Bluetooth.IBluetoothLEDevice;
+                     Retval.m_IBluetoothLEDevice.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetDeviceSelector_BluetoothLEDevice
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothLEDevice");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEDeviceStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothLEDeviceStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
 
    function GetDeviceSelectorFromPairingState_BluetoothLEDevice
    (
@@ -3358,178 +3783,6 @@ package body WinRt.Windows.Devices.Bluetooth is
       end return;
    end;
 
-   function FromIdAsync_BluetoothLEDevice
-   (
-      deviceId : WinRt.WString
-   )
-   return WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothLEDevice");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEDeviceStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_BluetoothLEDevice.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_BluetoothLEDevice.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice;
-      m_IID            : aliased WinRt.IID := (929013095, 29858, 24465, (161, 29, 22, 144, 147, 113, 141, 65 )); -- Windows.Devices.Bluetooth.BluetoothLEDevice;
-      m_HandlerIID     : aliased WinRt.IID := (2438379423, 50506, 21111, (143, 139, 210, 204, 67, 199, 224, 4 ));
-      m_Handler        : AsyncOperationCompletedHandler_BluetoothLEDevice.Kind := new AsyncOperationCompletedHandler_BluetoothLEDevice.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_BluetoothLEDevice.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_BluetoothLEDevice.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BluetoothLEDevice.Kind_Delegate, AsyncOperationCompletedHandler_BluetoothLEDevice.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice do
-         Hr := RoGetActivationFactory (m_hString, IID_IBluetoothLEDeviceStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IBluetoothLEDevice := new Windows.Devices.Bluetooth.IBluetoothLEDevice;
-                     Retval.m_IBluetoothLEDevice.all := m_RetVal;
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_deviceId);
-      end return;
-   end;
-
-   function FromBluetoothAddressAsync_BluetoothLEDevice
-   (
-      bluetoothAddress : WinRt.UInt64
-   )
-   return WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothLEDevice");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEDeviceStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_BluetoothLEDevice.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_BluetoothLEDevice.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice;
-      m_IID            : aliased WinRt.IID := (929013095, 29858, 24465, (161, 29, 22, 144, 147, 113, 141, 65 )); -- Windows.Devices.Bluetooth.BluetoothLEDevice;
-      m_HandlerIID     : aliased WinRt.IID := (2438379423, 50506, 21111, (143, 139, 210, 204, 67, 199, 224, 4 ));
-      m_Handler        : AsyncOperationCompletedHandler_BluetoothLEDevice.Kind := new AsyncOperationCompletedHandler_BluetoothLEDevice.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_BluetoothLEDevice.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_BluetoothLEDevice.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BluetoothLEDevice.Kind_Delegate, AsyncOperationCompletedHandler_BluetoothLEDevice.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice do
-         Hr := RoGetActivationFactory (m_hString, IID_IBluetoothLEDeviceStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FromBluetoothAddressAsync (bluetoothAddress, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IBluetoothLEDevice := new Windows.Devices.Bluetooth.IBluetoothLEDevice;
-                     Retval.m_IBluetoothLEDevice.all := m_RetVal;
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetDeviceSelector_BluetoothLEDevice
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothLEDevice");
-      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEDeviceStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IBluetoothLEDeviceStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for BluetoothLEDevice
 
@@ -3739,24 +3992,6 @@ package body WinRt.Windows.Devices.Bluetooth is
       temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBluetoothLEDevice.all.remove_ConnectionStatusChanged (token);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-   end;
-
-   procedure Close
-   (
-      this : in out BluetoothLEDevice
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      temp             : WinRt.UInt32 := 0;
-      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
-   begin
-      m_Interface := QInterface (this.m_IBluetoothLEDevice.all);
-      Hr := m_Interface.Close;
-      temp := m_Interface.Release;
       if Hr /= S_OK then
          raise Program_Error;
       end if;
@@ -4249,6 +4484,403 @@ package body WinRt.Windows.Devices.Bluetooth is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   function GetConnectionParameters
+   (
+      this : in out BluetoothLEDevice
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEConnectionParameters'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothLEConnectionParameters;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice_Interface, WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6, WinRt.Windows.Devices.Bluetooth.IID_IBluetoothLEDevice6'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothLEConnectionParameters do
+         m_Interface := QInterface (this.m_IBluetoothLEDevice.all);
+         Hr := m_Interface.GetConnectionParameters (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBluetoothLEConnectionParameters := new Windows.Devices.Bluetooth.IBluetoothLEConnectionParameters;
+         Retval.m_IBluetoothLEConnectionParameters.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetConnectionPhy
+   (
+      this : in out BluetoothLEDevice
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEConnectionPhy'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothLEConnectionPhy;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice_Interface, WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6, WinRt.Windows.Devices.Bluetooth.IID_IBluetoothLEDevice6'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothLEConnectionPhy do
+         m_Interface := QInterface (this.m_IBluetoothLEDevice.all);
+         Hr := m_Interface.GetConnectionPhy (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBluetoothLEConnectionPhy := new Windows.Devices.Bluetooth.IBluetoothLEConnectionPhy;
+         Retval.m_IBluetoothLEConnectionPhy.all := m_ComRetVal;
+      end return;
+   end;
+
+   function RequestPreferredConnectionParameters
+   (
+      this : in out BluetoothLEDevice;
+      preferredConnectionParameters : Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters'Class
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParametersRequest'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParametersRequest;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice_Interface, WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6, WinRt.Windows.Devices.Bluetooth.IID_IBluetoothLEDevice6'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParametersRequest do
+         m_Interface := QInterface (this.m_IBluetoothLEDevice.all);
+         Hr := m_Interface.RequestPreferredConnectionParameters (preferredConnectionParameters.m_IBluetoothLEPreferredConnectionParameters.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IBluetoothLEPreferredConnectionParametersRequest := new Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParametersRequest;
+         Retval.m_IBluetoothLEPreferredConnectionParametersRequest.all := m_ComRetVal;
+      end return;
+   end;
+
+   function add_ConnectionParametersChanged
+   (
+      this : in out BluetoothLEDevice;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice_Interface, WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6, WinRt.Windows.Devices.Bluetooth.IID_IBluetoothLEDevice6'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEDevice.all);
+      Hr := m_Interface.add_ConnectionParametersChanged (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ConnectionParametersChanged
+   (
+      this : in out BluetoothLEDevice;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice_Interface, WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6, WinRt.Windows.Devices.Bluetooth.IID_IBluetoothLEDevice6'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEDevice.all);
+      Hr := m_Interface.remove_ConnectionParametersChanged (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_ConnectionPhyChanged
+   (
+      this : in out BluetoothLEDevice;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice_Interface, WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6, WinRt.Windows.Devices.Bluetooth.IID_IBluetoothLEDevice6'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEDevice.all);
+      Hr := m_Interface.add_ConnectionPhyChanged (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ConnectionPhyChanged
+   (
+      this : in out BluetoothLEDevice;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice_Interface, WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice6, WinRt.Windows.Devices.Bluetooth.IID_IBluetoothLEDevice6'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEDevice.all);
+      Hr := m_Interface.remove_ConnectionPhyChanged (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure Close
+   (
+      this : in out BluetoothLEDevice
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Foundation.IClosable := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEDevice.all);
+      Hr := m_Interface.Close;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BluetoothLEPreferredConnectionParameters
+
+   procedure Initialize (this : in out BluetoothLEPreferredConnectionParameters) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out BluetoothLEPreferredConnectionParameters) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IBluetoothLEPreferredConnectionParameters, IBluetoothLEPreferredConnectionParameters_Ptr);
+   begin
+      if this.m_IBluetoothLEPreferredConnectionParameters /= null then
+         if this.m_IBluetoothLEPreferredConnectionParameters.all /= null then
+            temp := this.m_IBluetoothLEPreferredConnectionParameters.all.Release;
+            Free (this.m_IBluetoothLEPreferredConnectionParameters);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for BluetoothLEPreferredConnectionParameters
+
+   function get_Balanced
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParametersStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters;
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters do
+         Hr := RoGetActivationFactory (m_hString, IID_IBluetoothLEPreferredConnectionParametersStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Balanced (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IBluetoothLEPreferredConnectionParameters := new Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters;
+            Retval.m_IBluetoothLEPreferredConnectionParameters.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_ThroughputOptimized
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParametersStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters;
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters do
+         Hr := RoGetActivationFactory (m_hString, IID_IBluetoothLEPreferredConnectionParametersStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_ThroughputOptimized (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IBluetoothLEPreferredConnectionParameters := new Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters;
+            Retval.m_IBluetoothLEPreferredConnectionParameters.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_PowerOptimized
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters");
+      m_Factory        : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParametersStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters;
+   begin
+      return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters do
+         Hr := RoGetActivationFactory (m_hString, IID_IBluetoothLEPreferredConnectionParametersStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_PowerOptimized (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IBluetoothLEPreferredConnectionParameters := new Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters;
+            Retval.m_IBluetoothLEPreferredConnectionParameters.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BluetoothLEPreferredConnectionParameters
+
+   function get_LinkTimeout
+   (
+      this : in out BluetoothLEPreferredConnectionParameters
+   )
+   return WinRt.UInt16 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt16;
+   begin
+      Hr := this.m_IBluetoothLEPreferredConnectionParameters.all.get_LinkTimeout (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ConnectionLatency
+   (
+      this : in out BluetoothLEPreferredConnectionParameters
+   )
+   return WinRt.UInt16 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt16;
+   begin
+      Hr := this.m_IBluetoothLEPreferredConnectionParameters.all.get_ConnectionLatency (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_MinConnectionInterval
+   (
+      this : in out BluetoothLEPreferredConnectionParameters
+   )
+   return WinRt.UInt16 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt16;
+   begin
+      Hr := this.m_IBluetoothLEPreferredConnectionParameters.all.get_MinConnectionInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_MaxConnectionInterval
+   (
+      this : in out BluetoothLEPreferredConnectionParameters
+   )
+   return WinRt.UInt16 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt16;
+   begin
+      Hr := this.m_IBluetoothLEPreferredConnectionParameters.all.get_MaxConnectionInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for BluetoothLEPreferredConnectionParametersRequest
+
+   procedure Initialize (this : in out BluetoothLEPreferredConnectionParametersRequest) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out BluetoothLEPreferredConnectionParametersRequest) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IBluetoothLEPreferredConnectionParametersRequest, IBluetoothLEPreferredConnectionParametersRequest_Ptr);
+   begin
+      if this.m_IBluetoothLEPreferredConnectionParametersRequest /= null then
+         if this.m_IBluetoothLEPreferredConnectionParametersRequest.all /= null then
+            temp := this.m_IBluetoothLEPreferredConnectionParametersRequest.all.Release;
+            Free (this.m_IBluetoothLEPreferredConnectionParametersRequest);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for BluetoothLEPreferredConnectionParametersRequest
+
+   function get_Status
+   (
+      this : in out BluetoothLEPreferredConnectionParametersRequest
+   )
+   return WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParametersRequestStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParametersRequestStatus;
+   begin
+      Hr := this.m_IBluetoothLEPreferredConnectionParametersRequest.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure Close
+   (
+      this : in out BluetoothLEPreferredConnectionParametersRequest
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Foundation.IClosable := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParametersRequest_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IBluetoothLEPreferredConnectionParametersRequest.all);
+      Hr := m_Interface.Close;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------

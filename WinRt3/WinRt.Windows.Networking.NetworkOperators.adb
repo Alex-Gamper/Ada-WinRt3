@@ -46,9 +46,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
    package IAsyncOperation_ESimDiscoverResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Networking.NetworkOperators.IESimDiscoverResult);
    package AsyncOperationCompletedHandler_ESimDiscoverResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Networking.NetworkOperators.IESimDiscoverResult);
 
-   package IAsyncOperation_Boolean is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Boolean);
-   package AsyncOperationCompletedHandler_Boolean is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Boolean);
-
    package IAsyncOperation_HotspotCredentialsAuthenticationResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Networking.NetworkOperators.IHotspotCredentialsAuthenticationResult);
    package AsyncOperationCompletedHandler_HotspotCredentialsAuthenticationResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Networking.NetworkOperators.IHotspotCredentialsAuthenticationResult);
 
@@ -57,6 +54,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
 
    package IAsyncOperation_MobileBroadbandModemConfiguration is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemConfiguration);
    package AsyncOperationCompletedHandler_MobileBroadbandModemConfiguration is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemConfiguration);
+
+   package IAsyncOperation_Boolean is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Boolean);
+   package AsyncOperationCompletedHandler_Boolean is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Boolean);
 
    package IAsyncOperation_MobileBroadbandModemStatus is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus);
    package AsyncOperationCompletedHandler_MobileBroadbandModemStatus is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus);
@@ -683,6 +683,30 @@ package body WinRt.Windows.Networking.NetworkOperators is
          tmp := WindowsDeleteString (HStr_serverAddress);
          tmp := WindowsDeleteString (HStr_matchingId);
       end return;
+   end;
+
+   function get_SlotIndex
+   (
+      this : in out ESim
+   )
+   return IReference_Int32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.IESim3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Int32.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IESim_Interface, WinRt.Windows.Networking.NetworkOperators.IESim3, WinRt.Windows.Networking.NetworkOperators.IID_IESim3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IESim.all);
+      Hr := m_Interface.get_SlotIndex (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -2411,84 +2435,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
          raise Program_Error;
       end if;
    end;
-
-   -----------------------------------------------------------------------------
-   -- Static RuntimeClass
-   package body FdnAccessManager is
-
-      function RequestUnlockAsync
-      (
-         contactListId : WinRt.WString
-      )
-      return WinRt.Boolean is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.FdnAccessManager");
-         m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IFdnAccessManagerStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         HStr_contactListId : constant WinRt.HString := To_HString (contactListId);
-         m_Temp           : WinRt.Int32 := 0;
-         m_Completed      : WinRt.UInt32 := 0;
-         m_Captured       : WinRt.UInt32 := 0;
-         m_Compare        : constant WinRt.UInt32 := 0;
-
-         use type IAsyncOperation_Boolean.Kind;
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-         m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
-         m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-         m_ComRetVal      : aliased WinRt.GenericObject := null;
-         m_RetVal         : aliased WinRt.Boolean;
-         m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
-         m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
-         m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-         function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
-         function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
-         procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
-
-         procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            pragma unreferenced (asyncInfo);
-         begin
-            if asyncStatus = Completed_e then
-               m_AsyncStatus := AsyncStatus;
-            end if;
-            m_Completed := 1;
-            WakeByAddressSingle (m_Completed'Address);
-         end;
-
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IFdnAccessManagerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.RequestUnlockAsync (HStr_contactListId, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_contactListId);
-         return m_RetVal;
-      end;
-
-   end FdnAccessManager;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for HotspotAuthenticationContext
@@ -4534,6 +4480,209 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for MobileBroadbandCellNR
+
+   procedure Initialize (this : in out MobileBroadbandCellNR) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out MobileBroadbandCellNR) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandCellNR, IMobileBroadbandCellNR_Ptr);
+   begin
+      if this.m_IMobileBroadbandCellNR /= null then
+         if this.m_IMobileBroadbandCellNR.all /= null then
+            temp := this.m_IMobileBroadbandCellNR.all.Release;
+            Free (this.m_IMobileBroadbandCellNR);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for MobileBroadbandCellNR
+
+   function get_CellId
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Int64.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Int64.Kind;
+   begin
+      Hr := this.m_IMobileBroadbandCellNR.all.get_CellId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Int64 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_ChannelNumber
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Int32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Int32.Kind;
+   begin
+      Hr := this.m_IMobileBroadbandCellNR.all.get_ChannelNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_PhysicalCellId
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Int32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Int32.Kind;
+   begin
+      Hr := this.m_IMobileBroadbandCellNR.all.get_PhysicalCellId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_ProviderId
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IMobileBroadbandCellNR.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_ReferenceSignalReceivedPowerInDBm
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Double.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Double.Kind;
+   begin
+      Hr := this.m_IMobileBroadbandCellNR.all.get_ReferenceSignalReceivedPowerInDBm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_ReferenceSignalReceivedQualityInDBm
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Double.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Double.Kind;
+   begin
+      Hr := this.m_IMobileBroadbandCellNR.all.get_ReferenceSignalReceivedQualityInDBm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_TimingAdvanceInNanoseconds
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Int32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Int32.Kind;
+   begin
+      Hr := this.m_IMobileBroadbandCellNR.all.get_TimingAdvanceInNanoseconds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_TrackingAreaCode
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Int32.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Int32.Kind;
+   begin
+      Hr := this.m_IMobileBroadbandCellNR.all.get_TrackingAreaCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_SignalToNoiseRatioInDB
+   (
+      this : in out MobileBroadbandCellNR
+   )
+   return IReference_Double.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IReference_Double.Kind;
+   begin
+      Hr := this.m_IMobileBroadbandCellNR.all.get_SignalToNoiseRatioInDB (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MobileBroadbandCellTdscdma
 
    procedure Initialize (this : in out MobileBroadbandCellTdscdma) is
@@ -5122,6 +5271,94 @@ package body WinRt.Windows.Networking.NetworkOperators is
       return m_GenericRetVal;
    end;
 
+   function get_NeighboringCellsNR
+   (
+      this : in out MobileBroadbandCellsInfo
+   )
+   return IVectorView_IMobileBroadbandCellNR.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellNR.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandCellsInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IMobileBroadbandCellsInfo.all);
+      Hr := m_Interface.get_NeighboringCellsNR (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandCellNR (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_ServingCellsNR
+   (
+      this : in out MobileBroadbandCellsInfo
+   )
+   return IVectorView_IMobileBroadbandCellNR.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellNR.Kind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandCellsInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IMobileBroadbandCellsInfo.all);
+      Hr := m_Interface.get_ServingCellsNR (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandCellNR (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for MobileBroadbandCurrentSlotIndexChangedEventArgs
+
+   procedure Initialize (this : in out MobileBroadbandCurrentSlotIndexChangedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out MobileBroadbandCurrentSlotIndexChangedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandCurrentSlotIndexChangedEventArgs, IMobileBroadbandCurrentSlotIndexChangedEventArgs_Ptr);
+   begin
+      if this.m_IMobileBroadbandCurrentSlotIndexChangedEventArgs /= null then
+         if this.m_IMobileBroadbandCurrentSlotIndexChangedEventArgs.all /= null then
+            temp := this.m_IMobileBroadbandCurrentSlotIndexChangedEventArgs.all.Release;
+            Free (this.m_IMobileBroadbandCurrentSlotIndexChangedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for MobileBroadbandCurrentSlotIndexChangedEventArgs
+
+   function get_CurrentSlotIndex
+   (
+      this : in out MobileBroadbandCurrentSlotIndexChangedEventArgs
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IMobileBroadbandCurrentSlotIndexChangedEventArgs.all.get_CurrentSlotIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MobileBroadbandDeviceInformation
 
@@ -5554,6 +5791,30 @@ package body WinRt.Windows.Networking.NetworkOperators is
       return AdaRetVal;
    end;
 
+   function get_SlotManager
+   (
+      this : in out MobileBroadbandDeviceInformation
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSlotManager'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandSlotManager;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation4, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandDeviceInformation4'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSlotManager do
+         m_Interface := QInterface (this.m_IMobileBroadbandDeviceInformation.all);
+         Hr := m_Interface.get_SlotManager (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IMobileBroadbandSlotManager := new Windows.Networking.NetworkOperators.IMobileBroadbandSlotManager;
+         Retval.m_IMobileBroadbandSlotManager.all := m_ComRetVal;
+      end return;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MobileBroadbandDeviceService
 
@@ -5652,6 +5913,100 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Retval.m_IMobileBroadbandDeviceServiceCommandSession := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession;
          Retval.m_IMobileBroadbandDeviceServiceCommandSession.all := m_ComRetVal;
       end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for MobileBroadbandDeviceServiceCommandEventArgs
+
+   procedure Initialize (this : in out MobileBroadbandDeviceServiceCommandEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out MobileBroadbandDeviceServiceCommandEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandDeviceServiceCommandEventArgs, IMobileBroadbandDeviceServiceCommandEventArgs_Ptr);
+   begin
+      if this.m_IMobileBroadbandDeviceServiceCommandEventArgs /= null then
+         if this.m_IMobileBroadbandDeviceServiceCommandEventArgs.all /= null then
+            temp := this.m_IMobileBroadbandDeviceServiceCommandEventArgs.all.Release;
+            Free (this.m_IMobileBroadbandDeviceServiceCommandEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for MobileBroadbandDeviceServiceCommandEventArgs
+
+   function get_DeviceId
+   (
+      this : in out MobileBroadbandDeviceServiceCommandEventArgs
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IMobileBroadbandDeviceServiceCommandEventArgs.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_DeviceServiceId
+   (
+      this : in out MobileBroadbandDeviceServiceCommandEventArgs
+   )
+   return WinRt.Guid is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Guid;
+   begin
+      Hr := this.m_IMobileBroadbandDeviceServiceCommandEventArgs.all.get_DeviceServiceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_EventId
+   (
+      this : in out MobileBroadbandDeviceServiceCommandEventArgs
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IMobileBroadbandDeviceServiceCommandEventArgs.all.get_EventId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ReceivedData
+   (
+      this : in out MobileBroadbandDeviceServiceCommandEventArgs
+   )
+   return WinRt.Windows.Storage.Streams.IBuffer is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+   begin
+      Hr := this.m_IMobileBroadbandDeviceServiceCommandEventArgs.all.get_ReceivedData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -5879,6 +6234,47 @@ package body WinRt.Windows.Networking.NetworkOperators is
       temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceCommandSession.all.CloseSession;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_CommandReceived
+   (
+      this : in out MobileBroadbandDeviceServiceCommandSession;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandDeviceServiceCommandSession2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IMobileBroadbandDeviceServiceCommandSession.all);
+      Hr := m_Interface.add_CommandReceived (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_CommandReceived
+   (
+      this : in out MobileBroadbandDeviceServiceCommandSession;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandDeviceServiceCommandSession2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IMobileBroadbandDeviceServiceCommandSession.all);
+      Hr := m_Interface.remove_CommandReceived (token);
+      temp := m_Interface.Release;
       if Hr /= S_OK then
          raise Program_Error;
       end if;
@@ -6182,6 +6578,27 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceTriggerDetails.all.get_ReceivedData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_EventId
+   (
+      this : in out MobileBroadbandDeviceServiceTriggerDetails
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceTriggerDetails2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceTriggerDetails_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceTriggerDetails2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandDeviceServiceTriggerDetails2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IMobileBroadbandDeviceServiceTriggerDetails.all);
+      Hr := m_Interface.get_EventId (m_ComRetVal'Access);
+      temp := m_Interface.Release;
       if Hr /= S_OK then
          raise Program_Error;
       end if;
@@ -6816,6 +7233,188 @@ package body WinRt.Windows.Networking.NetworkOperators is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   function SetIsPassthroughEnabledAsync
+   (
+      this : in out MobileBroadbandModem;
+      value : WinRt.Boolean;
+      slotindex : WinRt.Int32
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_MobileBroadbandModemStatus.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_MobileBroadbandModemStatus.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
+      m_IID            : aliased WinRt.IID := (2869765547, 26829, 21675, (177, 156, 98, 71, 17, 101, 157, 61 )); -- Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
+      m_HandlerIID     : aliased WinRt.IID := (3093463832, 61007, 23284, (158, 59, 175, 153, 79, 169, 108, 81 ));
+      m_Handler        : AsyncOperationCompletedHandler_MobileBroadbandModemStatus.Kind := new AsyncOperationCompletedHandler_MobileBroadbandModemStatus.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_MobileBroadbandModemStatus.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_MobileBroadbandModemStatus.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandModemStatus.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandModemStatus.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem4, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandModem4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IMobileBroadbandModem.all);
+      Hr := m_Interface.SetIsPassthroughEnabledAsync (value, slotindex, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function GetIsPassthroughEnabledAsync
+   (
+      this : in out MobileBroadbandModem;
+      slotindex : WinRt.Int32
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_Boolean.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Boolean;
+      m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
+      m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
+      m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem4, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandModem4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IMobileBroadbandModem.all);
+      Hr := m_Interface.GetIsPassthroughEnabledAsync (slotindex, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function SetIsPassthroughEnabled
+   (
+      this : in out MobileBroadbandModem;
+      value : WinRt.Boolean;
+      slotindex : WinRt.Int32
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem4, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandModem4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IMobileBroadbandModem.all);
+      Hr := m_Interface.SetIsPassthroughEnabled (value, slotindex, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function GetIsPassthroughEnabled
+   (
+      this : in out MobileBroadbandModem;
+      slotindex : WinRt.Int32
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem4 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem4, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandModem4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IMobileBroadbandModem.all);
+      Hr := m_Interface.GetIsPassthroughEnabled (slotindex, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -8969,6 +9568,338 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for MobileBroadbandSlotInfo
+
+   procedure Initialize (this : in out MobileBroadbandSlotInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out MobileBroadbandSlotInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandSlotInfo, IMobileBroadbandSlotInfo_Ptr);
+   begin
+      if this.m_IMobileBroadbandSlotInfo /= null then
+         if this.m_IMobileBroadbandSlotInfo.all /= null then
+            temp := this.m_IMobileBroadbandSlotInfo.all.Release;
+            Free (this.m_IMobileBroadbandSlotInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for MobileBroadbandSlotInfo
+
+   function get_Index
+   (
+      this : in out MobileBroadbandSlotInfo
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IMobileBroadbandSlotInfo.all.get_Index (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_State
+   (
+      this : in out MobileBroadbandSlotInfo
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSlotState is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandSlotState;
+   begin
+      Hr := this.m_IMobileBroadbandSlotInfo.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_IccId
+   (
+      this : in out MobileBroadbandSlotInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfo_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfo2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandSlotInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IMobileBroadbandSlotInfo.all);
+      Hr := m_Interface.get_IccId (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for MobileBroadbandSlotInfoChangedEventArgs
+
+   procedure Initialize (this : in out MobileBroadbandSlotInfoChangedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out MobileBroadbandSlotInfoChangedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandSlotInfoChangedEventArgs, IMobileBroadbandSlotInfoChangedEventArgs_Ptr);
+   begin
+      if this.m_IMobileBroadbandSlotInfoChangedEventArgs /= null then
+         if this.m_IMobileBroadbandSlotInfoChangedEventArgs.all /= null then
+            temp := this.m_IMobileBroadbandSlotInfoChangedEventArgs.all.Release;
+            Free (this.m_IMobileBroadbandSlotInfoChangedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for MobileBroadbandSlotInfoChangedEventArgs
+
+   function get_SlotInfo
+   (
+      this : in out MobileBroadbandSlotInfoChangedEventArgs
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSlotInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfo;
+   begin
+      return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSlotInfo do
+         Hr := this.m_IMobileBroadbandSlotInfoChangedEventArgs.all.get_SlotInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IMobileBroadbandSlotInfo := new Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfo;
+         Retval.m_IMobileBroadbandSlotInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for MobileBroadbandSlotManager
+
+   procedure Initialize (this : in out MobileBroadbandSlotManager) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out MobileBroadbandSlotManager) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandSlotManager, IMobileBroadbandSlotManager_Ptr);
+   begin
+      if this.m_IMobileBroadbandSlotManager /= null then
+         if this.m_IMobileBroadbandSlotManager.all /= null then
+            temp := this.m_IMobileBroadbandSlotManager.all.Release;
+            Free (this.m_IMobileBroadbandSlotManager);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for MobileBroadbandSlotManager
+
+   function get_SlotInfos
+   (
+      this : in out MobileBroadbandSlotManager
+   )
+   return IVectorView_IMobileBroadbandSlotInfo.Kind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      m_GenericRetval  : aliased IVectorView_IMobileBroadbandSlotInfo.Kind;
+   begin
+      Hr := this.m_IMobileBroadbandSlotManager.all.get_SlotInfos (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandSlotInfo (m_ComRetVal);
+      temp := m_ComRetVal.Release;
+      return m_GenericRetVal;
+   end;
+
+   function get_CurrentSlotIndex
+   (
+      this : in out MobileBroadbandSlotManager
+   )
+   return WinRt.Int32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Int32;
+   begin
+      Hr := this.m_IMobileBroadbandSlotManager.all.get_CurrentSlotIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function SetCurrentSlot
+   (
+      this : in out MobileBroadbandSlotManager;
+      slotIndex : WinRt.Int32
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
+   begin
+      Hr := this.m_IMobileBroadbandSlotManager.all.SetCurrentSlot (slotIndex, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function SetCurrentSlotAsync
+   (
+      this : in out MobileBroadbandSlotManager;
+      slotIndex : WinRt.Int32
+   )
+   return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_MobileBroadbandModemStatus.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_MobileBroadbandModemStatus.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
+      m_IID            : aliased WinRt.IID := (2869765547, 26829, 21675, (177, 156, 98, 71, 17, 101, 157, 61 )); -- Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
+      m_HandlerIID     : aliased WinRt.IID := (3093463832, 61007, 23284, (158, 59, 175, 153, 79, 169, 108, 81 ));
+      m_Handler        : AsyncOperationCompletedHandler_MobileBroadbandModemStatus.Kind := new AsyncOperationCompletedHandler_MobileBroadbandModemStatus.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_MobileBroadbandModemStatus.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_MobileBroadbandModemStatus.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandModemStatus.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandModemStatus.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_IMobileBroadbandSlotManager.all.SetCurrentSlotAsync (slotIndex, m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function add_SlotInfoChanged
+   (
+      this : in out MobileBroadbandSlotManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IMobileBroadbandSlotManager.all.add_SlotInfoChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_SlotInfoChanged
+   (
+      this : in out MobileBroadbandSlotManager;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IMobileBroadbandSlotManager.all.remove_SlotInfoChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_CurrentSlotIndexChanged
+   (
+      this : in out MobileBroadbandSlotManager;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IMobileBroadbandSlotManager.all.add_CurrentSlotIndexChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_CurrentSlotIndexChanged
+   (
+      this : in out MobileBroadbandSlotManager;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IMobileBroadbandSlotManager.all.remove_CurrentSlotIndexChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MobileBroadbandTransmissionStateChangedEventArgs
 
    procedure Initialize (this : in out MobileBroadbandTransmissionStateChangedEventArgs) is
@@ -9993,6 +10924,136 @@ package body WinRt.Windows.Networking.NetworkOperators is
       end if;
    end;
 
+   function IsAuthenticationKindSupported
+   (
+      this : in out NetworkOperatorTetheringAccessPointConfiguration;
+      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration_Interface, WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration3, WinRt.Windows.Networking.NetworkOperators.IID_INetworkOperatorTetheringAccessPointConfiguration3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_INetworkOperatorTetheringAccessPointConfiguration.all);
+      Hr := m_Interface.IsAuthenticationKindSupported (authenticationKind, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function IsAuthenticationKindSupportedAsync
+   (
+      this : in out NetworkOperatorTetheringAccessPointConfiguration;
+      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_Boolean.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Boolean;
+      m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
+      m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
+      m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration_Interface, WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration3, WinRt.Windows.Networking.NetworkOperators.IID_INetworkOperatorTetheringAccessPointConfiguration3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_INetworkOperatorTetheringAccessPointConfiguration.all);
+      Hr := m_Interface.IsAuthenticationKindSupportedAsync (authenticationKind, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function get_AuthenticationKind
+   (
+      this : in out NetworkOperatorTetheringAccessPointConfiguration
+   )
+   return WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration_Interface, WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration3, WinRt.Windows.Networking.NetworkOperators.IID_INetworkOperatorTetheringAccessPointConfiguration3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_INetworkOperatorTetheringAccessPointConfiguration.all);
+      Hr := m_Interface.get_AuthenticationKind (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_AuthenticationKind
+   (
+      this : in out NetworkOperatorTetheringAccessPointConfiguration;
+      value : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration_Interface, WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration3, WinRt.Windows.Networking.NetworkOperators.IID_INetworkOperatorTetheringAccessPointConfiguration3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_INetworkOperatorTetheringAccessPointConfiguration.all);
+      Hr := m_Interface.put_AuthenticationKind (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for NetworkOperatorTetheringClient
 
@@ -10078,6 +11139,61 @@ package body WinRt.Windows.Networking.NetworkOperators is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for NetworkOperatorTetheringManager
+
+   function GetTetheringCapability
+   (
+      networkAccountId : WinRt.WString
+   )
+   return WinRt.Windows.Networking.NetworkOperators.TetheringCapability is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringCapability;
+      HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetTetheringCapability (HStr_networkAccountId, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_networkAccountId);
+      return m_ComRetVal;
+   end;
+
+   function CreateFromNetworkAccountId
+   (
+      networkAccountId : WinRt.WString
+   )
+   return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
+      HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
+   begin
+      return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager do
+         Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateFromNetworkAccountId (HStr_networkAccountId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_INetworkOperatorTetheringManager := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
+            Retval.m_INetworkOperatorTetheringManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_networkAccountId);
+      end return;
+   end;
 
    function IsNoConnectionsTimeoutEnabled
    return WinRt.Boolean is
@@ -10228,34 +11344,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp := WindowsDeleteString (m_hString);
    end;
 
-   function CreateFromConnectionProfile
-   (
-      profile : Windows.Networking.Connectivity.ConnectionProfile'Class;
-      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
-   )
-   return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
-      m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
-   begin
-      return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager do
-         Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.CreateFromConnectionProfile (profile.m_IConnectionProfile.all, adapter.m_INetworkAdapter.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_INetworkOperatorTetheringManager := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
-            Retval.m_INetworkOperatorTetheringManager.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function GetTetheringCapabilityFromConnectionProfile
    (
       profile : Windows.Networking.Connectivity.ConnectionProfile'Class
@@ -10307,49 +11395,23 @@ package body WinRt.Windows.Networking.NetworkOperators is
       end return;
    end;
 
-   function GetTetheringCapability
+   function CreateFromConnectionProfile
    (
-      networkAccountId : WinRt.WString
-   )
-   return WinRt.Windows.Networking.NetworkOperators.TetheringCapability is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
-      m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringCapability;
-      HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetTetheringCapability (HStr_networkAccountId, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      tmp := WindowsDeleteString (HStr_networkAccountId);
-      return m_ComRetVal;
-   end;
-
-   function CreateFromNetworkAccountId
-   (
-      networkAccountId : WinRt.WString
+      profile : Windows.Networking.Connectivity.ConnectionProfile'Class;
+      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
-      m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics_Interface'Class := null;
+      m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
-      HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager do
-         Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics'Access , m_Factory'Address);
+         Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
-            Hr := m_Factory.CreateFromNetworkAccountId (HStr_networkAccountId, m_ComRetVal'Access);
+            Hr := m_Factory.CreateFromConnectionProfile (profile.m_IConnectionProfile.all, adapter.m_INetworkAdapter.all, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -10358,7 +11420,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
             Retval.m_INetworkOperatorTetheringManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_networkAccountId);
       end return;
    end;
 
@@ -10635,6 +11696,77 @@ package body WinRt.Windows.Networking.NetworkOperators is
       return m_GenericRetVal;
    end;
 
+   function StartTetheringAsync
+   (
+      this : in out NetworkOperatorTetheringManager;
+      configuration : Windows.Networking.NetworkOperators.NetworkOperatorTetheringSessionAccessPointConfiguration'Class
+   )
+   return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringOperationResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_NetworkOperatorTetheringOperationResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_NetworkOperatorTetheringOperationResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringOperationResult;
+      m_IID            : aliased WinRt.IID := (1612394733, 39807, 21686, (182, 27, 36, 160, 155, 197, 99, 4 )); -- Windows.Networking.NetworkOperators.NetworkOperatorTetheringOperationResult;
+      m_HandlerIID     : aliased WinRt.IID := (2838935847, 30007, 22982, (137, 222, 51, 243, 106, 151, 37, 171 ));
+      m_Handler        : AsyncOperationCompletedHandler_NetworkOperatorTetheringOperationResult.Kind := new AsyncOperationCompletedHandler_NetworkOperatorTetheringOperationResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_NetworkOperatorTetheringOperationResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_NetworkOperatorTetheringOperationResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_NetworkOperatorTetheringOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_NetworkOperatorTetheringOperationResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager_Interface, WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager2, WinRt.Windows.Networking.NetworkOperators.IID_INetworkOperatorTetheringManager2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringOperationResult do
+         m_Interface := QInterface (this.m_INetworkOperatorTetheringManager.all);
+         Hr := m_Interface.StartTetheringAsync (configuration.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_INetworkOperatorTetheringOperationResult := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringOperationResult;
+                  Retval.m_INetworkOperatorTetheringOperationResult.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+      end return;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for NetworkOperatorTetheringOperationResult
 
@@ -10693,6 +11825,382 @@ package body WinRt.Windows.Networking.NetworkOperators is
       AdaRetval := To_Ada (m_ComRetVal);
       tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for NetworkOperatorTetheringSessionAccessPointConfiguration
+
+   procedure Initialize (this : in out NetworkOperatorTetheringSessionAccessPointConfiguration) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out NetworkOperatorTetheringSessionAccessPointConfiguration) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (INetworkOperatorTetheringSessionAccessPointConfiguration, INetworkOperatorTetheringSessionAccessPointConfiguration_Ptr);
+   begin
+      if this.m_INetworkOperatorTetheringSessionAccessPointConfiguration /= null then
+         if this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all /= null then
+            temp := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.Release;
+            Free (this.m_INetworkOperatorTetheringSessionAccessPointConfiguration);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for NetworkOperatorTetheringSessionAccessPointConfiguration
+
+   function Constructor return NetworkOperatorTetheringSessionAccessPointConfiguration is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringSessionAccessPointConfiguration");
+      m_ComRetVal  : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringSessionAccessPointConfiguration;
+   begin
+      return RetVal : NetworkOperatorTetheringSessionAccessPointConfiguration do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_INetworkOperatorTetheringSessionAccessPointConfiguration := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringSessionAccessPointConfiguration;
+            Retval.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for NetworkOperatorTetheringSessionAccessPointConfiguration
+
+   function get_Ssid
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.get_Ssid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Ssid
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.put_Ssid (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_Passphrase
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.get_Passphrase (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_Passphrase
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.put_Passphrase (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function IsBandSupported
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      band : Windows.Networking.NetworkOperators.TetheringWiFiBand
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.IsBandSupported (band, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function IsBandSupportedAsync
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      band : Windows.Networking.NetworkOperators.TetheringWiFiBand
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_Boolean.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Boolean;
+      m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
+      m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
+      m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.IsBandSupportedAsync (band, m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function get_Band
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration
+   )
+   return WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringWiFiBand;
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.get_Band (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Band
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      value : Windows.Networking.NetworkOperators.TetheringWiFiBand
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.put_Band (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function IsAuthenticationKindSupported
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.IsAuthenticationKindSupported (authenticationKind, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function IsAuthenticationKindSupportedAsync
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_Boolean.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Boolean;
+      m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
+      m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
+      m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.IsAuthenticationKindSupportedAsync (authenticationKind, m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function get_AuthenticationKind
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration
+   )
+   return WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.get_AuthenticationKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_AuthenticationKind
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      value : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.put_AuthenticationKind (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_PerformancePriority
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration
+   )
+   return WinRt.Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority;
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.get_PerformancePriority (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_PerformancePriority
+   (
+      this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
+      value : Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.put_PerformancePriority (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------

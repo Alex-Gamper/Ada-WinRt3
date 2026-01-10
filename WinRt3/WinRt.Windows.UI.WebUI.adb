@@ -974,207 +974,6 @@ package body WinRt.Windows.UI.WebUI is
    -- Static RuntimeClass
    package body WebUIApplication is
 
-      function add_NewWebUIViewCreated
-      (
-         handler : GenericObject
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
-         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.add_NewWebUIViewCreated (handler, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      procedure remove_NewWebUIViewCreated
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
-         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.remove_NewWebUIViewCreated (token);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      function add_BackgroundActivated
-      (
-         handler : Windows.UI.WebUI.BackgroundActivatedEventHandler
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
-         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.add_BackgroundActivated (handler, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      procedure remove_BackgroundActivated
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
-         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics4_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.remove_BackgroundActivated (token);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      function add_LeavingBackground
-      (
-         handler : Windows.UI.WebUI.LeavingBackgroundEventHandler
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
-         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.add_LeavingBackground (handler, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      procedure remove_LeavingBackground
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
-         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.remove_LeavingBackground (token);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      function add_EnteredBackground
-      (
-         handler : Windows.UI.WebUI.EnteredBackgroundEventHandler
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
-         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.add_EnteredBackground (handler, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         return m_ComRetVal;
-      end;
-
-      procedure remove_EnteredBackground
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
-         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.remove_EnteredBackground (token);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      procedure EnablePrelaunch
-      (
-         value : WinRt.Boolean
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
-         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.EnablePrelaunch (value);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
       function RequestRestartAsync
       (
          launchArguments : WinRt.WString
@@ -1492,6 +1291,207 @@ package body WinRt.Windows.UI.WebUI is
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_Navigated (token);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+      function add_LeavingBackground
+      (
+         handler : Windows.UI.WebUI.LeavingBackgroundEventHandler
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.add_LeavingBackground (handler, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      procedure remove_LeavingBackground
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.remove_LeavingBackground (token);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+      function add_EnteredBackground
+      (
+         handler : Windows.UI.WebUI.EnteredBackgroundEventHandler
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.add_EnteredBackground (handler, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      procedure remove_EnteredBackground
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.remove_EnteredBackground (token);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+      procedure EnablePrelaunch
+      (
+         value : WinRt.Boolean
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.EnablePrelaunch (value);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+      function add_NewWebUIViewCreated
+      (
+         handler : GenericObject
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.add_NewWebUIViewCreated (handler, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      procedure remove_NewWebUIViewCreated
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.remove_NewWebUIViewCreated (token);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+      function add_BackgroundActivated
+      (
+         handler : Windows.UI.WebUI.BackgroundActivatedEventHandler
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.add_BackgroundActivated (handler, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      procedure remove_BackgroundActivated
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics4_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.remove_BackgroundActivated (token);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -7224,6 +7224,161 @@ package body WinRt.Windows.UI.WebUI is
          end if;
          Retval.m_IWebUINavigatedDeferral := new Windows.UI.WebUI.IWebUINavigatedDeferral;
          Retval.m_IWebUINavigatedDeferral.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WebUIPhoneCallActivatedEventArgs
+
+   procedure Initialize (this : in out WebUIPhoneCallActivatedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out WebUIPhoneCallActivatedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      use type WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs;
+      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Ptr);
+   begin
+      if this.m_IPhoneCallActivatedEventArgs /= null then
+         if this.m_IPhoneCallActivatedEventArgs.all /= null then
+            temp := this.m_IPhoneCallActivatedEventArgs.all.Release;
+            Free (this.m_IPhoneCallActivatedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WebUIPhoneCallActivatedEventArgs
+
+   function get_LineId
+   (
+      this : in out WebUIPhoneCallActivatedEventArgs
+   )
+   return WinRt.Guid is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Guid;
+   begin
+      Hr := this.m_IPhoneCallActivatedEventArgs.all.get_LineId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Kind
+   (
+      this : in out WebUIPhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPhoneCallActivatedEventArgs.all);
+      Hr := m_Interface.get_Kind (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_PreviousExecutionState
+   (
+      this : in out WebUIPhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPhoneCallActivatedEventArgs.all);
+      Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_SplashScreen
+   (
+      this : in out WebUIPhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
+         m_Interface := QInterface (this.m_IPhoneCallActivatedEventArgs.all);
+         Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_User
+   (
+      this : in out WebUIPhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.System.User'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.System.IUser;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.System.User do
+         m_Interface := QInterface (this.m_IPhoneCallActivatedEventArgs.all);
+         Hr := m_Interface.get_User (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_ActivatedOperation
+   (
+      this : in out WebUIPhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
+         m_Interface := QInterface (this.m_IPhoneCallActivatedEventArgs.all);
+         Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
+         Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
    end;
 

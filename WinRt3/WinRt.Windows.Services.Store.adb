@@ -3429,6 +3429,221 @@ package body WinRt.Windows.Services.Store is
       return m_RetVal;
    end;
 
+   function GetUserPurchaseHistoryAsync
+   (
+      this : in out StoreContext;
+      productKinds : GenericObject
+   )
+   return WinRt.Windows.Services.Store.StoreProductQueryResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Services.Store.IStoreContext5 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_StoreProductQueryResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_StoreProductQueryResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Services.Store.IStoreProductQueryResult;
+      m_IID            : aliased WinRt.IID := (2526668731, 59935, 24067, (148, 57, 200, 14, 105, 119, 183, 17 )); -- Windows.Services.Store.StoreProductQueryResult;
+      m_HandlerIID     : aliased WinRt.IID := (49587244, 1112, 22742, (146, 60, 180, 75, 168, 239, 34, 34 ));
+      m_Handler        : AsyncOperationCompletedHandler_StoreProductQueryResult.Kind := new AsyncOperationCompletedHandler_StoreProductQueryResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_StoreProductQueryResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_StoreProductQueryResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StoreProductQueryResult.Kind_Delegate, AsyncOperationCompletedHandler_StoreProductQueryResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Store.IStoreContext_Interface, WinRt.Windows.Services.Store.IStoreContext5, WinRt.Windows.Services.Store.IID_IStoreContext5'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Services.Store.StoreProductQueryResult do
+         m_Interface := QInterface (this.m_IStoreContext.all);
+         Hr := m_Interface.GetUserPurchaseHistoryAsync (productKinds, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IStoreProductQueryResult := new Windows.Services.Store.IStoreProductQueryResult;
+                  Retval.m_IStoreProductQueryResult.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+      end return;
+   end;
+
+   function GetAssociatedStoreProductsByInAppOfferTokenAsync
+   (
+      this : in out StoreContext;
+      inAppOfferTokens : GenericObject
+   )
+   return WinRt.Windows.Services.Store.StoreProductQueryResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Services.Store.IStoreContext5 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_StoreProductQueryResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_StoreProductQueryResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Services.Store.IStoreProductQueryResult;
+      m_IID            : aliased WinRt.IID := (2526668731, 59935, 24067, (148, 57, 200, 14, 105, 119, 183, 17 )); -- Windows.Services.Store.StoreProductQueryResult;
+      m_HandlerIID     : aliased WinRt.IID := (49587244, 1112, 22742, (146, 60, 180, 75, 168, 239, 34, 34 ));
+      m_Handler        : AsyncOperationCompletedHandler_StoreProductQueryResult.Kind := new AsyncOperationCompletedHandler_StoreProductQueryResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_StoreProductQueryResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_StoreProductQueryResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StoreProductQueryResult.Kind_Delegate, AsyncOperationCompletedHandler_StoreProductQueryResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Store.IStoreContext_Interface, WinRt.Windows.Services.Store.IStoreContext5, WinRt.Windows.Services.Store.IID_IStoreContext5'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Services.Store.StoreProductQueryResult do
+         m_Interface := QInterface (this.m_IStoreContext.all);
+         Hr := m_Interface.GetAssociatedStoreProductsByInAppOfferTokenAsync (inAppOfferTokens, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IStoreProductQueryResult := new Windows.Services.Store.IStoreProductQueryResult;
+                  Retval.m_IStoreProductQueryResult.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+      end return;
+   end;
+
+   function RequestPurchaseByInAppOfferTokenAsync
+   (
+      this : in out StoreContext;
+      inAppOfferToken : WinRt.WString
+   )
+   return WinRt.Windows.Services.Store.StorePurchaseResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Services.Store.IStoreContext5 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_inAppOfferToken : constant WinRt.HString := To_HString (inAppOfferToken);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_StorePurchaseResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_StorePurchaseResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Services.Store.IStorePurchaseResult;
+      m_IID            : aliased WinRt.IID := (869846064, 30965, 24449, (170, 45, 164, 250, 42, 59, 28, 104 )); -- Windows.Services.Store.StorePurchaseResult;
+      m_HandlerIID     : aliased WinRt.IID := (496994798, 12238, 21734, (160, 169, 82, 208, 12, 82, 204, 58 ));
+      m_Handler        : AsyncOperationCompletedHandler_StorePurchaseResult.Kind := new AsyncOperationCompletedHandler_StorePurchaseResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_StorePurchaseResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_StorePurchaseResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorePurchaseResult.Kind_Delegate, AsyncOperationCompletedHandler_StorePurchaseResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Store.IStoreContext_Interface, WinRt.Windows.Services.Store.IStoreContext5, WinRt.Windows.Services.Store.IID_IStoreContext5'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Services.Store.StorePurchaseResult do
+         m_Interface := QInterface (this.m_IStoreContext.all);
+         Hr := m_Interface.RequestPurchaseByInAppOfferTokenAsync (HStr_inAppOfferToken, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IStorePurchaseResult := new Windows.Services.Store.IStorePurchaseResult;
+                  Retval.m_IStorePurchaseResult.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (HStr_inAppOfferToken);
+      end return;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StoreImage
 
@@ -4135,6 +4350,78 @@ package body WinRt.Windows.Services.Store is
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePrice.all.get_FormattedRecurrencePrice (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_UnformattedBasePrice
+   (
+      this : in out StorePrice
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Services.Store.IStorePrice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Store.IStorePrice_Interface, WinRt.Windows.Services.Store.IStorePrice2, WinRt.Windows.Services.Store.IID_IStorePrice2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IStorePrice.all);
+      Hr := m_Interface.get_UnformattedBasePrice (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_UnformattedPrice
+   (
+      this : in out StorePrice
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Services.Store.IStorePrice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Store.IStorePrice_Interface, WinRt.Windows.Services.Store.IStorePrice2, WinRt.Windows.Services.Store.IID_IStorePrice2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IStorePrice.all);
+      Hr := m_Interface.get_UnformattedPrice (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_UnformattedRecurrencePrice
+   (
+      this : in out StorePrice
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Services.Store.IStorePrice2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Store.IStorePrice_Interface, WinRt.Windows.Services.Store.IStorePrice2, WinRt.Windows.Services.Store.IID_IStorePrice2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IStorePrice.all);
+      Hr := m_Interface.get_UnformattedRecurrencePrice (m_ComRetVal'Access);
+      temp := m_Interface.Release;
       if Hr /= S_OK then
          raise Program_Error;
       end if;
@@ -5004,6 +5291,22 @@ package body WinRt.Windows.Services.Store is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for StorePurchaseProperties
 
+   function Constructor return StorePurchaseProperties is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Store.StorePurchaseProperties");
+      m_ComRetVal  : aliased Windows.Services.Store.IStorePurchaseProperties;
+   begin
+      return RetVal : StorePurchaseProperties do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IStorePurchaseProperties := new Windows.Services.Store.IStorePurchaseProperties;
+            Retval.m_IStorePurchaseProperties.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       name : WinRt.WString
@@ -5027,22 +5330,6 @@ package body WinRt.Windows.Services.Store is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_name);
-      end return;
-   end;
-
-   function Constructor return StorePurchaseProperties is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Store.StorePurchaseProperties");
-      m_ComRetVal  : aliased Windows.Services.Store.IStorePurchaseProperties;
-   begin
-      return RetVal : StorePurchaseProperties do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IStorePurchaseProperties := new Windows.Services.Store.IStorePurchaseProperties;
-            Retval.m_IStorePurchaseProperties.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

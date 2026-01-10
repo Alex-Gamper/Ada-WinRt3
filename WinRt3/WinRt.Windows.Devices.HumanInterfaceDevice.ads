@@ -51,6 +51,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
 
    type IHidBooleanControlDescription2_Interface is interface and WinRt.IInspectable_Interface;
    type IHidBooleanControlDescription2 is access all IHidBooleanControlDescription2_Interface'Class;
+   type IHidBooleanControlDescription2_Ptr is access all IHidBooleanControlDescription2;
 
    type IHidCollection_Interface is interface and WinRt.IInspectable_Interface;
    type IHidCollection is access all IHidCollection_Interface'Class;
@@ -62,6 +63,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
 
    type IHidDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHidDeviceStatics is access all IHidDeviceStatics_Interface'Class;
+   type IHidDeviceStatics_Ptr is access all IHidDeviceStatics;
 
    type IHidFeatureReport_Interface is interface and WinRt.IInspectable_Interface;
    type IHidFeatureReport is access all IHidFeatureReport_Interface'Class;

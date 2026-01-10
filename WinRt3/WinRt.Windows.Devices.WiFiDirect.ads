@@ -48,6 +48,7 @@ package WinRt.Windows.Devices.WiFiDirect is
 
    type IWiFiDirectAdvertisement2_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiDirectAdvertisement2 is access all IWiFiDirectAdvertisement2_Interface'Class;
+   type IWiFiDirectAdvertisement2_Ptr is access all IWiFiDirectAdvertisement2;
 
    type IWiFiDirectAdvertisementPublisher_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiDirectAdvertisementPublisher is access all IWiFiDirectAdvertisementPublisher_Interface'Class;
@@ -67,9 +68,11 @@ package WinRt.Windows.Devices.WiFiDirect is
 
    type IWiFiDirectConnectionParameters2_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiDirectConnectionParameters2 is access all IWiFiDirectConnectionParameters2_Interface'Class;
+   type IWiFiDirectConnectionParameters2_Ptr is access all IWiFiDirectConnectionParameters2;
 
    type IWiFiDirectConnectionParametersStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiDirectConnectionParametersStatics is access all IWiFiDirectConnectionParametersStatics_Interface'Class;
+   type IWiFiDirectConnectionParametersStatics_Ptr is access all IWiFiDirectConnectionParametersStatics;
 
    type IWiFiDirectConnectionRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiDirectConnectionRequest is access all IWiFiDirectConnectionRequest_Interface'Class;
@@ -85,9 +88,11 @@ package WinRt.Windows.Devices.WiFiDirect is
 
    type IWiFiDirectDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiDirectDeviceStatics is access all IWiFiDirectDeviceStatics_Interface'Class;
+   type IWiFiDirectDeviceStatics_Ptr is access all IWiFiDirectDeviceStatics;
 
    type IWiFiDirectDeviceStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiDirectDeviceStatics2 is access all IWiFiDirectDeviceStatics2_Interface'Class;
+   type IWiFiDirectDeviceStatics2_Ptr is access all IWiFiDirectDeviceStatics2;
 
    type IWiFiDirectInformationElement_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiDirectInformationElement is access all IWiFiDirectInformationElement_Interface'Class;
@@ -95,6 +100,7 @@ package WinRt.Windows.Devices.WiFiDirect is
 
    type IWiFiDirectInformationElementStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiDirectInformationElementStatics is access all IWiFiDirectInformationElementStatics_Interface'Class;
+   type IWiFiDirectInformationElementStatics_Ptr is access all IWiFiDirectInformationElementStatics;
 
    type IWiFiDirectLegacySettings_Interface is interface and WinRt.IInspectable_Interface;
    type IWiFiDirectLegacySettings is access all IWiFiDirectLegacySettings_Interface'Class;

@@ -1971,6 +1971,22 @@ package body WinRt.Windows.Media.Editing is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for MediaOverlayLayer
 
+   function Constructor return MediaOverlayLayer is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaOverlayLayer");
+      m_ComRetVal  : aliased Windows.Media.Editing.IMediaOverlayLayer;
+   begin
+      return RetVal : MediaOverlayLayer do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IMediaOverlayLayer := new Windows.Media.Editing.IMediaOverlayLayer;
+            Retval.m_IMediaOverlayLayer.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       compositorDefinition : Windows.Media.Effects.IVideoCompositorDefinition
@@ -1990,22 +2006,6 @@ package body WinRt.Windows.Media.Editing is
             Retval.m_IMediaOverlayLayer := new Windows.Media.Editing.IMediaOverlayLayer;
             Retval.m_IMediaOverlayLayer.all := m_ComRetVal;
             temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor return MediaOverlayLayer is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaOverlayLayer");
-      m_ComRetVal  : aliased Windows.Media.Editing.IMediaOverlayLayer;
-   begin
-      return RetVal : MediaOverlayLayer do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IMediaOverlayLayer := new Windows.Media.Editing.IMediaOverlayLayer;
-            Retval.m_IMediaOverlayLayer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

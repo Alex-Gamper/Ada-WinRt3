@@ -48,6 +48,7 @@ package WinRt.Windows.System.Update is
 
    type ISystemUpdateManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISystemUpdateManagerStatics is access all ISystemUpdateManagerStatics_Interface'Class;
+   type ISystemUpdateManagerStatics_Ptr is access all ISystemUpdateManagerStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

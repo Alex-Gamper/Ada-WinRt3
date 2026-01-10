@@ -45,6 +45,7 @@ package WinRt.Windows.Security.Cryptography.DataProtection is
 
    type IDataProtectionProviderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDataProtectionProviderFactory is access all IDataProtectionProviderFactory_Interface'Class;
+   type IDataProtectionProviderFactory_Ptr is access all IDataProtectionProviderFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -125,13 +126,13 @@ package WinRt.Windows.Security.Cryptography.DataProtection is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for DataProtectionProvider
 
+   function Constructor return DataProtectionProvider;
+
    function Constructor
    (
       protectionDescriptor : WinRt.WString
    )
    return DataProtectionProvider;
-
-   function Constructor return DataProtectionProvider;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for DataProtectionProvider

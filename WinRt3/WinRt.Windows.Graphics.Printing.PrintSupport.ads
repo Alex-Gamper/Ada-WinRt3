@@ -34,6 +34,8 @@ limited with WinRt.Windows.Devices.Printers;
 with WinRt.Windows.Foundation;
 limited with WinRt.Windows.Graphics.Printing.PrintTicket;
 limited with WinRt.Windows.System;
+limited with WinRt.Windows.UI;
+limited with WinRt.Windows.UI.Shell;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Graphics.Printing.PrintSupport is
@@ -44,21 +46,89 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
+   type IPrintSupportAppInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportAppInfo is access all IPrintSupportAppInfo_Interface'Class;
+   type IPrintSupportAppInfo_Ptr is access all IPrintSupportAppInfo;
+
+   type IPrintSupportAppInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportAppInfoStatics is access all IPrintSupportAppInfoStatics_Interface'Class;
+   type IPrintSupportAppInfoStatics_Ptr is access all IPrintSupportAppInfoStatics;
+
+   type IPrintSupportCommunicationErrorDetectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportCommunicationErrorDetectedEventArgs is access all IPrintSupportCommunicationErrorDetectedEventArgs_Interface'Class;
+   type IPrintSupportCommunicationErrorDetectedEventArgs_Ptr is access all IPrintSupportCommunicationErrorDetectedEventArgs;
+
+   type IPrintSupportEnterpriseManagementUIEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportEnterpriseManagementUIEventArgs is access all IPrintSupportEnterpriseManagementUIEventArgs_Interface'Class;
+   type IPrintSupportEnterpriseManagementUIEventArgs_Ptr is access all IPrintSupportEnterpriseManagementUIEventArgs;
+
    type IPrintSupportExtensionSession_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintSupportExtensionSession is access all IPrintSupportExtensionSession_Interface'Class;
    type IPrintSupportExtensionSession_Ptr is access all IPrintSupportExtensionSession;
+
+   type IPrintSupportExtensionSession2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportExtensionSession2 is access all IPrintSupportExtensionSession2_Interface'Class;
+   type IPrintSupportExtensionSession2_Ptr is access all IPrintSupportExtensionSession2;
+
+   type IPrintSupportExtensionSession3_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportExtensionSession3 is access all IPrintSupportExtensionSession3_Interface'Class;
+   type IPrintSupportExtensionSession3_Ptr is access all IPrintSupportExtensionSession3;
 
    type IPrintSupportExtensionTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintSupportExtensionTriggerDetails is access all IPrintSupportExtensionTriggerDetails_Interface'Class;
    type IPrintSupportExtensionTriggerDetails_Ptr is access all IPrintSupportExtensionTriggerDetails;
 
+   type IPrintSupportIppCommunicationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportIppCommunicationConfiguration is access all IPrintSupportIppCommunicationConfiguration_Interface'Class;
+   type IPrintSupportIppCommunicationConfiguration_Ptr is access all IPrintSupportIppCommunicationConfiguration;
+
+   type IPrintSupportIppCommunicationTimeouts_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportIppCommunicationTimeouts is access all IPrintSupportIppCommunicationTimeouts_Interface'Class;
+   type IPrintSupportIppCommunicationTimeouts_Ptr is access all IPrintSupportIppCommunicationTimeouts;
+
+   type IPrintSupportMxdcImageQualityConfiguration_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportMxdcImageQualityConfiguration is access all IPrintSupportMxdcImageQualityConfiguration_Interface'Class;
+   type IPrintSupportMxdcImageQualityConfiguration_Ptr is access all IPrintSupportMxdcImageQualityConfiguration;
+
    type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs is access all IPrintSupportPrintDeviceCapabilitiesChangedEventArgs_Interface'Class;
    type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs_Ptr is access all IPrintSupportPrintDeviceCapabilitiesChangedEventArgs;
 
+   type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2 is access all IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2_Interface'Class;
+   type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2_Ptr is access all IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2;
+
+   type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs3 is access all IPrintSupportPrintDeviceCapabilitiesChangedEventArgs3_Interface'Class;
+   type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs3_Ptr is access all IPrintSupportPrintDeviceCapabilitiesChangedEventArgs3;
+
+   type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs4_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs4 is access all IPrintSupportPrintDeviceCapabilitiesChangedEventArgs4_Interface'Class;
+   type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs4_Ptr is access all IPrintSupportPrintDeviceCapabilitiesChangedEventArgs4;
+
+   type IPrintSupportPrintDeviceCapabilitiesUpdatePolicy_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportPrintDeviceCapabilitiesUpdatePolicy is access all IPrintSupportPrintDeviceCapabilitiesUpdatePolicy_Interface'Class;
+   type IPrintSupportPrintDeviceCapabilitiesUpdatePolicy_Ptr is access all IPrintSupportPrintDeviceCapabilitiesUpdatePolicy;
+
+   type IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics is access all IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics_Interface'Class;
+   type IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics_Ptr is access all IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics;
+
+   type IPrintSupportPrintTicketElement_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportPrintTicketElement is access all IPrintSupportPrintTicketElement_Interface'Class;
+   type IPrintSupportPrintTicketElement_Ptr is access all IPrintSupportPrintTicketElement;
+
    type IPrintSupportPrintTicketValidationRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintSupportPrintTicketValidationRequestedEventArgs is access all IPrintSupportPrintTicketValidationRequestedEventArgs_Interface'Class;
    type IPrintSupportPrintTicketValidationRequestedEventArgs_Ptr is access all IPrintSupportPrintTicketValidationRequestedEventArgs;
+
+   type IPrintSupportPrintTicketValidationRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportPrintTicketValidationRequestedEventArgs2 is access all IPrintSupportPrintTicketValidationRequestedEventArgs2_Interface'Class;
+   type IPrintSupportPrintTicketValidationRequestedEventArgs2_Ptr is access all IPrintSupportPrintTicketValidationRequestedEventArgs2;
+
+   type IPrintSupportPrinterSelectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportPrinterSelectedEventArgs is access all IPrintSupportPrinterSelectedEventArgs_Interface'Class;
+   type IPrintSupportPrinterSelectedEventArgs_Ptr is access all IPrintSupportPrinterSelectedEventArgs;
 
    type IPrintSupportSessionInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintSupportSessionInfo is access all IPrintSupportSessionInfo_Interface'Class;
@@ -68,6 +138,10 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    type IPrintSupportSettingsActivatedEventArgs is access all IPrintSupportSettingsActivatedEventArgs_Interface'Class;
    type IPrintSupportSettingsActivatedEventArgs_Ptr is access all IPrintSupportSettingsActivatedEventArgs;
 
+   type IPrintSupportSettingsActivatedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintSupportSettingsActivatedEventArgs2 is access all IPrintSupportSettingsActivatedEventArgs2_Interface'Class;
+   type IPrintSupportSettingsActivatedEventArgs2_Ptr is access all IPrintSupportSettingsActivatedEventArgs2;
+
    type IPrintSupportSettingsUISession_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintSupportSettingsUISession is access all IPrintSupportSettingsUISession_Interface'Class;
    type IPrintSupportSettingsUISession_Ptr is access all IPrintSupportSettingsUISession;
@@ -75,6 +149,24 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    -----------------------------------------------------------------------------
    -- Class declarations
    -----------------------------------------------------------------------------
+
+   type PrintSupportAppInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintSupportAppInfo : access Windows.Graphics.Printing.PrintSupport.IPrintSupportAppInfo;
+      end record;
+   type PrintSupportAppInfo_Ptr is access all PrintSupportAppInfo;
+
+   type PrintSupportCommunicationErrorDetectedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintSupportCommunicationErrorDetectedEventArgs : access Windows.Graphics.Printing.PrintSupport.IPrintSupportCommunicationErrorDetectedEventArgs;
+      end record;
+   type PrintSupportCommunicationErrorDetectedEventArgs_Ptr is access all PrintSupportCommunicationErrorDetectedEventArgs;
+
+   type PrintSupportEnterpriseManagementUIEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintSupportEnterpriseManagementUIEventArgs : access Windows.Graphics.Printing.PrintSupport.IPrintSupportEnterpriseManagementUIEventArgs;
+      end record;
+   type PrintSupportEnterpriseManagementUIEventArgs_Ptr is access all PrintSupportEnterpriseManagementUIEventArgs;
 
    type PrintSupportExtensionSession is new Ada.Finalization.Limited_Controlled with
       record
@@ -88,17 +180,53 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       end record;
    type PrintSupportExtensionTriggerDetails_Ptr is access all PrintSupportExtensionTriggerDetails;
 
+   type PrintSupportIppCommunicationConfiguration is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintSupportIppCommunicationConfiguration : access Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration;
+      end record;
+   type PrintSupportIppCommunicationConfiguration_Ptr is access all PrintSupportIppCommunicationConfiguration;
+
+   type PrintSupportIppCommunicationTimeouts is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintSupportIppCommunicationTimeouts : access Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts;
+      end record;
+   type PrintSupportIppCommunicationTimeouts_Ptr is access all PrintSupportIppCommunicationTimeouts;
+
+   type PrintSupportMxdcImageQualityConfiguration is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintSupportMxdcImageQualityConfiguration : access Windows.Graphics.Printing.PrintSupport.IPrintSupportMxdcImageQualityConfiguration;
+      end record;
+   type PrintSupportMxdcImageQualityConfiguration_Ptr is access all PrintSupportMxdcImageQualityConfiguration;
+
    type PrintSupportPrintDeviceCapabilitiesChangedEventArgs is new Ada.Finalization.Limited_Controlled with
       record
          m_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs : access Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesChangedEventArgs;
       end record;
    type PrintSupportPrintDeviceCapabilitiesChangedEventArgs_Ptr is access all PrintSupportPrintDeviceCapabilitiesChangedEventArgs;
 
+   type PrintSupportPrintDeviceCapabilitiesUpdatePolicy is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintSupportPrintDeviceCapabilitiesUpdatePolicy : access Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy;
+      end record;
+   type PrintSupportPrintDeviceCapabilitiesUpdatePolicy_Ptr is access all PrintSupportPrintDeviceCapabilitiesUpdatePolicy;
+
+   type PrintSupportPrintTicketElement is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintSupportPrintTicketElement : access Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintTicketElement;
+      end record;
+   type PrintSupportPrintTicketElement_Ptr is access all PrintSupportPrintTicketElement;
+
    type PrintSupportPrintTicketValidationRequestedEventArgs is new Ada.Finalization.Limited_Controlled with
       record
          m_IPrintSupportPrintTicketValidationRequestedEventArgs : access Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintTicketValidationRequestedEventArgs;
       end record;
    type PrintSupportPrintTicketValidationRequestedEventArgs_Ptr is access all PrintSupportPrintTicketValidationRequestedEventArgs;
+
+   type PrintSupportPrinterSelectedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintSupportPrinterSelectedEventArgs : access Windows.Graphics.Printing.PrintSupport.IPrintSupportPrinterSelectedEventArgs;
+      end record;
+   type PrintSupportPrinterSelectedEventArgs_Ptr is access all PrintSupportPrinterSelectedEventArgs;
 
    type PrintSupportSessionInfo is new Ada.Finalization.Limited_Controlled with
       record
@@ -122,6 +250,56 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    -- Enum declarations
    -----------------------------------------------------------------------------
 
+   type IppCommunicationErrorKind is (
+      Other_e,
+      Timeout_e,
+      ConnectionError_e,
+      AccessDenied_e
+   );
+   for IppCommunicationErrorKind use (
+      Other_e => 0,
+      Timeout_e => 1,
+      ConnectionError_e => 2,
+      AccessDenied_e => 3
+   );
+   type IppCommunicationErrorKind_Ptr is access all IppCommunicationErrorKind;
+
+   type IppPrinterCommunicationKind is (
+      Network_e,
+      Usb_e,
+      PrinterConnection_e,
+      UniversalPrint_e,
+      VirtualPrinter_e
+   );
+   for IppPrinterCommunicationKind use (
+      Network_e => 0,
+      Usb_e => 1,
+      PrinterConnection_e => 2,
+      UniversalPrint_e => 3,
+      VirtualPrinter_e => 4
+   );
+   type IppPrinterCommunicationKind_Ptr is access all IppPrinterCommunicationKind;
+
+   type PrintSupportAppContracts is (
+      None_e,
+      JobBackgroundSession_e,
+      SettingsUI_e,
+      Extension_e,
+      JobUI_e,
+      VirtualPrinterBackgroundSession_e,
+      EnterpriseManagementUI_e
+   );
+   for PrintSupportAppContracts use (
+      None_e => 0,
+      JobBackgroundSession_e => 1,
+      SettingsUI_e => 2,
+      Extension_e => 4,
+      JobUI_e => 8,
+      VirtualPrinterBackgroundSession_e => 16,
+      EnterpriseManagementUI_e => 32
+   );
+   type PrintSupportAppContracts_Ptr is access all PrintSupportAppContracts;
+
    type SettingsLaunchKind is (
       JobPrintTicket_e,
       UserDefaultPrintTicket_e
@@ -144,9 +322,109 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    );
    type WorkflowPrintTicketValidationStatus_Ptr is access all WorkflowPrintTicketValidationStatus;
 
+   type XpsImageQuality is (
+      JpegHighCompression_e,
+      JpegMediumCompression_e,
+      JpegLowCompression_e,
+      Png_e
+   );
+   for XpsImageQuality use (
+      JpegHighCompression_e => 0,
+      JpegMediumCompression_e => 1,
+      JpegLowCompression_e => 2,
+      Png_e => 3
+   );
+   type XpsImageQuality_Ptr is access all XpsImageQuality;
+
    -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportAppInfo is interface and WinRt.IInspectable;
+
+      function get_AppInfo
+      (
+         this : access IPrintSupportAppInfo_Interface;
+         RetVal : access Windows.ApplicationModel.IAppInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SupportedContracts
+      (
+         this : access IPrintSupportAppInfo_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.PrintSupportAppContracts
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportAppInfo : aliased WinRt.IID := (2436684256, 52036, 23268, (185, 132, 246, 232, 14, 135, 35, 32 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportAppInfoStatics is interface and WinRt.IInspectable;
+
+      function GetPrintJobShowsUI
+      (
+         this : access IPrintSupportAppInfoStatics_Interface;
+         printerName : WinRt.HString;
+         printTicket : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function FromPrinterName
+      (
+         this : access IPrintSupportAppInfoStatics_Interface;
+         printerName : WinRt.HString;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportAppInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportAppInfoStatics : aliased WinRt.IID := (843490333, 10071, 21581, (170, 250, 179, 132, 97, 137, 98, 112 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportCommunicationErrorDetectedEventArgs is interface and WinRt.IInspectable;
+
+      function get_ErrorKind
+      (
+         this : access IPrintSupportCommunicationErrorDetectedEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.IppCommunicationErrorKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IPrintSupportCommunicationErrorDetectedEventArgs_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CommunicationConfiguration
+      (
+         this : access IPrintSupportCommunicationErrorDetectedEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetDeferral
+      (
+         this : access IPrintSupportCommunicationErrorDetectedEventArgs_Interface;
+         RetVal : access Windows.Foundation.IDeferral
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportCommunicationErrorDetectedEventArgs : aliased WinRt.IID := (2626688286, 44315, 20609, (164, 145, 74, 45, 148, 36, 79, 45 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportEnterpriseManagementUIEventArgs is interface and WinRt.IInspectable;
+
+      function get_Printer
+      (
+         this : access IPrintSupportEnterpriseManagementUIEventArgs_Interface;
+         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportEnterpriseManagementUIEventArgs : aliased WinRt.IID := (1797007440, 19447, 22676, (137, 250, 232, 157, 158, 164, 235, 46 ));
 
    -----------------------------------------------------------------------------
    -- type IPrintSupportExtensionSession is interface and WinRt.IInspectable;
@@ -197,6 +475,46 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       IID_IPrintSupportExtensionSession : aliased WinRt.IID := (4003749658, 62662, 21683, (160, 184, 165, 89, 131, 154, 164, 195 ));
 
    -----------------------------------------------------------------------------
+   -- type IPrintSupportExtensionSession2 is interface and WinRt.IInspectable;
+
+      function add_PrinterSelected
+      (
+         this : access IPrintSupportExtensionSession2_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_PrinterSelected
+      (
+         this : access IPrintSupportExtensionSession2_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportExtensionSession2 : aliased WinRt.IID := (284855313, 28136, 22373, (143, 207, 231, 22, 224, 242, 126, 209 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportExtensionSession3 is interface and WinRt.IInspectable;
+
+      function add_CommunicationErrorDetected
+      (
+         this : access IPrintSupportExtensionSession3_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_CommunicationErrorDetected
+      (
+         this : access IPrintSupportExtensionSession3_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportExtensionSession3 : aliased WinRt.IID := (219903325, 4723, 24084, (129, 211, 182, 187, 88, 43, 158, 216 ));
+
+   -----------------------------------------------------------------------------
    -- type IPrintSupportExtensionTriggerDetails is interface and WinRt.IInspectable;
 
       function get_Session
@@ -207,6 +525,189 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       return WinRt.Hresult is abstract;
 
       IID_IPrintSupportExtensionTriggerDetails : aliased WinRt.IID := (2919773969, 39689, 21969, (160, 174, 42, 20, 197, 248, 61, 106 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportIppCommunicationConfiguration is interface and WinRt.IInspectable;
+
+      function get_CommunicationKind
+      (
+         this : access IPrintSupportIppCommunicationConfiguration_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.IppPrinterCommunicationKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CanModifyTimeouts
+      (
+         this : access IPrintSupportIppCommunicationConfiguration_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IppAttributeTimeouts
+      (
+         this : access IPrintSupportIppCommunicationConfiguration_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IppJobTimeouts
+      (
+         this : access IPrintSupportIppCommunicationConfiguration_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportIppCommunicationConfiguration : aliased WinRt.IID := (3687017995, 11664, 21433, (144, 210, 147, 250, 243, 13, 175, 221 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportIppCommunicationTimeouts is interface and WinRt.IInspectable;
+
+      function get_ConnectTimeout
+      (
+         this : access IPrintSupportIppCommunicationTimeouts_Interface;
+         RetVal : access Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ConnectTimeout
+      (
+         this : access IPrintSupportIppCommunicationTimeouts_Interface;
+         value : Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SendTimeout
+      (
+         this : access IPrintSupportIppCommunicationTimeouts_Interface;
+         RetVal : access Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SendTimeout
+      (
+         this : access IPrintSupportIppCommunicationTimeouts_Interface;
+         value : Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ReceiveTimeout
+      (
+         this : access IPrintSupportIppCommunicationTimeouts_Interface;
+         RetVal : access Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_ReceiveTimeout
+      (
+         this : access IPrintSupportIppCommunicationTimeouts_Interface;
+         value : Windows.Foundation.TimeSpan
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportIppCommunicationTimeouts : aliased WinRt.IID := (2746408561, 22092, 22534, (161, 169, 198, 4, 60, 165, 211, 115 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportMxdcImageQualityConfiguration is interface and WinRt.IInspectable;
+
+      function get_NormalOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_NormalOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DraftOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_DraftOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_HighOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_HighOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PhotographicOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PhotographicOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TextOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TextOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AutomaticOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AutomaticOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_FaxOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_FaxOutputQuality
+      (
+         this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
+         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportMxdcImageQualityConfiguration : aliased WinRt.IID := (235735942, 53762, 22691, (161, 237, 46, 249, 219, 192, 242, 145 ));
 
    -----------------------------------------------------------------------------
    -- type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs is interface and WinRt.IInspectable;
@@ -235,6 +736,129 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       IID_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs : aliased WinRt.IID := (362191856, 36904, 22306, (138, 55, 125, 124, 52, 180, 29, 214 ));
 
    -----------------------------------------------------------------------------
+   -- type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2 is interface and WinRt.IInspectable;
+
+      function SetSupportedPdlPassthroughContentTypes
+      (
+         this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2_Interface;
+         supportedPdlContentTypes : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ResourceLanguage
+      (
+         this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetCurrentPrintDeviceResources
+      (
+         this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2_Interface;
+         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+      )
+      return WinRt.Hresult is abstract;
+
+      function UpdatePrintDeviceResources
+      (
+         this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2_Interface;
+         updatedPdr : Windows.Data.Xml.Dom.IXmlDocument
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetPrintDeviceCapabilitiesUpdatePolicy
+      (
+         this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2_Interface;
+         updatePolicy : Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2 : aliased WinRt.IID := (1184758247, 64775, 24299, (160, 125, 159, 204, 103, 240, 137, 186 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs3 is interface and WinRt.IInspectable;
+
+      function get_CommunicationConfiguration
+      (
+         this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs3_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs3 : aliased WinRt.IID := (3572085756, 32916, 23734, (163, 67, 206, 122, 151, 24, 123, 69 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportPrintDeviceCapabilitiesChangedEventArgs4 is interface and WinRt.IInspectable;
+
+      function get_MxdcImageQualityConfiguration
+      (
+         this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs4_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportMxdcImageQualityConfiguration
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs4 : aliased WinRt.IID := (829639381, 39931, 23547, (189, 239, 132, 118, 37, 142, 51, 144 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportPrintDeviceCapabilitiesUpdatePolicy is interface and WinRt.IInspectable;
+
+      IID_IPrintSupportPrintDeviceCapabilitiesUpdatePolicy : aliased WinRt.IID := (1600110629, 35893, 21801, (128, 56, 140, 220, 54, 52, 187, 205 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics is interface and WinRt.IInspectable;
+
+      function CreatePeriodicRefresh
+      (
+         this : access IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics_Interface;
+         updatePeriod : Windows.Foundation.TimeSpan;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreatePrintJobRefresh
+      (
+         this : access IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics_Interface;
+         numberOfJobs : WinRt.UInt32;
+         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics : aliased WinRt.IID := (1033771632, 31801, 21791, (170, 31, 248, 202, 53, 179, 17, 158 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportPrintTicketElement is interface and WinRt.IInspectable;
+
+      function get_LocalName
+      (
+         this : access IPrintSupportPrintTicketElement_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_LocalName
+      (
+         this : access IPrintSupportPrintTicketElement_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_NamespaceUri
+      (
+         this : access IPrintSupportPrintTicketElement_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_NamespaceUri
+      (
+         this : access IPrintSupportPrintTicketElement_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportPrintTicketElement : aliased WinRt.IID := (1261061257, 29453, 23527, (128, 230, 131, 50, 148, 26, 191, 19 ));
+
+   -----------------------------------------------------------------------------
    -- type IPrintSupportPrintTicketValidationRequestedEventArgs is interface and WinRt.IInspectable;
 
       function get_PrintTicket
@@ -259,6 +883,79 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       return WinRt.Hresult is abstract;
 
       IID_IPrintSupportPrintTicketValidationRequestedEventArgs : aliased WinRt.IID := (864964201, 56149, 21959, (131, 56, 239, 100, 104, 10, 143, 144 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportPrintTicketValidationRequestedEventArgs2 is interface and WinRt.IInspectable;
+
+      function SetPrintJobShowsUI
+      (
+         this : access IPrintSupportPrintTicketValidationRequestedEventArgs2_Interface;
+         showsUI : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportPrintTicketValidationRequestedEventArgs2 : aliased WinRt.IID := (963940469, 53293, 24529, (156, 75, 70, 187, 141, 183, 49, 107 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportPrinterSelectedEventArgs is interface and WinRt.IInspectable;
+
+      function get_SourceAppInfo
+      (
+         this : access IPrintSupportPrinterSelectedEventArgs_Interface;
+         RetVal : access Windows.ApplicationModel.IAppInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PrintTicket
+      (
+         this : access IPrintSupportPrinterSelectedEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PrintTicket
+      (
+         this : access IPrintSupportPrinterSelectedEventArgs_Interface;
+         value : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetAdditionalFeatures
+      (
+         this : access IPrintSupportPrinterSelectedEventArgs_Interface;
+         features : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetAdditionalParameters
+      (
+         this : access IPrintSupportPrinterSelectedEventArgs_Interface;
+         parameters : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AllowedAdditionalFeaturesAndParametersCount
+      (
+         this : access IPrintSupportPrinterSelectedEventArgs_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetAdaptiveCard
+      (
+         this : access IPrintSupportPrinterSelectedEventArgs_Interface;
+         adaptiveCard : Windows.UI.Shell.IAdaptiveCard
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetDeferral
+      (
+         this : access IPrintSupportPrinterSelectedEventArgs_Interface;
+         RetVal : access Windows.Foundation.IDeferral
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportPrinterSelectedEventArgs : aliased WinRt.IID := (2065479641, 43172, 23561, (173, 178, 102, 22, 95, 129, 121, 119 ));
 
    -----------------------------------------------------------------------------
    -- type IPrintSupportSessionInfo is interface and WinRt.IInspectable;
@@ -297,6 +994,18 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       return WinRt.Hresult is abstract;
 
       IID_IPrintSupportSettingsActivatedEventArgs : aliased WinRt.IID := (505108062, 40979, 21994, (155, 140, 238, 163, 157, 159, 182, 193 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintSupportSettingsActivatedEventArgs2 is interface and WinRt.IInspectable;
+
+      function get_OwnerWindowId
+      (
+         this : access IPrintSupportSettingsActivatedEventArgs2_Interface;
+         RetVal : access Windows.UI.WindowId
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintSupportSettingsActivatedEventArgs2 : aliased WinRt.IID := (2883870574, 56477, 21507, (129, 7, 200, 100, 217, 39, 99, 103 ));
 
    -----------------------------------------------------------------------------
    -- type IPrintSupportSettingsUISession is interface and WinRt.IInspectable;
@@ -341,6 +1050,91 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    -----------------------------------------------------------------------------
    -- Class method declarations
    -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintSupportAppInfo
+
+   overriding procedure Initialize (this : in out PrintSupportAppInfo);
+   overriding procedure Finalize (this : in out PrintSupportAppInfo);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for PrintSupportAppInfo
+
+   function GetPrintJobShowsUI
+   (
+      printerName : WinRt.WString;
+      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+   )
+   return WinRt.GenericObject;
+
+   function FromPrinterName
+   (
+      printerName : WinRt.WString
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportAppInfo;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintSupportAppInfo
+
+   function get_AppInfo
+   (
+      this : in out PrintSupportAppInfo
+   )
+   return WinRt.Windows.ApplicationModel.AppInfo'Class;
+
+   function get_SupportedContracts
+   (
+      this : in out PrintSupportAppInfo
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportAppContracts;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintSupportCommunicationErrorDetectedEventArgs
+
+   overriding procedure Initialize (this : in out PrintSupportCommunicationErrorDetectedEventArgs);
+   overriding procedure Finalize (this : in out PrintSupportCommunicationErrorDetectedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintSupportCommunicationErrorDetectedEventArgs
+
+   function get_ErrorKind
+   (
+      this : in out PrintSupportCommunicationErrorDetectedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.IppCommunicationErrorKind;
+
+   function get_ExtendedError
+   (
+      this : in out PrintSupportCommunicationErrorDetectedEventArgs
+   )
+   return WinRt.Windows.Foundation.HResult;
+
+   function get_CommunicationConfiguration
+   (
+      this : in out PrintSupportCommunicationErrorDetectedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportIppCommunicationConfiguration'Class;
+
+   function GetDeferral
+   (
+      this : in out PrintSupportCommunicationErrorDetectedEventArgs
+   )
+   return WinRt.Windows.Foundation.Deferral'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintSupportEnterpriseManagementUIEventArgs
+
+   overriding procedure Initialize (this : in out PrintSupportEnterpriseManagementUIEventArgs);
+   overriding procedure Finalize (this : in out PrintSupportEnterpriseManagementUIEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintSupportEnterpriseManagementUIEventArgs
+
+   function get_Printer
+   (
+      this : in out PrintSupportEnterpriseManagementUIEventArgs
+   )
+   return WinRt.Windows.Devices.Printers.IppPrintDevice'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintSupportExtensionSession
@@ -388,6 +1182,32 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       this : in out PrintSupportExtensionSession
    );
 
+   function add_PrinterSelected
+   (
+      this : in out PrintSupportExtensionSession;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_PrinterSelected
+   (
+      this : in out PrintSupportExtensionSession;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_CommunicationErrorDetected
+   (
+      this : in out PrintSupportExtensionSession;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_CommunicationErrorDetected
+   (
+      this : in out PrintSupportExtensionSession;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintSupportExtensionTriggerDetails
 
@@ -402,6 +1222,177 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       this : in out PrintSupportExtensionTriggerDetails
    )
    return WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportExtensionSession'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintSupportIppCommunicationConfiguration
+
+   overriding procedure Initialize (this : in out PrintSupportIppCommunicationConfiguration);
+   overriding procedure Finalize (this : in out PrintSupportIppCommunicationConfiguration);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintSupportIppCommunicationConfiguration
+
+   function get_CommunicationKind
+   (
+      this : in out PrintSupportIppCommunicationConfiguration
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.IppPrinterCommunicationKind;
+
+   function get_CanModifyTimeouts
+   (
+      this : in out PrintSupportIppCommunicationConfiguration
+   )
+   return WinRt.Boolean;
+
+   function get_IppAttributeTimeouts
+   (
+      this : in out PrintSupportIppCommunicationConfiguration
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportIppCommunicationTimeouts'Class;
+
+   function get_IppJobTimeouts
+   (
+      this : in out PrintSupportIppCommunicationConfiguration
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportIppCommunicationTimeouts'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintSupportIppCommunicationTimeouts
+
+   overriding procedure Initialize (this : in out PrintSupportIppCommunicationTimeouts);
+   overriding procedure Finalize (this : in out PrintSupportIppCommunicationTimeouts);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintSupportIppCommunicationTimeouts
+
+   function get_ConnectTimeout
+   (
+      this : in out PrintSupportIppCommunicationTimeouts
+   )
+   return WinRt.Windows.Foundation.TimeSpan;
+
+   procedure put_ConnectTimeout
+   (
+      this : in out PrintSupportIppCommunicationTimeouts;
+      value : Windows.Foundation.TimeSpan
+   );
+
+   function get_SendTimeout
+   (
+      this : in out PrintSupportIppCommunicationTimeouts
+   )
+   return WinRt.Windows.Foundation.TimeSpan;
+
+   procedure put_SendTimeout
+   (
+      this : in out PrintSupportIppCommunicationTimeouts;
+      value : Windows.Foundation.TimeSpan
+   );
+
+   function get_ReceiveTimeout
+   (
+      this : in out PrintSupportIppCommunicationTimeouts
+   )
+   return WinRt.Windows.Foundation.TimeSpan;
+
+   procedure put_ReceiveTimeout
+   (
+      this : in out PrintSupportIppCommunicationTimeouts;
+      value : Windows.Foundation.TimeSpan
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintSupportMxdcImageQualityConfiguration
+
+   overriding procedure Initialize (this : in out PrintSupportMxdcImageQualityConfiguration);
+   overriding procedure Finalize (this : in out PrintSupportMxdcImageQualityConfiguration);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintSupportMxdcImageQualityConfiguration
+
+   function get_NormalOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+
+   procedure put_NormalOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration;
+      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+   );
+
+   function get_DraftOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+
+   procedure put_DraftOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration;
+      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+   );
+
+   function get_HighOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+
+   procedure put_HighOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration;
+      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+   );
+
+   function get_PhotographicOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+
+   procedure put_PhotographicOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration;
+      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+   );
+
+   function get_TextOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+
+   procedure put_TextOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration;
+      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+   );
+
+   function get_AutomaticOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+
+   procedure put_AutomaticOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration;
+      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+   );
+
+   function get_FaxOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+
+   procedure put_FaxOutputQuality
+   (
+      this : in out PrintSupportMxdcImageQualityConfiguration;
+      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintSupportPrintDeviceCapabilitiesChangedEventArgs
@@ -430,6 +1421,110 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    )
    return WinRt.Windows.Foundation.Deferral'Class;
 
+   procedure SetSupportedPdlPassthroughContentTypes
+   (
+      this : in out PrintSupportPrintDeviceCapabilitiesChangedEventArgs;
+      supportedPdlContentTypes : GenericObject
+   );
+
+   function get_ResourceLanguage
+   (
+      this : in out PrintSupportPrintDeviceCapabilitiesChangedEventArgs
+   )
+   return WinRt.WString;
+
+   function GetCurrentPrintDeviceResources
+   (
+      this : in out PrintSupportPrintDeviceCapabilitiesChangedEventArgs
+   )
+   return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
+
+   procedure UpdatePrintDeviceResources
+   (
+      this : in out PrintSupportPrintDeviceCapabilitiesChangedEventArgs;
+      updatedPdr : Windows.Data.Xml.Dom.XmlDocument'Class
+   );
+
+   procedure SetPrintDeviceCapabilitiesUpdatePolicy
+   (
+      this : in out PrintSupportPrintDeviceCapabilitiesChangedEventArgs;
+      updatePolicy : Windows.Graphics.Printing.PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy'Class
+   );
+
+   function get_CommunicationConfiguration
+   (
+      this : in out PrintSupportPrintDeviceCapabilitiesChangedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportIppCommunicationConfiguration'Class;
+
+   function get_MxdcImageQualityConfiguration
+   (
+      this : in out PrintSupportPrintDeviceCapabilitiesChangedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportMxdcImageQualityConfiguration'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintSupportPrintDeviceCapabilitiesUpdatePolicy
+
+   overriding procedure Initialize (this : in out PrintSupportPrintDeviceCapabilitiesUpdatePolicy);
+   overriding procedure Finalize (this : in out PrintSupportPrintDeviceCapabilitiesUpdatePolicy);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for PrintSupportPrintDeviceCapabilitiesUpdatePolicy
+
+   function CreatePeriodicRefresh
+   (
+      updatePeriod : Windows.Foundation.TimeSpan
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy;
+
+   function CreatePrintJobRefresh
+   (
+      numberOfJobs : WinRt.UInt32
+   )
+   return WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintSupportPrintDeviceCapabilitiesUpdatePolicy
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintSupportPrintTicketElement
+
+   overriding procedure Initialize (this : in out PrintSupportPrintTicketElement);
+   overriding procedure Finalize (this : in out PrintSupportPrintTicketElement);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for PrintSupportPrintTicketElement
+
+   function Constructor return PrintSupportPrintTicketElement;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintSupportPrintTicketElement
+
+   function get_LocalName
+   (
+      this : in out PrintSupportPrintTicketElement
+   )
+   return WinRt.WString;
+
+   procedure put_LocalName
+   (
+      this : in out PrintSupportPrintTicketElement;
+      value : WinRt.WString
+   );
+
+   function get_NamespaceUri
+   (
+      this : in out PrintSupportPrintTicketElement
+   )
+   return WinRt.WString;
+
+   procedure put_NamespaceUri
+   (
+      this : in out PrintSupportPrintTicketElement;
+      value : WinRt.WString
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintSupportPrintTicketValidationRequestedEventArgs
 
@@ -454,6 +1549,69 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    function GetDeferral
    (
       this : in out PrintSupportPrintTicketValidationRequestedEventArgs
+   )
+   return WinRt.Windows.Foundation.Deferral'Class;
+
+   procedure SetPrintJobShowsUI
+   (
+      this : in out PrintSupportPrintTicketValidationRequestedEventArgs;
+      showsUI : WinRt.Boolean
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintSupportPrinterSelectedEventArgs
+
+   overriding procedure Initialize (this : in out PrintSupportPrinterSelectedEventArgs);
+   overriding procedure Finalize (this : in out PrintSupportPrinterSelectedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintSupportPrinterSelectedEventArgs
+
+   function get_SourceAppInfo
+   (
+      this : in out PrintSupportPrinterSelectedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.AppInfo'Class;
+
+   function get_PrintTicket
+   (
+      this : in out PrintSupportPrinterSelectedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+
+   procedure put_PrintTicket
+   (
+      this : in out PrintSupportPrinterSelectedEventArgs;
+      value : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+   );
+
+   procedure SetAdditionalFeatures
+   (
+      this : in out PrintSupportPrinterSelectedEventArgs;
+      features : GenericObject
+   );
+
+   procedure SetAdditionalParameters
+   (
+      this : in out PrintSupportPrinterSelectedEventArgs;
+      parameters : GenericObject
+   );
+
+   function get_AllowedAdditionalFeaturesAndParametersCount
+   (
+      this : in out PrintSupportPrinterSelectedEventArgs
+   )
+   return WinRt.UInt32;
+
+   procedure SetAdaptiveCard
+   (
+      this : in out PrintSupportPrinterSelectedEventArgs;
+      adaptiveCard : Windows.UI.Shell.IAdaptiveCard
+   );
+
+   function GetDeferral
+   (
+      this : in out PrintSupportPrinterSelectedEventArgs
    )
    return WinRt.Windows.Foundation.Deferral'Class;
 
@@ -498,6 +1656,12 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       this : in out PrintSupportSettingsActivatedEventArgs
    )
    return WinRt.Windows.Foundation.Deferral'Class;
+
+   function get_OwnerWindowId
+   (
+      this : in out PrintSupportSettingsActivatedEventArgs
+   )
+   return WinRt.Windows.UI.WindowId;
 
    function get_Kind
    (

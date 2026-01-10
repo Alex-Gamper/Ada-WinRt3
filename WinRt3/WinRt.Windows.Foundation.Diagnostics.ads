@@ -40,6 +40,7 @@ package WinRt.Windows.Foundation.Diagnostics is
 
    type IAsyncCausalityTracerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAsyncCausalityTracerStatics is access all IAsyncCausalityTracerStatics_Interface'Class;
+   type IAsyncCausalityTracerStatics_Ptr is access all IAsyncCausalityTracerStatics;
 
    type IErrorDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IErrorDetails is access all IErrorDetails_Interface'Class;
@@ -47,6 +48,7 @@ package WinRt.Windows.Foundation.Diagnostics is
 
    type IErrorDetailsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IErrorDetailsStatics is access all IErrorDetailsStatics_Interface'Class;
+   type IErrorDetailsStatics_Ptr is access all IErrorDetailsStatics;
 
    type IErrorReportingSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IErrorReportingSettings is access all IErrorReportingSettings_Interface'Class;
@@ -58,6 +60,7 @@ package WinRt.Windows.Foundation.Diagnostics is
 
    type IFileLoggingSessionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFileLoggingSessionFactory is access all IFileLoggingSessionFactory_Interface'Class;
+   type IFileLoggingSessionFactory_Ptr is access all IFileLoggingSessionFactory;
 
    type ILogFileGeneratedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ILogFileGeneratedEventArgs is access all ILogFileGeneratedEventArgs_Interface'Class;
@@ -69,9 +72,11 @@ package WinRt.Windows.Foundation.Diagnostics is
 
    type ILoggingActivity2_Interface is interface and WinRt.IInspectable_Interface;
    type ILoggingActivity2 is access all ILoggingActivity2_Interface'Class;
+   type ILoggingActivity2_Ptr is access all ILoggingActivity2;
 
    type ILoggingActivityFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILoggingActivityFactory is access all ILoggingActivityFactory_Interface'Class;
+   type ILoggingActivityFactory_Ptr is access all ILoggingActivityFactory;
 
    type ILoggingChannel_Interface is interface and WinRt.IInspectable_Interface;
    type ILoggingChannel is access all ILoggingChannel_Interface'Class;
@@ -79,12 +84,15 @@ package WinRt.Windows.Foundation.Diagnostics is
 
    type ILoggingChannel2_Interface is interface and WinRt.IInspectable_Interface;
    type ILoggingChannel2 is access all ILoggingChannel2_Interface'Class;
+   type ILoggingChannel2_Ptr is access all ILoggingChannel2;
 
    type ILoggingChannelFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILoggingChannelFactory is access all ILoggingChannelFactory_Interface'Class;
+   type ILoggingChannelFactory_Ptr is access all ILoggingChannelFactory;
 
    type ILoggingChannelFactory2_Interface is interface and WinRt.IInspectable_Interface;
    type ILoggingChannelFactory2 is access all ILoggingChannelFactory2_Interface'Class;
+   type ILoggingChannelFactory2_Ptr is access all ILoggingChannelFactory2;
 
    type ILoggingChannelOptions_Interface is interface and WinRt.IInspectable_Interface;
    type ILoggingChannelOptions is access all ILoggingChannelOptions_Interface'Class;
@@ -92,6 +100,7 @@ package WinRt.Windows.Foundation.Diagnostics is
 
    type ILoggingChannelOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILoggingChannelOptionsFactory is access all ILoggingChannelOptionsFactory_Interface'Class;
+   type ILoggingChannelOptionsFactory_Ptr is access all ILoggingChannelOptionsFactory;
 
    type ILoggingFields_Interface is interface and WinRt.IInspectable_Interface;
    type ILoggingFields is access all ILoggingFields_Interface'Class;
@@ -103,6 +112,7 @@ package WinRt.Windows.Foundation.Diagnostics is
 
    type ILoggingOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILoggingOptionsFactory is access all ILoggingOptionsFactory_Interface'Class;
+   type ILoggingOptionsFactory_Ptr is access all ILoggingOptionsFactory;
 
    type ILoggingSession_Interface is interface and WinRt.IInspectable_Interface;
    type ILoggingSession is access all ILoggingSession_Interface'Class;
@@ -110,9 +120,11 @@ package WinRt.Windows.Foundation.Diagnostics is
 
    type ILoggingSessionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILoggingSessionFactory is access all ILoggingSessionFactory_Interface'Class;
+   type ILoggingSessionFactory_Ptr is access all ILoggingSessionFactory;
 
    type ILoggingTarget_Interface is interface and WinRt.IInspectable_Interface;
    type ILoggingTarget is access all ILoggingTarget_Interface'Class;
+   type ILoggingTarget_Ptr is access all ILoggingTarget;
 
    type ITracingStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITracingStatusChangedEventArgs is access all ITracingStatusChangedEventArgs_Interface'Class;
@@ -3640,13 +3652,13 @@ package WinRt.Windows.Foundation.Diagnostics is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for LoggingOptions
 
+   function Constructor return LoggingOptions;
+
    function Constructor
    (
       keywords : WinRt.Int64
    )
    return LoggingOptions;
-
-   function Constructor return LoggingOptions;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for LoggingOptions

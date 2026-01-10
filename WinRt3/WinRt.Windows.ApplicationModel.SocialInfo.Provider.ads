@@ -49,6 +49,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo.Provider is
 
    type ISocialInfoProviderManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISocialInfoProviderManagerStatics is access all ISocialInfoProviderManagerStatics_Interface'Class;
+   type ISocialInfoProviderManagerStatics_Ptr is access all ISocialInfoProviderManagerStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

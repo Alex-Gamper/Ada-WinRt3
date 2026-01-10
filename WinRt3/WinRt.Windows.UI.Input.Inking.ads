@@ -48,15 +48,19 @@ package WinRt.Windows.UI.Input.Inking is
 
    type IInkDrawingAttributes2_Interface is interface and WinRt.IInspectable_Interface;
    type IInkDrawingAttributes2 is access all IInkDrawingAttributes2_Interface'Class;
+   type IInkDrawingAttributes2_Ptr is access all IInkDrawingAttributes2;
 
    type IInkDrawingAttributes3_Interface is interface and WinRt.IInspectable_Interface;
    type IInkDrawingAttributes3 is access all IInkDrawingAttributes3_Interface'Class;
+   type IInkDrawingAttributes3_Ptr is access all IInkDrawingAttributes3;
 
    type IInkDrawingAttributes4_Interface is interface and WinRt.IInspectable_Interface;
    type IInkDrawingAttributes4 is access all IInkDrawingAttributes4_Interface'Class;
+   type IInkDrawingAttributes4_Ptr is access all IInkDrawingAttributes4;
 
    type IInkDrawingAttributes5_Interface is interface and WinRt.IInspectable_Interface;
    type IInkDrawingAttributes5 is access all IInkDrawingAttributes5_Interface'Class;
+   type IInkDrawingAttributes5_Ptr is access all IInkDrawingAttributes5;
 
    type IInkDrawingAttributesPencilProperties_Interface is interface and WinRt.IInspectable_Interface;
    type IInkDrawingAttributesPencilProperties is access all IInkDrawingAttributesPencilProperties_Interface'Class;
@@ -64,10 +68,15 @@ package WinRt.Windows.UI.Input.Inking is
 
    type IInkDrawingAttributesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInkDrawingAttributesStatics is access all IInkDrawingAttributesStatics_Interface'Class;
+   type IInkDrawingAttributesStatics_Ptr is access all IInkDrawingAttributesStatics;
 
    type IInkInputConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type IInkInputConfiguration is access all IInkInputConfiguration_Interface'Class;
    type IInkInputConfiguration_Ptr is access all IInkInputConfiguration;
+
+   type IInkInputConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
+   type IInkInputConfiguration2 is access all IInkInputConfiguration2_Interface'Class;
+   type IInkInputConfiguration2_Ptr is access all IInkInputConfiguration2;
 
    type IInkInputProcessingConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type IInkInputProcessingConfiguration is access all IInkInputProcessingConfiguration_Interface'Class;
@@ -83,6 +92,7 @@ package WinRt.Windows.UI.Input.Inking is
 
    type IInkModelerAttributes2_Interface is interface and WinRt.IInspectable_Interface;
    type IInkModelerAttributes2 is access all IInkModelerAttributes2_Interface'Class;
+   type IInkModelerAttributes2_Ptr is access all IInkModelerAttributes2;
 
    type IInkPoint_Interface is interface and WinRt.IInspectable_Interface;
    type IInkPoint is access all IInkPoint_Interface'Class;
@@ -90,12 +100,15 @@ package WinRt.Windows.UI.Input.Inking is
 
    type IInkPoint2_Interface is interface and WinRt.IInspectable_Interface;
    type IInkPoint2 is access all IInkPoint2_Interface'Class;
+   type IInkPoint2_Ptr is access all IInkPoint2;
 
    type IInkPointFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkPointFactory is access all IInkPointFactory_Interface'Class;
+   type IInkPointFactory_Ptr is access all IInkPointFactory;
 
    type IInkPointFactory2_Interface is interface and WinRt.IInspectable_Interface;
    type IInkPointFactory2 is access all IInkPointFactory2_Interface'Class;
+   type IInkPointFactory2_Ptr is access all IInkPointFactory2;
 
    type IInkPresenter_Interface is interface and WinRt.IInspectable_Interface;
    type IInkPresenter is access all IInkPresenter_Interface'Class;
@@ -103,9 +116,11 @@ package WinRt.Windows.UI.Input.Inking is
 
    type IInkPresenter2_Interface is interface and WinRt.IInspectable_Interface;
    type IInkPresenter2 is access all IInkPresenter2_Interface'Class;
+   type IInkPresenter2_Ptr is access all IInkPresenter2;
 
    type IInkPresenter3_Interface is interface and WinRt.IInspectable_Interface;
    type IInkPresenter3 is access all IInkPresenter3_Interface'Class;
+   type IInkPresenter3_Ptr is access all IInkPresenter3;
 
    type IInkPresenterProtractor_Interface is interface and WinRt.IInspectable_Interface;
    type IInkPresenterProtractor is access all IInkPresenterProtractor_Interface'Class;
@@ -113,6 +128,7 @@ package WinRt.Windows.UI.Input.Inking is
 
    type IInkPresenterProtractorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkPresenterProtractorFactory is access all IInkPresenterProtractorFactory_Interface'Class;
+   type IInkPresenterProtractorFactory_Ptr is access all IInkPresenterProtractorFactory;
 
    type IInkPresenterRuler_Interface is interface and WinRt.IInspectable_Interface;
    type IInkPresenterRuler is access all IInkPresenterRuler_Interface'Class;
@@ -120,12 +136,15 @@ package WinRt.Windows.UI.Input.Inking is
 
    type IInkPresenterRuler2_Interface is interface and WinRt.IInspectable_Interface;
    type IInkPresenterRuler2 is access all IInkPresenterRuler2_Interface'Class;
+   type IInkPresenterRuler2_Ptr is access all IInkPresenterRuler2;
 
    type IInkPresenterRulerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkPresenterRulerFactory is access all IInkPresenterRulerFactory_Interface'Class;
+   type IInkPresenterRulerFactory_Ptr is access all IInkPresenterRulerFactory;
 
    type IInkPresenterStencil_Interface is interface and WinRt.IInspectable_Interface;
    type IInkPresenterStencil is access all IInkPresenterStencil_Interface'Class;
+   type IInkPresenterStencil_Ptr is access all IInkPresenterStencil;
 
    type IInkRecognitionResult_Interface is interface and WinRt.IInspectable_Interface;
    type IInkRecognitionResult is access all IInkRecognitionResult_Interface'Class;
@@ -145,9 +164,15 @@ package WinRt.Windows.UI.Input.Inking is
 
    type IInkStroke2_Interface is interface and WinRt.IInspectable_Interface;
    type IInkStroke2 is access all IInkStroke2_Interface'Class;
+   type IInkStroke2_Ptr is access all IInkStroke2;
 
    type IInkStroke3_Interface is interface and WinRt.IInspectable_Interface;
    type IInkStroke3 is access all IInkStroke3_Interface'Class;
+   type IInkStroke3_Ptr is access all IInkStroke3;
+
+   type IInkStroke4_Interface is interface and WinRt.IInspectable_Interface;
+   type IInkStroke4 is access all IInkStroke4_Interface'Class;
+   type IInkStroke4_Ptr is access all IInkStroke4;
 
    type IInkStrokeBuilder_Interface is interface and WinRt.IInspectable_Interface;
    type IInkStrokeBuilder is access all IInkStrokeBuilder_Interface'Class;
@@ -155,9 +180,11 @@ package WinRt.Windows.UI.Input.Inking is
 
    type IInkStrokeBuilder2_Interface is interface and WinRt.IInspectable_Interface;
    type IInkStrokeBuilder2 is access all IInkStrokeBuilder2_Interface'Class;
+   type IInkStrokeBuilder2_Ptr is access all IInkStrokeBuilder2;
 
    type IInkStrokeBuilder3_Interface is interface and WinRt.IInspectable_Interface;
    type IInkStrokeBuilder3 is access all IInkStrokeBuilder3_Interface'Class;
+   type IInkStrokeBuilder3_Ptr is access all IInkStrokeBuilder3;
 
    type IInkStrokeContainer_Interface is interface and WinRt.IInspectable_Interface;
    type IInkStrokeContainer is access all IInkStrokeContainer_Interface'Class;
@@ -165,9 +192,11 @@ package WinRt.Windows.UI.Input.Inking is
 
    type IInkStrokeContainer2_Interface is interface and WinRt.IInspectable_Interface;
    type IInkStrokeContainer2 is access all IInkStrokeContainer2_Interface'Class;
+   type IInkStrokeContainer2_Ptr is access all IInkStrokeContainer2;
 
    type IInkStrokeContainer3_Interface is interface and WinRt.IInspectable_Interface;
    type IInkStrokeContainer3 is access all IInkStrokeContainer3_Interface'Class;
+   type IInkStrokeContainer3_Ptr is access all IInkStrokeContainer3;
 
    type IInkStrokeInput_Interface is interface and WinRt.IInspectable_Interface;
    type IInkStrokeInput is access all IInkStrokeInput_Interface'Class;
@@ -197,8 +226,13 @@ package WinRt.Windows.UI.Input.Inking is
    type IPenAndInkSettings is access all IPenAndInkSettings_Interface'Class;
    type IPenAndInkSettings_Ptr is access all IPenAndInkSettings;
 
+   type IPenAndInkSettings2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPenAndInkSettings2 is access all IPenAndInkSettings2_Interface'Class;
+   type IPenAndInkSettings2_Ptr is access all IPenAndInkSettings2;
+
    type IPenAndInkSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPenAndInkSettingsStatics is access all IPenAndInkSettingsStatics_Interface'Class;
+   type IPenAndInkSettingsStatics_Ptr is access all IPenAndInkSettingsStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -739,6 +773,25 @@ package WinRt.Windows.UI.Input.Inking is
       return WinRt.Hresult is abstract;
 
       IID_IInkInputConfiguration : aliased WinRt.IID := (2477166020, 2939, 18903, (179, 79, 153, 1, 229, 36, 220, 242 ));
+
+   -----------------------------------------------------------------------------
+   -- type IInkInputConfiguration2 is interface and WinRt.IInspectable;
+
+      function get_IsPenHapticFeedbackEnabled
+      (
+         this : access IInkInputConfiguration2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_IsPenHapticFeedbackEnabled
+      (
+         this : access IInkInputConfiguration2_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IInkInputConfiguration2 : aliased WinRt.IID := (1791108910, 33204, 23748, (163, 109, 208, 87, 195, 135, 223, 218 ));
 
    -----------------------------------------------------------------------------
    -- type IInkInputProcessingConfiguration is interface and WinRt.IInspectable;
@@ -1572,6 +1625,18 @@ package WinRt.Windows.UI.Input.Inking is
       IID_IInkStroke3 : aliased WinRt.IID := (1249932148, 38041, 16669, (161, 196, 104, 133, 93, 3, 214, 95 ));
 
    -----------------------------------------------------------------------------
+   -- type IInkStroke4 is interface and WinRt.IInspectable;
+
+      function get_PointerId
+      (
+         this : access IInkStroke4_Interface;
+         RetVal : access WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IInkStroke4 : aliased WinRt.IID := (3445318373, 46825, 23441, (165, 119, 25, 33, 210, 52, 134, 144 ));
+
+   -----------------------------------------------------------------------------
    -- type IInkStrokeBuilder is interface and WinRt.IInspectable;
 
       function BeginStroke
@@ -2126,6 +2191,18 @@ package WinRt.Windows.UI.Input.Inking is
       IID_IPenAndInkSettings : aliased WinRt.IID := (3157060495, 102, 17576, (187, 122, 184, 57, 179, 222, 184, 245 ));
 
    -----------------------------------------------------------------------------
+   -- type IPenAndInkSettings2 is interface and WinRt.IInspectable;
+
+      function SetPenHandedness
+      (
+         this : access IPenAndInkSettings2_Interface;
+         value : Windows.UI.Input.Inking.PenHandedness
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPenAndInkSettings2 : aliased WinRt.IID := (845339219, 8004, 21986, (153, 41, 235, 247, 126, 84, 129, 184 ));
+
+   -----------------------------------------------------------------------------
    -- type IPenAndInkSettingsStatics is interface and WinRt.IInspectable;
 
       function GetDefault
@@ -2324,6 +2401,18 @@ package WinRt.Windows.UI.Input.Inking is
    return WinRt.Boolean;
 
    procedure put_IsEraserInputEnabled
+   (
+      this : in out InkInputConfiguration;
+      value : WinRt.Boolean
+   );
+
+   function get_IsPenHapticFeedbackEnabled
+   (
+      this : in out InkInputConfiguration
+   )
+   return WinRt.Boolean;
+
+   procedure put_IsPenHapticFeedbackEnabled
    (
       this : in out InkInputConfiguration;
       value : WinRt.Boolean
@@ -2587,17 +2676,17 @@ package WinRt.Windows.UI.Input.Inking is
    function Constructor
    (
       position : Windows.Foundation.Point;
-      pressure : WinRt.Single;
-      tiltX : WinRt.Single;
-      tiltY : WinRt.Single;
-      timestamp : WinRt.UInt64
+      pressure : WinRt.Single
    )
    return InkPoint;
 
    function Constructor
    (
       position : Windows.Foundation.Point;
-      pressure : WinRt.Single
+      pressure : WinRt.Single;
+      tiltX : WinRt.Single;
+      tiltY : WinRt.Single;
+      timestamp : WinRt.UInt64
    )
    return InkPoint;
 
@@ -3222,6 +3311,12 @@ package WinRt.Windows.UI.Input.Inking is
       value : GenericObject
    );
 
+   function get_PointerId
+   (
+      this : in out InkStroke
+   )
+   return WinRt.UInt32;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for InkStrokeBuilder
 
@@ -3740,5 +3835,11 @@ package WinRt.Windows.UI.Input.Inking is
       this : in out PenAndInkSettings
    )
    return WinRt.Boolean;
+
+   procedure SetPenHandedness
+   (
+      this : in out PenAndInkSettings;
+      value : Windows.UI.Input.Inking.PenHandedness
+   );
 
 end WinRt.Windows.UI.Input.Inking;

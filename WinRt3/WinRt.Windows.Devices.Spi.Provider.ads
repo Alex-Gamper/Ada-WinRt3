@@ -43,15 +43,19 @@ package WinRt.Windows.Devices.Spi.Provider is
 
    type IProviderSpiConnectionSettingsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IProviderSpiConnectionSettingsFactory is access all IProviderSpiConnectionSettingsFactory_Interface'Class;
+   type IProviderSpiConnectionSettingsFactory_Ptr is access all IProviderSpiConnectionSettingsFactory;
 
    type ISpiControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ISpiControllerProvider is access all ISpiControllerProvider_Interface'Class;
+   type ISpiControllerProvider_Ptr is access all ISpiControllerProvider;
 
    type ISpiDeviceProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ISpiDeviceProvider is access all ISpiDeviceProvider_Interface'Class;
+   type ISpiDeviceProvider_Ptr is access all ISpiDeviceProvider;
 
    type ISpiProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ISpiProvider is access all ISpiProvider_Interface'Class;
+   type ISpiProvider_Ptr is access all ISpiProvider;
 
    -----------------------------------------------------------------------------
    -- Class declarations

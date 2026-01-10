@@ -38,9 +38,11 @@ package WinRt.Windows.Devices.Adc.Provider is
 
    type IAdcControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IAdcControllerProvider is access all IAdcControllerProvider_Interface'Class;
+   type IAdcControllerProvider_Ptr is access all IAdcControllerProvider;
 
    type IAdcProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IAdcProvider is access all IAdcProvider_Interface'Class;
+   type IAdcProvider_Ptr is access all IAdcProvider;
 
    -----------------------------------------------------------------------------
    -- Enum declarations

@@ -1063,22 +1063,6 @@ package body WinRt.Windows.Storage.Search is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for QueryOptions
 
-   function Constructor return QueryOptions is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.QueryOptions");
-      m_ComRetVal  : aliased Windows.Storage.Search.IQueryOptions;
-   begin
-      return RetVal : QueryOptions do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IQueryOptions := new Windows.Storage.Search.IQueryOptions;
-            Retval.m_IQueryOptions.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       query : Windows.Storage.Search.CommonFileQuery;
@@ -1123,6 +1107,22 @@ package body WinRt.Windows.Storage.Search is
             Retval.m_IQueryOptions := new Windows.Storage.Search.IQueryOptions;
             Retval.m_IQueryOptions.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return QueryOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.QueryOptions");
+      m_ComRetVal  : aliased Windows.Storage.Search.IQueryOptions;
+   begin
+      return RetVal : QueryOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IQueryOptions := new Windows.Storage.Search.IQueryOptions;
+            Retval.m_IQueryOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

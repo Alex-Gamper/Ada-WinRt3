@@ -45,9 +45,11 @@ package WinRt.Windows.Data.Json is
 
    type IJsonArrayStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IJsonArrayStatics is access all IJsonArrayStatics_Interface'Class;
+   type IJsonArrayStatics_Ptr is access all IJsonArrayStatics;
 
    type IJsonErrorStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IJsonErrorStatics2 is access all IJsonErrorStatics2_Interface'Class;
+   type IJsonErrorStatics2_Ptr is access all IJsonErrorStatics2;
 
    type IJsonObject_Interface is interface and WinRt.IInspectable_Interface;
    type IJsonObject is access all IJsonObject_Interface'Class;
@@ -55,9 +57,11 @@ package WinRt.Windows.Data.Json is
 
    type IJsonObjectStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IJsonObjectStatics is access all IJsonObjectStatics_Interface'Class;
+   type IJsonObjectStatics_Ptr is access all IJsonObjectStatics;
 
    type IJsonObjectWithDefaultValues_Interface is interface and WinRt.IInspectable_Interface;
    type IJsonObjectWithDefaultValues is access all IJsonObjectWithDefaultValues_Interface'Class;
+   type IJsonObjectWithDefaultValues_Ptr is access all IJsonObjectWithDefaultValues;
 
    type IJsonValue_Interface is interface and WinRt.IInspectable_Interface;
    type IJsonValue is access all IJsonValue_Interface'Class;
@@ -66,9 +70,11 @@ package WinRt.Windows.Data.Json is
 
    type IJsonValueStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IJsonValueStatics is access all IJsonValueStatics_Interface'Class;
+   type IJsonValueStatics_Ptr is access all IJsonValueStatics;
 
    type IJsonValueStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IJsonValueStatics2 is access all IJsonValueStatics2_Interface'Class;
+   type IJsonValueStatics2_Ptr is access all IJsonValueStatics2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -912,6 +918,9 @@ package WinRt.Windows.Data.Json is
    -----------------------------------------------------------------------------
    -- Static Interfaces for JsonValue
 
+   function CreateNullValue
+   return WinRt.Windows.Data.Json.JsonValue;
+
    function Parse
    (
       input : WinRt.WString
@@ -941,9 +950,6 @@ package WinRt.Windows.Data.Json is
    (
       input : WinRt.WString
    )
-   return WinRt.Windows.Data.Json.JsonValue;
-
-   function CreateNullValue
    return WinRt.Windows.Data.Json.JsonValue;
 
    -----------------------------------------------------------------------------

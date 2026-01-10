@@ -2003,6 +2003,54 @@ package body WinRt.Windows.Graphics.Printing is
    -- Static RuntimeClass
    package body StandardPrintTaskOptions is
 
+      function get_Bordering
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_Bordering (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
+      function get_CustomPageRanges
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic3_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CustomPageRanges (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
       function get_MediaSize
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -2304,54 +2352,6 @@ package body WinRt.Windows.Graphics.Printing is
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InputBin (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_CustomPageRanges
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
-         m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic3_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_CustomPageRanges (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_Bordering
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
-         m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_Bordering (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

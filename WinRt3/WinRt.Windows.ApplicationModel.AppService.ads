@@ -43,6 +43,7 @@ package WinRt.Windows.ApplicationModel.AppService is
 
    type IAppServiceCatalogStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppServiceCatalogStatics is access all IAppServiceCatalogStatics_Interface'Class;
+   type IAppServiceCatalogStatics_Ptr is access all IAppServiceCatalogStatics;
 
    type IAppServiceClosedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAppServiceClosedEventArgs is access all IAppServiceClosedEventArgs_Interface'Class;
@@ -54,9 +55,11 @@ package WinRt.Windows.ApplicationModel.AppService is
 
    type IAppServiceConnection2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppServiceConnection2 is access all IAppServiceConnection2_Interface'Class;
+   type IAppServiceConnection2_Ptr is access all IAppServiceConnection2;
 
    type IAppServiceConnectionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppServiceConnectionStatics is access all IAppServiceConnectionStatics_Interface'Class;
+   type IAppServiceConnectionStatics_Ptr is access all IAppServiceConnectionStatics;
 
    type IAppServiceDeferral_Interface is interface and WinRt.IInspectable_Interface;
    type IAppServiceDeferral is access all IAppServiceDeferral_Interface'Class;
@@ -80,12 +83,15 @@ package WinRt.Windows.ApplicationModel.AppService is
 
    type IAppServiceTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppServiceTriggerDetails2 is access all IAppServiceTriggerDetails2_Interface'Class;
+   type IAppServiceTriggerDetails2_Ptr is access all IAppServiceTriggerDetails2;
 
    type IAppServiceTriggerDetails3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppServiceTriggerDetails3 is access all IAppServiceTriggerDetails3_Interface'Class;
+   type IAppServiceTriggerDetails3_Ptr is access all IAppServiceTriggerDetails3;
 
    type IAppServiceTriggerDetails4_Interface is interface and WinRt.IInspectable_Interface;
    type IAppServiceTriggerDetails4 is access all IAppServiceTriggerDetails4_Interface'Class;
+   type IAppServiceTriggerDetails4_Ptr is access all IAppServiceTriggerDetails4;
 
    type IStatelessAppServiceResponse_Interface is interface and WinRt.IInspectable_Interface;
    type IStatelessAppServiceResponse is access all IStatelessAppServiceResponse_Interface'Class;

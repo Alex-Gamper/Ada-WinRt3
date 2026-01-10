@@ -34,11 +34,11 @@ with Ada.Unchecked_Deallocation;
 --------------------------------------------------------------------------------
 package body WinRt.Windows.Devices.Adc is
 
-   package IAsyncOperation_AdcController is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Adc.IAdcController);
-   package AsyncOperationCompletedHandler_AdcController is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.Adc.IAdcController);
-
    package IAsyncOperation_GenericObject is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.GenericObject);
    package AsyncOperationCompletedHandler_GenericObject is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.GenericObject);
+
+   package IAsyncOperation_AdcController is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Devices.Adc.IAdcController);
+   package AsyncOperationCompletedHandler_AdcController is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Devices.Adc.IAdcController);
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AdcChannel
@@ -158,76 +158,6 @@ package body WinRt.Windows.Devices.Adc is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AdcController
 
-   function GetDefaultAsync
-   return WinRt.Windows.Devices.Adc.AdcController is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Adc.AdcController");
-      m_Factory        : access WinRt.Windows.Devices.Adc.IAdcControllerStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_AdcController.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_AdcController.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.Windows.Devices.Adc.IAdcController;
-      m_IID            : aliased WinRt.IID := (1765933666, 13769, 22591, (164, 14, 194, 105, 69, 98, 201, 226 )); -- Windows.Devices.Adc.AdcController;
-      m_HandlerIID     : aliased WinRt.IID := (3136709768, 8239, 23889, (176, 94, 24, 96, 108, 70, 184, 8 ));
-      m_Handler        : AsyncOperationCompletedHandler_AdcController.Kind := new AsyncOperationCompletedHandler_AdcController.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_AdcController.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_AdcController.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AdcController.Kind_Delegate, AsyncOperationCompletedHandler_AdcController.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      return RetVal : WinRt.Windows.Devices.Adc.AdcController do
-         Hr := RoGetActivationFactory (m_hString, IID_IAdcControllerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IAdcController := new Windows.Devices.Adc.IAdcController;
-                     Retval.m_IAdcController.all := m_RetVal;
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function GetControllersAsync
    (
       provider : Windows.Devices.Adc.Provider.IAdcProvider
@@ -296,6 +226,76 @@ package body WinRt.Windows.Devices.Adc is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
+   end;
+
+   function GetDefaultAsync
+   return WinRt.Windows.Devices.Adc.AdcController is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Adc.AdcController");
+      m_Factory        : access WinRt.Windows.Devices.Adc.IAdcControllerStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_AdcController.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_AdcController.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.Adc.IAdcController;
+      m_IID            : aliased WinRt.IID := (1765933666, 13769, 22591, (164, 14, 194, 105, 69, 98, 201, 226 )); -- Windows.Devices.Adc.AdcController;
+      m_HandlerIID     : aliased WinRt.IID := (3136709768, 8239, 23889, (176, 94, 24, 96, 108, 70, 184, 8 ));
+      m_Handler        : AsyncOperationCompletedHandler_AdcController.Kind := new AsyncOperationCompletedHandler_AdcController.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_AdcController.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_AdcController.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AdcController.Kind_Delegate, AsyncOperationCompletedHandler_AdcController.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.Adc.AdcController do
+         Hr := RoGetActivationFactory (m_hString, IID_IAdcControllerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_IAdcController := new Windows.Devices.Adc.IAdcController;
+                     Retval.m_IAdcController.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
    end;
 
    -----------------------------------------------------------------------------

@@ -27,6 +27,7 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
+with WinRt.Windows.Foundation;
 limited with WinRt.Windows.UI;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Media.ClosedCaptioning is
@@ -39,6 +40,11 @@ package WinRt.Windows.Media.ClosedCaptioning is
 
    type IClosedCaptionPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IClosedCaptionPropertiesStatics is access all IClosedCaptionPropertiesStatics_Interface'Class;
+   type IClosedCaptionPropertiesStatics_Ptr is access all IClosedCaptionPropertiesStatics;
+
+   type IClosedCaptionPropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
+   type IClosedCaptionPropertiesStatics2 is access all IClosedCaptionPropertiesStatics2_Interface'Class;
+   type IClosedCaptionPropertiesStatics2_Ptr is access all IClosedCaptionPropertiesStatics2;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -232,5 +238,25 @@ package WinRt.Windows.Media.ClosedCaptioning is
       return WinRt.Hresult is abstract;
 
       IID_IClosedCaptionPropertiesStatics : aliased WinRt.IID := (279584644, 52272, 16705, (181, 3, 82, 114, 40, 158, 12, 32 ));
+
+   -----------------------------------------------------------------------------
+   -- type IClosedCaptionPropertiesStatics2 is interface and WinRt.IInspectable;
+
+      function add_PropertiesChanged
+      (
+         this : access IClosedCaptionPropertiesStatics2_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_PropertiesChanged
+      (
+         this : access IClosedCaptionPropertiesStatics2_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IClosedCaptionPropertiesStatics2 : aliased WinRt.IID := (2648860784, 14302, 16791, (136, 69, 154, 72, 220, 90, 195, 23 ));
 
 end WinRt.Windows.Media.ClosedCaptioning;

@@ -49,6 +49,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type ICustomMapTileDataSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICustomMapTileDataSourceFactory is access all ICustomMapTileDataSourceFactory_Interface'Class;
+   type ICustomMapTileDataSourceFactory_Ptr is access all ICustomMapTileDataSourceFactory;
 
    type IHttpMapTileDataSource_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpMapTileDataSource is access all IHttpMapTileDataSource_Interface'Class;
@@ -56,6 +57,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IHttpMapTileDataSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpMapTileDataSourceFactory is access all IHttpMapTileDataSourceFactory_Interface'Class;
+   type IHttpMapTileDataSourceFactory_Ptr is access all IHttpMapTileDataSourceFactory;
 
    type ILocalMapTileDataSource_Interface is interface and WinRt.IInspectable_Interface;
    type ILocalMapTileDataSource is access all ILocalMapTileDataSource_Interface'Class;
@@ -63,6 +65,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type ILocalMapTileDataSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILocalMapTileDataSourceFactory is access all ILocalMapTileDataSourceFactory_Interface'Class;
+   type ILocalMapTileDataSourceFactory_Ptr is access all ILocalMapTileDataSourceFactory;
 
    type IMapActualCameraChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMapActualCameraChangedEventArgs is access all IMapActualCameraChangedEventArgs_Interface'Class;
@@ -70,6 +73,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapActualCameraChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapActualCameraChangedEventArgs2 is access all IMapActualCameraChangedEventArgs2_Interface'Class;
+   type IMapActualCameraChangedEventArgs2_Ptr is access all IMapActualCameraChangedEventArgs2;
 
    type IMapActualCameraChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMapActualCameraChangingEventArgs is access all IMapActualCameraChangingEventArgs_Interface'Class;
@@ -77,6 +81,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapActualCameraChangingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapActualCameraChangingEventArgs2 is access all IMapActualCameraChangingEventArgs2_Interface'Class;
+   type IMapActualCameraChangingEventArgs2_Ptr is access all IMapActualCameraChangingEventArgs2;
 
    type IMapBillboard_Interface is interface and WinRt.IInspectable_Interface;
    type IMapBillboard is access all IMapBillboard_Interface'Class;
@@ -84,9 +89,11 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapBillboardFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMapBillboardFactory is access all IMapBillboardFactory_Interface'Class;
+   type IMapBillboardFactory_Ptr is access all IMapBillboardFactory;
 
    type IMapBillboardStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapBillboardStatics is access all IMapBillboardStatics_Interface'Class;
+   type IMapBillboardStatics_Ptr is access all IMapBillboardStatics;
 
    type IMapCamera_Interface is interface and WinRt.IInspectable_Interface;
    type IMapCamera is access all IMapCamera_Interface'Class;
@@ -94,6 +101,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapCameraFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMapCameraFactory is access all IMapCameraFactory_Interface'Class;
+   type IMapCameraFactory_Ptr is access all IMapCameraFactory;
 
    type IMapContextRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMapContextRequestedEventArgs is access all IMapContextRequestedEventArgs_Interface'Class;
@@ -105,24 +113,31 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControl2 is access all IMapControl2_Interface'Class;
+   type IMapControl2_Ptr is access all IMapControl2;
 
    type IMapControl3_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControl3 is access all IMapControl3_Interface'Class;
+   type IMapControl3_Ptr is access all IMapControl3;
 
    type IMapControl4_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControl4 is access all IMapControl4_Interface'Class;
+   type IMapControl4_Ptr is access all IMapControl4;
 
    type IMapControl5_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControl5 is access all IMapControl5_Interface'Class;
+   type IMapControl5_Ptr is access all IMapControl5;
 
    type IMapControl6_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControl6 is access all IMapControl6_Interface'Class;
+   type IMapControl6_Ptr is access all IMapControl6;
 
    type IMapControl7_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControl7 is access all IMapControl7_Interface'Class;
+   type IMapControl7_Ptr is access all IMapControl7;
 
    type IMapControl8_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControl8 is access all IMapControl8_Interface'Class;
+   type IMapControl8_Ptr is access all IMapControl8;
 
    type IMapControlBusinessLandmarkClickEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControlBusinessLandmarkClickEventArgs is access all IMapControlBusinessLandmarkClickEventArgs_Interface'Class;
@@ -146,33 +161,43 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapControlDataHelper2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControlDataHelper2 is access all IMapControlDataHelper2_Interface'Class;
+   type IMapControlDataHelper2_Ptr is access all IMapControlDataHelper2;
 
    type IMapControlDataHelperFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControlDataHelperFactory is access all IMapControlDataHelperFactory_Interface'Class;
+   type IMapControlDataHelperFactory_Ptr is access all IMapControlDataHelperFactory;
 
    type IMapControlDataHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControlDataHelperStatics is access all IMapControlDataHelperStatics_Interface'Class;
+   type IMapControlDataHelperStatics_Ptr is access all IMapControlDataHelperStatics;
 
    type IMapControlStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControlStatics is access all IMapControlStatics_Interface'Class;
+   type IMapControlStatics_Ptr is access all IMapControlStatics;
 
    type IMapControlStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControlStatics2 is access all IMapControlStatics2_Interface'Class;
+   type IMapControlStatics2_Ptr is access all IMapControlStatics2;
 
    type IMapControlStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControlStatics4 is access all IMapControlStatics4_Interface'Class;
+   type IMapControlStatics4_Ptr is access all IMapControlStatics4;
 
    type IMapControlStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControlStatics5 is access all IMapControlStatics5_Interface'Class;
+   type IMapControlStatics5_Ptr is access all IMapControlStatics5;
 
    type IMapControlStatics6_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControlStatics6 is access all IMapControlStatics6_Interface'Class;
+   type IMapControlStatics6_Ptr is access all IMapControlStatics6;
 
    type IMapControlStatics7_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControlStatics7 is access all IMapControlStatics7_Interface'Class;
+   type IMapControlStatics7_Ptr is access all IMapControlStatics7;
 
    type IMapControlStatics8_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControlStatics8 is access all IMapControlStatics8_Interface'Class;
+   type IMapControlStatics8_Ptr is access all IMapControlStatics8;
 
    type IMapControlTransitFeatureClickEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMapControlTransitFeatureClickEventArgs is access all IMapControlTransitFeatureClickEventArgs_Interface'Class;
@@ -200,6 +225,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapCustomExperienceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMapCustomExperienceFactory is access all IMapCustomExperienceFactory_Interface'Class;
+   type IMapCustomExperienceFactory_Ptr is access all IMapCustomExperienceFactory;
 
    type IMapElement_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElement is access all IMapElement_Interface'Class;
@@ -207,9 +233,11 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapElement2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElement2 is access all IMapElement2_Interface'Class;
+   type IMapElement2_Ptr is access all IMapElement2;
 
    type IMapElement3_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElement3 is access all IMapElement3_Interface'Class;
+   type IMapElement3_Ptr is access all IMapElement3;
 
    type IMapElement3D_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElement3D is access all IMapElement3D_Interface'Class;
@@ -217,9 +245,11 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapElement3DStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElement3DStatics is access all IMapElement3DStatics_Interface'Class;
+   type IMapElement3DStatics_Ptr is access all IMapElement3DStatics;
 
    type IMapElement4_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElement4 is access all IMapElement4_Interface'Class;
+   type IMapElement4_Ptr is access all IMapElement4;
 
    type IMapElementClickEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElementClickEventArgs is access all IMapElementClickEventArgs_Interface'Class;
@@ -227,6 +257,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapElementFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElementFactory is access all IMapElementFactory_Interface'Class;
+   type IMapElementFactory_Ptr is access all IMapElementFactory;
 
    type IMapElementPointerEnteredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElementPointerEnteredEventArgs is access all IMapElementPointerEnteredEventArgs_Interface'Class;
@@ -238,15 +269,19 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapElementStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElementStatics is access all IMapElementStatics_Interface'Class;
+   type IMapElementStatics_Ptr is access all IMapElementStatics;
 
    type IMapElementStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElementStatics2 is access all IMapElementStatics2_Interface'Class;
+   type IMapElementStatics2_Ptr is access all IMapElementStatics2;
 
    type IMapElementStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElementStatics3 is access all IMapElementStatics3_Interface'Class;
+   type IMapElementStatics3_Ptr is access all IMapElementStatics3;
 
    type IMapElementStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElementStatics4 is access all IMapElementStatics4_Interface'Class;
+   type IMapElementStatics4_Ptr is access all IMapElementStatics4;
 
    type IMapElementsLayer_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElementsLayer is access all IMapElementsLayer_Interface'Class;
@@ -270,6 +305,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapElementsLayerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapElementsLayerStatics is access all IMapElementsLayerStatics_Interface'Class;
+   type IMapElementsLayerStatics_Ptr is access all IMapElementsLayerStatics;
 
    type IMapIcon_Interface is interface and WinRt.IInspectable_Interface;
    type IMapIcon is access all IMapIcon_Interface'Class;
@@ -277,12 +313,15 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapIcon2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapIcon2 is access all IMapIcon2_Interface'Class;
+   type IMapIcon2_Ptr is access all IMapIcon2;
 
    type IMapIconStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapIconStatics is access all IMapIconStatics_Interface'Class;
+   type IMapIconStatics_Ptr is access all IMapIconStatics;
 
    type IMapIconStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapIconStatics2 is access all IMapIconStatics2_Interface'Class;
+   type IMapIconStatics2_Ptr is access all IMapIconStatics2;
 
    type IMapInputEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMapInputEventArgs is access all IMapInputEventArgs_Interface'Class;
@@ -294,6 +333,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapItemsControlStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapItemsControlStatics is access all IMapItemsControlStatics_Interface'Class;
+   type IMapItemsControlStatics_Ptr is access all IMapItemsControlStatics;
 
    type IMapLayer_Interface is interface and WinRt.IInspectable_Interface;
    type IMapLayer is access all IMapLayer_Interface'Class;
@@ -301,9 +341,11 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapLayerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMapLayerFactory is access all IMapLayerFactory_Interface'Class;
+   type IMapLayerFactory_Ptr is access all IMapLayerFactory;
 
    type IMapLayerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapLayerStatics is access all IMapLayerStatics_Interface'Class;
+   type IMapLayerStatics_Ptr is access all IMapLayerStatics;
 
    type IMapModel3D_Interface is interface and WinRt.IInspectable_Interface;
    type IMapModel3D is access all IMapModel3D_Interface'Class;
@@ -311,9 +353,11 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapModel3DFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMapModel3DFactory is access all IMapModel3DFactory_Interface'Class;
+   type IMapModel3DFactory_Ptr is access all IMapModel3DFactory;
 
    type IMapModel3DStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapModel3DStatics is access all IMapModel3DStatics_Interface'Class;
+   type IMapModel3DStatics_Ptr is access all IMapModel3DStatics;
 
    type IMapPolygon_Interface is interface and WinRt.IInspectable_Interface;
    type IMapPolygon is access all IMapPolygon_Interface'Class;
@@ -321,9 +365,11 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapPolygon2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapPolygon2 is access all IMapPolygon2_Interface'Class;
+   type IMapPolygon2_Ptr is access all IMapPolygon2;
 
    type IMapPolygonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapPolygonStatics is access all IMapPolygonStatics_Interface'Class;
+   type IMapPolygonStatics_Ptr is access all IMapPolygonStatics;
 
    type IMapPolyline_Interface is interface and WinRt.IInspectable_Interface;
    type IMapPolyline is access all IMapPolyline_Interface'Class;
@@ -331,6 +377,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapPolylineStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapPolylineStatics is access all IMapPolylineStatics_Interface'Class;
+   type IMapPolylineStatics_Ptr is access all IMapPolylineStatics;
 
    type IMapRightTappedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRightTappedEventArgs is access all IMapRightTappedEventArgs_Interface'Class;
@@ -342,6 +389,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapRouteViewFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMapRouteViewFactory is access all IMapRouteViewFactory_Interface'Class;
+   type IMapRouteViewFactory_Ptr is access all IMapRouteViewFactory;
 
    type IMapScene_Interface is interface and WinRt.IInspectable_Interface;
    type IMapScene is access all IMapScene_Interface'Class;
@@ -349,6 +397,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapSceneStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapSceneStatics is access all IMapSceneStatics_Interface'Class;
+   type IMapSceneStatics_Ptr is access all IMapSceneStatics;
 
    type IMapStyleSheet_Interface is interface and WinRt.IInspectable_Interface;
    type IMapStyleSheet is access all IMapStyleSheet_Interface'Class;
@@ -356,12 +405,15 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapStyleSheetEntriesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapStyleSheetEntriesStatics is access all IMapStyleSheetEntriesStatics_Interface'Class;
+   type IMapStyleSheetEntriesStatics_Ptr is access all IMapStyleSheetEntriesStatics;
 
    type IMapStyleSheetEntryStatesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapStyleSheetEntryStatesStatics is access all IMapStyleSheetEntryStatesStatics_Interface'Class;
+   type IMapStyleSheetEntryStatesStatics_Ptr is access all IMapStyleSheetEntryStatesStatics;
 
    type IMapStyleSheetStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapStyleSheetStatics is access all IMapStyleSheetStatics_Interface'Class;
+   type IMapStyleSheetStatics_Ptr is access all IMapStyleSheetStatics;
 
    type IMapTargetCameraChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IMapTargetCameraChangedEventArgs is access all IMapTargetCameraChangedEventArgs_Interface'Class;
@@ -369,6 +421,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapTargetCameraChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapTargetCameraChangedEventArgs2 is access all IMapTargetCameraChangedEventArgs2_Interface'Class;
+   type IMapTargetCameraChangedEventArgs2_Ptr is access all IMapTargetCameraChangedEventArgs2;
 
    type IMapTileBitmapRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IMapTileBitmapRequest is access all IMapTileBitmapRequest_Interface'Class;
@@ -384,6 +437,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapTileBitmapRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapTileBitmapRequestedEventArgs2 is access all IMapTileBitmapRequestedEventArgs2_Interface'Class;
+   type IMapTileBitmapRequestedEventArgs2_Ptr is access all IMapTileBitmapRequestedEventArgs2;
 
    type IMapTileDataSource_Interface is interface and WinRt.IInspectable_Interface;
    type IMapTileDataSource is access all IMapTileDataSource_Interface'Class;
@@ -391,6 +445,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapTileDataSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMapTileDataSourceFactory is access all IMapTileDataSourceFactory_Interface'Class;
+   type IMapTileDataSourceFactory_Ptr is access all IMapTileDataSourceFactory;
 
    type IMapTileSource_Interface is interface and WinRt.IInspectable_Interface;
    type IMapTileSource is access all IMapTileSource_Interface'Class;
@@ -398,15 +453,19 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapTileSource2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapTileSource2 is access all IMapTileSource2_Interface'Class;
+   type IMapTileSource2_Ptr is access all IMapTileSource2;
 
    type IMapTileSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IMapTileSourceFactory is access all IMapTileSourceFactory_Interface'Class;
+   type IMapTileSourceFactory_Ptr is access all IMapTileSourceFactory;
 
    type IMapTileSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMapTileSourceStatics is access all IMapTileSourceStatics_Interface'Class;
+   type IMapTileSourceStatics_Ptr is access all IMapTileSourceStatics;
 
    type IMapTileSourceStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapTileSourceStatics2 is access all IMapTileSourceStatics2_Interface'Class;
+   type IMapTileSourceStatics2_Ptr is access all IMapTileSourceStatics2;
 
    type IMapTileUriRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IMapTileUriRequest is access all IMapTileUriRequest_Interface'Class;
@@ -422,6 +481,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IMapTileUriRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IMapTileUriRequestedEventArgs2 is access all IMapTileUriRequestedEventArgs2_Interface'Class;
+   type IMapTileUriRequestedEventArgs2_Ptr is access all IMapTileUriRequestedEventArgs2;
 
    type IStreetsideExperience_Interface is interface and WinRt.IInspectable_Interface;
    type IStreetsideExperience is access all IStreetsideExperience_Interface'Class;
@@ -429,6 +489,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IStreetsideExperienceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IStreetsideExperienceFactory is access all IStreetsideExperienceFactory_Interface'Class;
+   type IStreetsideExperienceFactory_Ptr is access all IStreetsideExperienceFactory;
 
    type IStreetsidePanorama_Interface is interface and WinRt.IInspectable_Interface;
    type IStreetsidePanorama is access all IStreetsidePanorama_Interface'Class;
@@ -436,6 +497,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    type IStreetsidePanoramaStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStreetsidePanoramaStatics is access all IStreetsidePanoramaStatics_Interface'Class;
+   type IStreetsidePanoramaStatics_Ptr is access all IStreetsidePanoramaStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -6084,7 +6146,10 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MapElement
 
-   function get_MapTabIndexProperty
+   function get_ZIndexProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_VisibleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_MapStyleSheetEntryProperty
@@ -6099,10 +6164,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    function get_IsEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_ZIndexProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_VisibleProperty
+   function get_MapTabIndexProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -6425,6 +6487,54 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MapControl
 
+   function get_BusinessLandmarksEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TransitFeaturesEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CanTiltDownProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CanTiltUpProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CanZoomInProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CanZoomOutProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RegionProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_BusinessLandmarksVisibleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TransitFeaturesVisibleProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PanInteractionModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_RotateInteractionModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_TiltInteractionModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ZoomInteractionModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_Is3DSupportedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_IsStreetsideSupportedProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SceneProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_CenterProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -6509,6 +6619,9 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Foundation.Point
    );
 
+   function get_LayersProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_MapProjectionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -6516,57 +6629,6 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_ViewPaddingProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_BusinessLandmarksEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TransitFeaturesEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_BusinessLandmarksVisibleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TransitFeaturesVisibleProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_PanInteractionModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RotateInteractionModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_TiltInteractionModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ZoomInteractionModeProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_Is3DSupportedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_IsStreetsideSupportedProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_SceneProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_LayersProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_RegionProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CanTiltDownProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CanTiltUpProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CanZoomInProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_CanZoomOutProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -8326,9 +8388,6 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MapIcon
 
-   function get_CollisionBehaviorDesiredProperty_MapIcon
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
    function get_LocationProperty_MapIcon
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -8336,6 +8395,9 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_NormalizedAnchorPointProperty_MapIcon
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CollisionBehaviorDesiredProperty_MapIcon
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -9292,6 +9354,18 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    -----------------------------------------------------------------------------
    -- Static Interfaces for MapTileSource
 
+   function get_AnimationStateProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_AutoPlayProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FrameCountProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_FrameDurationProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_DataSourceProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -9323,18 +9397,6 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_VisibleProperty_MapTileSource
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AnimationStateProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_AutoPlayProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FrameCountProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_FrameDurationProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------

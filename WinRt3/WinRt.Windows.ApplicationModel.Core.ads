@@ -47,27 +47,39 @@ package WinRt.Windows.ApplicationModel.Core is
 
    type IAppListEntry2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppListEntry2 is access all IAppListEntry2_Interface'Class;
+   type IAppListEntry2_Ptr is access all IAppListEntry2;
 
    type IAppListEntry3_Interface is interface and WinRt.IInspectable_Interface;
    type IAppListEntry3 is access all IAppListEntry3_Interface'Class;
+   type IAppListEntry3_Ptr is access all IAppListEntry3;
+
+   type IAppListEntry4_Interface is interface and WinRt.IInspectable_Interface;
+   type IAppListEntry4 is access all IAppListEntry4_Interface'Class;
+   type IAppListEntry4_Ptr is access all IAppListEntry4;
 
    type ICoreApplication_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreApplication is access all ICoreApplication_Interface'Class;
+   type ICoreApplication_Ptr is access all ICoreApplication;
 
    type ICoreApplication2_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreApplication2 is access all ICoreApplication2_Interface'Class;
+   type ICoreApplication2_Ptr is access all ICoreApplication2;
 
    type ICoreApplication3_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreApplication3 is access all ICoreApplication3_Interface'Class;
+   type ICoreApplication3_Ptr is access all ICoreApplication3;
 
    type ICoreApplicationExit_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreApplicationExit is access all ICoreApplicationExit_Interface'Class;
+   type ICoreApplicationExit_Ptr is access all ICoreApplicationExit;
 
    type ICoreApplicationUnhandledError_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreApplicationUnhandledError is access all ICoreApplicationUnhandledError_Interface'Class;
+   type ICoreApplicationUnhandledError_Ptr is access all ICoreApplicationUnhandledError;
 
    type ICoreApplicationUseCount_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreApplicationUseCount is access all ICoreApplicationUseCount_Interface'Class;
+   type ICoreApplicationUseCount_Ptr is access all ICoreApplicationUseCount;
 
    type ICoreApplicationView_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreApplicationView is access all ICoreApplicationView_Interface'Class;
@@ -75,15 +87,19 @@ package WinRt.Windows.ApplicationModel.Core is
 
    type ICoreApplicationView2_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreApplicationView2 is access all ICoreApplicationView2_Interface'Class;
+   type ICoreApplicationView2_Ptr is access all ICoreApplicationView2;
 
    type ICoreApplicationView3_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreApplicationView3 is access all ICoreApplicationView3_Interface'Class;
+   type ICoreApplicationView3_Ptr is access all ICoreApplicationView3;
 
    type ICoreApplicationView5_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreApplicationView5 is access all ICoreApplicationView5_Interface'Class;
+   type ICoreApplicationView5_Ptr is access all ICoreApplicationView5;
 
    type ICoreApplicationView6_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreApplicationView6 is access all ICoreApplicationView6_Interface'Class;
+   type ICoreApplicationView6_Ptr is access all ICoreApplicationView6;
 
    type ICoreApplicationViewTitleBar_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreApplicationViewTitleBar is access all ICoreApplicationViewTitleBar_Interface'Class;
@@ -91,18 +107,23 @@ package WinRt.Windows.ApplicationModel.Core is
 
    type ICoreImmersiveApplication_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreImmersiveApplication is access all ICoreImmersiveApplication_Interface'Class;
+   type ICoreImmersiveApplication_Ptr is access all ICoreImmersiveApplication;
 
    type ICoreImmersiveApplication2_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreImmersiveApplication2 is access all ICoreImmersiveApplication2_Interface'Class;
+   type ICoreImmersiveApplication2_Ptr is access all ICoreImmersiveApplication2;
 
    type ICoreImmersiveApplication3_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreImmersiveApplication3 is access all ICoreImmersiveApplication3_Interface'Class;
+   type ICoreImmersiveApplication3_Ptr is access all ICoreImmersiveApplication3;
 
    type IFrameworkView_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkView is access all IFrameworkView_Interface'Class;
+   type IFrameworkView_Ptr is access all IFrameworkView;
 
    type IFrameworkViewSource_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameworkViewSource is access all IFrameworkViewSource_Interface'Class;
+   type IFrameworkViewSource_Ptr is access all IFrameworkViewSource;
 
    type IHostedViewClosingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IHostedViewClosingEventArgs is access all IHostedViewClosingEventArgs_Interface'Class;
@@ -221,6 +242,18 @@ package WinRt.Windows.ApplicationModel.Core is
       return WinRt.Hresult is abstract;
 
       IID_IAppListEntry3 : aliased WinRt.IID := (1620701837, 64562, 18186, (188, 105, 75, 6, 26, 118, 239, 46 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAppListEntry4 is interface and WinRt.IInspectable;
+
+      function get_AppInfo
+      (
+         this : access IAppListEntry4_Interface;
+         RetVal : access Windows.ApplicationModel.IAppInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAppListEntry4 : aliased WinRt.IID := (705896146, 22261, 18556, (134, 151, 81, 102, 243, 179, 61, 160 ));
 
    -----------------------------------------------------------------------------
    -- type ICoreApplication is interface and WinRt.IInspectable;
@@ -805,55 +838,32 @@ package WinRt.Windows.ApplicationModel.Core is
    )
    return WinRt.Boolean;
 
+   function get_AppInfo
+   (
+      this : in out AppListEntry
+   )
+   return WinRt.Windows.ApplicationModel.AppInfo'Class;
+
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package CoreApplication is
 
-      function CreateNewView
-      return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
-
-      function CreateNewView
+      function RequestRestartAsync
       (
-         viewSource : Windows.ApplicationModel.Core.IFrameworkViewSource
+         launchArguments : WinRt.WString
       )
-      return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
+      return WinRt.Windows.ApplicationModel.Core.AppRestartFailureReason;
 
-      function add_UnhandledErrorDetected
+      function RequestRestartForUserAsync
       (
-         handler : GenericObject
+         user : Windows.System.User'Class;
+         launchArguments : WinRt.WString
       )
-      return WinRt.Windows.Foundation.EventRegistrationToken;
+      return WinRt.Windows.ApplicationModel.Core.AppRestartFailureReason;
 
-      procedure remove_UnhandledErrorDetected
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      );
+      procedure IncrementApplicationUseCount;
 
-      procedure Exit_x;
-
-      function add_Exiting
-      (
-         handler : GenericObject
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken;
-
-      procedure remove_Exiting
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      );
-
-      function get_Views
-      return WinRt.GenericObject;
-
-      function CreateNewView
-      (
-         runtimeType : WinRt.WString;
-         entryPoint : WinRt.WString
-      )
-      return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
-
-      function get_MainView
-      return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
+      procedure DecrementApplicationUseCount;
 
       function add_BackgroundActivated
       (
@@ -892,6 +902,22 @@ package WinRt.Windows.ApplicationModel.Core is
       (
          value : WinRt.Boolean
       );
+
+      function get_Views
+      return WinRt.GenericObject;
+
+      function CreateNewView
+      (
+         runtimeType : WinRt.WString;
+         entryPoint : WinRt.WString
+      )
+      return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
+
+      function get_MainView
+      return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
+
+      function CreateNewView
+      return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
 
       function get_Id
       return WinRt.WString;
@@ -934,22 +960,35 @@ package WinRt.Windows.ApplicationModel.Core is
          activationFactoryCallback : Windows.Foundation.IGetActivationFactory
       );
 
-      function RequestRestartAsync
+      function CreateNewView
       (
-         launchArguments : WinRt.WString
+         viewSource : Windows.ApplicationModel.Core.IFrameworkViewSource
       )
-      return WinRt.Windows.ApplicationModel.Core.AppRestartFailureReason;
+      return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
 
-      function RequestRestartForUserAsync
+      procedure Exit_x;
+
+      function add_Exiting
       (
-         user : Windows.System.User'Class;
-         launchArguments : WinRt.WString
+         handler : GenericObject
       )
-      return WinRt.Windows.ApplicationModel.Core.AppRestartFailureReason;
+      return WinRt.Windows.Foundation.EventRegistrationToken;
 
-      procedure IncrementApplicationUseCount;
+      procedure remove_Exiting
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
 
-      procedure DecrementApplicationUseCount;
+      function add_UnhandledErrorDetected
+      (
+         handler : GenericObject
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken;
+
+      procedure remove_UnhandledErrorDetected
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
 
    end CoreApplication;
 

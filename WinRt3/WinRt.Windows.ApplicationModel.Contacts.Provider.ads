@@ -45,6 +45,7 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
 
    type IContactPickerUI2_Interface is interface and WinRt.IInspectable_Interface;
    type IContactPickerUI2 is access all IContactPickerUI2_Interface'Class;
+   type IContactPickerUI2_Ptr is access all IContactPickerUI2;
 
    type IContactRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IContactRemovedEventArgs is access all IContactRemovedEventArgs_Interface'Class;

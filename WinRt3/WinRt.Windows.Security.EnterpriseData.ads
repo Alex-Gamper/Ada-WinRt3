@@ -52,6 +52,7 @@ package WinRt.Windows.Security.EnterpriseData is
 
    type IDataProtectionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDataProtectionManagerStatics is access all IDataProtectionManagerStatics_Interface'Class;
+   type IDataProtectionManagerStatics_Ptr is access all IDataProtectionManagerStatics;
 
    type IFileProtectionInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IFileProtectionInfo is access all IFileProtectionInfo_Interface'Class;
@@ -59,18 +60,23 @@ package WinRt.Windows.Security.EnterpriseData is
 
    type IFileProtectionInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type IFileProtectionInfo2 is access all IFileProtectionInfo2_Interface'Class;
+   type IFileProtectionInfo2_Ptr is access all IFileProtectionInfo2;
 
    type IFileProtectionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFileProtectionManagerStatics is access all IFileProtectionManagerStatics_Interface'Class;
+   type IFileProtectionManagerStatics_Ptr is access all IFileProtectionManagerStatics;
 
    type IFileProtectionManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IFileProtectionManagerStatics2 is access all IFileProtectionManagerStatics2_Interface'Class;
+   type IFileProtectionManagerStatics2_Ptr is access all IFileProtectionManagerStatics2;
 
    type IFileProtectionManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IFileProtectionManagerStatics3 is access all IFileProtectionManagerStatics3_Interface'Class;
+   type IFileProtectionManagerStatics3_Ptr is access all IFileProtectionManagerStatics3;
 
    type IFileRevocationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFileRevocationManagerStatics is access all IFileRevocationManagerStatics_Interface'Class;
+   type IFileRevocationManagerStatics_Ptr is access all IFileRevocationManagerStatics;
 
    type IFileUnprotectOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IFileUnprotectOptions is access all IFileUnprotectOptions_Interface'Class;
@@ -78,6 +84,7 @@ package WinRt.Windows.Security.EnterpriseData is
 
    type IFileUnprotectOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFileUnprotectOptionsFactory is access all IFileUnprotectOptionsFactory_Interface'Class;
+   type IFileUnprotectOptionsFactory_Ptr is access all IFileUnprotectOptionsFactory;
 
    type IProtectedAccessResumedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IProtectedAccessResumedEventArgs is access all IProtectedAccessResumedEventArgs_Interface'Class;
@@ -109,6 +116,7 @@ package WinRt.Windows.Security.EnterpriseData is
 
    type IProtectionPolicyAuditInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IProtectionPolicyAuditInfoFactory is access all IProtectionPolicyAuditInfoFactory_Interface'Class;
+   type IProtectionPolicyAuditInfoFactory_Ptr is access all IProtectionPolicyAuditInfoFactory;
 
    type IProtectionPolicyManager_Interface is interface and WinRt.IInspectable_Interface;
    type IProtectionPolicyManager is access all IProtectionPolicyManager_Interface'Class;
@@ -116,18 +124,23 @@ package WinRt.Windows.Security.EnterpriseData is
 
    type IProtectionPolicyManager2_Interface is interface and WinRt.IInspectable_Interface;
    type IProtectionPolicyManager2 is access all IProtectionPolicyManager2_Interface'Class;
+   type IProtectionPolicyManager2_Ptr is access all IProtectionPolicyManager2;
 
    type IProtectionPolicyManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IProtectionPolicyManagerStatics is access all IProtectionPolicyManagerStatics_Interface'Class;
+   type IProtectionPolicyManagerStatics_Ptr is access all IProtectionPolicyManagerStatics;
 
    type IProtectionPolicyManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IProtectionPolicyManagerStatics2 is access all IProtectionPolicyManagerStatics2_Interface'Class;
+   type IProtectionPolicyManagerStatics2_Ptr is access all IProtectionPolicyManagerStatics2;
 
    type IProtectionPolicyManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IProtectionPolicyManagerStatics3 is access all IProtectionPolicyManagerStatics3_Interface'Class;
+   type IProtectionPolicyManagerStatics3_Ptr is access all IProtectionPolicyManagerStatics3;
 
    type IProtectionPolicyManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IProtectionPolicyManagerStatics4 is access all IProtectionPolicyManagerStatics4_Interface'Class;
+   type IProtectionPolicyManagerStatics4_Ptr is access all IProtectionPolicyManagerStatics4;
 
    type IThreadNetworkContext_Interface is interface and WinRt.IInspectable_Interface;
    type IThreadNetworkContext is access all IThreadNetworkContext_Interface'Class;
@@ -1444,19 +1457,6 @@ package WinRt.Windows.Security.EnterpriseData is
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedContainerExportResult;
 
-      function UnprotectAsync
-      (
-         target : Windows.Storage.IStorageItem
-      )
-      return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo;
-
-      function UnprotectAsync
-      (
-         target : Windows.Storage.IStorageItem;
-         options : Windows.Security.EnterpriseData.FileUnprotectOptions'Class
-      )
-      return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo;
-
       function ProtectAsync
       (
          target : Windows.Storage.IStorageItem;
@@ -1504,6 +1504,19 @@ package WinRt.Windows.Security.EnterpriseData is
          collisionOption : Windows.Storage.CreationCollisionOption
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedFileCreateResult;
+
+      function UnprotectAsync
+      (
+         target : Windows.Storage.IStorageItem
+      )
+      return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo;
+
+      function UnprotectAsync
+      (
+         target : Windows.Storage.IStorageItem;
+         options : Windows.Security.EnterpriseData.FileUnprotectOptions'Class
+      )
+      return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo;
 
    end FileProtectionManager;
 
@@ -1779,87 +1792,6 @@ package WinRt.Windows.Security.EnterpriseData is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ProtectionPolicyManager
 
-   function IsIdentityManaged
-   (
-      identity : WinRt.WString
-   )
-   return WinRt.Boolean;
-
-   function TryApplyProcessUIPolicy
-   (
-      identity : WinRt.WString
-   )
-   return WinRt.Boolean;
-
-   procedure ClearProcessUIPolicy;
-
-   function CreateCurrentThreadNetworkContext
-   (
-      identity : WinRt.WString
-   )
-   return WinRt.Windows.Security.EnterpriseData.ThreadNetworkContext;
-
-   function GetPrimaryManagedIdentityForNetworkEndpointAsync
-   (
-      endpointHost : Windows.Networking.HostName'Class
-   )
-   return WinRt.WString;
-
-   procedure RevokeContent
-   (
-      identity : WinRt.WString
-   );
-
-   function GetForCurrentView
-   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyManager;
-
-   function add_ProtectedAccessSuspending
-   (
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_ProtectedAccessSuspending
-   (
-      token : Windows.Foundation.EventRegistrationToken
-   );
-
-   function add_ProtectedAccessResumed
-   (
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_ProtectedAccessResumed
-   (
-      token : Windows.Foundation.EventRegistrationToken
-   );
-
-   function add_ProtectedContentRevoked
-   (
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_ProtectedContentRevoked
-   (
-      token : Windows.Foundation.EventRegistrationToken
-   );
-
-   function CheckAccess
-   (
-      sourceIdentity : WinRt.WString;
-      targetIdentity : WinRt.WString
-   )
-   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
-
-   function RequestAccessAsync
-   (
-      sourceIdentity : WinRt.WString;
-      targetIdentity : WinRt.WString
-   )
-   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
-
    function IsRoamableProtectionEnabled
    (
       identity : WinRt.WString
@@ -2039,6 +1971,87 @@ package WinRt.Windows.Security.EnterpriseData is
       targetIdentity : WinRt.WString;
       auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
    );
+
+   function IsIdentityManaged
+   (
+      identity : WinRt.WString
+   )
+   return WinRt.Boolean;
+
+   function TryApplyProcessUIPolicy
+   (
+      identity : WinRt.WString
+   )
+   return WinRt.Boolean;
+
+   procedure ClearProcessUIPolicy;
+
+   function CreateCurrentThreadNetworkContext
+   (
+      identity : WinRt.WString
+   )
+   return WinRt.Windows.Security.EnterpriseData.ThreadNetworkContext;
+
+   function GetPrimaryManagedIdentityForNetworkEndpointAsync
+   (
+      endpointHost : Windows.Networking.HostName'Class
+   )
+   return WinRt.WString;
+
+   procedure RevokeContent
+   (
+      identity : WinRt.WString
+   );
+
+   function GetForCurrentView
+   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyManager;
+
+   function add_ProtectedAccessSuspending
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ProtectedAccessSuspending
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_ProtectedAccessResumed
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ProtectedAccessResumed
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_ProtectedContentRevoked
+   (
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ProtectedContentRevoked
+   (
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function CheckAccess
+   (
+      sourceIdentity : WinRt.WString;
+      targetIdentity : WinRt.WString
+   )
+   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+
+   function RequestAccessAsync
+   (
+      sourceIdentity : WinRt.WString;
+      targetIdentity : WinRt.WString
+   )
+   return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ProtectionPolicyManager

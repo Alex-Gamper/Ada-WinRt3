@@ -666,33 +666,6 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ResourceContext
 
-   procedure SetGlobalQualifierValue
-   (
-      key : WinRt.WString;
-      value : WinRt.WString;
-      persistence : Windows.ApplicationModel.Resources.Core.ResourceQualifierPersistence
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
-      m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      HStr_key : constant WinRt.HString := To_HString (key);
-      HStr_value : constant WinRt.HString := To_HString (value);
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics3'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.SetGlobalQualifierValue (HStr_key, HStr_value, persistence);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      tmp := WindowsDeleteString (HStr_key);
-      tmp := WindowsDeleteString (HStr_value);
-   end;
-
    function GetForCurrentView
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext is
       Hr               : WinRt.HResult := S_OK;
@@ -806,33 +779,6 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       end return;
    end;
 
-   function GetForUIContext
-   (
-      context : Windows.UI.UIContext'Class
-   )
-   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
-      m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics4_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceContext;
-   begin
-      return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext do
-         Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetForUIContext (context.m_IUIContext.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IResourceContext := new Windows.ApplicationModel.Resources.Core.IResourceContext;
-            Retval.m_IResourceContext.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function CreateMatchingContext
    (
       result : GenericObject
@@ -849,6 +795,60 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
          Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateMatchingContext (result, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IResourceContext := new Windows.ApplicationModel.Resources.Core.IResourceContext;
+            Retval.m_IResourceContext.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   procedure SetGlobalQualifierValue
+   (
+      key : WinRt.WString;
+      value : WinRt.WString;
+      persistence : Windows.ApplicationModel.Resources.Core.ResourceQualifierPersistence
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
+      m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
+      HStr_value : constant WinRt.HString := To_HString (value);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics3'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.SetGlobalQualifierValue (HStr_key, HStr_value, persistence);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_key);
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function GetForUIContext
+   (
+      context : Windows.UI.UIContext'Class
+   )
+   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
+      m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceContext;
+   begin
+      return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext do
+         Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForUIContext (context.m_IUIContext.all, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

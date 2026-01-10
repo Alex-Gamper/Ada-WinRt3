@@ -42,6 +42,46 @@ with Ada.Unchecked_Deallocation;
 package body WinRt.Windows.Media.Effects is
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for AcousticEchoCancellationConfiguration
+
+   procedure Initialize (this : in out AcousticEchoCancellationConfiguration) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out AcousticEchoCancellationConfiguration) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IAcousticEchoCancellationConfiguration, IAcousticEchoCancellationConfiguration_Ptr);
+   begin
+      if this.m_IAcousticEchoCancellationConfiguration /= null then
+         if this.m_IAcousticEchoCancellationConfiguration.all /= null then
+            temp := this.m_IAcousticEchoCancellationConfiguration.all.Release;
+            Free (this.m_IAcousticEchoCancellationConfiguration);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for AcousticEchoCancellationConfiguration
+
+   procedure SetEchoCancellationRenderEndpoint
+   (
+      this : in out AcousticEchoCancellationConfiguration;
+      deviceId : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
+   begin
+      Hr := this.m_IAcousticEchoCancellationConfiguration.all.SetEchoCancellationRenderEndpoint (HStr_deviceId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_deviceId);
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AudioCaptureEffectsManager
 
    procedure Initialize (this : in out AudioCaptureEffectsManager) is
@@ -155,6 +195,91 @@ package body WinRt.Windows.Media.Effects is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   function get_AcousticEchoCancellationConfiguration
+   (
+      this : in out AudioEffect
+   )
+   return WinRt.Windows.Media.Effects.AcousticEchoCancellationConfiguration'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Effects.IAudioEffect2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Effects.IAcousticEchoCancellationConfiguration;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IAudioEffect_Interface, WinRt.Windows.Media.Effects.IAudioEffect2, WinRt.Windows.Media.Effects.IID_IAudioEffect2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Media.Effects.AcousticEchoCancellationConfiguration do
+         m_Interface := QInterface (this.m_IAudioEffect.all);
+         Hr := m_Interface.get_AcousticEchoCancellationConfiguration (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IAcousticEchoCancellationConfiguration := new Windows.Media.Effects.IAcousticEchoCancellationConfiguration;
+         Retval.m_IAcousticEchoCancellationConfiguration.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_CanSetState
+   (
+      this : in out AudioEffect
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Effects.IAudioEffect2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IAudioEffect_Interface, WinRt.Windows.Media.Effects.IAudioEffect2, WinRt.Windows.Media.Effects.IID_IAudioEffect2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAudioEffect.all);
+      Hr := m_Interface.get_CanSetState (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_State
+   (
+      this : in out AudioEffect
+   )
+   return WinRt.Windows.Media.Effects.AudioEffectState is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Effects.IAudioEffect2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Media.Effects.AudioEffectState;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IAudioEffect_Interface, WinRt.Windows.Media.Effects.IAudioEffect2, WinRt.Windows.Media.Effects.IID_IAudioEffect2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAudioEffect.all);
+      Hr := m_Interface.get_State (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure SetState
+   (
+      this : in out AudioEffect;
+      newState : Windows.Media.Effects.AudioEffectState
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Media.Effects.IAudioEffect2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IAudioEffect_Interface, WinRt.Windows.Media.Effects.IAudioEffect2, WinRt.Windows.Media.Effects.IID_IAudioEffect2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAudioEffect.all);
+      Hr := m_Interface.SetState (newState);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -765,125 +890,6 @@ package body WinRt.Windows.Media.Effects is
          Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
          Retval.m_IVideoFrame.all := m_ComRetVal;
       end return;
-   end;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for SlowMotionEffectDefinition
-
-   procedure Initialize (this : in out SlowMotionEffectDefinition) is
-   begin
-      null;
-   end;
-
-   procedure Finalize (this : in out SlowMotionEffectDefinition) is
-      temp : WinRt.UInt32 := 0;
-      procedure Free is new Ada.Unchecked_Deallocation (ISlowMotionEffectDefinition, ISlowMotionEffectDefinition_Ptr);
-   begin
-      if this.m_ISlowMotionEffectDefinition /= null then
-         if this.m_ISlowMotionEffectDefinition.all /= null then
-            temp := this.m_ISlowMotionEffectDefinition.all.Release;
-            Free (this.m_ISlowMotionEffectDefinition);
-         end if;
-      end if;
-   end;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for SlowMotionEffectDefinition
-
-   function Constructor return SlowMotionEffectDefinition is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Effects.SlowMotionEffectDefinition");
-      m_ComRetVal  : aliased Windows.Media.Effects.ISlowMotionEffectDefinition;
-   begin
-      return RetVal : SlowMotionEffectDefinition do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ISlowMotionEffectDefinition := new Windows.Media.Effects.ISlowMotionEffectDefinition;
-            Retval.m_ISlowMotionEffectDefinition.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for SlowMotionEffectDefinition
-
-   function get_TimeStretchRate
-   (
-      this : in out SlowMotionEffectDefinition
-   )
-   return WinRt.Double is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Double;
-   begin
-      Hr := this.m_ISlowMotionEffectDefinition.all.get_TimeStretchRate (m_ComRetVal'Access);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
-   end;
-
-   procedure put_TimeStretchRate
-   (
-      this : in out SlowMotionEffectDefinition;
-      value : WinRt.Double
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := this.m_ISlowMotionEffectDefinition.all.put_TimeStretchRate (value);
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-   end;
-
-   function get_ActivatableClassId
-   (
-      this : in out SlowMotionEffectDefinition
-   )
-   return WinRt.WString is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_Interface      : WinRt.Windows.Media.Effects.IVideoEffectDefinition := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.HString;
-      AdaRetval        : WString;
-      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.ISlowMotionEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoEffectDefinition'Unchecked_Access);
-   begin
-      m_Interface := QInterface (this.m_ISlowMotionEffectDefinition.all);
-      Hr := m_Interface.get_ActivatableClassId (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      AdaRetval := To_Ada (m_ComRetVal);
-      tmp := WindowsDeleteString (m_ComRetVal);
-      return AdaRetVal;
-   end;
-
-   function get_Properties
-   (
-      this : in out SlowMotionEffectDefinition
-   )
-   return WinRt.Windows.Foundation.Collections.IPropertySet is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_Interface      : WinRt.Windows.Media.Effects.IVideoEffectDefinition := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
-      function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.ISlowMotionEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoEffectDefinition'Unchecked_Access);
-   begin
-      m_Interface := QInterface (this.m_ISlowMotionEffectDefinition.all);
-      Hr := m_Interface.get_Properties (m_ComRetVal'Access);
-      temp := m_Interface.Release;
-      if Hr /= S_OK then
-         raise Program_Error;
-      end if;
-      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

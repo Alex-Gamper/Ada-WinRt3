@@ -48,6 +48,7 @@ package WinRt.Windows.Devices is
 
    type ILowLevelDevicesAggregateProviderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILowLevelDevicesAggregateProviderFactory is access all ILowLevelDevicesAggregateProviderFactory_Interface'Class;
+   type ILowLevelDevicesAggregateProviderFactory_Ptr is access all ILowLevelDevicesAggregateProviderFactory;
 
    type ILowLevelDevicesController_Interface is interface and WinRt.IInspectable_Interface;
    type ILowLevelDevicesController is access all ILowLevelDevicesController_Interface'Class;
@@ -55,6 +56,7 @@ package WinRt.Windows.Devices is
 
    type ILowLevelDevicesControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILowLevelDevicesControllerStatics is access all ILowLevelDevicesControllerStatics_Interface'Class;
+   type ILowLevelDevicesControllerStatics_Ptr is access all ILowLevelDevicesControllerStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

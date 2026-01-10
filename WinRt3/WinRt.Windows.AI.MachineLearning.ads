@@ -49,12 +49,17 @@ package WinRt.Windows.AI.MachineLearning is
    type IImageFeatureDescriptor is access all IImageFeatureDescriptor_Interface'Class;
    type IImageFeatureDescriptor_Ptr is access all IImageFeatureDescriptor;
 
+   type IImageFeatureDescriptor2_Interface is interface and WinRt.IInspectable_Interface;
+   type IImageFeatureDescriptor2 is access all IImageFeatureDescriptor2_Interface'Class;
+   type IImageFeatureDescriptor2_Ptr is access all IImageFeatureDescriptor2;
+
    type IImageFeatureValue_Interface is interface and WinRt.IInspectable_Interface;
    type IImageFeatureValue is access all IImageFeatureValue_Interface'Class;
    type IImageFeatureValue_Ptr is access all IImageFeatureValue;
 
    type IImageFeatureValueStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IImageFeatureValueStatics is access all IImageFeatureValueStatics_Interface'Class;
+   type IImageFeatureValueStatics_Ptr is access all IImageFeatureValueStatics;
 
    type ILearningModel_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModel is access all ILearningModel_Interface'Class;
@@ -66,6 +71,7 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ILearningModelBindingFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelBindingFactory is access all ILearningModelBindingFactory_Interface'Class;
+   type ILearningModelBindingFactory_Ptr is access all ILearningModelBindingFactory;
 
    type ILearningModelDevice_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelDevice is access all ILearningModelDevice_Interface'Class;
@@ -73,9 +79,11 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ILearningModelDeviceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelDeviceFactory is access all ILearningModelDeviceFactory_Interface'Class;
+   type ILearningModelDeviceFactory_Ptr is access all ILearningModelDeviceFactory;
 
    type ILearningModelDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelDeviceStatics is access all ILearningModelDeviceStatics_Interface'Class;
+   type ILearningModelDeviceStatics_Ptr is access all ILearningModelDeviceStatics;
 
    type ILearningModelEvaluationResult_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelEvaluationResult is access all ILearningModelEvaluationResult_Interface'Class;
@@ -83,12 +91,15 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ILearningModelFeatureDescriptor_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelFeatureDescriptor is access all ILearningModelFeatureDescriptor_Interface'Class;
+   type ILearningModelFeatureDescriptor_Ptr is access all ILearningModelFeatureDescriptor;
 
    type ILearningModelFeatureValue_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelFeatureValue is access all ILearningModelFeatureValue_Interface'Class;
+   type ILearningModelFeatureValue_Ptr is access all ILearningModelFeatureValue;
 
    type ILearningModelOperatorProvider_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelOperatorProvider is access all ILearningModelOperatorProvider_Interface'Class;
+   type ILearningModelOperatorProvider_Ptr is access all ILearningModelOperatorProvider;
 
    type ILearningModelSession_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelSession is access all ILearningModelSession_Interface'Class;
@@ -96,9 +107,11 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ILearningModelSessionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelSessionFactory is access all ILearningModelSessionFactory_Interface'Class;
+   type ILearningModelSessionFactory_Ptr is access all ILearningModelSessionFactory;
 
    type ILearningModelSessionFactory2_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelSessionFactory2 is access all ILearningModelSessionFactory2_Interface'Class;
+   type ILearningModelSessionFactory2_Ptr is access all ILearningModelSessionFactory2;
 
    type ILearningModelSessionOptions_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelSessionOptions is access all ILearningModelSessionOptions_Interface'Class;
@@ -106,9 +119,15 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ILearningModelSessionOptions2_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelSessionOptions2 is access all ILearningModelSessionOptions2_Interface'Class;
+   type ILearningModelSessionOptions2_Ptr is access all ILearningModelSessionOptions2;
+
+   type ILearningModelSessionOptions3_Interface is interface and WinRt.IInspectable_Interface;
+   type ILearningModelSessionOptions3 is access all ILearningModelSessionOptions3_Interface'Class;
+   type ILearningModelSessionOptions3_Ptr is access all ILearningModelSessionOptions3;
 
    type ILearningModelStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILearningModelStatics is access all ILearningModelStatics_Interface'Class;
+   type ILearningModelStatics_Ptr is access all ILearningModelStatics;
 
    type IMapFeatureDescriptor_Interface is interface and WinRt.IInspectable_Interface;
    type IMapFeatureDescriptor is access all IMapFeatureDescriptor_Interface'Class;
@@ -120,6 +139,7 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ITensor_Interface is interface and WinRt.IInspectable_Interface;
    type ITensor is access all ITensor_Interface'Class;
+   type ITensor_Ptr is access all ITensor;
 
    type ITensorBoolean_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorBoolean is access all ITensorBoolean_Interface'Class;
@@ -127,9 +147,11 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ITensorBooleanStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorBooleanStatics is access all ITensorBooleanStatics_Interface'Class;
+   type ITensorBooleanStatics_Ptr is access all ITensorBooleanStatics;
 
    type ITensorBooleanStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorBooleanStatics2 is access all ITensorBooleanStatics2_Interface'Class;
+   type ITensorBooleanStatics2_Ptr is access all ITensorBooleanStatics2;
 
    type ITensorDouble_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorDouble is access all ITensorDouble_Interface'Class;
@@ -137,9 +159,11 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ITensorDoubleStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorDoubleStatics is access all ITensorDoubleStatics_Interface'Class;
+   type ITensorDoubleStatics_Ptr is access all ITensorDoubleStatics;
 
    type ITensorDoubleStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorDoubleStatics2 is access all ITensorDoubleStatics2_Interface'Class;
+   type ITensorDoubleStatics2_Ptr is access all ITensorDoubleStatics2;
 
    type ITensorFeatureDescriptor_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorFeatureDescriptor is access all ITensorFeatureDescriptor_Interface'Class;
@@ -155,15 +179,19 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ITensorFloat16BitStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorFloat16BitStatics is access all ITensorFloat16BitStatics_Interface'Class;
+   type ITensorFloat16BitStatics_Ptr is access all ITensorFloat16BitStatics;
 
    type ITensorFloat16BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorFloat16BitStatics2 is access all ITensorFloat16BitStatics2_Interface'Class;
+   type ITensorFloat16BitStatics2_Ptr is access all ITensorFloat16BitStatics2;
 
    type ITensorFloatStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorFloatStatics is access all ITensorFloatStatics_Interface'Class;
+   type ITensorFloatStatics_Ptr is access all ITensorFloatStatics;
 
    type ITensorFloatStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorFloatStatics2 is access all ITensorFloatStatics2_Interface'Class;
+   type ITensorFloatStatics2_Ptr is access all ITensorFloatStatics2;
 
    type ITensorInt16Bit_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorInt16Bit is access all ITensorInt16Bit_Interface'Class;
@@ -171,9 +199,11 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ITensorInt16BitStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorInt16BitStatics is access all ITensorInt16BitStatics_Interface'Class;
+   type ITensorInt16BitStatics_Ptr is access all ITensorInt16BitStatics;
 
    type ITensorInt16BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorInt16BitStatics2 is access all ITensorInt16BitStatics2_Interface'Class;
+   type ITensorInt16BitStatics2_Ptr is access all ITensorInt16BitStatics2;
 
    type ITensorInt32Bit_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorInt32Bit is access all ITensorInt32Bit_Interface'Class;
@@ -181,9 +211,11 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ITensorInt32BitStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorInt32BitStatics is access all ITensorInt32BitStatics_Interface'Class;
+   type ITensorInt32BitStatics_Ptr is access all ITensorInt32BitStatics;
 
    type ITensorInt32BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorInt32BitStatics2 is access all ITensorInt32BitStatics2_Interface'Class;
+   type ITensorInt32BitStatics2_Ptr is access all ITensorInt32BitStatics2;
 
    type ITensorInt64Bit_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorInt64Bit is access all ITensorInt64Bit_Interface'Class;
@@ -191,9 +223,11 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ITensorInt64BitStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorInt64BitStatics is access all ITensorInt64BitStatics_Interface'Class;
+   type ITensorInt64BitStatics_Ptr is access all ITensorInt64BitStatics;
 
    type ITensorInt64BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorInt64BitStatics2 is access all ITensorInt64BitStatics2_Interface'Class;
+   type ITensorInt64BitStatics2_Ptr is access all ITensorInt64BitStatics2;
 
    type ITensorInt8Bit_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorInt8Bit is access all ITensorInt8Bit_Interface'Class;
@@ -201,9 +235,11 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ITensorInt8BitStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorInt8BitStatics is access all ITensorInt8BitStatics_Interface'Class;
+   type ITensorInt8BitStatics_Ptr is access all ITensorInt8BitStatics;
 
    type ITensorInt8BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorInt8BitStatics2 is access all ITensorInt8BitStatics2_Interface'Class;
+   type ITensorInt8BitStatics2_Ptr is access all ITensorInt8BitStatics2;
 
    type ITensorString_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorString is access all ITensorString_Interface'Class;
@@ -211,9 +247,11 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ITensorStringStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorStringStatics is access all ITensorStringStatics_Interface'Class;
+   type ITensorStringStatics_Ptr is access all ITensorStringStatics;
 
    type ITensorStringStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorStringStatics2 is access all ITensorStringStatics2_Interface'Class;
+   type ITensorStringStatics2_Ptr is access all ITensorStringStatics2;
 
    type ITensorUInt16Bit_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorUInt16Bit is access all ITensorUInt16Bit_Interface'Class;
@@ -221,9 +259,11 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ITensorUInt16BitStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorUInt16BitStatics is access all ITensorUInt16BitStatics_Interface'Class;
+   type ITensorUInt16BitStatics_Ptr is access all ITensorUInt16BitStatics;
 
    type ITensorUInt16BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorUInt16BitStatics2 is access all ITensorUInt16BitStatics2_Interface'Class;
+   type ITensorUInt16BitStatics2_Ptr is access all ITensorUInt16BitStatics2;
 
    type ITensorUInt32Bit_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorUInt32Bit is access all ITensorUInt32Bit_Interface'Class;
@@ -231,9 +271,11 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ITensorUInt32BitStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorUInt32BitStatics is access all ITensorUInt32BitStatics_Interface'Class;
+   type ITensorUInt32BitStatics_Ptr is access all ITensorUInt32BitStatics;
 
    type ITensorUInt32BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorUInt32BitStatics2 is access all ITensorUInt32BitStatics2_Interface'Class;
+   type ITensorUInt32BitStatics2_Ptr is access all ITensorUInt32BitStatics2;
 
    type ITensorUInt64Bit_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorUInt64Bit is access all ITensorUInt64Bit_Interface'Class;
@@ -241,9 +283,11 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ITensorUInt64BitStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorUInt64BitStatics is access all ITensorUInt64BitStatics_Interface'Class;
+   type ITensorUInt64BitStatics_Ptr is access all ITensorUInt64BitStatics;
 
    type ITensorUInt64BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorUInt64BitStatics2 is access all ITensorUInt64BitStatics2_Interface'Class;
+   type ITensorUInt64BitStatics2_Ptr is access all ITensorUInt64BitStatics2;
 
    type ITensorUInt8Bit_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorUInt8Bit is access all ITensorUInt8Bit_Interface'Class;
@@ -251,9 +295,11 @@ package WinRt.Windows.AI.MachineLearning is
 
    type ITensorUInt8BitStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorUInt8BitStatics is access all ITensorUInt8BitStatics_Interface'Class;
+   type ITensorUInt8BitStatics_Ptr is access all ITensorUInt8BitStatics;
 
    type ITensorUInt8BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ITensorUInt8BitStatics2 is access all ITensorUInt8BitStatics2_Interface'Class;
+   type ITensorUInt8BitStatics2_Ptr is access all ITensorUInt8BitStatics2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -437,6 +483,18 @@ package WinRt.Windows.AI.MachineLearning is
    );
    type LearningModelFeatureKind_Ptr is access all LearningModelFeatureKind;
 
+   type LearningModelPixelRange is (
+      ZeroTo255_e,
+      ZeroToOne_e,
+      MinusOneToOne_e
+   );
+   for LearningModelPixelRange use (
+      ZeroTo255_e => 0,
+      ZeroToOne_e => 1,
+      MinusOneToOne_e => 2
+   );
+   type LearningModelPixelRange_Ptr is access all LearningModelPixelRange;
+
    type TensorKind is (
       Undefined_e,
       Float_e,
@@ -580,6 +638,18 @@ package WinRt.Windows.AI.MachineLearning is
       return WinRt.Hresult is abstract;
 
       IID_IImageFeatureDescriptor : aliased WinRt.IID := (911574437, 5914, 18986, (152, 95, 38, 81, 89, 211, 137, 90 ));
+
+   -----------------------------------------------------------------------------
+   -- type IImageFeatureDescriptor2 is interface and WinRt.IInspectable;
+
+      function get_PixelRange
+      (
+         this : access IImageFeatureDescriptor2_Interface;
+         RetVal : access Windows.AI.MachineLearning.LearningModelPixelRange
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IImageFeatureDescriptor2 : aliased WinRt.IID := (724028583, 54579, 22626, (187, 152, 22, 17, 177, 85, 176, 225 ));
 
    -----------------------------------------------------------------------------
    -- type IImageFeatureValue is interface and WinRt.IInspectable;
@@ -972,6 +1042,19 @@ package WinRt.Windows.AI.MachineLearning is
       return WinRt.Hresult is abstract;
 
       IID_ILearningModelSessionOptions2 : aliased WinRt.IID := (1875713476, 5983, 23506, (141, 229, 47, 32, 6, 162, 90, 223 ));
+
+   -----------------------------------------------------------------------------
+   -- type ILearningModelSessionOptions3 is interface and WinRt.IInspectable;
+
+      function OverrideNamedDimension
+      (
+         this : access ILearningModelSessionOptions3_Interface;
+         name : WinRt.HString;
+         dimension : WinRt.UInt32
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ILearningModelSessionOptions3 : aliased WinRt.IID := (1491164398, 55490, 22268, (146, 232, 118, 215, 81, 8, 16, 134 ));
 
    -----------------------------------------------------------------------------
    -- type ILearningModelStatics is interface and WinRt.IInspectable;
@@ -2143,6 +2226,12 @@ package WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.UInt32;
 
+   function get_PixelRange
+   (
+      this : in out ImageFeatureDescriptor
+   )
+   return WinRt.Windows.AI.MachineLearning.LearningModelPixelRange;
+
    function get_Name
    (
       this : in out ImageFeatureDescriptor
@@ -2578,6 +2667,13 @@ package WinRt.Windows.AI.MachineLearning is
       value : WinRt.Boolean
    );
 
+   procedure OverrideNamedDimension
+   (
+      this : in out LearningModelSessionOptions;
+      name : WinRt.WString;
+      dimension : WinRt.UInt32
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for MapFeatureDescriptor
 
@@ -2671,20 +2767,6 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorBoolean
 
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Boolean_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorBoolean;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorBoolean;
-
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorBoolean;
 
@@ -2705,6 +2787,20 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorBoolean;
+
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Boolean_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorBoolean;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorBoolean;
 
@@ -2755,20 +2851,6 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorDouble
 
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Double_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorDouble;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorDouble;
-
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorDouble;
 
@@ -2789,6 +2871,20 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorDouble;
+
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Double_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorDouble;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorDouble;
 
@@ -2968,20 +3064,6 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorFloat16Bit
 
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.Single_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit;
-
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit;
 
@@ -3002,6 +3084,20 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit;
+
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.Single_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit;
 
@@ -3388,6 +3484,13 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorString
 
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.HString_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorString;
+
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorString;
 
@@ -3408,13 +3511,6 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorString;
-
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.HString_Array
    )
    return WinRt.Windows.AI.MachineLearning.TensorString;
 
@@ -3549,6 +3645,20 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TensorUInt32Bit
 
+   function CreateFromShapeArrayAndDataArray
+   (
+      shape : WinRt.Int64_Array;
+      data : WinRt.UInt32_Array
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit;
+
+   function CreateFromBuffer
+   (
+      shape : WinRt.Int64_Array;
+      buffer : Windows.Storage.Streams.IBuffer
+   )
+   return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit;
+
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit;
 
@@ -3569,20 +3679,6 @@ package WinRt.Windows.AI.MachineLearning is
    (
       shape : GenericObject;
       data : GenericObject
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit;
-
-   function CreateFromShapeArrayAndDataArray
-   (
-      shape : WinRt.Int64_Array;
-      data : WinRt.UInt32_Array
-   )
-   return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit;
-
-   function CreateFromBuffer
-   (
-      shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit;
 

@@ -32,6 +32,7 @@ with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Media.Capture;
 limited with WinRt.Windows.Media.Devices.Core;
+limited with WinRt.Windows.Media.Effects;
 limited with WinRt.Windows.Media.MediaProperties;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;
@@ -70,31 +71,55 @@ package WinRt.Windows.Media.Devices is
 
    type IAdvancedVideoCaptureDeviceController_Interface is interface and WinRt.IInspectable_Interface;
    type IAdvancedVideoCaptureDeviceController is access all IAdvancedVideoCaptureDeviceController_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController_Ptr is access all IAdvancedVideoCaptureDeviceController;
+
+   type IAdvancedVideoCaptureDeviceController10_Interface is interface and WinRt.IInspectable_Interface;
+   type IAdvancedVideoCaptureDeviceController10 is access all IAdvancedVideoCaptureDeviceController10_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController10_Ptr is access all IAdvancedVideoCaptureDeviceController10;
+
+   type IAdvancedVideoCaptureDeviceController11_Interface is interface and WinRt.IInspectable_Interface;
+   type IAdvancedVideoCaptureDeviceController11 is access all IAdvancedVideoCaptureDeviceController11_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController11_Ptr is access all IAdvancedVideoCaptureDeviceController11;
 
    type IAdvancedVideoCaptureDeviceController2_Interface is interface and WinRt.IInspectable_Interface;
    type IAdvancedVideoCaptureDeviceController2 is access all IAdvancedVideoCaptureDeviceController2_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController2_Ptr is access all IAdvancedVideoCaptureDeviceController2;
 
    type IAdvancedVideoCaptureDeviceController3_Interface is interface and WinRt.IInspectable_Interface;
    type IAdvancedVideoCaptureDeviceController3 is access all IAdvancedVideoCaptureDeviceController3_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController3_Ptr is access all IAdvancedVideoCaptureDeviceController3;
 
    type IAdvancedVideoCaptureDeviceController4_Interface is interface and WinRt.IInspectable_Interface;
    type IAdvancedVideoCaptureDeviceController4 is access all IAdvancedVideoCaptureDeviceController4_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController4_Ptr is access all IAdvancedVideoCaptureDeviceController4;
 
    type IAdvancedVideoCaptureDeviceController5_Interface is interface and WinRt.IInspectable_Interface;
    type IAdvancedVideoCaptureDeviceController5 is access all IAdvancedVideoCaptureDeviceController5_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController5_Ptr is access all IAdvancedVideoCaptureDeviceController5;
 
    type IAdvancedVideoCaptureDeviceController6_Interface is interface and WinRt.IInspectable_Interface;
    type IAdvancedVideoCaptureDeviceController6 is access all IAdvancedVideoCaptureDeviceController6_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController6_Ptr is access all IAdvancedVideoCaptureDeviceController6;
 
    type IAdvancedVideoCaptureDeviceController7_Interface is interface and WinRt.IInspectable_Interface;
    type IAdvancedVideoCaptureDeviceController7 is access all IAdvancedVideoCaptureDeviceController7_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController7_Ptr is access all IAdvancedVideoCaptureDeviceController7;
 
    type IAdvancedVideoCaptureDeviceController8_Interface is interface and WinRt.IInspectable_Interface;
    type IAdvancedVideoCaptureDeviceController8 is access all IAdvancedVideoCaptureDeviceController8_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController8_Ptr is access all IAdvancedVideoCaptureDeviceController8;
+
+   type IAdvancedVideoCaptureDeviceController9_Interface is interface and WinRt.IInspectable_Interface;
+   type IAdvancedVideoCaptureDeviceController9 is access all IAdvancedVideoCaptureDeviceController9_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController9_Ptr is access all IAdvancedVideoCaptureDeviceController9;
 
    type IAudioDeviceController_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioDeviceController is access all IAudioDeviceController_Interface'Class;
    type IAudioDeviceController_Ptr is access all IAudioDeviceController;
+
+   type IAudioDeviceController2_Interface is interface and WinRt.IInspectable_Interface;
+   type IAudioDeviceController2 is access all IAudioDeviceController2_Interface'Class;
+   type IAudioDeviceController2_Ptr is access all IAudioDeviceController2;
 
    type IAudioDeviceModule_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioDeviceModule is access all IAudioDeviceModule_Interface'Class;
@@ -110,6 +135,7 @@ package WinRt.Windows.Media.Devices is
 
    type IAudioDeviceModulesManagerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAudioDeviceModulesManagerFactory is access all IAudioDeviceModulesManagerFactory_Interface'Class;
+   type IAudioDeviceModulesManagerFactory_Ptr is access all IAudioDeviceModulesManagerFactory;
 
    type ICallControl_Interface is interface and WinRt.IInspectable_Interface;
    type ICallControl is access all ICallControl_Interface'Class;
@@ -117,6 +143,19 @@ package WinRt.Windows.Media.Devices is
 
    type ICallControlStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICallControlStatics is access all ICallControlStatics_Interface'Class;
+   type ICallControlStatics_Ptr is access all ICallControlStatics;
+
+   type ICameraOcclusionInfo_Interface is interface and WinRt.IInspectable_Interface;
+   type ICameraOcclusionInfo is access all ICameraOcclusionInfo_Interface'Class;
+   type ICameraOcclusionInfo_Ptr is access all ICameraOcclusionInfo;
+
+   type ICameraOcclusionState_Interface is interface and WinRt.IInspectable_Interface;
+   type ICameraOcclusionState is access all ICameraOcclusionState_Interface'Class;
+   type ICameraOcclusionState_Ptr is access all ICameraOcclusionState;
+
+   type ICameraOcclusionStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type ICameraOcclusionStateChangedEventArgs is access all ICameraOcclusionStateChangedEventArgs_Interface'Class;
+   type ICameraOcclusionStateChangedEventArgs_Ptr is access all ICameraOcclusionStateChangedEventArgs;
 
    type IDefaultAudioDeviceChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDefaultAudioDeviceChangedEventArgs is access all IDefaultAudioDeviceChangedEventArgs_Interface'Class;
@@ -125,6 +164,18 @@ package WinRt.Windows.Media.Devices is
    type IDialRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDialRequestedEventArgs is access all IDialRequestedEventArgs_Interface'Class;
    type IDialRequestedEventArgs_Ptr is access all IDialRequestedEventArgs;
+
+   type IDigitalWindowBounds_Interface is interface and WinRt.IInspectable_Interface;
+   type IDigitalWindowBounds is access all IDigitalWindowBounds_Interface'Class;
+   type IDigitalWindowBounds_Ptr is access all IDigitalWindowBounds;
+
+   type IDigitalWindowCapability_Interface is interface and WinRt.IInspectable_Interface;
+   type IDigitalWindowCapability is access all IDigitalWindowCapability_Interface'Class;
+   type IDigitalWindowCapability_Ptr is access all IDigitalWindowCapability;
+
+   type IDigitalWindowControl_Interface is interface and WinRt.IInspectable_Interface;
+   type IDigitalWindowControl is access all IDigitalWindowControl_Interface'Class;
+   type IDigitalWindowControl_Ptr is access all IDigitalWindowControl;
 
    type IExposureCompensationControl_Interface is interface and WinRt.IInspectable_Interface;
    type IExposureCompensationControl is access all IExposureCompensationControl_Interface'Class;
@@ -144,6 +195,7 @@ package WinRt.Windows.Media.Devices is
 
    type IFlashControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IFlashControl2 is access all IFlashControl2_Interface'Class;
+   type IFlashControl2_Ptr is access all IFlashControl2;
 
    type IFocusControl_Interface is interface and WinRt.IInspectable_Interface;
    type IFocusControl is access all IFocusControl_Interface'Class;
@@ -151,6 +203,7 @@ package WinRt.Windows.Media.Devices is
 
    type IFocusControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IFocusControl2 is access all IFocusControl2_Interface'Class;
+   type IFocusControl2_Ptr is access all IFocusControl2;
 
    type IFocusSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IFocusSettings is access all IFocusSettings_Interface'Class;
@@ -170,6 +223,7 @@ package WinRt.Windows.Media.Devices is
 
    type IIsoSpeedControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IIsoSpeedControl2 is access all IIsoSpeedControl2_Interface'Class;
+   type IIsoSpeedControl2_Ptr is access all IIsoSpeedControl2;
 
    type IKeypadPressedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IKeypadPressedEventArgs is access all IKeypadPressedEventArgs_Interface'Class;
@@ -193,9 +247,11 @@ package WinRt.Windows.Media.Devices is
 
    type IMediaDeviceController_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaDeviceController is access all IMediaDeviceController_Interface'Class;
+   type IMediaDeviceController_Ptr is access all IMediaDeviceController;
 
    type IMediaDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaDeviceStatics is access all IMediaDeviceStatics_Interface'Class;
+   type IMediaDeviceStatics_Ptr is access all IMediaDeviceStatics;
 
    type IModuleCommandResult_Interface is interface and WinRt.IInspectable_Interface;
    type IModuleCommandResult is access all IModuleCommandResult_Interface'Class;
@@ -223,6 +279,7 @@ package WinRt.Windows.Media.Devices is
 
    type IRegionOfInterest2_Interface is interface and WinRt.IInspectable_Interface;
    type IRegionOfInterest2 is access all IRegionOfInterest2_Interface'Class;
+   type IRegionOfInterest2_Ptr is access all IRegionOfInterest2;
 
    type IRegionsOfInterestControl_Interface is interface and WinRt.IInspectable_Interface;
    type IRegionsOfInterestControl is access all IRegionsOfInterestControl_Interface'Class;
@@ -258,6 +315,7 @@ package WinRt.Windows.Media.Devices is
 
    type IZoomControl2_Interface is interface and WinRt.IInspectable_Interface;
    type IZoomControl2 is access all IZoomControl2_Interface'Class;
+   type IZoomControl2_Ptr is access all IZoomControl2;
 
    type IZoomSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IZoomSettings is access all IZoomSettings_Interface'Class;
@@ -309,6 +367,24 @@ package WinRt.Windows.Media.Devices is
       end record;
    type CallControl_Ptr is access all CallControl;
 
+   type CameraOcclusionInfo is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ICameraOcclusionInfo : access Windows.Media.Devices.ICameraOcclusionInfo;
+      end record;
+   type CameraOcclusionInfo_Ptr is access all CameraOcclusionInfo;
+
+   type CameraOcclusionState is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ICameraOcclusionState : access Windows.Media.Devices.ICameraOcclusionState;
+      end record;
+   type CameraOcclusionState_Ptr is access all CameraOcclusionState;
+
+   type CameraOcclusionStateChangedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ICameraOcclusionStateChangedEventArgs : access Windows.Media.Devices.ICameraOcclusionStateChangedEventArgs;
+      end record;
+   type CameraOcclusionStateChangedEventArgs_Ptr is access all CameraOcclusionStateChangedEventArgs;
+
    type DefaultAudioCaptureDeviceChangedEventArgs is new Ada.Finalization.Limited_Controlled with
       record
          m_IDefaultAudioDeviceChangedEventArgs : access Windows.Media.Devices.IDefaultAudioDeviceChangedEventArgs;
@@ -326,6 +402,24 @@ package WinRt.Windows.Media.Devices is
          m_IDialRequestedEventArgs : access Windows.Media.Devices.IDialRequestedEventArgs;
       end record;
    type DialRequestedEventArgs_Ptr is access all DialRequestedEventArgs;
+
+   type DigitalWindowBounds is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IDigitalWindowBounds : access Windows.Media.Devices.IDigitalWindowBounds;
+      end record;
+   type DigitalWindowBounds_Ptr is access all DigitalWindowBounds;
+
+   type DigitalWindowCapability is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IDigitalWindowCapability : access Windows.Media.Devices.IDigitalWindowCapability;
+      end record;
+   type DigitalWindowCapability_Ptr is access all DigitalWindowCapability;
+
+   type DigitalWindowControl is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IDigitalWindowControl : access Windows.Media.Devices.IDigitalWindowControl;
+      end record;
+   type DigitalWindowControl_Ptr is access all DigitalWindowControl;
 
    type ExposureCompensationControl is new Ada.Finalization.Limited_Controlled with
       record
@@ -541,6 +635,16 @@ package WinRt.Windows.Media.Devices is
    );
    type AutoFocusRange_Ptr is access all AutoFocusRange;
 
+   type CameraOcclusionKind is (
+      Lid_e,
+      CameraHardware_e
+   );
+   for CameraOcclusionKind use (
+      Lid_e => 0,
+      CameraHardware_e => 1
+   );
+   type CameraOcclusionKind_Ptr is access all CameraOcclusionKind;
+
    type CameraStreamState is (
       NotStreaming_e,
       Streaming_e,
@@ -620,6 +724,19 @@ package WinRt.Windows.Media.Devices is
       Candlelight_e => 7
    );
    type ColorTemperaturePreset_Ptr is access all ColorTemperaturePreset;
+
+   type DigitalWindowMode is (
+      Off_e,
+      On_e,
+      Auto_e
+   );
+   for DigitalWindowMode use (
+      Off_e => 0,
+      On_e => 1,
+      Auto_e => 2
+   );
+   type DigitalWindowMode_Ptr is access all DigitalWindowMode;
+   type DigitalWindowMode_Array is array (Natural range <>) of aliased DigitalWindowMode;
 
    type FocusMode is (
       Auto_e,
@@ -961,6 +1078,10 @@ package WinRt.Windows.Media.Devices is
    IID_IVectorView_IAudioDeviceModule : aliased WinRt.IID := (3700806715, 63568, 24039, (169, 168, 242, 112, 82, 123, 22, 50 ));
    function QInterface_IVectorView_IAudioDeviceModule is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IAudioDeviceModule.Kind, IID_IVectorView_IAudioDeviceModule'Access);
 
+   package IVectorView_IDigitalWindowCapability is new WinRt.Windows.Foundation.Collections.IVectorView (IDigitalWindowCapability);
+   IID_IVectorView_IDigitalWindowCapability : aliased WinRt.IID := (2278287102, 38645, 24202, (142, 251, 201, 253, 83, 242, 89, 158 ));
+   function QInterface_IVectorView_IDigitalWindowCapability is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IDigitalWindowCapability.Kind, IID_IVectorView_IDigitalWindowCapability'Access);
+
    package IVectorView_FocusPreset is new WinRt.Windows.Foundation.Collections.IVectorView (FocusPreset);
    IID_IVectorView_FocusPreset : aliased WinRt.IID := (1746007678, 38130, 20644, (141, 254, 65, 163, 78, 24, 247, 173 ));
    function QInterface_IVectorView_FocusPreset is new Generic_QueryInterface (GenericObject_Interface, IVectorView_FocusPreset.Kind, IID_IVectorView_FocusPreset'Access);
@@ -1089,6 +1210,32 @@ package WinRt.Windows.Media.Devices is
       return WinRt.Hresult is abstract;
 
       IID_IAdvancedVideoCaptureDeviceController : aliased WinRt.IID := (3731879123, 11158, 17795, (128, 171, 181, 176, 29, 198, 168, 215 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAdvancedVideoCaptureDeviceController10 is interface and WinRt.IInspectable;
+
+      function get_CameraOcclusionInfo
+      (
+         this : access IAdvancedVideoCaptureDeviceController10_Interface;
+         RetVal : access Windows.Media.Devices.ICameraOcclusionInfo
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAdvancedVideoCaptureDeviceController10 : aliased WinRt.IID := (3324098605, 55024, 23579, (163, 136, 166, 233, 56, 64, 113, 70 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAdvancedVideoCaptureDeviceController11 is interface and WinRt.IInspectable;
+
+      function TryAcquireExclusiveControl
+      (
+         this : access IAdvancedVideoCaptureDeviceController11_Interface;
+         deviceId : WinRt.HString;
+         mode : Windows.Media.Capture.MediaCaptureDeviceExclusiveControlReleaseMode;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAdvancedVideoCaptureDeviceController11 : aliased WinRt.IID := (3585497826, 14194, 22540, (166, 48, 231, 93, 233, 16, 105, 4 ));
 
    -----------------------------------------------------------------------------
    -- type IAdvancedVideoCaptureDeviceController2 is interface and WinRt.IInspectable;
@@ -1347,6 +1494,18 @@ package WinRt.Windows.Media.Devices is
       IID_IAdvancedVideoCaptureDeviceController8 : aliased WinRt.IID := (3628331024, 59387, 22875, (154, 120, 14, 84, 196, 83, 43, 67 ));
 
    -----------------------------------------------------------------------------
+   -- type IAdvancedVideoCaptureDeviceController9 is interface and WinRt.IInspectable;
+
+      function get_DigitalWindowControl
+      (
+         this : access IAdvancedVideoCaptureDeviceController9_Interface;
+         RetVal : access Windows.Media.Devices.IDigitalWindowControl
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAdvancedVideoCaptureDeviceController9 : aliased WinRt.IID := (2346494301, 597, 20924, (161, 13, 90, 22, 158, 193, 98, 90 ));
+
+   -----------------------------------------------------------------------------
    -- type IAudioDeviceController is interface and WinRt.IInspectable;
 
       function put_Muted
@@ -1378,6 +1537,18 @@ package WinRt.Windows.Media.Devices is
       return WinRt.Hresult is abstract;
 
       IID_IAudioDeviceController : aliased WinRt.IID := (3990135688, 31175, 20348, (144, 232, 239, 147, 75, 33, 88, 10 ));
+
+   -----------------------------------------------------------------------------
+   -- type IAudioDeviceController2 is interface and WinRt.IInspectable;
+
+      function get_AudioCaptureEffectsManager
+      (
+         this : access IAudioDeviceController2_Interface;
+         RetVal : access Windows.Media.Effects.IAudioCaptureEffectsManager
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IAudioDeviceController2 : aliased WinRt.IID := (2234672537, 19492, 18608, (129, 221, 12, 92, 199, 157, 223, 5 ));
 
    -----------------------------------------------------------------------------
    -- type IAudioDeviceModule is interface and WinRt.IInspectable;
@@ -1647,6 +1818,73 @@ package WinRt.Windows.Media.Devices is
       IID_ICallControlStatics : aliased WinRt.IID := (60054229, 34219, 16609, (175, 25, 86, 201, 67, 3, 176, 25 ));
 
    -----------------------------------------------------------------------------
+   -- type ICameraOcclusionInfo is interface and WinRt.IInspectable;
+
+      function GetState
+      (
+         this : access ICameraOcclusionInfo_Interface;
+         RetVal : access Windows.Media.Devices.ICameraOcclusionState
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsOcclusionKindSupported
+      (
+         this : access ICameraOcclusionInfo_Interface;
+         occlusionKind : Windows.Media.Devices.CameraOcclusionKind;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_StateChanged
+      (
+         this : access ICameraOcclusionInfo_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_StateChanged
+      (
+         this : access ICameraOcclusionInfo_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICameraOcclusionInfo : aliased WinRt.IID := (2943109840, 43085, 23990, (190, 88, 165, 218, 33, 207, 224, 17 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICameraOcclusionState is interface and WinRt.IInspectable;
+
+      function get_IsOccluded
+      (
+         this : access ICameraOcclusionState_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function IsOcclusionKind
+      (
+         this : access ICameraOcclusionState_Interface;
+         occlusionKind : Windows.Media.Devices.CameraOcclusionKind;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICameraOcclusionState : aliased WinRt.IID := (1124785848, 26690, 24149, (155, 222, 4, 180, 239, 58, 138, 87 ));
+
+   -----------------------------------------------------------------------------
+   -- type ICameraOcclusionStateChangedEventArgs is interface and WinRt.IInspectable;
+
+      function get_State
+      (
+         this : access ICameraOcclusionStateChangedEventArgs_Interface;
+         RetVal : access Windows.Media.Devices.ICameraOcclusionState
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ICameraOcclusionStateChangedEventArgs : aliased WinRt.IID := (2232604744, 49374, 22474, (161, 202, 251, 44, 61, 35, 223, 85 ));
+
+   -----------------------------------------------------------------------------
    -- type IDefaultAudioDeviceChangedEventArgs is interface and WinRt.IInspectable;
 
       function get_Id
@@ -1682,6 +1920,165 @@ package WinRt.Windows.Media.Devices is
       return WinRt.Hresult is abstract;
 
       IID_IDialRequestedEventArgs : aliased WinRt.IID := (58430110, 38204, 17030, (136, 102, 79, 15, 55, 108, 133, 90 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDigitalWindowBounds is interface and WinRt.IInspectable;
+
+      function get_NormalizedOriginTop
+      (
+         this : access IDigitalWindowBounds_Interface;
+         RetVal : access WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_NormalizedOriginTop
+      (
+         this : access IDigitalWindowBounds_Interface;
+         value : WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_NormalizedOriginLeft
+      (
+         this : access IDigitalWindowBounds_Interface;
+         RetVal : access WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_NormalizedOriginLeft
+      (
+         this : access IDigitalWindowBounds_Interface;
+         value : WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Scale
+      (
+         this : access IDigitalWindowBounds_Interface;
+         RetVal : access WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_Scale
+      (
+         this : access IDigitalWindowBounds_Interface;
+         value : WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDigitalWindowBounds : aliased WinRt.IID := (3712950749, 53619, 23659, (140, 37, 189, 210, 109, 81, 34, 177 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDigitalWindowCapability is interface and WinRt.IInspectable;
+
+      function get_Width
+      (
+         this : access IDigitalWindowCapability_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Height
+      (
+         this : access IDigitalWindowCapability_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MinScaleValue
+      (
+         this : access IDigitalWindowCapability_Interface;
+         RetVal : access WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MaxScaleValue
+      (
+         this : access IDigitalWindowCapability_Interface;
+         RetVal : access WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MinScaleValueWithoutUpsampling
+      (
+         this : access IDigitalWindowCapability_Interface;
+         RetVal : access WinRt.Double
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_NormalizedFieldOfViewLimit
+      (
+         this : access IDigitalWindowCapability_Interface;
+         RetVal : access Windows.Foundation.Rect
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDigitalWindowCapability : aliased WinRt.IID := (3616255276, 63265, 21060, (161, 150, 181, 108, 203, 236, 96, 108 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDigitalWindowControl is interface and WinRt.IInspectable;
+
+      function get_IsSupported
+      (
+         this : access IDigitalWindowControl_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SupportedModes
+      (
+         this : access IDigitalWindowControl_Interface;
+         RetValSize : access WinRt.UInt32;
+         RetVal : access Windows.Media.Devices.DigitalWindowMode_Ptr
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CurrentMode
+      (
+         this : access IDigitalWindowControl_Interface;
+         RetVal : access Windows.Media.Devices.DigitalWindowMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetBounds
+      (
+         this : access IDigitalWindowControl_Interface;
+         RetVal : access Windows.Media.Devices.IDigitalWindowBounds
+      )
+      return WinRt.Hresult is abstract;
+
+      function Configure
+      (
+         this : access IDigitalWindowControl_Interface;
+         digitalWindowMode : Windows.Media.Devices.DigitalWindowMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function Configure
+      (
+         this : access IDigitalWindowControl_Interface;
+         digitalWindowMode : Windows.Media.Devices.DigitalWindowMode;
+         digitalWindowBounds_p : Windows.Media.Devices.IDigitalWindowBounds
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SupportedCapabilities
+      (
+         this : access IDigitalWindowControl_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetCapabilityForSize
+      (
+         this : access IDigitalWindowControl_Interface;
+         width : WinRt.Int32;
+         height : WinRt.Int32;
+         RetVal : access Windows.Media.Devices.IDigitalWindowCapability
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDigitalWindowControl : aliased WinRt.IID := (599170815, 26066, 21482, (135, 128, 222, 88, 43, 72, 181, 68 ));
 
    -----------------------------------------------------------------------------
    -- type IExposureCompensationControl is interface and WinRt.IInspectable;
@@ -3564,6 +3961,12 @@ package WinRt.Windows.Media.Devices is
       mediaEncodingProperties : Windows.Media.MediaProperties.IMediaEncodingProperties
    );
 
+   function get_AudioCaptureEffectsManager
+   (
+      this : in out AudioDeviceController
+   )
+   return WinRt.Windows.Media.Effects.AudioCaptureEffectsManager'Class;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for AudioDeviceModule
 
@@ -3807,6 +4210,78 @@ package WinRt.Windows.Media.Devices is
    );
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CameraOcclusionInfo
+
+   overriding procedure Initialize (this : in out CameraOcclusionInfo);
+   overriding procedure Finalize (this : in out CameraOcclusionInfo);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CameraOcclusionInfo
+
+   function GetState
+   (
+      this : in out CameraOcclusionInfo
+   )
+   return WinRt.Windows.Media.Devices.CameraOcclusionState'Class;
+
+   function IsOcclusionKindSupported
+   (
+      this : in out CameraOcclusionInfo;
+      occlusionKind : Windows.Media.Devices.CameraOcclusionKind
+   )
+   return WinRt.Boolean;
+
+   function add_StateChanged
+   (
+      this : in out CameraOcclusionInfo;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_StateChanged
+   (
+      this : in out CameraOcclusionInfo;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CameraOcclusionState
+
+   overriding procedure Initialize (this : in out CameraOcclusionState);
+   overriding procedure Finalize (this : in out CameraOcclusionState);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CameraOcclusionState
+
+   function get_IsOccluded
+   (
+      this : in out CameraOcclusionState
+   )
+   return WinRt.Boolean;
+
+   function IsOcclusionKind
+   (
+      this : in out CameraOcclusionState;
+      occlusionKind : Windows.Media.Devices.CameraOcclusionKind
+   )
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for CameraOcclusionStateChangedEventArgs
+
+   overriding procedure Initialize (this : in out CameraOcclusionStateChangedEventArgs);
+   overriding procedure Finalize (this : in out CameraOcclusionStateChangedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for CameraOcclusionStateChangedEventArgs
+
+   function get_State
+   (
+      this : in out CameraOcclusionStateChangedEventArgs
+   )
+   return WinRt.Windows.Media.Devices.CameraOcclusionState'Class;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DefaultAudioCaptureDeviceChangedEventArgs
 
    overriding procedure Initialize (this : in out DefaultAudioCaptureDeviceChangedEventArgs);
@@ -3867,6 +4342,161 @@ package WinRt.Windows.Media.Devices is
       this : in out DialRequestedEventArgs
    )
    return WinRt.IInspectable;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DigitalWindowBounds
+
+   overriding procedure Initialize (this : in out DigitalWindowBounds);
+   overriding procedure Finalize (this : in out DigitalWindowBounds);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for DigitalWindowBounds
+
+   function Constructor return DigitalWindowBounds;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DigitalWindowBounds
+
+   function get_NormalizedOriginTop
+   (
+      this : in out DigitalWindowBounds
+   )
+   return WinRt.Double;
+
+   procedure put_NormalizedOriginTop
+   (
+      this : in out DigitalWindowBounds;
+      value : WinRt.Double
+   );
+
+   function get_NormalizedOriginLeft
+   (
+      this : in out DigitalWindowBounds
+   )
+   return WinRt.Double;
+
+   procedure put_NormalizedOriginLeft
+   (
+      this : in out DigitalWindowBounds;
+      value : WinRt.Double
+   );
+
+   function get_Scale
+   (
+      this : in out DigitalWindowBounds
+   )
+   return WinRt.Double;
+
+   procedure put_Scale
+   (
+      this : in out DigitalWindowBounds;
+      value : WinRt.Double
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DigitalWindowCapability
+
+   overriding procedure Initialize (this : in out DigitalWindowCapability);
+   overriding procedure Finalize (this : in out DigitalWindowCapability);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DigitalWindowCapability
+
+   function get_Width
+   (
+      this : in out DigitalWindowCapability
+   )
+   return WinRt.Int32;
+
+   function get_Height
+   (
+      this : in out DigitalWindowCapability
+   )
+   return WinRt.Int32;
+
+   function get_MinScaleValue
+   (
+      this : in out DigitalWindowCapability
+   )
+   return WinRt.Double;
+
+   function get_MaxScaleValue
+   (
+      this : in out DigitalWindowCapability
+   )
+   return WinRt.Double;
+
+   function get_MinScaleValueWithoutUpsampling
+   (
+      this : in out DigitalWindowCapability
+   )
+   return WinRt.Double;
+
+   function get_NormalizedFieldOfViewLimit
+   (
+      this : in out DigitalWindowCapability
+   )
+   return WinRt.Windows.Foundation.Rect;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DigitalWindowControl
+
+   overriding procedure Initialize (this : in out DigitalWindowControl);
+   overriding procedure Finalize (this : in out DigitalWindowControl);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DigitalWindowControl
+
+   function get_IsSupported
+   (
+      this : in out DigitalWindowControl
+   )
+   return WinRt.Boolean;
+
+   function get_SupportedModes
+   (
+      this : in out DigitalWindowControl
+   )
+   return WinRt.Windows.Media.Devices.DigitalWindowMode_Array;
+
+   function get_CurrentMode
+   (
+      this : in out DigitalWindowControl
+   )
+   return WinRt.Windows.Media.Devices.DigitalWindowMode;
+
+   function GetBounds
+   (
+      this : in out DigitalWindowControl
+   )
+   return WinRt.Windows.Media.Devices.DigitalWindowBounds'Class;
+
+   procedure Configure
+   (
+      this : in out DigitalWindowControl;
+      digitalWindowMode : Windows.Media.Devices.DigitalWindowMode
+   );
+
+   procedure Configure
+   (
+      this : in out DigitalWindowControl;
+      digitalWindowMode : Windows.Media.Devices.DigitalWindowMode;
+      digitalWindowBounds_p : Windows.Media.Devices.DigitalWindowBounds'Class
+   );
+
+   function get_SupportedCapabilities
+   (
+      this : in out DigitalWindowControl
+   )
+   return IVectorView_IDigitalWindowCapability.Kind;
+
+   function GetCapabilityForSize
+   (
+      this : in out DigitalWindowControl;
+      width : WinRt.Int32;
+      height : WinRt.Int32
+   )
+   return WinRt.Windows.Media.Devices.DigitalWindowCapability'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ExposureCompensationControl
@@ -5467,6 +6097,26 @@ package WinRt.Windows.Media.Devices is
       this : in out VideoDeviceController
    )
    return WinRt.Windows.Media.Devices.PanelBasedOptimizationControl'Class;
+
+   function get_DigitalWindowControl
+   (
+      this : in out VideoDeviceController
+   )
+   return WinRt.Windows.Media.Devices.DigitalWindowControl'Class;
+
+   function get_CameraOcclusionInfo
+   (
+      this : in out VideoDeviceController
+   )
+   return WinRt.Windows.Media.Devices.CameraOcclusionInfo'Class;
+
+   function TryAcquireExclusiveControl
+   (
+      this : in out VideoDeviceController;
+      deviceId : WinRt.WString;
+      mode : Windows.Media.Capture.MediaCaptureDeviceExclusiveControlReleaseMode
+   )
+   return WinRt.Boolean;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for VideoDeviceControllerGetDevicePropertyResult

@@ -56,6 +56,7 @@ package WinRt.Windows.Media.DialProtocol is
 
    type IDialDevice2_Interface is interface and WinRt.IInspectable_Interface;
    type IDialDevice2 is access all IDialDevice2_Interface'Class;
+   type IDialDevice2_Ptr is access all IDialDevice2;
 
    type IDialDevicePicker_Interface is interface and WinRt.IInspectable_Interface;
    type IDialDevicePicker is access all IDialDevicePicker_Interface'Class;
@@ -71,6 +72,7 @@ package WinRt.Windows.Media.DialProtocol is
 
    type IDialDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDialDeviceStatics is access all IDialDeviceStatics_Interface'Class;
+   type IDialDeviceStatics_Ptr is access all IDialDeviceStatics;
 
    type IDialDisconnectButtonClickedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDialDisconnectButtonClickedEventArgs is access all IDialDisconnectButtonClickedEventArgs_Interface'Class;
@@ -82,9 +84,11 @@ package WinRt.Windows.Media.DialProtocol is
 
    type IDialReceiverApp2_Interface is interface and WinRt.IInspectable_Interface;
    type IDialReceiverApp2 is access all IDialReceiverApp2_Interface'Class;
+   type IDialReceiverApp2_Ptr is access all IDialReceiverApp2;
 
    type IDialReceiverAppStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDialReceiverAppStatics is access all IDialReceiverAppStatics_Interface'Class;
+   type IDialReceiverAppStatics_Ptr is access all IDialReceiverAppStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

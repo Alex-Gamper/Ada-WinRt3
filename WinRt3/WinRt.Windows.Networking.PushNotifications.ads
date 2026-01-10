@@ -52,18 +52,23 @@ package WinRt.Windows.Networking.PushNotifications is
 
    type IPushNotificationChannelManagerForUser2_Interface is interface and WinRt.IInspectable_Interface;
    type IPushNotificationChannelManagerForUser2 is access all IPushNotificationChannelManagerForUser2_Interface'Class;
+   type IPushNotificationChannelManagerForUser2_Ptr is access all IPushNotificationChannelManagerForUser2;
 
    type IPushNotificationChannelManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPushNotificationChannelManagerStatics is access all IPushNotificationChannelManagerStatics_Interface'Class;
+   type IPushNotificationChannelManagerStatics_Ptr is access all IPushNotificationChannelManagerStatics;
 
    type IPushNotificationChannelManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IPushNotificationChannelManagerStatics2 is access all IPushNotificationChannelManagerStatics2_Interface'Class;
+   type IPushNotificationChannelManagerStatics2_Ptr is access all IPushNotificationChannelManagerStatics2;
 
    type IPushNotificationChannelManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IPushNotificationChannelManagerStatics3 is access all IPushNotificationChannelManagerStatics3_Interface'Class;
+   type IPushNotificationChannelManagerStatics3_Ptr is access all IPushNotificationChannelManagerStatics3;
 
    type IPushNotificationChannelManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IPushNotificationChannelManagerStatics4 is access all IPushNotificationChannelManagerStatics4_Interface'Class;
+   type IPushNotificationChannelManagerStatics4_Ptr is access all IPushNotificationChannelManagerStatics4;
 
    type IPushNotificationChannelsRevokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPushNotificationChannelsRevokedEventArgs is access all IPushNotificationChannelsRevokedEventArgs_Interface'Class;
@@ -79,9 +84,11 @@ package WinRt.Windows.Networking.PushNotifications is
 
    type IRawNotification2_Interface is interface and WinRt.IInspectable_Interface;
    type IRawNotification2 is access all IRawNotification2_Interface'Class;
+   type IRawNotification2_Ptr is access all IRawNotification2;
 
    type IRawNotification3_Interface is interface and WinRt.IInspectable_Interface;
    type IRawNotification3 is access all IRawNotification3_Interface'Class;
+   type IRawNotification3_Ptr is access all IRawNotification3;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -470,8 +477,20 @@ package WinRt.Windows.Networking.PushNotifications is
    -- Static RuntimeClass
    package PushNotificationChannelManager is
 
-      function GetDefault
-      return WinRt.Windows.Networking.PushNotifications.PushNotificationChannelManagerForUser;
+      function CreatePushNotificationChannelForApplicationAsync
+      return WinRt.Windows.Networking.PushNotifications.PushNotificationChannel;
+
+      function CreatePushNotificationChannelForApplicationAsync
+      (
+         applicationId : WinRt.WString
+      )
+      return WinRt.Windows.Networking.PushNotifications.PushNotificationChannel;
+
+      function CreatePushNotificationChannelForSecondaryTileAsync
+      (
+         tileId : WinRt.WString
+      )
+      return WinRt.Windows.Networking.PushNotifications.PushNotificationChannel;
 
       function GetForUser
       (
@@ -490,20 +509,8 @@ package WinRt.Windows.Networking.PushNotifications is
          token : Windows.Foundation.EventRegistrationToken
       );
 
-      function CreatePushNotificationChannelForApplicationAsync
-      return WinRt.Windows.Networking.PushNotifications.PushNotificationChannel;
-
-      function CreatePushNotificationChannelForApplicationAsync
-      (
-         applicationId : WinRt.WString
-      )
-      return WinRt.Windows.Networking.PushNotifications.PushNotificationChannel;
-
-      function CreatePushNotificationChannelForSecondaryTileAsync
-      (
-         tileId : WinRt.WString
-      )
-      return WinRt.Windows.Networking.PushNotifications.PushNotificationChannel;
+      function GetDefault
+      return WinRt.Windows.Networking.PushNotifications.PushNotificationChannelManagerForUser;
 
    end PushNotificationChannelManager;
 

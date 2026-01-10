@@ -53,9 +53,11 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
 
    type IResourceCandidate2_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceCandidate2 is access all IResourceCandidate2_Interface'Class;
+   type IResourceCandidate2_Ptr is access all IResourceCandidate2;
 
    type IResourceCandidate3_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceCandidate3 is access all IResourceCandidate3_Interface'Class;
+   type IResourceCandidate3_Ptr is access all IResourceCandidate3;
 
    type IResourceContext_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceContext is access all IResourceContext_Interface'Class;
@@ -63,15 +65,19 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
 
    type IResourceContextStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceContextStatics is access all IResourceContextStatics_Interface'Class;
+   type IResourceContextStatics_Ptr is access all IResourceContextStatics;
 
    type IResourceContextStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceContextStatics2 is access all IResourceContextStatics2_Interface'Class;
+   type IResourceContextStatics2_Ptr is access all IResourceContextStatics2;
 
    type IResourceContextStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceContextStatics3 is access all IResourceContextStatics3_Interface'Class;
+   type IResourceContextStatics3_Ptr is access all IResourceContextStatics3;
 
    type IResourceContextStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceContextStatics4 is access all IResourceContextStatics4_Interface'Class;
+   type IResourceContextStatics4_Ptr is access all IResourceContextStatics4;
 
    type IResourceManager_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceManager is access all IResourceManager_Interface'Class;
@@ -79,9 +85,11 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
 
    type IResourceManager2_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceManager2 is access all IResourceManager2_Interface'Class;
+   type IResourceManager2_Ptr is access all IResourceManager2;
 
    type IResourceManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceManagerStatics is access all IResourceManagerStatics_Interface'Class;
+   type IResourceManagerStatics_Ptr is access all IResourceManagerStatics;
 
    type IResourceMap_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceMap is access all IResourceMap_Interface'Class;
@@ -851,13 +859,6 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ResourceContext
 
-   procedure SetGlobalQualifierValue
-   (
-      key : WinRt.WString;
-      value : WinRt.WString;
-      persistence : Windows.ApplicationModel.Resources.Core.ResourceQualifierPersistence
-   );
-
    function GetForCurrentView
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext;
 
@@ -877,15 +878,22 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    function GetForViewIndependentUse
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext;
 
-   function GetForUIContext
-   (
-      context : Windows.UI.UIContext'Class
-   )
-   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext;
-
    function CreateMatchingContext
    (
       result : GenericObject
+   )
+   return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext;
+
+   procedure SetGlobalQualifierValue
+   (
+      key : WinRt.WString;
+      value : WinRt.WString;
+      persistence : Windows.ApplicationModel.Resources.Core.ResourceQualifierPersistence
+   );
+
+   function GetForUIContext
+   (
+      context : Windows.UI.UIContext'Class
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext;
 

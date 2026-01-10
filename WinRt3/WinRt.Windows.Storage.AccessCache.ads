@@ -46,9 +46,11 @@ package WinRt.Windows.Storage.AccessCache is
 
    type IStorageApplicationPermissionsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageApplicationPermissionsStatics is access all IStorageApplicationPermissionsStatics_Interface'Class;
+   type IStorageApplicationPermissionsStatics_Ptr is access all IStorageApplicationPermissionsStatics;
 
    type IStorageApplicationPermissionsStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageApplicationPermissionsStatics2 is access all IStorageApplicationPermissionsStatics2_Interface'Class;
+   type IStorageApplicationPermissionsStatics2_Ptr is access all IStorageApplicationPermissionsStatics2;
 
    type IStorageItemAccessList_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageItemAccessList is access all IStorageItemAccessList_Interface'Class;
@@ -60,6 +62,7 @@ package WinRt.Windows.Storage.AccessCache is
 
    type IStorageItemMostRecentlyUsedList2_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageItemMostRecentlyUsedList2 is access all IStorageItemMostRecentlyUsedList2_Interface'Class;
+   type IStorageItemMostRecentlyUsedList2_Ptr is access all IStorageItemMostRecentlyUsedList2;
 
    -----------------------------------------------------------------------------
    -- Class declarations

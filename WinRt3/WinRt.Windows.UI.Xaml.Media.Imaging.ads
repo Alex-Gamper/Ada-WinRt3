@@ -54,21 +54,27 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
 
    type IBitmapImage2_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapImage2 is access all IBitmapImage2_Interface'Class;
+   type IBitmapImage2_Ptr is access all IBitmapImage2;
 
    type IBitmapImage3_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapImage3 is access all IBitmapImage3_Interface'Class;
+   type IBitmapImage3_Ptr is access all IBitmapImage3;
 
    type IBitmapImageFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapImageFactory is access all IBitmapImageFactory_Interface'Class;
+   type IBitmapImageFactory_Ptr is access all IBitmapImageFactory;
 
    type IBitmapImageStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapImageStatics is access all IBitmapImageStatics_Interface'Class;
+   type IBitmapImageStatics_Ptr is access all IBitmapImageStatics;
 
    type IBitmapImageStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapImageStatics2 is access all IBitmapImageStatics2_Interface'Class;
+   type IBitmapImageStatics2_Ptr is access all IBitmapImageStatics2;
 
    type IBitmapImageStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapImageStatics3 is access all IBitmapImageStatics3_Interface'Class;
+   type IBitmapImageStatics3_Ptr is access all IBitmapImageStatics3;
 
    type IBitmapSource_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapSource is access all IBitmapSource_Interface'Class;
@@ -76,9 +82,11 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
 
    type IBitmapSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapSourceFactory is access all IBitmapSourceFactory_Interface'Class;
+   type IBitmapSourceFactory_Ptr is access all IBitmapSourceFactory;
 
    type IBitmapSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IBitmapSourceStatics is access all IBitmapSourceStatics_Interface'Class;
+   type IBitmapSourceStatics_Ptr is access all IBitmapSourceStatics;
 
    type IDownloadProgressEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDownloadProgressEventArgs is access all IDownloadProgressEventArgs_Interface'Class;
@@ -90,6 +98,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
 
    type IRenderTargetBitmapStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRenderTargetBitmapStatics is access all IRenderTargetBitmapStatics_Interface'Class;
+   type IRenderTargetBitmapStatics_Ptr is access all IRenderTargetBitmapStatics;
 
    type ISoftwareBitmapSource_Interface is interface and WinRt.IInspectable_Interface;
    type ISoftwareBitmapSource is access all ISoftwareBitmapSource_Interface'Class;
@@ -101,6 +110,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
 
    type ISurfaceImageSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISurfaceImageSourceFactory is access all ISurfaceImageSourceFactory_Interface'Class;
+   type ISurfaceImageSourceFactory_Ptr is access all ISurfaceImageSourceFactory;
 
    type ISvgImageSource_Interface is interface and WinRt.IInspectable_Interface;
    type ISvgImageSource is access all ISvgImageSource_Interface'Class;
@@ -108,6 +118,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
 
    type ISvgImageSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISvgImageSourceFactory is access all ISvgImageSourceFactory_Interface'Class;
+   type ISvgImageSourceFactory_Ptr is access all ISvgImageSourceFactory;
 
    type ISvgImageSourceFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ISvgImageSourceFailedEventArgs is access all ISvgImageSourceFailedEventArgs_Interface'Class;
@@ -119,6 +130,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
 
    type ISvgImageSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISvgImageSourceStatics is access all ISvgImageSourceStatics_Interface'Class;
+   type ISvgImageSourceStatics_Ptr is access all ISvgImageSourceStatics;
 
    type IVirtualSurfaceImageSource_Interface is interface and WinRt.IInspectable_Interface;
    type IVirtualSurfaceImageSource is access all IVirtualSurfaceImageSource_Interface'Class;
@@ -126,6 +138,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
 
    type IVirtualSurfaceImageSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVirtualSurfaceImageSourceFactory is access all IVirtualSurfaceImageSourceFactory_Interface'Class;
+   type IVirtualSurfaceImageSourceFactory_Ptr is access all IVirtualSurfaceImageSourceFactory;
 
    type IWriteableBitmap_Interface is interface and WinRt.IInspectable_Interface;
    type IWriteableBitmap is access all IWriteableBitmap_Interface'Class;
@@ -133,6 +146,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
 
    type IWriteableBitmapFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWriteableBitmapFactory is access all IWriteableBitmapFactory_Interface'Class;
+   type IWriteableBitmapFactory_Ptr is access all IWriteableBitmapFactory;
 
    type IXamlRenderingBackgroundTask_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlRenderingBackgroundTask is access all IXamlRenderingBackgroundTask_Interface'Class;
@@ -140,9 +154,11 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
 
    type IXamlRenderingBackgroundTaskFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlRenderingBackgroundTaskFactory is access all IXamlRenderingBackgroundTaskFactory_Interface'Class;
+   type IXamlRenderingBackgroundTaskFactory_Ptr is access all IXamlRenderingBackgroundTaskFactory;
 
    type IXamlRenderingBackgroundTaskOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlRenderingBackgroundTaskOverrides is access all IXamlRenderingBackgroundTaskOverrides_Interface'Class;
+   type IXamlRenderingBackgroundTaskOverrides_Ptr is access all IXamlRenderingBackgroundTaskOverrides;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1045,16 +1061,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    -----------------------------------------------------------------------------
    -- Static Interfaces for BitmapImage
 
-   function get_CreateOptionsProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_UriSourceProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_DecodePixelWidthProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_DecodePixelHeightProperty
+   function get_DecodePixelTypeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsAnimatedBitmapProperty
@@ -1066,7 +1073,16 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    function get_AutoPlayProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
-   function get_DecodePixelTypeProperty
+   function get_CreateOptionsProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_UriSourceProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_DecodePixelWidthProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_DecodePixelHeightProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------

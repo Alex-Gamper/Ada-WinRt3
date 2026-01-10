@@ -99,9 +99,11 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type IAccessKeyManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAccessKeyManagerStatics is access all IAccessKeyManagerStatics_Interface'Class;
+   type IAccessKeyManagerStatics_Ptr is access all IAccessKeyManagerStatics;
 
    type IAccessKeyManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAccessKeyManagerStatics2 is access all IAccessKeyManagerStatics2_Interface'Class;
+   type IAccessKeyManagerStatics2_Ptr is access all IAccessKeyManagerStatics2;
 
    type ICanExecuteRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICanExecuteRequestedEventArgs is access all ICanExecuteRequestedEventArgs_Interface'Class;
@@ -113,6 +115,7 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type ICommand_Interface is interface and WinRt.IInspectable_Interface;
    type ICommand is access all ICommand_Interface'Class;
+   type ICommand_Ptr is access all ICommand;
 
    type IContextRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IContextRequestedEventArgs is access all IContextRequestedEventArgs_Interface'Class;
@@ -144,24 +147,31 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type IFocusManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFocusManagerStatics is access all IFocusManagerStatics_Interface'Class;
+   type IFocusManagerStatics_Ptr is access all IFocusManagerStatics;
 
    type IFocusManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IFocusManagerStatics2 is access all IFocusManagerStatics2_Interface'Class;
+   type IFocusManagerStatics2_Ptr is access all IFocusManagerStatics2;
 
    type IFocusManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IFocusManagerStatics3 is access all IFocusManagerStatics3_Interface'Class;
+   type IFocusManagerStatics3_Ptr is access all IFocusManagerStatics3;
 
    type IFocusManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IFocusManagerStatics4 is access all IFocusManagerStatics4_Interface'Class;
+   type IFocusManagerStatics4_Ptr is access all IFocusManagerStatics4;
 
    type IFocusManagerStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IFocusManagerStatics5 is access all IFocusManagerStatics5_Interface'Class;
+   type IFocusManagerStatics5_Ptr is access all IFocusManagerStatics5;
 
    type IFocusManagerStatics6_Interface is interface and WinRt.IInspectable_Interface;
    type IFocusManagerStatics6 is access all IFocusManagerStatics6_Interface'Class;
+   type IFocusManagerStatics6_Ptr is access all IFocusManagerStatics6;
 
    type IFocusManagerStatics7_Interface is interface and WinRt.IInspectable_Interface;
    type IFocusManagerStatics7 is access all IFocusManagerStatics7_Interface'Class;
+   type IFocusManagerStatics7_Ptr is access all IFocusManagerStatics7;
 
    type IFocusMovementResult_Interface is interface and WinRt.IInspectable_Interface;
    type IFocusMovementResult is access all IFocusMovementResult_Interface'Class;
@@ -173,9 +183,11 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type IGettingFocusEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IGettingFocusEventArgs2 is access all IGettingFocusEventArgs2_Interface'Class;
+   type IGettingFocusEventArgs2_Ptr is access all IGettingFocusEventArgs2;
 
    type IGettingFocusEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
    type IGettingFocusEventArgs3 is access all IGettingFocusEventArgs3_Interface'Class;
+   type IGettingFocusEventArgs3_Ptr is access all IGettingFocusEventArgs3;
 
    type IHoldingRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IHoldingRoutedEventArgs is access all IHoldingRoutedEventArgs_Interface'Class;
@@ -203,6 +215,7 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type IInputScopeNameFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInputScopeNameFactory is access all IInputScopeNameFactory_Interface'Class;
+   type IInputScopeNameFactory_Ptr is access all IInputScopeNameFactory;
 
    type IKeyRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyRoutedEventArgs is access all IKeyRoutedEventArgs_Interface'Class;
@@ -210,9 +223,11 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type IKeyRoutedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyRoutedEventArgs2 is access all IKeyRoutedEventArgs2_Interface'Class;
+   type IKeyRoutedEventArgs2_Ptr is access all IKeyRoutedEventArgs2;
 
    type IKeyRoutedEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyRoutedEventArgs3 is access all IKeyRoutedEventArgs3_Interface'Class;
+   type IKeyRoutedEventArgs3_Ptr is access all IKeyRoutedEventArgs3;
 
    type IKeyboardAccelerator_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyboardAccelerator is access all IKeyboardAccelerator_Interface'Class;
@@ -220,6 +235,7 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type IKeyboardAcceleratorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyboardAcceleratorFactory is access all IKeyboardAcceleratorFactory_Interface'Class;
+   type IKeyboardAcceleratorFactory_Ptr is access all IKeyboardAcceleratorFactory;
 
    type IKeyboardAcceleratorInvokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyboardAcceleratorInvokedEventArgs is access all IKeyboardAcceleratorInvokedEventArgs_Interface'Class;
@@ -227,9 +243,11 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type IKeyboardAcceleratorInvokedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyboardAcceleratorInvokedEventArgs2 is access all IKeyboardAcceleratorInvokedEventArgs2_Interface'Class;
+   type IKeyboardAcceleratorInvokedEventArgs2_Ptr is access all IKeyboardAcceleratorInvokedEventArgs2;
 
    type IKeyboardAcceleratorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IKeyboardAcceleratorStatics is access all IKeyboardAcceleratorStatics_Interface'Class;
+   type IKeyboardAcceleratorStatics_Ptr is access all IKeyboardAcceleratorStatics;
 
    type ILosingFocusEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ILosingFocusEventArgs is access all ILosingFocusEventArgs_Interface'Class;
@@ -237,9 +255,11 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type ILosingFocusEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type ILosingFocusEventArgs2 is access all ILosingFocusEventArgs2_Interface'Class;
+   type ILosingFocusEventArgs2_Ptr is access all ILosingFocusEventArgs2;
 
    type ILosingFocusEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
    type ILosingFocusEventArgs3 is access all ILosingFocusEventArgs3_Interface'Class;
+   type ILosingFocusEventArgs3_Ptr is access all ILosingFocusEventArgs3;
 
    type IManipulationCompletedRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IManipulationCompletedRoutedEventArgs is access all IManipulationCompletedRoutedEventArgs_Interface'Class;
@@ -259,6 +279,7 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type IManipulationPivotFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IManipulationPivotFactory is access all IManipulationPivotFactory_Interface'Class;
+   type IManipulationPivotFactory_Ptr is access all IManipulationPivotFactory;
 
    type IManipulationStartedRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IManipulationStartedRoutedEventArgs is access all IManipulationStartedRoutedEventArgs_Interface'Class;
@@ -266,6 +287,7 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type IManipulationStartedRoutedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IManipulationStartedRoutedEventArgsFactory is access all IManipulationStartedRoutedEventArgsFactory_Interface'Class;
+   type IManipulationStartedRoutedEventArgsFactory_Ptr is access all IManipulationStartedRoutedEventArgsFactory;
 
    type IManipulationStartingRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IManipulationStartingRoutedEventArgs is access all IManipulationStartingRoutedEventArgs_Interface'Class;
@@ -285,6 +307,7 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type IPointerRoutedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IPointerRoutedEventArgs2 is access all IPointerRoutedEventArgs2_Interface'Class;
+   type IPointerRoutedEventArgs2_Ptr is access all IPointerRoutedEventArgs2;
 
    type IProcessKeyboardAcceleratorEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IProcessKeyboardAcceleratorEventArgs is access all IProcessKeyboardAcceleratorEventArgs_Interface'Class;
@@ -300,12 +323,15 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type IStandardUICommand2_Interface is interface and WinRt.IInspectable_Interface;
    type IStandardUICommand2 is access all IStandardUICommand2_Interface'Class;
+   type IStandardUICommand2_Ptr is access all IStandardUICommand2;
 
    type IStandardUICommandFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IStandardUICommandFactory is access all IStandardUICommandFactory_Interface'Class;
+   type IStandardUICommandFactory_Ptr is access all IStandardUICommandFactory;
 
    type IStandardUICommandStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStandardUICommandStatics is access all IStandardUICommandStatics_Interface'Class;
+   type IStandardUICommandStatics_Ptr is access all IStandardUICommandStatics;
 
    type ITappedRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITappedRoutedEventArgs is access all ITappedRoutedEventArgs_Interface'Class;
@@ -317,9 +343,11 @@ package WinRt.Windows.UI.Xaml.Input is
 
    type IXamlUICommandFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlUICommandFactory is access all IXamlUICommandFactory_Interface'Class;
+   type IXamlUICommandFactory_Ptr is access all IXamlUICommandFactory;
 
    type IXamlUICommandStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IXamlUICommandStatics is access all IXamlUICommandStatics_Interface'Class;
+   type IXamlUICommandStatics_Ptr is access all IXamlUICommandStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -639,6 +667,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Chat_e,
       NameOrPhoneNumber_e,
       EmailNameOrAddress_e,
+      Private_e,
       Maps_e,
       NumericPassword_e,
       NumericPin_e,
@@ -684,6 +713,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Chat_e => 58,
       NameOrPhoneNumber_e => 59,
       EmailNameOrAddress_e => 60,
+      Private_e => 61,
       Maps_e => 62,
       NumericPassword_e => 63,
       NumericPin_e => 64,
@@ -3119,6 +3149,14 @@ package WinRt.Windows.UI.Xaml.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AccessKeyManager
 
+   function get_AreKeyTipsEnabled
+   return WinRt.Boolean;
+
+   procedure put_AreKeyTipsEnabled
+   (
+      value : WinRt.Boolean
+   );
+
    function get_IsDisplayModeEnabled
    return WinRt.Boolean;
 
@@ -3134,14 +3172,6 @@ package WinRt.Windows.UI.Xaml.Input is
    );
 
    procedure ExitDisplayMode;
-
-   function get_AreKeyTipsEnabled
-   return WinRt.Boolean;
-
-   procedure put_AreKeyTipsEnabled
-   (
-      value : WinRt.Boolean
-   );
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for AccessKeyManager
@@ -3365,6 +3395,60 @@ package WinRt.Windows.UI.Xaml.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for FocusManager
 
+   function TryMoveFocus
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
+      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
+   )
+   return WinRt.Boolean;
+
+   function FindNextElement
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
+   )
+   return WinRt.Windows.UI.Xaml.DependencyObject;
+
+   function FindFirstFocusableElement
+   (
+      searchScope : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Windows.UI.Xaml.DependencyObject;
+
+   function FindLastFocusableElement
+   (
+      searchScope : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Windows.UI.Xaml.DependencyObject;
+
+   function FindNextElement
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
+      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
+   )
+   return WinRt.Windows.UI.Xaml.DependencyObject;
+
+   function GetFocusedElement
+   (
+      xamlRoot : Windows.UI.Xaml.XamlRoot'Class
+   )
+   return WinRt.IInspectable;
+
+   function GetFocusedElement
+   return WinRt.IInspectable;
+
+   function FindNextFocusableElement
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
+   )
+   return WinRt.Windows.UI.Xaml.UIElement;
+
+   function FindNextFocusableElement
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
+      hintRect : Windows.Foundation.Rect
+   )
+   return WinRt.Windows.UI.Xaml.UIElement;
+
    function TryFocusAsync
    (
       element : Windows.UI.Xaml.DependencyObject'Class;
@@ -3384,9 +3468,6 @@ package WinRt.Windows.UI.Xaml.Input is
       focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
    )
    return WinRt.Windows.UI.Xaml.Input.FocusMovementResult;
-
-   function GetFocusedElement
-   return WinRt.IInspectable;
 
    function add_GotFocus
    (
@@ -3437,57 +3518,6 @@ package WinRt.Windows.UI.Xaml.Input is
       focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
    )
    return WinRt.Boolean;
-
-   function TryMoveFocus
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
-   )
-   return WinRt.Boolean;
-
-   function FindNextElement
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
-   )
-   return WinRt.Windows.UI.Xaml.DependencyObject;
-
-   function FindFirstFocusableElement
-   (
-      searchScope : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Windows.UI.Xaml.DependencyObject;
-
-   function FindLastFocusableElement
-   (
-      searchScope : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Windows.UI.Xaml.DependencyObject;
-
-   function FindNextElement
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
-   )
-   return WinRt.Windows.UI.Xaml.DependencyObject;
-
-   function FindNextFocusableElement
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
-   )
-   return WinRt.Windows.UI.Xaml.UIElement;
-
-   function FindNextFocusableElement
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-      hintRect : Windows.Foundation.Rect
-   )
-   return WinRt.Windows.UI.Xaml.UIElement;
-
-   function GetFocusedElement
-   (
-      xamlRoot : Windows.UI.Xaml.XamlRoot'Class
-   )
-   return WinRt.IInspectable;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for FocusManager
@@ -4330,14 +4360,14 @@ package WinRt.Windows.UI.Xaml.Input is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ManipulationPivot
 
+   function Constructor return ManipulationPivot;
+
    function Constructor
    (
       center : Windows.Foundation.Point;
       radius : WinRt.Double
    )
    return ManipulationPivot;
-
-   function Constructor return ManipulationPivot;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ManipulationPivot

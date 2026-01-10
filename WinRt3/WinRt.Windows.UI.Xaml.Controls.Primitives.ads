@@ -77,6 +77,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IAppBarTemplateSettings2_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarTemplateSettings2 is access all IAppBarTemplateSettings2_Interface'Class;
+   type IAppBarTemplateSettings2_Ptr is access all IAppBarTemplateSettings2;
 
    type IAppBarToggleButtonTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBarToggleButtonTemplateSettings is access all IAppBarToggleButtonTemplateSettings_Interface'Class;
@@ -88,9 +89,11 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IButtonBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IButtonBaseFactory is access all IButtonBaseFactory_Interface'Class;
+   type IButtonBaseFactory_Ptr is access all IButtonBaseFactory;
 
    type IButtonBaseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IButtonBaseStatics is access all IButtonBaseStatics_Interface'Class;
+   type IButtonBaseStatics_Ptr is access all IButtonBaseStatics;
 
    type ICalendarPanel_Interface is interface and WinRt.IInspectable_Interface;
    type ICalendarPanel is access all ICalendarPanel_Interface'Class;
@@ -106,6 +109,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type ICarouselPanelFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICarouselPanelFactory is access all ICarouselPanelFactory_Interface'Class;
+   type ICarouselPanelFactory_Ptr is access all ICarouselPanelFactory;
 
    type IColorPickerSlider_Interface is interface and WinRt.IInspectable_Interface;
    type IColorPickerSlider is access all IColorPickerSlider_Interface'Class;
@@ -113,9 +117,11 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IColorPickerSliderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IColorPickerSliderFactory is access all IColorPickerSliderFactory_Interface'Class;
+   type IColorPickerSliderFactory_Ptr is access all IColorPickerSliderFactory;
 
    type IColorPickerSliderStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IColorPickerSliderStatics is access all IColorPickerSliderStatics_Interface'Class;
+   type IColorPickerSliderStatics_Ptr is access all IColorPickerSliderStatics;
 
    type IColorSpectrum_Interface is interface and WinRt.IInspectable_Interface;
    type IColorSpectrum is access all IColorSpectrum_Interface'Class;
@@ -123,9 +129,11 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IColorSpectrumFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IColorSpectrumFactory is access all IColorSpectrumFactory_Interface'Class;
+   type IColorSpectrumFactory_Ptr is access all IColorSpectrumFactory;
 
    type IColorSpectrumStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IColorSpectrumStatics is access all IColorSpectrumStatics_Interface'Class;
+   type IColorSpectrumStatics_Ptr is access all IColorSpectrumStatics;
 
    type IComboBoxTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBoxTemplateSettings is access all IComboBoxTemplateSettings_Interface'Class;
@@ -133,6 +141,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IComboBoxTemplateSettings2_Interface is interface and WinRt.IInspectable_Interface;
    type IComboBoxTemplateSettings2 is access all IComboBoxTemplateSettings2_Interface'Class;
+   type IComboBoxTemplateSettings2_Ptr is access all IComboBoxTemplateSettings2;
 
    type ICommandBarFlyoutCommandBar_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarFlyoutCommandBar is access all ICommandBarFlyoutCommandBar_Interface'Class;
@@ -140,6 +149,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type ICommandBarFlyoutCommandBarFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarFlyoutCommandBarFactory is access all ICommandBarFlyoutCommandBarFactory_Interface'Class;
+   type ICommandBarFlyoutCommandBarFactory_Ptr is access all ICommandBarFlyoutCommandBarFactory;
 
    type ICommandBarFlyoutCommandBarTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarFlyoutCommandBarTemplateSettings is access all ICommandBarFlyoutCommandBarTemplateSettings_Interface'Class;
@@ -151,12 +161,15 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type ICommandBarTemplateSettings2_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarTemplateSettings2 is access all ICommandBarTemplateSettings2_Interface'Class;
+   type ICommandBarTemplateSettings2_Ptr is access all ICommandBarTemplateSettings2;
 
    type ICommandBarTemplateSettings3_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarTemplateSettings3 is access all ICommandBarTemplateSettings3_Interface'Class;
+   type ICommandBarTemplateSettings3_Ptr is access all ICommandBarTemplateSettings3;
 
    type ICommandBarTemplateSettings4_Interface is interface and WinRt.IInspectable_Interface;
    type ICommandBarTemplateSettings4 is access all ICommandBarTemplateSettings4_Interface'Class;
+   type ICommandBarTemplateSettings4_Ptr is access all ICommandBarTemplateSettings4;
 
    type IDragCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDragCompletedEventArgs is access all IDragCompletedEventArgs_Interface'Class;
@@ -164,6 +177,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IDragCompletedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDragCompletedEventArgsFactory is access all IDragCompletedEventArgsFactory_Interface'Class;
+   type IDragCompletedEventArgsFactory_Ptr is access all IDragCompletedEventArgsFactory;
 
    type IDragDeltaEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDragDeltaEventArgs is access all IDragDeltaEventArgs_Interface'Class;
@@ -171,6 +185,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IDragDeltaEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDragDeltaEventArgsFactory is access all IDragDeltaEventArgsFactory_Interface'Class;
+   type IDragDeltaEventArgsFactory_Ptr is access all IDragDeltaEventArgsFactory;
 
    type IDragStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDragStartedEventArgs is access all IDragStartedEventArgs_Interface'Class;
@@ -178,6 +193,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IDragStartedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDragStartedEventArgsFactory is access all IDragStartedEventArgsFactory_Interface'Class;
+   type IDragStartedEventArgsFactory_Ptr is access all IDragStartedEventArgsFactory;
 
    type IFlyoutBase_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBase is access all IFlyoutBase_Interface'Class;
@@ -185,18 +201,23 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IFlyoutBase2_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBase2 is access all IFlyoutBase2_Interface'Class;
+   type IFlyoutBase2_Ptr is access all IFlyoutBase2;
 
    type IFlyoutBase3_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBase3 is access all IFlyoutBase3_Interface'Class;
+   type IFlyoutBase3_Ptr is access all IFlyoutBase3;
 
    type IFlyoutBase4_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBase4 is access all IFlyoutBase4_Interface'Class;
+   type IFlyoutBase4_Ptr is access all IFlyoutBase4;
 
    type IFlyoutBase5_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBase5 is access all IFlyoutBase5_Interface'Class;
+   type IFlyoutBase5_Ptr is access all IFlyoutBase5;
 
    type IFlyoutBase6_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBase6 is access all IFlyoutBase6_Interface'Class;
+   type IFlyoutBase6_Ptr is access all IFlyoutBase6;
 
    type IFlyoutBaseClosingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBaseClosingEventArgs is access all IFlyoutBaseClosingEventArgs_Interface'Class;
@@ -204,27 +225,35 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IFlyoutBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBaseFactory is access all IFlyoutBaseFactory_Interface'Class;
+   type IFlyoutBaseFactory_Ptr is access all IFlyoutBaseFactory;
 
    type IFlyoutBaseOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBaseOverrides is access all IFlyoutBaseOverrides_Interface'Class;
+   type IFlyoutBaseOverrides_Ptr is access all IFlyoutBaseOverrides;
 
    type IFlyoutBaseOverrides4_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBaseOverrides4 is access all IFlyoutBaseOverrides4_Interface'Class;
+   type IFlyoutBaseOverrides4_Ptr is access all IFlyoutBaseOverrides4;
 
    type IFlyoutBaseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBaseStatics is access all IFlyoutBaseStatics_Interface'Class;
+   type IFlyoutBaseStatics_Ptr is access all IFlyoutBaseStatics;
 
    type IFlyoutBaseStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBaseStatics2 is access all IFlyoutBaseStatics2_Interface'Class;
+   type IFlyoutBaseStatics2_Ptr is access all IFlyoutBaseStatics2;
 
    type IFlyoutBaseStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBaseStatics3 is access all IFlyoutBaseStatics3_Interface'Class;
+   type IFlyoutBaseStatics3_Ptr is access all IFlyoutBaseStatics3;
 
    type IFlyoutBaseStatics5_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBaseStatics5 is access all IFlyoutBaseStatics5_Interface'Class;
+   type IFlyoutBaseStatics5_Ptr is access all IFlyoutBaseStatics5;
 
    type IFlyoutBaseStatics6_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutBaseStatics6 is access all IFlyoutBaseStatics6_Interface'Class;
+   type IFlyoutBaseStatics6_Ptr is access all IFlyoutBaseStatics6;
 
    type IFlyoutShowOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutShowOptions is access all IFlyoutShowOptions_Interface'Class;
@@ -232,6 +261,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IFlyoutShowOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFlyoutShowOptionsFactory is access all IFlyoutShowOptionsFactory_Interface'Class;
+   type IFlyoutShowOptionsFactory_Ptr is access all IFlyoutShowOptionsFactory;
 
    type IGeneratorPositionHelper_Interface is interface and WinRt.IInspectable_Interface;
    type IGeneratorPositionHelper is access all IGeneratorPositionHelper_Interface'Class;
@@ -239,6 +269,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IGeneratorPositionHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGeneratorPositionHelperStatics is access all IGeneratorPositionHelperStatics_Interface'Class;
+   type IGeneratorPositionHelperStatics_Ptr is access all IGeneratorPositionHelperStatics;
 
    type IGridViewItemPresenter_Interface is interface and WinRt.IInspectable_Interface;
    type IGridViewItemPresenter is access all IGridViewItemPresenter_Interface'Class;
@@ -246,9 +277,11 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IGridViewItemPresenterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGridViewItemPresenterFactory is access all IGridViewItemPresenterFactory_Interface'Class;
+   type IGridViewItemPresenterFactory_Ptr is access all IGridViewItemPresenterFactory;
 
    type IGridViewItemPresenterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGridViewItemPresenterStatics is access all IGridViewItemPresenterStatics_Interface'Class;
+   type IGridViewItemPresenterStatics_Ptr is access all IGridViewItemPresenterStatics;
 
    type IGridViewItemTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IGridViewItemTemplateSettings is access all IGridViewItemTemplateSettings_Interface'Class;
@@ -264,6 +297,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IJumpListItemBackgroundConverterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IJumpListItemBackgroundConverterStatics is access all IJumpListItemBackgroundConverterStatics_Interface'Class;
+   type IJumpListItemBackgroundConverterStatics_Ptr is access all IJumpListItemBackgroundConverterStatics;
 
    type IJumpListItemForegroundConverter_Interface is interface and WinRt.IInspectable_Interface;
    type IJumpListItemForegroundConverter is access all IJumpListItemForegroundConverter_Interface'Class;
@@ -271,6 +305,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IJumpListItemForegroundConverterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IJumpListItemForegroundConverterStatics is access all IJumpListItemForegroundConverterStatics_Interface'Class;
+   type IJumpListItemForegroundConverterStatics_Ptr is access all IJumpListItemForegroundConverterStatics;
 
    type ILayoutInformation_Interface is interface and WinRt.IInspectable_Interface;
    type ILayoutInformation is access all ILayoutInformation_Interface'Class;
@@ -278,9 +313,11 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type ILayoutInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILayoutInformationStatics is access all ILayoutInformationStatics_Interface'Class;
+   type ILayoutInformationStatics_Ptr is access all ILayoutInformationStatics;
 
    type ILayoutInformationStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ILayoutInformationStatics2 is access all ILayoutInformationStatics2_Interface'Class;
+   type ILayoutInformationStatics2_Ptr is access all ILayoutInformationStatics2;
 
    type IListViewItemPresenter_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewItemPresenter is access all IListViewItemPresenter_Interface'Class;
@@ -288,21 +325,35 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IListViewItemPresenter2_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewItemPresenter2 is access all IListViewItemPresenter2_Interface'Class;
+   type IListViewItemPresenter2_Ptr is access all IListViewItemPresenter2;
 
    type IListViewItemPresenter3_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewItemPresenter3 is access all IListViewItemPresenter3_Interface'Class;
+   type IListViewItemPresenter3_Ptr is access all IListViewItemPresenter3;
+
+   type IListViewItemPresenter4_Interface is interface and WinRt.IInspectable_Interface;
+   type IListViewItemPresenter4 is access all IListViewItemPresenter4_Interface'Class;
+   type IListViewItemPresenter4_Ptr is access all IListViewItemPresenter4;
 
    type IListViewItemPresenterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewItemPresenterFactory is access all IListViewItemPresenterFactory_Interface'Class;
+   type IListViewItemPresenterFactory_Ptr is access all IListViewItemPresenterFactory;
 
    type IListViewItemPresenterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewItemPresenterStatics is access all IListViewItemPresenterStatics_Interface'Class;
+   type IListViewItemPresenterStatics_Ptr is access all IListViewItemPresenterStatics;
 
    type IListViewItemPresenterStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewItemPresenterStatics2 is access all IListViewItemPresenterStatics2_Interface'Class;
+   type IListViewItemPresenterStatics2_Ptr is access all IListViewItemPresenterStatics2;
 
    type IListViewItemPresenterStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewItemPresenterStatics3 is access all IListViewItemPresenterStatics3_Interface'Class;
+   type IListViewItemPresenterStatics3_Ptr is access all IListViewItemPresenterStatics3;
+
+   type IListViewItemPresenterStatics4_Interface is interface and WinRt.IInspectable_Interface;
+   type IListViewItemPresenterStatics4 is access all IListViewItemPresenterStatics4_Interface'Class;
+   type IListViewItemPresenterStatics4_Ptr is access all IListViewItemPresenterStatics4;
 
    type IListViewItemTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IListViewItemTemplateSettings is access all IListViewItemTemplateSettings_Interface'Class;
@@ -322,6 +373,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type ILoopingSelectorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILoopingSelectorStatics is access all ILoopingSelectorStatics_Interface'Class;
+   type ILoopingSelectorStatics_Ptr is access all ILoopingSelectorStatics;
 
    type IMenuFlyoutItemTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IMenuFlyoutItemTemplateSettings is access all IMenuFlyoutItemTemplateSettings_Interface'Class;
@@ -337,9 +389,11 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type INavigationViewItemPresenterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItemPresenterFactory is access all INavigationViewItemPresenterFactory_Interface'Class;
+   type INavigationViewItemPresenterFactory_Ptr is access all INavigationViewItemPresenterFactory;
 
    type INavigationViewItemPresenterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationViewItemPresenterStatics is access all INavigationViewItemPresenterStatics_Interface'Class;
+   type INavigationViewItemPresenterStatics_Ptr is access all INavigationViewItemPresenterStatics;
 
    type IOrientedVirtualizingPanel_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientedVirtualizingPanel is access all IOrientedVirtualizingPanel_Interface'Class;
@@ -347,6 +401,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IOrientedVirtualizingPanelFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IOrientedVirtualizingPanelFactory is access all IOrientedVirtualizingPanelFactory_Interface'Class;
+   type IOrientedVirtualizingPanelFactory_Ptr is access all IOrientedVirtualizingPanelFactory;
 
    type IPickerFlyoutBase_Interface is interface and WinRt.IInspectable_Interface;
    type IPickerFlyoutBase is access all IPickerFlyoutBase_Interface'Class;
@@ -354,12 +409,15 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IPickerFlyoutBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPickerFlyoutBaseFactory is access all IPickerFlyoutBaseFactory_Interface'Class;
+   type IPickerFlyoutBaseFactory_Ptr is access all IPickerFlyoutBaseFactory;
 
    type IPickerFlyoutBaseOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IPickerFlyoutBaseOverrides is access all IPickerFlyoutBaseOverrides_Interface'Class;
+   type IPickerFlyoutBaseOverrides_Ptr is access all IPickerFlyoutBaseOverrides;
 
    type IPickerFlyoutBaseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPickerFlyoutBaseStatics is access all IPickerFlyoutBaseStatics_Interface'Class;
+   type IPickerFlyoutBaseStatics_Ptr is access all IPickerFlyoutBaseStatics;
 
    type IPivotHeaderItem_Interface is interface and WinRt.IInspectable_Interface;
    type IPivotHeaderItem is access all IPivotHeaderItem_Interface'Class;
@@ -367,6 +425,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IPivotHeaderItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPivotHeaderItemFactory is access all IPivotHeaderItemFactory_Interface'Class;
+   type IPivotHeaderItemFactory_Ptr is access all IPivotHeaderItemFactory;
 
    type IPivotHeaderPanel_Interface is interface and WinRt.IInspectable_Interface;
    type IPivotHeaderPanel is access all IPivotHeaderPanel_Interface'Class;
@@ -382,18 +441,31 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IPopup2_Interface is interface and WinRt.IInspectable_Interface;
    type IPopup2 is access all IPopup2_Interface'Class;
+   type IPopup2_Ptr is access all IPopup2;
 
    type IPopup3_Interface is interface and WinRt.IInspectable_Interface;
    type IPopup3 is access all IPopup3_Interface'Class;
+   type IPopup3_Ptr is access all IPopup3;
+
+   type IPopup4_Interface is interface and WinRt.IInspectable_Interface;
+   type IPopup4 is access all IPopup4_Interface'Class;
+   type IPopup4_Ptr is access all IPopup4;
 
    type IPopupStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPopupStatics is access all IPopupStatics_Interface'Class;
+   type IPopupStatics_Ptr is access all IPopupStatics;
 
    type IPopupStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IPopupStatics2 is access all IPopupStatics2_Interface'Class;
+   type IPopupStatics2_Ptr is access all IPopupStatics2;
 
    type IPopupStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IPopupStatics3 is access all IPopupStatics3_Interface'Class;
+   type IPopupStatics3_Ptr is access all IPopupStatics3;
+
+   type IPopupStatics4_Interface is interface and WinRt.IInspectable_Interface;
+   type IPopupStatics4 is access all IPopupStatics4_Interface'Class;
+   type IPopupStatics4_Ptr is access all IPopupStatics4;
 
    type IProgressBarTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IProgressBarTemplateSettings is access all IProgressBarTemplateSettings_Interface'Class;
@@ -409,12 +481,15 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IRangeBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRangeBaseFactory is access all IRangeBaseFactory_Interface'Class;
+   type IRangeBaseFactory_Ptr is access all IRangeBaseFactory;
 
    type IRangeBaseOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IRangeBaseOverrides is access all IRangeBaseOverrides_Interface'Class;
+   type IRangeBaseOverrides_Ptr is access all IRangeBaseOverrides;
 
    type IRangeBaseStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRangeBaseStatics is access all IRangeBaseStatics_Interface'Class;
+   type IRangeBaseStatics_Ptr is access all IRangeBaseStatics;
 
    type IRangeBaseValueChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IRangeBaseValueChangedEventArgs is access all IRangeBaseValueChangedEventArgs_Interface'Class;
@@ -426,6 +501,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IRepeatButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRepeatButtonStatics is access all IRepeatButtonStatics_Interface'Class;
+   type IRepeatButtonStatics_Ptr is access all IRepeatButtonStatics;
 
    type IScrollBar_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollBar is access all IScrollBar_Interface'Class;
@@ -433,6 +509,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IScrollBarStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollBarStatics is access all IScrollBarStatics_Interface'Class;
+   type IScrollBarStatics_Ptr is access all IScrollBarStatics;
 
    type IScrollEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollEventArgs is access all IScrollEventArgs_Interface'Class;
@@ -440,6 +517,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IScrollSnapPointsInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IScrollSnapPointsInfo is access all IScrollSnapPointsInfo_Interface'Class;
+   type IScrollSnapPointsInfo_Ptr is access all IScrollSnapPointsInfo;
 
    type ISelector_Interface is interface and WinRt.IInspectable_Interface;
    type ISelector is access all ISelector_Interface'Class;
@@ -447,6 +525,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type ISelectorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectorFactory is access all ISelectorFactory_Interface'Class;
+   type ISelectorFactory_Ptr is access all ISelectorFactory;
 
    type ISelectorItem_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectorItem is access all ISelectorItem_Interface'Class;
@@ -454,12 +533,15 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type ISelectorItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectorItemFactory is access all ISelectorItemFactory_Interface'Class;
+   type ISelectorItemFactory_Ptr is access all ISelectorItemFactory;
 
    type ISelectorItemStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectorItemStatics is access all ISelectorItemStatics_Interface'Class;
+   type ISelectorItemStatics_Ptr is access all ISelectorItemStatics;
 
    type ISelectorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISelectorStatics is access all ISelectorStatics_Interface'Class;
+   type ISelectorStatics_Ptr is access all ISelectorStatics;
 
    type ISettingsFlyoutTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
    type ISettingsFlyoutTemplateSettings is access all ISettingsFlyoutTemplateSettings_Interface'Class;
@@ -475,6 +557,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IThumbStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IThumbStatics is access all IThumbStatics_Interface'Class;
+   type IThumbStatics_Ptr is access all IThumbStatics;
 
    type ITickBar_Interface is interface and WinRt.IInspectable_Interface;
    type ITickBar is access all ITickBar_Interface'Class;
@@ -482,6 +565,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type ITickBarStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITickBarStatics is access all ITickBarStatics_Interface'Class;
+   type ITickBarStatics_Ptr is access all ITickBarStatics;
 
    type IToggleButton_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleButton is access all IToggleButton_Interface'Class;
@@ -489,12 +573,15 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    type IToggleButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleButtonFactory is access all IToggleButtonFactory_Interface'Class;
+   type IToggleButtonFactory_Ptr is access all IToggleButtonFactory;
 
    type IToggleButtonOverrides_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleButtonOverrides is access all IToggleButtonOverrides_Interface'Class;
+   type IToggleButtonOverrides_Ptr is access all IToggleButtonOverrides;
 
    type IToggleButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleButtonStatics is access all IToggleButtonStatics_Interface'Class;
+   type IToggleButtonStatics_Ptr is access all IToggleButtonStatics;
 
    type IToggleSwitchTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
    type IToggleSwitchTemplateSettings is access all IToggleSwitchTemplateSettings_Interface'Class;
@@ -964,6 +1051,16 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    );
    type ListViewItemPresenterCheckMode_Ptr is access all ListViewItemPresenterCheckMode;
 
+   type ListViewItemPresenterSelectionIndicatorMode is (
+      Inline_e,
+      Overlay_e
+   );
+   for ListViewItemPresenterSelectionIndicatorMode use (
+      Inline_e => 0,
+      Overlay_e => 1
+   );
+   type ListViewItemPresenterSelectionIndicatorMode_Ptr is access all ListViewItemPresenterSelectionIndicatorMode;
+
    type PlacementMode is (
       Bottom_e,
       Right_e,
@@ -979,6 +1076,38 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Top_e => 10
    );
    type PlacementMode_Ptr is access all PlacementMode;
+
+   type PopupPlacementMode is (
+      Auto_e,
+      Top_e,
+      Bottom_e,
+      Left_e,
+      Right_e,
+      TopEdgeAlignedLeft_e,
+      TopEdgeAlignedRight_e,
+      BottomEdgeAlignedLeft_e,
+      BottomEdgeAlignedRight_e,
+      LeftEdgeAlignedTop_e,
+      LeftEdgeAlignedBottom_e,
+      RightEdgeAlignedTop_e,
+      RightEdgeAlignedBottom_e
+   );
+   for PopupPlacementMode use (
+      Auto_e => 0,
+      Top_e => 1,
+      Bottom_e => 2,
+      Left_e => 3,
+      Right_e => 4,
+      TopEdgeAlignedLeft_e => 5,
+      TopEdgeAlignedRight_e => 6,
+      BottomEdgeAlignedLeft_e => 7,
+      BottomEdgeAlignedRight_e => 8,
+      LeftEdgeAlignedTop_e => 9,
+      LeftEdgeAlignedBottom_e => 10,
+      RightEdgeAlignedTop_e => 11,
+      RightEdgeAlignedBottom_e => 12
+   );
+   type PopupPlacementMode_Ptr is access all PopupPlacementMode;
 
    type ScrollEventType is (
       SmallDecrement_e,
@@ -4151,6 +4280,389 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       IID_IListViewItemPresenter3 : aliased WinRt.IID := (912392211, 912, 20016, (173, 151, 135, 68, 64, 79, 112, 16 ));
 
    -----------------------------------------------------------------------------
+   -- type IListViewItemPresenter4 is interface and WinRt.IInspectable;
+
+      function get_SelectedDisabledBackground
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectedDisabledBackground
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckPressedBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckPressedBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckDisabledBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckDisabledBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxPointerOverBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckBoxPointerOverBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxPressedBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckBoxPressedBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxDisabledBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckBoxDisabledBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxSelectedBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckBoxSelectedBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxSelectedPointerOverBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckBoxSelectedPointerOverBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxSelectedPressedBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckBoxSelectedPressedBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxSelectedDisabledBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckBoxSelectedDisabledBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckBoxBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxPointerOverBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckBoxPointerOverBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxPressedBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckBoxPressedBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxDisabledBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckBoxDisabledBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxCornerRadius
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.CornerRadius
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CheckBoxCornerRadius
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.CornerRadius
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorCornerRadius
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.CornerRadius
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectionIndicatorCornerRadius
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.CornerRadius
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorVisualEnabled
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectionIndicatorVisualEnabled
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorMode
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterSelectionIndicatorMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectionIndicatorMode
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterSelectionIndicatorMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectionIndicatorBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorPointerOverBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectionIndicatorPointerOverBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorPressedBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectionIndicatorPressedBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorDisabledBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectionIndicatorDisabledBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectedBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedPressedBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectedPressedBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedDisabledBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectedDisabledBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedInnerBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SelectedInnerBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PointerOverBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         RetVal : access Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PointerOverBorderBrush
+      (
+         this : access IListViewItemPresenter4_Interface;
+         value : Windows.UI.Xaml.Media.IBrush
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IListViewItemPresenter4 : aliased WinRt.IID := (3663727297, 44522, 22848, (161, 143, 87, 88, 47, 150, 217, 154 ));
+
+   -----------------------------------------------------------------------------
    -- type IListViewItemPresenterFactory is interface and WinRt.IInspectable;
 
       function CreateInstance
@@ -4402,6 +4914,200 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       return WinRt.Hresult is abstract;
 
       IID_IListViewItemPresenterStatics3 : aliased WinRt.IID := (3285438750, 64038, 19687, (164, 237, 255, 148, 143, 1, 183, 192 ));
+
+   -----------------------------------------------------------------------------
+   -- type IListViewItemPresenterStatics4 is interface and WinRt.IInspectable;
+
+      function get_SelectedDisabledBackgroundProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckPressedBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckDisabledBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxPointerOverBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxPressedBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxDisabledBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxSelectedBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxSelectedPointerOverBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxSelectedPressedBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxSelectedDisabledBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxBorderBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxPointerOverBorderBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxPressedBorderBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxDisabledBorderBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CheckBoxCornerRadiusProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorCornerRadiusProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorVisualEnabledProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorModeProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorPointerOverBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorPressedBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectionIndicatorDisabledBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedBorderBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedPressedBorderBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedDisabledBorderBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SelectedInnerBorderBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PointerOverBorderBrushProperty
+      (
+         this : access IListViewItemPresenterStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IListViewItemPresenterStatics4 : aliased WinRt.IID := (957814174, 29857, 24190, (167, 67, 228, 91, 233, 251, 145, 155 ));
 
    -----------------------------------------------------------------------------
    -- type IListViewItemTemplateSettings is interface and WinRt.IInspectable;
@@ -5114,6 +5820,61 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       IID_IPopup3 : aliased WinRt.IID := (4190398741, 42588, 24424, (159, 84, 49, 10, 27, 81, 9, 95 ));
 
    -----------------------------------------------------------------------------
+   -- type IPopup4 is interface and WinRt.IInspectable;
+
+      function get_PlacementTarget
+      (
+         this : access IPopup4_Interface;
+         RetVal : access Windows.UI.Xaml.IFrameworkElement
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PlacementTarget
+      (
+         this : access IPopup4_Interface;
+         value : Windows.UI.Xaml.IFrameworkElement
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DesiredPlacement
+      (
+         this : access IPopup4_Interface;
+         RetVal : access Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_DesiredPlacement
+      (
+         this : access IPopup4_Interface;
+         value : Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ActualPlacement
+      (
+         this : access IPopup4_Interface;
+         RetVal : access Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_ActualPlacementChanged
+      (
+         this : access IPopup4_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_ActualPlacementChanged
+      (
+         this : access IPopup4_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPopup4 : aliased WinRt.IID := (410040374, 57135, 24518, (165, 242, 116, 142, 214, 206, 115, 33 ));
+
+   -----------------------------------------------------------------------------
    -- type IPopupStatics is interface and WinRt.IInspectable;
 
       function get_ChildProperty
@@ -5183,6 +5944,25 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       return WinRt.Hresult is abstract;
 
       IID_IPopupStatics3 : aliased WinRt.IID := (7902601, 50560, 21903, (148, 90, 125, 2, 238, 0, 77, 62 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPopupStatics4 is interface and WinRt.IInspectable;
+
+      function get_PlacementTargetProperty
+      (
+         this : access IPopupStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DesiredPlacementProperty
+      (
+         this : access IPopupStatics4_Interface;
+         RetVal : access Windows.UI.Xaml.IDependencyProperty
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPopupStatics4 : aliased WinRt.IID := (3517197318, 35834, 20836, (133, 84, 72, 191, 230, 189, 76, 198 ));
 
    -----------------------------------------------------------------------------
    -- type IProgressBarTemplateSettings is interface and WinRt.IInspectable;
@@ -6636,6 +7416,9 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
    -- Static Interfaces for FlyoutBase
 
+   function get_OverlayInputPassThroughElementProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_AllowFocusOnInteractionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -6664,9 +7447,6 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsOpenProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_OverlayInputPassThroughElementProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_PlacementProperty
@@ -8842,6 +9622,87 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ListViewItemPresenter
 
+   function get_SelectedDisabledBackgroundProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckPressedBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckDisabledBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckBoxPointerOverBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckBoxPressedBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckBoxDisabledBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckBoxSelectedBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckBoxSelectedPointerOverBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckBoxSelectedPressedBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckBoxSelectedDisabledBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckBoxBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckBoxPointerOverBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckBoxPressedBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckBoxDisabledBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_CheckBoxCornerRadiusProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionIndicatorCornerRadiusProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionIndicatorVisualEnabledProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionIndicatorModeProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionIndicatorBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionIndicatorPointerOverBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionIndicatorPressedBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectionIndicatorDisabledBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectedBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectedPressedBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectedDisabledBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_SelectedInnerBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PointerOverBorderBrushProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_SelectionCheckMarkVisualEnabledProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -9323,6 +10184,330 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    (
       this : in out ListViewItemPresenter;
       value : WinRt.Boolean
+   );
+
+   function get_SelectedDisabledBackground
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_SelectedDisabledBackground
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckPressedBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CheckPressedBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckDisabledBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CheckDisabledBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckBoxPointerOverBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CheckBoxPointerOverBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckBoxPressedBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CheckBoxPressedBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckBoxDisabledBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CheckBoxDisabledBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckBoxSelectedBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CheckBoxSelectedBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckBoxSelectedPointerOverBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CheckBoxSelectedPointerOverBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckBoxSelectedPressedBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CheckBoxSelectedPressedBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckBoxSelectedDisabledBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CheckBoxSelectedDisabledBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckBoxBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CheckBoxBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckBoxPointerOverBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CheckBoxPointerOverBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckBoxPressedBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CheckBoxPressedBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckBoxDisabledBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_CheckBoxDisabledBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_CheckBoxCornerRadius
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.CornerRadius;
+
+   procedure put_CheckBoxCornerRadius
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.CornerRadius
+   );
+
+   function get_SelectionIndicatorCornerRadius
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.CornerRadius;
+
+   procedure put_SelectionIndicatorCornerRadius
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.CornerRadius
+   );
+
+   function get_SelectionIndicatorVisualEnabled
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Boolean;
+
+   procedure put_SelectionIndicatorVisualEnabled
+   (
+      this : in out ListViewItemPresenter;
+      value : WinRt.Boolean
+   );
+
+   function get_SelectionIndicatorMode
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterSelectionIndicatorMode;
+
+   procedure put_SelectionIndicatorMode
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterSelectionIndicatorMode
+   );
+
+   function get_SelectionIndicatorBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_SelectionIndicatorBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_SelectionIndicatorPointerOverBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_SelectionIndicatorPointerOverBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_SelectionIndicatorPressedBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_SelectionIndicatorPressedBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_SelectionIndicatorDisabledBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_SelectionIndicatorDisabledBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_SelectedBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_SelectedBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_SelectedPressedBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_SelectedPressedBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_SelectedDisabledBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_SelectedDisabledBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_SelectedInnerBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_SelectedInnerBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
+   );
+
+   function get_PointerOverBorderBrush
+   (
+      this : in out ListViewItemPresenter
+   )
+   return WinRt.Windows.UI.Xaml.Media.Brush'Class;
+
+   procedure put_PointerOverBorderBrush
+   (
+      this : in out ListViewItemPresenter;
+      value : Windows.UI.Xaml.Media.Brush'Class
    );
 
    -----------------------------------------------------------------------------
@@ -9953,6 +11138,18 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
    -- Static Interfaces for Popup
 
+   function get_LightDismissOverlayModeProperty_Popup
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_PlacementTargetProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_DesiredPlacementProperty
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
+   function get_ShouldConstrainToRootBoundsProperty_Popup
+   return WinRt.Windows.UI.Xaml.DependencyProperty;
+
    function get_ChildProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
@@ -9969,12 +11166,6 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    function get_IsLightDismissEnabledProperty
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_LightDismissOverlayModeProperty_Popup
-   return WinRt.Windows.UI.Xaml.DependencyProperty;
-
-   function get_ShouldConstrainToRootBoundsProperty_Popup
    return WinRt.Windows.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -10107,6 +11298,49 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out Popup
    )
    return WinRt.Boolean;
+
+   function get_PlacementTarget
+   (
+      this : in out Popup
+   )
+   return WinRt.Windows.UI.Xaml.FrameworkElement'Class;
+
+   procedure put_PlacementTarget
+   (
+      this : in out Popup;
+      value : Windows.UI.Xaml.FrameworkElement'Class
+   );
+
+   function get_DesiredPlacement
+   (
+      this : in out Popup
+   )
+   return WinRt.Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode;
+
+   procedure put_DesiredPlacement
+   (
+      this : in out Popup;
+      value : Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode
+   );
+
+   function get_ActualPlacement
+   (
+      this : in out Popup
+   )
+   return WinRt.Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode;
+
+   function add_ActualPlacementChanged
+   (
+      this : in out Popup;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_ActualPlacementChanged
+   (
+      this : in out Popup;
+      token : Windows.Foundation.EventRegistrationToken
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ProgressBarTemplateSettings

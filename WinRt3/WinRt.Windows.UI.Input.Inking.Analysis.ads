@@ -85,6 +85,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
 
    type IInkAnalyzerFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IInkAnalyzerFactory is access all IInkAnalyzerFactory_Interface'Class;
+   type IInkAnalyzerFactory_Ptr is access all IInkAnalyzerFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations

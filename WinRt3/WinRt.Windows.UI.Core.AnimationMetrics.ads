@@ -45,6 +45,7 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
 
    type IAnimationDescriptionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAnimationDescriptionFactory is access all IAnimationDescriptionFactory_Interface'Class;
+   type IAnimationDescriptionFactory_Ptr is access all IAnimationDescriptionFactory;
 
    type IOpacityAnimation_Interface is interface and WinRt.IInspectable_Interface;
    type IOpacityAnimation is access all IOpacityAnimation_Interface'Class;

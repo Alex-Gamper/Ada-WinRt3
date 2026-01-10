@@ -38,9 +38,11 @@ package WinRt.Windows.Graphics.Effects is
 
    type IGraphicsEffect_Interface is interface and WinRt.IInspectable_Interface;
    type IGraphicsEffect is access all IGraphicsEffect_Interface'Class;
+   type IGraphicsEffect_Ptr is access all IGraphicsEffect;
 
    type IGraphicsEffectSource_Interface is interface and WinRt.IInspectable_Interface;
    type IGraphicsEffectSource is access all IGraphicsEffectSource_Interface'Class;
+   type IGraphicsEffectSource_Ptr is access all IGraphicsEffectSource;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

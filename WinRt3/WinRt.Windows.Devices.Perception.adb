@@ -299,6 +299,30 @@ package body WinRt.Windows.Devices.Perception is
    -- Static RuntimeClass
    package body KnownPerceptionFrameSourceProperties is
 
+      function get_DeviceId
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
+         m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionFrameSourcePropertiesStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionFrameSourcePropertiesStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_DeviceId (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
       function get_Id
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -408,30 +432,6 @@ package body WinRt.Windows.Devices.Perception is
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EnclosureLocation (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
-      function get_DeviceId
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
-         m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionFrameSourcePropertiesStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionFrameSourcePropertiesStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_DeviceId (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

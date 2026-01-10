@@ -48,9 +48,11 @@ package WinRt.Windows.ApplicationModel.Chat is
 
    type IChatCapabilitiesManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IChatCapabilitiesManagerStatics is access all IChatCapabilitiesManagerStatics_Interface'Class;
+   type IChatCapabilitiesManagerStatics_Ptr is access all IChatCapabilitiesManagerStatics;
 
    type IChatCapabilitiesManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IChatCapabilitiesManagerStatics2 is access all IChatCapabilitiesManagerStatics2_Interface'Class;
+   type IChatCapabilitiesManagerStatics2_Ptr is access all IChatCapabilitiesManagerStatics2;
 
    type IChatConversation_Interface is interface and WinRt.IInspectable_Interface;
    type IChatConversation is access all IChatConversation_Interface'Class;
@@ -58,6 +60,7 @@ package WinRt.Windows.ApplicationModel.Chat is
 
    type IChatConversation2_Interface is interface and WinRt.IInspectable_Interface;
    type IChatConversation2 is access all IChatConversation2_Interface'Class;
+   type IChatConversation2_Ptr is access all IChatConversation2;
 
    type IChatConversationReader_Interface is interface and WinRt.IInspectable_Interface;
    type IChatConversationReader is access all IChatConversationReader_Interface'Class;
@@ -69,6 +72,7 @@ package WinRt.Windows.ApplicationModel.Chat is
 
    type IChatItem_Interface is interface and WinRt.IInspectable_Interface;
    type IChatItem is access all IChatItem_Interface'Class;
+   type IChatItem_Ptr is access all IChatItem;
 
    type IChatMessage_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessage is access all IChatMessage_Interface'Class;
@@ -76,12 +80,15 @@ package WinRt.Windows.ApplicationModel.Chat is
 
    type IChatMessage2_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessage2 is access all IChatMessage2_Interface'Class;
+   type IChatMessage2_Ptr is access all IChatMessage2;
 
    type IChatMessage3_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessage3 is access all IChatMessage3_Interface'Class;
+   type IChatMessage3_Ptr is access all IChatMessage3;
 
    type IChatMessage4_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessage4 is access all IChatMessage4_Interface'Class;
+   type IChatMessage4_Ptr is access all IChatMessage4;
 
    type IChatMessageAttachment_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageAttachment is access all IChatMessageAttachment_Interface'Class;
@@ -89,12 +96,15 @@ package WinRt.Windows.ApplicationModel.Chat is
 
    type IChatMessageAttachment2_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageAttachment2 is access all IChatMessageAttachment2_Interface'Class;
+   type IChatMessageAttachment2_Ptr is access all IChatMessageAttachment2;
 
    type IChatMessageAttachmentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageAttachmentFactory is access all IChatMessageAttachmentFactory_Interface'Class;
+   type IChatMessageAttachmentFactory_Ptr is access all IChatMessageAttachmentFactory;
 
    type IChatMessageBlockingStatic_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageBlockingStatic is access all IChatMessageBlockingStatic_Interface'Class;
+   type IChatMessageBlockingStatic_Ptr is access all IChatMessageBlockingStatic;
 
    type IChatMessageChange_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageChange is access all IChatMessageChange_Interface'Class;
@@ -118,12 +128,15 @@ package WinRt.Windows.ApplicationModel.Chat is
 
    type IChatMessageManager2Statics_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageManager2Statics is access all IChatMessageManager2Statics_Interface'Class;
+   type IChatMessageManager2Statics_Ptr is access all IChatMessageManager2Statics;
 
    type IChatMessageManagerStatic_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageManagerStatic is access all IChatMessageManagerStatic_Interface'Class;
+   type IChatMessageManagerStatic_Ptr is access all IChatMessageManagerStatic;
 
    type IChatMessageManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageManagerStatics3 is access all IChatMessageManagerStatics3_Interface'Class;
+   type IChatMessageManagerStatics3_Ptr is access all IChatMessageManagerStatics3;
 
    type IChatMessageNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageNotificationTriggerDetails is access all IChatMessageNotificationTriggerDetails_Interface'Class;
@@ -131,6 +144,7 @@ package WinRt.Windows.ApplicationModel.Chat is
 
    type IChatMessageNotificationTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageNotificationTriggerDetails2 is access all IChatMessageNotificationTriggerDetails2_Interface'Class;
+   type IChatMessageNotificationTriggerDetails2_Ptr is access all IChatMessageNotificationTriggerDetails2;
 
    type IChatMessageReader_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageReader is access all IChatMessageReader_Interface'Class;
@@ -138,6 +152,7 @@ package WinRt.Windows.ApplicationModel.Chat is
 
    type IChatMessageReader2_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageReader2 is access all IChatMessageReader2_Interface'Class;
+   type IChatMessageReader2_Ptr is access all IChatMessageReader2;
 
    type IChatMessageStore_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageStore is access all IChatMessageStore_Interface'Class;
@@ -145,9 +160,11 @@ package WinRt.Windows.ApplicationModel.Chat is
 
    type IChatMessageStore2_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageStore2 is access all IChatMessageStore2_Interface'Class;
+   type IChatMessageStore2_Ptr is access all IChatMessageStore2;
 
    type IChatMessageStore3_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageStore3 is access all IChatMessageStore3_Interface'Class;
+   type IChatMessageStore3_Ptr is access all IChatMessageStore3;
 
    type IChatMessageStoreChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageStoreChangedEventArgs is access all IChatMessageStoreChangedEventArgs_Interface'Class;
@@ -159,6 +176,7 @@ package WinRt.Windows.ApplicationModel.Chat is
 
    type IChatMessageTransport2_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageTransport2 is access all IChatMessageTransport2_Interface'Class;
+   type IChatMessageTransport2_Ptr is access all IChatMessageTransport2;
 
    type IChatMessageTransportConfiguration_Interface is interface and WinRt.IInspectable_Interface;
    type IChatMessageTransportConfiguration is access all IChatMessageTransportConfiguration_Interface'Class;
@@ -210,9 +228,11 @@ package WinRt.Windows.ApplicationModel.Chat is
 
    type IRcsManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IRcsManagerStatics is access all IRcsManagerStatics_Interface'Class;
+   type IRcsManagerStatics_Ptr is access all IRcsManagerStatics;
 
    type IRcsManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IRcsManagerStatics2 is access all IRcsManagerStatics2_Interface'Class;
+   type IRcsManagerStatics2_Ptr is access all IRcsManagerStatics2;
 
    type IRcsServiceKindSupportedChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IRcsServiceKindSupportedChangedEventArgs is access all IRcsServiceKindSupportedChangedEventArgs_Interface'Class;
@@ -3535,9 +3555,6 @@ package WinRt.Windows.ApplicationModel.Chat is
    -- Static RuntimeClass
    package ChatMessageManager is
 
-      function RequestSyncManagerAsync
-      return WinRt.Windows.ApplicationModel.Chat.ChatSyncManager;
-
       function GetTransportsAsync
       return WinRt.GenericObject;
 
@@ -3550,6 +3567,9 @@ package WinRt.Windows.ApplicationModel.Chat is
       );
 
       procedure ShowSmsSettings;
+
+      function RequestSyncManagerAsync
+      return WinRt.Windows.ApplicationModel.Chat.ChatSyncManager;
 
       function RegisterTransportAsync
       return WinRt.WString;
@@ -4313,6 +4333,17 @@ package WinRt.Windows.ApplicationModel.Chat is
    -- Static RuntimeClass
    package RcsManager is
 
+      function add_TransportListChanged
+      (
+         handler : GenericObject
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken;
+
+      procedure remove_TransportListChanged
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
+
       function GetEndUserMessageManager
       return WinRt.Windows.ApplicationModel.Chat.RcsEndUserMessageManager;
 
@@ -4328,17 +4359,6 @@ package WinRt.Windows.ApplicationModel.Chat is
       procedure LeaveConversationAsync
       (
          conversation : Windows.ApplicationModel.Chat.ChatConversation'Class
-      );
-
-      function add_TransportListChanged
-      (
-         handler : GenericObject
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken;
-
-      procedure remove_TransportListChanged
-      (
-         token : Windows.Foundation.EventRegistrationToken
       );
 
    end RcsManager;

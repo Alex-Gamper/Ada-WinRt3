@@ -4116,6 +4116,22 @@ package body WinRt.Windows.Foundation.Diagnostics is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for LoggingOptions
 
+   function Constructor return LoggingOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingOptions");
+      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingOptions;
+   begin
+      return RetVal : LoggingOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ILoggingOptions := new Windows.Foundation.Diagnostics.ILoggingOptions;
+            Retval.m_ILoggingOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       keywords : WinRt.Int64
@@ -4135,22 +4151,6 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Retval.m_ILoggingOptions := new Windows.Foundation.Diagnostics.ILoggingOptions;
             Retval.m_ILoggingOptions.all := m_ComRetVal;
             temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor return LoggingOptions is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingOptions");
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingOptions;
-   begin
-      return RetVal : LoggingOptions do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ILoggingOptions := new Windows.Foundation.Diagnostics.ILoggingOptions;
-            Retval.m_ILoggingOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

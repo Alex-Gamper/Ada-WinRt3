@@ -242,6 +242,48 @@ package body WinRt.Windows.UI.Xaml.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AccessKeyManager
 
+   function get_AreKeyTipsEnabled
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IAccessKeyManagerStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IAccessKeyManagerStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.get_AreKeyTipsEnabled (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   procedure put_AreKeyTipsEnabled
+   (
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IAccessKeyManagerStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IAccessKeyManagerStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.put_AreKeyTipsEnabled (value);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
    function get_IsDisplayModeEnabled
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -318,48 +360,6 @@ package body WinRt.Windows.UI.Xaml.Input is
       Hr := RoGetActivationFactory (m_hString, IID_IAccessKeyManagerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ExitDisplayMode;
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
-   function get_AreKeyTipsEnabled
-   return WinRt.Boolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IAccessKeyManagerStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Boolean;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IAccessKeyManagerStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.get_AreKeyTipsEnabled (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   procedure put_AreKeyTipsEnabled
-   (
-      value : WinRt.Boolean
-   ) is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IAccessKeyManagerStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IAccessKeyManagerStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.put_AreKeyTipsEnabled (value);
          temp := m_Factory.Release;
          if Hr /= S_OK then
             raise Program_Error;
@@ -986,6 +986,240 @@ package body WinRt.Windows.UI.Xaml.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for FocusManager
 
+   function TryMoveFocus
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
+      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.TryMoveFocus (focusNavigationDirection, focusNavigationOptions.m_IFindNextElementOptions.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function FindNextElement
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
+   )
+   return WinRt.Windows.UI.Xaml.DependencyObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
+         Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FindNextElement (focusNavigationDirection, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
+            Retval.m_IDependencyObject.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function FindFirstFocusableElement
+   (
+      searchScope : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Windows.UI.Xaml.DependencyObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
+         Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FindFirstFocusableElement (searchScope.m_IDependencyObject.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
+            Retval.m_IDependencyObject.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function FindLastFocusableElement
+   (
+      searchScope : Windows.UI.Xaml.DependencyObject'Class
+   )
+   return WinRt.Windows.UI.Xaml.DependencyObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
+         Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FindLastFocusableElement (searchScope.m_IDependencyObject.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
+            Retval.m_IDependencyObject.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function FindNextElement
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
+      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
+   )
+   return WinRt.Windows.UI.Xaml.DependencyObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
+         Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FindNextElement (focusNavigationDirection, focusNavigationOptions.m_IFindNextElementOptions.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
+            Retval.m_IDependencyObject.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetFocusedElement
+   (
+      xamlRoot : Windows.UI.Xaml.XamlRoot'Class
+   )
+   return WinRt.IInspectable is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics7_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.IInspectable;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics7'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetFocusedElement (xamlRoot.m_IXamlRoot.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function GetFocusedElement
+   return WinRt.IInspectable is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.IInspectable;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetFocusedElement (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function FindNextFocusableElement
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
+   )
+   return WinRt.Windows.UI.Xaml.UIElement is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.UIElement do
+         Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FindNextFocusableElement (focusNavigationDirection, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
+            Retval.m_IUIElement.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function FindNextFocusableElement
+   (
+      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
+      hintRect : Windows.Foundation.Rect
+   )
+   return WinRt.Windows.UI.Xaml.UIElement is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
+   begin
+      return RetVal : WinRt.Windows.UI.Xaml.UIElement do
+         Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FindNextFocusableElement (focusNavigationDirection, hintRect, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
+            Retval.m_IUIElement.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function TryFocusAsync
    (
       element : Windows.UI.Xaml.DependencyObject'Class;
@@ -1207,27 +1441,6 @@ package body WinRt.Windows.UI.Xaml.Input is
       end return;
    end;
 
-   function GetFocusedElement
-   return WinRt.IInspectable is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.IInspectable;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetFocusedElement (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
    function add_GotFocus
    (
       handler : GenericObject
@@ -1423,219 +1636,6 @@ package body WinRt.Windows.UI.Xaml.Input is
       Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryMoveFocus (focusNavigationDirection, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   function TryMoveFocus
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
-   )
-   return WinRt.Boolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Boolean;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.TryMoveFocus (focusNavigationDirection, focusNavigationOptions.m_IFindNextElementOptions.all, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   function FindNextElement
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
-   )
-   return WinRt.Windows.UI.Xaml.DependencyObject is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
-         Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FindNextElement (focusNavigationDirection, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
-            Retval.m_IDependencyObject.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function FindFirstFocusableElement
-   (
-      searchScope : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Windows.UI.Xaml.DependencyObject is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
-         Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FindFirstFocusableElement (searchScope.m_IDependencyObject.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
-            Retval.m_IDependencyObject.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function FindLastFocusableElement
-   (
-      searchScope : Windows.UI.Xaml.DependencyObject'Class
-   )
-   return WinRt.Windows.UI.Xaml.DependencyObject is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
-         Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FindLastFocusableElement (searchScope.m_IDependencyObject.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
-            Retval.m_IDependencyObject.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function FindNextElement
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
-   )
-   return WinRt.Windows.UI.Xaml.DependencyObject is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
-         Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FindNextElement (focusNavigationDirection, focusNavigationOptions.m_IFindNextElementOptions.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
-            Retval.m_IDependencyObject.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function FindNextFocusableElement
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
-   )
-   return WinRt.Windows.UI.Xaml.UIElement is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.UIElement do
-         Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FindNextFocusableElement (focusNavigationDirection, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
-            Retval.m_IUIElement.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function FindNextFocusableElement
-   (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-      hintRect : Windows.Foundation.Rect
-   )
-   return WinRt.Windows.UI.Xaml.UIElement is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
-   begin
-      return RetVal : WinRt.Windows.UI.Xaml.UIElement do
-         Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.FindNextFocusableElement (focusNavigationDirection, hintRect, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
-            Retval.m_IUIElement.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetFocusedElement
-   (
-      xamlRoot : Windows.UI.Xaml.XamlRoot'Class
-   )
-   return WinRt.IInspectable is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
-      m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics7_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.IInspectable;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics7'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetFocusedElement (xamlRoot.m_IXamlRoot.all, m_ComRetVal'Access);
          temp := m_Factory.Release;
          if Hr /= S_OK then
             raise Program_Error;
@@ -4175,6 +4175,22 @@ package body WinRt.Windows.UI.Xaml.Input is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ManipulationPivot
 
+   function Constructor return ManipulationPivot is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationPivot");
+      m_ComRetVal  : aliased Windows.UI.Xaml.Input.IManipulationPivot;
+   begin
+      return RetVal : ManipulationPivot do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IManipulationPivot := new Windows.UI.Xaml.Input.IManipulationPivot;
+            Retval.m_IManipulationPivot.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       center : Windows.Foundation.Point;
@@ -4195,22 +4211,6 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IManipulationPivot := new Windows.UI.Xaml.Input.IManipulationPivot;
             Retval.m_IManipulationPivot.all := m_ComRetVal;
             temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor return ManipulationPivot is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationPivot");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Input.IManipulationPivot;
-   begin
-      return RetVal : ManipulationPivot do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IManipulationPivot := new Windows.UI.Xaml.Input.IManipulationPivot;
-            Retval.m_IManipulationPivot.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

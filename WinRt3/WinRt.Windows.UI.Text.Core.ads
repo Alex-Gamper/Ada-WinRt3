@@ -58,6 +58,7 @@ package WinRt.Windows.UI.Text.Core is
 
    type ICoreTextEditContext2_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreTextEditContext2 is access all ICoreTextEditContext2_Interface'Class;
+   type ICoreTextEditContext2_Ptr is access all ICoreTextEditContext2;
 
    type ICoreTextFormatUpdatingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreTextFormatUpdatingEventArgs is access all ICoreTextFormatUpdatingEventArgs_Interface'Class;
@@ -73,6 +74,7 @@ package WinRt.Windows.UI.Text.Core is
 
    type ICoreTextLayoutRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreTextLayoutRequest2 is access all ICoreTextLayoutRequest2_Interface'Class;
+   type ICoreTextLayoutRequest2_Ptr is access all ICoreTextLayoutRequest2;
 
    type ICoreTextLayoutRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreTextLayoutRequestedEventArgs is access all ICoreTextLayoutRequestedEventArgs_Interface'Class;
@@ -96,9 +98,11 @@ package WinRt.Windows.UI.Text.Core is
 
    type ICoreTextServicesManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreTextServicesManagerStatics is access all ICoreTextServicesManagerStatics_Interface'Class;
+   type ICoreTextServicesManagerStatics_Ptr is access all ICoreTextServicesManagerStatics;
 
    type ICoreTextServicesStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreTextServicesStatics is access all ICoreTextServicesStatics_Interface'Class;
+   type ICoreTextServicesStatics_Ptr is access all ICoreTextServicesStatics;
 
    type ICoreTextTextRequest_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreTextTextRequest is access all ICoreTextTextRequest_Interface'Class;

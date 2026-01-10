@@ -55,6 +55,7 @@ package WinRt.Windows.Graphics.Printing3D is
 
    type IPrint3DManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPrint3DManagerStatics is access all IPrint3DManagerStatics_Interface'Class;
+   type IPrint3DManagerStatics_Ptr is access all IPrint3DManagerStatics;
 
    type IPrint3DTask_Interface is interface and WinRt.IInspectable_Interface;
    type IPrint3DTask is access all IPrint3DTask_Interface'Class;
@@ -86,9 +87,11 @@ package WinRt.Windows.Graphics.Printing3D is
 
    type IPrinting3D3MFPackage2_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3D3MFPackage2 is access all IPrinting3D3MFPackage2_Interface'Class;
+   type IPrinting3D3MFPackage2_Ptr is access all IPrinting3D3MFPackage2;
 
    type IPrinting3D3MFPackageStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3D3MFPackageStatics is access all IPrinting3D3MFPackageStatics_Interface'Class;
+   type IPrinting3D3MFPackageStatics_Ptr is access all IPrinting3D3MFPackageStatics;
 
    type IPrinting3DBaseMaterial_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DBaseMaterial is access all IPrinting3DBaseMaterial_Interface'Class;
@@ -100,9 +103,11 @@ package WinRt.Windows.Graphics.Printing3D is
 
    type IPrinting3DBaseMaterialGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DBaseMaterialGroupFactory is access all IPrinting3DBaseMaterialGroupFactory_Interface'Class;
+   type IPrinting3DBaseMaterialGroupFactory_Ptr is access all IPrinting3DBaseMaterialGroupFactory;
 
    type IPrinting3DBaseMaterialStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DBaseMaterialStatics is access all IPrinting3DBaseMaterialStatics_Interface'Class;
+   type IPrinting3DBaseMaterialStatics_Ptr is access all IPrinting3DBaseMaterialStatics;
 
    type IPrinting3DColorMaterial_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DColorMaterial is access all IPrinting3DColorMaterial_Interface'Class;
@@ -110,6 +115,7 @@ package WinRt.Windows.Graphics.Printing3D is
 
    type IPrinting3DColorMaterial2_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DColorMaterial2 is access all IPrinting3DColorMaterial2_Interface'Class;
+   type IPrinting3DColorMaterial2_Ptr is access all IPrinting3DColorMaterial2;
 
    type IPrinting3DColorMaterialGroup_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DColorMaterialGroup is access all IPrinting3DColorMaterialGroup_Interface'Class;
@@ -117,6 +123,7 @@ package WinRt.Windows.Graphics.Printing3D is
 
    type IPrinting3DColorMaterialGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DColorMaterialGroupFactory is access all IPrinting3DColorMaterialGroupFactory_Interface'Class;
+   type IPrinting3DColorMaterialGroupFactory_Ptr is access all IPrinting3DColorMaterialGroupFactory;
 
    type IPrinting3DComponent_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DComponent is access all IPrinting3DComponent_Interface'Class;
@@ -136,9 +143,11 @@ package WinRt.Windows.Graphics.Printing3D is
 
    type IPrinting3DCompositeMaterialGroup2_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DCompositeMaterialGroup2 is access all IPrinting3DCompositeMaterialGroup2_Interface'Class;
+   type IPrinting3DCompositeMaterialGroup2_Ptr is access all IPrinting3DCompositeMaterialGroup2;
 
    type IPrinting3DCompositeMaterialGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DCompositeMaterialGroupFactory is access all IPrinting3DCompositeMaterialGroupFactory_Interface'Class;
+   type IPrinting3DCompositeMaterialGroupFactory_Ptr is access all IPrinting3DCompositeMaterialGroupFactory;
 
    type IPrinting3DFaceReductionOptions_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DFaceReductionOptions is access all IPrinting3DFaceReductionOptions_Interface'Class;
@@ -162,6 +171,7 @@ package WinRt.Windows.Graphics.Printing3D is
 
    type IPrinting3DModel2_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DModel2 is access all IPrinting3DModel2_Interface'Class;
+   type IPrinting3DModel2_Ptr is access all IPrinting3DModel2;
 
    type IPrinting3DModelTexture_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DModelTexture is access all IPrinting3DModelTexture_Interface'Class;
@@ -177,6 +187,7 @@ package WinRt.Windows.Graphics.Printing3D is
 
    type IPrinting3DMultiplePropertyMaterialGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DMultiplePropertyMaterialGroupFactory is access all IPrinting3DMultiplePropertyMaterialGroupFactory_Interface'Class;
+   type IPrinting3DMultiplePropertyMaterialGroupFactory_Ptr is access all IPrinting3DMultiplePropertyMaterialGroupFactory;
 
    type IPrinting3DTexture2CoordMaterial_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DTexture2CoordMaterial is access all IPrinting3DTexture2CoordMaterial_Interface'Class;
@@ -188,9 +199,11 @@ package WinRt.Windows.Graphics.Printing3D is
 
    type IPrinting3DTexture2CoordMaterialGroup2_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DTexture2CoordMaterialGroup2 is access all IPrinting3DTexture2CoordMaterialGroup2_Interface'Class;
+   type IPrinting3DTexture2CoordMaterialGroup2_Ptr is access all IPrinting3DTexture2CoordMaterialGroup2;
 
    type IPrinting3DTexture2CoordMaterialGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DTexture2CoordMaterialGroupFactory is access all IPrinting3DTexture2CoordMaterialGroupFactory_Interface'Class;
+   type IPrinting3DTexture2CoordMaterialGroupFactory_Ptr is access all IPrinting3DTexture2CoordMaterialGroupFactory;
 
    type IPrinting3DTextureResource_Interface is interface and WinRt.IInspectable_Interface;
    type IPrinting3DTextureResource is access all IPrinting3DTextureResource_Interface'Class;

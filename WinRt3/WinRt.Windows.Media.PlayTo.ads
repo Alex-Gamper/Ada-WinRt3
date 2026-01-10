@@ -70,6 +70,7 @@ package WinRt.Windows.Media.PlayTo is
 
    type IPlayToManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayToManagerStatics is access all IPlayToManagerStatics_Interface'Class;
+   type IPlayToManagerStatics_Ptr is access all IPlayToManagerStatics;
 
    type IPlayToReceiver_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayToReceiver is access all IPlayToReceiver_Interface'Class;
@@ -97,6 +98,7 @@ package WinRt.Windows.Media.PlayTo is
 
    type IPlayToSourceWithPreferredSourceUri_Interface is interface and WinRt.IInspectable_Interface;
    type IPlayToSourceWithPreferredSourceUri is access all IPlayToSourceWithPreferredSourceUri_Interface'Class;
+   type IPlayToSourceWithPreferredSourceUri_Ptr is access all IPlayToSourceWithPreferredSourceUri;
 
    type IPlaybackRateChangeRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPlaybackRateChangeRequestedEventArgs is access all IPlaybackRateChangeRequestedEventArgs_Interface'Class;

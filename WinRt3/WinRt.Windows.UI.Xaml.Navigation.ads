@@ -65,6 +65,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
 
    type IFrameNavigationOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IFrameNavigationOptionsFactory is access all IFrameNavigationOptionsFactory_Interface'Class;
+   type IFrameNavigationOptionsFactory_Ptr is access all IFrameNavigationOptionsFactory;
 
    type INavigatingCancelEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type INavigatingCancelEventArgs is access all INavigatingCancelEventArgs_Interface'Class;
@@ -72,6 +73,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
 
    type INavigatingCancelEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type INavigatingCancelEventArgs2 is access all INavigatingCancelEventArgs2_Interface'Class;
+   type INavigatingCancelEventArgs2_Ptr is access all INavigatingCancelEventArgs2;
 
    type INavigationEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationEventArgs is access all INavigationEventArgs_Interface'Class;
@@ -79,6 +81,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
 
    type INavigationEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationEventArgs2 is access all INavigationEventArgs2_Interface'Class;
+   type INavigationEventArgs2_Ptr is access all INavigationEventArgs2;
 
    type INavigationFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type INavigationFailedEventArgs is access all INavigationFailedEventArgs_Interface'Class;
@@ -90,9 +93,11 @@ package WinRt.Windows.UI.Xaml.Navigation is
 
    type IPageStackEntryFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPageStackEntryFactory is access all IPageStackEntryFactory_Interface'Class;
+   type IPageStackEntryFactory_Ptr is access all IPageStackEntryFactory;
 
    type IPageStackEntryStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPageStackEntryStatics is access all IPageStackEntryStatics_Interface'Class;
+   type IPageStackEntryStatics_Ptr is access all IPageStackEntryStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -46,6 +46,7 @@ package WinRt.Windows.ApplicationModel.LockScreen is
 
    type ILockApplicationHostStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ILockApplicationHostStatics is access all ILockApplicationHostStatics_Interface'Class;
+   type ILockApplicationHostStatics_Ptr is access all ILockApplicationHostStatics;
 
    type ILockScreenBadge_Interface is interface and WinRt.IInspectable_Interface;
    type ILockScreenBadge is access all ILockScreenBadge_Interface'Class;

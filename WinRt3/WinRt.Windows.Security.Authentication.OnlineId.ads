@@ -54,6 +54,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
 
    type IOnlineIdServiceTicketRequestFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IOnlineIdServiceTicketRequestFactory is access all IOnlineIdServiceTicketRequestFactory_Interface'Class;
+   type IOnlineIdServiceTicketRequestFactory_Ptr is access all IOnlineIdServiceTicketRequestFactory;
 
    type IOnlineIdSystemAuthenticatorForUser_Interface is interface and WinRt.IInspectable_Interface;
    type IOnlineIdSystemAuthenticatorForUser is access all IOnlineIdSystemAuthenticatorForUser_Interface'Class;
@@ -61,6 +62,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
 
    type IOnlineIdSystemAuthenticatorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IOnlineIdSystemAuthenticatorStatics is access all IOnlineIdSystemAuthenticatorStatics_Interface'Class;
+   type IOnlineIdSystemAuthenticatorStatics_Ptr is access all IOnlineIdSystemAuthenticatorStatics;
 
    type IOnlineIdSystemIdentity_Interface is interface and WinRt.IInspectable_Interface;
    type IOnlineIdSystemIdentity is access all IOnlineIdSystemIdentity_Interface'Class;

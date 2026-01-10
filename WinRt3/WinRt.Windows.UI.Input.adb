@@ -2796,6 +2796,577 @@ package body WinRt.Windows.UI.Input is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PhysicalGestureRecognizer
+
+   procedure Initialize (this : in out PhysicalGestureRecognizer) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PhysicalGestureRecognizer) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPhysicalGestureRecognizer, IPhysicalGestureRecognizer_Ptr);
+   begin
+      if this.m_IPhysicalGestureRecognizer /= null then
+         if this.m_IPhysicalGestureRecognizer.all /= null then
+            temp := this.m_IPhysicalGestureRecognizer.all.Release;
+            Free (this.m_IPhysicalGestureRecognizer);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for PhysicalGestureRecognizer
+
+   function Constructor return PhysicalGestureRecognizer is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.PhysicalGestureRecognizer");
+      m_ComRetVal  : aliased Windows.UI.Input.IPhysicalGestureRecognizer;
+   begin
+      return RetVal : PhysicalGestureRecognizer do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IPhysicalGestureRecognizer := new Windows.UI.Input.IPhysicalGestureRecognizer;
+            Retval.m_IPhysicalGestureRecognizer.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PhysicalGestureRecognizer
+
+   function get_IsActive
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.get_IsActive (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_GestureSettings
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.Windows.UI.Input.GestureSettings is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Input.GestureSettings;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.get_GestureSettings (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_GestureSettings
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : Windows.UI.Input.GestureSettings
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.put_GestureSettings (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_TapMinContactCount
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.get_TapMinContactCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_TapMinContactCount
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.UInt32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.put_TapMinContactCount (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_TapMaxContactCount
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.get_TapMaxContactCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_TapMaxContactCount
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.UInt32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.put_TapMaxContactCount (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_HoldMinContactCount
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.get_HoldMinContactCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_HoldMinContactCount
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.UInt32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.put_HoldMinContactCount (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_HoldMaxContactCount
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.get_HoldMaxContactCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_HoldMaxContactCount
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.UInt32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.put_HoldMaxContactCount (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_HoldRadius
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.Single is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Single;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.get_HoldRadius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_HoldRadius
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.Single
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.put_HoldRadius (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_HoldStartDelay
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.Windows.Foundation.TimeSpan is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.get_HoldStartDelay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_HoldStartDelay
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : Windows.Foundation.TimeSpan
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.put_HoldStartDelay (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_TranslationMinContactCount
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.get_TranslationMinContactCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_TranslationMinContactCount
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.UInt32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.put_TranslationMinContactCount (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_TranslationMaxContactCount
+   (
+      this : in out PhysicalGestureRecognizer
+   )
+   return WinRt.UInt32 is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.UInt32;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.get_TranslationMaxContactCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_TranslationMaxContactCount
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : WinRt.UInt32
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.put_TranslationMaxContactCount (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure ProcessDownEvent
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : Windows.UI.Input.PointerPoint'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.ProcessDownEvent (value.m_IPointerPoint.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure ProcessMoveEvents
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : GenericObject
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.ProcessMoveEvents (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure ProcessUpEvent
+   (
+      this : in out PhysicalGestureRecognizer;
+      value : Windows.UI.Input.PointerPoint'Class
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.ProcessUpEvent (value.m_IPointerPoint.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure CompleteGesture
+   (
+      this : in out PhysicalGestureRecognizer
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.CompleteGesture;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_ManipulationStarted
+   (
+      this : in out PhysicalGestureRecognizer;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.add_ManipulationStarted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ManipulationStarted
+   (
+      this : in out PhysicalGestureRecognizer;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.remove_ManipulationStarted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_ManipulationUpdated
+   (
+      this : in out PhysicalGestureRecognizer;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.add_ManipulationUpdated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ManipulationUpdated
+   (
+      this : in out PhysicalGestureRecognizer;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.remove_ManipulationUpdated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_ManipulationCompleted
+   (
+      this : in out PhysicalGestureRecognizer;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.add_ManipulationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_ManipulationCompleted
+   (
+      this : in out PhysicalGestureRecognizer;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.remove_ManipulationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_Tapped
+   (
+      this : in out PhysicalGestureRecognizer;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.add_Tapped (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_Tapped
+   (
+      this : in out PhysicalGestureRecognizer;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.remove_Tapped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_Holding
+   (
+      this : in out PhysicalGestureRecognizer;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.add_Holding (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_Holding
+   (
+      this : in out PhysicalGestureRecognizer;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPhysicalGestureRecognizer.all.remove_Holding (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PointerPoint
 
    procedure Initialize (this : in out PointerPoint) is
@@ -3065,6 +3636,48 @@ package body WinRt.Windows.UI.Input is
          Retval.m_IPointerPointProperties := new Windows.UI.Input.IPointerPointProperties;
          Retval.m_IPointerPointProperties.all := m_ComRetVal;
       end return;
+   end;
+
+   function get_IsPhysicalPositionSupported
+   (
+      this : in out PointerPoint
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Input.IPointerPointPhysicalPosition := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IPointerPoint_Interface, WinRt.Windows.UI.Input.IPointerPointPhysicalPosition, WinRt.Windows.UI.Input.IID_IPointerPointPhysicalPosition'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPointerPoint.all);
+      Hr := m_Interface.get_IsPhysicalPositionSupported (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_PhysicalPosition
+   (
+      this : in out PointerPoint
+   )
+   return WinRt.Windows.Foundation.Point is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.UI.Input.IPointerPointPhysicalPosition := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.Point;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IPointerPoint_Interface, WinRt.Windows.UI.Input.IPointerPointPhysicalPosition, WinRt.Windows.UI.Input.IID_IPointerPointPhysicalPosition'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPointerPoint.all);
+      Hr := m_Interface.get_PhysicalPosition (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -4428,6 +5041,30 @@ package body WinRt.Windows.UI.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RadialControllerConfiguration
 
+   function GetForCurrentView
+   return WinRt.Windows.UI.Input.RadialControllerConfiguration is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.RadialControllerConfiguration");
+      m_Factory        : access WinRt.Windows.UI.Input.IRadialControllerConfigurationStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerConfiguration;
+   begin
+      return RetVal : WinRt.Windows.UI.Input.RadialControllerConfiguration do
+         Hr := RoGetActivationFactory (m_hString, IID_IRadialControllerConfigurationStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IRadialControllerConfiguration := new Windows.UI.Input.IRadialControllerConfiguration;
+            Retval.m_IRadialControllerConfiguration.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    procedure put_AppController
    (
       value : Windows.UI.Input.RadialController'Class
@@ -4513,30 +5150,6 @@ package body WinRt.Windows.UI.Input is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
-   end;
-
-   function GetForCurrentView
-   return WinRt.Windows.UI.Input.RadialControllerConfiguration is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.RadialControllerConfiguration");
-      m_Factory        : access WinRt.Windows.UI.Input.IRadialControllerConfigurationStatics_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerConfiguration;
-   begin
-      return RetVal : WinRt.Windows.UI.Input.RadialControllerConfiguration do
-         Hr := RoGetActivationFactory (m_hString, IID_IRadialControllerConfigurationStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IRadialControllerConfiguration := new Windows.UI.Input.IRadialControllerConfiguration;
-            Retval.m_IRadialControllerConfiguration.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -6133,6 +6746,333 @@ package body WinRt.Windows.UI.Input is
          raise Program_Error;
       end if;
       return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for TouchpadGesturesController
+
+   procedure Initialize (this : in out TouchpadGesturesController) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out TouchpadGesturesController) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ITouchpadGesturesController, ITouchpadGesturesController_Ptr);
+   begin
+      if this.m_ITouchpadGesturesController /= null then
+         if this.m_ITouchpadGesturesController.all /= null then
+            temp := this.m_ITouchpadGesturesController.all.Release;
+            Free (this.m_ITouchpadGesturesController);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for TouchpadGesturesController
+
+   function IsSupported_TouchpadGesturesController
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.TouchpadGesturesController");
+      m_Factory        : access WinRt.Windows.UI.Input.ITouchpadGesturesControllerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_ITouchpadGesturesControllerStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.IsSupported (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   function CreateForProcess
+   return WinRt.Windows.UI.Input.TouchpadGesturesController is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.TouchpadGesturesController");
+      m_Factory        : access WinRt.Windows.UI.Input.ITouchpadGesturesControllerStatics_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Input.ITouchpadGesturesController;
+   begin
+      return RetVal : WinRt.Windows.UI.Input.TouchpadGesturesController do
+         Hr := RoGetActivationFactory (m_hString, IID_ITouchpadGesturesControllerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.CreateForProcess (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_ITouchpadGesturesController := new Windows.UI.Input.ITouchpadGesturesController;
+            Retval.m_ITouchpadGesturesController.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for TouchpadGesturesController
+
+   function get_Enabled
+   (
+      this : in out TouchpadGesturesController
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_ITouchpadGesturesController.all.get_Enabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_Enabled
+   (
+      this : in out TouchpadGesturesController;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ITouchpadGesturesController.all.put_Enabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SupportedGestures
+   (
+      this : in out TouchpadGesturesController
+   )
+   return WinRt.Windows.UI.Input.TouchpadGlobalGestureKinds is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Input.TouchpadGlobalGestureKinds;
+   begin
+      Hr := this.m_ITouchpadGesturesController.all.get_SupportedGestures (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_SupportedGestures
+   (
+      this : in out TouchpadGesturesController;
+      value : Windows.UI.Input.TouchpadGlobalGestureKinds
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ITouchpadGesturesController.all.put_SupportedGestures (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_PointerPressed
+   (
+      this : in out TouchpadGesturesController;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_ITouchpadGesturesController.all.add_PointerPressed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_PointerPressed
+   (
+      this : in out TouchpadGesturesController;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ITouchpadGesturesController.all.remove_PointerPressed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_PointerMoved
+   (
+      this : in out TouchpadGesturesController;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_ITouchpadGesturesController.all.add_PointerMoved (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_PointerMoved
+   (
+      this : in out TouchpadGesturesController;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ITouchpadGesturesController.all.remove_PointerMoved (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_PointerReleased
+   (
+      this : in out TouchpadGesturesController;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_ITouchpadGesturesController.all.add_PointerReleased (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_PointerReleased
+   (
+      this : in out TouchpadGesturesController;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ITouchpadGesturesController.all.remove_PointerReleased (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_GlobalActionPerformed
+   (
+      this : in out TouchpadGesturesController;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_ITouchpadGesturesController.all.add_GlobalActionPerformed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_GlobalActionPerformed
+   (
+      this : in out TouchpadGesturesController;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_ITouchpadGesturesController.all.remove_GlobalActionPerformed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for TouchpadGlobalActionEventArgs
+
+   procedure Initialize (this : in out TouchpadGlobalActionEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out TouchpadGlobalActionEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (ITouchpadGlobalActionEventArgs, ITouchpadGlobalActionEventArgs_Ptr);
+   begin
+      if this.m_ITouchpadGlobalActionEventArgs /= null then
+         if this.m_ITouchpadGlobalActionEventArgs.all /= null then
+            temp := this.m_ITouchpadGlobalActionEventArgs.all.Release;
+            Free (this.m_ITouchpadGlobalActionEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for TouchpadGlobalActionEventArgs
+
+   function get_Action
+   (
+      this : in out TouchpadGlobalActionEventArgs
+   )
+   return WinRt.Windows.UI.Input.TouchpadGlobalAction is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.UI.Input.TouchpadGlobalAction;
+   begin
+      Hr := this.m_ITouchpadGlobalActionEventArgs.all.get_Action (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_PointerDevice
+   (
+      this : in out TouchpadGlobalActionEventArgs
+   )
+   return WinRt.Windows.Devices.Input.PointerDevice'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Input.IPointerDevice;
+   begin
+      return RetVal : WinRt.Windows.Devices.Input.PointerDevice do
+         Hr := this.m_ITouchpadGlobalActionEventArgs.all.get_PointerDevice (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPointerDevice := new Windows.Devices.Input.IPointerDevice;
+         Retval.m_IPointerDevice.all := m_ComRetVal;
+      end return;
    end;
 
 end WinRt.Windows.UI.Input;

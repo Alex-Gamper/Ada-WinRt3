@@ -47,6 +47,7 @@ package WinRt.Windows.Web.Syndication is
 
    type ISyndicationAttributeFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationAttributeFactory is access all ISyndicationAttributeFactory_Interface'Class;
+   type ISyndicationAttributeFactory_Ptr is access all ISyndicationAttributeFactory;
 
    type ISyndicationCategory_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationCategory is access all ISyndicationCategory_Interface'Class;
@@ -54,6 +55,7 @@ package WinRt.Windows.Web.Syndication is
 
    type ISyndicationCategoryFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationCategoryFactory is access all ISyndicationCategoryFactory_Interface'Class;
+   type ISyndicationCategoryFactory_Ptr is access all ISyndicationCategoryFactory;
 
    type ISyndicationClient_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationClient is access all ISyndicationClient_Interface'Class;
@@ -61,6 +63,7 @@ package WinRt.Windows.Web.Syndication is
 
    type ISyndicationClientFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationClientFactory is access all ISyndicationClientFactory_Interface'Class;
+   type ISyndicationClientFactory_Ptr is access all ISyndicationClientFactory;
 
    type ISyndicationContent_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationContent is access all ISyndicationContent_Interface'Class;
@@ -68,9 +71,11 @@ package WinRt.Windows.Web.Syndication is
 
    type ISyndicationContentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationContentFactory is access all ISyndicationContentFactory_Interface'Class;
+   type ISyndicationContentFactory_Ptr is access all ISyndicationContentFactory;
 
    type ISyndicationErrorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationErrorStatics is access all ISyndicationErrorStatics_Interface'Class;
+   type ISyndicationErrorStatics_Ptr is access all ISyndicationErrorStatics;
 
    type ISyndicationFeed_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationFeed is access all ISyndicationFeed_Interface'Class;
@@ -78,6 +83,7 @@ package WinRt.Windows.Web.Syndication is
 
    type ISyndicationFeedFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationFeedFactory is access all ISyndicationFeedFactory_Interface'Class;
+   type ISyndicationFeedFactory_Ptr is access all ISyndicationFeedFactory;
 
    type ISyndicationGenerator_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationGenerator is access all ISyndicationGenerator_Interface'Class;
@@ -85,6 +91,7 @@ package WinRt.Windows.Web.Syndication is
 
    type ISyndicationGeneratorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationGeneratorFactory is access all ISyndicationGeneratorFactory_Interface'Class;
+   type ISyndicationGeneratorFactory_Ptr is access all ISyndicationGeneratorFactory;
 
    type ISyndicationItem_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationItem is access all ISyndicationItem_Interface'Class;
@@ -92,6 +99,7 @@ package WinRt.Windows.Web.Syndication is
 
    type ISyndicationItemFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationItemFactory is access all ISyndicationItemFactory_Interface'Class;
+   type ISyndicationItemFactory_Ptr is access all ISyndicationItemFactory;
 
    type ISyndicationLink_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationLink is access all ISyndicationLink_Interface'Class;
@@ -99,6 +107,7 @@ package WinRt.Windows.Web.Syndication is
 
    type ISyndicationLinkFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationLinkFactory is access all ISyndicationLinkFactory_Interface'Class;
+   type ISyndicationLinkFactory_Ptr is access all ISyndicationLinkFactory;
 
    type ISyndicationNode_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationNode is access all ISyndicationNode_Interface'Class;
@@ -106,6 +115,7 @@ package WinRt.Windows.Web.Syndication is
 
    type ISyndicationNodeFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationNodeFactory is access all ISyndicationNodeFactory_Interface'Class;
+   type ISyndicationNodeFactory_Ptr is access all ISyndicationNodeFactory;
 
    type ISyndicationPerson_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationPerson is access all ISyndicationPerson_Interface'Class;
@@ -113,6 +123,7 @@ package WinRt.Windows.Web.Syndication is
 
    type ISyndicationPersonFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationPersonFactory is access all ISyndicationPersonFactory_Interface'Class;
+   type ISyndicationPersonFactory_Ptr is access all ISyndicationPersonFactory;
 
    type ISyndicationText_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationText is access all ISyndicationText_Interface'Class;
@@ -120,6 +131,7 @@ package WinRt.Windows.Web.Syndication is
 
    type ISyndicationTextFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ISyndicationTextFactory is access all ISyndicationTextFactory_Interface'Class;
+   type ISyndicationTextFactory_Ptr is access all ISyndicationTextFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1453,6 +1465,8 @@ package WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SyndicationAttribute
 
+   function Constructor return SyndicationAttribute;
+
    function Constructor
    (
       attributeName : WinRt.WString;
@@ -1460,8 +1474,6 @@ package WinRt.Windows.Web.Syndication is
       attributeValue : WinRt.WString
    )
    return SyndicationAttribute;
-
-   function Constructor return SyndicationAttribute;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SyndicationAttribute
@@ -1748,6 +1760,8 @@ package WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SyndicationContent
 
+   function Constructor return SyndicationContent;
+
    function Constructor
    (
       text : WinRt.WString;
@@ -1760,8 +1774,6 @@ package WinRt.Windows.Web.Syndication is
       sourceUri : Windows.Foundation.Uri'Class
    )
    return SyndicationContent;
-
-   function Constructor return SyndicationContent;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SyndicationContent
@@ -2318,8 +2330,6 @@ package WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SyndicationItem
 
-   function Constructor return SyndicationItem;
-
    function Constructor
    (
       title : WinRt.WString;
@@ -2327,6 +2337,8 @@ package WinRt.Windows.Web.Syndication is
       uri : Windows.Foundation.Uri'Class
    )
    return SyndicationItem;
+
+   function Constructor return SyndicationItem;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SyndicationItem
@@ -2587,6 +2599,8 @@ package WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SyndicationLink
 
+   function Constructor return SyndicationLink;
+
    function Constructor
    (
       uri : Windows.Foundation.Uri'Class
@@ -2602,8 +2616,6 @@ package WinRt.Windows.Web.Syndication is
       length : WinRt.UInt32
    )
    return SyndicationLink;
-
-   function Constructor return SyndicationLink;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SyndicationLink
@@ -2869,8 +2881,6 @@ package WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SyndicationPerson
 
-   function Constructor return SyndicationPerson;
-
    function Constructor
    (
       name : WinRt.WString
@@ -2884,6 +2894,8 @@ package WinRt.Windows.Web.Syndication is
       uri : Windows.Foundation.Uri'Class
    )
    return SyndicationPerson;
+
+   function Constructor return SyndicationPerson;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for SyndicationPerson

@@ -71,9 +71,11 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    type IClipboardStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IClipboardStatics is access all IClipboardStatics_Interface'Class;
+   type IClipboardStatics_Ptr is access all IClipboardStatics;
 
    type IClipboardStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IClipboardStatics2 is access all IClipboardStatics2_Interface'Class;
+   type IClipboardStatics2_Ptr is access all IClipboardStatics2;
 
    type IDataPackage_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackage is access all IDataPackage_Interface'Class;
@@ -81,12 +83,15 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    type IDataPackage2_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackage2 is access all IDataPackage2_Interface'Class;
+   type IDataPackage2_Ptr is access all IDataPackage2;
 
    type IDataPackage3_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackage3 is access all IDataPackage3_Interface'Class;
+   type IDataPackage3_Ptr is access all IDataPackage3;
 
    type IDataPackage4_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackage4 is access all IDataPackage4_Interface'Class;
+   type IDataPackage4_Ptr is access all IDataPackage4;
 
    type IDataPackagePropertySet_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackagePropertySet is access all IDataPackagePropertySet_Interface'Class;
@@ -94,12 +99,15 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    type IDataPackagePropertySet2_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackagePropertySet2 is access all IDataPackagePropertySet2_Interface'Class;
+   type IDataPackagePropertySet2_Ptr is access all IDataPackagePropertySet2;
 
    type IDataPackagePropertySet3_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackagePropertySet3 is access all IDataPackagePropertySet3_Interface'Class;
+   type IDataPackagePropertySet3_Ptr is access all IDataPackagePropertySet3;
 
    type IDataPackagePropertySet4_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackagePropertySet4 is access all IDataPackagePropertySet4_Interface'Class;
+   type IDataPackagePropertySet4_Ptr is access all IDataPackagePropertySet4;
 
    type IDataPackagePropertySetView_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackagePropertySetView is access all IDataPackagePropertySetView_Interface'Class;
@@ -107,15 +115,19 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    type IDataPackagePropertySetView2_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackagePropertySetView2 is access all IDataPackagePropertySetView2_Interface'Class;
+   type IDataPackagePropertySetView2_Ptr is access all IDataPackagePropertySetView2;
 
    type IDataPackagePropertySetView3_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackagePropertySetView3 is access all IDataPackagePropertySetView3_Interface'Class;
+   type IDataPackagePropertySetView3_Ptr is access all IDataPackagePropertySetView3;
 
    type IDataPackagePropertySetView4_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackagePropertySetView4 is access all IDataPackagePropertySetView4_Interface'Class;
+   type IDataPackagePropertySetView4_Ptr is access all IDataPackagePropertySetView4;
 
    type IDataPackagePropertySetView5_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackagePropertySetView5 is access all IDataPackagePropertySetView5_Interface'Class;
+   type IDataPackagePropertySetView5_Ptr is access all IDataPackagePropertySetView5;
 
    type IDataPackageView_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackageView is access all IDataPackageView_Interface'Class;
@@ -123,12 +135,15 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    type IDataPackageView2_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackageView2 is access all IDataPackageView2_Interface'Class;
+   type IDataPackageView2_Ptr is access all IDataPackageView2;
 
    type IDataPackageView3_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackageView3 is access all IDataPackageView3_Interface'Class;
+   type IDataPackageView3_Ptr is access all IDataPackageView3;
 
    type IDataPackageView4_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPackageView4 is access all IDataPackageView4_Interface'Class;
+   type IDataPackageView4_Ptr is access all IDataPackageView4;
 
    type IDataProviderDeferral_Interface is interface and WinRt.IInspectable_Interface;
    type IDataProviderDeferral is access all IDataProviderDeferral_Interface'Class;
@@ -156,18 +171,23 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    type IDataTransferManager2_Interface is interface and WinRt.IInspectable_Interface;
    type IDataTransferManager2 is access all IDataTransferManager2_Interface'Class;
+   type IDataTransferManager2_Ptr is access all IDataTransferManager2;
 
    type IDataTransferManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDataTransferManagerStatics is access all IDataTransferManagerStatics_Interface'Class;
+   type IDataTransferManagerStatics_Ptr is access all IDataTransferManagerStatics;
 
    type IDataTransferManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IDataTransferManagerStatics2 is access all IDataTransferManagerStatics2_Interface'Class;
+   type IDataTransferManagerStatics2_Ptr is access all IDataTransferManagerStatics2;
 
    type IDataTransferManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IDataTransferManagerStatics3 is access all IDataTransferManagerStatics3_Interface'Class;
+   type IDataTransferManagerStatics3_Ptr is access all IDataTransferManagerStatics3;
 
    type IHtmlFormatHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHtmlFormatHelperStatics is access all IHtmlFormatHelperStatics_Interface'Class;
+   type IHtmlFormatHelperStatics_Ptr is access all IHtmlFormatHelperStatics;
 
    type IOperationCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IOperationCompletedEventArgs is access all IOperationCompletedEventArgs_Interface'Class;
@@ -175,6 +195,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    type IOperationCompletedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IOperationCompletedEventArgs2 is access all IOperationCompletedEventArgs2_Interface'Class;
+   type IOperationCompletedEventArgs2_Ptr is access all IOperationCompletedEventArgs2;
 
    type IShareCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IShareCompletedEventArgs is access all IShareCompletedEventArgs_Interface'Class;
@@ -186,6 +207,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    type IShareProviderFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IShareProviderFactory is access all IShareProviderFactory_Interface'Class;
+   type IShareProviderFactory_Ptr is access all IShareProviderFactory;
 
    type IShareProviderOperation_Interface is interface and WinRt.IInspectable_Interface;
    type IShareProviderOperation is access all IShareProviderOperation_Interface'Class;
@@ -205,19 +227,55 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    type ISharedStorageAccessManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ISharedStorageAccessManagerStatics is access all ISharedStorageAccessManagerStatics_Interface'Class;
+   type ISharedStorageAccessManagerStatics_Ptr is access all ISharedStorageAccessManagerStatics;
 
    type IStandardDataFormatsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IStandardDataFormatsStatics is access all IStandardDataFormatsStatics_Interface'Class;
+   type IStandardDataFormatsStatics_Ptr is access all IStandardDataFormatsStatics;
 
    type IStandardDataFormatsStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IStandardDataFormatsStatics2 is access all IStandardDataFormatsStatics2_Interface'Class;
+   type IStandardDataFormatsStatics2_Ptr is access all IStandardDataFormatsStatics2;
 
    type IStandardDataFormatsStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IStandardDataFormatsStatics3 is access all IStandardDataFormatsStatics3_Interface'Class;
+   type IStandardDataFormatsStatics3_Ptr is access all IStandardDataFormatsStatics3;
 
    type ITargetApplicationChosenEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ITargetApplicationChosenEventArgs is access all ITargetApplicationChosenEventArgs_Interface'Class;
    type ITargetApplicationChosenEventArgs_Ptr is access all ITargetApplicationChosenEventArgs;
+
+   type ITransferTarget_Interface is interface and WinRt.IInspectable_Interface;
+   type ITransferTarget is access all ITransferTarget_Interface'Class;
+   type ITransferTarget_Ptr is access all ITransferTarget;
+
+   type ITransferTargetChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type ITransferTargetChangedEventArgs is access all ITransferTargetChangedEventArgs_Interface'Class;
+   type ITransferTargetChangedEventArgs_Ptr is access all ITransferTargetChangedEventArgs;
+
+   type ITransferTargetDiscoveryOptions_Interface is interface and WinRt.IInspectable_Interface;
+   type ITransferTargetDiscoveryOptions is access all ITransferTargetDiscoveryOptions_Interface'Class;
+   type ITransferTargetDiscoveryOptions_Ptr is access all ITransferTargetDiscoveryOptions;
+
+   type ITransferTargetDiscoveryOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type ITransferTargetDiscoveryOptionsFactory is access all ITransferTargetDiscoveryOptionsFactory_Interface'Class;
+   type ITransferTargetDiscoveryOptionsFactory_Ptr is access all ITransferTargetDiscoveryOptionsFactory;
+
+   type ITransferTargetInvokeResult_Interface is interface and WinRt.IInspectable_Interface;
+   type ITransferTargetInvokeResult is access all ITransferTargetInvokeResult_Interface'Class;
+   type ITransferTargetInvokeResult_Ptr is access all ITransferTargetInvokeResult;
+
+   type ITransferTargetStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type ITransferTargetStatics is access all ITransferTargetStatics_Interface'Class;
+   type ITransferTargetStatics_Ptr is access all ITransferTargetStatics;
+
+   type ITransferTargetWatcher_Interface is interface and WinRt.IInspectable_Interface;
+   type ITransferTargetWatcher is access all ITransferTargetWatcher_Interface'Class;
+   type ITransferTargetWatcher_Ptr is access all ITransferTargetWatcher;
+
+   type ITransferTargetWatcherStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type ITransferTargetWatcherStatics is access all ITransferTargetWatcherStatics_Interface'Class;
+   type ITransferTargetWatcherStatics_Ptr is access all ITransferTargetWatcherStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -354,6 +412,36 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
          m_ITargetApplicationChosenEventArgs : access Windows.ApplicationModel.DataTransfer.ITargetApplicationChosenEventArgs;
       end record;
    type TargetApplicationChosenEventArgs_Ptr is access all TargetApplicationChosenEventArgs;
+
+   type TransferTarget is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ITransferTarget : access Windows.ApplicationModel.DataTransfer.ITransferTarget;
+      end record;
+   type TransferTarget_Ptr is access all TransferTarget;
+
+   type TransferTargetChangedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ITransferTargetChangedEventArgs : access Windows.ApplicationModel.DataTransfer.ITransferTargetChangedEventArgs;
+      end record;
+   type TransferTargetChangedEventArgs_Ptr is access all TransferTargetChangedEventArgs;
+
+   type TransferTargetDiscoveryOptions is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ITransferTargetDiscoveryOptions : access Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions;
+      end record;
+   type TransferTargetDiscoveryOptions_Ptr is access all TransferTargetDiscoveryOptions;
+
+   type TransferTargetInvokeResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ITransferTargetInvokeResult : access Windows.ApplicationModel.DataTransfer.ITransferTargetInvokeResult;
+      end record;
+   type TransferTargetInvokeResult_Ptr is access all TransferTargetInvokeResult;
+
+   type TransferTargetWatcher is new Ada.Finalization.Limited_Controlled with
+      record
+         m_ITransferTargetWatcher : access Windows.ApplicationModel.DataTransfer.ITransferTargetWatcher;
+      end record;
+   type TransferTargetWatcher_Ptr is access all TransferTargetWatcher;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -1495,7 +1583,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function add_DataRequested
       (
          this : access IDataTransferManager_Interface;
-         eventHandler : GenericObject;
+         handler : GenericObject;
          RetVal : access Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
@@ -1503,14 +1591,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function remove_DataRequested
       (
          this : access IDataTransferManager_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         token : Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_TargetApplicationChosen
       (
          this : access IDataTransferManager_Interface;
-         eventHandler : GenericObject;
+         handler : GenericObject;
          RetVal : access Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
@@ -1518,7 +1606,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function remove_TargetApplicationChosen
       (
          this : access IDataTransferManager_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         token : Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1921,35 +2009,258 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       IID_ITargetApplicationChosenEventArgs : aliased WinRt.IID := (3396319404, 10631, 20195, (156, 84, 216, 175, 188, 184, 108, 29 ));
 
    -----------------------------------------------------------------------------
+   -- type ITransferTarget is interface and WinRt.IInspectable;
+
+      function get_Id
+      (
+         this : access ITransferTarget_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Label
+      (
+         this : access ITransferTarget_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_DisplayIcon
+      (
+         this : access ITransferTarget_Interface;
+         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsEnabled
+      (
+         this : access ITransferTarget_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITransferTarget : aliased WinRt.IID := (2306737381, 24770, 24238, (144, 159, 230, 37, 126, 50, 198, 68 ));
+
+   -----------------------------------------------------------------------------
+   -- type ITransferTargetChangedEventArgs is interface and WinRt.IInspectable;
+
+      function get_Target
+      (
+         this : access ITransferTargetChangedEventArgs_Interface;
+         RetVal : access Windows.ApplicationModel.DataTransfer.ITransferTarget
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITransferTargetChangedEventArgs : aliased WinRt.IID := (3574845848, 16756, 21455, (160, 110, 76, 210, 99, 208, 223, 239 ));
+
+   -----------------------------------------------------------------------------
+   -- type ITransferTargetDiscoveryOptions is interface and WinRt.IInspectable;
+
+      function get_DataPackage
+      (
+         this : access ITransferTargetDiscoveryOptions_Interface;
+         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackageView
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_MaxAppTargets
+      (
+         this : access ITransferTargetDiscoveryOptions_Interface;
+         RetVal : access WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_MaxAppTargets
+      (
+         this : access ITransferTargetDiscoveryOptions_Interface;
+         value : WinRt.Int32
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_AllowedTargetAppIds
+      (
+         this : access ITransferTargetDiscoveryOptions_Interface;
+         RetValSize : access WinRt.UInt32;
+         RetVal : access WinRt.HString_Ptr
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_AllowedTargetAppIds
+      (
+         this : access ITransferTargetDiscoveryOptions_Interface;
+         valueSize : WinRt.UInt32;
+         value : WinRt.HString_Ptr
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITransferTargetDiscoveryOptions : aliased WinRt.IID := (1898963893, 25679, 24427, (151, 182, 58, 52, 0, 153, 158, 215 ));
+
+   -----------------------------------------------------------------------------
+   -- type ITransferTargetDiscoveryOptionsFactory is interface and WinRt.IInspectable;
+
+      function CreateInstance
+      (
+         this : access ITransferTargetDiscoveryOptionsFactory_Interface;
+         dataPackage_p : Windows.ApplicationModel.DataTransfer.IDataPackageView;
+         RetVal : access Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITransferTargetDiscoveryOptionsFactory : aliased WinRt.IID := (3964370940, 52166, 24082, (142, 155, 213, 232, 146, 242, 198, 248 ));
+
+   -----------------------------------------------------------------------------
+   -- type ITransferTargetInvokeResult is interface and WinRt.IInspectable;
+
+      function get_Succeeded
+      (
+         this : access ITransferTargetInvokeResult_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access ITransferTargetInvokeResult_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITransferTargetInvokeResult : aliased WinRt.IID := (368189606, 53246, 22261, (180, 3, 237, 68, 233, 195, 173, 56 ));
+
+   -----------------------------------------------------------------------------
+   -- type ITransferTargetStatics is interface and WinRt.IInspectable;
+
+      function CreateWatcher
+      (
+         this : access ITransferTargetStatics_Interface;
+         options : Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions;
+         RetVal : access Windows.ApplicationModel.DataTransfer.ITransferTargetWatcher
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITransferTargetStatics : aliased WinRt.IID := (2170259460, 59377, 24375, (181, 47, 190, 28, 235, 169, 165, 158 ));
+
+   -----------------------------------------------------------------------------
+   -- type ITransferTargetWatcher is interface and WinRt.IInspectable;
+
+      function Start
+      (
+         this : access ITransferTargetWatcher_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function Stop
+      (
+         this : access ITransferTargetWatcher_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function TransferToAsync
+      (
+         this : access ITransferTargetWatcher_Interface;
+         target : Windows.ApplicationModel.DataTransfer.ITransferTarget;
+         parentWindowHandle : Windows.UI.WindowId;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_Added
+      (
+         this : access ITransferTargetWatcher_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_Added
+      (
+         this : access ITransferTargetWatcher_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_Removed
+      (
+         this : access ITransferTargetWatcher_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_Removed
+      (
+         this : access ITransferTargetWatcher_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_Updated
+      (
+         this : access ITransferTargetWatcher_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_Updated
+      (
+         this : access ITransferTargetWatcher_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_EnumerationCompleted
+      (
+         this : access ITransferTargetWatcher_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_EnumerationCompleted
+      (
+         this : access ITransferTargetWatcher_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_Stopped
+      (
+         this : access ITransferTargetWatcher_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_Stopped
+      (
+         this : access ITransferTargetWatcher_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITransferTargetWatcher : aliased WinRt.IID := (797297193, 256, 23817, (144, 124, 254, 85, 77, 47, 205, 26 ));
+
+   -----------------------------------------------------------------------------
+   -- type ITransferTargetWatcherStatics is interface and WinRt.IInspectable;
+
+      function IsSupported
+      (
+         this : access ITransferTargetWatcherStatics_Interface;
+         dataPackage_p : Windows.ApplicationModel.DataTransfer.IDataPackageView;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_ITransferTargetWatcherStatics : aliased WinRt.IID := (2722837800, 56142, 23517, (157, 48, 220, 177, 146, 199, 1, 245 ));
+
+   -----------------------------------------------------------------------------
    -- Class method declarations
    -----------------------------------------------------------------------------
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package Clipboard is
-
-      function GetContent
-      return WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView;
-
-      procedure SetContent
-      (
-         content : Windows.ApplicationModel.DataTransfer.DataPackage'Class
-      );
-
-      procedure Flush;
-
-      procedure Clear;
-
-      function add_ContentChanged
-      (
-         handler : GenericObject
-      )
-      return WinRt.Windows.Foundation.EventRegistrationToken;
-
-      procedure remove_ContentChanged
-      (
-         token : Windows.Foundation.EventRegistrationToken
-      );
 
       function GetHistoryItemsAsync
       return WinRt.Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResult;
@@ -2011,6 +2322,29 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_HistoryEnabledChanged
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      );
+
+      function GetContent
+      return WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView;
+
+      procedure SetContent
+      (
+         content : Windows.ApplicationModel.DataTransfer.DataPackage'Class
+      );
+
+      procedure Flush;
+
+      procedure Clear;
+
+      function add_ContentChanged
+      (
+         handler : GenericObject
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken;
+
+      procedure remove_ContentChanged
       (
          token : Windows.Foundation.EventRegistrationToken
       );
@@ -2872,13 +3206,13 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DataTransferManager
 
+   function IsSupported
+   return WinRt.Boolean;
+
    procedure ShowShareUI
    (
       options : Windows.ApplicationModel.DataTransfer.ShareUIOptions'Class
    );
-
-   function IsSupported
-   return WinRt.Boolean;
 
    procedure ShowShareUI;
 
@@ -2891,27 +3225,27 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    function add_DataRequested
    (
       this : in out DataTransferManager;
-      eventHandler : GenericObject
+      handler : GenericObject
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_DataRequested
    (
       this : in out DataTransferManager;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      token : Windows.Foundation.EventRegistrationToken
    );
 
    function add_TargetApplicationChosen
    (
       this : in out DataTransferManager;
-      eventHandler : GenericObject
+      handler : GenericObject
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_TargetApplicationChosen
    (
       this : in out DataTransferManager;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      token : Windows.Foundation.EventRegistrationToken
    );
 
    function add_ShareProvidersRequested
@@ -3189,13 +3523,13 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_StorageItems
       return WinRt.WString;
 
+      function get_UserActivityJsonArray
+      return WinRt.WString;
+
       function get_WebLink
       return WinRt.WString;
 
       function get_ApplicationLink
-      return WinRt.WString;
-
-      function get_UserActivityJsonArray
       return WinRt.WString;
 
    end StandardDataFormats;
@@ -3214,5 +3548,232 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       this : in out TargetApplicationChosenEventArgs
    )
    return WinRt.WString;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for TransferTarget
+
+   overriding procedure Initialize (this : in out TransferTarget);
+   overriding procedure Finalize (this : in out TransferTarget);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for TransferTarget
+
+   function CreateWatcher
+   (
+      options : Windows.ApplicationModel.DataTransfer.TransferTargetDiscoveryOptions'Class
+   )
+   return WinRt.Windows.ApplicationModel.DataTransfer.TransferTargetWatcher;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for TransferTarget
+
+   function get_Id
+   (
+      this : in out TransferTarget
+   )
+   return WinRt.WString;
+
+   function get_Label
+   (
+      this : in out TransferTarget
+   )
+   return WinRt.WString;
+
+   function get_DisplayIcon
+   (
+      this : in out TransferTarget
+   )
+   return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+
+   function get_IsEnabled
+   (
+      this : in out TransferTarget
+   )
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for TransferTargetChangedEventArgs
+
+   overriding procedure Initialize (this : in out TransferTargetChangedEventArgs);
+   overriding procedure Finalize (this : in out TransferTargetChangedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for TransferTargetChangedEventArgs
+
+   function get_Target
+   (
+      this : in out TransferTargetChangedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.DataTransfer.TransferTarget'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for TransferTargetDiscoveryOptions
+
+   overriding procedure Initialize (this : in out TransferTargetDiscoveryOptions);
+   overriding procedure Finalize (this : in out TransferTargetDiscoveryOptions);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for TransferTargetDiscoveryOptions
+
+   function Constructor
+   (
+      dataPackage_p : Windows.ApplicationModel.DataTransfer.DataPackageView'Class
+   )
+   return TransferTargetDiscoveryOptions;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for TransferTargetDiscoveryOptions
+
+   function get_DataPackage
+   (
+      this : in out TransferTargetDiscoveryOptions
+   )
+   return WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView'Class;
+
+   function get_MaxAppTargets
+   (
+      this : in out TransferTargetDiscoveryOptions
+   )
+   return WinRt.Int32;
+
+   procedure put_MaxAppTargets
+   (
+      this : in out TransferTargetDiscoveryOptions;
+      value : WinRt.Int32
+   );
+
+   function get_AllowedTargetAppIds
+   (
+      this : in out TransferTargetDiscoveryOptions
+   )
+   return WinRt.WString_Array;
+
+   procedure put_AllowedTargetAppIds
+   (
+      this : in out TransferTargetDiscoveryOptions;
+      value : WinRt.HString_Array
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for TransferTargetInvokeResult
+
+   overriding procedure Initialize (this : in out TransferTargetInvokeResult);
+   overriding procedure Finalize (this : in out TransferTargetInvokeResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for TransferTargetInvokeResult
+
+   function get_Succeeded
+   (
+      this : in out TransferTargetInvokeResult
+   )
+   return WinRt.Boolean;
+
+   function get_ExtendedError
+   (
+      this : in out TransferTargetInvokeResult
+   )
+   return WinRt.Windows.Foundation.HResult;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for TransferTargetWatcher
+
+   overriding procedure Initialize (this : in out TransferTargetWatcher);
+   overriding procedure Finalize (this : in out TransferTargetWatcher);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for TransferTargetWatcher
+
+   function IsSupported
+   (
+      dataPackage_p : Windows.ApplicationModel.DataTransfer.DataPackageView'Class
+   )
+   return WinRt.Boolean;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for TransferTargetWatcher
+
+   procedure Start
+   (
+      this : in out TransferTargetWatcher
+   );
+
+   procedure Stop
+   (
+      this : in out TransferTargetWatcher
+   );
+
+   function TransferToAsync
+   (
+      this : in out TransferTargetWatcher;
+      target : Windows.ApplicationModel.DataTransfer.TransferTarget'Class;
+      parentWindowHandle : Windows.UI.WindowId
+   )
+   return WinRt.Windows.ApplicationModel.DataTransfer.TransferTargetInvokeResult'Class;
+
+   function add_Added
+   (
+      this : in out TransferTargetWatcher;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_Added
+   (
+      this : in out TransferTargetWatcher;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_Removed
+   (
+      this : in out TransferTargetWatcher;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_Removed
+   (
+      this : in out TransferTargetWatcher;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_Updated
+   (
+      this : in out TransferTargetWatcher;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_Updated
+   (
+      this : in out TransferTargetWatcher;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_EnumerationCompleted
+   (
+      this : in out TransferTargetWatcher;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_EnumerationCompleted
+   (
+      this : in out TransferTargetWatcher;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_Stopped
+   (
+      this : in out TransferTargetWatcher;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_Stopped
+   (
+      this : in out TransferTargetWatcher;
+      token : Windows.Foundation.EventRegistrationToken
+   );
 
 end WinRt.Windows.ApplicationModel.DataTransfer;

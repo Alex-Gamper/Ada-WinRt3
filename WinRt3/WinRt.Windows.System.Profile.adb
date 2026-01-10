@@ -42,6 +42,54 @@ package body WinRt.Windows.System.Profile is
    -- Static RuntimeClass
    package body AnalyticsInfo is
 
+      function get_VersionInfo
+      return WinRt.Windows.System.Profile.AnalyticsVersionInfo is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.AnalyticsInfo");
+         m_Factory        : access WinRt.Windows.System.Profile.IAnalyticsInfoStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.System.Profile.IAnalyticsVersionInfo;
+      begin
+         return RetVal : WinRt.Windows.System.Profile.AnalyticsVersionInfo do
+            Hr := RoGetActivationFactory (m_hString, IID_IAnalyticsInfoStatics'Access , m_Factory'Address);
+            if Hr = S_OK then
+               Hr := m_Factory.get_VersionInfo (m_ComRetVal'Access);
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
+               Retval.m_IAnalyticsVersionInfo := new Windows.System.Profile.IAnalyticsVersionInfo;
+               Retval.m_IAnalyticsVersionInfo.all := m_ComRetVal;
+            end if;
+            tmp := WindowsDeleteString (m_hString);
+         end return;
+      end;
+
+      function get_DeviceForm
+      return WinRt.WString is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.AnalyticsInfo");
+         m_Factory        : access WinRt.Windows.System.Profile.IAnalyticsInfoStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.HString;
+         AdaRetval        : WString;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IAnalyticsInfoStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_DeviceForm (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         AdaRetval := To_Ada (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
+         return AdaRetVal;
+      end;
+
       function GetSystemPropertiesAsync
       (
          attributeNames : GenericObject
@@ -112,54 +160,6 @@ package body WinRt.Windows.System.Profile is
          return m_RetVal;
       end;
 
-      function get_VersionInfo
-      return WinRt.Windows.System.Profile.AnalyticsVersionInfo is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.AnalyticsInfo");
-         m_Factory        : access WinRt.Windows.System.Profile.IAnalyticsInfoStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Profile.IAnalyticsVersionInfo;
-      begin
-         return RetVal : WinRt.Windows.System.Profile.AnalyticsVersionInfo do
-            Hr := RoGetActivationFactory (m_hString, IID_IAnalyticsInfoStatics'Access , m_Factory'Address);
-            if Hr = S_OK then
-               Hr := m_Factory.get_VersionInfo (m_ComRetVal'Access);
-               temp := m_Factory.Release;
-               if Hr /= S_OK then
-                  raise Program_Error;
-               end if;
-               Retval.m_IAnalyticsVersionInfo := new Windows.System.Profile.IAnalyticsVersionInfo;
-               Retval.m_IAnalyticsVersionInfo.all := m_ComRetVal;
-            end if;
-            tmp := WindowsDeleteString (m_hString);
-         end return;
-      end;
-
-      function get_DeviceForm
-      return WinRt.WString is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.AnalyticsInfo");
-         m_Factory        : access WinRt.Windows.System.Profile.IAnalyticsInfoStatics_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased WinRt.HString;
-         AdaRetval        : WString;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IAnalyticsInfoStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_DeviceForm (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         AdaRetval := To_Ada (m_ComRetVal);
-         tmp := WindowsDeleteString (m_ComRetVal);
-         return AdaRetVal;
-      end;
-
    end AnalyticsInfo;
 
    -----------------------------------------------------------------------------
@@ -217,6 +217,30 @@ package body WinRt.Windows.System.Profile is
       AdaRetval        : WString;
    begin
       Hr := this.m_IAnalyticsVersionInfo.all.get_DeviceFamilyVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_ProductName
+   (
+      this : in out AnalyticsVersionInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.System.Profile.IAnalyticsVersionInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.System.Profile.IAnalyticsVersionInfo_Interface, WinRt.Windows.System.Profile.IAnalyticsVersionInfo2, WinRt.Windows.System.Profile.IID_IAnalyticsVersionInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IAnalyticsVersionInfo.all);
+      Hr := m_Interface.get_ProductName (m_ComRetVal'Access);
+      temp := m_Interface.Release;
       if Hr /= S_OK then
          raise Program_Error;
       end if;
@@ -1141,6 +1165,78 @@ package body WinRt.Windows.System.Profile is
       end;
 
    end SharedModeSettings;
+
+   -----------------------------------------------------------------------------
+   -- Static RuntimeClass
+   package body SmartAppControlPolicy is
+
+      function get_IsEnabled_SmartAppControlPolicy
+      return WinRt.Boolean is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SmartAppControlPolicy");
+         m_Factory        : access WinRt.Windows.System.Profile.ISmartAppControlPolicyStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased WinRt.Boolean;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ISmartAppControlPolicyStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_IsEnabled (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      function add_Changed
+      (
+         handler : GenericObject
+      )
+      return WinRt.Windows.Foundation.EventRegistrationToken is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SmartAppControlPolicy");
+         m_Factory        : access WinRt.Windows.System.Profile.ISmartAppControlPolicyStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ISmartAppControlPolicyStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.add_Changed (handler, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         return m_ComRetVal;
+      end;
+
+      procedure remove_Changed
+      (
+         token : Windows.Foundation.EventRegistrationToken
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SmartAppControlPolicy");
+         m_Factory        : access WinRt.Windows.System.Profile.ISmartAppControlPolicyStatics_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_ISmartAppControlPolicyStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.remove_Changed (token);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+   end SmartAppControlPolicy;
 
    -----------------------------------------------------------------------------
    -- Static RuntimeClass

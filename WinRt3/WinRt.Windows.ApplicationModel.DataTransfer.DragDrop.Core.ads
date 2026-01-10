@@ -45,6 +45,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
 
    type ICoreDragDropManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreDragDropManagerStatics is access all ICoreDragDropManagerStatics_Interface'Class;
+   type ICoreDragDropManagerStatics_Ptr is access all ICoreDragDropManagerStatics;
 
    type ICoreDragInfo_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreDragInfo is access all ICoreDragInfo_Interface'Class;
@@ -52,6 +53,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
 
    type ICoreDragInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreDragInfo2 is access all ICoreDragInfo2_Interface'Class;
+   type ICoreDragInfo2_Ptr is access all ICoreDragInfo2;
 
    type ICoreDragOperation_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreDragOperation is access all ICoreDragOperation_Interface'Class;
@@ -59,6 +61,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
 
    type ICoreDragOperation2_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreDragOperation2 is access all ICoreDragOperation2_Interface'Class;
+   type ICoreDragOperation2_Ptr is access all ICoreDragOperation2;
 
    type ICoreDragUIOverride_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreDragUIOverride is access all ICoreDragUIOverride_Interface'Class;
@@ -66,6 +69,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
 
    type ICoreDropOperationTarget_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreDropOperationTarget is access all ICoreDropOperationTarget_Interface'Class;
+   type ICoreDropOperationTarget_Ptr is access all ICoreDropOperationTarget;
 
    type ICoreDropOperationTargetRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ICoreDropOperationTargetRequestedEventArgs is access all ICoreDropOperationTargetRequestedEventArgs_Interface'Class;

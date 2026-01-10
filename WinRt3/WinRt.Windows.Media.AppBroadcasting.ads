@@ -57,6 +57,7 @@ package WinRt.Windows.Media.AppBroadcasting is
 
    type IAppBroadcastingUIStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IAppBroadcastingUIStatics is access all IAppBroadcastingUIStatics_Interface'Class;
+   type IAppBroadcastingUIStatics_Ptr is access all IAppBroadcastingUIStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

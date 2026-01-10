@@ -48,12 +48,25 @@ package WinRt.Windows.Devices.Display.Core is
    type IDisplayAdapter is access all IDisplayAdapter_Interface'Class;
    type IDisplayAdapter_Ptr is access all IDisplayAdapter;
 
+   type IDisplayAdapter2_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayAdapter2 is access all IDisplayAdapter2_Interface'Class;
+   type IDisplayAdapter2_Ptr is access all IDisplayAdapter2;
+
    type IDisplayAdapterStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayAdapterStatics is access all IDisplayAdapterStatics_Interface'Class;
+   type IDisplayAdapterStatics_Ptr is access all IDisplayAdapterStatics;
 
    type IDisplayDevice_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayDevice is access all IDisplayDevice_Interface'Class;
    type IDisplayDevice_Ptr is access all IDisplayDevice;
+
+   type IDisplayDevice2_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayDevice2 is access all IDisplayDevice2_Interface'Class;
+   type IDisplayDevice2_Ptr is access all IDisplayDevice2;
+
+   type IDisplayDeviceRenderAdapter_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayDeviceRenderAdapter is access all IDisplayDeviceRenderAdapter_Interface'Class;
+   type IDisplayDeviceRenderAdapter_Ptr is access all IDisplayDeviceRenderAdapter;
 
    type IDisplayFence_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayFence is access all IDisplayFence_Interface'Class;
@@ -62,6 +75,14 @@ package WinRt.Windows.Devices.Display.Core is
    type IDisplayManager_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayManager is access all IDisplayManager_Interface'Class;
    type IDisplayManager_Ptr is access all IDisplayManager;
+
+   type IDisplayManager2_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayManager2 is access all IDisplayManager2_Interface'Class;
+   type IDisplayManager2_Ptr is access all IDisplayManager2;
+
+   type IDisplayManager3_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayManager3 is access all IDisplayManager3_Interface'Class;
+   type IDisplayManager3_Ptr is access all IDisplayManager3;
 
    type IDisplayManagerChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayManagerChangedEventArgs is access all IDisplayManagerChangedEventArgs_Interface'Class;
@@ -85,14 +106,31 @@ package WinRt.Windows.Devices.Display.Core is
 
    type IDisplayManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayManagerStatics is access all IDisplayManagerStatics_Interface'Class;
+   type IDisplayManagerStatics_Ptr is access all IDisplayManagerStatics;
 
    type IDisplayModeInfo_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayModeInfo is access all IDisplayModeInfo_Interface'Class;
    type IDisplayModeInfo_Ptr is access all IDisplayModeInfo;
 
+   type IDisplayModeInfo2_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayModeInfo2 is access all IDisplayModeInfo2_Interface'Class;
+   type IDisplayModeInfo2_Ptr is access all IDisplayModeInfo2;
+
+   type IDisplayMuxDevice_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayMuxDevice is access all IDisplayMuxDevice_Interface'Class;
+   type IDisplayMuxDevice_Ptr is access all IDisplayMuxDevice;
+
+   type IDisplayMuxDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayMuxDeviceStatics is access all IDisplayMuxDeviceStatics_Interface'Class;
+   type IDisplayMuxDeviceStatics_Ptr is access all IDisplayMuxDeviceStatics;
+
    type IDisplayPath_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayPath is access all IDisplayPath_Interface'Class;
    type IDisplayPath_Ptr is access all IDisplayPath;
+
+   type IDisplayPath2_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayPath2 is access all IDisplayPath2_Interface'Class;
+   type IDisplayPath2_Ptr is access all IDisplayPath2;
 
    type IDisplayPrimaryDescription_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayPrimaryDescription is access all IDisplayPrimaryDescription_Interface'Class;
@@ -100,9 +138,11 @@ package WinRt.Windows.Devices.Display.Core is
 
    type IDisplayPrimaryDescriptionFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayPrimaryDescriptionFactory is access all IDisplayPrimaryDescriptionFactory_Interface'Class;
+   type IDisplayPrimaryDescriptionFactory_Ptr is access all IDisplayPrimaryDescriptionFactory;
 
    type IDisplayPrimaryDescriptionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayPrimaryDescriptionStatics is access all IDisplayPrimaryDescriptionStatics_Interface'Class;
+   type IDisplayPrimaryDescriptionStatics_Ptr is access all IDisplayPrimaryDescriptionStatics;
 
    type IDisplayScanout_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayScanout is access all IDisplayScanout_Interface'Class;
@@ -111,6 +151,10 @@ package WinRt.Windows.Devices.Display.Core is
    type IDisplaySource_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplaySource is access all IDisplaySource_Interface'Class;
    type IDisplaySource_Ptr is access all IDisplaySource;
+
+   type IDisplaySource2_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplaySource2 is access all IDisplaySource2_Interface'Class;
+   type IDisplaySource2_Ptr is access all IDisplaySource2;
 
    type IDisplayState_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayState is access all IDisplayState_Interface'Class;
@@ -132,9 +176,21 @@ package WinRt.Windows.Devices.Display.Core is
    type IDisplayTask is access all IDisplayTask_Interface'Class;
    type IDisplayTask_Ptr is access all IDisplayTask;
 
+   type IDisplayTask2_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayTask2 is access all IDisplayTask2_Interface'Class;
+   type IDisplayTask2_Ptr is access all IDisplayTask2;
+
    type IDisplayTaskPool_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayTaskPool is access all IDisplayTaskPool_Interface'Class;
    type IDisplayTaskPool_Ptr is access all IDisplayTaskPool;
+
+   type IDisplayTaskPool2_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayTaskPool2 is access all IDisplayTaskPool2_Interface'Class;
+   type IDisplayTaskPool2_Ptr is access all IDisplayTaskPool2;
+
+   type IDisplayTaskResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IDisplayTaskResult is access all IDisplayTaskResult_Interface'Class;
+   type IDisplayTaskResult_Ptr is access all IDisplayTaskResult;
 
    type IDisplayView_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayView is access all IDisplayView_Interface'Class;
@@ -146,9 +202,11 @@ package WinRt.Windows.Devices.Display.Core is
 
    type IDisplayWireFormatFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayWireFormatFactory is access all IDisplayWireFormatFactory_Interface'Class;
+   type IDisplayWireFormatFactory_Ptr is access all IDisplayWireFormatFactory;
 
    type IDisplayWireFormatStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IDisplayWireFormatStatics is access all IDisplayWireFormatStatics_Interface'Class;
+   type IDisplayWireFormatStatics_Ptr is access all IDisplayWireFormatStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -214,6 +272,12 @@ package WinRt.Windows.Devices.Display.Core is
       end record;
    type DisplayModeInfo_Ptr is access all DisplayModeInfo;
 
+   type DisplayMuxDevice is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IDisplayMuxDevice : access Windows.Devices.Display.Core.IDisplayMuxDevice;
+      end record;
+   type DisplayMuxDevice_Ptr is access all DisplayMuxDevice;
+
    type DisplayPath is new Ada.Finalization.Limited_Controlled with
       record
          m_IDisplayPath : access Windows.Devices.Display.Core.IDisplayPath;
@@ -274,6 +338,12 @@ package WinRt.Windows.Devices.Display.Core is
       end record;
    type DisplayTaskPool_Ptr is access all DisplayTaskPool;
 
+   type DisplayTaskResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IDisplayTaskResult : access Windows.Devices.Display.Core.IDisplayTaskResult;
+      end record;
+   type DisplayTaskResult_Ptr is access all DisplayTaskResult;
+
    type DisplayView is new Ada.Finalization.Limited_Controlled with
       record
          m_IDisplayView : access Windows.Devices.Display.Core.IDisplayView;
@@ -320,11 +390,13 @@ package WinRt.Windows.Devices.Display.Core is
 
    type DisplayManagerOptions is (
       None_e,
-      EnforceSourceOwnership_e
+      EnforceSourceOwnership_e,
+      VirtualRefreshRateAware_e
    );
    for DisplayManagerOptions use (
       None_e => 0,
-      EnforceSourceOwnership_e => 1
+      EnforceSourceOwnership_e => 1,
+      VirtualRefreshRateAware_e => 2
    );
    type DisplayManagerOptions_Ptr is access all DisplayManagerOptions;
 
@@ -390,6 +462,24 @@ package WinRt.Windows.Devices.Display.Core is
    );
    type DisplayPathStatus_Ptr is access all DisplayPathStatus;
 
+   type DisplayPresentStatus is (
+      Success_e,
+      SourceStatusPreventedPresent_e,
+      ScanoutInvalid_e,
+      SourceInvalid_e,
+      DeviceInvalid_e,
+      UnknownFailure_e
+   );
+   for DisplayPresentStatus use (
+      Success_e => 0,
+      SourceStatusPreventedPresent_e => 1,
+      ScanoutInvalid_e => 2,
+      SourceInvalid_e => 3,
+      DeviceInvalid_e => 4,
+      UnknownFailure_e => 5
+   );
+   type DisplayPresentStatus_Ptr is access all DisplayPresentStatus;
+
    type DisplayRotation is (
       None_e,
       Clockwise90Degrees_e,
@@ -403,6 +493,32 @@ package WinRt.Windows.Devices.Display.Core is
       Clockwise270Degrees_e => 3
    );
    type DisplayRotation_Ptr is access all DisplayRotation;
+
+   type DisplayScanoutOptions is (
+      None_e,
+      AllowTearing_e
+   );
+   for DisplayScanoutOptions use (
+      None_e => 0,
+      AllowTearing_e => 2
+   );
+   type DisplayScanoutOptions_Ptr is access all DisplayScanoutOptions;
+
+   type DisplaySourceStatus is (
+      Active_e,
+      PoweredOff_e,
+      Invalid_e,
+      OwnedByAnotherDevice_e,
+      Unowned_e
+   );
+   for DisplaySourceStatus use (
+      Active_e => 0,
+      PoweredOff_e => 1,
+      Invalid_e => 2,
+      OwnedByAnotherDevice_e => 3,
+      Unowned_e => 4
+   );
+   type DisplaySourceStatus_Ptr is access all DisplaySourceStatus;
 
    type DisplayStateApplyOptions is (
       None_e,
@@ -467,10 +583,12 @@ package WinRt.Windows.Devices.Display.Core is
    type DisplayTargetPersistence_Ptr is access all DisplayTargetPersistence;
 
    type DisplayTaskSignalKind is (
-      OnPresentFlipAway_e
+      OnPresentFlipAway_e,
+      OnPresentFlipTo_e
    );
    for DisplayTaskSignalKind use (
-      OnPresentFlipAway_e => 0
+      OnPresentFlipAway_e => 0,
+      OnPresentFlipTo_e => 1
    );
    type DisplayTaskSignalKind_Ptr is access all DisplayTaskSignalKind;
 
@@ -642,6 +760,25 @@ package WinRt.Windows.Devices.Display.Core is
       IID_IDisplayAdapter : aliased WinRt.IID := (2775536263, 61440, 24366, (181, 172, 55, 131, 162, 182, 154, 245 ));
 
    -----------------------------------------------------------------------------
+   -- type IDisplayAdapter2 is interface and WinRt.IInspectable;
+
+      function get_IsIndirectDisplayDevice
+      (
+         this : access IDisplayAdapter2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PreferredRenderAdapter
+      (
+         this : access IDisplayAdapter2_Interface;
+         RetVal : access Windows.Devices.Display.Core.IDisplayAdapter
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplayAdapter2 : aliased WinRt.IID := (2595527448, 46023, 21830, (131, 116, 169, 18, 113, 17, 237, 216 ));
+
+   -----------------------------------------------------------------------------
    -- type IDisplayAdapterStatics is interface and WinRt.IInspectable;
 
       function FromId
@@ -717,6 +854,36 @@ package WinRt.Windows.Devices.Display.Core is
       return WinRt.Hresult is abstract;
 
       IID_IDisplayDevice : aliased WinRt.IID := (2764682796, 13151, 22321, (140, 180, 193, 204, 212, 115, 16, 112 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDisplayDevice2 is interface and WinRt.IInspectable;
+
+      function CreateSimpleScanoutWithDirtyRectsAndOptions
+      (
+         this : access IDisplayDevice2_Interface;
+         source : Windows.Devices.Display.Core.IDisplaySource;
+         surface : Windows.Devices.Display.Core.IDisplaySurface;
+         subresourceIndex : WinRt.UInt32;
+         syncInterval : WinRt.UInt32;
+         dirtyRects : GenericObject;
+         options : Windows.Devices.Display.Core.DisplayScanoutOptions;
+         RetVal : access Windows.Devices.Display.Core.IDisplayScanout
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplayDevice2 : aliased WinRt.IID := (1072686348, 2368, 21693, (160, 47, 249, 199, 165, 54, 173, 96 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDisplayDeviceRenderAdapter is interface and WinRt.IInspectable;
+
+      function get_RenderAdapterId
+      (
+         this : access IDisplayDeviceRenderAdapter_Interface;
+         RetVal : access Windows.Graphics.DisplayAdapterId
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplayDeviceRenderAdapter : aliased WinRt.IID := (1103654117, 45455, 22335, (157, 89, 112, 70, 49, 21, 228, 204 ));
 
    -----------------------------------------------------------------------------
    -- type IDisplayFence is interface and WinRt.IInspectable;
@@ -868,6 +1035,32 @@ package WinRt.Windows.Devices.Display.Core is
       return WinRt.Hresult is abstract;
 
       IID_IDisplayManager : aliased WinRt.IID := (1322853467, 5612, 22242, (144, 114, 127, 229, 8, 74, 49, 167 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDisplayManager2 is interface and WinRt.IInspectable;
+
+      function TryReadCurrentStateForModeQuery
+      (
+         this : access IDisplayManager2_Interface;
+         RetVal : access Windows.Devices.Display.Core.IDisplayManagerResultWithState
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplayManager2 : aliased WinRt.IID := (3758222366, 32433, 22911, (154, 48, 20, 211, 254, 55, 20, 205 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDisplayManager3 is interface and WinRt.IInspectable;
+
+      function CreateDisplayDeviceForIndirectAdapter
+      (
+         this : access IDisplayManager3_Interface;
+         indirectAdapter : Windows.Devices.Display.Core.IDisplayAdapter;
+         renderAdapter : Windows.Devices.Display.Core.IDisplayAdapter;
+         RetVal : access Windows.Devices.Display.Core.IDisplayDevice
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplayManager3 : aliased WinRt.IID := (1863633801, 32585, 22653, (147, 206, 119, 72, 124, 188, 181, 48 ));
 
    -----------------------------------------------------------------------------
    -- type IDisplayManagerChangedEventArgs is interface and WinRt.IInspectable;
@@ -1083,6 +1276,115 @@ package WinRt.Windows.Devices.Display.Core is
       IID_IDisplayModeInfo : aliased WinRt.IID := (1221923744, 63387, 23156, (160, 94, 218, 130, 31, 71, 8, 104 ));
 
    -----------------------------------------------------------------------------
+   -- type IDisplayModeInfo2 is interface and WinRt.IInspectable;
+
+      function get_PhysicalPresentationRate
+      (
+         this : access IDisplayModeInfo2_Interface;
+         RetVal : access Windows.Devices.Display.Core.DisplayPresentationRate
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplayModeInfo2 : aliased WinRt.IID := (3362759558, 3547, 21619, (191, 176, 75, 120, 7, 181, 249, 9 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDisplayMuxDevice is interface and WinRt.IInspectable;
+
+      function get_Id
+      (
+         this : access IDisplayMuxDevice_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsActive
+      (
+         this : access IDisplayMuxDevice_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetAvailableMuxTargets
+      (
+         this : access IDisplayMuxDevice_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CurrentTarget
+      (
+         this : access IDisplayMuxDevice_Interface;
+         RetVal : access Windows.Devices.Display.Core.IDisplayTarget
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PreferredTarget
+      (
+         this : access IDisplayMuxDevice_Interface;
+         RetVal : access Windows.Devices.Display.Core.IDisplayTarget
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_IsAutomaticTargetSwitchingEnabled
+      (
+         this : access IDisplayMuxDevice_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetPreferredTarget
+      (
+         this : access IDisplayMuxDevice_Interface;
+         target : Windows.Devices.Display.Core.IDisplayTarget;
+         RetVal : access Windows.Foundation.IAsyncAction
+      )
+      return WinRt.Hresult is abstract;
+
+      function SetAutomaticTargetSwitching
+      (
+         this : access IDisplayMuxDevice_Interface;
+         RetVal : access Windows.Foundation.IAsyncAction
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_Changed
+      (
+         this : access IDisplayMuxDevice_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_Changed
+      (
+         this : access IDisplayMuxDevice_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplayMuxDevice : aliased WinRt.IID := (3625732389, 33757, 21193, (171, 78, 224, 131, 63, 199, 80, 104 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDisplayMuxDeviceStatics is interface and WinRt.IInspectable;
+
+      function GetDeviceSelector
+      (
+         this : access IDisplayMuxDeviceStatics_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function FromIdAsync
+      (
+         this : access IDisplayMuxDeviceStatics_Interface;
+         deviceInterfaceId : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplayMuxDeviceStatics : aliased WinRt.IID := (2067244618, 1125, 21466, (186, 238, 112, 2, 132, 128, 206, 208 ));
+
+   -----------------------------------------------------------------------------
    -- type IDisplayPath is interface and WinRt.IInspectable;
 
       function get_View
@@ -1257,6 +1559,25 @@ package WinRt.Windows.Devices.Display.Core is
       IID_IDisplayPath : aliased WinRt.IID := (3017791050, 29792, 23774, (129, 27, 213, 174, 159, 61, 159, 132 ));
 
    -----------------------------------------------------------------------------
+   -- type IDisplayPath2 is interface and WinRt.IInspectable;
+
+      function get_PhysicalPresentationRate
+      (
+         this : access IDisplayPath2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_PhysicalPresentationRate
+      (
+         this : access IDisplayPath2_Interface;
+         value : GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplayPath2 : aliased WinRt.IID := (4079245765, 59796, 22283, (158, 200, 239, 66, 195, 90, 133, 71 ));
+
+   -----------------------------------------------------------------------------
    -- type IDisplayPrimaryDescription is interface and WinRt.IInspectable;
 
       function get_Width
@@ -1378,6 +1699,33 @@ package WinRt.Windows.Devices.Display.Core is
       return WinRt.Hresult is abstract;
 
       IID_IDisplaySource : aliased WinRt.IID := (3973144513, 60124, 20924, (151, 29, 59, 198, 40, 219, 45, 212 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDisplaySource2 is interface and WinRt.IInspectable;
+
+      function get_Status
+      (
+         this : access IDisplaySource2_Interface;
+         RetVal : access Windows.Devices.Display.Core.DisplaySourceStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_StatusChanged
+      (
+         this : access IDisplaySource2_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_StatusChanged
+      (
+         this : access IDisplaySource2_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplaySource2 : aliased WinRt.IID := (1910606162, 45857, 23284, (191, 232, 3, 251, 234, 49, 228, 13 ));
 
    -----------------------------------------------------------------------------
    -- type IDisplayState is interface and WinRt.IInspectable;
@@ -1641,6 +1989,19 @@ package WinRt.Windows.Devices.Display.Core is
       IID_IDisplayTask : aliased WinRt.IID := (1577612360, 4955, 23472, (191, 99, 99, 127, 132, 34, 124, 122 ));
 
    -----------------------------------------------------------------------------
+   -- type IDisplayTask2 is interface and WinRt.IInspectable;
+
+      function SetSignal
+      (
+         this : access IDisplayTask2_Interface;
+         signalKind : Windows.Devices.Display.Core.DisplayTaskSignalKind;
+         fence : Windows.Devices.Display.Core.IDisplayFence
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplayTask2 : aliased WinRt.IID := (156756505, 48469, 21982, (146, 103, 201, 123, 97, 231, 28, 55 ));
+
+   -----------------------------------------------------------------------------
    -- type IDisplayTaskPool is interface and WinRt.IInspectable;
 
       function CreateTask
@@ -1658,6 +2019,45 @@ package WinRt.Windows.Devices.Display.Core is
       return WinRt.Hresult is abstract;
 
       IID_IDisplayTaskPool : aliased WinRt.IID := (3329631549, 9085, 21832, (170, 250, 62, 81, 127, 239, 239, 28 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDisplayTaskPool2 is interface and WinRt.IInspectable;
+
+      function TryExecuteTask
+      (
+         this : access IDisplayTaskPool2_Interface;
+         task_x : Windows.Devices.Display.Core.IDisplayTask;
+         RetVal : access Windows.Devices.Display.Core.IDisplayTaskResult
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplayTaskPool2 : aliased WinRt.IID := (1186494902, 23831, 22869, (168, 114, 235, 56, 0, 61, 181, 134 ));
+
+   -----------------------------------------------------------------------------
+   -- type IDisplayTaskResult is interface and WinRt.IInspectable;
+
+      function get_PresentStatus
+      (
+         this : access IDisplayTaskResult_Interface;
+         RetVal : access Windows.Devices.Display.Core.DisplayPresentStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PresentId
+      (
+         this : access IDisplayTaskResult_Interface;
+         RetVal : access WinRt.UInt64
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SourceStatus
+      (
+         this : access IDisplayTaskResult_Interface;
+         RetVal : access Windows.Devices.Display.Core.DisplaySourceStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IDisplayTaskResult : aliased WinRt.IID := (1874623847, 63921, 21984, (157, 136, 211, 165, 25, 122, 63, 89 ));
 
    -----------------------------------------------------------------------------
    -- type IDisplayView is interface and WinRt.IInspectable;
@@ -1851,6 +2251,18 @@ package WinRt.Windows.Devices.Display.Core is
    )
    return IMapView_Guid_IInspectable.Kind;
 
+   function get_IsIndirectDisplayDevice
+   (
+      this : in out DisplayAdapter
+   )
+   return WinRt.Boolean;
+
+   function get_PreferredRenderAdapter
+   (
+      this : in out DisplayAdapter
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayAdapter'Class;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DisplayDevice
 
@@ -1911,6 +2323,24 @@ package WinRt.Windows.Devices.Display.Core is
       capability : Windows.Devices.Display.Core.DisplayDeviceCapability
    )
    return WinRt.Boolean;
+
+   function CreateSimpleScanoutWithDirtyRectsAndOptions
+   (
+      this : in out DisplayDevice;
+      source : Windows.Devices.Display.Core.DisplaySource'Class;
+      surface : Windows.Devices.Display.Core.DisplaySurface'Class;
+      subresourceIndex : WinRt.UInt32;
+      syncInterval : WinRt.UInt32;
+      dirtyRects : GenericObject;
+      options : Windows.Devices.Display.Core.DisplayScanoutOptions
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayScanout'Class;
+
+   function get_RenderAdapterId
+   (
+      this : in out DisplayDevice
+   )
+   return WinRt.Windows.Graphics.DisplayAdapterId;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DisplayFence
@@ -2060,6 +2490,20 @@ package WinRt.Windows.Devices.Display.Core is
    (
       this : in out DisplayManager
    );
+
+   function TryReadCurrentStateForModeQuery
+   (
+      this : in out DisplayManager
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayManagerResultWithState'Class;
+
+   function CreateDisplayDeviceForIndirectAdapter
+   (
+      this : in out DisplayManager;
+      indirectAdapter : Windows.Devices.Display.Core.DisplayAdapter'Class;
+      renderAdapter : Windows.Devices.Display.Core.DisplayAdapter'Class
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayDevice'Class;
 
    procedure Close
    (
@@ -2266,6 +2710,98 @@ package WinRt.Windows.Devices.Display.Core is
    )
    return IMapView_Guid_IInspectable.Kind;
 
+   function get_PhysicalPresentationRate
+   (
+      this : in out DisplayModeInfo
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayPresentationRate;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DisplayMuxDevice
+
+   overriding procedure Initialize (this : in out DisplayMuxDevice);
+   overriding procedure Finalize (this : in out DisplayMuxDevice);
+
+   -----------------------------------------------------------------------------
+   -- Static Interfaces for DisplayMuxDevice
+
+   function GetDeviceSelector
+   return WinRt.WString;
+
+   function FromIdAsync
+   (
+      deviceInterfaceId : WinRt.WString
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayMuxDevice;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DisplayMuxDevice
+
+   function get_Id
+   (
+      this : in out DisplayMuxDevice
+   )
+   return WinRt.WString;
+
+   function get_IsActive
+   (
+      this : in out DisplayMuxDevice
+   )
+   return WinRt.Boolean;
+
+   function GetAvailableMuxTargets
+   (
+      this : in out DisplayMuxDevice
+   )
+   return IVectorView_IDisplayTarget.Kind;
+
+   function get_CurrentTarget
+   (
+      this : in out DisplayMuxDevice
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayTarget'Class;
+
+   function get_PreferredTarget
+   (
+      this : in out DisplayMuxDevice
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayTarget'Class;
+
+   function get_IsAutomaticTargetSwitchingEnabled
+   (
+      this : in out DisplayMuxDevice
+   )
+   return WinRt.Boolean;
+
+   procedure SetPreferredTarget
+   (
+      this : in out DisplayMuxDevice;
+      target : Windows.Devices.Display.Core.DisplayTarget'Class
+   );
+
+   procedure SetAutomaticTargetSwitching
+   (
+      this : in out DisplayMuxDevice
+   );
+
+   function add_Changed
+   (
+      this : in out DisplayMuxDevice;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_Changed
+   (
+      this : in out DisplayMuxDevice;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   procedure Close
+   (
+      this : in out DisplayMuxDevice
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DisplayPath
 
@@ -2420,6 +2956,18 @@ package WinRt.Windows.Devices.Display.Core is
    )
    return IMap_Guid_IInspectable.Kind;
 
+   function get_PhysicalPresentationRate
+   (
+      this : in out DisplayPath
+   )
+   return IReference_DisplayPresentationRate.Kind;
+
+   procedure put_PhysicalPresentationRate
+   (
+      this : in out DisplayPath;
+      value : GenericObject
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DisplayPrimaryDescription
 
@@ -2536,6 +3084,25 @@ package WinRt.Windows.Devices.Display.Core is
       Key : WinRt.Guid
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
+
+   function get_Status
+   (
+      this : in out DisplaySource
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplaySourceStatus;
+
+   function add_StatusChanged
+   (
+      this : in out DisplaySource;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_StatusChanged
+   (
+      this : in out DisplaySource;
+      token : Windows.Foundation.EventRegistrationToken
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DisplayState
@@ -2786,6 +3353,13 @@ package WinRt.Windows.Devices.Display.Core is
       readyFenceValue : WinRt.UInt64
    );
 
+   procedure SetSignal
+   (
+      this : in out DisplayTask;
+      signalKind : Windows.Devices.Display.Core.DisplayTaskSignalKind;
+      fence : Windows.Devices.Display.Core.DisplayFence'Class
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DisplayTaskPool
 
@@ -2806,6 +3380,40 @@ package WinRt.Windows.Devices.Display.Core is
       this : in out DisplayTaskPool;
       task_x : Windows.Devices.Display.Core.DisplayTask'Class
    );
+
+   function TryExecuteTask
+   (
+      this : in out DisplayTaskPool;
+      task_x : Windows.Devices.Display.Core.DisplayTask'Class
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayTaskResult'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for DisplayTaskResult
+
+   overriding procedure Initialize (this : in out DisplayTaskResult);
+   overriding procedure Finalize (this : in out DisplayTaskResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for DisplayTaskResult
+
+   function get_PresentStatus
+   (
+      this : in out DisplayTaskResult
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplayPresentStatus;
+
+   function get_PresentId
+   (
+      this : in out DisplayTaskResult
+   )
+   return WinRt.UInt64;
+
+   function get_SourceStatus
+   (
+      this : in out DisplayTaskResult
+   )
+   return WinRt.Windows.Devices.Display.Core.DisplaySourceStatus;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for DisplayView

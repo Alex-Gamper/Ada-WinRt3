@@ -45,8 +45,14 @@ package body WinRt.Windows.Security.Isolation is
    package IAsyncOperation_IsolatedWindowsEnvironmentPostMessageResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentPostMessageResult);
    package AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentPostMessageResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentPostMessageResult);
 
+   package IAsyncOperation_IsolatedWindowsEnvironmentShareFileResult is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileResult);
+   package AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFileResult is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileResult);
+
    package IAsyncOperation_IsolatedWindowsEnvironmentCreateResult is new WinRt.Windows.Foundation.IAsyncOperationWithProgress (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentCreateResult, GenericObject);
    package AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentCreateResult is new WinRt.Windows.Foundation.AsyncOperationWithProgressCompletedHandler (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentCreateResult, GenericObject);
+
+   package IAsyncOperation_Boolean is new WinRt.Windows.Foundation.IAsyncOperation (WinRt.Boolean);
+   package AsyncOperationCompletedHandler_Boolean is new WinRt.Windows.Foundation.AsyncOperationCompletedHandler (WinRt.Boolean);
 
    -----------------------------------------------------------------------------
    -- Delegate HostMessageReceivedCallback
@@ -1012,6 +1018,198 @@ package body WinRt.Windows.Security.Isolation is
       end return;
    end;
 
+   function GetUserInfo
+   (
+      this : in out IsolatedWindowsEnvironment
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentUserInfo'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Security.Isolation.IIsolatedWindowsEnvironmentUserInfo;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment3, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironment3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentUserInfo do
+         m_Interface := QInterface (this.m_IIsolatedWindowsEnvironment.all);
+         Hr := m_Interface.GetUserInfo (m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IIsolatedWindowsEnvironmentUserInfo := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentUserInfo;
+         Retval.m_IIsolatedWindowsEnvironmentUserInfo.all := m_ComRetVal;
+      end return;
+   end;
+
+   function ShareFileAsync
+   (
+      this : in out IsolatedWindowsEnvironment;
+      filePath : WinRt.WString;
+      options : Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileRequestOptions'Class
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment3 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_filePath : constant WinRt.HString := To_HString (filePath);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_IsolatedWindowsEnvironmentShareFileResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_IsolatedWindowsEnvironmentShareFileResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileResult;
+      m_IID            : aliased WinRt.IID := (1993242303, 60421, 20797, (132, 63, 121, 175, 23, 102, 228, 144 )); -- Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileResult;
+      m_HandlerIID     : aliased WinRt.IID := (2343347041, 10549, 21077, (132, 220, 28, 133, 79, 79, 239, 105 ));
+      m_Handler        : AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFileResult.Kind := new AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFileResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_IsolatedWindowsEnvironmentShareFileResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFileResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFileResult.Kind_Delegate, AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFileResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment3, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironment3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileResult do
+         m_Interface := QInterface (this.m_IIsolatedWindowsEnvironment.all);
+         Hr := m_Interface.ShareFileAsync (HStr_filePath, options.m_IIsolatedWindowsEnvironmentShareFileRequestOptions.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IIsolatedWindowsEnvironmentShareFileResult := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileResult;
+                  Retval.m_IIsolatedWindowsEnvironmentShareFileResult.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (HStr_filePath);
+      end return;
+   end;
+
+   function ShareFileAsync
+   (
+      this : in out IsolatedWindowsEnvironment;
+      filePath : WinRt.WString;
+      options : Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileRequestOptions'Class;
+      telemetryParameters : Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileResult'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment3 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_filePath : constant WinRt.HString := To_HString (filePath);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_IsolatedWindowsEnvironmentShareFileResult.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_IsolatedWindowsEnvironmentShareFileResult.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileResult;
+      m_IID            : aliased WinRt.IID := (1993242303, 60421, 20797, (132, 63, 121, 175, 23, 102, 228, 144 )); -- Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileResult;
+      m_HandlerIID     : aliased WinRt.IID := (2343347041, 10549, 21077, (132, 220, 28, 133, 79, 79, 239, 105 ));
+      m_Handler        : AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFileResult.Kind := new AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFileResult.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_IsolatedWindowsEnvironmentShareFileResult.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFileResult.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFileResult.Kind_Delegate, AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFileResult.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment3, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironment3'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileResult do
+         m_Interface := QInterface (this.m_IIsolatedWindowsEnvironment.all);
+         Hr := m_Interface.ShareFileAsync (HStr_filePath, options.m_IIsolatedWindowsEnvironmentShareFileRequestOptions.all, telemetryParameters.m_IIsolatedWindowsEnvironmentTelemetryParameters.all, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IIsolatedWindowsEnvironmentShareFileResult := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileResult;
+                  Retval.m_IIsolatedWindowsEnvironmentShareFileResult.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (HStr_filePath);
+      end return;
+   end;
+
+   procedure ChangePriority
+   (
+      this : in out IsolatedWindowsEnvironment;
+      Priority : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment4 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment4, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironment4'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIsolatedWindowsEnvironment.all);
+      Hr := m_Interface.ChangePriority (Priority);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for IsolatedWindowsEnvironmentCreateResult
 
@@ -1089,6 +1287,25 @@ package body WinRt.Windows.Security.Isolation is
       end return;
    end;
 
+   procedure ChangeCreationPriority
+   (
+      this : in out IsolatedWindowsEnvironmentCreateResult;
+      priority : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentCreateResult2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentCreateResult_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentCreateResult2, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironmentCreateResult2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIsolatedWindowsEnvironmentCreateResult.all);
+      Hr := m_Interface.ChangeCreationPriority (priority);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for IsolatedWindowsEnvironmentFile
 
@@ -1161,6 +1378,51 @@ package body WinRt.Windows.Security.Isolation is
       if Hr /= S_OK then
          raise Program_Error;
       end if;
+   end;
+
+   function get_GuestPath
+   (
+      this : in out IsolatedWindowsEnvironmentFile
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile2, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironmentFile2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIsolatedWindowsEnvironmentFile.all);
+      Hr := m_Interface.get_GuestPath (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_IsReadOnly
+   (
+      this : in out IsolatedWindowsEnvironmentFile
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile2, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironmentFile2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIsolatedWindowsEnvironmentFile.all);
+      Hr := m_Interface.get_IsReadOnly (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -1619,6 +1881,171 @@ package body WinRt.Windows.Security.Isolation is
       end if;
    end;
 
+   function get_WindowAnnotationOverride
+   (
+      this : in out IsolatedWindowsEnvironmentOptions
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions2, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironmentOptions2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIsolatedWindowsEnvironmentOptions.all);
+      Hr := m_Interface.get_WindowAnnotationOverride (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_WindowAnnotationOverride
+   (
+      this : in out IsolatedWindowsEnvironmentOptions;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions2 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions2, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironmentOptions2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIsolatedWindowsEnvironmentOptions.all);
+      Hr := m_Interface.put_WindowAnnotationOverride (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
+   function get_AllowedClipboardFormatsToEnvironment
+   (
+      this : in out IsolatedWindowsEnvironmentOptions
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions3, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironmentOptions3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIsolatedWindowsEnvironmentOptions.all);
+      Hr := m_Interface.get_AllowedClipboardFormatsToEnvironment (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_AllowedClipboardFormatsToEnvironment
+   (
+      this : in out IsolatedWindowsEnvironmentOptions;
+      value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions3, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironmentOptions3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIsolatedWindowsEnvironmentOptions.all);
+      Hr := m_Interface.put_AllowedClipboardFormatsToEnvironment (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_AllowedClipboardFormatsToHost
+   (
+      this : in out IsolatedWindowsEnvironmentOptions
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions3, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironmentOptions3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIsolatedWindowsEnvironmentOptions.all);
+      Hr := m_Interface.get_AllowedClipboardFormatsToHost (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_AllowedClipboardFormatsToHost
+   (
+      this : in out IsolatedWindowsEnvironmentOptions;
+      value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions3, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironmentOptions3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIsolatedWindowsEnvironmentOptions.all);
+      Hr := m_Interface.put_AllowedClipboardFormatsToHost (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_CreationPriority
+   (
+      this : in out IsolatedWindowsEnvironmentOptions
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions3, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironmentOptions3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIsolatedWindowsEnvironmentOptions.all);
+      Hr := m_Interface.get_CreationPriority (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_CreationPriority
+   (
+      this : in out IsolatedWindowsEnvironmentOptions;
+      value : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions3, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironmentOptions3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIsolatedWindowsEnvironmentOptions.all);
+      Hr := m_Interface.put_CreationPriority (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package body IsolatedWindowsEnvironmentOwnerRegistration is
@@ -2043,6 +2470,157 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IsolatedWindowsEnvironmentShareFileRequestOptions
+
+   procedure Initialize (this : in out IsolatedWindowsEnvironmentShareFileRequestOptions) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out IsolatedWindowsEnvironmentShareFileRequestOptions) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentShareFileRequestOptions, IIsolatedWindowsEnvironmentShareFileRequestOptions_Ptr);
+   begin
+      if this.m_IIsolatedWindowsEnvironmentShareFileRequestOptions /= null then
+         if this.m_IIsolatedWindowsEnvironmentShareFileRequestOptions.all /= null then
+            temp := this.m_IIsolatedWindowsEnvironmentShareFileRequestOptions.all.Release;
+            Free (this.m_IIsolatedWindowsEnvironmentShareFileRequestOptions);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for IsolatedWindowsEnvironmentShareFileRequestOptions
+
+   function Constructor return IsolatedWindowsEnvironmentShareFileRequestOptions is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileRequestOptions");
+      m_ComRetVal  : aliased Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileRequestOptions;
+   begin
+      return RetVal : IsolatedWindowsEnvironmentShareFileRequestOptions do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IIsolatedWindowsEnvironmentShareFileRequestOptions := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileRequestOptions;
+            Retval.m_IIsolatedWindowsEnvironmentShareFileRequestOptions.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IsolatedWindowsEnvironmentShareFileRequestOptions
+
+   function get_AllowWrite
+   (
+      this : in out IsolatedWindowsEnvironmentShareFileRequestOptions
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IIsolatedWindowsEnvironmentShareFileRequestOptions.all.get_AllowWrite (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_AllowWrite
+   (
+      this : in out IsolatedWindowsEnvironmentShareFileRequestOptions;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IIsolatedWindowsEnvironmentShareFileRequestOptions.all.put_AllowWrite (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IsolatedWindowsEnvironmentShareFileResult
+
+   procedure Initialize (this : in out IsolatedWindowsEnvironmentShareFileResult) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out IsolatedWindowsEnvironmentShareFileResult) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentShareFileResult, IIsolatedWindowsEnvironmentShareFileResult_Ptr);
+   begin
+      if this.m_IIsolatedWindowsEnvironmentShareFileResult /= null then
+         if this.m_IIsolatedWindowsEnvironmentShareFileResult.all /= null then
+            temp := this.m_IIsolatedWindowsEnvironmentShareFileResult.all.Release;
+            Free (this.m_IIsolatedWindowsEnvironmentShareFileResult);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IsolatedWindowsEnvironmentShareFileResult
+
+   function get_Status
+   (
+      this : in out IsolatedWindowsEnvironmentShareFileResult
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileStatus;
+   begin
+      Hr := this.m_IIsolatedWindowsEnvironmentShareFileResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out IsolatedWindowsEnvironmentShareFileResult
+   )
+   return WinRt.Windows.Foundation.HResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.HResult;
+   begin
+      Hr := this.m_IIsolatedWindowsEnvironmentShareFileResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_File
+   (
+      this : in out IsolatedWindowsEnvironmentShareFileResult
+   )
+   return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentFile'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile;
+   begin
+      return RetVal : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentFile do
+         Hr := this.m_IIsolatedWindowsEnvironmentShareFileResult.all.get_File (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IIsolatedWindowsEnvironmentFile := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile;
+         Retval.m_IIsolatedWindowsEnvironmentFile.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for IsolatedWindowsEnvironmentShareFolderRequestOptions
 
    procedure Initialize (this : in out IsolatedWindowsEnvironmentShareFolderRequestOptions) is
@@ -2325,8 +2903,244 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for IsolatedWindowsEnvironmentUserInfo
+
+   procedure Initialize (this : in out IsolatedWindowsEnvironmentUserInfo) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out IsolatedWindowsEnvironmentUserInfo) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentUserInfo, IIsolatedWindowsEnvironmentUserInfo_Ptr);
+   begin
+      if this.m_IIsolatedWindowsEnvironmentUserInfo /= null then
+         if this.m_IIsolatedWindowsEnvironmentUserInfo.all /= null then
+            temp := this.m_IIsolatedWindowsEnvironmentUserInfo.all.Release;
+            Free (this.m_IIsolatedWindowsEnvironmentUserInfo);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for IsolatedWindowsEnvironmentUserInfo
+
+   function get_EnvironmentUserSid
+   (
+      this : in out IsolatedWindowsEnvironmentUserInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IIsolatedWindowsEnvironmentUserInfo.all.get_EnvironmentUserSid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function get_EnvironmentUserName
+   (
+      this : in out IsolatedWindowsEnvironmentUserInfo
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IIsolatedWindowsEnvironmentUserInfo.all.get_EnvironmentUserName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   function TryWaitForSignInAsync
+   (
+      this : in out IsolatedWindowsEnvironmentUserInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_Boolean.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Boolean;
+      m_IID            : aliased WinRt.IID := (3451252659, 22408, 20637, (155, 225, 113, 204, 184, 163, 54, 42 )); -- Boolean;
+      m_HandlerIID     : aliased WinRt.IID := (3251884450, 44567, 23135, (181, 162, 189, 204, 136, 68, 136, 154 ));
+      m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      Hr := this.m_IIsolatedWindowsEnvironmentUserInfo.all.TryWaitForSignInAsync (m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   function TryWaitForSignInWithProgressAsync
+   (
+      this : in out IsolatedWindowsEnvironmentUserInfo
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentUserInfo2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_Boolean.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_Boolean.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Boolean;
+      m_IID            : aliased WinRt.IID := (859971916, 34217, 22313, (176, 241, 252, 102, 118, 64, 7, 138 )); -- Boolean;
+      m_HandlerIID     : aliased WinRt.IID := (3847394724, 54889, 22818, (191, 66, 187, 231, 234, 235, 69, 150 ));
+      m_Handler        : AsyncOperationCompletedHandler_Boolean.Kind := new AsyncOperationCompletedHandler_Boolean.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_Boolean.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_Boolean.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentUserInfo_Interface, WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentUserInfo2, WinRt.Windows.Security.Isolation.IID_IIsolatedWindowsEnvironmentUserInfo2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IIsolatedWindowsEnvironmentUserInfo.all);
+      Hr := m_Interface.TryWaitForSignInWithProgressAsync (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr = S_OK then
+         m_AsyncOperation := QI (m_ComRetVal);
+         temp := m_ComRetVal.Release;
+         if m_AsyncOperation /= null then
+            Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+            while m_Captured = m_Compare loop
+               m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+               m_Captured := m_Completed;
+            end loop;
+            if m_AsyncStatus = Completed_e then
+               Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+            end if;
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
+               Free (m_Handler);
+            end if;
+         end if;
+      end if;
+      return m_RetVal;
+   end;
+
+   -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package body IsolatedWindowsHostMessenger is
+
+      procedure RegisterHostMessageReceiver
+      (
+         receiverId : WinRt.Guid;
+         hostMessageReceivedCallback : Windows.Security.Isolation.HostMessageReceivedCallback
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
+         m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsHostMessengerStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsHostMessengerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.RegisterHostMessageReceiver (receiverId, hostMessageReceivedCallback);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
+
+      procedure UnregisterHostMessageReceiver
+      (
+         receiverId : WinRt.Guid
+      ) is
+         Hr               : WinRt.HResult := S_OK;
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
+         m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsHostMessengerStatics2_Interface'Class := null;
+         temp             : WinRt.UInt32 := 0;
+      begin
+         Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsHostMessengerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.UnregisterHostMessageReceiver (receiverId);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end;
 
       procedure PostMessageToReceiver
       (
@@ -2374,49 +3188,6 @@ package body WinRt.Windows.Security.Isolation is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_filePath);
          return m_ComRetVal;
-      end;
-
-      procedure RegisterHostMessageReceiver
-      (
-         receiverId : WinRt.Guid;
-         hostMessageReceivedCallback : Windows.Security.Isolation.HostMessageReceivedCallback
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
-         m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsHostMessengerStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsHostMessengerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.RegisterHostMessageReceiver (receiverId, hostMessageReceivedCallback);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end;
-
-      procedure UnregisterHostMessageReceiver
-      (
-         receiverId : WinRt.Guid
-      ) is
-         Hr               : WinRt.HResult := S_OK;
-         tmp              : WinRt.HResult := S_OK;
-         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
-         m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsHostMessengerStatics2_Interface'Class := null;
-         temp             : WinRt.UInt32 := 0;
-      begin
-         Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsHostMessengerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.UnregisterHostMessageReceiver (receiverId);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end;
 
    end IsolatedWindowsHostMessenger;

@@ -49,6 +49,7 @@ package WinRt.Windows.Web.AtomPub is
 
    type IAtomPubClientFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IAtomPubClientFactory is access all IAtomPubClientFactory_Interface'Class;
+   type IAtomPubClientFactory_Ptr is access all IAtomPubClientFactory;
 
    type IResourceCollection_Interface is interface and WinRt.IInspectable_Interface;
    type IResourceCollection is access all IResourceCollection_Interface'Class;
@@ -299,13 +300,13 @@ package WinRt.Windows.Web.AtomPub is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for AtomPubClient
 
+   function Constructor return AtomPubClient;
+
    function Constructor
    (
       serverCredential : Windows.Security.Credentials.PasswordCredential'Class
    )
    return AtomPubClient;
-
-   function Constructor return AtomPubClient;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for AtomPubClient

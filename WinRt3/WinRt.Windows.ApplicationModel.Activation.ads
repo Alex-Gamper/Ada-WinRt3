@@ -65,12 +65,15 @@ package WinRt.Windows.ApplicationModel.Activation is
 
    type IActivatedEventArgsWithUser_Interface is interface and WinRt.IInspectable_Interface;
    type IActivatedEventArgsWithUser is access all IActivatedEventArgsWithUser_Interface'Class;
+   type IActivatedEventArgsWithUser_Ptr is access all IActivatedEventArgsWithUser;
 
    type IApplicationViewActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IApplicationViewActivatedEventArgs is access all IApplicationViewActivatedEventArgs_Interface'Class;
+   type IApplicationViewActivatedEventArgs_Ptr is access all IApplicationViewActivatedEventArgs;
 
    type IAppointmentsProviderActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentsProviderActivatedEventArgs is access all IAppointmentsProviderActivatedEventArgs_Interface'Class;
+   type IAppointmentsProviderActivatedEventArgs_Ptr is access all IAppointmentsProviderActivatedEventArgs;
 
    type IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IAppointmentsProviderAddAppointmentActivatedEventArgs is access all IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface'Class;
@@ -118,6 +121,7 @@ package WinRt.Windows.ApplicationModel.Activation is
 
    type IContactActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IContactActivatedEventArgs is access all IContactActivatedEventArgs_Interface'Class;
+   type IContactActivatedEventArgs_Ptr is access all IContactActivatedEventArgs;
 
    type IContactCallActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IContactCallActivatedEventArgs is access all IContactCallActivatedEventArgs_Interface'Class;
@@ -149,9 +153,11 @@ package WinRt.Windows.ApplicationModel.Activation is
 
    type IContactsProviderActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IContactsProviderActivatedEventArgs is access all IContactsProviderActivatedEventArgs_Interface'Class;
+   type IContactsProviderActivatedEventArgs_Ptr is access all IContactsProviderActivatedEventArgs;
 
    type IContinuationActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IContinuationActivatedEventArgs is access all IContinuationActivatedEventArgs_Interface'Class;
+   type IContinuationActivatedEventArgs_Ptr is access all IContinuationActivatedEventArgs;
 
    type IDeviceActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IDeviceActivatedEventArgs is access all IDeviceActivatedEventArgs_Interface'Class;
@@ -171,9 +177,11 @@ package WinRt.Windows.ApplicationModel.Activation is
 
    type IFileActivatedEventArgsWithCallerPackageFamilyName_Interface is interface and WinRt.IInspectable_Interface;
    type IFileActivatedEventArgsWithCallerPackageFamilyName is access all IFileActivatedEventArgsWithCallerPackageFamilyName_Interface'Class;
+   type IFileActivatedEventArgsWithCallerPackageFamilyName_Ptr is access all IFileActivatedEventArgsWithCallerPackageFamilyName;
 
    type IFileActivatedEventArgsWithNeighboringFiles_Interface is interface and WinRt.IInspectable_Interface;
    type IFileActivatedEventArgsWithNeighboringFiles is access all IFileActivatedEventArgsWithNeighboringFiles_Interface'Class;
+   type IFileActivatedEventArgsWithNeighboringFiles_Ptr is access all IFileActivatedEventArgsWithNeighboringFiles;
 
    type IFileOpenPickerActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IFileOpenPickerActivatedEventArgs is access all IFileOpenPickerActivatedEventArgs_Interface'Class;
@@ -181,6 +189,7 @@ package WinRt.Windows.ApplicationModel.Activation is
 
    type IFileOpenPickerActivatedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IFileOpenPickerActivatedEventArgs2 is access all IFileOpenPickerActivatedEventArgs2_Interface'Class;
+   type IFileOpenPickerActivatedEventArgs2_Ptr is access all IFileOpenPickerActivatedEventArgs2;
 
    type IFileOpenPickerContinuationEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IFileOpenPickerContinuationEventArgs is access all IFileOpenPickerContinuationEventArgs_Interface'Class;
@@ -192,6 +201,7 @@ package WinRt.Windows.ApplicationModel.Activation is
 
    type IFileSavePickerActivatedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type IFileSavePickerActivatedEventArgs2 is access all IFileSavePickerActivatedEventArgs2_Interface'Class;
+   type IFileSavePickerActivatedEventArgs2_Ptr is access all IFileSavePickerActivatedEventArgs2;
 
    type IFileSavePickerContinuationEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IFileSavePickerContinuationEventArgs is access all IFileSavePickerContinuationEventArgs_Interface'Class;
@@ -207,6 +217,7 @@ package WinRt.Windows.ApplicationModel.Activation is
 
    type ILaunchActivatedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
    type ILaunchActivatedEventArgs2 is access all ILaunchActivatedEventArgs2_Interface'Class;
+   type ILaunchActivatedEventArgs2_Ptr is access all ILaunchActivatedEventArgs2;
 
    type ILockScreenActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type ILockScreenActivatedEventArgs is access all ILockScreenActivatedEventArgs_Interface'Class;
@@ -216,12 +227,17 @@ package WinRt.Windows.ApplicationModel.Activation is
    type ILockScreenCallActivatedEventArgs is access all ILockScreenCallActivatedEventArgs_Interface'Class;
    type ILockScreenCallActivatedEventArgs_Ptr is access all ILockScreenCallActivatedEventArgs;
 
+   type IPhoneCallActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IPhoneCallActivatedEventArgs is access all IPhoneCallActivatedEventArgs_Interface'Class;
+   type IPhoneCallActivatedEventArgs_Ptr is access all IPhoneCallActivatedEventArgs;
+
    type IPickerReturnedActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPickerReturnedActivatedEventArgs is access all IPickerReturnedActivatedEventArgs_Interface'Class;
    type IPickerReturnedActivatedEventArgs_Ptr is access all IPickerReturnedActivatedEventArgs;
 
    type IPrelaunchActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPrelaunchActivatedEventArgs is access all IPrelaunchActivatedEventArgs_Interface'Class;
+   type IPrelaunchActivatedEventArgs_Ptr is access all IPrelaunchActivatedEventArgs;
 
    type IPrint3DWorkflowActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPrint3DWorkflowActivatedEventArgs is access all IPrint3DWorkflowActivatedEventArgs_Interface'Class;
@@ -237,6 +253,7 @@ package WinRt.Windows.ApplicationModel.Activation is
 
    type IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData_Interface is interface and WinRt.IInspectable_Interface;
    type IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData is access all IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData_Interface'Class;
+   type IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData_Ptr is access all IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData;
 
    type IProtocolForResultsActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IProtocolForResultsActivatedEventArgs is access all IProtocolForResultsActivatedEventArgs_Interface'Class;
@@ -252,6 +269,7 @@ package WinRt.Windows.ApplicationModel.Activation is
 
    type ISearchActivatedEventArgsWithLinguisticDetails_Interface is interface and WinRt.IInspectable_Interface;
    type ISearchActivatedEventArgsWithLinguisticDetails is access all ISearchActivatedEventArgsWithLinguisticDetails_Interface'Class;
+   type ISearchActivatedEventArgsWithLinguisticDetails_Ptr is access all ISearchActivatedEventArgsWithLinguisticDetails;
 
    type IShareTargetActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IShareTargetActivatedEventArgs is access all IShareTargetActivatedEventArgs_Interface'Class;
@@ -279,6 +297,7 @@ package WinRt.Windows.ApplicationModel.Activation is
 
    type IViewSwitcherProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IViewSwitcherProvider is access all IViewSwitcherProvider_Interface'Class;
+   type IViewSwitcherProvider_Ptr is access all IViewSwitcherProvider;
 
    type IVoiceCommandActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IVoiceCommandActivatedEventArgs is access all IVoiceCommandActivatedEventArgs_Interface'Class;
@@ -486,6 +505,12 @@ package WinRt.Windows.ApplicationModel.Activation is
       end record;
    type LockScreenComponentActivatedEventArgs_Ptr is access all LockScreenComponentActivatedEventArgs;
 
+   type PhoneCallActivatedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPhoneCallActivatedEventArgs : access Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs;
+      end record;
+   type PhoneCallActivatedEventArgs_Ptr is access all PhoneCallActivatedEventArgs;
+
    type PickerReturnedActivatedEventArgs is new Ada.Finalization.Limited_Controlled with
       record
          m_IPickerReturnedActivatedEventArgs : access Windows.ApplicationModel.Activation.IPickerReturnedActivatedEventArgs;
@@ -635,7 +660,9 @@ package WinRt.Windows.ApplicationModel.Activation is
       BarcodeScannerProvider_e,
       PrintSupportJobUI_e,
       PrintSupportSettingsUI_e,
-      VpnForeground_e
+      PhoneCallActivation_e,
+      VpnForeground_e,
+      PrintSupportEnterpriseManagementUI_e
    );
    for ActivationKind use (
       Launch_e => 0,
@@ -680,7 +707,9 @@ package WinRt.Windows.ApplicationModel.Activation is
       BarcodeScannerProvider_e => 1022,
       PrintSupportJobUI_e => 1023,
       PrintSupportSettingsUI_e => 1024,
-      VpnForeground_e => 1025
+      PhoneCallActivation_e => 1025,
+      VpnForeground_e => 1026,
+      PrintSupportEnterpriseManagementUI_e => 1027
    );
    type ActivationKind_Ptr is access all ActivationKind;
 
@@ -1407,6 +1436,18 @@ package WinRt.Windows.ApplicationModel.Activation is
       return WinRt.Hresult is abstract;
 
       IID_ILockScreenCallActivatedEventArgs : aliased WinRt.IID := (116621246, 46578, 17547, (177, 62, 227, 40, 172, 28, 81, 106 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPhoneCallActivatedEventArgs is interface and WinRt.IInspectable;
+
+      function get_LineId
+      (
+         this : access IPhoneCallActivatedEventArgs_Interface;
+         RetVal : access WinRt.Guid
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPhoneCallActivatedEventArgs : aliased WinRt.IID := (1415664161, 41921, 19693, (182, 47, 140, 96, 82, 54, 25, 173 ));
 
    -----------------------------------------------------------------------------
    -- type IPickerReturnedActivatedEventArgs is interface and WinRt.IInspectable;
@@ -3144,6 +3185,45 @@ package WinRt.Windows.ApplicationModel.Activation is
       this : in out LockScreenComponentActivatedEventArgs
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PhoneCallActivatedEventArgs
+
+   overriding procedure Initialize (this : in out PhoneCallActivatedEventArgs);
+   overriding procedure Finalize (this : in out PhoneCallActivatedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PhoneCallActivatedEventArgs
+
+   function get_LineId
+   (
+      this : in out PhoneCallActivatedEventArgs
+   )
+   return WinRt.Guid;
+
+   function get_Kind
+   (
+      this : in out PhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.ActivationKind;
+
+   function get_PreviousExecutionState
+   (
+      this : in out PhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
+
+   function get_SplashScreen
+   (
+      this : in out PhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class;
+
+   function get_User
+   (
+      this : in out PhoneCallActivatedEventArgs
+   )
+   return WinRt.Windows.System.User'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PickerReturnedActivatedEventArgs

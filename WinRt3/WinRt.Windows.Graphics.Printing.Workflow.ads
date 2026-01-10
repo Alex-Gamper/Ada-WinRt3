@@ -59,6 +59,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
 
    type IPrintWorkflowConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowConfiguration2 is access all IPrintWorkflowConfiguration2_Interface'Class;
+   type IPrintWorkflowConfiguration2_Ptr is access all IPrintWorkflowConfiguration2;
 
    type IPrintWorkflowForegroundSession_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowForegroundSession is access all IPrintWorkflowForegroundSession_Interface'Class;
@@ -76,6 +77,18 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    type IPrintWorkflowJobBackgroundSession is access all IPrintWorkflowJobBackgroundSession_Interface'Class;
    type IPrintWorkflowJobBackgroundSession_Ptr is access all IPrintWorkflowJobBackgroundSession;
 
+   type IPrintWorkflowJobBackgroundSession2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowJobBackgroundSession2 is access all IPrintWorkflowJobBackgroundSession2_Interface'Class;
+   type IPrintWorkflowJobBackgroundSession2_Ptr is access all IPrintWorkflowJobBackgroundSession2;
+
+   type IPrintWorkflowJobBackgroundSession3_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowJobBackgroundSession3 is access all IPrintWorkflowJobBackgroundSession3_Interface'Class;
+   type IPrintWorkflowJobBackgroundSession3_Ptr is access all IPrintWorkflowJobBackgroundSession3;
+
+   type IPrintWorkflowJobIssueDetectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowJobIssueDetectedEventArgs is access all IPrintWorkflowJobIssueDetectedEventArgs_Interface'Class;
+   type IPrintWorkflowJobIssueDetectedEventArgs_Ptr is access all IPrintWorkflowJobIssueDetectedEventArgs;
+
    type IPrintWorkflowJobNotificationEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowJobNotificationEventArgs is access all IPrintWorkflowJobNotificationEventArgs_Interface'Class;
    type IPrintWorkflowJobNotificationEventArgs_Ptr is access all IPrintWorkflowJobNotificationEventArgs;
@@ -83,6 +96,10 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    type IPrintWorkflowJobStartingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowJobStartingEventArgs is access all IPrintWorkflowJobStartingEventArgs_Interface'Class;
    type IPrintWorkflowJobStartingEventArgs_Ptr is access all IPrintWorkflowJobStartingEventArgs;
+
+   type IPrintWorkflowJobStartingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowJobStartingEventArgs2 is access all IPrintWorkflowJobStartingEventArgs2_Interface'Class;
+   type IPrintWorkflowJobStartingEventArgs2_Ptr is access all IPrintWorkflowJobStartingEventArgs2;
 
    type IPrintWorkflowJobTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowJobTriggerDetails is access all IPrintWorkflowJobTriggerDetails_Interface'Class;
@@ -92,12 +109,21 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    type IPrintWorkflowJobUISession is access all IPrintWorkflowJobUISession_Interface'Class;
    type IPrintWorkflowJobUISession_Ptr is access all IPrintWorkflowJobUISession;
 
+   type IPrintWorkflowJobUISession2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowJobUISession2 is access all IPrintWorkflowJobUISession2_Interface'Class;
+   type IPrintWorkflowJobUISession2_Ptr is access all IPrintWorkflowJobUISession2;
+
+   type IPrintWorkflowObjectModelProvider_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowObjectModelProvider is access all IPrintWorkflowObjectModelProvider_Interface'Class;
+   type IPrintWorkflowObjectModelProvider_Ptr is access all IPrintWorkflowObjectModelProvider;
+
    type IPrintWorkflowObjectModelSourceFileContent_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowObjectModelSourceFileContent is access all IPrintWorkflowObjectModelSourceFileContent_Interface'Class;
    type IPrintWorkflowObjectModelSourceFileContent_Ptr is access all IPrintWorkflowObjectModelSourceFileContent;
 
    type IPrintWorkflowObjectModelSourceFileContentFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowObjectModelSourceFileContentFactory is access all IPrintWorkflowObjectModelSourceFileContentFactory_Interface'Class;
+   type IPrintWorkflowObjectModelSourceFileContentFactory_Ptr is access all IPrintWorkflowObjectModelSourceFileContentFactory;
 
    type IPrintWorkflowObjectModelTargetPackage_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowObjectModelTargetPackage is access all IPrintWorkflowObjectModelTargetPackage_Interface'Class;
@@ -107,6 +133,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    type IPrintWorkflowPdlConverter is access all IPrintWorkflowPdlConverter_Interface'Class;
    type IPrintWorkflowPdlConverter_Ptr is access all IPrintWorkflowPdlConverter;
 
+   type IPrintWorkflowPdlConverter2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowPdlConverter2 is access all IPrintWorkflowPdlConverter2_Interface'Class;
+   type IPrintWorkflowPdlConverter2_Ptr is access all IPrintWorkflowPdlConverter2;
+
+   type IPrintWorkflowPdlConverter3_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowPdlConverter3 is access all IPrintWorkflowPdlConverter3_Interface'Class;
+   type IPrintWorkflowPdlConverter3_Ptr is access all IPrintWorkflowPdlConverter3;
+
    type IPrintWorkflowPdlDataAvailableEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowPdlDataAvailableEventArgs is access all IPrintWorkflowPdlDataAvailableEventArgs_Interface'Class;
    type IPrintWorkflowPdlDataAvailableEventArgs_Ptr is access all IPrintWorkflowPdlDataAvailableEventArgs;
@@ -114,6 +148,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    type IPrintWorkflowPdlModificationRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowPdlModificationRequestedEventArgs is access all IPrintWorkflowPdlModificationRequestedEventArgs_Interface'Class;
    type IPrintWorkflowPdlModificationRequestedEventArgs_Ptr is access all IPrintWorkflowPdlModificationRequestedEventArgs;
+
+   type IPrintWorkflowPdlModificationRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowPdlModificationRequestedEventArgs2 is access all IPrintWorkflowPdlModificationRequestedEventArgs2_Interface'Class;
+   type IPrintWorkflowPdlModificationRequestedEventArgs2_Ptr is access all IPrintWorkflowPdlModificationRequestedEventArgs2;
+
+   type IPrintWorkflowPdlModificationRequestedEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowPdlModificationRequestedEventArgs3 is access all IPrintWorkflowPdlModificationRequestedEventArgs3_Interface'Class;
+   type IPrintWorkflowPdlModificationRequestedEventArgs3_Ptr is access all IPrintWorkflowPdlModificationRequestedEventArgs3;
 
    type IPrintWorkflowPdlSourceContent_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowPdlSourceContent is access all IPrintWorkflowPdlSourceContent_Interface'Class;
@@ -126,6 +168,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    type IPrintWorkflowPrinterJob_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowPrinterJob is access all IPrintWorkflowPrinterJob_Interface'Class;
    type IPrintWorkflowPrinterJob_Ptr is access all IPrintWorkflowPrinterJob;
+
+   type IPrintWorkflowPrinterJob2_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowPrinterJob2 is access all IPrintWorkflowPrinterJob2_Interface'Class;
+   type IPrintWorkflowPrinterJob2_Ptr is access all IPrintWorkflowPrinterJob2;
+
+   type IPrintWorkflowPrinterJobStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowPrinterJobStatusChangedEventArgs is access all IPrintWorkflowPrinterJobStatusChangedEventArgs_Interface'Class;
+   type IPrintWorkflowPrinterJobStatusChangedEventArgs_Ptr is access all IPrintWorkflowPrinterJobStatusChangedEventArgs;
 
    type IPrintWorkflowSourceContent_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowSourceContent is access all IPrintWorkflowSourceContent_Interface'Class;
@@ -163,9 +213,29 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    type IPrintWorkflowUILauncher is access all IPrintWorkflowUILauncher_Interface'Class;
    type IPrintWorkflowUILauncher_Ptr is access all IPrintWorkflowUILauncher;
 
+   type IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowVirtualPrinterDataAvailableEventArgs is access all IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface'Class;
+   type IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Ptr is access all IPrintWorkflowVirtualPrinterDataAvailableEventArgs;
+
+   type IPrintWorkflowVirtualPrinterSession_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowVirtualPrinterSession is access all IPrintWorkflowVirtualPrinterSession_Interface'Class;
+   type IPrintWorkflowVirtualPrinterSession_Ptr is access all IPrintWorkflowVirtualPrinterSession;
+
+   type IPrintWorkflowVirtualPrinterTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowVirtualPrinterTriggerDetails is access all IPrintWorkflowVirtualPrinterTriggerDetails_Interface'Class;
+   type IPrintWorkflowVirtualPrinterTriggerDetails_Ptr is access all IPrintWorkflowVirtualPrinterTriggerDetails;
+
+   type IPrintWorkflowVirtualPrinterUIEventArgs_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowVirtualPrinterUIEventArgs is access all IPrintWorkflowVirtualPrinterUIEventArgs_Interface'Class;
+   type IPrintWorkflowVirtualPrinterUIEventArgs_Ptr is access all IPrintWorkflowVirtualPrinterUIEventArgs;
+
    type IPrintWorkflowXpsDataAvailableEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IPrintWorkflowXpsDataAvailableEventArgs is access all IPrintWorkflowXpsDataAvailableEventArgs_Interface'Class;
    type IPrintWorkflowXpsDataAvailableEventArgs_Ptr is access all IPrintWorkflowXpsDataAvailableEventArgs;
+
+   type IPrintWorkflowXpsObjectModelProvider_Interface is interface and WinRt.IInspectable_Interface;
+   type IPrintWorkflowXpsObjectModelProvider is access all IPrintWorkflowXpsObjectModelProvider_Interface'Class;
+   type IPrintWorkflowXpsObjectModelProvider_Ptr is access all IPrintWorkflowXpsObjectModelProvider;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -212,6 +282,12 @@ package WinRt.Windows.Graphics.Printing.Workflow is
          m_IPrintWorkflowJobBackgroundSession : access Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession;
       end record;
    type PrintWorkflowJobBackgroundSession_Ptr is access all PrintWorkflowJobBackgroundSession;
+
+   type PrintWorkflowJobIssueDetectedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintWorkflowJobIssueDetectedEventArgs : access Windows.Graphics.Printing.Workflow.IPrintWorkflowJobIssueDetectedEventArgs;
+      end record;
+   type PrintWorkflowJobIssueDetectedEventArgs_Ptr is access all PrintWorkflowJobIssueDetectedEventArgs;
 
    type PrintWorkflowJobNotificationEventArgs is new Ada.Finalization.Limited_Controlled with
       record
@@ -285,6 +361,12 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       end record;
    type PrintWorkflowPrinterJob_Ptr is access all PrintWorkflowPrinterJob;
 
+   type PrintWorkflowPrinterJobStatusChangedEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintWorkflowPrinterJobStatusChangedEventArgs : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJobStatusChangedEventArgs;
+      end record;
+   type PrintWorkflowPrinterJobStatusChangedEventArgs_Ptr is access all PrintWorkflowPrinterJobStatusChangedEventArgs;
+
    type PrintWorkflowSourceContent is new Ada.Finalization.Limited_Controlled with
       record
          m_IPrintWorkflowSourceContent : access Windows.Graphics.Printing.Workflow.IPrintWorkflowSourceContent;
@@ -339,15 +421,75 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       end record;
    type PrintWorkflowUILauncher_Ptr is access all PrintWorkflowUILauncher;
 
+   type PrintWorkflowVirtualPrinterDataAvailableEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs : access Windows.Graphics.Printing.Workflow.IPrintWorkflowVirtualPrinterDataAvailableEventArgs;
+      end record;
+   type PrintWorkflowVirtualPrinterDataAvailableEventArgs_Ptr is access all PrintWorkflowVirtualPrinterDataAvailableEventArgs;
+
+   type PrintWorkflowVirtualPrinterSession is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintWorkflowVirtualPrinterSession : access Windows.Graphics.Printing.Workflow.IPrintWorkflowVirtualPrinterSession;
+      end record;
+   type PrintWorkflowVirtualPrinterSession_Ptr is access all PrintWorkflowVirtualPrinterSession;
+
+   type PrintWorkflowVirtualPrinterTriggerDetails is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintWorkflowVirtualPrinterTriggerDetails : access Windows.Graphics.Printing.Workflow.IPrintWorkflowVirtualPrinterTriggerDetails;
+      end record;
+   type PrintWorkflowVirtualPrinterTriggerDetails_Ptr is access all PrintWorkflowVirtualPrinterTriggerDetails;
+
+   type PrintWorkflowVirtualPrinterUIEventArgs is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintWorkflowVirtualPrinterUIEventArgs : access Windows.Graphics.Printing.Workflow.IPrintWorkflowVirtualPrinterUIEventArgs;
+      end record;
+   type PrintWorkflowVirtualPrinterUIEventArgs_Ptr is access all PrintWorkflowVirtualPrinterUIEventArgs;
+
    type PrintWorkflowXpsDataAvailableEventArgs is new Ada.Finalization.Limited_Controlled with
       record
          m_IPrintWorkflowXpsDataAvailableEventArgs : access Windows.Graphics.Printing.Workflow.IPrintWorkflowXpsDataAvailableEventArgs;
       end record;
    type PrintWorkflowXpsDataAvailableEventArgs_Ptr is access all PrintWorkflowXpsDataAvailableEventArgs;
 
+   type PrintWorkflowXpsObjectModelProvider is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IPrintWorkflowObjectModelProvider : access Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelProvider;
+      end record;
+   type PrintWorkflowXpsObjectModelProvider_Ptr is access all PrintWorkflowXpsObjectModelProvider;
+
    -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
+
+   type PdlConversionHostBasedProcessingOperations is (
+      None_e,
+      PageRotation_e,
+      PageOrdering_e,
+      Copies_e,
+      BlankPageInsertion_e,
+      All_e
+   );
+   for PdlConversionHostBasedProcessingOperations use (
+      None_e => 0,
+      PageRotation_e => 1,
+      PageOrdering_e => 2,
+      Copies_e => 4,
+      BlankPageInsertion_e => 8,
+      All_e => 4294967295
+   );
+   type PdlConversionHostBasedProcessingOperations_Ptr is access all PdlConversionHostBasedProcessingOperations;
+
+   type PrintWorkflowAttributesMergePolicy is (
+      MergePreferPrintTicketOnConflict_e,
+      MergePreferPsaOnConflict_e,
+      DoNotMergeWithPrintTicket_e
+   );
+   for PrintWorkflowAttributesMergePolicy use (
+      MergePreferPrintTicketOnConflict_e => 0,
+      MergePreferPsaOnConflict_e => 1,
+      DoNotMergeWithPrintTicket_e => 2
+   );
+   type PrintWorkflowAttributesMergePolicy_Ptr is access all PrintWorkflowAttributesMergePolicy;
 
    type PrintWorkflowJobAbortReason is (
       JobFailed_e,
@@ -359,15 +501,45 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    );
    type PrintWorkflowJobAbortReason_Ptr is access all PrintWorkflowJobAbortReason;
 
+   type PrintWorkflowJobIssueKind is (
+      Other_e,
+      AttentionRequired_e,
+      DoorOpen_e,
+      MarkerSupplyLow_e,
+      MarkerSupplyEmpty_e,
+      MediaJam_e,
+      MediaEmpty_e,
+      MediaLow_e,
+      OutputAreaAlmostFull_e,
+      OutputAreaFull_e,
+      JobPrintingError_e
+   );
+   for PrintWorkflowJobIssueKind use (
+      Other_e => 0,
+      AttentionRequired_e => 1,
+      DoorOpen_e => 2,
+      MarkerSupplyLow_e => 3,
+      MarkerSupplyEmpty_e => 4,
+      MediaJam_e => 5,
+      MediaEmpty_e => 6,
+      MediaLow_e => 7,
+      OutputAreaAlmostFull_e => 8,
+      OutputAreaFull_e => 9,
+      JobPrintingError_e => 10
+   );
+   type PrintWorkflowJobIssueKind_Ptr is access all PrintWorkflowJobIssueKind;
+
    type PrintWorkflowPdlConversionType is (
       XpsToPdf_e,
       XpsToPwgr_e,
-      XpsToPclm_e
+      XpsToPclm_e,
+      XpsToTiff_e
    );
    for PrintWorkflowPdlConversionType use (
       XpsToPdf_e => 0,
       XpsToPwgr_e => 1,
-      XpsToPclm_e => 2
+      XpsToPclm_e => 2,
+      XpsToTiff_e => 3
    );
    type PrintWorkflowPdlConversionType_Ptr is access all PrintWorkflowPdlConversionType;
 
@@ -688,6 +860,107 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       IID_IPrintWorkflowJobBackgroundSession : aliased WinRt.IID := (3320605400, 8393, 23889, (133, 7, 39, 52, 180, 111, 150, 197 ));
 
    -----------------------------------------------------------------------------
+   -- type IPrintWorkflowJobBackgroundSession2 is interface and WinRt.IInspectable;
+
+      function add_JobIssueDetected
+      (
+         this : access IPrintWorkflowJobBackgroundSession2_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_JobIssueDetected
+      (
+         this : access IPrintWorkflowJobBackgroundSession2_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowJobBackgroundSession2 : aliased WinRt.IID := (1495969199, 61222, 23125, (173, 33, 95, 99, 255, 207, 131, 102 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowJobBackgroundSession3 is interface and WinRt.IInspectable;
+
+      function add_JobStatusChanged
+      (
+         this : access IPrintWorkflowJobBackgroundSession3_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_JobStatusChanged
+      (
+         this : access IPrintWorkflowJobBackgroundSession3_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowJobBackgroundSession3 : aliased WinRt.IID := (1465321580, 60876, 23188, (144, 236, 160, 168, 124, 17, 21, 231 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowJobIssueDetectedEventArgs is interface and WinRt.IInspectable;
+
+      function get_JobIssueKind
+      (
+         this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.Workflow.PrintWorkflowJobIssueKind
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ExtendedError
+      (
+         this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
+         RetVal : access Windows.Foundation.HResult
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SkipSystemErrorToast
+      (
+         this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SkipSystemErrorToast
+      (
+         this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_PrinterJob
+      (
+         this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Configuration
+      (
+         this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UILauncher
+      (
+         this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowUILauncher
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetDeferral
+      (
+         this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
+         RetVal : access Windows.Foundation.IDeferral
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowJobIssueDetectedEventArgs : aliased WinRt.IID := (3730351214, 58398, 21770, (169, 251, 75, 31, 147, 251, 157, 152 ));
+
+   -----------------------------------------------------------------------------
    -- type IPrintWorkflowJobNotificationEventArgs is interface and WinRt.IInspectable;
 
       function get_Configuration
@@ -744,6 +1017,38 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       return WinRt.Hresult is abstract;
 
       IID_IPrintWorkflowJobStartingEventArgs : aliased WinRt.IID := (3822689192, 12717, 24073, (176, 215, 96, 27, 151, 241, 97, 173 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowJobStartingEventArgs2 is interface and WinRt.IInspectable;
+
+      function get_IsIppCompressionEnabled
+      (
+         this : access IPrintWorkflowJobStartingEventArgs2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function DisableIppCompressionForJob
+      (
+         this : access IPrintWorkflowJobStartingEventArgs2_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SkipSystemFaxUI
+      (
+         this : access IPrintWorkflowJobStartingEventArgs2_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_SkipSystemFaxUI
+      (
+         this : access IPrintWorkflowJobStartingEventArgs2_Interface;
+         value : WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowJobStartingEventArgs2 : aliased WinRt.IID := (2112744807, 54236, 23331, (134, 144, 78, 191, 192, 240, 145, 74 ));
 
    -----------------------------------------------------------------------------
    -- type IPrintWorkflowJobTriggerDetails is interface and WinRt.IInspectable;
@@ -806,6 +1111,31 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       IID_IPrintWorkflowJobUISession : aliased WinRt.IID := (13136747, 30263, 22151, (163, 2, 15, 102, 77, 42, 172, 101 ));
 
    -----------------------------------------------------------------------------
+   -- type IPrintWorkflowJobUISession2 is interface and WinRt.IInspectable;
+
+      function add_VirtualPrinterUIDataAvailable
+      (
+         this : access IPrintWorkflowJobUISession2_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_VirtualPrinterUIDataAvailable
+      (
+         this : access IPrintWorkflowJobUISession2_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowJobUISession2 : aliased WinRt.IID := (2823983976, 37236, 23672, (159, 219, 137, 74, 130, 233, 42, 218 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowObjectModelProvider is interface and WinRt.IInspectable;
+
+      IID_IPrintWorkflowObjectModelProvider : aliased WinRt.IID := (3819567235, 27181, 18587, (188, 31, 122, 171, 68, 36, 150, 34 ));
+
+   -----------------------------------------------------------------------------
    -- type IPrintWorkflowObjectModelSourceFileContent is interface and WinRt.IInspectable;
 
       IID_IPrintWorkflowObjectModelSourceFileContent : aliased WinRt.IID := (3278670442, 35370, 16794, (179, 195, 32, 144, 230, 191, 171, 47 ));
@@ -842,6 +1172,38 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       return WinRt.Hresult is abstract;
 
       IID_IPrintWorkflowPdlConverter : aliased WinRt.IID := (1080052578, 2788, 20977, (129, 143, 115, 29, 192, 176, 5, 171 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowPdlConverter2 is interface and WinRt.IInspectable;
+
+      function ConvertPdlAsync
+      (
+         this : access IPrintWorkflowPdlConverter2_Interface;
+         printTicket : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         inputStream : Windows.Storage.Streams.IInputStream;
+         outputStream : Windows.Storage.Streams.IOutputStream;
+         hostBasedProcessingOperations : Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations;
+         RetVal : access Windows.Foundation.IAsyncAction
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowPdlConverter2 : aliased WinRt.IID := (2236411585, 30775, 23443, (183, 175, 87, 166, 153, 140, 47, 113 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowPdlConverter3 is interface and WinRt.IInspectable;
+
+      function ConvertPdlFromObjectModelAsync
+      (
+         this : access IPrintWorkflowPdlConverter3_Interface;
+         printTicket : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         objectModelProvider : Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelProvider;
+         outputStream : Windows.Storage.Streams.IOutputStream;
+         hostBasedProcessingOperations : Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations;
+         RetVal : access Windows.Foundation.IAsyncAction
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowPdlConverter3 : aliased WinRt.IID := (1800760143, 14166, 23974, (177, 247, 143, 158, 137, 246, 41, 251 ));
 
    -----------------------------------------------------------------------------
    -- type IPrintWorkflowPdlDataAvailableEventArgs is interface and WinRt.IInspectable;
@@ -949,6 +1311,46 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       return WinRt.Hresult is abstract;
 
       IID_IPrintWorkflowPdlModificationRequestedEventArgs : aliased WinRt.IID := (439589473, 11795, 24285, (167, 7, 206, 236, 97, 215, 51, 59 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowPdlModificationRequestedEventArgs2 is interface and WinRt.IInspectable;
+
+      function CreateJobOnPrinterWithAttributes
+      (
+         this : access IPrintWorkflowPdlModificationRequestedEventArgs2_Interface;
+         jobAttributes : GenericObject;
+         targetContentType : WinRt.HString;
+         operationAttributes : GenericObject;
+         jobAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+         operationAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateJobOnPrinterWithAttributesBuffer
+      (
+         this : access IPrintWorkflowPdlModificationRequestedEventArgs2_Interface;
+         jobAttributesBuffer : Windows.Storage.Streams.IBuffer;
+         targetContentType : WinRt.HString;
+         operationAttributesBuffer : Windows.Storage.Streams.IBuffer;
+         jobAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+         operationAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowPdlModificationRequestedEventArgs2 : aliased WinRt.IID := (2372477255, 27746, 24113, (160, 231, 212, 159, 146, 193, 17, 192 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowPdlModificationRequestedEventArgs3 is interface and WinRt.IInspectable;
+
+      function DisableIppCompressionForJob
+      (
+         this : access IPrintWorkflowPdlModificationRequestedEventArgs3_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowPdlModificationRequestedEventArgs3 : aliased WinRt.IID := (525379540, 56137, 23870, (186, 39, 179, 102, 203, 37, 205, 126 ));
 
    -----------------------------------------------------------------------------
    -- type IPrintWorkflowPdlSourceContent is interface and WinRt.IInspectable;
@@ -1059,6 +1461,46 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       return WinRt.Hresult is abstract;
 
       IID_IPrintWorkflowPrinterJob : aliased WinRt.IID := (302030740, 3348, 21571, (188, 9, 37, 3, 17, 206, 87, 11 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowPrinterJob2 is interface and WinRt.IInspectable;
+
+      function ConvertPrintTicketToJobAttributes
+      (
+         this : access IPrintWorkflowPrinterJob2_Interface;
+         printTicket : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         targetPdlFormat : WinRt.HString;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowPrinterJob2 : aliased WinRt.IID := (1954423255, 27049, 21033, (184, 240, 135, 76, 161, 168, 135, 27 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowPrinterJobStatusChangedEventArgs is interface and WinRt.IInspectable;
+
+      function get_PrinterJob
+      (
+         this : access IPrintWorkflowPrinterJobStatusChangedEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Configuration
+      (
+         this : access IPrintWorkflowPrinterJobStatusChangedEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetDeferral
+      (
+         this : access IPrintWorkflowPrinterJobStatusChangedEventArgs_Interface;
+         RetVal : access Windows.Foundation.IDeferral
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowPrinterJobStatusChangedEventArgs : aliased WinRt.IID := (1247966649, 48743, 22296, (146, 26, 52, 140, 86, 249, 210, 95 ));
 
    -----------------------------------------------------------------------------
    -- type IPrintWorkflowSourceContent is interface and WinRt.IInspectable;
@@ -1226,6 +1668,153 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       IID_IPrintWorkflowUILauncher : aliased WinRt.IID := (1693049391, 5324, 22568, (150, 251, 57, 22, 63, 182, 195, 120 ));
 
    -----------------------------------------------------------------------------
+   -- type IPrintWorkflowVirtualPrinterDataAvailableEventArgs is interface and WinRt.IInspectable;
+
+      function get_Configuration
+      (
+         this : access IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SourceContent
+      (
+         this : access IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_UILauncher
+      (
+         this : access IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowUILauncher
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetJobPrintTicket
+      (
+         this : access IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetPdlConverter
+      (
+         this : access IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface;
+         conversionType : Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConversionType;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetTargetFileAsync
+      (
+         this : access IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function CompleteJob
+      (
+         this : access IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface;
+         status : Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowVirtualPrinterDataAvailableEventArgs : aliased WinRt.IID := (1803374595, 5288, 23890, (164, 40, 7, 51, 15, 186, 177, 31 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowVirtualPrinterSession is interface and WinRt.IInspectable;
+
+      function get_Status
+      (
+         this : access IPrintWorkflowVirtualPrinterSession_Interface;
+         RetVal : access Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Printer
+      (
+         this : access IPrintWorkflowVirtualPrinterSession_Interface;
+         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+      )
+      return WinRt.Hresult is abstract;
+
+      function add_VirtualPrinterDataAvailable
+      (
+         this : access IPrintWorkflowVirtualPrinterSession_Interface;
+         handler : GenericObject;
+         RetVal : access Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function remove_VirtualPrinterDataAvailable
+      (
+         this : access IPrintWorkflowVirtualPrinterSession_Interface;
+         token : Windows.Foundation.EventRegistrationToken
+      )
+      return WinRt.Hresult is abstract;
+
+      function Start
+      (
+         this : access IPrintWorkflowVirtualPrinterSession_Interface
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowVirtualPrinterSession : aliased WinRt.IID := (2855872242, 33925, 23591, (160, 22, 157, 57, 227, 186, 38, 20 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowVirtualPrinterTriggerDetails is interface and WinRt.IInspectable;
+
+      function get_VirtualPrinterSession
+      (
+         this : access IPrintWorkflowVirtualPrinterTriggerDetails_Interface;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowVirtualPrinterSession
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowVirtualPrinterTriggerDetails : aliased WinRt.IID := (4287570583, 29307, 21484, (185, 224, 243, 147, 247, 45, 78, 80 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowVirtualPrinterUIEventArgs is interface and WinRt.IInspectable;
+
+      function get_Configuration
+      (
+         this : access IPrintWorkflowVirtualPrinterUIEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Printer
+      (
+         this : access IPrintWorkflowVirtualPrinterUIEventArgs_Interface;
+         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_SourceContent
+      (
+         this : access IPrintWorkflowVirtualPrinterUIEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetJobPrintTicket
+      (
+         this : access IPrintWorkflowVirtualPrinterUIEventArgs_Interface;
+         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+      )
+      return WinRt.Hresult is abstract;
+
+      function GetDeferral
+      (
+         this : access IPrintWorkflowVirtualPrinterUIEventArgs_Interface;
+         RetVal : access Windows.Foundation.IDeferral
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IPrintWorkflowVirtualPrinterUIEventArgs : aliased WinRt.IID := (860732362, 48912, 22623, (183, 224, 88, 196, 170, 67, 160, 63 ));
+
+   -----------------------------------------------------------------------------
    -- type IPrintWorkflowXpsDataAvailableEventArgs is interface and WinRt.IInspectable;
 
       function get_Operation
@@ -1243,6 +1832,11 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       return WinRt.Hresult is abstract;
 
       IID_IPrintWorkflowXpsDataAvailableEventArgs : aliased WinRt.IID := (1293009713, 21713, 17230, (190, 14, 130, 197, 250, 88, 229, 178 ));
+
+   -----------------------------------------------------------------------------
+   -- type IPrintWorkflowXpsObjectModelProvider is interface and WinRt.IInspectable;
+
+      IID_IPrintWorkflowXpsObjectModelProvider : aliased WinRt.IID := (2547564973, 38615, 22220, (182, 96, 167, 20, 149, 99, 44, 235 ));
 
    -----------------------------------------------------------------------------
    -- Class method declarations
@@ -1517,6 +2111,89 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       this : in out PrintWorkflowJobBackgroundSession
    );
 
+   function add_JobIssueDetected
+   (
+      this : in out PrintWorkflowJobBackgroundSession;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_JobIssueDetected
+   (
+      this : in out PrintWorkflowJobBackgroundSession;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   function add_JobStatusChanged
+   (
+      this : in out PrintWorkflowJobBackgroundSession;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_JobStatusChanged
+   (
+      this : in out PrintWorkflowJobBackgroundSession;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowJobIssueDetectedEventArgs
+
+   overriding procedure Initialize (this : in out PrintWorkflowJobIssueDetectedEventArgs);
+   overriding procedure Finalize (this : in out PrintWorkflowJobIssueDetectedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowJobIssueDetectedEventArgs
+
+   function get_JobIssueKind
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowJobIssueKind;
+
+   function get_ExtendedError
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Windows.Foundation.HResult;
+
+   function get_SkipSystemErrorToast
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Boolean;
+
+   procedure put_SkipSystemErrorToast
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs;
+      value : WinRt.Boolean
+   );
+
+   function get_PrinterJob
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPrinterJob'Class;
+
+   function get_Configuration
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration'Class;
+
+   function get_UILauncher
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowUILauncher'Class;
+
+   function GetDeferral
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Windows.Foundation.Deferral'Class;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintWorkflowJobNotificationEventArgs
 
@@ -1575,6 +2252,29 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       this : in out PrintWorkflowJobStartingEventArgs
    )
    return WinRt.Windows.Foundation.Deferral'Class;
+
+   function get_IsIppCompressionEnabled
+   (
+      this : in out PrintWorkflowJobStartingEventArgs
+   )
+   return WinRt.Boolean;
+
+   procedure DisableIppCompressionForJob
+   (
+      this : in out PrintWorkflowJobStartingEventArgs
+   );
+
+   function get_SkipSystemFaxUI
+   (
+      this : in out PrintWorkflowJobStartingEventArgs
+   )
+   return WinRt.Boolean;
+
+   procedure put_SkipSystemFaxUI
+   (
+      this : in out PrintWorkflowJobStartingEventArgs;
+      value : WinRt.Boolean
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintWorkflowJobTriggerDetails
@@ -1637,6 +2337,19 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       this : in out PrintWorkflowJobUISession
    );
 
+   function add_VirtualPrinterUIDataAvailable
+   (
+      this : in out PrintWorkflowJobUISession;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_VirtualPrinterUIDataAvailable
+   (
+      this : in out PrintWorkflowJobUISession;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintWorkflowObjectModelSourceFileContent
 
@@ -1679,6 +2392,24 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
       inputStream : Windows.Storage.Streams.IInputStream;
       outputStream : Windows.Storage.Streams.IOutputStream
+   );
+
+   procedure ConvertPdlAsync
+   (
+      this : in out PrintWorkflowPdlConverter;
+      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+      inputStream : Windows.Storage.Streams.IInputStream;
+      outputStream : Windows.Storage.Streams.IOutputStream;
+      hostBasedProcessingOperations : Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations
+   );
+
+   procedure ConvertPdlFromObjectModelAsync
+   (
+      this : in out PrintWorkflowPdlConverter;
+      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+      objectModelProvider : Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelProvider;
+      outputStream : Windows.Storage.Streams.IOutputStream;
+      hostBasedProcessingOperations : Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations
    );
 
    -----------------------------------------------------------------------------
@@ -1782,6 +2513,33 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       this : in out PrintWorkflowPdlModificationRequestedEventArgs
    )
    return WinRt.Windows.Foundation.Deferral'Class;
+
+   function CreateJobOnPrinterWithAttributes
+   (
+      this : in out PrintWorkflowPdlModificationRequestedEventArgs;
+      jobAttributes : GenericObject;
+      targetContentType : WinRt.WString;
+      operationAttributes : GenericObject;
+      jobAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+      operationAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlTargetStream'Class;
+
+   function CreateJobOnPrinterWithAttributesBuffer
+   (
+      this : in out PrintWorkflowPdlModificationRequestedEventArgs;
+      jobAttributesBuffer : Windows.Storage.Streams.IBuffer;
+      targetContentType : WinRt.WString;
+      operationAttributesBuffer : Windows.Storage.Streams.IBuffer;
+      jobAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+      operationAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlTargetStream'Class;
+
+   procedure DisableIppCompressionForJob
+   (
+      this : in out PrintWorkflowPdlModificationRequestedEventArgs
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintWorkflowPdlSourceContent
@@ -1891,6 +2649,41 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       jobAttributes : GenericObject
    )
    return WinRt.Windows.Devices.Printers.IppSetAttributesResult'Class;
+
+   function ConvertPrintTicketToJobAttributes
+   (
+      this : in out PrintWorkflowPrinterJob;
+      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+      targetPdlFormat : WinRt.WString
+   )
+   return WinRt.GenericObject;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowPrinterJobStatusChangedEventArgs
+
+   overriding procedure Initialize (this : in out PrintWorkflowPrinterJobStatusChangedEventArgs);
+   overriding procedure Finalize (this : in out PrintWorkflowPrinterJobStatusChangedEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowPrinterJobStatusChangedEventArgs
+
+   function get_PrinterJob
+   (
+      this : in out PrintWorkflowPrinterJobStatusChangedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPrinterJob'Class;
+
+   function get_Configuration
+   (
+      this : in out PrintWorkflowPrinterJobStatusChangedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration'Class;
+
+   function GetDeferral
+   (
+      this : in out PrintWorkflowPrinterJobStatusChangedEventArgs
+   )
+   return WinRt.Windows.Foundation.Deferral'Class;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintWorkflowSourceContent
@@ -2101,6 +2894,151 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowUICompletionStatus;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowVirtualPrinterDataAvailableEventArgs
+
+   overriding procedure Initialize (this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs);
+   overriding procedure Finalize (this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowVirtualPrinterDataAvailableEventArgs
+
+   function get_Configuration
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration'Class;
+
+   function get_SourceContent
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlSourceContent'Class;
+
+   function get_UILauncher
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowUILauncher'Class;
+
+   function GetJobPrintTicket
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+
+   function GetPdlConverter
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs;
+      conversionType : Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConversionType
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConverter'Class;
+
+   function GetTargetFileAsync
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs
+   )
+   return WinRt.Windows.Storage.StorageFile'Class;
+
+   procedure CompleteJob
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs;
+      status : Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowVirtualPrinterSession
+
+   overriding procedure Initialize (this : in out PrintWorkflowVirtualPrinterSession);
+   overriding procedure Finalize (this : in out PrintWorkflowVirtualPrinterSession);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowVirtualPrinterSession
+
+   function get_Status
+   (
+      this : in out PrintWorkflowVirtualPrinterSession
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus;
+
+   function get_Printer
+   (
+      this : in out PrintWorkflowVirtualPrinterSession
+   )
+   return WinRt.Windows.Devices.Printers.IppPrintDevice'Class;
+
+   function add_VirtualPrinterDataAvailable
+   (
+      this : in out PrintWorkflowVirtualPrinterSession;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken;
+
+   procedure remove_VirtualPrinterDataAvailable
+   (
+      this : in out PrintWorkflowVirtualPrinterSession;
+      token : Windows.Foundation.EventRegistrationToken
+   );
+
+   procedure Start
+   (
+      this : in out PrintWorkflowVirtualPrinterSession
+   );
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowVirtualPrinterTriggerDetails
+
+   overriding procedure Initialize (this : in out PrintWorkflowVirtualPrinterTriggerDetails);
+   overriding procedure Finalize (this : in out PrintWorkflowVirtualPrinterTriggerDetails);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowVirtualPrinterTriggerDetails
+
+   function get_VirtualPrinterSession
+   (
+      this : in out PrintWorkflowVirtualPrinterTriggerDetails
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowVirtualPrinterSession'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowVirtualPrinterUIEventArgs
+
+   overriding procedure Initialize (this : in out PrintWorkflowVirtualPrinterUIEventArgs);
+   overriding procedure Finalize (this : in out PrintWorkflowVirtualPrinterUIEventArgs);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowVirtualPrinterUIEventArgs
+
+   function get_Configuration
+   (
+      this : in out PrintWorkflowVirtualPrinterUIEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration'Class;
+
+   function get_Printer
+   (
+      this : in out PrintWorkflowVirtualPrinterUIEventArgs
+   )
+   return WinRt.Windows.Devices.Printers.IppPrintDevice'Class;
+
+   function get_SourceContent
+   (
+      this : in out PrintWorkflowVirtualPrinterUIEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlSourceContent'Class;
+
+   function GetJobPrintTicket
+   (
+      this : in out PrintWorkflowVirtualPrinterUIEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+
+   function GetDeferral
+   (
+      this : in out PrintWorkflowVirtualPrinterUIEventArgs
+   )
+   return WinRt.Windows.Foundation.Deferral'Class;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintWorkflowXpsDataAvailableEventArgs
 
    overriding procedure Initialize (this : in out PrintWorkflowXpsDataAvailableEventArgs);
@@ -2120,5 +3058,19 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       this : in out PrintWorkflowXpsDataAvailableEventArgs
    )
    return WinRt.Windows.Foundation.Deferral'Class;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowXpsObjectModelProvider
+
+   overriding procedure Initialize (this : in out PrintWorkflowXpsObjectModelProvider);
+   overriding procedure Finalize (this : in out PrintWorkflowXpsObjectModelProvider);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for PrintWorkflowXpsObjectModelProvider
+
+   function Constructor return PrintWorkflowXpsObjectModelProvider;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowXpsObjectModelProvider
 
 end WinRt.Windows.Graphics.Printing.Workflow;

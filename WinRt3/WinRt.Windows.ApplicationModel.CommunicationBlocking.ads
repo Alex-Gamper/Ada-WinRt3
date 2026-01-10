@@ -38,12 +38,15 @@ package WinRt.Windows.ApplicationModel.CommunicationBlocking is
 
    type ICommunicationBlockingAccessManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICommunicationBlockingAccessManagerStatics is access all ICommunicationBlockingAccessManagerStatics_Interface'Class;
+   type ICommunicationBlockingAccessManagerStatics_Ptr is access all ICommunicationBlockingAccessManagerStatics;
 
    type ICommunicationBlockingAppManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ICommunicationBlockingAppManagerStatics is access all ICommunicationBlockingAppManagerStatics_Interface'Class;
+   type ICommunicationBlockingAppManagerStatics_Ptr is access all ICommunicationBlockingAppManagerStatics;
 
    type ICommunicationBlockingAppManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type ICommunicationBlockingAppManagerStatics2 is access all ICommunicationBlockingAppManagerStatics2_Interface'Class;
+   type ICommunicationBlockingAppManagerStatics2_Ptr is access all ICommunicationBlockingAppManagerStatics2;
 
    -----------------------------------------------------------------------------
    -- Record declarations

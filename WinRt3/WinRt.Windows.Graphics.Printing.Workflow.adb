@@ -915,6 +915,257 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       end if;
    end;
 
+   function add_JobIssueDetected
+   (
+      this : in out PrintWorkflowJobBackgroundSession;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession2, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowJobBackgroundSession2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowJobBackgroundSession.all);
+      Hr := m_Interface.add_JobIssueDetected (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_JobIssueDetected
+   (
+      this : in out PrintWorkflowJobBackgroundSession;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession2, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowJobBackgroundSession2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowJobBackgroundSession.all);
+      Hr := m_Interface.remove_JobIssueDetected (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function add_JobStatusChanged
+   (
+      this : in out PrintWorkflowJobBackgroundSession;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession3, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowJobBackgroundSession3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowJobBackgroundSession.all);
+      Hr := m_Interface.add_JobStatusChanged (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_JobStatusChanged
+   (
+      this : in out PrintWorkflowJobBackgroundSession;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession3, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowJobBackgroundSession3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowJobBackgroundSession.all);
+      Hr := m_Interface.remove_JobStatusChanged (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowJobIssueDetectedEventArgs
+
+   procedure Initialize (this : in out PrintWorkflowJobIssueDetectedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PrintWorkflowJobIssueDetectedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowJobIssueDetectedEventArgs, IPrintWorkflowJobIssueDetectedEventArgs_Ptr);
+   begin
+      if this.m_IPrintWorkflowJobIssueDetectedEventArgs /= null then
+         if this.m_IPrintWorkflowJobIssueDetectedEventArgs.all /= null then
+            temp := this.m_IPrintWorkflowJobIssueDetectedEventArgs.all.Release;
+            Free (this.m_IPrintWorkflowJobIssueDetectedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowJobIssueDetectedEventArgs
+
+   function get_JobIssueKind
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowJobIssueKind is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.PrintWorkflowJobIssueKind;
+   begin
+      Hr := this.m_IPrintWorkflowJobIssueDetectedEventArgs.all.get_JobIssueKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_ExtendedError
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Windows.Foundation.HResult is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.HResult;
+   begin
+      Hr := this.m_IPrintWorkflowJobIssueDetectedEventArgs.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_SkipSystemErrorToast
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := this.m_IPrintWorkflowJobIssueDetectedEventArgs.all.get_SkipSystemErrorToast (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_SkipSystemErrorToast
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPrintWorkflowJobIssueDetectedEventArgs.all.put_SkipSystemErrorToast (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_PrinterJob
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPrinterJob'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPrinterJob do
+         Hr := this.m_IPrintWorkflowJobIssueDetectedEventArgs.all.get_PrinterJob (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowPrinterJob := new Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob;
+         Retval.m_IPrintWorkflowPrinterJob.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_Configuration
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration do
+         Hr := this.m_IPrintWorkflowJobIssueDetectedEventArgs.all.get_Configuration (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowConfiguration := new Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
+         Retval.m_IPrintWorkflowConfiguration.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_UILauncher
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowUILauncher'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowUILauncher;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowUILauncher do
+         Hr := this.m_IPrintWorkflowJobIssueDetectedEventArgs.all.get_UILauncher (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowUILauncher := new Windows.Graphics.Printing.Workflow.IPrintWorkflowUILauncher;
+         Retval.m_IPrintWorkflowUILauncher.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetDeferral
+   (
+      this : in out PrintWorkflowJobIssueDetectedEventArgs
+   )
+   return WinRt.Windows.Foundation.Deferral'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Deferral do
+         Hr := this.m_IPrintWorkflowJobIssueDetectedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral.all := m_ComRetVal;
+      end return;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintWorkflowJobNotificationEventArgs
 
@@ -1095,6 +1346,85 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       end return;
    end;
 
+   function get_IsIppCompressionEnabled
+   (
+      this : in out PrintWorkflowJobStartingEventArgs
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobStartingEventArgs2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobStartingEventArgs_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobStartingEventArgs2, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowJobStartingEventArgs2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowJobStartingEventArgs.all);
+      Hr := m_Interface.get_IsIppCompressionEnabled (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure DisableIppCompressionForJob
+   (
+      this : in out PrintWorkflowJobStartingEventArgs
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobStartingEventArgs2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobStartingEventArgs_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobStartingEventArgs2, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowJobStartingEventArgs2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowJobStartingEventArgs.all);
+      Hr := m_Interface.DisableIppCompressionForJob;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   function get_SkipSystemFaxUI
+   (
+      this : in out PrintWorkflowJobStartingEventArgs
+   )
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobStartingEventArgs2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobStartingEventArgs_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobStartingEventArgs2, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowJobStartingEventArgs2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowJobStartingEventArgs.all);
+      Hr := m_Interface.get_SkipSystemFaxUI (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure put_SkipSystemFaxUI
+   (
+      this : in out PrintWorkflowJobStartingEventArgs;
+      value : WinRt.Boolean
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobStartingEventArgs2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobStartingEventArgs_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobStartingEventArgs2, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowJobStartingEventArgs2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowJobStartingEventArgs.all);
+      Hr := m_Interface.put_SkipSystemFaxUI (value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintWorkflowJobTriggerDetails
 
@@ -1258,6 +1588,47 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       end if;
    end;
 
+   function add_VirtualPrinterUIDataAvailable
+   (
+      this : in out PrintWorkflowJobUISession;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobUISession2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobUISession_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobUISession2, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowJobUISession2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowJobUISession.all);
+      Hr := m_Interface.add_VirtualPrinterUIDataAvailable (handler, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_VirtualPrinterUIDataAvailable
+   (
+      this : in out PrintWorkflowJobUISession;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobUISession2 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobUISession_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobUISession2, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowJobUISession2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowJobUISession.all);
+      Hr := m_Interface.remove_VirtualPrinterUIDataAvailable (token);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintWorkflowObjectModelSourceFileContent
 
@@ -1384,6 +1755,106 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
 
    begin
       Hr := this.m_IPrintWorkflowPdlConverter.all.ConvertPdlAsync (printTicket.m_IWorkflowPrintTicket.all, inputStream, outputStream, m_ComRetVal'Access);
+      if Hr = S_OK then
+         m_Captured := m_Completed;
+         Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
+         while m_Captured = m_Compare loop
+            m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+            m_Captured := m_Completed;
+         end loop;
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
+            Free (m_CompletedHandler);
+         end if;
+      end if;
+   end;
+
+   procedure ConvertPdlAsync
+   (
+      this : in out PrintWorkflowPdlConverter;
+      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+      inputStream : Windows.Storage.Streams.IInputStream;
+      outputStream : Windows.Storage.Streams.IOutputStream;
+      hostBasedProcessingOperations : Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
+
+      procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+      begin
+         if asyncStatus = Completed_e then
+            Hr := asyncInfo.GetResults;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
+      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter2, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowPdlConverter2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowPdlConverter.all);
+      Hr := m_Interface.ConvertPdlAsync (printTicket.m_IWorkflowPrintTicket.all, inputStream, outputStream, hostBasedProcessingOperations, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr = S_OK then
+         m_Captured := m_Completed;
+         Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
+         while m_Captured = m_Compare loop
+            m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+            m_Captured := m_Completed;
+         end loop;
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
+            Free (m_CompletedHandler);
+         end if;
+      end if;
+   end;
+
+   procedure ConvertPdlFromObjectModelAsync
+   (
+      this : in out PrintWorkflowPdlConverter;
+      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+      objectModelProvider : Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelProvider;
+      outputStream : Windows.Storage.Streams.IOutputStream;
+      hostBasedProcessingOperations : Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
+
+      procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+      begin
+         if asyncStatus = Completed_e then
+            Hr := asyncInfo.GetResults;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+      m_CompletedHandler : WinRt.Windows.Foundation.AsyncActionCompletedHandler := new WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate'(IAsyncAction_Callback'Access, 1, null);
+      procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.AsyncActionCompletedHandler_Delegate, WinRt.Windows.Foundation.AsyncActionCompletedHandler);
+
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter3, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowPdlConverter3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowPdlConverter.all);
+      Hr := m_Interface.ConvertPdlFromObjectModelAsync (printTicket.m_IWorkflowPrintTicket.all, objectModelProvider, outputStream, hostBasedProcessingOperations, m_ComRetVal'Access);
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1715,6 +2186,86 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
+   end;
+
+   function CreateJobOnPrinterWithAttributes
+   (
+      this : in out PrintWorkflowPdlModificationRequestedEventArgs;
+      jobAttributes : GenericObject;
+      targetContentType : WinRt.WString;
+      operationAttributes : GenericObject;
+      jobAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+      operationAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlTargetStream'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlModificationRequestedEventArgs2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream;
+      HStr_targetContentType : constant WinRt.HString := To_HString (targetContentType);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlModificationRequestedEventArgs_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlModificationRequestedEventArgs2, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowPdlModificationRequestedEventArgs2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlTargetStream do
+         m_Interface := QInterface (this.m_IPrintWorkflowPdlModificationRequestedEventArgs.all);
+         Hr := m_Interface.CreateJobOnPrinterWithAttributes (jobAttributes, HStr_targetContentType, operationAttributes, jobAttributesMergePolicy, operationAttributesMergePolicy, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowPdlTargetStream := new Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream;
+         Retval.m_IPrintWorkflowPdlTargetStream.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_targetContentType);
+      end return;
+   end;
+
+   function CreateJobOnPrinterWithAttributesBuffer
+   (
+      this : in out PrintWorkflowPdlModificationRequestedEventArgs;
+      jobAttributesBuffer : Windows.Storage.Streams.IBuffer;
+      targetContentType : WinRt.WString;
+      operationAttributesBuffer : Windows.Storage.Streams.IBuffer;
+      jobAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+      operationAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlTargetStream'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlModificationRequestedEventArgs2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream;
+      HStr_targetContentType : constant WinRt.HString := To_HString (targetContentType);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlModificationRequestedEventArgs_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlModificationRequestedEventArgs2, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowPdlModificationRequestedEventArgs2'Unchecked_Access);
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlTargetStream do
+         m_Interface := QInterface (this.m_IPrintWorkflowPdlModificationRequestedEventArgs.all);
+         Hr := m_Interface.CreateJobOnPrinterWithAttributesBuffer (jobAttributesBuffer, HStr_targetContentType, operationAttributesBuffer, jobAttributesMergePolicy, operationAttributesMergePolicy, m_ComRetVal'Access);
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowPdlTargetStream := new Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream;
+         Retval.m_IPrintWorkflowPdlTargetStream.all := m_ComRetVal;
+         tmp := WindowsDeleteString (HStr_targetContentType);
+      end return;
+   end;
+
+   procedure DisableIppCompressionForJob
+   (
+      this : in out PrintWorkflowPdlModificationRequestedEventArgs
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlModificationRequestedEventArgs3 := null;
+      temp             : WinRt.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlModificationRequestedEventArgs_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlModificationRequestedEventArgs3, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowPdlModificationRequestedEventArgs3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowPdlModificationRequestedEventArgs.all);
+      Hr := m_Interface.DisableIppCompressionForJob;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2070,6 +2621,114 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
          end if;
          Retval.m_IIppSetAttributesResult := new Windows.Devices.Printers.IIppSetAttributesResult;
          Retval.m_IIppSetAttributesResult.all := m_ComRetVal;
+      end return;
+   end;
+
+   function ConvertPrintTicketToJobAttributes
+   (
+      this : in out PrintWorkflowPrinterJob;
+      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+      targetPdlFormat : WinRt.WString
+   )
+   return WinRt.GenericObject is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased GenericObject;
+      HStr_targetPdlFormat : constant WinRt.HString := To_HString (targetPdlFormat);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob_Interface, WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob2, WinRt.Windows.Graphics.Printing.Workflow.IID_IPrintWorkflowPrinterJob2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IPrintWorkflowPrinterJob.all);
+      Hr := m_Interface.ConvertPrintTicketToJobAttributes (printTicket.m_IWorkflowPrintTicket.all, HStr_targetPdlFormat, m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_targetPdlFormat);
+      return m_ComRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowPrinterJobStatusChangedEventArgs
+
+   procedure Initialize (this : in out PrintWorkflowPrinterJobStatusChangedEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PrintWorkflowPrinterJobStatusChangedEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowPrinterJobStatusChangedEventArgs, IPrintWorkflowPrinterJobStatusChangedEventArgs_Ptr);
+   begin
+      if this.m_IPrintWorkflowPrinterJobStatusChangedEventArgs /= null then
+         if this.m_IPrintWorkflowPrinterJobStatusChangedEventArgs.all /= null then
+            temp := this.m_IPrintWorkflowPrinterJobStatusChangedEventArgs.all.Release;
+            Free (this.m_IPrintWorkflowPrinterJobStatusChangedEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowPrinterJobStatusChangedEventArgs
+
+   function get_PrinterJob
+   (
+      this : in out PrintWorkflowPrinterJobStatusChangedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPrinterJob'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPrinterJob do
+         Hr := this.m_IPrintWorkflowPrinterJobStatusChangedEventArgs.all.get_PrinterJob (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowPrinterJob := new Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob;
+         Retval.m_IPrintWorkflowPrinterJob.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_Configuration
+   (
+      this : in out PrintWorkflowPrinterJobStatusChangedEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration do
+         Hr := this.m_IPrintWorkflowPrinterJobStatusChangedEventArgs.all.get_Configuration (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowConfiguration := new Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
+         Retval.m_IPrintWorkflowConfiguration.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetDeferral
+   (
+      this : in out PrintWorkflowPrinterJobStatusChangedEventArgs
+   )
+   return WinRt.Windows.Foundation.Deferral'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Deferral do
+         Hr := this.m_IPrintWorkflowPrinterJobStatusChangedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
 
@@ -2787,6 +3446,484 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowVirtualPrinterDataAvailableEventArgs
+
+   procedure Initialize (this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowVirtualPrinterDataAvailableEventArgs, IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Ptr);
+   begin
+      if this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs /= null then
+         if this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs.all /= null then
+            temp := this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs.all.Release;
+            Free (this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowVirtualPrinterDataAvailableEventArgs
+
+   function get_Configuration
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration do
+         Hr := this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs.all.get_Configuration (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowConfiguration := new Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
+         Retval.m_IPrintWorkflowConfiguration.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_SourceContent
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlSourceContent'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlSourceContent do
+         Hr := this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs.all.get_SourceContent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowPdlSourceContent := new Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent;
+         Retval.m_IPrintWorkflowPdlSourceContent.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_UILauncher
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowUILauncher'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowUILauncher;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowUILauncher do
+         Hr := this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs.all.get_UILauncher (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowUILauncher := new Windows.Graphics.Printing.Workflow.IPrintWorkflowUILauncher;
+         Retval.m_IPrintWorkflowUILauncher.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetJobPrintTicket
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket do
+         Hr := this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs.all.GetJobPrintTicket (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWorkflowPrintTicket := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         Retval.m_IWorkflowPrintTicket.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetPdlConverter
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs;
+      conversionType : Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConversionType
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConverter'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConverter do
+         Hr := this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs.all.GetPdlConverter (conversionType, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowPdlConverter := new Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter;
+         Retval.m_IPrintWorkflowPdlConverter.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetTargetFileAsync
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs
+   )
+   return WinRt.Windows.Storage.StorageFile'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_StorageFile.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_StorageFile.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Storage.IStorageFile;
+      m_IID            : aliased WinRt.IID := (1582495950, 44269, 23106, (149, 180, 246, 116, 221, 132, 136, 94 )); -- Windows.Storage.StorageFile;
+      m_HandlerIID     : aliased WinRt.IID := (3844196500, 11302, 22854, (158, 97, 43, 94, 24, 141, 1, 237 ));
+      m_Handler        : AsyncOperationCompletedHandler_StorageFile.Kind := new AsyncOperationCompletedHandler_StorageFile.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_StorageFile.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_StorageFile.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Storage.StorageFile do
+         Hr := this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs.all.GetTargetFileAsync (m_ComRetVal'Access);
+         if Hr = S_OK then
+            m_AsyncOperation := QI (m_ComRetVal);
+            temp := m_ComRetVal.Release;
+            if m_AsyncOperation /= null then
+               Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+               while m_Captured = m_Compare loop
+                  m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                  m_Captured := m_Completed;
+               end loop;
+               if m_AsyncStatus = Completed_e then
+                  Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile.all := m_RetVal;
+               end if;
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
+                  Free (m_Handler);
+               end if;
+            end if;
+         end if;
+      end return;
+   end;
+
+   procedure CompleteJob
+   (
+      this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs;
+      status : Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs.all.CompleteJob (status);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowVirtualPrinterSession
+
+   procedure Initialize (this : in out PrintWorkflowVirtualPrinterSession) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PrintWorkflowVirtualPrinterSession) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowVirtualPrinterSession, IPrintWorkflowVirtualPrinterSession_Ptr);
+   begin
+      if this.m_IPrintWorkflowVirtualPrinterSession /= null then
+         if this.m_IPrintWorkflowVirtualPrinterSession.all /= null then
+            temp := this.m_IPrintWorkflowVirtualPrinterSession.all.Release;
+            Free (this.m_IPrintWorkflowVirtualPrinterSession);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowVirtualPrinterSession
+
+   function get_Status
+   (
+      this : in out PrintWorkflowVirtualPrinterSession
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus;
+   begin
+      Hr := this.m_IPrintWorkflowVirtualPrinterSession.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_Printer
+   (
+      this : in out PrintWorkflowVirtualPrinterSession
+   )
+   return WinRt.Windows.Devices.Printers.IppPrintDevice'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppPrintDevice;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppPrintDevice do
+         Hr := this.m_IPrintWorkflowVirtualPrinterSession.all.get_Printer (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IIppPrintDevice := new Windows.Devices.Printers.IIppPrintDevice;
+         Retval.m_IIppPrintDevice.all := m_ComRetVal;
+      end return;
+   end;
+
+   function add_VirtualPrinterDataAvailable
+   (
+      this : in out PrintWorkflowVirtualPrinterSession;
+      handler : GenericObject
+   )
+   return WinRt.Windows.Foundation.EventRegistrationToken is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+   begin
+      Hr := this.m_IPrintWorkflowVirtualPrinterSession.all.add_VirtualPrinterDataAvailable (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   procedure remove_VirtualPrinterDataAvailable
+   (
+      this : in out PrintWorkflowVirtualPrinterSession;
+      token : Windows.Foundation.EventRegistrationToken
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPrintWorkflowVirtualPrinterSession.all.remove_VirtualPrinterDataAvailable (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   procedure Start
+   (
+      this : in out PrintWorkflowVirtualPrinterSession
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+   begin
+      Hr := this.m_IPrintWorkflowVirtualPrinterSession.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowVirtualPrinterTriggerDetails
+
+   procedure Initialize (this : in out PrintWorkflowVirtualPrinterTriggerDetails) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PrintWorkflowVirtualPrinterTriggerDetails) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowVirtualPrinterTriggerDetails, IPrintWorkflowVirtualPrinterTriggerDetails_Ptr);
+   begin
+      if this.m_IPrintWorkflowVirtualPrinterTriggerDetails /= null then
+         if this.m_IPrintWorkflowVirtualPrinterTriggerDetails.all /= null then
+            temp := this.m_IPrintWorkflowVirtualPrinterTriggerDetails.all.Release;
+            Free (this.m_IPrintWorkflowVirtualPrinterTriggerDetails);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowVirtualPrinterTriggerDetails
+
+   function get_VirtualPrinterSession
+   (
+      this : in out PrintWorkflowVirtualPrinterTriggerDetails
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowVirtualPrinterSession'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowVirtualPrinterSession;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowVirtualPrinterSession do
+         Hr := this.m_IPrintWorkflowVirtualPrinterTriggerDetails.all.get_VirtualPrinterSession (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowVirtualPrinterSession := new Windows.Graphics.Printing.Workflow.IPrintWorkflowVirtualPrinterSession;
+         Retval.m_IPrintWorkflowVirtualPrinterSession.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowVirtualPrinterUIEventArgs
+
+   procedure Initialize (this : in out PrintWorkflowVirtualPrinterUIEventArgs) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PrintWorkflowVirtualPrinterUIEventArgs) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowVirtualPrinterUIEventArgs, IPrintWorkflowVirtualPrinterUIEventArgs_Ptr);
+   begin
+      if this.m_IPrintWorkflowVirtualPrinterUIEventArgs /= null then
+         if this.m_IPrintWorkflowVirtualPrinterUIEventArgs.all /= null then
+            temp := this.m_IPrintWorkflowVirtualPrinterUIEventArgs.all.Release;
+            Free (this.m_IPrintWorkflowVirtualPrinterUIEventArgs);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowVirtualPrinterUIEventArgs
+
+   function get_Configuration
+   (
+      this : in out PrintWorkflowVirtualPrinterUIEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration do
+         Hr := this.m_IPrintWorkflowVirtualPrinterUIEventArgs.all.get_Configuration (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowConfiguration := new Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
+         Retval.m_IPrintWorkflowConfiguration.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_Printer
+   (
+      this : in out PrintWorkflowVirtualPrinterUIEventArgs
+   )
+   return WinRt.Windows.Devices.Printers.IppPrintDevice'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Devices.Printers.IIppPrintDevice;
+   begin
+      return RetVal : WinRt.Windows.Devices.Printers.IppPrintDevice do
+         Hr := this.m_IPrintWorkflowVirtualPrinterUIEventArgs.all.get_Printer (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IIppPrintDevice := new Windows.Devices.Printers.IIppPrintDevice;
+         Retval.m_IIppPrintDevice.all := m_ComRetVal;
+      end return;
+   end;
+
+   function get_SourceContent
+   (
+      this : in out PrintWorkflowVirtualPrinterUIEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlSourceContent'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlSourceContent do
+         Hr := this.m_IPrintWorkflowVirtualPrinterUIEventArgs.all.get_SourceContent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IPrintWorkflowPdlSourceContent := new Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent;
+         Retval.m_IPrintWorkflowPdlSourceContent.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetJobPrintTicket
+   (
+      this : in out PrintWorkflowVirtualPrinterUIEventArgs
+   )
+   return WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+   begin
+      return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket do
+         Hr := this.m_IPrintWorkflowVirtualPrinterUIEventArgs.all.GetJobPrintTicket (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IWorkflowPrintTicket := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         Retval.m_IWorkflowPrintTicket.all := m_ComRetVal;
+      end return;
+   end;
+
+   function GetDeferral
+   (
+      this : in out PrintWorkflowVirtualPrinterUIEventArgs
+   )
+   return WinRt.Windows.Foundation.Deferral'Class is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+   begin
+      return RetVal : WinRt.Windows.Foundation.Deferral do
+         Hr := this.m_IPrintWorkflowVirtualPrinterUIEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral.all := m_ComRetVal;
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PrintWorkflowXpsDataAvailableEventArgs
 
    procedure Initialize (this : in out PrintWorkflowXpsDataAvailableEventArgs) is
@@ -2848,5 +3985,47 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PrintWorkflowXpsObjectModelProvider
+
+   procedure Initialize (this : in out PrintWorkflowXpsObjectModelProvider) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PrintWorkflowXpsObjectModelProvider) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowObjectModelProvider, IPrintWorkflowObjectModelProvider_Ptr);
+   begin
+      if this.m_IPrintWorkflowObjectModelProvider /= null then
+         if this.m_IPrintWorkflowObjectModelProvider.all /= null then
+            temp := this.m_IPrintWorkflowObjectModelProvider.all.Release;
+            Free (this.m_IPrintWorkflowObjectModelProvider);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for PrintWorkflowXpsObjectModelProvider
+
+   function Constructor return PrintWorkflowXpsObjectModelProvider is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.Workflow.PrintWorkflowXpsObjectModelProvider");
+      m_ComRetVal  : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelProvider;
+   begin
+      return RetVal : PrintWorkflowXpsObjectModelProvider do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IPrintWorkflowObjectModelProvider := new Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelProvider;
+            Retval.m_IPrintWorkflowObjectModelProvider.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PrintWorkflowXpsObjectModelProvider
 
 end WinRt.Windows.Graphics.Printing.Workflow;

@@ -44,9 +44,11 @@ package WinRt.Windows.Data.Xml.Xsl is
 
    type IXsltProcessor2_Interface is interface and WinRt.IInspectable_Interface;
    type IXsltProcessor2 is access all IXsltProcessor2_Interface'Class;
+   type IXsltProcessor2_Ptr is access all IXsltProcessor2;
 
    type IXsltProcessorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IXsltProcessorFactory is access all IXsltProcessorFactory_Interface'Class;
+   type IXsltProcessorFactory_Ptr is access all IXsltProcessorFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations

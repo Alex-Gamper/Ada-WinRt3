@@ -47,6 +47,7 @@ package WinRt.Windows.Data.Pdf is
 
    type IPdfDocumentStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPdfDocumentStatics is access all IPdfDocumentStatics_Interface'Class;
+   type IPdfDocumentStatics_Ptr is access all IPdfDocumentStatics;
 
    type IPdfPage_Interface is interface and WinRt.IInspectable_Interface;
    type IPdfPage is access all IPdfPage_Interface'Class;

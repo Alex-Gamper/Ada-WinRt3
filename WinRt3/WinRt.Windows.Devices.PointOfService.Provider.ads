@@ -47,6 +47,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
 
    type IBarcodeScannerDisableScannerRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerDisableScannerRequest2 is access all IBarcodeScannerDisableScannerRequest2_Interface'Class;
+   type IBarcodeScannerDisableScannerRequest2_Ptr is access all IBarcodeScannerDisableScannerRequest2;
 
    type IBarcodeScannerDisableScannerRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerDisableScannerRequestEventArgs is access all IBarcodeScannerDisableScannerRequestEventArgs_Interface'Class;
@@ -58,6 +59,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
 
    type IBarcodeScannerEnableScannerRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerEnableScannerRequest2 is access all IBarcodeScannerEnableScannerRequest2_Interface'Class;
+   type IBarcodeScannerEnableScannerRequest2_Ptr is access all IBarcodeScannerEnableScannerRequest2;
 
    type IBarcodeScannerEnableScannerRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerEnableScannerRequestEventArgs is access all IBarcodeScannerEnableScannerRequestEventArgs_Interface'Class;
@@ -77,6 +79,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
 
    type IBarcodeScannerGetSymbologyAttributesRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerGetSymbologyAttributesRequest2 is access all IBarcodeScannerGetSymbologyAttributesRequest2_Interface'Class;
+   type IBarcodeScannerGetSymbologyAttributesRequest2_Ptr is access all IBarcodeScannerGetSymbologyAttributesRequest2;
 
    type IBarcodeScannerGetSymbologyAttributesRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerGetSymbologyAttributesRequestEventArgs is access all IBarcodeScannerGetSymbologyAttributesRequestEventArgs_Interface'Class;
@@ -88,6 +91,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
 
    type IBarcodeScannerHideVideoPreviewRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerHideVideoPreviewRequest2 is access all IBarcodeScannerHideVideoPreviewRequest2_Interface'Class;
+   type IBarcodeScannerHideVideoPreviewRequest2_Ptr is access all IBarcodeScannerHideVideoPreviewRequest2;
 
    type IBarcodeScannerHideVideoPreviewRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerHideVideoPreviewRequestEventArgs is access all IBarcodeScannerHideVideoPreviewRequestEventArgs_Interface'Class;
@@ -99,6 +103,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
 
    type IBarcodeScannerProviderConnection2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerProviderConnection2 is access all IBarcodeScannerProviderConnection2_Interface'Class;
+   type IBarcodeScannerProviderConnection2_Ptr is access all IBarcodeScannerProviderConnection2;
 
    type IBarcodeScannerProviderTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerProviderTriggerDetails is access all IBarcodeScannerProviderTriggerDetails_Interface'Class;
@@ -110,6 +115,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
 
    type IBarcodeScannerSetActiveSymbologiesRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerSetActiveSymbologiesRequest2 is access all IBarcodeScannerSetActiveSymbologiesRequest2_Interface'Class;
+   type IBarcodeScannerSetActiveSymbologiesRequest2_Ptr is access all IBarcodeScannerSetActiveSymbologiesRequest2;
 
    type IBarcodeScannerSetActiveSymbologiesRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerSetActiveSymbologiesRequestEventArgs is access all IBarcodeScannerSetActiveSymbologiesRequestEventArgs_Interface'Class;
@@ -121,6 +127,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
 
    type IBarcodeScannerSetSymbologyAttributesRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerSetSymbologyAttributesRequest2 is access all IBarcodeScannerSetSymbologyAttributesRequest2_Interface'Class;
+   type IBarcodeScannerSetSymbologyAttributesRequest2_Ptr is access all IBarcodeScannerSetSymbologyAttributesRequest2;
 
    type IBarcodeScannerSetSymbologyAttributesRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerSetSymbologyAttributesRequestEventArgs is access all IBarcodeScannerSetSymbologyAttributesRequestEventArgs_Interface'Class;
@@ -132,6 +139,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
 
    type IBarcodeScannerStartSoftwareTriggerRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerStartSoftwareTriggerRequest2 is access all IBarcodeScannerStartSoftwareTriggerRequest2_Interface'Class;
+   type IBarcodeScannerStartSoftwareTriggerRequest2_Ptr is access all IBarcodeScannerStartSoftwareTriggerRequest2;
 
    type IBarcodeScannerStartSoftwareTriggerRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerStartSoftwareTriggerRequestEventArgs is access all IBarcodeScannerStartSoftwareTriggerRequestEventArgs_Interface'Class;
@@ -143,6 +151,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
 
    type IBarcodeScannerStopSoftwareTriggerRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerStopSoftwareTriggerRequest2 is access all IBarcodeScannerStopSoftwareTriggerRequest2_Interface'Class;
+   type IBarcodeScannerStopSoftwareTriggerRequest2_Ptr is access all IBarcodeScannerStopSoftwareTriggerRequest2;
 
    type IBarcodeScannerStopSoftwareTriggerRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IBarcodeScannerStopSoftwareTriggerRequestEventArgs is access all IBarcodeScannerStopSoftwareTriggerRequestEventArgs_Interface'Class;

@@ -57,6 +57,7 @@ package WinRt.Windows.Networking.Connectivity is
 
    type ICellularApnContext2_Interface is interface and WinRt.IInspectable_Interface;
    type ICellularApnContext2 is access all ICellularApnContext2_Interface'Class;
+   type ICellularApnContext2_Ptr is access all ICellularApnContext2;
 
    type IConnectionCost_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionCost is access all IConnectionCost_Interface'Class;
@@ -64,6 +65,7 @@ package WinRt.Windows.Networking.Connectivity is
 
    type IConnectionCost2_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionCost2 is access all IConnectionCost2_Interface'Class;
+   type IConnectionCost2_Ptr is access all IConnectionCost2;
 
    type IConnectionProfile_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionProfile is access all IConnectionProfile_Interface'Class;
@@ -71,18 +73,23 @@ package WinRt.Windows.Networking.Connectivity is
 
    type IConnectionProfile2_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionProfile2 is access all IConnectionProfile2_Interface'Class;
+   type IConnectionProfile2_Ptr is access all IConnectionProfile2;
 
    type IConnectionProfile3_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionProfile3 is access all IConnectionProfile3_Interface'Class;
+   type IConnectionProfile3_Ptr is access all IConnectionProfile3;
 
    type IConnectionProfile4_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionProfile4 is access all IConnectionProfile4_Interface'Class;
+   type IConnectionProfile4_Ptr is access all IConnectionProfile4;
 
    type IConnectionProfile5_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionProfile5 is access all IConnectionProfile5_Interface'Class;
+   type IConnectionProfile5_Ptr is access all IConnectionProfile5;
 
    type IConnectionProfile6_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionProfile6 is access all IConnectionProfile6_Interface'Class;
+   type IConnectionProfile6_Ptr is access all IConnectionProfile6;
 
    type IConnectionProfileFilter_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionProfileFilter is access all IConnectionProfileFilter_Interface'Class;
@@ -90,9 +97,11 @@ package WinRt.Windows.Networking.Connectivity is
 
    type IConnectionProfileFilter2_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionProfileFilter2 is access all IConnectionProfileFilter2_Interface'Class;
+   type IConnectionProfileFilter2_Ptr is access all IConnectionProfileFilter2;
 
    type IConnectionProfileFilter3_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionProfileFilter3 is access all IConnectionProfileFilter3_Interface'Class;
+   type IConnectionProfileFilter3_Ptr is access all IConnectionProfileFilter3;
 
    type IConnectionSession_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectionSession is access all IConnectionSession_Interface'Class;
@@ -104,6 +113,7 @@ package WinRt.Windows.Networking.Connectivity is
 
    type IConnectivityManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IConnectivityManagerStatics is access all IConnectivityManagerStatics_Interface'Class;
+   type IConnectivityManagerStatics_Ptr is access all IConnectivityManagerStatics;
 
    type IDataPlanStatus_Interface is interface and WinRt.IInspectable_Interface;
    type IDataPlanStatus is access all IDataPlanStatus_Interface'Class;
@@ -135,9 +145,11 @@ package WinRt.Windows.Networking.Connectivity is
 
    type INetworkInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkInformationStatics is access all INetworkInformationStatics_Interface'Class;
+   type INetworkInformationStatics_Ptr is access all INetworkInformationStatics;
 
    type INetworkInformationStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkInformationStatics2 is access all INetworkInformationStatics2_Interface'Class;
+   type INetworkInformationStatics2_Ptr is access all INetworkInformationStatics2;
 
    type INetworkItem_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkItem is access all INetworkItem_Interface'Class;
@@ -153,6 +165,7 @@ package WinRt.Windows.Networking.Connectivity is
 
    type INetworkStateChangeEventDetails2_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkStateChangeEventDetails2 is access all INetworkStateChangeEventDetails2_Interface'Class;
+   type INetworkStateChangeEventDetails2_Ptr is access all INetworkStateChangeEventDetails2;
 
    type INetworkUsage_Interface is interface and WinRt.IInspectable_Interface;
    type INetworkUsage is access all INetworkUsage_Interface'Class;
@@ -172,6 +185,7 @@ package WinRt.Windows.Networking.Connectivity is
 
    type IRoutePolicyFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRoutePolicyFactory is access all IRoutePolicyFactory_Interface'Class;
+   type IRoutePolicyFactory_Ptr is access all IRoutePolicyFactory;
 
    type IWlanConnectionProfileDetails_Interface is interface and WinRt.IInspectable_Interface;
    type IWlanConnectionProfileDetails is access all IWlanConnectionProfileDetails_Interface'Class;
@@ -183,6 +197,7 @@ package WinRt.Windows.Networking.Connectivity is
 
    type IWwanConnectionProfileDetails2_Interface is interface and WinRt.IInspectable_Interface;
    type IWwanConnectionProfileDetails2 is access all IWwanConnectionProfileDetails2_Interface'Class;
+   type IWwanConnectionProfileDetails2_Ptr is access all IWwanConnectionProfileDetails2;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -409,7 +424,8 @@ package WinRt.Windows.Networking.Connectivity is
       Ihv_e,
       Wpa3_e,
       Wpa3Sae_e,
-      Owe_e
+      Owe_e,
+      Wpa3Enterprise_e
    );
    for NetworkAuthenticationType use (
       None_e => 0,
@@ -424,7 +440,8 @@ package WinRt.Windows.Networking.Connectivity is
       Ihv_e => 9,
       Wpa3_e => 10,
       Wpa3Sae_e => 11,
-      Owe_e => 12
+      Owe_e => 12,
+      Wpa3Enterprise_e => 13
    );
    type NetworkAuthenticationType_Ptr is access all NetworkAuthenticationType;
 
@@ -466,7 +483,9 @@ package WinRt.Windows.Networking.Connectivity is
       Ccmp_e,
       WpaUseGroup_e,
       RsnUseGroup_e,
-      Ihv_e
+      Ihv_e,
+      Gcmp_e,
+      Gcmp256_e
    );
    for NetworkEncryptionType use (
       None_e => 0,
@@ -478,7 +497,9 @@ package WinRt.Windows.Networking.Connectivity is
       Ccmp_e => 6,
       WpaUseGroup_e => 7,
       RsnUseGroup_e => 8,
-      Ihv_e => 9
+      Ihv_e => 9,
+      Gcmp_e => 10,
+      Gcmp256_e => 11
    );
    type NetworkEncryptionType_Ptr is access all NetworkEncryptionType;
 
@@ -526,6 +547,8 @@ package WinRt.Windows.Networking.Connectivity is
       Hsdpa_e,
       Hsupa_e,
       LteAdvanced_e,
+      NewRadioNonStandalone_e,
+      NewRadioStandalone_e,
       Cdma1xRtt_e,
       Cdma1xEvdo_e,
       Cdma1xEvdoRevA_e,
@@ -543,6 +566,8 @@ package WinRt.Windows.Networking.Connectivity is
       Hsdpa_e => 8,
       Hsupa_e => 16,
       LteAdvanced_e => 32,
+      NewRadioNonStandalone_e => 64,
+      NewRadioStandalone_e => 128,
       Cdma1xRtt_e => 65536,
       Cdma1xEvdo_e => 131072,
       Cdma1xEvdoRevA_e => 262144,
@@ -2571,6 +2596,12 @@ package WinRt.Windows.Networking.Connectivity is
    -- Static RuntimeClass
    package NetworkInformation is
 
+      function FindConnectionProfilesAsync
+      (
+         pProfileFilter : Windows.Networking.Connectivity.ConnectionProfileFilter'Class
+      )
+      return WinRt.GenericObject;
+
       function GetConnectionProfiles
       return WinRt.GenericObject;
 
@@ -2606,12 +2637,6 @@ package WinRt.Windows.Networking.Connectivity is
       (
          eventCookie : Windows.Foundation.EventRegistrationToken
       );
-
-      function FindConnectionProfilesAsync
-      (
-         pProfileFilter : Windows.Networking.Connectivity.ConnectionProfileFilter'Class
-      )
-      return WinRt.GenericObject;
 
    end NetworkInformation;
 

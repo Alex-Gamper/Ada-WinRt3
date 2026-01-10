@@ -44,6 +44,7 @@ package WinRt.Windows.UI.Notifications.Management is
 
    type IUserNotificationListenerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IUserNotificationListenerStatics is access all IUserNotificationListenerStatics_Interface'Class;
+   type IUserNotificationListenerStatics_Ptr is access all IUserNotificationListenerStatics;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -51,6 +51,7 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnAppIdFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnAppIdFactory is access all IVpnAppIdFactory_Interface'Class;
+   type IVpnAppIdFactory_Ptr is access all IVpnAppIdFactory;
 
    type IVpnChannel_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnChannel is access all IVpnChannel_Interface'Class;
@@ -58,15 +59,19 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnChannel2_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnChannel2 is access all IVpnChannel2_Interface'Class;
+   type IVpnChannel2_Ptr is access all IVpnChannel2;
 
    type IVpnChannel4_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnChannel4 is access all IVpnChannel4_Interface'Class;
+   type IVpnChannel4_Ptr is access all IVpnChannel4;
 
    type IVpnChannel5_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnChannel5 is access all IVpnChannel5_Interface'Class;
+   type IVpnChannel5_Ptr is access all IVpnChannel5;
 
    type IVpnChannel6_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnChannel6 is access all IVpnChannel6_Interface'Class;
+   type IVpnChannel6_Ptr is access all IVpnChannel6;
 
    type IVpnChannelActivityEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnChannelActivityEventArgs is access all IVpnChannelActivityEventArgs_Interface'Class;
@@ -82,9 +87,11 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnChannelConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnChannelConfiguration2 is access all IVpnChannelConfiguration2_Interface'Class;
+   type IVpnChannelConfiguration2_Ptr is access all IVpnChannelConfiguration2;
 
    type IVpnChannelStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnChannelStatics is access all IVpnChannelStatics_Interface'Class;
+   type IVpnChannelStatics_Ptr is access all IVpnChannelStatics;
 
    type IVpnCredential_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnCredential is access all IVpnCredential_Interface'Class;
@@ -108,6 +115,7 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnCustomPrompt_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnCustomPrompt is access all IVpnCustomPrompt_Interface'Class;
+   type IVpnCustomPrompt_Ptr is access all IVpnCustomPrompt;
 
    type IVpnCustomPromptBooleanInput_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnCustomPromptBooleanInput is access all IVpnCustomPromptBooleanInput_Interface'Class;
@@ -115,6 +123,7 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnCustomPromptElement_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnCustomPromptElement is access all IVpnCustomPromptElement_Interface'Class;
+   type IVpnCustomPromptElement_Ptr is access all IVpnCustomPromptElement;
 
    type IVpnCustomPromptOptionSelector_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnCustomPromptOptionSelector is access all IVpnCustomPromptOptionSelector_Interface'Class;
@@ -142,9 +151,11 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnDomainNameInfo2_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnDomainNameInfo2 is access all IVpnDomainNameInfo2_Interface'Class;
+   type IVpnDomainNameInfo2_Ptr is access all IVpnDomainNameInfo2;
 
    type IVpnDomainNameInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnDomainNameInfoFactory is access all IVpnDomainNameInfoFactory_Interface'Class;
+   type IVpnDomainNameInfoFactory_Ptr is access all IVpnDomainNameInfoFactory;
 
    type IVpnForegroundActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnForegroundActivatedEventArgs is access all IVpnForegroundActivatedEventArgs_Interface'Class;
@@ -160,6 +171,7 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnInterfaceIdFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnInterfaceIdFactory is access all IVpnInterfaceIdFactory_Interface'Class;
+   type IVpnInterfaceIdFactory_Ptr is access all IVpnInterfaceIdFactory;
 
    type IVpnManagementAgent_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnManagementAgent is access all IVpnManagementAgent_Interface'Class;
@@ -175,6 +187,7 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnNamespaceInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnNamespaceInfoFactory is access all IVpnNamespaceInfoFactory_Interface'Class;
+   type IVpnNamespaceInfoFactory_Ptr is access all IVpnNamespaceInfoFactory;
 
    type IVpnNativeProfile_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnNativeProfile is access all IVpnNativeProfile_Interface'Class;
@@ -182,6 +195,7 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnNativeProfile2_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnNativeProfile2 is access all IVpnNativeProfile2_Interface'Class;
+   type IVpnNativeProfile2_Ptr is access all IVpnNativeProfile2;
 
    type IVpnPacketBuffer_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnPacketBuffer is access all IVpnPacketBuffer_Interface'Class;
@@ -189,12 +203,15 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnPacketBuffer2_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnPacketBuffer2 is access all IVpnPacketBuffer2_Interface'Class;
+   type IVpnPacketBuffer2_Ptr is access all IVpnPacketBuffer2;
 
    type IVpnPacketBuffer3_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnPacketBuffer3 is access all IVpnPacketBuffer3_Interface'Class;
+   type IVpnPacketBuffer3_Ptr is access all IVpnPacketBuffer3;
 
    type IVpnPacketBufferFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnPacketBufferFactory is access all IVpnPacketBufferFactory_Interface'Class;
+   type IVpnPacketBufferFactory_Ptr is access all IVpnPacketBufferFactory;
 
    type IVpnPacketBufferList_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnPacketBufferList is access all IVpnPacketBufferList_Interface'Class;
@@ -202,6 +219,7 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnPacketBufferList2_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnPacketBufferList2 is access all IVpnPacketBufferList2_Interface'Class;
+   type IVpnPacketBufferList2_Ptr is access all IVpnPacketBufferList2;
 
    type IVpnPickedCredential_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnPickedCredential is access all IVpnPickedCredential_Interface'Class;
@@ -209,6 +227,7 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnPlugIn_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnPlugIn is access all IVpnPlugIn_Interface'Class;
+   type IVpnPlugIn_Ptr is access all IVpnPlugIn;
 
    type IVpnPlugInProfile_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnPlugInProfile is access all IVpnPlugInProfile_Interface'Class;
@@ -216,9 +235,15 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnPlugInProfile2_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnPlugInProfile2 is access all IVpnPlugInProfile2_Interface'Class;
+   type IVpnPlugInProfile2_Ptr is access all IVpnPlugInProfile2;
+
+   type IVpnPlugInReconnectTransport_Interface is interface and WinRt.IInspectable_Interface;
+   type IVpnPlugInReconnectTransport is access all IVpnPlugInReconnectTransport_Interface'Class;
+   type IVpnPlugInReconnectTransport_Ptr is access all IVpnPlugInReconnectTransport;
 
    type IVpnProfile_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnProfile is access all IVpnProfile_Interface'Class;
+   type IVpnProfile_Ptr is access all IVpnProfile;
 
    type IVpnRoute_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnRoute is access all IVpnRoute_Interface'Class;
@@ -230,6 +255,7 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnRouteFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnRouteFactory is access all IVpnRouteFactory_Interface'Class;
+   type IVpnRouteFactory_Ptr is access all IVpnRouteFactory;
 
    type IVpnSystemHealth_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnSystemHealth is access all IVpnSystemHealth_Interface'Class;
@@ -245,6 +271,7 @@ package WinRt.Windows.Networking.Vpn is
 
    type IVpnTrafficFilterFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IVpnTrafficFilterFactory is access all IVpnTrafficFilterFactory_Interface'Class;
+   type IVpnTrafficFilterFactory_Ptr is access all IVpnTrafficFilterFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -2295,6 +2322,19 @@ package WinRt.Windows.Networking.Vpn is
       return WinRt.Hresult is abstract;
 
       IID_IVpnPlugInProfile2 : aliased WinRt.IID := (1629243538, 53140, 19158, (186, 153, 0, 244, 255, 52, 86, 94 ));
+
+   -----------------------------------------------------------------------------
+   -- type IVpnPlugInReconnectTransport is interface and WinRt.IInspectable;
+
+      function ReconnectTransport
+      (
+         this : access IVpnPlugInReconnectTransport_Interface;
+         channel : Windows.Networking.Vpn.IVpnChannel;
+         context : WinRt.IInspectable
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IVpnPlugInReconnectTransport : aliased WinRt.IID := (2639925394, 47942, 19764, (157, 136, 242, 23, 137, 48, 118, 244 ));
 
    -----------------------------------------------------------------------------
    -- type IVpnProfile is interface and WinRt.IInspectable;

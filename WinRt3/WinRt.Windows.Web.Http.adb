@@ -2011,6 +2011,51 @@ package body WinRt.Windows.Web.Http is
       end return;
    end;
 
+   function get_DefaultPrivacyAnnotation
+   (
+      this : in out HttpClient
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Web.Http.IHttpClient3 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpClient_Interface, WinRt.Windows.Web.Http.IHttpClient3, WinRt.Windows.Web.Http.IID_IHttpClient3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHttpClient.all);
+      Hr := m_Interface.get_DefaultPrivacyAnnotation (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_DefaultPrivacyAnnotation
+   (
+      this : in out HttpClient;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Web.Http.IHttpClient3 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpClient_Interface, WinRt.Windows.Web.Http.IHttpClient3, WinRt.Windows.Web.Http.IID_IHttpClient3'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHttpClient.all);
+      Hr := m_Interface.put_DefaultPrivacyAnnotation (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
+   end;
+
    procedure Close
    (
       this : in out HttpClient
@@ -3777,22 +3822,6 @@ package body WinRt.Windows.Web.Http is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for HttpMultipartContent
 
-   function Constructor return HttpMultipartContent is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartContent");
-      m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
-   begin
-      return RetVal : HttpMultipartContent do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
-            Retval.m_IHttpContent.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       subtype_x : WinRt.WString
@@ -3845,6 +3874,22 @@ package body WinRt.Windows.Web.Http is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_subtype_x);
          tmp := WindowsDeleteString (HStr_boundary);
+      end return;
+   end;
+
+   function Constructor return HttpMultipartContent is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartContent");
+      m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
+   begin
+      return RetVal : HttpMultipartContent do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
+            Retval.m_IHttpContent.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5075,6 +5120,51 @@ package body WinRt.Windows.Web.Http is
          Retval.m_IHttpTransportInformation := new Windows.Web.Http.IHttpTransportInformation;
          Retval.m_IHttpTransportInformation.all := m_ComRetVal;
       end return;
+   end;
+
+   function get_PrivacyAnnotation
+   (
+      this : in out HttpRequestMessage
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Web.Http.IHttpRequestMessage2 := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpRequestMessage_Interface, WinRt.Windows.Web.Http.IHttpRequestMessage2, WinRt.Windows.Web.Http.IID_IHttpRequestMessage2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHttpRequestMessage.all);
+      Hr := m_Interface.get_PrivacyAnnotation (m_ComRetVal'Access);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   procedure put_PrivacyAnnotation
+   (
+      this : in out HttpRequestMessage;
+      value : WinRt.WString
+   ) is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_Interface      : WinRt.Windows.Web.Http.IHttpRequestMessage2 := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
+      function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpRequestMessage_Interface, WinRt.Windows.Web.Http.IHttpRequestMessage2, WinRt.Windows.Web.Http.IID_IHttpRequestMessage2'Unchecked_Access);
+   begin
+      m_Interface := QInterface (this.m_IHttpRequestMessage.all);
+      Hr := m_Interface.put_PrivacyAnnotation (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure Close

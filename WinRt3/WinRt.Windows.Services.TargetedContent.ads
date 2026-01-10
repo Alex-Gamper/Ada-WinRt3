@@ -62,6 +62,7 @@ package WinRt.Windows.Services.TargetedContent is
 
    type ITargetedContentContainerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITargetedContentContainerStatics is access all ITargetedContentContainerStatics_Interface'Class;
+   type ITargetedContentContainerStatics_Ptr is access all ITargetedContentContainerStatics;
 
    type ITargetedContentImage_Interface is interface and WinRt.IInspectable_Interface;
    type ITargetedContentImage is access all ITargetedContentImage_Interface'Class;
@@ -93,6 +94,7 @@ package WinRt.Windows.Services.TargetedContent is
 
    type ITargetedContentSubscriptionStatics_Interface is interface and WinRt.IInspectable_Interface;
    type ITargetedContentSubscriptionStatics is access all ITargetedContentSubscriptionStatics_Interface'Class;
+   type ITargetedContentSubscriptionStatics_Ptr is access all ITargetedContentSubscriptionStatics;
 
    type ITargetedContentValue_Interface is interface and WinRt.IInspectable_Interface;
    type ITargetedContentValue is access all ITargetedContentValue_Interface'Class;

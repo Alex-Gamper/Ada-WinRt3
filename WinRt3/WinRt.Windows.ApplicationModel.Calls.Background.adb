@@ -304,6 +304,66 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    end;
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for PhoneIncomingCallNotificationTriggerDetails
+
+   procedure Initialize (this : in out PhoneIncomingCallNotificationTriggerDetails) is
+   begin
+      null;
+   end;
+
+   procedure Finalize (this : in out PhoneIncomingCallNotificationTriggerDetails) is
+      temp : WinRt.UInt32 := 0;
+      procedure Free is new Ada.Unchecked_Deallocation (IPhoneIncomingCallNotificationTriggerDetails, IPhoneIncomingCallNotificationTriggerDetails_Ptr);
+   begin
+      if this.m_IPhoneIncomingCallNotificationTriggerDetails /= null then
+         if this.m_IPhoneIncomingCallNotificationTriggerDetails.all /= null then
+            temp := this.m_IPhoneIncomingCallNotificationTriggerDetails.all.Release;
+            Free (this.m_IPhoneIncomingCallNotificationTriggerDetails);
+         end if;
+      end if;
+   end;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for PhoneIncomingCallNotificationTriggerDetails
+
+   function get_LineId
+   (
+      this : in out PhoneIncomingCallNotificationTriggerDetails
+   )
+   return WinRt.Guid is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Guid;
+   begin
+      Hr := this.m_IPhoneIncomingCallNotificationTriggerDetails.all.get_LineId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      return m_ComRetVal;
+   end;
+
+   function get_CallId
+   (
+      this : in out PhoneIncomingCallNotificationTriggerDetails
+   )
+   return WinRt.WString is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.HString;
+      AdaRetval        : WString;
+   begin
+      Hr := this.m_IPhoneIncomingCallNotificationTriggerDetails.all.get_CallId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      AdaRetval := To_Ada (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
+      return AdaRetVal;
+   end;
+
+   -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for PhoneLineChangedTriggerDetails
 
    procedure Initialize (this : in out PhoneLineChangedTriggerDetails) is

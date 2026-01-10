@@ -49,9 +49,11 @@ package WinRt.Windows.Devices.Geolocation is
 
    type IGeoboundingBoxFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGeoboundingBoxFactory is access all IGeoboundingBoxFactory_Interface'Class;
+   type IGeoboundingBoxFactory_Ptr is access all IGeoboundingBoxFactory;
 
    type IGeoboundingBoxStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGeoboundingBoxStatics is access all IGeoboundingBoxStatics_Interface'Class;
+   type IGeoboundingBoxStatics_Ptr is access all IGeoboundingBoxStatics;
 
    type IGeocircle_Interface is interface and WinRt.IInspectable_Interface;
    type IGeocircle is access all IGeocircle_Interface'Class;
@@ -59,6 +61,7 @@ package WinRt.Windows.Devices.Geolocation is
 
    type IGeocircleFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGeocircleFactory is access all IGeocircleFactory_Interface'Class;
+   type IGeocircleFactory_Ptr is access all IGeocircleFactory;
 
    type IGeocoordinate_Interface is interface and WinRt.IInspectable_Interface;
    type IGeocoordinate is access all IGeocoordinate_Interface'Class;
@@ -68,14 +71,25 @@ package WinRt.Windows.Devices.Geolocation is
    type IGeocoordinateSatelliteData is access all IGeocoordinateSatelliteData_Interface'Class;
    type IGeocoordinateSatelliteData_Ptr is access all IGeocoordinateSatelliteData;
 
+   type IGeocoordinateSatelliteData2_Interface is interface and WinRt.IInspectable_Interface;
+   type IGeocoordinateSatelliteData2 is access all IGeocoordinateSatelliteData2_Interface'Class;
+   type IGeocoordinateSatelliteData2_Ptr is access all IGeocoordinateSatelliteData2;
+
    type IGeocoordinateWithPoint_Interface is interface and WinRt.IInspectable_Interface;
    type IGeocoordinateWithPoint is access all IGeocoordinateWithPoint_Interface'Class;
+   type IGeocoordinateWithPoint_Ptr is access all IGeocoordinateWithPoint;
 
    type IGeocoordinateWithPositionData_Interface is interface and WinRt.IInspectable_Interface;
    type IGeocoordinateWithPositionData is access all IGeocoordinateWithPositionData_Interface'Class;
+   type IGeocoordinateWithPositionData_Ptr is access all IGeocoordinateWithPositionData;
 
    type IGeocoordinateWithPositionSourceTimestamp_Interface is interface and WinRt.IInspectable_Interface;
    type IGeocoordinateWithPositionSourceTimestamp is access all IGeocoordinateWithPositionSourceTimestamp_Interface'Class;
+   type IGeocoordinateWithPositionSourceTimestamp_Ptr is access all IGeocoordinateWithPositionSourceTimestamp;
+
+   type IGeocoordinateWithRemoteSource_Interface is interface and WinRt.IInspectable_Interface;
+   type IGeocoordinateWithRemoteSource is access all IGeocoordinateWithRemoteSource_Interface'Class;
+   type IGeocoordinateWithRemoteSource_Ptr is access all IGeocoordinateWithRemoteSource;
 
    type IGeolocator_Interface is interface and WinRt.IInspectable_Interface;
    type IGeolocator is access all IGeolocator_Interface'Class;
@@ -83,15 +97,19 @@ package WinRt.Windows.Devices.Geolocation is
 
    type IGeolocator2_Interface is interface and WinRt.IInspectable_Interface;
    type IGeolocator2 is access all IGeolocator2_Interface'Class;
+   type IGeolocator2_Ptr is access all IGeolocator2;
 
    type IGeolocatorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGeolocatorStatics is access all IGeolocatorStatics_Interface'Class;
+   type IGeolocatorStatics_Ptr is access all IGeolocatorStatics;
 
    type IGeolocatorStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IGeolocatorStatics2 is access all IGeolocatorStatics2_Interface'Class;
+   type IGeolocatorStatics2_Ptr is access all IGeolocatorStatics2;
 
    type IGeolocatorWithScalarAccuracy_Interface is interface and WinRt.IInspectable_Interface;
    type IGeolocatorWithScalarAccuracy is access all IGeolocatorWithScalarAccuracy_Interface'Class;
+   type IGeolocatorWithScalarAccuracy_Ptr is access all IGeolocatorWithScalarAccuracy;
 
    type IGeopath_Interface is interface and WinRt.IInspectable_Interface;
    type IGeopath is access all IGeopath_Interface'Class;
@@ -99,6 +117,7 @@ package WinRt.Windows.Devices.Geolocation is
 
    type IGeopathFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGeopathFactory is access all IGeopathFactory_Interface'Class;
+   type IGeopathFactory_Ptr is access all IGeopathFactory;
 
    type IGeopoint_Interface is interface and WinRt.IInspectable_Interface;
    type IGeopoint is access all IGeopoint_Interface'Class;
@@ -106,6 +125,7 @@ package WinRt.Windows.Devices.Geolocation is
 
    type IGeopointFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IGeopointFactory is access all IGeopointFactory_Interface'Class;
+   type IGeopointFactory_Ptr is access all IGeopointFactory;
 
    type IGeoposition_Interface is interface and WinRt.IInspectable_Interface;
    type IGeoposition is access all IGeoposition_Interface'Class;
@@ -113,9 +133,11 @@ package WinRt.Windows.Devices.Geolocation is
 
    type IGeoposition2_Interface is interface and WinRt.IInspectable_Interface;
    type IGeoposition2 is access all IGeoposition2_Interface'Class;
+   type IGeoposition2_Ptr is access all IGeoposition2;
 
    type IGeoshape_Interface is interface and WinRt.IInspectable_Interface;
    type IGeoshape is access all IGeoshape_Interface'Class;
+   type IGeoshape_Ptr is access all IGeoshape;
 
    type IGeovisit_Interface is interface and WinRt.IInspectable_Interface;
    type IGeovisit is access all IGeovisit_Interface'Class;
@@ -127,6 +149,7 @@ package WinRt.Windows.Devices.Geolocation is
 
    type IGeovisitMonitorStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IGeovisitMonitorStatics is access all IGeovisitMonitorStatics_Interface'Class;
+   type IGeovisitMonitorStatics_Ptr is access all IGeovisitMonitorStatics;
 
    type IGeovisitStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
    type IGeovisitStateChangedEventArgs is access all IGeovisitStateChangedEventArgs_Interface'Class;
@@ -694,6 +717,25 @@ package WinRt.Windows.Devices.Geolocation is
       IID_IGeocoordinateSatelliteData : aliased WinRt.IID := (3274339545, 9736, 18252, (145, 44, 6, 221, 73, 15, 74, 247 ));
 
    -----------------------------------------------------------------------------
+   -- type IGeocoordinateSatelliteData2 is interface and WinRt.IInspectable;
+
+      function get_GeometricDilutionOfPrecision
+      (
+         this : access IGeocoordinateSatelliteData2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TimeDilutionOfPrecision
+      (
+         this : access IGeocoordinateSatelliteData2_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IGeocoordinateSatelliteData2 : aliased WinRt.IID := (1981582589, 41373, 23121, (128, 245, 113, 103, 97, 21, 72, 62 ));
+
+   -----------------------------------------------------------------------------
    -- type IGeocoordinateWithPoint is interface and WinRt.IInspectable;
 
       function get_Point
@@ -735,6 +777,18 @@ package WinRt.Windows.Devices.Geolocation is
       return WinRt.Hresult is abstract;
 
       IID_IGeocoordinateWithPositionSourceTimestamp : aliased WinRt.IID := (2235825154, 51697, 17936, (175, 224, 139, 195, 166, 168, 112, 54 ));
+
+   -----------------------------------------------------------------------------
+   -- type IGeocoordinateWithRemoteSource is interface and WinRt.IInspectable;
+
+      function get_IsRemoteSource
+      (
+         this : access IGeocoordinateWithRemoteSource_Interface;
+         RetVal : access WinRt.Boolean
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IGeocoordinateWithRemoteSource : aliased WinRt.IID := (964488151, 60984, 24379, (137, 0, 196, 167, 188, 156, 249, 83 ));
 
    -----------------------------------------------------------------------------
    -- type IGeolocator is interface and WinRt.IInspectable;
@@ -1509,6 +1563,12 @@ package WinRt.Windows.Devices.Geolocation is
    )
    return IReference_DateTime.Kind;
 
+   function get_IsRemoteSource
+   (
+      this : in out Geocoordinate
+   )
+   return WinRt.Boolean;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for GeocoordinateSatelliteData
 
@@ -1536,6 +1596,18 @@ package WinRt.Windows.Devices.Geolocation is
    )
    return IReference_Double.Kind;
 
+   function get_GeometricDilutionOfPrecision
+   (
+      this : in out GeocoordinateSatelliteData
+   )
+   return IReference_Double.Kind;
+
+   function get_TimeDilutionOfPrecision
+   (
+      this : in out GeocoordinateSatelliteData
+   )
+   return IReference_Double.Kind;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for Geolocator
 
@@ -1549,17 +1621,6 @@ package WinRt.Windows.Devices.Geolocation is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for Geolocator
-
-   function get_IsDefaultGeopositionRecommended
-   return WinRt.Boolean;
-
-   procedure put_DefaultGeoposition
-   (
-      value : GenericObject
-   );
-
-   function get_DefaultGeoposition
-   return WinRt.GenericObject;
 
    function RequestAccessAsync
    return WinRt.Windows.Devices.Geolocation.GeolocationAccessStatus;
@@ -1575,6 +1636,17 @@ package WinRt.Windows.Devices.Geolocation is
       startTime : Windows.Foundation.DateTime;
       duration : Windows.Foundation.TimeSpan
    )
+   return WinRt.GenericObject;
+
+   function get_IsDefaultGeopositionRecommended
+   return WinRt.Boolean;
+
+   procedure put_DefaultGeoposition
+   (
+      value : GenericObject
+   );
+
+   function get_DefaultGeoposition
    return WinRt.GenericObject;
 
    -----------------------------------------------------------------------------

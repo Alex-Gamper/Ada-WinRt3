@@ -55,18 +55,47 @@ package WinRt.Windows.Security.Authentication.Web.Core is
 
    type IWebAccountMonitor2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAccountMonitor2 is access all IWebAccountMonitor2_Interface'Class;
+   type IWebAccountMonitor2_Ptr is access all IWebAccountMonitor2;
+
+   type IWebAuthenticationAddAccountResponse_Interface is interface and WinRt.IInspectable_Interface;
+   type IWebAuthenticationAddAccountResponse is access all IWebAuthenticationAddAccountResponse_Interface'Class;
+   type IWebAuthenticationAddAccountResponse_Ptr is access all IWebAuthenticationAddAccountResponse;
+
+   type IWebAuthenticationAddAccountResponseFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWebAuthenticationAddAccountResponseFactory is access all IWebAuthenticationAddAccountResponseFactory_Interface'Class;
+   type IWebAuthenticationAddAccountResponseFactory_Ptr is access all IWebAuthenticationAddAccountResponseFactory;
+
+   type IWebAuthenticationAddAccountResult_Interface is interface and WinRt.IInspectable_Interface;
+   type IWebAuthenticationAddAccountResult is access all IWebAuthenticationAddAccountResult_Interface'Class;
+   type IWebAuthenticationAddAccountResult_Ptr is access all IWebAuthenticationAddAccountResult;
 
    type IWebAuthenticationCoreManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAuthenticationCoreManagerStatics is access all IWebAuthenticationCoreManagerStatics_Interface'Class;
+   type IWebAuthenticationCoreManagerStatics_Ptr is access all IWebAuthenticationCoreManagerStatics;
 
    type IWebAuthenticationCoreManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAuthenticationCoreManagerStatics2 is access all IWebAuthenticationCoreManagerStatics2_Interface'Class;
+   type IWebAuthenticationCoreManagerStatics2_Ptr is access all IWebAuthenticationCoreManagerStatics2;
 
    type IWebAuthenticationCoreManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAuthenticationCoreManagerStatics3 is access all IWebAuthenticationCoreManagerStatics3_Interface'Class;
+   type IWebAuthenticationCoreManagerStatics3_Ptr is access all IWebAuthenticationCoreManagerStatics3;
 
    type IWebAuthenticationCoreManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
    type IWebAuthenticationCoreManagerStatics4 is access all IWebAuthenticationCoreManagerStatics4_Interface'Class;
+   type IWebAuthenticationCoreManagerStatics4_Ptr is access all IWebAuthenticationCoreManagerStatics4;
+
+   type IWebAuthenticationCoreManagerStatics5_Interface is interface and WinRt.IInspectable_Interface;
+   type IWebAuthenticationCoreManagerStatics5 is access all IWebAuthenticationCoreManagerStatics5_Interface'Class;
+   type IWebAuthenticationCoreManagerStatics5_Ptr is access all IWebAuthenticationCoreManagerStatics5;
+
+   type IWebAuthenticationTransferTokenRequest_Interface is interface and WinRt.IInspectable_Interface;
+   type IWebAuthenticationTransferTokenRequest is access all IWebAuthenticationTransferTokenRequest_Interface'Class;
+   type IWebAuthenticationTransferTokenRequest_Ptr is access all IWebAuthenticationTransferTokenRequest;
+
+   type IWebAuthenticationTransferTokenRequestFactory_Interface is interface and WinRt.IInspectable_Interface;
+   type IWebAuthenticationTransferTokenRequestFactory is access all IWebAuthenticationTransferTokenRequestFactory_Interface'Class;
+   type IWebAuthenticationTransferTokenRequestFactory_Ptr is access all IWebAuthenticationTransferTokenRequestFactory;
 
    type IWebProviderError_Interface is interface and WinRt.IInspectable_Interface;
    type IWebProviderError is access all IWebProviderError_Interface'Class;
@@ -74,6 +103,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
 
    type IWebProviderErrorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWebProviderErrorFactory is access all IWebProviderErrorFactory_Interface'Class;
+   type IWebProviderErrorFactory_Ptr is access all IWebProviderErrorFactory;
 
    type IWebTokenRequest_Interface is interface and WinRt.IInspectable_Interface;
    type IWebTokenRequest is access all IWebTokenRequest_Interface'Class;
@@ -81,12 +111,15 @@ package WinRt.Windows.Security.Authentication.Web.Core is
 
    type IWebTokenRequest2_Interface is interface and WinRt.IInspectable_Interface;
    type IWebTokenRequest2 is access all IWebTokenRequest2_Interface'Class;
+   type IWebTokenRequest2_Ptr is access all IWebTokenRequest2;
 
    type IWebTokenRequest3_Interface is interface and WinRt.IInspectable_Interface;
    type IWebTokenRequest3 is access all IWebTokenRequest3_Interface'Class;
+   type IWebTokenRequest3_Ptr is access all IWebTokenRequest3;
 
    type IWebTokenRequestFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWebTokenRequestFactory is access all IWebTokenRequestFactory_Interface'Class;
+   type IWebTokenRequestFactory_Ptr is access all IWebTokenRequestFactory;
 
    type IWebTokenRequestResult_Interface is interface and WinRt.IInspectable_Interface;
    type IWebTokenRequestResult is access all IWebTokenRequestResult_Interface'Class;
@@ -98,6 +131,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
 
    type IWebTokenResponseFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IWebTokenResponseFactory is access all IWebTokenResponseFactory_Interface'Class;
+   type IWebTokenResponseFactory_Ptr is access all IWebTokenResponseFactory;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -120,6 +154,24 @@ package WinRt.Windows.Security.Authentication.Web.Core is
          m_IWebAccountMonitor : access Windows.Security.Authentication.Web.Core.IWebAccountMonitor;
       end record;
    type WebAccountMonitor_Ptr is access all WebAccountMonitor;
+
+   type WebAuthenticationAddAccountResponse is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWebAuthenticationAddAccountResponse : access Windows.Security.Authentication.Web.Core.IWebAuthenticationAddAccountResponse;
+      end record;
+   type WebAuthenticationAddAccountResponse_Ptr is access all WebAuthenticationAddAccountResponse;
+
+   type WebAuthenticationAddAccountResult is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWebAuthenticationAddAccountResult : access Windows.Security.Authentication.Web.Core.IWebAuthenticationAddAccountResult;
+      end record;
+   type WebAuthenticationAddAccountResult_Ptr is access all WebAuthenticationAddAccountResult;
+
+   type WebAuthenticationTransferTokenRequest is new Ada.Finalization.Limited_Controlled with
+      record
+         m_IWebAuthenticationTransferTokenRequest : access Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest;
+      end record;
+   type WebAuthenticationTransferTokenRequest_Ptr is access all WebAuthenticationTransferTokenRequest;
 
    type WebProviderError is new Ada.Finalization.Limited_Controlled with
       record
@@ -163,6 +215,22 @@ package WinRt.Windows.Security.Authentication.Web.Core is
    );
    type FindAllWebAccountsStatus_Ptr is access all FindAllWebAccountsStatus;
 
+   type WebAuthenticationAddAccountStatus is (
+      Success_e,
+      Error_e,
+      NotSupportedByProvider_e,
+      ServiceConnectionError_e,
+      ProviderError_e
+   );
+   for WebAuthenticationAddAccountStatus use (
+      Success_e => 0,
+      Error_e => 1,
+      NotSupportedByProvider_e => 2,
+      ServiceConnectionError_e => 3,
+      ProviderError_e => 4
+   );
+   type WebAuthenticationAddAccountStatus_Ptr is access all WebAuthenticationAddAccountStatus;
+
    type WebTokenRequestPromptType is (
       Default_e,
       ForceAuthentication_e
@@ -196,7 +264,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
    -----------------------------------------------------------------------------
 
    package IMap_HString_HString is new WinRt.Windows.Foundation.Collections.IMap (WinRt.HString, WinRt.HString);
-   IID_IMap_HString_HString : aliased WinRt.IID := (4226059333, 56727, 24112, (145, 253, 12, 247, 210, 117, 185, 198 ));
+   IID_IMap_HString_HString : aliased WinRt.IID := (1702788986, 16, 23556, (172, 82, 209, 114, 250, 202, 146, 50 ));
    function QInterface_IMap_HString_HString is new Generic_QueryInterface (GenericObject_Interface, IMap_HString_HString.Kind, IID_IMap_HString_HString'Access);
 
    package IVectorView_IWebTokenResponse is new WinRt.Windows.Foundation.Collections.IVectorView (IWebTokenResponse);
@@ -314,6 +382,64 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       return WinRt.Hresult is abstract;
 
       IID_IWebAccountMonitor2 : aliased WinRt.IID := (2813182456, 9400, 20225, (154, 229, 36, 84, 94, 113, 35, 58 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWebAuthenticationAddAccountResponse is interface and WinRt.IInspectable;
+
+      function get_WebAccount
+      (
+         this : access IWebAuthenticationAddAccountResponse_Interface;
+         RetVal : access Windows.Security.Credentials.IWebAccount
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Properties
+      (
+         this : access IWebAuthenticationAddAccountResponse_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWebAuthenticationAddAccountResponse : aliased WinRt.IID := (2142245864, 3032, 21547, (180, 134, 131, 35, 22, 58, 75, 133 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWebAuthenticationAddAccountResponseFactory is interface and WinRt.IInspectable;
+
+      function CreateWithAccount
+      (
+         this : access IWebAuthenticationAddAccountResponseFactory_Interface;
+         webAccount : Windows.Security.Credentials.IWebAccount;
+         RetVal : access Windows.Security.Authentication.Web.Core.IWebAuthenticationAddAccountResponse
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWebAuthenticationAddAccountResponseFactory : aliased WinRt.IID := (845123646, 30654, 21349, (129, 217, 3, 33, 205, 216, 33, 149 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWebAuthenticationAddAccountResult is interface and WinRt.IInspectable;
+
+      function get_ResponseData
+      (
+         this : access IWebAuthenticationAddAccountResult_Interface;
+         RetVal : access Windows.Security.Authentication.Web.Core.IWebAuthenticationAddAccountResponse
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ResponseStatus
+      (
+         this : access IWebAuthenticationAddAccountResult_Interface;
+         RetVal : access Windows.Security.Authentication.Web.Core.WebAuthenticationAddAccountStatus
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_ResponseError
+      (
+         this : access IWebAuthenticationAddAccountResult_Interface;
+         RetVal : access Windows.Security.Authentication.Web.Core.IWebProviderError
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWebAuthenticationAddAccountResult : aliased WinRt.IID := (2298138684, 36893, 24570, (146, 89, 112, 29, 60, 160, 142, 242 ));
 
    -----------------------------------------------------------------------------
    -- type IWebAuthenticationCoreManagerStatics is interface and WinRt.IInspectable;
@@ -456,6 +582,90 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       return WinRt.Hresult is abstract;
 
       IID_IWebAuthenticationCoreManagerStatics4 : aliased WinRt.IID := (1424372734, 38624, 16872, (152, 50, 18, 152, 137, 124, 42, 175 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWebAuthenticationCoreManagerStatics5 is interface and WinRt.IInspectable;
+
+      function AddAccountWithTransferTokenAsync
+      (
+         this : access IWebAuthenticationCoreManagerStatics5_Interface;
+         request : Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWebAuthenticationCoreManagerStatics5 : aliased WinRt.IID := (3497795053, 9999, 17748, (153, 102, 39, 183, 223, 5, 185, 101 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWebAuthenticationTransferTokenRequest is interface and WinRt.IInspectable;
+
+      function get_WebAccountProvider
+      (
+         this : access IWebAuthenticationTransferTokenRequest_Interface;
+         RetVal : access Windows.Security.Credentials.IWebAccountProvider
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_TransferToken
+      (
+         this : access IWebAuthenticationTransferTokenRequest_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_TransferToken
+      (
+         this : access IWebAuthenticationTransferTokenRequest_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_Properties
+      (
+         this : access IWebAuthenticationTransferTokenRequest_Interface;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function get_CorrelationId
+      (
+         this : access IWebAuthenticationTransferTokenRequest_Interface;
+         RetVal : access WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      function put_CorrelationId
+      (
+         this : access IWebAuthenticationTransferTokenRequest_Interface;
+         value : WinRt.HString
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWebAuthenticationTransferTokenRequest : aliased WinRt.IID := (2060428726, 21149, 24182, (152, 70, 243, 253, 153, 147, 4, 208 ));
+
+   -----------------------------------------------------------------------------
+   -- type IWebAuthenticationTransferTokenRequestFactory is interface and WinRt.IInspectable;
+
+      function Create
+      (
+         this : access IWebAuthenticationTransferTokenRequestFactory_Interface;
+         provider : Windows.Security.Credentials.IWebAccountProvider;
+         transferToken : WinRt.HString;
+         RetVal : access Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateWithCorrelationId
+      (
+         this : access IWebAuthenticationTransferTokenRequestFactory_Interface;
+         provider : Windows.Security.Credentials.IWebAccountProvider;
+         transferToken : WinRt.HString;
+         correlationId : WinRt.HString;
+         RetVal : access Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest
+      )
+      return WinRt.Hresult is abstract;
+
+      IID_IWebAuthenticationTransferTokenRequestFactory : aliased WinRt.IID := (1595323943, 1220, 24331, (134, 131, 139, 171, 88, 150, 86, 86 ));
 
    -----------------------------------------------------------------------------
    -- type IWebProviderError is interface and WinRt.IInspectable;
@@ -817,8 +1027,119 @@ package WinRt.Windows.Security.Authentication.Web.Core is
    );
 
    -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WebAuthenticationAddAccountResponse
+
+   overriding procedure Initialize (this : in out WebAuthenticationAddAccountResponse);
+   overriding procedure Finalize (this : in out WebAuthenticationAddAccountResponse);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WebAuthenticationAddAccountResponse
+
+   function Constructor
+   (
+      webAccount : Windows.Security.Credentials.WebAccount'Class
+   )
+   return WebAuthenticationAddAccountResponse;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WebAuthenticationAddAccountResponse
+
+   function get_WebAccount
+   (
+      this : in out WebAuthenticationAddAccountResponse
+   )
+   return WinRt.Windows.Security.Credentials.WebAccount'Class;
+
+   function get_Properties
+   (
+      this : in out WebAuthenticationAddAccountResponse
+   )
+   return IMap_HString_HString.Kind;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WebAuthenticationAddAccountResult
+
+   overriding procedure Initialize (this : in out WebAuthenticationAddAccountResult);
+   overriding procedure Finalize (this : in out WebAuthenticationAddAccountResult);
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WebAuthenticationAddAccountResult
+
+   function get_ResponseData
+   (
+      this : in out WebAuthenticationAddAccountResult
+   )
+   return WinRt.Windows.Security.Authentication.Web.Core.WebAuthenticationAddAccountResponse'Class;
+
+   function get_ResponseStatus
+   (
+      this : in out WebAuthenticationAddAccountResult
+   )
+   return WinRt.Windows.Security.Authentication.Web.Core.WebAuthenticationAddAccountStatus;
+
+   function get_ResponseError
+   (
+      this : in out WebAuthenticationAddAccountResult
+   )
+   return WinRt.Windows.Security.Authentication.Web.Core.WebProviderError'Class;
+
+   -----------------------------------------------------------------------------
    -- Static RuntimeClass
    package WebAuthenticationCoreManager is
+
+      function FindAllAccountsAsync
+      (
+         provider : Windows.Security.Credentials.WebAccountProvider'Class
+      )
+      return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
+
+      function FindAllAccountsAsync
+      (
+         provider : Windows.Security.Credentials.WebAccountProvider'Class;
+         clientId : WinRt.WString
+      )
+      return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
+
+      function FindSystemAccountProviderAsync
+      (
+         webAccountProviderId : WinRt.WString
+      )
+      return WinRt.Windows.Security.Credentials.WebAccountProvider;
+
+      function FindSystemAccountProviderAsync
+      (
+         webAccountProviderId : WinRt.WString;
+         authority : WinRt.WString
+      )
+      return WinRt.Windows.Security.Credentials.WebAccountProvider;
+
+      function FindSystemAccountProviderAsync
+      (
+         webAccountProviderId : WinRt.WString;
+         authority : WinRt.WString;
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.Security.Credentials.WebAccountProvider;
+
+      function AddAccountWithTransferTokenAsync
+      (
+         request : Windows.Security.Authentication.Web.Core.WebAuthenticationTransferTokenRequest'Class
+      )
+      return WinRt.Windows.Security.Authentication.Web.Core.WebAuthenticationAddAccountResult;
+
+      function FindAccountProviderAsync
+      (
+         webAccountProviderId : WinRt.WString;
+         authority : WinRt.WString;
+         user : Windows.System.User'Class
+      )
+      return WinRt.Windows.Security.Credentials.WebAccountProvider;
+
+      function CreateWebAccountMonitor
+      (
+         webAccounts : GenericObject
+      )
+      return WinRt.Windows.Security.Authentication.Web.Core.WebAccountMonitor;
 
       function GetTokenSilentlyAsync
       (
@@ -866,55 +1187,70 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       )
       return WinRt.Windows.Security.Credentials.WebAccountProvider;
 
-      function FindAllAccountsAsync
-      (
-         provider : Windows.Security.Credentials.WebAccountProvider'Class
-      )
-      return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
-
-      function FindAllAccountsAsync
-      (
-         provider : Windows.Security.Credentials.WebAccountProvider'Class;
-         clientId : WinRt.WString
-      )
-      return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
-
-      function FindSystemAccountProviderAsync
-      (
-         webAccountProviderId : WinRt.WString
-      )
-      return WinRt.Windows.Security.Credentials.WebAccountProvider;
-
-      function FindSystemAccountProviderAsync
-      (
-         webAccountProviderId : WinRt.WString;
-         authority : WinRt.WString
-      )
-      return WinRt.Windows.Security.Credentials.WebAccountProvider;
-
-      function FindSystemAccountProviderAsync
-      (
-         webAccountProviderId : WinRt.WString;
-         authority : WinRt.WString;
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.Security.Credentials.WebAccountProvider;
-
-      function CreateWebAccountMonitor
-      (
-         webAccounts : GenericObject
-      )
-      return WinRt.Windows.Security.Authentication.Web.Core.WebAccountMonitor;
-
-      function FindAccountProviderAsync
-      (
-         webAccountProviderId : WinRt.WString;
-         authority : WinRt.WString;
-         user : Windows.System.User'Class
-      )
-      return WinRt.Windows.Security.Credentials.WebAccountProvider;
-
    end WebAuthenticationCoreManager;
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Initialization/Finalization for WebAuthenticationTransferTokenRequest
+
+   overriding procedure Initialize (this : in out WebAuthenticationTransferTokenRequest);
+   overriding procedure Finalize (this : in out WebAuthenticationTransferTokenRequest);
+
+   -----------------------------------------------------------------------------
+   -- RuntimeClass Constructors for WebAuthenticationTransferTokenRequest
+
+   function Constructor
+   (
+      provider : Windows.Security.Credentials.WebAccountProvider'Class;
+      transferToken : WinRt.WString
+   )
+   return WebAuthenticationTransferTokenRequest;
+
+   function Constructor
+   (
+      provider : Windows.Security.Credentials.WebAccountProvider'Class;
+      transferToken : WinRt.WString;
+      correlationId : WinRt.WString
+   )
+   return WebAuthenticationTransferTokenRequest;
+
+   -----------------------------------------------------------------------------
+   -- Implemented Interfaces for WebAuthenticationTransferTokenRequest
+
+   function get_WebAccountProvider
+   (
+      this : in out WebAuthenticationTransferTokenRequest
+   )
+   return WinRt.Windows.Security.Credentials.WebAccountProvider'Class;
+
+   function get_TransferToken
+   (
+      this : in out WebAuthenticationTransferTokenRequest
+   )
+   return WinRt.WString;
+
+   procedure put_TransferToken
+   (
+      this : in out WebAuthenticationTransferTokenRequest;
+      value : WinRt.WString
+   );
+
+   function get_Properties
+   (
+      this : in out WebAuthenticationTransferTokenRequest
+   )
+   return IMap_HString_HString.Kind;
+
+   function get_CorrelationId
+   (
+      this : in out WebAuthenticationTransferTokenRequest
+   )
+   return WinRt.WString;
+
+   procedure put_CorrelationId
+   (
+      this : in out WebAuthenticationTransferTokenRequest;
+      value : WinRt.WString
+   );
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for WebProviderError

@@ -43,9 +43,11 @@ package WinRt.Windows.UI is
 
    type IColorHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IColorHelperStatics is access all IColorHelperStatics_Interface'Class;
+   type IColorHelperStatics_Ptr is access all IColorHelperStatics;
 
    type IColorHelperStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IColorHelperStatics2 is access all IColorHelperStatics2_Interface'Class;
+   type IColorHelperStatics2_Ptr is access all IColorHelperStatics2;
 
    type IColors_Interface is interface and WinRt.IInspectable_Interface;
    type IColors is access all IColors_Interface'Class;
@@ -53,6 +55,7 @@ package WinRt.Windows.UI is
 
    type IColorsStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IColorsStatics is access all IColorsStatics_Interface'Class;
+   type IColorsStatics_Ptr is access all IColorsStatics;
 
    type IUIContentRoot_Interface is interface and WinRt.IInspectable_Interface;
    type IUIContentRoot is access all IUIContentRoot_Interface'Class;
@@ -102,6 +105,11 @@ package WinRt.Windows.UI is
    end record with Convention => C_Pass_By_Copy;
    type Color_Ptr is access all Color;
    type Color_Array is array (Natural range <>) of aliased Color;
+
+   type WindowId is record
+      Value : WinRt.UInt64;
+   end record with Convention => C_Pass_By_Copy;
+   type WindowId_Ptr is access all WindowId;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

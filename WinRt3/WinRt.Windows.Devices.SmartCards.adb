@@ -494,6 +494,22 @@ package body WinRt.Windows.Devices.SmartCards is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SmartCardAppletIdGroup
 
+   function Constructor return SmartCardAppletIdGroup is
+      Hr           : WinRt.HResult := S_OK;
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
+      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
+   begin
+      return RetVal : SmartCardAppletIdGroup do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ISmartCardAppletIdGroup := new Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
+            Retval.m_ISmartCardAppletIdGroup.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       displayName : WinRt.WString;
@@ -520,22 +536,6 @@ package body WinRt.Windows.Devices.SmartCards is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_displayName);
-      end return;
-   end;
-
-   function Constructor return SmartCardAppletIdGroup is
-      Hr           : WinRt.HResult := S_OK;
-      tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
-      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
-   begin
-      return RetVal : SmartCardAppletIdGroup do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ISmartCardAppletIdGroup := new Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
-            Retval.m_ISmartCardAppletIdGroup.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4118,27 +4118,6 @@ package body WinRt.Windows.Devices.SmartCards is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SmartCardEmulator
 
-   function IsSupported_SmartCardEmulator
-   return WinRt.Boolean is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
-      m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorStatics3_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased WinRt.Boolean;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_ISmartCardEmulatorStatics3'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
    function GetAppletIdGroupRegistrationsAsync
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -4417,6 +4396,27 @@ package body WinRt.Windows.Devices.SmartCards is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
+   end;
+
+   function IsSupported_SmartCardEmulator
+   return WinRt.Boolean is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
+      m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorStatics3_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      m_ComRetVal      : aliased WinRt.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_ISmartCardEmulatorStatics3'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.IsSupported (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------
@@ -5449,161 +5449,6 @@ package body WinRt.Windows.Devices.SmartCards is
    -----------------------------------------------------------------------------
    -- Static Interfaces for SmartCardProvisioning
 
-   function RequestAttestedVirtualSmartCardCreationAsync
-   (
-      friendlyName : WinRt.WString;
-      administrativeKey : Windows.Storage.Streams.IBuffer;
-      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class
-   )
-   return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
-      m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardProvisioningStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      HStr_friendlyName : constant WinRt.HString := To_HString (friendlyName);
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_SmartCardProvisioning.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_SmartCardProvisioning.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.Windows.Devices.SmartCards.ISmartCardProvisioning;
-      m_IID            : aliased WinRt.IID := (1636105344, 46930, 23784, (161, 54, 245, 113, 116, 187, 147, 9 )); -- Windows.Devices.SmartCards.SmartCardProvisioning;
-      m_HandlerIID     : aliased WinRt.IID := (2049857756, 8942, 23736, (131, 204, 167, 166, 27, 157, 205, 44 ));
-      m_Handler        : AsyncOperationCompletedHandler_SmartCardProvisioning.Kind := new AsyncOperationCompletedHandler_SmartCardProvisioning.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_SmartCardProvisioning.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_SmartCardProvisioning.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardProvisioning.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardProvisioning.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardProvisioning do
-         Hr := RoGetActivationFactory (m_hString, IID_ISmartCardProvisioningStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.RequestAttestedVirtualSmartCardCreationAsync (HStr_friendlyName, administrativeKey, pinPolicy.m_ISmartCardPinPolicy.all, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
-                     Retval.m_ISmartCardProvisioning.all := m_RetVal;
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_friendlyName);
-      end return;
-   end;
-
-   function RequestAttestedVirtualSmartCardCreationAsync
-   (
-      friendlyName : WinRt.WString;
-      administrativeKey : Windows.Storage.Streams.IBuffer;
-      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class;
-      cardId : WinRt.Guid
-   )
-   return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
-      Hr               : WinRt.HResult := S_OK;
-      tmp              : WinRt.HResult := S_OK;
-      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
-      m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardProvisioningStatics2_Interface'Class := null;
-      temp             : WinRt.UInt32 := 0;
-      HStr_friendlyName : constant WinRt.HString := To_HString (friendlyName);
-      m_Temp           : WinRt.Int32 := 0;
-      m_Completed      : WinRt.UInt32 := 0;
-      m_Captured       : WinRt.UInt32 := 0;
-      m_Compare        : constant WinRt.UInt32 := 0;
-
-      use type IAsyncOperation_SmartCardProvisioning.Kind;
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
-
-      m_AsyncOperation : aliased IAsyncOperation_SmartCardProvisioning.Kind;
-      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
-      m_ComRetVal      : aliased WinRt.GenericObject := null;
-      m_RetVal         : aliased WinRt.Windows.Devices.SmartCards.ISmartCardProvisioning;
-      m_IID            : aliased WinRt.IID := (1636105344, 46930, 23784, (161, 54, 245, 113, 116, 187, 147, 9 )); -- Windows.Devices.SmartCards.SmartCardProvisioning;
-      m_HandlerIID     : aliased WinRt.IID := (2049857756, 8942, 23736, (131, 204, 167, 166, 27, 157, 205, 44 ));
-      m_Handler        : AsyncOperationCompletedHandler_SmartCardProvisioning.Kind := new AsyncOperationCompletedHandler_SmartCardProvisioning.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
-
-      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_SmartCardProvisioning.Kind, m_IID'Unchecked_Access);
-      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_SmartCardProvisioning.Kind, GenericObject);
-      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardProvisioning.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardProvisioning.Kind);
-
-      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         pragma unreferenced (asyncInfo);
-      begin
-         if asyncStatus = Completed_e then
-            m_AsyncStatus := AsyncStatus;
-         end if;
-         m_Completed := 1;
-         WakeByAddressSingle (m_Completed'Address);
-      end;
-
-   begin
-      return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardProvisioning do
-         Hr := RoGetActivationFactory (m_hString, IID_ISmartCardProvisioningStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.RequestAttestedVirtualSmartCardCreationAsync (HStr_friendlyName, administrativeKey, pinPolicy.m_ISmartCardPinPolicy.all, cardId, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr = S_OK then
-               m_AsyncOperation := QI (m_ComRetVal);
-               temp := m_ComRetVal.Release;
-               if m_AsyncOperation /= null then
-                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
-                  while m_Captured = m_Compare loop
-                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
-                     m_Captured := m_Completed;
-                  end loop;
-                  if m_AsyncStatus = Completed_e then
-                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
-                     Retval.m_ISmartCardProvisioning.all := m_RetVal;
-                  end if;
-                  temp := m_AsyncOperation.Release;
-                  temp := m_Handler.Release;
-                  if temp = 0 then
-                     Free (m_Handler);
-                  end if;
-               end if;
-            end if;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-         tmp := WindowsDeleteString (HStr_friendlyName);
-      end return;
-   end;
-
    function FromSmartCardAsync
    (
       card : Windows.Devices.SmartCards.SmartCard'Class
@@ -5900,6 +5745,161 @@ package body WinRt.Windows.Devices.SmartCards is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
+   end;
+
+   function RequestAttestedVirtualSmartCardCreationAsync
+   (
+      friendlyName : WinRt.WString;
+      administrativeKey : Windows.Storage.Streams.IBuffer;
+      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class
+   )
+   return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
+      m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardProvisioningStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_friendlyName : constant WinRt.HString := To_HString (friendlyName);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_SmartCardProvisioning.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_SmartCardProvisioning.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.SmartCards.ISmartCardProvisioning;
+      m_IID            : aliased WinRt.IID := (1636105344, 46930, 23784, (161, 54, 245, 113, 116, 187, 147, 9 )); -- Windows.Devices.SmartCards.SmartCardProvisioning;
+      m_HandlerIID     : aliased WinRt.IID := (2049857756, 8942, 23736, (131, 204, 167, 166, 27, 157, 205, 44 ));
+      m_Handler        : AsyncOperationCompletedHandler_SmartCardProvisioning.Kind := new AsyncOperationCompletedHandler_SmartCardProvisioning.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_SmartCardProvisioning.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_SmartCardProvisioning.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardProvisioning.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardProvisioning.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardProvisioning do
+         Hr := RoGetActivationFactory (m_hString, IID_ISmartCardProvisioningStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.RequestAttestedVirtualSmartCardCreationAsync (HStr_friendlyName, administrativeKey, pinPolicy.m_ISmartCardPinPolicy.all, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
+                     Retval.m_ISmartCardProvisioning.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_friendlyName);
+      end return;
+   end;
+
+   function RequestAttestedVirtualSmartCardCreationAsync
+   (
+      friendlyName : WinRt.WString;
+      administrativeKey : Windows.Storage.Streams.IBuffer;
+      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class;
+      cardId : WinRt.Guid
+   )
+   return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
+      Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
+      m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardProvisioningStatics2_Interface'Class := null;
+      temp             : WinRt.UInt32 := 0;
+      HStr_friendlyName : constant WinRt.HString := To_HString (friendlyName);
+      m_Temp           : WinRt.Int32 := 0;
+      m_Completed      : WinRt.UInt32 := 0;
+      m_Captured       : WinRt.UInt32 := 0;
+      m_Compare        : constant WinRt.UInt32 := 0;
+
+      use type IAsyncOperation_SmartCardProvisioning.Kind;
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
+
+      m_AsyncOperation : aliased IAsyncOperation_SmartCardProvisioning.Kind;
+      m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_RetVal         : aliased WinRt.Windows.Devices.SmartCards.ISmartCardProvisioning;
+      m_IID            : aliased WinRt.IID := (1636105344, 46930, 23784, (161, 54, 245, 113, 116, 187, 147, 9 )); -- Windows.Devices.SmartCards.SmartCardProvisioning;
+      m_HandlerIID     : aliased WinRt.IID := (2049857756, 8942, 23736, (131, 204, 167, 166, 27, 157, 205, 44 ));
+      m_Handler        : AsyncOperationCompletedHandler_SmartCardProvisioning.Kind := new AsyncOperationCompletedHandler_SmartCardProvisioning.Kind_Delegate'(IAsyncOperation_Callback'Access, 1, m_HandlerIID'Unchecked_Access);
+
+      function QI is new Generic_QueryInterface (GenericObject_Interface, IAsyncOperation_SmartCardProvisioning.Kind, m_IID'Unchecked_Access);
+      function Convert is new Ada.Unchecked_Conversion (AsyncOperationCompletedHandler_SmartCardProvisioning.Kind, GenericObject);
+      procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardProvisioning.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardProvisioning.Kind);
+
+      procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
+         pragma unreferenced (asyncInfo);
+      begin
+         if asyncStatus = Completed_e then
+            m_AsyncStatus := AsyncStatus;
+         end if;
+         m_Completed := 1;
+         WakeByAddressSingle (m_Completed'Address);
+      end;
+
+   begin
+      return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardProvisioning do
+         Hr := RoGetActivationFactory (m_hString, IID_ISmartCardProvisioningStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.RequestAttestedVirtualSmartCardCreationAsync (HStr_friendlyName, administrativeKey, pinPolicy.m_ISmartCardPinPolicy.all, cardId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr = S_OK then
+               m_AsyncOperation := QI (m_ComRetVal);
+               temp := m_ComRetVal.Release;
+               if m_AsyncOperation /= null then
+                  Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
+                  while m_Captured = m_Compare loop
+                     m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
+                     m_Captured := m_Completed;
+                  end loop;
+                  if m_AsyncStatus = Completed_e then
+                     Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
+                     Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
+                     Retval.m_ISmartCardProvisioning.all := m_RetVal;
+                  end if;
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
+                     Free (m_Handler);
+                  end if;
+               end if;
+            end if;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_friendlyName);
+      end return;
    end;
 
    -----------------------------------------------------------------------------
