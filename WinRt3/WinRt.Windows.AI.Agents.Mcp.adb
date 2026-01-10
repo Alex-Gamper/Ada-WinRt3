@@ -638,13 +638,13 @@ package body WinRt.Windows.AI.Agents.Mcp is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_McpServerInfo_Array is new To_Ada_Type (WinRt.Windows.AI.Agents.Mcp.IMcpServerInfo, WinRt.Windows.AI.Agents.Mcp.IMcpServerInfo_Ptr); 
+      function To_Ada_IMcpServerInfo is new To_Ada_Type (WinRt.Windows.AI.Agents.Mcp.IMcpServerInfo, WinRt.Windows.AI.Agents.Mcp.IMcpServerInfo_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Agents.Mcp.McpServerInfo_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IMcpServerInfo := new Windows.AI.Agents.Mcp.IMcpServerInfo;
-            Retval (i).m_IMcpServerInfo.all := To_Ada_McpServerInfo_Array (m_ComRetVal, i);
+            Retval (i).m_IMcpServerInfo.all := To_Ada_IMcpServerInfo (m_ComRetVal, i);
          end loop;
       end return;
    end;

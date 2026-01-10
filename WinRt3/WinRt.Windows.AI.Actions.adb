@@ -795,13 +795,13 @@ package body WinRt.Windows.AI.Actions is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_NamedActionEntity_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.INamedActionEntity, WinRt.Windows.AI.Actions.INamedActionEntity_Ptr); 
+      function To_Ada_INamedActionEntity is new To_Ada_Type (WinRt.Windows.AI.Actions.INamedActionEntity, WinRt.Windows.AI.Actions.INamedActionEntity_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.NamedActionEntity_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_INamedActionEntity := new Windows.AI.Actions.INamedActionEntity;
-            Retval (i).m_INamedActionEntity.all := To_Ada_NamedActionEntity_Array (m_ComRetVal, i);
+            Retval (i).m_INamedActionEntity.all := To_Ada_INamedActionEntity (m_ComRetVal, i);
          end loop;
       end return;
    end;
@@ -844,13 +844,13 @@ package body WinRt.Windows.AI.Actions is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_NamedActionEntity_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.INamedActionEntity, WinRt.Windows.AI.Actions.INamedActionEntity_Ptr); 
+      function To_Ada_INamedActionEntity is new To_Ada_Type (WinRt.Windows.AI.Actions.INamedActionEntity, WinRt.Windows.AI.Actions.INamedActionEntity_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.NamedActionEntity_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_INamedActionEntity := new Windows.AI.Actions.INamedActionEntity;
-            Retval (i).m_INamedActionEntity.all := To_Ada_NamedActionEntity_Array (m_ComRetVal, i);
+            Retval (i).m_INamedActionEntity.all := To_Ada_INamedActionEntity (m_ComRetVal, i);
          end loop;
       end return;
    end;
@@ -1705,13 +1705,13 @@ package body WinRt.Windows.AI.Actions is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_ContactActionEntity_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.IContactActionEntity, WinRt.Windows.AI.Actions.IContactActionEntity_Ptr); 
+      function To_Ada_IContactActionEntity is new To_Ada_Type (WinRt.Windows.AI.Actions.IContactActionEntity, WinRt.Windows.AI.Actions.IContactActionEntity_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.ContactActionEntity_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IContactActionEntity := new Windows.AI.Actions.IContactActionEntity;
-            Retval (i).m_IContactActionEntity.all := To_Ada_ContactActionEntity_Array (m_ComRetVal, i);
+            Retval (i).m_IContactActionEntity.all := To_Ada_IContactActionEntity (m_ComRetVal, i);
          end loop;
       end return;
    end;
@@ -1736,13 +1736,13 @@ package body WinRt.Windows.AI.Actions is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_RemoteFileActionEntity_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.IRemoteFileActionEntity, WinRt.Windows.AI.Actions.IRemoteFileActionEntity_Ptr); 
+      function To_Ada_IRemoteFileActionEntity is new To_Ada_Type (WinRt.Windows.AI.Actions.IRemoteFileActionEntity, WinRt.Windows.AI.Actions.IRemoteFileActionEntity_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.RemoteFileActionEntity_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IRemoteFileActionEntity := new Windows.AI.Actions.IRemoteFileActionEntity;
-            Retval (i).m_IRemoteFileActionEntity.all := To_Ada_RemoteFileActionEntity_Array (m_ComRetVal, i);
+            Retval (i).m_IRemoteFileActionEntity.all := To_Ada_IRemoteFileActionEntity (m_ComRetVal, i);
          end loop;
       end return;
    end;
@@ -1783,13 +1783,13 @@ package body WinRt.Windows.AI.Actions is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_RemoteFileActionEntity_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.IRemoteFileActionEntity, WinRt.Windows.AI.Actions.IRemoteFileActionEntity_Ptr); 
+      function To_Ada_IRemoteFileActionEntity is new To_Ada_Type (WinRt.Windows.AI.Actions.IRemoteFileActionEntity, WinRt.Windows.AI.Actions.IRemoteFileActionEntity_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.RemoteFileActionEntity_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IRemoteFileActionEntity := new Windows.AI.Actions.IRemoteFileActionEntity;
-            Retval (i).m_IRemoteFileActionEntity.all := To_Ada_RemoteFileActionEntity_Array (m_ComRetVal, i);
+            Retval (i).m_IRemoteFileActionEntity.all := To_Ada_IRemoteFileActionEntity (m_ComRetVal, i);
          end loop;
       end return;
    end;
@@ -1870,13 +1870,13 @@ package body WinRt.Windows.AI.Actions is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_ActionEntity_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.IActionEntity, WinRt.Windows.AI.Actions.IActionEntity_Ptr); 
+      function To_Ada_IActionEntity is new To_Ada_Type (WinRt.Windows.AI.Actions.IActionEntity, WinRt.Windows.AI.Actions.IActionEntity_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.ActionEntity_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IActionEntity := new Windows.AI.Actions.IActionEntity;
-            Retval (i).m_IActionEntity.all := To_Ada_ActionEntity_Array (m_ComRetVal, i);
+            Retval (i).m_IActionEntity.all := To_Ada_IActionEntity (m_ComRetVal, i);
          end loop;
       end return;
    end;
@@ -2780,13 +2780,13 @@ package body WinRt.Windows.AI.Actions is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_ContactActionEntity_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.IContactActionEntity, WinRt.Windows.AI.Actions.IContactActionEntity_Ptr); 
+      function To_Ada_IContactActionEntity is new To_Ada_Type (WinRt.Windows.AI.Actions.IContactActionEntity, WinRt.Windows.AI.Actions.IContactActionEntity_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.ContactActionEntity_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IContactActionEntity := new Windows.AI.Actions.IContactActionEntity;
-            Retval (i).m_IContactActionEntity.all := To_Ada_ContactActionEntity_Array (m_ComRetVal, i);
+            Retval (i).m_IContactActionEntity.all := To_Ada_IContactActionEntity (m_ComRetVal, i);
          end loop;
       end return;
    end;

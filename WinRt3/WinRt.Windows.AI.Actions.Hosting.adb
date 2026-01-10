@@ -77,13 +77,13 @@ package body WinRt.Windows.AI.Actions.Hosting is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_ActionDefinition_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionDefinition, WinRt.Windows.AI.Actions.Hosting.IActionDefinition_Ptr); 
+      function To_Ada_IActionDefinition is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionDefinition, WinRt.Windows.AI.Actions.Hosting.IActionDefinition_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.Hosting.ActionDefinition_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IActionDefinition := new Windows.AI.Actions.Hosting.IActionDefinition;
-            Retval (i).m_IActionDefinition.all := To_Ada_ActionDefinition_Array (m_ComRetVal, i);
+            Retval (i).m_IActionDefinition.all := To_Ada_IActionDefinition (m_ComRetVal, i);
          end loop;
       end return;
    end;
@@ -147,13 +147,13 @@ package body WinRt.Windows.AI.Actions.Hosting is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_ActionInstance_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionInstance, WinRt.Windows.AI.Actions.Hosting.IActionInstance_Ptr); 
+      function To_Ada_IActionInstance is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionInstance, WinRt.Windows.AI.Actions.Hosting.IActionInstance_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.Hosting.ActionInstance_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IActionInstance := new Windows.AI.Actions.Hosting.IActionInstance;
-            Retval (i).m_IActionInstance.all := To_Ada_ActionInstance_Array (m_ComRetVal, i);
+            Retval (i).m_IActionInstance.all := To_Ada_IActionInstance (m_ComRetVal, i);
          end loop;
       end return;
    end;
@@ -185,13 +185,13 @@ package body WinRt.Windows.AI.Actions.Hosting is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_ActionInstance_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionInstance, WinRt.Windows.AI.Actions.Hosting.IActionInstance_Ptr); 
+      function To_Ada_IActionInstance is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionInstance, WinRt.Windows.AI.Actions.Hosting.IActionInstance_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.Hosting.ActionInstance_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IActionInstance := new Windows.AI.Actions.Hosting.IActionInstance;
-            Retval (i).m_IActionInstance.all := To_Ada_ActionInstance_Array (m_ComRetVal, i);
+            Retval (i).m_IActionInstance.all := To_Ada_IActionInstance (m_ComRetVal, i);
          end loop;
       end return;
    end;
@@ -220,13 +220,13 @@ package body WinRt.Windows.AI.Actions.Hosting is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_ActionDefinition_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionDefinition, WinRt.Windows.AI.Actions.Hosting.IActionDefinition_Ptr); 
+      function To_Ada_IActionDefinition is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionDefinition, WinRt.Windows.AI.Actions.Hosting.IActionDefinition_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.Hosting.ActionDefinition_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IActionDefinition := new Windows.AI.Actions.Hosting.IActionDefinition;
-            Retval (i).m_IActionDefinition.all := To_Ada_ActionDefinition_Array (m_ComRetVal, i);
+            Retval (i).m_IActionDefinition.all := To_Ada_IActionDefinition (m_ComRetVal, i);
          end loop;
       end return;
    end;
@@ -372,13 +372,13 @@ package body WinRt.Windows.AI.Actions.Hosting is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_ActionEntityRegistrationInfo_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo, WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo_Ptr); 
+      function To_Ada_IActionEntityRegistrationInfo is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo, WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.Hosting.ActionEntityRegistrationInfo_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IActionEntityRegistrationInfo := new Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo;
-            Retval (i).m_IActionEntityRegistrationInfo.all := To_Ada_ActionEntityRegistrationInfo_Array (m_ComRetVal, i);
+            Retval (i).m_IActionEntityRegistrationInfo.all := To_Ada_IActionEntityRegistrationInfo (m_ComRetVal, i);
          end loop;
       end return;
    end;
@@ -403,13 +403,13 @@ package body WinRt.Windows.AI.Actions.Hosting is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_ActionEntityRegistrationInfo_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo, WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo_Ptr); 
+      function To_Ada_IActionEntityRegistrationInfo is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo, WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.Hosting.ActionEntityRegistrationInfo_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IActionEntityRegistrationInfo := new Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo;
-            Retval (i).m_IActionEntityRegistrationInfo.all := To_Ada_ActionEntityRegistrationInfo_Array (m_ComRetVal, i);
+            Retval (i).m_IActionEntityRegistrationInfo.all := To_Ada_IActionEntityRegistrationInfo (m_ComRetVal, i);
          end loop;
       end return;
    end;
@@ -434,13 +434,13 @@ package body WinRt.Windows.AI.Actions.Hosting is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_ActionOverload_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionOverload, WinRt.Windows.AI.Actions.Hosting.IActionOverload_Ptr); 
+      function To_Ada_IActionOverload is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionOverload, WinRt.Windows.AI.Actions.Hosting.IActionOverload_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.Hosting.ActionOverload_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IActionOverload := new Windows.AI.Actions.Hosting.IActionOverload;
-            Retval (i).m_IActionOverload.all := To_Ada_ActionOverload_Array (m_ComRetVal, i);
+            Retval (i).m_IActionOverload.all := To_Ada_IActionOverload (m_ComRetVal, i);
          end loop;
       end return;
    end;
@@ -937,13 +937,13 @@ package body WinRt.Windows.AI.Actions.Hosting is
          return Integer(m_ComRetValSize);
       end;
 
-      function To_Ada_ActionEntityRegistrationInfo_Array is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo, WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo_Ptr); 
+      function To_Ada_IActionEntityRegistrationInfo is new To_Ada_Type (WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo, WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo_Ptr); 
 
    begin
       return RetVal : WinRt.Windows.AI.Actions.Hosting.ActionEntityRegistrationInfo_Array (1..GetArraySize) do
          for i in RetVal'Range loop
             Retval (i).m_IActionEntityRegistrationInfo := new Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo;
-            Retval (i).m_IActionEntityRegistrationInfo.all := To_Ada_ActionEntityRegistrationInfo_Array (m_ComRetVal, i);
+            Retval (i).m_IActionEntityRegistrationInfo.all := To_Ada_IActionEntityRegistrationInfo (m_ComRetVal, i);
          end loop;
       end return;
    end;

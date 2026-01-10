@@ -57,9 +57,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' or '$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <AdaTarget>x86_64-w64-mingw32</AdaTarget>
-    <GnatRoot>C:\msys64\ucrt64</GnatRoot>
-    <GnatRootRTS>C:\msys64\ucrt64\lib\gcc\x86_64-w64-mingw32\13.2.0</GnatRootRTS>
-    <GnatMingwRoot>C:\msys64\ucrt64</GnatMingwRoot>
+    <GnatRoot>C:\Users\alexg\AppData\Local\alire\cache\toolchains\gnat_native_14.2.1_2540cccb</GnatRoot>
+    <GnatRootRTS>C:\Users\alexg\AppData\Local\alire\cache\toolchains\gnat_native_14.2.1_2540cccb\lib\gcc\x86_64-w64-mingw32\14.2.0</GnatRootRTS>
+    <GnatMingwRoot>C:\Users\alexg\AppData\Local\alire\cache\toolchains\gnat_native_14.2.1_2540cccb</GnatMingwRoot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32' or '$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <AdaTarget>Unknown</AdaTarget>
@@ -105,7 +105,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
