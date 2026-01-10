@@ -1821,7 +1821,7 @@ package WinRt.Windows.AI.Actions is
    (
       this : in out ActionInvocationContext
    )
-   return WinRt.Windows.AI.Actions.NamedActionEntity_Array'Class;
+   return WinRt.Windows.AI.Actions.NamedActionEntity_Array;
 
    procedure SetOutputEntity
    (
@@ -1834,7 +1834,7 @@ package WinRt.Windows.AI.Actions is
    (
       this : in out ActionInvocationContext
    )
-   return WinRt.Windows.AI.Actions.NamedActionEntity_Array'Class;
+   return WinRt.Windows.AI.Actions.NamedActionEntity_Array;
 
    function get_Result
    (
@@ -2098,13 +2098,13 @@ package WinRt.Windows.AI.Actions is
    (
       this : in out AppointmentActionEntity
    )
-   return WinRt.Windows.AI.Actions.ContactActionEntity_Array'Class;
+   return WinRt.Windows.AI.Actions.ContactActionEntity_Array;
 
    function GetPresentedFiles
    (
       this : in out AppointmentActionEntity
    )
-   return WinRt.Windows.AI.Actions.RemoteFileActionEntity_Array'Class;
+   return WinRt.Windows.AI.Actions.RemoteFileActionEntity_Array;
 
    procedure SetPresentedFiles
    (
@@ -2116,7 +2116,7 @@ package WinRt.Windows.AI.Actions is
    (
       this : in out AppointmentActionEntity
    )
-   return WinRt.Windows.AI.Actions.RemoteFileActionEntity_Array'Class;
+   return WinRt.Windows.AI.Actions.RemoteFileActionEntity_Array;
 
    procedure SetSharedFiles
    (
@@ -2143,7 +2143,7 @@ package WinRt.Windows.AI.Actions is
    (
       this : in out ArrayActionEntity
    )
-   return WinRt.Windows.AI.Actions.ActionEntity_Array'Class;
+   return WinRt.Windows.AI.Actions.ActionEntity_Array;
 
    function get_CustomElementKind
    (
@@ -2436,7 +2436,7 @@ package WinRt.Windows.AI.Actions is
    (
       this : in out RemoteFileActionEntity
    )
-   return WinRt.Windows.AI.Actions.ContactActionEntity_Array'Class;
+   return WinRt.Windows.AI.Actions.ContactActionEntity_Array;
 
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for StreamingTextActionEntity

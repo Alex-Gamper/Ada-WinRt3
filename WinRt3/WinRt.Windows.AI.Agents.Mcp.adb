@@ -626,16 +626,26 @@ package body WinRt.Windows.AI.Agents.Mcp is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Agents.Mcp.IMcpServerInfo;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Agents.Mcp.IMcpServerInfo_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
-   begin
-      return RetVal : WinRt.Windows.AI.Agents.Mcp.McpServerInfo do
+
+      function GetArraySize return Integer is
+      begin
          Hr := this.m_IMcpServerRegistry.all.GetMcpServerInfos (m_ComRetValSize'Access, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMcpServerInfo := new Windows.AI.Agents.Mcp.IMcpServerInfo;
-         Retval.m_IMcpServerInfo.all := m_ComRetVal;
+         return Integer(m_ComRetValSize);
+      end;
+
+      function To_Ada_McpServerInfo_Array is new To_Ada_Type (WinRt.Windows.AI.Agents.Mcp.IMcpServerInfo, WinRt.Windows.AI.Agents.Mcp.IMcpServerInfo_Ptr); 
+
+   begin
+      return RetVal : WinRt.Windows.AI.Agents.Mcp.McpServerInfo_Array (1..GetArraySize) do
+         for i in RetVal'Range loop
+            Retval (i).m_IMcpServerInfo := new Windows.AI.Agents.Mcp.IMcpServerInfo;
+            Retval (i).m_IMcpServerInfo.all := To_Ada_McpServerInfo_Array (m_ComRetVal, i);
+         end loop;
       end return;
    end;
 

@@ -5709,7 +5709,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    -- (
       -- this : in out SelectorAutomationPeer
    -- )
-   -- return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array'Class;
+   -- return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array;
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ComboBoxAutomationPeer
 
@@ -6508,7 +6508,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    -- (
       -- this : in out LoopingSelectorAutomationPeer
    -- )
-   -- return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array'Class;
+   -- return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array;
    function FindItemByProperty
    (
       this : in out LoopingSelectorAutomationPeer;
@@ -7041,7 +7041,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    -- (
       -- this : in out PivotAutomationPeer
    -- )
-   -- return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array'Class;
+   -- return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array;
    function get_HorizontallyScrollable
    (
       this : in out PivotAutomationPeer

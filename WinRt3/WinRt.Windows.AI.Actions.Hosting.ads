@@ -471,7 +471,7 @@ package WinRt.Windows.AI.Actions.Hosting is
    (
       this : in out ActionCatalog
    )
-   return WinRt.Windows.AI.Actions.Hosting.ActionDefinition_Array'Class;
+   return WinRt.Windows.AI.Actions.Hosting.ActionDefinition_Array;
 
    function add_Changed
    (
@@ -491,7 +491,7 @@ package WinRt.Windows.AI.Actions.Hosting is
       this : in out ActionCatalog;
       inputEntities : Windows.AI.Actions.ActionEntity_Array
    )
-   return WinRt.Windows.AI.Actions.Hosting.ActionInstance_Array'Class;
+   return WinRt.Windows.AI.Actions.Hosting.ActionInstance_Array;
 
    function GetActionsForInputs
    (
@@ -499,13 +499,13 @@ package WinRt.Windows.AI.Actions.Hosting is
       inputEntities : Windows.AI.Actions.ActionEntity_Array;
       invokerWindowId : Windows.UI.WindowId
    )
-   return WinRt.Windows.AI.Actions.Hosting.ActionInstance_Array'Class;
+   return WinRt.Windows.AI.Actions.Hosting.ActionInstance_Array;
 
    function GetActionsForCurrentApp
    (
       this : in out ActionCatalog
    )
-   return WinRt.Windows.AI.Actions.Hosting.ActionDefinition_Array'Class;
+   return WinRt.Windows.AI.Actions.Hosting.ActionDefinition_Array;
 
    procedure Close
    (
@@ -549,19 +549,19 @@ package WinRt.Windows.AI.Actions.Hosting is
    (
       this : in out ActionDefinition
    )
-   return WinRt.Windows.AI.Actions.Hosting.ActionEntityRegistrationInfo_Array'Class;
+   return WinRt.Windows.AI.Actions.Hosting.ActionEntityRegistrationInfo_Array;
 
    function GetOutputs
    (
       this : in out ActionDefinition
    )
-   return WinRt.Windows.AI.Actions.Hosting.ActionEntityRegistrationInfo_Array'Class;
+   return WinRt.Windows.AI.Actions.Hosting.ActionEntityRegistrationInfo_Array;
 
    function GetOverloads
    (
       this : in out ActionDefinition
    )
-   return WinRt.Windows.AI.Actions.Hosting.ActionOverload_Array'Class;
+   return WinRt.Windows.AI.Actions.Hosting.ActionOverload_Array;
 
    function get_DisplaysUI
    (
@@ -709,7 +709,7 @@ package WinRt.Windows.AI.Actions.Hosting is
    (
       this : in out ActionOverload
    )
-   return WinRt.Windows.AI.Actions.Hosting.ActionEntityRegistrationInfo_Array'Class;
+   return WinRt.Windows.AI.Actions.Hosting.ActionEntityRegistrationInfo_Array;
 
    procedure InvokeAsync
    (
