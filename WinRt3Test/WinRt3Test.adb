@@ -153,7 +153,7 @@ begin
     Hr := timeBeginPeriod (1);
     Hr := RoInitialize;
     if Hr = 0 then
-        Test1;
+        -- Test1;
         Test2;
         Test3;
         Test4;

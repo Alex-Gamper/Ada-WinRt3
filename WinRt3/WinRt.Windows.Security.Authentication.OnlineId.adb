@@ -132,13 +132,14 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IAsyncAction;
+      m_Wrapped        : aliased Windows.Foundation.IAsyncAction_Ptr := new Windows.Foundation.IAsyncAction;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.OnlineId.SignOutUserOperation do
          Hr := this.m_IOnlineIdAuthenticator.all.SignOutUserAsync (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAsyncAction := new Windows.Foundation.IAsyncAction;
+         Retval.m_IAsyncAction := m_Wrapped;
          Retval.m_IAsyncAction.all := m_ComRetVal;
       end return;
    end;

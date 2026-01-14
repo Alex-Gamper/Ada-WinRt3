@@ -17,7 +17,7 @@
     <RootNamespace>WinRtXamlTest</RootNamespace>
     <TargetName>$(RootNamespace)</TargetName>
     <VisualAdaVersion>1.2.0.0</VisualAdaVersion>
-    <UseMicrosoftLinker>true</UseMicrosoftLinker>
+    <UseMicrosoftLinker>false</UseMicrosoftLinker>
     <AppxPackage>true</AppxPackage>
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
@@ -218,7 +218,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateThumbprint>67B55BF07E1AC138805B59392CFFFCA198CA986E</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>18744C1FF1A08837695E50E222FB9F97AE288883</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>WinRt3XamlTest_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
@@ -323,7 +323,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(GnatMingwRoot)\lib;$(GnatRootRTSAda);$(GnatRootRTSAdaLib)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>windowsapp.lib;msvcrt.lib;libgnat.a;libgnarl.a;libgcc.a;libgcc_eh.a;libmingwex.a;libmingw32.a;libmsvcrt.a;kernel32.lib;user32.lib;shell32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ucrt.lib;windowsapp.lib;msvcrt.lib;libgnat.a;libgnarl.a;libgcc.a;libgcc_eh.a;libmingwex.a;libmingw32.a;libmsvcrt.a;kernel32.lib;user32.lib;shell32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <FullProgramDatabaseFile>true</FullProgramDatabaseFile>

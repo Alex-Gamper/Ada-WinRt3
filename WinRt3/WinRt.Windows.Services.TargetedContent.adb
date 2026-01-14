@@ -1697,13 +1697,14 @@ package body WinRt.Windows.Services.TargetedContent is
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamReference_Ptr := new Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       return RetVal : WinRt.Windows.Services.TargetedContent.TargetedContentFile do
          Hr := this.m_ITargetedContentValue.all.get_File (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRandomAccessStreamReference := new Windows.Storage.Streams.IRandomAccessStreamReference;
+         Retval.m_IRandomAccessStreamReference := m_Wrapped;
          Retval.m_IRandomAccessStreamReference.all := m_ComRetVal;
       end return;
    end;

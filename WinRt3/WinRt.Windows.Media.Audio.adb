@@ -3910,6 +3910,7 @@ package body WinRt.Windows.Media.Audio is
       m_Interface      : WinRt.Windows.Media.Audio.IAudioGraph2 := null;
       temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IClosable;
+      m_Wrapped        : aliased Windows.Foundation.IClosable_Ptr := new Windows.Foundation.IClosable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioGraph_Interface, WinRt.Windows.Media.Audio.IAudioGraph2, WinRt.Windows.Media.Audio.IID_IAudioGraph2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioGraphBatchUpdater do
@@ -3919,7 +3920,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IClosable := new Windows.Foundation.IClosable;
+         Retval.m_IClosable := m_Wrapped;
          Retval.m_IClosable.all := m_ComRetVal;
       end return;
    end;

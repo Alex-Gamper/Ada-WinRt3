@@ -708,13 +708,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
       m_Factory    : access ISettingsCommandFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Popups.IUICommand;
+      m_Wrapped    : Windows.UI.Popups.IUICommand_Ptr := new Windows.UI.Popups.IUICommand;
       HStr_label : constant WinRt.HString := To_HString (label);
    begin
       return RetVal : SettingsCommand do
          Hr := RoGetActivationFactory (m_hString, IID_ISettingsCommandFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSettingsCommand (settingsCommandId, HStr_label, handler, m_ComRetVal'Access);
-            Retval.m_IUICommand := new Windows.UI.Popups.IUICommand;
+            Retval.m_IUICommand := m_Wrapped;
             Retval.m_IUICommand.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -734,6 +735,7 @@ package body WinRt.Windows.UI.ApplicationSettings is
       m_Factory        : access WinRt.Windows.UI.ApplicationSettings.ISettingsCommandStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Popups.IUICommand;
+      m_Wrapped        : aliased Windows.UI.Popups.IUICommand_Ptr := new Windows.UI.Popups.IUICommand;
    begin
       return RetVal : WinRt.Windows.UI.ApplicationSettings.SettingsCommand do
          Hr := RoGetActivationFactory (m_hString, IID_ISettingsCommandStatics'Access , m_Factory'Address);
@@ -743,7 +745,7 @@ package body WinRt.Windows.UI.ApplicationSettings is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUICommand := new Windows.UI.Popups.IUICommand;
+            Retval.m_IUICommand := m_Wrapped;
             Retval.m_IUICommand.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

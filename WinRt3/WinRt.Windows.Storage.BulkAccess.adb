@@ -201,13 +201,14 @@ package body WinRt.Windows.Storage.BulkAccess is
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemThumbnail do
          Hr := this.m_IStorageItemInformation.all.get_Thumbnail (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+         Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
          Retval.m_IRandomAccessStreamWithContentType.all := m_ComRetVal;
       end return;
    end;
@@ -2722,13 +2723,14 @@ package body WinRt.Windows.Storage.BulkAccess is
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemThumbnail do
          Hr := this.m_IStorageItemInformation.all.get_Thumbnail (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+         Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
          Retval.m_IRandomAccessStreamWithContentType.all := m_ComRetVal;
       end return;
    end;
