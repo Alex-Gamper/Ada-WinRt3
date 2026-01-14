@@ -1544,6 +1544,7 @@ package body WinRt.Windows.Devices.Enumeration is
       m_AsyncOperation : aliased IAsyncOperation_DeviceThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (3133178787, 14873, 20594, (157, 144, 19, 51, 35, 160, 73, 186 )); -- Windows.Devices.Enumeration.DeviceThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (2262062514, 55189, 21836, (156, 49, 191, 101, 57, 52, 156, 25 ));
@@ -1577,7 +1578,7 @@ package body WinRt.Windows.Devices.Enumeration is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1610,6 +1611,7 @@ package body WinRt.Windows.Devices.Enumeration is
       m_AsyncOperation : aliased IAsyncOperation_DeviceThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (3133178787, 14873, 20594, (157, 144, 19, 51, 35, 160, 73, 186 )); -- Windows.Devices.Enumeration.DeviceThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (2262062514, 55189, 21836, (156, 49, 191, 101, 57, 52, 156, 25 ));
@@ -1643,7 +1645,7 @@ package body WinRt.Windows.Devices.Enumeration is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;

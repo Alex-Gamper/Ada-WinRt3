@@ -6637,11 +6637,12 @@ package body WinRt.Windows.Networking.Sockets is
       tmp          : WinRt.HResult := S_OK;
       m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.WebSocketKeepAlive");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTask;
+      m_Wrapped    : Windows.ApplicationModel.Background.IBackgroundTask_Ptr := new Windows.ApplicationModel.Background.IBackgroundTask;
    begin
       return RetVal : WebSocketKeepAlive do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IBackgroundTask := new Windows.ApplicationModel.Background.IBackgroundTask;
+            Retval.m_IBackgroundTask := m_Wrapped;
             Retval.m_IBackgroundTask.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

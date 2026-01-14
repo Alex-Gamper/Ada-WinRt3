@@ -958,11 +958,12 @@ package body WinRt.Windows.Storage is
       tmp          : WinRt.HResult := S_OK;
       m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.ApplicationDataCompositeValue");
       m_ComRetVal  : aliased Windows.Foundation.Collections.IPropertySet;
+      m_Wrapped    : Windows.Foundation.Collections.IPropertySet_Ptr := new Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : ApplicationDataCompositeValue do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+            Retval.m_IPropertySet := m_Wrapped;
             Retval.m_IPropertySet.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6478,6 +6479,7 @@ package body WinRt.Windows.Storage is
       m_AsyncOperation : aliased IAsyncOperation_StorageItemThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (298306654, 49230, 20711, (166, 94, 111, 105, 3, 105, 12, 22 )); -- Windows.Storage.FileProperties.StorageItemThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (1828730610, 43176, 20573, (176, 66, 208, 135, 220, 31, 193, 183 ));
@@ -6514,7 +6516,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6550,6 +6552,7 @@ package body WinRt.Windows.Storage is
       m_AsyncOperation : aliased IAsyncOperation_StorageItemThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (298306654, 49230, 20711, (166, 94, 111, 105, 3, 105, 12, 22 )); -- Windows.Storage.FileProperties.StorageItemThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (1828730610, 43176, 20573, (176, 66, 208, 135, 220, 31, 193, 183 ));
@@ -6586,7 +6589,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6623,6 +6626,7 @@ package body WinRt.Windows.Storage is
       m_AsyncOperation : aliased IAsyncOperation_StorageItemThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (298306654, 49230, 20711, (166, 94, 111, 105, 3, 105, 12, 22 )); -- Windows.Storage.FileProperties.StorageItemThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (1828730610, 43176, 20573, (176, 66, 208, 135, 220, 31, 193, 183 ));
@@ -6659,7 +6663,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6790,6 +6794,7 @@ package body WinRt.Windows.Storage is
       m_AsyncOperation : aliased IAsyncOperation_StorageItemThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (298306654, 49230, 20711, (166, 94, 111, 105, 3, 105, 12, 22 )); -- Windows.Storage.FileProperties.StorageItemThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (1828730610, 43176, 20573, (176, 66, 208, 135, 220, 31, 193, 183 ));
@@ -6826,7 +6831,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6862,6 +6867,7 @@ package body WinRt.Windows.Storage is
       m_AsyncOperation : aliased IAsyncOperation_StorageItemThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (298306654, 49230, 20711, (166, 94, 111, 105, 3, 105, 12, 22 )); -- Windows.Storage.FileProperties.StorageItemThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (1828730610, 43176, 20573, (176, 66, 208, 135, 220, 31, 193, 183 ));
@@ -6898,7 +6904,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6935,6 +6941,7 @@ package body WinRt.Windows.Storage is
       m_AsyncOperation : aliased IAsyncOperation_StorageItemThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (298306654, 49230, 20711, (166, 94, 111, 105, 3, 105, 12, 22 )); -- Windows.Storage.FileProperties.StorageItemThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (1828730610, 43176, 20573, (176, 66, 208, 135, 220, 31, 193, 183 ));
@@ -6971,7 +6978,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -9180,6 +9187,7 @@ package body WinRt.Windows.Storage is
       m_AsyncOperation : aliased IAsyncOperation_StorageItemThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (298306654, 49230, 20711, (166, 94, 111, 105, 3, 105, 12, 22 )); -- Windows.Storage.FileProperties.StorageItemThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (1828730610, 43176, 20573, (176, 66, 208, 135, 220, 31, 193, 183 ));
@@ -9216,7 +9224,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -9252,6 +9260,7 @@ package body WinRt.Windows.Storage is
       m_AsyncOperation : aliased IAsyncOperation_StorageItemThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (298306654, 49230, 20711, (166, 94, 111, 105, 3, 105, 12, 22 )); -- Windows.Storage.FileProperties.StorageItemThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (1828730610, 43176, 20573, (176, 66, 208, 135, 220, 31, 193, 183 ));
@@ -9288,7 +9297,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -9325,6 +9334,7 @@ package body WinRt.Windows.Storage is
       m_AsyncOperation : aliased IAsyncOperation_StorageItemThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (298306654, 49230, 20711, (166, 94, 111, 105, 3, 105, 12, 22 )); -- Windows.Storage.FileProperties.StorageItemThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (1828730610, 43176, 20573, (176, 66, 208, 135, 220, 31, 193, 183 ));
@@ -9361,7 +9371,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -9492,6 +9502,7 @@ package body WinRt.Windows.Storage is
       m_AsyncOperation : aliased IAsyncOperation_StorageItemThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (298306654, 49230, 20711, (166, 94, 111, 105, 3, 105, 12, 22 )); -- Windows.Storage.FileProperties.StorageItemThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (1828730610, 43176, 20573, (176, 66, 208, 135, 220, 31, 193, 183 ));
@@ -9528,7 +9539,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -9564,6 +9575,7 @@ package body WinRt.Windows.Storage is
       m_AsyncOperation : aliased IAsyncOperation_StorageItemThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (298306654, 49230, 20711, (166, 94, 111, 105, 3, 105, 12, 22 )); -- Windows.Storage.FileProperties.StorageItemThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (1828730610, 43176, 20573, (176, 66, 208, 135, 220, 31, 193, 183 ));
@@ -9600,7 +9612,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -9637,6 +9649,7 @@ package body WinRt.Windows.Storage is
       m_AsyncOperation : aliased IAsyncOperation_StorageItemThumbnail.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (298306654, 49230, 20711, (166, 94, 111, 105, 3, 105, 12, 22 )); -- Windows.Storage.FileProperties.StorageItemThumbnail;
       m_HandlerIID     : aliased WinRt.IID := (1828730610, 43176, 20573, (176, 66, 208, 135, 220, 31, 193, 183 ));
@@ -9673,7 +9686,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;

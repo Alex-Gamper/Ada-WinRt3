@@ -2896,11 +2896,12 @@ package body WinRt.Windows.Media.Core is
       tmp          : WinRt.HResult := S_OK;
       m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.FaceDetectionEffectDefinition");
       m_ComRetVal  : aliased Windows.Media.Effects.IVideoEffectDefinition;
+      m_Wrapped    : Windows.Media.Effects.IVideoEffectDefinition_Ptr := new Windows.Media.Effects.IVideoEffectDefinition;
    begin
       return RetVal : FaceDetectionEffectDefinition do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVideoEffectDefinition := new Windows.Media.Effects.IVideoEffectDefinition;
+            Retval.m_IVideoEffectDefinition := m_Wrapped;
             Retval.m_IVideoEffectDefinition.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8316,11 +8317,12 @@ package body WinRt.Windows.Media.Core is
       tmp          : WinRt.HResult := S_OK;
       m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.SceneAnalysisEffectDefinition");
       m_ComRetVal  : aliased Windows.Media.Effects.IVideoEffectDefinition;
+      m_Wrapped    : Windows.Media.Effects.IVideoEffectDefinition_Ptr := new Windows.Media.Effects.IVideoEffectDefinition;
    begin
       return RetVal : SceneAnalysisEffectDefinition do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVideoEffectDefinition := new Windows.Media.Effects.IVideoEffectDefinition;
+            Retval.m_IVideoEffectDefinition := m_Wrapped;
             Retval.m_IVideoEffectDefinition.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -12218,11 +12220,12 @@ package body WinRt.Windows.Media.Core is
       tmp          : WinRt.HResult := S_OK;
       m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.VideoStabilizationEffectDefinition");
       m_ComRetVal  : aliased Windows.Media.Effects.IVideoEffectDefinition;
+      m_Wrapped    : Windows.Media.Effects.IVideoEffectDefinition_Ptr := new Windows.Media.Effects.IVideoEffectDefinition;
    begin
       return RetVal : VideoStabilizationEffectDefinition do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVideoEffectDefinition := new Windows.Media.Effects.IVideoEffectDefinition;
+            Retval.m_IVideoEffectDefinition := m_Wrapped;
             Retval.m_IVideoEffectDefinition.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

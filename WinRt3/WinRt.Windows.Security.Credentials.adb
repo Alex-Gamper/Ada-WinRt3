@@ -1400,11 +1400,12 @@ package body WinRt.Windows.Security.Credentials is
       tmp          : WinRt.HResult := S_OK;
       m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Credentials.PasswordCredentialPropertyStore");
       m_ComRetVal  : aliased Windows.Foundation.Collections.IPropertySet;
+      m_Wrapped    : Windows.Foundation.Collections.IPropertySet_Ptr := new Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : PasswordCredentialPropertyStore do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+            Retval.m_IPropertySet := m_Wrapped;
             Retval.m_IPropertySet.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

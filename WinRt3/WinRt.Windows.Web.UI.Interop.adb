@@ -1821,6 +1821,7 @@ package body WinRt.Windows.Web.UI.Interop is
       m_AsyncOperation : aliased IAsyncOperation_WebViewControl.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Web.UI.IWebViewControl_Ptr := new Windows.Web.UI.IWebViewControl;
       m_RetVal         : aliased WinRt.Windows.Web.UI.IWebViewControl;
       m_IID            : aliased WinRt.IID := (2889689260, 33634, 20934, (178, 204, 22, 243, 103, 39, 88, 241 )); -- Windows.Web.UI.Interop.WebViewControl;
       m_HandlerIID     : aliased WinRt.IID := (3591988182, 32877, 20648, (168, 28, 117, 217, 53, 106, 213, 215 ));
@@ -1854,7 +1855,7 @@ package body WinRt.Windows.Web.UI.Interop is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWebViewControl := new Windows.Web.UI.IWebViewControl;
+                  Retval.m_IWebViewControl := m_Wrapped;
                   Retval.m_IWebViewControl.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;

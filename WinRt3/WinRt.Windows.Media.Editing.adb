@@ -1289,6 +1289,7 @@ package body WinRt.Windows.Media.Editing is
       m_AsyncOperation : aliased IAsyncOperation_ImageStream.Kind;
       m_AsyncStatus    : aliased WinRt.Windows.Foundation.AsyncStatus;
       m_ComRetVal      : aliased WinRt.GenericObject := null;
+      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_RetVal         : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       m_IID            : aliased WinRt.IID := (1749116350, 17, 22230, (190, 191, 67, 0, 22, 213, 27, 122 )); -- Windows.Graphics.Imaging.ImageStream;
       m_HandlerIID     : aliased WinRt.IID := (700154504, 17506, 20846, (166, 117, 140, 146, 53, 196, 41, 148 ));
@@ -1322,7 +1323,7 @@ package body WinRt.Windows.Media.Editing is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+                  Retval.m_IRandomAccessStreamWithContentType := m_Wrapped;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
