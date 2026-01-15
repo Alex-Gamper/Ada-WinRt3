@@ -5,18 +5,19 @@
 	xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
 	xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
 	xmlns:uap4="http://schemas.microsoft.com/appx/manifest/uap/windows10/4"
-	IgnorableNamespaces="uap mp uap3 uap4">
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+	IgnorableNamespaces="uap mp uap3 uap4 rescap">
 
   <Identity
-    Name="App2"
-    Publisher="CN=alexg"
+    Name="WinRt3XamlTest"
+    Publisher="CN=alex.gamper"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="7156b83a-e759-4a59-857b-c38d9ef54f4c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>App2</DisplayName>
-    <PublisherDisplayName>alexg</PublisherDisplayName>
+    <DisplayName>WinRt3XamlTest</DisplayName>
+    <PublisherDisplayName>alex.gamper</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -30,31 +31,23 @@
   </Resources>
 
 	<Applications>
-		<Application Id="App"
-					 Executable="$targetnametoken$.exe"
-					 EntryPoint="WinRtXamlTest.App">
-			
-			<uap:VisualElements DisplayName="App2"
-								Description="App2"
-								Square150x150Logo="Assets\Square150x150Logo.png"
-								Square44x44Logo="Assets\Square44x44Logo.png"
-								BackgroundColor="transparent">
-
-				<uap:LockScreen Notification="badge" BadgeLogo="Assets\BadgeLogo.png" />
-
-				<uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"
-								 Square310x310Logo="Assets\LargeTile.png"
-								 Square71x71Logo="Assets\SmallTile.png">
-				</uap:DefaultTile>
-			
-				<uap:SplashScreen Image="Assets\SplashScreen.png" />
-			
-			</uap:VisualElements>
+		<Application Id="App2"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="$targetentrypoint$">
+      <uap:VisualElements
+        DisplayName="WinRt3XamlTest"
+        Description="WinRt3XamlTest"
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+      </uap:VisualElements>
 		</Application>
 	</Applications>
 
 	<Capabilities>
-		<Capability Name="internetClient" />
+    <rescap:Capability Name="runFullTrust" />
 	</Capabilities>
 
 </Package>

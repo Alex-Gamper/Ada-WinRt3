@@ -189,6 +189,6 @@
     <AppxManifest Include="Package.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
-    <Manifest Include="app.manifest" />
+    <ClInclude Include="WinRt3XamlTest.h" />
   </ItemGroup>
 </Project>
